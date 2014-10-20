@@ -1,0 +1,143 @@
+﻿<Window x:Class="ControlLibrary.WindowKeyPad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowKeyPad" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="75*" />
+            <RowDefinition Height="75*" />
+            <RowDefinition Height="75*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="100*" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="1" Content="7" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Content="4" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Content="1" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1" Content="8" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2" Content="9" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Content="5" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Content="2" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Content="6" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" Content="3" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Content="0" Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="1" Content="." Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="2" Click="btnBackSpace_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2E020" Offset="0"/>
+                    <GradientStop Color="#FF6F9624" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Content>
+                <AccessText TextWrapping="Wrap" Text="Back Space"/>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="3" Content="EXIT" Click="btnExit_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFED1C24" Offset="0"/>
+                    <GradientStop Color="#FFAA1317" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3" Content="CLEAR" Click="btnClear_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFAA51A" Offset="0"/>
+                    <GradientStop Color="#FFF47A20" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Content="Enter" Click="btnEnter_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" BorderBrush="#FFE3F500" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF00ADEE" Offset="0"/>
+                    <GradientStop Color="#FF0078A5" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

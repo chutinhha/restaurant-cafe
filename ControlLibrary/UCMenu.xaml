@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="ControlLibrary.UCMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="gridLoaiGroup" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="1" Grid.Column="0"/>
+            <Button Grid.Row="1" Grid.Column="1"/>
+            <Button Grid.Row="1" Grid.Column="2"/>
+
+        </Grid>
+        <Grid Name="gridItem" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0"/>
+            <Button Grid.Row="0" Grid.Column="1"/>
+            <Button Grid.Row="0" Grid.Column="2"/>
+            <Button Grid.Row="1" Grid.Column="0"/>
+            <Button Grid.Row="1" Grid.Column="1"/>
+            <Button Grid.Row="1" Grid.Column="2"/>
+            <Button Grid.Row="2" Grid.Column="0"/>
+            <Button Grid.Row="2" Grid.Column="1"/>
+            <Button Grid.Row="2" Grid.Column="2"/>
+            <Button Grid.Row="3" Grid.Column="0"/>
+            <Button Grid.Row="3" Grid.Column="1"/>
+            <Button Grid.Row="3" Grid.Column="2"/>
+            <Button Grid.Row="4" Grid.Column="0"/>
+            <Button Grid.Row="4" Grid.Column="1"/>
+            <Button Grid.Row="4" Grid.Column="2"/>
+            <Button Grid.Row="5" Grid.Column="0"/>
+            <Button Grid.Row="5" Grid.Column="1"/>
+            <Button Grid.Row="5" Grid.Column="2"/>
+            <Button Grid.Row="6" Grid.Column="0"/>
+            <Button Grid.Row="6" Grid.Column="1"/>
+            <Button Grid.Row="6" Grid.Column="2"/>
+            <Button Grid.Row="7" Grid.Column="0"/>
+            <Button Grid.Row="7" Grid.Column="1"/>
+            <Button Grid.Row="7" Grid.Column="2"/>
+            <Button Grid.Row="8" Grid.Column="0"/>
+            <Button Grid.Row="8" Grid.Column="1"/>
+            <Button Grid.Row="8" Grid.Column="2"/>
+        </Grid>
+        <Grid Name="gridGroup" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Button Name="btnGroupFirst" Grid.Row="0" Click="btnGroupFirst_Click"/>
+            <Button Grid.Row="1" Click="btnGroup_Click"/>
+            <Button Grid.Row="2" Click="btnGroup_Click"/>
+            <Button Grid.Row="3" Click="btnGroup_Click"/>
+            <Button Grid.Row="4" Click="btnGroup_Click"/>
+            <Button Grid.Row="5" Click="btnGroup_Click"/>
+            <Button Grid.Row="6" Click="btnGroup_Click"/>
+            <Button Grid.Row="7" Click="btnGroup_Click"/>
+            <Button Grid.Row="8" Click="btnGroup_Click"/>            
+            <Button Name="btnGroupLast" Grid.Row="10" Click="btnGroupLast_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>
