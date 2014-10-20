@@ -8,7 +8,8 @@
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="90*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
@@ -20,12 +21,11 @@
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="0"/>
-            <Button Grid.Row="1" Grid.Column="1"/>
-            <Button Grid.Row="1" Grid.Column="2"/>
-
+            <Button Grid.Row="1" Grid.Column="0" Content="NƯỚC" Name="btnNuoc" Click="btnNuoc_Click" />
+            <Button Grid.Row="1" Grid.Column="1" Content="THỨC ĂN" Name="btnThucAn" Click="btnThucAn_Click" />
+            <Button Grid.Row="1" Grid.Column="2" Content="TẤT CẢ" Name="btnTatCa" Click="btnTatCa_Click" />
         </Grid>
-        <Grid Name="gridItem" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Name="gridItems" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
@@ -40,37 +40,34 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
+
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0"/>
-            <Button Grid.Row="0" Grid.Column="1"/>
-            <Button Grid.Row="0" Grid.Column="2"/>
-            <Button Grid.Row="1" Grid.Column="0"/>
-            <Button Grid.Row="1" Grid.Column="1"/>
-            <Button Grid.Row="1" Grid.Column="2"/>
-            <Button Grid.Row="2" Grid.Column="0"/>
-            <Button Grid.Row="2" Grid.Column="1"/>
-            <Button Grid.Row="2" Grid.Column="2"/>
-            <Button Grid.Row="3" Grid.Column="0"/>
-            <Button Grid.Row="3" Grid.Column="1"/>
-            <Button Grid.Row="3" Grid.Column="2"/>
-            <Button Grid.Row="4" Grid.Column="0"/>
-            <Button Grid.Row="4" Grid.Column="1"/>
-            <Button Grid.Row="4" Grid.Column="2"/>
-            <Button Grid.Row="5" Grid.Column="0"/>
-            <Button Grid.Row="5" Grid.Column="1"/>
-            <Button Grid.Row="5" Grid.Column="2"/>
-            <Button Grid.Row="6" Grid.Column="0"/>
-            <Button Grid.Row="6" Grid.Column="1"/>
-            <Button Grid.Row="6" Grid.Column="2"/>
-            <Button Grid.Row="7" Grid.Column="0"/>
-            <Button Grid.Row="7" Grid.Column="1"/>
-            <Button Grid.Row="7" Grid.Column="2"/>
-            <Button Grid.Row="8" Grid.Column="0"/>
-            <Button Grid.Row="8" Grid.Column="1"/>
-            <Button Grid.Row="8" Grid.Column="2"/>
+            <Button Grid.Row="0" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="0" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="0" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="1" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="1" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="1" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="2" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="2" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="3" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="4" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="5" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="5" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="6" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="6" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="6" Grid.Column="2" Click="btnItems_Click"/>
+            <Button Grid.Row="7" Grid.Column="0" Click="btnItems_Click"/>
+            <Button Grid.Row="7" Grid.Column="1" Click="btnItems_Click"/>
+            <Button Grid.Row="7" Grid.Column="2" Click="btnItems_Click"/>
         </Grid>
-        <Grid Name="gridGroup" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Name="gridGroup" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
@@ -83,7 +80,7 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Button Name="btnGroupFirst" Grid.Row="0" Click="btnGroupFirst_Click"/>
+            <Button Name="btnGroupBack" Grid.Row="0" Click="btnGroupBack_Click"/>
             <Button Grid.Row="1" Click="btnGroup_Click"/>
             <Button Grid.Row="2" Click="btnGroup_Click"/>
             <Button Grid.Row="3" Click="btnGroup_Click"/>
@@ -91,8 +88,18 @@
             <Button Grid.Row="5" Click="btnGroup_Click"/>
             <Button Grid.Row="6" Click="btnGroup_Click"/>
             <Button Grid.Row="7" Click="btnGroup_Click"/>
-            <Button Grid.Row="8" Click="btnGroup_Click"/>            
-            <Button Name="btnGroupLast" Grid.Row="10" Click="btnGroupLast_Click"/>
+            <Button Grid.Row="8" Click="btnGroup_Click"/>
+            <Button Name="btnGroupNext" Grid.Row="10" Click="btnGroupNext_Click"/>
+        </Grid>
+        <Grid Name="gridButton" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFDDDDDD">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="1" Grid.Column="0" Content="Trờ Về" Name="btnItemBack" Click="btnItemBack_Click"/>
+            <Button Grid.Row="1" Grid.Column="1"/>
+            <Button Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" Name="btnItemNext" Click="btnItemNext_Click"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\MinhTien\Desktop\Karaoke\GUI\obj\Debug\
+E:\Minh Tien\KiemTien\Karaoke\GUI\obj\Debug\
 GUI
 none
 false
 DEBUG;TRACE
-C:\Users\MinhTien\Desktop\Karaoke\GUI\App.xaml
-41351959376
+E:\Minh Tien\KiemTien\Karaoke\GUI\App.xaml
+6-803443319
 
-9673566767
-131935634694
-MainWindow.xaml;WindowBanHang.xaml;WindowLogin.xaml;WindowLoginDialog.xaml;
+111156255098
+13342512245
+MainWindow.xaml;WindowBanHang.xaml;WindowLogin.xaml;WindowLoginDialog.xaml;WindowMenuChange.xaml;WindowQuanLyGia.xaml;
 
 False
 
