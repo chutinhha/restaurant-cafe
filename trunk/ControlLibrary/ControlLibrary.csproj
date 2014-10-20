@@ -49,6 +49,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POSFont.cs" />
+    <Compile Include="UCNewMon.xaml.cs">
+      <DependentUpon>UCNewMon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UCNewNhom.xaml.cs">
+      <DependentUpon>UCNewNhom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowKeyboard.xaml.cs">
       <DependentUpon>WindowKeyboard.xaml</DependentUpon>
     </Compile>
@@ -63,18 +70,20 @@
     <Compile Include="UCMenu.xaml.cs">
       <DependentUpon>UCMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UCMenuGroup.xaml.cs">
-      <DependentUpon>UCMenuGroup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UCMenuItem.xaml.cs">
-      <DependentUpon>UCMenuItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UCTile.xaml.cs">
       <DependentUpon>UCTile.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowKeyPad.xaml.cs">
       <DependentUpon>WindowKeyPad.xaml</DependentUpon>
     </Compile>
+    <Page Include="UCNewMon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UCNewNhom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowKeyboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,14 +105,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UCMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UCMenuGroup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UCMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +140,36 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow down Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow left down Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow left Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow left up Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow right down Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow right Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow right up Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow up Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{6D4AA22F-0B6C-453B-8BE8-AFD13BB3ED9F}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

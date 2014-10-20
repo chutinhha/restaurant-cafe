@@ -1,0 +1,6 @@
+E:\Minh Tien\KiemTien\Karaoke\Data\bin\Debug\Data.dll.config
+E:\Minh Tien\KiemTien\Karaoke\Data\bin\Debug\Data.dll
+E:\Minh Tien\KiemTien\Karaoke\Data\bin\Debug\Data.pdb
+E:\Minh Tien\KiemTien\Karaoke\Data\obj\Debug\Data.dll
+E:\Minh Tien\KiemTien\Karaoke\Data\obj\Debug\Data.pdb
+E:\Minh Tien\KiemTien\Karaoke\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache

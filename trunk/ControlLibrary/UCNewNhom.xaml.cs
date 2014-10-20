@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ControlLibrary
 {
     /// <summary>
-    /// Interaction logic for UCMenuItem.xaml
+    /// Interaction logic for UCNewNhom.xaml
     /// </summary>
-    public partial class UCMenuItem : UserControl
+    public partial class UCNewNhom : UserControl
     {
-        public UCMenuItem()
+        public UCNewNhom()
         {
             InitializeComponent();
         }

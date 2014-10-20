@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ControlLibrary
 {
@@ -19,13 +11,26 @@ namespace ControlLibrary
     /// </summary>
     public partial class UCMenu : UserControl
     {
-        List<string> lsGroup = new List<string>();
+
+        public class Menu
+        {
+            public string TenNgan { get; set; }
+        }
+        private List<Menu> lsMenuMon = new List<Menu>();
+        private List<Menu> lsMenuNhom = new List<Menu>();
+
+
         public UCMenu()
         {
-            InitializeComponent();
+            InitializeComponent();            
             for (int i = 0; i < 10; i++)
+            {                
+                //lsMenuNhom.Add("Group " + (i + 1));
+            }
+
+            for (int i = 0; i < 24; i++)
             {
-                lsGroup.Add("Group " + (i + 1));
+                //lsMenuMon.Add("Item " + (i + 1));
             }
         }
 
@@ -40,42 +45,113 @@ namespace ControlLibrary
             LoadGroup();
         }
 
-        public void LoadItem()
-        {
+        #region Items
 
+        private int PageItems = 0;
+
+        public void LoadItem(int GroupID)
+        {
+            if (GroupID != 0)
+            {
+                PageItems = 0;
+            }
+            List<Menu> lsItemsTem = lsMenuMon.Skip((PageItems - 1) * gridItems.Children.Count).Take(gridItems.Children.Count).ToList();
+            for (int i = 0; i < lsItemsTem.Count; i++)
+            {
+                SetButtonItem((Button)gridItems.Children[i], lsItemsTem[i]);
+            }
+            for (int i = lsItemsTem.Count; i < gridItems.Children.Count; i++)
+            {
+                SetButtonEmpty((Button)gridItems.Children[i]);
+            }
         }
 
-        #region Group
+        private void btnItemBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (PageItems > 1)
+            {
+                PageItems--;
+                LoadItem(0);
+            }
+        }
+
+        private void btnItemNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (PageItems < lsMenuMon.Count / gridItems.Children.Count + 1)
+            {
+                PageItems--;
+                LoadItem(0);
+            }
+        }
+
+        private void btnItems_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void SetButtonItem(Button btn, Menu item)
+        {
+            btn.IsEnabled = true;
+            btn.Content = item.TenNgan;
+        }
+
+        #endregion Items
+
+        #region Nhóm
+
         private int PageGroup = 0;
 
         public void LoadGroup()
         {
-            if (lsGroup.Count > gridGroup.Children.Count)
+            if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 int CountGroup = gridGroup.Children.Count - 2;
-                List<string> lsGroupTem = lsGroup.Skip((PageGroup - 1) * CountGroup).Take(CountGroup).ToList();
+                List<Menu> lsGroupTem = lsMenuNhom.Skip((PageGroup - 1) * CountGroup).Take(CountGroup).ToList();
                 for (int i = 0; i < lsGroupTem.Count; i++)
                 {
+                    if (i == 0)
+                        LoadItem(0);
                     SetButtonGroup((Button)gridGroup.Children[i], lsGroupTem[i + 1]);
                 }
                 for (int i = lsGroupTem.Count; i < CountGroup; i++)
                 {
-                    SetEmptyButton((Button)gridGroup.Children[i + 1]);
+                    SetButtonEmpty((Button)gridGroup.Children[i + 1]);
                 }
                 SetGroupPage();
             }
             else
             {
-                for (int i = 0; i < lsGroup.Count; i++)
-                    SetButtonGroup((Button)gridGroup.Children[i], lsGroup[i]);
+                for (int i = 0; i < lsMenuNhom.Count; i++)
+                {
+                    if (i == 0)
+                        LoadItem(0);
+                    SetButtonGroup((Button)gridGroup.Children[i], lsMenuNhom[i]);
+                }
 
-                for (int i = lsGroup.Count; i < gridGroup.Children.Count; i++)
-                    SetEmptyButton((Button)gridGroup.Children[i]);
+                for (int i = lsMenuNhom.Count; i < gridGroup.Children.Count; i++)
+                    SetButtonEmpty((Button)gridGroup.Children[i]);
             }
         }
-        private void btnGroupFirst_Click(object sender, RoutedEventArgs e)
+
+        public void SetButtonGroup(Button btn, Menu item)
         {
-            if (lsGroup.Count > gridGroup.Children.Count)
+            btn.IsEnabled = true;
+            btn.Content = item.TenNgan;
+        }
+
+        public void SetGroupPage()
+        {
+            btnGroupBack.Content = "Trờ Về";
+            btnGroupNext.Content = "Tiếp Theo";
+        }
+
+        private void btnGroup_Click(object sender, RoutedEventArgs e)
+        {
+            LoadItem(1);
+        }
+
+        private void btnGroupBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 if (PageGroup > 1)
                 {
@@ -89,11 +165,11 @@ namespace ControlLibrary
             }
         }
 
-        private void btnGroupLast_Click(object sender, RoutedEventArgs e)
+        private void btnGroupNext_Click(object sender, RoutedEventArgs e)
         {
-            if (lsGroup.Count > gridGroup.Children.Count)
+            if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
-                if (PageGroup < (lsGroup.Count / (gridGroup.Children.Count - 2)) + 1)
+                if (PageGroup < (lsMenuNhom.Count / (gridGroup.Children.Count - 2)) + 1)
                 {
                     PageGroup++;
                     LoadGroup();
@@ -105,29 +181,31 @@ namespace ControlLibrary
             }
         }
 
-        public void SetButtonGroup(Button btn, string item)
+        #endregion Nhóm
+
+        #region Loại Nhóm
+
+        private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
-            btn.IsEnabled = true;
-            btn.Content = item;
+
         }
 
-        public void SetGroupPage()
+        private void btnThucAn_Click(object sender, RoutedEventArgs e)
         {
-            btnGroupFirst.Content = "Back";
-            btnGroupLast.Content = "Next";
+
+        }
+
+        private void btnTatCa_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion
 
-        private void btnGroup_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        public void SetEmptyButton(Button btn)
+        public void SetButtonEmpty(Button btn)
         {
             btn.Content = "";
             btn.IsEnabled = false;
-
         }
 
 
