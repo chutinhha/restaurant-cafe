@@ -79,6 +79,15 @@ namespace ControlLibrary
 
         }
 
+        public static readonly DependencyProperty TextProperty =
+        DependencyProperty.Register("Text", typeof(string), typeof(POSTextBox), new PropertyMetadata(default(string)));
+
+        public new string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
 
         protected override void OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs e)
         {

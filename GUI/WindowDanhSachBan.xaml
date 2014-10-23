@@ -1,0 +1,76 @@
+﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.WindowDanhSachBan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowDanhSachBan" Height="768" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Padding="10" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+                <my:POSTextBox Grid.Row="1" Grid.Column="0" x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
+                <TextBlock Grid.Row="2" Text="Loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+                <my:POSCombobox Grid.Row="3" Grid.Column="0" x:Name="cbbLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
+                <my:POSButtonChucNang Grid.Row="4" Grid.Column="0" Name="btnThemLoaiBan" Content="Thêm loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThemLoaiBan_Click"/>
+                <my:POSButtonChucNang Grid.Row="4" Grid.Column="1" Name="btnXoaLoaiBan" Content="Xóa loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnXoaLoaiBan_Click"/>
+
+                <ListView Grid.Column="1" Grid.RowSpan="4" Name="lvLoaiBan">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="200" Header="Loại giá"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="200" Header="Giá bán"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Padding="10" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+                <my:POSTextBox Grid.Row="1" Grid.Column="0" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
+                <TextBlock Grid.Row="2" Text="Loại giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+                <my:POSCombobox Grid.Row="3" Grid.Column="0" x:Name="cbbLoaiGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
+                <TextBlock Grid.Row="4" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+                <my:POSTextBox Grid.Row="5" Grid.Column="0" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
+                <my:POSButtonChucNang Grid.Row="6" Grid.Column="0" Name="btnThemGiaBan" Content="Thêm loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThemGiaBan_Click"/>
+                <my:POSButtonChucNang Grid.Row="6" Grid.Column="1" Name="btnXoaGiaBan" Content="Xóa loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnXoaGiaBan_Click"/>
+
+                <ListView Grid.Column="1" Grid.RowSpan="6" Name="lvLoaiGiaBan">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="200" Header="Loại bán"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+        <my:POSButtonChucNang Grid.Row="3" Name="btnThoat" Content="Trở lại" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2,2,2,2" Width="100" FontSize="18" Click="btnThoat_Click"/>
+    </Grid>
+</Window>

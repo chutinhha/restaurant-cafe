@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace GUI
 {
     /// <summary>
-    /// Interaction logic for WindowQuanLyGia.xaml
+    /// Interaction logic for WindowQuanLyNhanVien.xaml
     /// </summary>
-    public partial class WindowQuanLyGia : Window
+    public partial class WindowQuanLyNhanVien : Window
     {
-        public WindowQuanLyGia()
+        public WindowQuanLyNhanVien()
         {
             InitializeComponent();
         }
