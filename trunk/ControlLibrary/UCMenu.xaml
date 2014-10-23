@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ControlLibrary.UCMenu"
+﻿<UserControl xmlns:my="clr-namespace:ControlLibrary"  x:Class="ControlLibrary.UCMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,12 +21,13 @@
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="0" Content="NƯỚC" Name="btnNuoc" Click="btnNuoc_Click" />
-            <Button Grid.Row="1" Grid.Column="1" Content="THỨC ĂN" Name="btnThucAn" Click="btnThucAn_Click" />
-            <Button Grid.Row="1" Grid.Column="2" Content="TẤT CẢ" Name="btnTatCa" Click="btnTatCa_Click" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="NƯỚC" x:Name="btnNuoc" Click="btnNuoc_Click" Image="/ControlLibrary;component/Images/Soft%20drink.png" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="1" Content="THỨC ĂN" x:Name="btnThucAn" Click="btnThucAn_Click" Image="/ControlLibrary;component/Images/Food.png" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="TẤT CẢ" x:Name="btnTatCa" Click="btnTatCa_Click" />
         </Grid>
         <Grid Name="gridItems" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
@@ -37,35 +38,34 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>                
 
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="0" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="0" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="1" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="1" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="1" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="2" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="2" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="2" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="3" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="3" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="3" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="4" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="4" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="4" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="5" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="5" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="5" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="6" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="6" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="6" Grid.Column="2" Click="btnItems_Click"/>
-            <Button Grid.Row="7" Grid.Column="0" Click="btnItems_Click"/>
-            <Button Grid.Row="7" Grid.Column="1" Click="btnItems_Click"/>
-            <Button Grid.Row="7" Grid.Column="2" Click="btnItems_Click"/>
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="2" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="2" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="2" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="2" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="3" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="3" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="3" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="3" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="4" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="4" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="4" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="4" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="5" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="5" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="5" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="5" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+
         </Grid>
         <Grid Name="gridGroup" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
@@ -80,26 +80,26 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Button Name="btnGroupBack" Grid.Row="0" Click="btnGroupBack_Click"/>
-            <Button Grid.Row="1" Click="btnGroup_Click"/>
-            <Button Grid.Row="2" Click="btnGroup_Click"/>
-            <Button Grid.Row="3" Click="btnGroup_Click"/>
-            <Button Grid.Row="4" Click="btnGroup_Click"/>
-            <Button Grid.Row="5" Click="btnGroup_Click"/>
-            <Button Grid.Row="6" Click="btnGroup_Click"/>
-            <Button Grid.Row="7" Click="btnGroup_Click"/>
-            <Button Grid.Row="8" Click="btnGroup_Click"/>
-            <Button Name="btnGroupNext" Grid.Row="10" Click="btnGroupNext_Click"/>
+            <my:POSButtonMenu x:Name="btnGroupBack"  Grid.Row="0" Click="btnGroupBack_Click"/>
+            <my:POSButtonMenu Grid.Row="1" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="2" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="3" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="4" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="5" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="6" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="7" Click="btnGroup_Click"/>
+            <my:POSButtonMenu Grid.Row="8" Click="btnGroup_Click"/>
+            <my:POSButtonMenu x:Name="btnGroupNext" Grid.Row="10" Click="btnGroupNext_Click"/>
         </Grid>
-        <Grid Name="gridButton" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFDDDDDD">
+        <Grid Name="gridButton" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="0" Content="Trờ Về" Name="btnItemBack" Click="btnItemBack_Click"/>
-            <Button Grid.Row="1" Grid.Column="1"/>
-            <Button Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" Name="btnItemNext" Click="btnItemNext_Click"/>
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="Trờ Về" x:Name="btnItemBack" Click="btnItemBack_Click"/>
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="1"/>
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" x:Name="btnItemNext" Click="btnItemNext_Click"/>
         </Grid>
     </Grid>
 </UserControl>

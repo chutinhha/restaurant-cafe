@@ -40,15 +40,14 @@ namespace ControlLibrary
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:POSCombobox/>
+    ///     <MyNamespace:POSButtonChucNang/>
     ///
     /// </summary>
-    public class POSCombobox : ComboBox
+    public class POSButtonChucNang : Button
     {
-        static POSCombobox()
+        static POSButtonChucNang()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSCombobox), new FrameworkPropertyMetadata(typeof(POSCombobox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonChucNang), new FrameworkPropertyMetadata(typeof(POSButtonChucNang)));
         }
-
     }
 }

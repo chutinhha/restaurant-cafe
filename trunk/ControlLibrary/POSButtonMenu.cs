@@ -40,15 +40,25 @@ namespace ControlLibrary
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:POSCombobox/>
+    ///     <MyNamespace:POSButtonMenu/>
     ///
     /// </summary>
-    public class POSCombobox : ComboBox
+    public class POSButtonMenu : Button
     {
-        static POSCombobox()
+        static POSButtonMenu()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSCombobox), new FrameworkPropertyMetadata(typeof(POSCombobox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonMenu), new FrameworkPropertyMetadata(typeof(POSButtonMenu)));
         }
 
+        #region Properties
+        public ImageSource Image
+        {
+            get { return (ImageSource)GetValue(ImageProperty); }
+            set { SetValue(ImageProperty, value); }
+        }
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.Register("Image", typeof(ImageSource), typeof(POSButtonMenu), new PropertyMetadata(null));
+
+        #endregion
     }
 }
