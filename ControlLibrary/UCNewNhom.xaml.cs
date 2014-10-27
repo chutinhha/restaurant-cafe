@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace ControlLibrary
 {
@@ -44,6 +46,13 @@ namespace ControlLibrary
                 _Nhom.GiamGia = 0;
                 _Nhom.LoaiNhomID = LoaiNhomID;
             }
+            if (mBitmapImage != null)
+            {
+                byte[] imageData = new byte[mBitmapImage.StreamSource.Length];
+                mBitmapImage.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
+                mBitmapImage.StreamSource.Read(imageData, 0, imageData.Length);
+                _Nhom.Hinh = imageData;
+            }
             _Nhom.TenDai = txtTenDai.Text;
             _Nhom.TenNgan = txtTenNgan.Text;
             if (txtSapXep.Text == "")
@@ -64,12 +73,39 @@ namespace ControlLibrary
                 txtTenDai.Text = _Nhom.TenDai;
                 txtTenNgan.Text = _Nhom.TenNgan;
                 txtSapXep.Text = _Nhom.SapXep.ToString();
+                if (_Nhom.Hinh != null && _Nhom.Hinh.Length > 0)
+                {
+                    mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);
+                }
             }
             else
             {
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
                 txtSapXep.Text = "";
+            }
+        }
+
+        private BitmapImage mBitmapImage = null;
+        private void btnHinhAnh_Click(object sender, RoutedEventArgs e)
+        {
+            Stream checkStream = null;
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "All Image Files | *.*";
+            if ((bool)openFileDialog.ShowDialog())
+            {
+
+                if ((checkStream = openFileDialog.OpenFile()) != null)
+                {
+                    Stream fs = File.OpenRead(openFileDialog.FileName);
+                    mBitmapImage = new BitmapImage();
+                    mBitmapImage.BeginInit();
+                    mBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    mBitmapImage.StreamSource = fs;
+                    mBitmapImage.EndInit();
+                }
             }
         }
     }
