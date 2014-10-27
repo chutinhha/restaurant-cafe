@@ -33,7 +33,7 @@ namespace Data
             using (KaraokeEntities ke = new KaraokeEntities())
             {
                 MENUMON item = (from x in ke.MENUMONs where x.MonID == MonID select x).First();
-                item.Deleted = true;                
+                item.Deleted = true;
                 ke.SaveChanges();
                 return item.MonID;
             }
@@ -47,6 +47,7 @@ namespace Data
                 m.SapXep = item.SapXep;
                 m.TenDai = item.TenDai;
                 m.TenNgan = item.TenNgan;
+                m.Hinh = item.Hinh;
                 ke.SaveChanges();
                 return item.MonID;
             }

@@ -38,7 +38,7 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>                
+                <RowDefinition Height="10*"/>
 
             </Grid.RowDefinitions>
             <my:POSButtonMenu Grid.Row="0" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
@@ -97,9 +97,9 @@
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="Trờ Về" x:Name="btnItemBack" Click="btnItemBack_Click"/>
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="Trờ Về" x:Name="btnItemBack" Click="btnItemBack_Click" Image="/ControlLibrary;component/Images/Back.png" />
             <my:POSButtonMenu Grid.Row="1" Grid.Column="1"/>
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" x:Name="btnItemNext" Click="btnItemNext_Click"/>
+            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" x:Name="btnItemNext" Click="btnItemNext_Click" Image="/ControlLibrary;component/Images/Forward.png" />
         </Grid>
     </Grid>
 </UserControl>

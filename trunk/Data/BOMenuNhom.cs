@@ -48,6 +48,7 @@ namespace Data
                 m.SapXep = item.SapXep;
                 m.TenDai = item.TenDai;
                 m.TenNgan = item.TenNgan;
+                m.Hinh = item.Hinh;
                 ke.SaveChanges();
                 return item.NhomID;
             }

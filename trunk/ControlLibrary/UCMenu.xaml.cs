@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media.Imaging;
+using System;
 
 namespace ControlLibrary
 {
@@ -93,6 +95,15 @@ namespace ControlLibrary
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;
+            if (item.Hinh != null && item.Hinh.Length > 0)
+            {
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
+            }
+            else
+            {
+                var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                btn.Image = new BitmapImage(uriSource);
+            }
         }
 
         #endregion Items
@@ -157,12 +168,25 @@ namespace ControlLibrary
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;
+            if (item.Hinh != null && item.Hinh.Length > 0)
+            {
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
+            }
+            else
+            {
+                var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                btn.Image = new BitmapImage(uriSource);
+            }
         }
 
         public void SetGroupPage()
         {
             btnGroupBack.Content = "Trờ Về";
+            var uriSource = new Uri(@"/ControlLibrary;component/Images/Back.png", UriKind.Relative);
+            btnGroupBack.Image = new BitmapImage(uriSource);
             btnGroupNext.Content = "Tiếp Theo";
+            uriSource = new Uri(@"/ControlLibrary;component/Images/Forward.png", UriKind.Relative);
+            btnGroupNext.Image = new BitmapImage(uriSource);
         }
 
         private void btnGroup_Click(object sender, RoutedEventArgs e)

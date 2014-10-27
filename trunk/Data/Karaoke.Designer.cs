@@ -41,16 +41,12 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_CHINHKHO", "CHINHKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.CHINHKHO), "CHITIETCHINHKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHINHKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETBANHANG_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "CHITIETBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETBANHANG_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETBANHANG), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "CHITIETCHINHKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHINHKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETCHINHKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHINHKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETGOPBAN_GOPBAN", "GOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.GOPBAN), "CHITIETGOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETGOPBAN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_HUKHO", "HUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.HUKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETMATKHO_MATKHO", "MATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MATKHO), "CHITIETMATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETMATKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "CHITIETMATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETMATKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETMATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETMATKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_NHAPKHO", "NHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHAPKHO), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETQUYEN_CHUCNANG", "CHUCNANG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.CHUCNANG), "CHITIETQUYEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETQUYEN), true)]
@@ -62,8 +58,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHUYENKHO_KHO", "KHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.KHO), "CHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHUYENKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHUYENKHO_KHO1", "KHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.KHO), "CHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHUYENKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHUYENKHO_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "CHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHUYENKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "DINHLUONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.DINHLUONG), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "DINHLUONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.DINHLUONG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_GOPBAN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "GOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.GOPBAN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_HOPDUNGTIEN_LOAIHOPDUNGTIEN", "LOAIHOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.LOAIHOPDUNGTIEN), "HOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.HOPDUNGTIEN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_HOPDUNGTIEN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "HOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.HOPDUNGTIEN), true)]
@@ -89,10 +83,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_THONGTIN_LOAITHONGTIN", "LOAITHONGTIN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.LOAITHONGTIN), "THONGTIN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.THONGTIN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MATKHO_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "MATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MATKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MAYIN_MAYIN", "MAYIN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MAYIN), "MAYIN1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MAYIN), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "MENUGIA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUGIA), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUGIA_MENULOAIGIA", "MENULOAIGIA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENULOAIGIA), "MENUGIA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUGIA), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "MENUKHUYENMAI", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKHUYENMAI), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "MENUKHUYENMAI", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKHUYENMAI), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKICHTHUOCMON), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "fk_MENUGROUP_MENUGROUPTYPE", "MENULOAINHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENULOAINHOM), "MENUNHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUNHOM), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "fk_MENUITEM_MENUGROUP", "MENUNHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUNHOM), "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUMON), true)]
@@ -3495,44 +3486,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_TONKHO", "TONKHO")]
         public TONKHO TONKHO
         {
@@ -3975,44 +3928,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO")]
         public TONKHO TONKHO
         {
@@ -4270,44 +4185,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "TONKHO")]
         public TONKHO TONKHO
         {
@@ -4544,44 +4421,6 @@ namespace Data
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6147,86 +5986,6 @@ namespace Data
         #endregion
 
     
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMON1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -9644,6 +9403,30 @@ namespace Data
         private global::System.String _TenLoaiBan;
         partial void OnTenLoaiBanChanging(global::System.String value);
         partial void OnTenLoaiBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KichThuocBan
+        {
+            get
+            {
+                return _KichThuocBan;
+            }
+            set
+            {
+                OnKichThuocBanChanging(value);
+                ReportPropertyChanging("KichThuocBan");
+                _KichThuocBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KichThuocBan");
+                OnKichThuocBanChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KichThuocBan;
+        partial void OnKichThuocBanChanging(Nullable<global::System.Int32> value);
+        partial void OnKichThuocBanChanged();
 
         #endregion
 
@@ -11017,44 +10800,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUGIA_MENULOAIGIA", "MENULOAIGIA")]
         public MENULOAIGIA MENULOAIGIA
         {
@@ -11266,86 +11011,6 @@ namespace Data
         #endregion
 
     
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMON1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -11627,138 +11292,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "CHITIETCHINHKHO")]
-        public EntityCollection<CHITIETCHINHKHO> CHITIETCHINHKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "CHITIETCHINHKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON", "CHITIETCHINHKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_MENUKICHTHUOCMON", "CHITIETHUKHO")]
-        public EntityCollection<CHITIETHUKHO> CHITIETHUKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "CHITIETHUKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_MENUKICHTHUOCMON", "CHITIETHUKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_MENUKICHTHUOCMON", "CHITIETMATKHO")]
-        public EntityCollection<CHITIETMATKHO> CHITIETMATKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "CHITIETMATKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_MENUKICHTHUOCMON", "CHITIETMATKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "CHITIETNHAPKHO")]
-        public EntityCollection<CHITIETNHAPKHO> CHITIETNHAPKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "CHITIETNHAPKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON", "CHITIETNHAPKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON", "DINHLUONG")]
-        public EntityCollection<DINHLUONG> DINHLUONGs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DINHLUONG>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "DINHLUONG");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DINHLUONG>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON", "DINHLUONG", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON1", "DINHLUONG")]
-        public EntityCollection<DINHLUONG> DINHLUONGs1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DINHLUONG>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "DINHLUONG");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DINHLUONG>("KaraokeModel.FK_DINHLUONG_MENUKICHTHUOCMON1", "DINHLUONG", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_LOAIBAN", "LOAIBAN")]
         public LOAIBAN LOAIBAN
         {
@@ -11787,72 +11320,6 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LOAIBAN>("KaraokeModel.FK_MENUKICHTHUOCMON_LOAIBAN", "LOAIBAN", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUGIA_MENUKICHTHUOCMON", "MENUGIA")]
-        public EntityCollection<MENUGIA> MENUGIAs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MENUGIA>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUGIA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MENUGIA>("KaraokeModel.FK_MENUGIA_MENUKICHTHUOCMON", "MENUGIA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKHUYENMAI")]
-        public EntityCollection<MENUKHUYENMAI> MENUKHUYENMAIs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MENUKHUYENMAI>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKHUYENMAI");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MENUKHUYENMAI>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKHUYENMAI", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKHUYENMAI")]
-        public EntityCollection<MENUKHUYENMAI> MENUKHUYENMAIs1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MENUKHUYENMAI>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKHUYENMAI");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MENUKHUYENMAI>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKHUYENMAI", value);
                 }
             }
         }

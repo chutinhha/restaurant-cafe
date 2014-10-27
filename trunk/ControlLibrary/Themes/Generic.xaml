@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ControlLibrary">
 
-
     <Style TargetType="{x:Type local:POSTextBox}">
         <Setter Property="Template">
             <Setter.Value>
@@ -13,10 +12,9 @@
                             BorderThickness="1">
                         <TextBox x:Name="lbText" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}" />
                         <Border.Effect>
-                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"/>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
                     </Border>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -43,10 +41,9 @@
                             BorderBrush="#FF56007C"
                             BorderThickness="1">
                         <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ItemsSource}">
-
                         </ComboBox>
                         <Border.Effect>
-                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"/>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
                     </Border>
                 </ControlTemplate>
@@ -59,14 +56,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButton}">
                     <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Background" Value="Transparent" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -80,15 +77,15 @@
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width ="50*"/>
-                                <ColumnDefinition Width ="30*"/>
-                                <ColumnDefinition Width ="20*"/>
+                                <ColumnDefinition Width ="50*" />
+                                <ColumnDefinition Width ="30*" />
+                                <ColumnDefinition Width ="20*" />
                             </Grid.ColumnDefinitions>
-                            <local:POSCombobox Grid.Column="0" x:Name="cbbFontFamily" FontSize="{TemplateBinding FontSize}" Margin="0,0,10,0"/>
-                            <local:POSCombobox Grid.Column="1" x:Name="cbbFontSize" FontSize="{TemplateBinding FontSize}" Margin="0,0,10,0"/>
+                            <local:POSCombobox Grid.Column="0" x:Name="cbbFontFamily" FontSize="{TemplateBinding FontSize}" Margin="0,0,10,0" />
+                            <local:POSCombobox Grid.Column="1" x:Name="cbbFontSize" FontSize="{TemplateBinding FontSize}" Margin="0,0,10,0" />
                             <local:POSCombobox Grid.Column="2" x:Name="cbbForeground" FontSize="{TemplateBinding FontSize}">
-                                <ComboBoxItem Content="Black" Background="Black" Foreground="White"/>
-                                <ComboBoxItem Content="Black" Background="White" Foreground="Black"/>
+                                <ComboBoxItem Content="Black" Background="Black" Foreground="White" />
+                                <ComboBoxItem Content="Black" Background="White" Foreground="Black" />
                             </local:POSCombobox>
                         </Grid>
                     </Border>
@@ -101,22 +98,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonMenu}">
-                    <Button Background="{x:Null}" BorderBrush="{x:Null}">
-                        <Grid>
+                    <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="{TemplateBinding VerticalAlignment}" VerticalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50*"/>
-                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20" />
                             </Grid.RowDefinitions>
-                            <Border Background="{TemplateBinding Background}"
-                                    CornerRadius="5"
-                            BorderBrush="#FF56007C"
-                            BorderThickness="1">
-                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                                 <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"/>
+                                    <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                                 </Border.Effect>
                             </Border>
-                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Grid>
                     </Button>
                 </ControlTemplate>
@@ -125,12 +119,12 @@
     </Style>
 
     <Style TargetType="{x:Type local:POSButtonKeyPad}">
-        <Setter Property="Content" Value="{Binding Content}"/>
+        <Setter Property="Content" Value="{Binding Content}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonKeyPad}">
                     <Border>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <Border.BorderBrush>
                             <SolidColorBrush />
                         </Border.BorderBrush>
@@ -159,11 +153,58 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#FF56007C"
                             BorderThickness="1">
-
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <Border.Effect>
-                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"/>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSButtonIcon}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonIcon}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+                        </Border.Effect>
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50*" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSButtonIconHorizontal}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonIconHorizontal}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+                        </Border.Effect>
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,20,0" />
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

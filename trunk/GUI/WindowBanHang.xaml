@@ -7,6 +7,55 @@
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="30*"/>
+                
+            </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <my:POSButtonChucNang Grid.Row="0" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="1" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="2" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="3" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="4" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="5" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="6" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="7" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="8" Content="Chức năng" />
+                <my:POSButtonChucNang Grid.Row="9" Content="Chức năng" />
+            </Grid>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1"/>
+            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvDanhSachMon">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource POSListViewHeaderStyle}" AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBanID}" Width="50" Header="SL"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBanID}" Width="200" Header="Tên món"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBanID}" Width="100" Header="Thành tiền"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+        </Grid>
         <my:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" Name="uCMenuBanHang" VerticalAlignment="Stretch" />
     </Grid>
 </Window>
