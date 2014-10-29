@@ -188,6 +188,16 @@
     </Style>
 
     <Style TargetType="{x:Type local:POSButtonIconHorizontal}">
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation">
+                    <GradientStop Color="#FFEEEE3B" Offset="0.5" />
+                    <GradientStop Color="#FFF0E49A" Offset="1" />
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonIconHorizontal}">
@@ -195,19 +205,67 @@
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
-                        <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50*"/>
-                                    <ColumnDefinition Width="50*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,20,0" />
-                                <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
-                        </Button>
+                        <!--<Button Background="{x:Null}" BorderBrush="#FF56007C" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+                            <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="20,0,20,0" />
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <!--</Button>-->
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation">
+                            <GradientStop Color="#FFF0E49A" Offset="0.5" />
+                            <GradientStop Color="#FFEEEE3B" Offset="1" />
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSButtonIconVertical}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation">
+                    <GradientStop Color="#FF73BF2B" Offset="0.5" />
+                    <GradientStop Color="#FF94DB19" Offset="1" />
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonIconVertical}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF45914F" BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+                        </Border.Effect>
+                        <!--<Button Background="{x:Null}" BorderBrush="#FF56007C" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+                            <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Margin="10" />
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}"  TextWrapping="Wrap" TextAlignment="Center" />
+                        </StackPanel>
+                        <!--</Button>-->
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation">
+                            <GradientStop Color="#FF94DB19" Offset="0.5" />
+                            <GradientStop Color="#FF73BF2B" Offset="1" />
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

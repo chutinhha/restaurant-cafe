@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-91179603414
+18360808410
 
-18398255444
-13-1913541215
-UCNewMon.xaml;UCNewNhom.xaml;WindowKeyboard.xaml;Themes\Generic.xaml;UCKeyPad.xaml;UCLogo.xaml;UCMenu.xaml;UCTile.xaml;WindowKeyPad.xaml;
+24-596403734
+17-1295520675
+Themes\DictionaryButton.xaml;Themes\DictionaryCheckBox.xaml;Themes\DictionaryCombobox.xaml;Themes\DictionaryImage.xaml;Themes\DictionaryListView.xaml;Themes\DictionaryRadio.xaml;Themes\DictionaryStyle.xaml;Themes\DictionaryTextBlock.xaml;Themes\DictionaryTextBox.xaml;UCNewMon.xaml;UCNewNhom.xaml;WindowKeyboard.xaml;Themes\Generic.xaml;UCKeyPad.xaml;UCLogo.xaml;UCMenu.xaml;UCTile.xaml;WindowKeyPad.xaml;
 
-False
+True
 

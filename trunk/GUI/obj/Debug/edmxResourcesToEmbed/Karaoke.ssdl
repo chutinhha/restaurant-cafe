@@ -1,0 +1,2086 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KaraokeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="KaraokeModelStoreContainer">
+    <EntitySet Name="BAN" EntityType="KaraokeModel.Store.BAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BANHANG" EntityType="KaraokeModel.Store.BANHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHINHKHO" EntityType="KaraokeModel.Store.CHINHKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETBANHANG" EntityType="KaraokeModel.Store.CHITIETBANHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETCHINHKHO" EntityType="KaraokeModel.Store.CHITIETCHINHKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETGOPBAN" EntityType="KaraokeModel.Store.CHITIETGOPBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETHUKHO" EntityType="KaraokeModel.Store.CHITIETHUKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETMATKHO" EntityType="KaraokeModel.Store.CHITIETMATKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETNHAPKHO" EntityType="KaraokeModel.Store.CHITIETNHAPKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETQUYEN" EntityType="KaraokeModel.Store.CHITIETQUYEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHITIETTACHBAN" EntityType="KaraokeModel.Store.CHITIETTACHBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHUCNANG" EntityType="KaraokeModel.Store.CHUCNANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHUYENBAN" EntityType="KaraokeModel.Store.CHUYENBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CHUYENKHO" EntityType="KaraokeModel.Store.CHUYENKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DINHLUONG" EntityType="KaraokeModel.Store.DINHLUONG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GIAODIENCHUCNANGBANHANG" EntityType="KaraokeModel.Store.GIAODIENCHUCNANGBANHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GOPBAN" EntityType="KaraokeModel.Store.GOPBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HOPDUNGTIEN" EntityType="KaraokeModel.Store.HOPDUNGTIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HUKHO" EntityType="KaraokeModel.Store.HUKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="INHOADON" EntityType="KaraokeModel.Store.INHOADON" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHACHHANG" EntityType="KaraokeModel.Store.KHACHHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHO" EntityType="KaraokeModel.Store.KHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHU" EntityType="KaraokeModel.Store.KHU" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LICHBIEUDINHKY" EntityType="KaraokeModel.Store.LICHBIEUDINHKY" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LICHBIEUKHONGDINHKY" EntityType="KaraokeModel.Store.LICHBIEUKHONGDINHKY" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LICHSUCONGNO" EntityType="KaraokeModel.Store.LICHSUCONGNO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LICHSUDANGNHAP" EntityType="KaraokeModel.Store.LICHSUDANGNHAP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIBAN" EntityType="KaraokeModel.Store.LOAIBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIHOPDUNGTIEN" EntityType="KaraokeModel.Store.LOAIHOPDUNGTIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIKHACHHANG" EntityType="KaraokeModel.Store.LOAIKHACHHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAILICHBIEU" EntityType="KaraokeModel.Store.LOAILICHBIEU" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAINHANVIEN" EntityType="KaraokeModel.Store.LOAINHANVIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIPHATSINH" EntityType="KaraokeModel.Store.LOAIPHATSINH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAITHONGTIN" EntityType="KaraokeModel.Store.LOAITHONGTIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MATKHO" EntityType="KaraokeModel.Store.MATKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MAYIN" EntityType="KaraokeModel.Store.MAYIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUGIA" EntityType="KaraokeModel.Store.MENUGIA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUITEMMAYIN" EntityType="KaraokeModel.Store.MENUITEMMAYIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUKHUYENMAI" EntityType="KaraokeModel.Store.MENUKHUYENMAI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUKICHTHUOCMON" EntityType="KaraokeModel.Store.MENUKICHTHUOCMON" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENULOAIGIA" EntityType="KaraokeModel.Store.MENULOAIGIA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENULOAINHOM" EntityType="KaraokeModel.Store.MENULOAINHOM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUMON" EntityType="KaraokeModel.Store.MENUMON" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MENUNHOM" EntityType="KaraokeModel.Store.MENUNHOM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHACUNGCAP" EntityType="KaraokeModel.Store.NHACUNGCAP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHANVIEN" EntityType="KaraokeModel.Store.NHANVIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHAPKHO" EntityType="KaraokeModel.Store.NHAPKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHOMCHUCNANG" EntityType="KaraokeModel.Store.NHOMCHUCNANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QUYEN" EntityType="KaraokeModel.Store.QUYEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QUYENNHANVIEN" EntityType="KaraokeModel.Store.QUYENNHANVIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="KaraokeModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TACHBAN" EntityType="KaraokeModel.Store.TACHBAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="THAMSO" EntityType="KaraokeModel.Store.THAMSO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="THE" EntityType="KaraokeModel.Store.THE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="THONGTIN" EntityType="KaraokeModel.Store.THONGTIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TONKHO" EntityType="KaraokeModel.Store.TONKHO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TONKHOTONG" EntityType="KaraokeModel.Store.TONKHOTONG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TRANGTHAI" EntityType="KaraokeModel.Store.TRANGTHAI" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BAN_KHU" Association="KaraokeModel.Store.FK_BAN_KHU">
+      <End Role="KHU" EntitySet="KHU" />
+      <End Role="BAN" EntitySet="BAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BANHANG_BAN" Association="KaraokeModel.Store.FK_BANHANG_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="BANHANG" EntitySet="BANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BANHANG_KHACHHANG" Association="KaraokeModel.Store.FK_BANHANG_KHACHHANG">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="BANHANG" EntitySet="BANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BANHANG_NHANVIEN" Association="KaraokeModel.Store.FK_BANHANG_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="BANHANG" EntitySet="BANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BANHANG_THE" Association="KaraokeModel.Store.FK_BANHANG_THE">
+      <End Role="THE" EntitySet="THE" />
+      <End Role="BANHANG" EntitySet="BANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BANHANG_TRANGTHAI" Association="KaraokeModel.Store.FK_BANHANG_TRANGTHAI">
+      <End Role="TRANGTHAI" EntitySet="TRANGTHAI" />
+      <End Role="BANHANG" EntitySet="BANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHINHKHO_KHO" Association="KaraokeModel.Store.FK_CHINHKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="CHINHKHO" EntitySet="CHINHKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHINHKHO_NHANVIEN" Association="KaraokeModel.Store.FK_CHINHKHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="CHINHKHO" EntitySet="CHINHKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETBANHANG_BANHANG" Association="KaraokeModel.Store.FK_CHITIETBANHANG_BANHANG">
+      <End Role="BANHANG" EntitySet="BANHANG" />
+      <End Role="CHITIETBANHANG" EntitySet="CHITIETBANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETBANHANG_NHANVIEN" Association="KaraokeModel.Store.FK_CHITIETBANHANG_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="CHITIETBANHANG" EntitySet="CHITIETBANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETBANHANG_TONKHO" Association="KaraokeModel.Store.FK_CHITIETBANHANG_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="CHITIETBANHANG" EntitySet="CHITIETBANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETCHINHKHO_CHINHKHO" Association="KaraokeModel.Store.FK_CHITIETCHINHKHO_CHINHKHO">
+      <End Role="CHINHKHO" EntitySet="CHINHKHO" />
+      <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETCHINHKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETCHINHKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETCHINHKHO_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETGOPBAN_BAN" Association="KaraokeModel.Store.FK_CHITIETGOPBAN_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="CHITIETGOPBAN" EntitySet="CHITIETGOPBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETGOPBAN_GOPBAN" Association="KaraokeModel.Store.FK_CHITIETGOPBAN_GOPBAN">
+      <End Role="GOPBAN" EntitySet="GOPBAN" />
+      <End Role="CHITIETGOPBAN" EntitySet="CHITIETGOPBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHUKHO_HUKHO" Association="KaraokeModel.Store.FK_CHITIETHUKHO_HUKHO">
+      <End Role="HUKHO" EntitySet="HUKHO" />
+      <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHUKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETHUKHO_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHUKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETHUKHO_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETMATKHO_MATKHO" Association="KaraokeModel.Store.FK_CHITIETMATKHO_MATKHO">
+      <End Role="MATKHO" EntitySet="MATKHO" />
+      <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETMATKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETMATKHO_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETMATKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETMATKHO_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETNHAPKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="CHITIETNHAPKHO" EntitySet="CHITIETNHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETNHAPKHO_NHAPKHO" Association="KaraokeModel.Store.FK_CHITIETNHAPKHO_NHAPKHO">
+      <End Role="NHAPKHO" EntitySet="NHAPKHO" />
+      <End Role="CHITIETNHAPKHO" EntitySet="CHITIETNHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETNHAPKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETNHAPKHO_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="CHITIETNHAPKHO" EntitySet="CHITIETNHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETQUYEN_CHUCNANG" Association="KaraokeModel.Store.FK_CHITIETQUYEN_CHUCNANG">
+      <End Role="CHUCNANG" EntitySet="CHUCNANG" />
+      <End Role="CHITIETQUYEN" EntitySet="CHITIETQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETQUYEN_QUYEN" Association="KaraokeModel.Store.FK_CHITIETQUYEN_QUYEN">
+      <End Role="QUYEN" EntitySet="QUYEN" />
+      <End Role="CHITIETQUYEN" EntitySet="CHITIETQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETTACHBAN_BAN" Association="KaraokeModel.Store.FK_CHITIETTACHBAN_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="CHITIETTACHBAN" EntitySet="CHITIETTACHBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETTACHBAN_BANHANG" Association="KaraokeModel.Store.FK_CHITIETTACHBAN_BANHANG">
+      <End Role="BANHANG" EntitySet="BANHANG" />
+      <End Role="CHITIETTACHBAN" EntitySet="CHITIETTACHBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETTACHBAN_TACHBAN" Association="KaraokeModel.Store.FK_CHITIETTACHBAN_TACHBAN">
+      <End Role="TACHBAN" EntitySet="TACHBAN" />
+      <End Role="CHITIETTACHBAN" EntitySet="CHITIETTACHBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUCNANG_NHOMCHUCNANG" Association="KaraokeModel.Store.FK_CHUCNANG_NHOMCHUCNANG">
+      <End Role="NHOMCHUCNANG" EntitySet="NHOMCHUCNANG" />
+      <End Role="CHUCNANG" EntitySet="CHUCNANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENBAN_BAN" Association="KaraokeModel.Store.FK_CHUYENBAN_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="CHUYENBAN" EntitySet="CHUYENBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENBAN_BAN1" Association="KaraokeModel.Store.FK_CHUYENBAN_BAN1">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="CHUYENBAN" EntitySet="CHUYENBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENBAN_NHANVIEN" Association="KaraokeModel.Store.FK_CHUYENBAN_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="CHUYENBAN" EntitySet="CHUYENBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENKHO_KHO" Association="KaraokeModel.Store.FK_CHUYENKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="CHUYENKHO" EntitySet="CHUYENKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENKHO_KHO1" Association="KaraokeModel.Store.FK_CHUYENKHO_KHO1">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="CHUYENKHO" EntitySet="CHUYENKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYENKHO_NHANVIEN" Association="KaraokeModel.Store.FK_CHUYENKHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="CHUYENKHO" EntitySet="CHUYENKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DINHLUONG_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_DINHLUONG_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="DINHLUONG" EntitySet="DINHLUONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DINHLUONG_MENUKICHTHUOCMON1" Association="KaraokeModel.Store.FK_DINHLUONG_MENUKICHTHUOCMON1">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="DINHLUONG" EntitySet="DINHLUONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GIAODIENCHUCNANGBANHANG_CHUCNANG" Association="KaraokeModel.Store.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG">
+      <End Role="CHUCNANG" EntitySet="CHUCNANG" />
+      <End Role="GIAODIENCHUCNANGBANHANG" EntitySet="GIAODIENCHUCNANGBANHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GOPBAN_BAN" Association="KaraokeModel.Store.FK_GOPBAN_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="GOPBAN" EntitySet="GOPBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GOPBAN_BANHANG" Association="KaraokeModel.Store.FK_GOPBAN_BANHANG">
+      <End Role="BANHANG" EntitySet="BANHANG" />
+      <End Role="GOPBAN" EntitySet="GOPBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GOPBAN_NHANVIEN" Association="KaraokeModel.Store.FK_GOPBAN_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="GOPBAN" EntitySet="GOPBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupTable_MENUPRICETYPE" Association="KaraokeModel.Store.FK_GroupTable_MENUPRICETYPE">
+      <End Role="MENULOAIGIA" EntitySet="MENULOAIGIA" />
+      <End Role="KHU" EntitySet="KHU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOPDUNGTIEN_LOAIHOPDUNGTIEN" Association="KaraokeModel.Store.FK_HOPDUNGTIEN_LOAIHOPDUNGTIEN">
+      <End Role="LOAIHOPDUNGTIEN" EntitySet="LOAIHOPDUNGTIEN" />
+      <End Role="HOPDUNGTIEN" EntitySet="HOPDUNGTIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOPDUNGTIEN_NHANVIEN" Association="KaraokeModel.Store.FK_HOPDUNGTIEN_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="HOPDUNGTIEN" EntitySet="HOPDUNGTIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUKHO_KHO" Association="KaraokeModel.Store.FK_HUKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="HUKHO" EntitySet="HUKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUKHO_NHANVIEN" Association="KaraokeModel.Store.FK_HUKHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="HUKHO" EntitySet="HUKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INHOADON_BANHANG" Association="KaraokeModel.Store.FK_INHOADON_BANHANG">
+      <End Role="BANHANG" EntitySet="BANHANG" />
+      <End Role="INHOADON" EntitySet="INHOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INHOADON_NHANVIEN" Association="KaraokeModel.Store.FK_INHOADON_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="INHOADON" EntitySet="INHOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KHACHHANG_LOAIKHACHHANG" Association="KaraokeModel.Store.FK_KHACHHANG_LOAIKHACHHANG">
+      <End Role="LOAIKHACHHANG" EntitySet="LOAIKHACHHANG" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHBIEUDINHKY_LOAILICHBIEU" Association="KaraokeModel.Store.FK_LICHBIEUDINHKY_LOAILICHBIEU">
+      <End Role="LOAILICHBIEU" EntitySet="LOAILICHBIEU" />
+      <End Role="LICHBIEUDINHKY" EntitySet="LICHBIEUDINHKY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHBIEUDINHKY_LOAILICHBIEU1" Association="KaraokeModel.Store.FK_LICHBIEUDINHKY_LOAILICHBIEU1">
+      <End Role="LOAILICHBIEU" EntitySet="LOAILICHBIEU" />
+      <End Role="LICHBIEUDINHKY" EntitySet="LICHBIEUDINHKY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHBIEUDINHKY_MENULOAIGIA" Association="KaraokeModel.Store.FK_LICHBIEUDINHKY_MENULOAIGIA">
+      <End Role="MENULOAIGIA" EntitySet="MENULOAIGIA" />
+      <End Role="LICHBIEUDINHKY" EntitySet="LICHBIEUDINHKY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHBIEUKHONGDINHKY_MENULOAIGIA" Association="KaraokeModel.Store.FK_LICHBIEUKHONGDINHKY_MENULOAIGIA">
+      <End Role="MENULOAIGIA" EntitySet="MENULOAIGIA" />
+      <End Role="LICHBIEUKHONGDINHKY" EntitySet="LICHBIEUKHONGDINHKY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHSUCONGNO_BANHANG" Association="KaraokeModel.Store.FK_LICHSUCONGNO_BANHANG">
+      <End Role="BANHANG" EntitySet="BANHANG" />
+      <End Role="LICHSUCONGNO" EntitySet="LICHSUCONGNO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHSUCONGNO_KHACHHANG" Association="KaraokeModel.Store.FK_LICHSUCONGNO_KHACHHANG">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="LICHSUCONGNO" EntitySet="LICHSUCONGNO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHSUCONGNO_THE" Association="KaraokeModel.Store.FK_LICHSUCONGNO_THE">
+      <End Role="THE" EntitySet="THE" />
+      <End Role="LICHSUCONGNO" EntitySet="LICHSUCONGNO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHSUDANGNHAP_NHANVIEN" Association="KaraokeModel.Store.FK_LICHSUDANGNHAP_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="LICHSUDANGNHAP" EntitySet="LICHSUDANGNHAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MATKHO_KHO" Association="KaraokeModel.Store.FK_MATKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="MATKHO" EntitySet="MATKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MATKHO_NHANVIEN" Association="KaraokeModel.Store.FK_MATKHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="MATKHO" EntitySet="MATKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MAYIN_MAYIN" Association="KaraokeModel.Store.FK_MAYIN_MAYIN">
+      <End Role="MAYIN" EntitySet="MAYIN" />
+      <End Role="MAYIN1" EntitySet="MAYIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUGIA_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_MENUGIA_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="MENUGIA" EntitySet="MENUGIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUGIA_MENULOAIGIA" Association="KaraokeModel.Store.FK_MENUGIA_MENULOAIGIA">
+      <End Role="MENULOAIGIA" EntitySet="MENULOAIGIA" />
+      <End Role="MENUGIA" EntitySet="MENUGIA" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MENUGROUP_MENUGROUPTYPE" Association="KaraokeModel.Store.fk_MENUGROUP_MENUGROUPTYPE">
+      <End Role="MENULOAINHOM" EntitySet="MENULOAINHOM" />
+      <End Role="MENUNHOM" EntitySet="MENUNHOM" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MENUITEM_MENUGROUP" Association="KaraokeModel.Store.fk_MENUITEM_MENUGROUP">
+      <End Role="MENUNHOM" EntitySet="MENUNHOM" />
+      <End Role="MENUMON" EntitySet="MENUMON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUITEMMAYIN_MAYINAO" Association="KaraokeModel.Store.FK_MENUITEMMAYIN_MAYINAO">
+      <End Role="MAYIN" EntitySet="MAYIN" />
+      <End Role="MENUITEMMAYIN" EntitySet="MENUITEMMAYIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUITEMMAYIN_MENUMON" Association="KaraokeModel.Store.FK_MENUITEMMAYIN_MENUMON">
+      <End Role="MENUMON" EntitySet="MENUMON" />
+      <End Role="MENUITEMMAYIN" EntitySet="MENUITEMMAYIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_MENUKHUYENMAI_MENUKICHTHUOCMON">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="MENUKHUYENMAI" EntitySet="MENUKHUYENMAI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON1" Association="KaraokeModel.Store.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1">
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+      <End Role="MENUKHUYENMAI" EntitySet="MENUKHUYENMAI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUKICHTHUOCMON_LOAIBAN" Association="KaraokeModel.Store.FK_MENUKICHTHUOCMON_LOAIBAN">
+      <End Role="LOAIBAN" EntitySet="LOAIBAN" />
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENUKICHTHUOCMON_MENUMON" Association="KaraokeModel.Store.FK_MENUKICHTHUOCMON_MENUMON">
+      <End Role="MENUMON" EntitySet="MENUMON" />
+      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_LOAINHANVIEN" Association="KaraokeModel.Store.FK_NHANVIEN_LOAINHANVIEN">
+      <End Role="LOAINHANVIEN" EntitySet="LOAINHANVIEN" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHAPKHO_KHO" Association="KaraokeModel.Store.FK_NHAPKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="NHAPKHO" EntitySet="NHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHAPKHO_NHACUNGCAP" Association="KaraokeModel.Store.FK_NHAPKHO_NHACUNGCAP">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="NHAPKHO" EntitySet="NHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHAPKHO_NHANVIEN" Association="KaraokeModel.Store.FK_NHAPKHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="NHAPKHO" EntitySet="NHAPKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUYENNHANVIEN_NHANVIEN" Association="KaraokeModel.Store.FK_QUYENNHANVIEN_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="QUYENNHANVIEN" EntitySet="QUYENNHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUYENNHANVIEN_QUYEN" Association="KaraokeModel.Store.FK_QUYENNHANVIEN_QUYEN">
+      <End Role="QUYEN" EntitySet="QUYEN" />
+      <End Role="QUYENNHANVIEN" EntitySet="QUYENNHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TACHBAN_BAN" Association="KaraokeModel.Store.FK_TACHBAN_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="TACHBAN" EntitySet="TACHBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TACHBAN_NHANVIEN" Association="KaraokeModel.Store.FK_TACHBAN_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="TACHBAN" EntitySet="TACHBAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THONGTIN_LOAITHONGTIN" Association="KaraokeModel.Store.FK_THONGTIN_LOAITHONGTIN">
+      <End Role="LOAITHONGTIN" EntitySet="LOAITHONGTIN" />
+      <End Role="THONGTIN" EntitySet="THONGTIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TONKHO_KHO" Association="KaraokeModel.Store.FK_TONKHO_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="TONKHO" EntitySet="TONKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TONKHO_LOAIPHATSINH" Association="KaraokeModel.Store.FK_TONKHO_LOAIPHATSINH">
+      <End Role="LOAIPHATSINH" EntitySet="LOAIPHATSINH" />
+      <End Role="TONKHO" EntitySet="TONKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TONKHO_TONKHO" Association="KaraokeModel.Store.FK_TONKHO_TONKHO">
+      <End Role="TONKHO" EntitySet="TONKHO" />
+      <End Role="TONKHO1" EntitySet="TONKHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TONKHOTONG_KHO" Association="KaraokeModel.Store.FK_TONKHOTONG_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="TONKHOTONG" EntitySet="TONKHOTONG" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BAN">
+    <Key>
+      <PropertyRef Name="BanID" />
+    </Key>
+    <Property Name="BanID" Type="int" Nullable="false" />
+    <Property Name="TenBan" Type="nvarchar" MaxLength="50" />
+    <Property Name="KhuID" Type="int" />
+    <Property Name="LocationX" Type="decimal" />
+    <Property Name="LocationY" Type="decimal" />
+    <Property Name="Height" Type="decimal" />
+    <Property Name="Width" Type="decimal" />
+    <Property Name="Hinh" Type="image" />
+  </EntityType>
+  <EntityType Name="BANHANG">
+    <Key>
+      <PropertyRef Name="BanHangID" />
+    </Key>
+    <Property Name="BanHangID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="BanID" Type="int" />
+    <Property Name="TrangThaiID" Type="int" />
+    <Property Name="NgayBan" Type="datetime" />
+    <Property Name="MaHoaDon" Type="int" />
+    <Property Name="TienMat" Type="decimal" />
+    <Property Name="TheID" Type="int" />
+    <Property Name="TienThe" Type="decimal" />
+    <Property Name="TienTraLai" Type="decimal" />
+    <Property Name="TienGiam" Type="decimal" />
+    <Property Name="ChietKhau" Type="decimal" />
+    <Property Name="TienBo" Type="decimal" />
+    <Property Name="PhiDichVu" Type="decimal" />
+    <Property Name="TongTien" Type="decimal" />
+    <Property Name="KhachHangID" Type="int" />
+    <Property Name="TienKhacHang" Type="decimal" />
+  </EntityType>
+  <EntityType Name="CHINHKHO">
+    <Key>
+      <PropertyRef Name="ChiKhoID" />
+    </Key>
+    <Property Name="ChiKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="KhoID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="TongTien" Type="decimal" />
+  </EntityType>
+  <EntityType Name="CHITIETBANHANG">
+    <Key>
+      <PropertyRef Name="ChiTietBanHangID" />
+    </Key>
+    <Property Name="ChiTietBanHangID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BanHangID" Type="int" />
+    <Property Name="TonKhoID" Type="int" />
+    <Property Name="SoLuongBan" Type="int" />
+    <Property Name="GiaBan" Type="decimal" />
+    <Property Name="ThanhTien" Type="decimal" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="NhanVienID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETCHINHKHO">
+    <Key>
+      <PropertyRef Name="ChiTietChiKhoID" />
+    </Key>
+    <Property Name="ChiTietChiKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ChiKhoID" Type="int" />
+    <Property Name="KichThuocMon" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="TonKhoID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETGOPBAN">
+    <Key>
+      <PropertyRef Name="ChiTietGopBanID" />
+    </Key>
+    <Property Name="ChiTietGopBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GopBanID" Type="int" />
+    <Property Name="BanID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETHUKHO">
+    <Key>
+      <PropertyRef Name="ChiTietHuKhoID" />
+    </Key>
+    <Property Name="ChiTietHuKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="HuKhoID" Type="int" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Gia" Type="decimal" />
+    <Property Name="TonKhoID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETMATKHO">
+    <Key>
+      <PropertyRef Name="ChiTietMatKho" />
+    </Key>
+    <Property Name="ChiTietMatKho" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MatKhoID" Type="int" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Gia" Type="decimal" />
+    <Property Name="TonKhoID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETNHAPKHO">
+    <Key>
+      <PropertyRef Name="ChiTietNhapKhoID" />
+    </Key>
+    <Property Name="ChiTietNhapKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhapKhoID" Type="int" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="GiaMua" Type="decimal" />
+    <Property Name="GiaBan" Type="decimal" />
+    <Property Name="TonKhoID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHITIETQUYEN">
+    <Key>
+      <PropertyRef Name="ChiTietQuyenID" />
+    </Key>
+    <Property Name="ChiTietQuyenID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="QuyenID" Type="int" />
+    <Property Name="ChucNangID" Type="int" />
+    <Property Name="Them" Type="bit" />
+    <Property Name="Xoa" Type="bit" />
+    <Property Name="Sua" Type="bit" />
+    <Property Name="Login" Type="bit" />
+  </EntityType>
+  <EntityType Name="CHITIETTACHBAN">
+    <Key>
+      <PropertyRef Name="ChiTietTachBanID" />
+    </Key>
+    <Property Name="ChiTietTachBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BanID" Type="int" />
+    <Property Name="TachBanID" Type="int" />
+    <Property Name="BanHangID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHUCNANG">
+    <Key>
+      <PropertyRef Name="ChucNangID" />
+    </Key>
+    <Property Name="ChucNangID" Type="int" Nullable="false" />
+    <Property Name="TenChucNang" Type="nvarchar" MaxLength="255" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+    <Property Name="NhomChucNangID" Type="int" />
+    <Property Name="MaChucNang" Type="int" />
+  </EntityType>
+  <EntityType Name="CHUYENBAN">
+    <Key>
+      <PropertyRef Name="ChuyenBanID" />
+    </Key>
+    <Property Name="ChuyenBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TuBanID" Type="int" />
+    <Property Name="DenBanID" Type="int" />
+    <Property Name="BanHangID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="NhanVienID" Type="int" />
+  </EntityType>
+  <EntityType Name="CHUYENKHO">
+    <Key>
+      <PropertyRef Name="ChuyenKhoID" />
+    </Key>
+    <Property Name="ChuyenKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KhoDiID" Type="int" />
+    <Property Name="KhoDenID" Type="int" />
+    <Property Name="NgayChuyen" Type="datetime" />
+    <Property Name="NhanVienID" Type="int" />
+  </EntityType>
+  <EntityType Name="DINHLUONG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KichThuocMonChinhID" Type="int" />
+    <Property Name="KichThuocMonPhuID" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="GIAODIENCHUCNANGBANHANG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ChucNangID" Type="int" />
+    <Property Name="Font" Type="varbinary" MaxLength="50" />
+    <Property Name="MauChu" Type="varbinary" MaxLength="50" />
+    <Property Name="MauNen" Type="varbinary" MaxLength="50" />
+    <Property Name="Hinh" Type="varbinary" MaxLength="50" />
+    <Property Name="SoThuTu" Type="int" />
+  </EntityType>
+  <EntityType Name="GOPBAN">
+    <Key>
+      <PropertyRef Name="GopBanID" />
+    </Key>
+    <Property Name="GopBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GopThanhBanID" Type="int" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="BanHangID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HOPDUNGTIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="LoaiHopDungTienID" Type="int" />
+    <Property Name="MayInID" Type="int" />
+  </EntityType>
+  <EntityType Name="HUKHO">
+    <Key>
+      <PropertyRef Name="HuKhoID" />
+    </Key>
+    <Property Name="HuKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="KhoID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="TongTien" Type="decimal" />
+  </EntityType>
+  <EntityType Name="INHOADON">
+    <Key>
+      <PropertyRef Name="InHoaDonID" />
+    </Key>
+    <Property Name="InHoaDonID" Type="int" Nullable="false" />
+    <Property Name="BanHangID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="MayInID" Type="int" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="KhachHangID" />
+    </Key>
+    <Property Name="KhachHangID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhachHang" Type="nvarchar" MaxLength="255" />
+    <Property Name="LoaiKhachHangID" Type="int" />
+    <Property Name="SoNha" Type="varchar" MaxLength="50" />
+    <Property Name="TenDuong" Type="nvarchar" MaxLength="255" />
+    <Property Name="Mobile" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="Fax" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nchar" MaxLength="10" />
+    <Property Name="DuNo" Type="nchar" MaxLength="10" />
+    <Property Name="DuNoToiThieu" Type="nchar" MaxLength="10" />
+    <Property Name="Visual" Type="nchar" MaxLength="10" />
+    <Property Name="Deleted" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="KHO">
+    <Key>
+      <PropertyRef Name="KhoID" />
+    </Key>
+    <Property Name="KhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenKho" Type="nvarchar" MaxLength="100" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="KHU">
+    <Key>
+      <PropertyRef Name="KhuID" />
+    </Key>
+    <Property Name="KhuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhu" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoaiGiaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LICHBIEUDINHKY">
+    <Key>
+      <PropertyRef Name="LichBieuDinhKyID" />
+    </Key>
+    <Property Name="LichBieuDinhKyID" Type="int" Nullable="false" />
+    <Property Name="TenLichBieu" Type="nvarchar" MaxLength="255" />
+    <Property Name="LoaiGiaID" Type="int" />
+    <Property Name="GiaBatDau" Type="time" />
+    <Property Name="GioKetThuc" Type="time" />
+    <Property Name="UuTien" Type="int" />
+    <Property Name="LoaiLichBieuIDBatDau" Type="int" />
+    <Property Name="LoaiLichBieuIDKetThuc" Type="int" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="LICHBIEUKHONGDINHKY">
+    <Key>
+      <PropertyRef Name="LichBieuKhongDinhKyID" />
+    </Key>
+    <Property Name="LichBieuKhongDinhKyID" Type="int" Nullable="false" />
+    <Property Name="GiaBatDau" Type="time" />
+    <Property Name="GioKetThuc" Type="time" />
+    <Property Name="Ngay" Type="datetime" />
+    <Property Name="TenLichBieu" Type="nvarchar" MaxLength="255" />
+    <Property Name="LoaiGiaID" Type="int" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="LICHSUCONGNO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KhachHangID" Type="int" />
+    <Property Name="NgayPhatSinh" Type="datetime" />
+    <Property Name="SoTienPhatSinh" Type="decimal" />
+    <Property Name="TienMat" Type="decimal" />
+    <Property Name="TienThe" Type="decimal" />
+    <Property Name="TheID" Type="int" />
+    <Property Name="BanHangID" Type="int" />
+    <Property Name="DuNoCuoi" Type="decimal" />
+  </EntityType>
+  <EntityType Name="LICHSUDANGNHAP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LOAIBAN">
+    <Key>
+      <PropertyRef Name="LoaiBanID" />
+    </Key>
+    <Property Name="LoaiBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiBan" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LOAIHOPDUNGTIEN">
+    <Key>
+      <PropertyRef Name="LoaiHopDungTienID" />
+    </Key>
+    <Property Name="LoaiHopDungTienID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiHopDungTien" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="LOAIKHACHHANG">
+    <Key>
+      <PropertyRef Name="LoaiKhachHangID" />
+    </Key>
+    <Property Name="LoaiKhachHangID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiKhachHang" Type="int" />
+    <Property Name="PhanTramGiamGia" Type="int" />
+  </EntityType>
+  <EntityType Name="LOAILICHBIEU">
+    <Key>
+      <PropertyRef Name="LoaiLichBieuID" />
+    </Key>
+    <Property Name="LoaiLichBieuID" Type="int" Nullable="false" />
+    <Property Name="TenLoaiLichBieu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LOAINHANVIEN">
+    <Key>
+      <PropertyRef Name="LoaiNhanVienID" />
+    </Key>
+    <Property Name="LoaiNhanVienID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiNhanVien" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LOAIPHATSINH">
+    <Key>
+      <PropertyRef Name="LoaiPhatSinhID" />
+    </Key>
+    <Property Name="LoaiPhatSinhID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="LOAITHONGTIN">
+    <Key>
+      <PropertyRef Name="LoaiThongTinID" />
+    </Key>
+    <Property Name="LoaiThongTinID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiThongTin" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MATKHO">
+    <Key>
+      <PropertyRef Name="MatKhoID" />
+    </Key>
+    <Property Name="MatKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="KhoID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="TongTien" Type="decimal" />
+  </EntityType>
+  <EntityType Name="MAYIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenMayIn" Type="nvarchar" MaxLength="255" />
+    <Property Name="TieuDeIn" Type="nvarchar" MaxLength="255" />
+    <Property Name="MayInID" Type="int" />
+    <Property Name="SoLanIn" Type="int" />
+    <Property Name="Visual" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENUGIA">
+    <Key>
+      <PropertyRef Name="GiaID" />
+    </Key>
+    <Property Name="GiaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="Gia" Type="decimal" />
+    <Property Name="LoaiGiaID" Type="int" />
+  </EntityType>
+  <EntityType Name="MENUITEMMAYIN">
+    <Key>
+      <PropertyRef Name="MonID" />
+      <PropertyRef Name="MayInAoID" />
+    </Key>
+    <Property Name="MonID" Type="int" Nullable="false" />
+    <Property Name="MayInAoID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MENUKHUYENMAI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="KichThuocMonTang" Type="int" />
+    <Property Name="TenKhuyenMai" Type="nvarchar" MaxLength="255" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENUKICHTHUOCMON">
+    <Key>
+      <PropertyRef Name="KichThuocMonID" />
+    </Key>
+    <Property Name="KichThuocMonID" Type="int" Nullable="false" />
+    <Property Name="MonID" Type="int" />
+    <Property Name="LoaiBanID" Type="int" />
+    <Property Name="ThoiGia" Type="bit" />
+    <Property Name="TonKhoToiThieu" Type="int" />
+    <Property Name="TonKhoToiDa" Type="int" />
+    <Property Name="KichThuocMon" Type="int" />
+    <Property Name="KichThuocBan" Type="int" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENULOAIGIA">
+    <Key>
+      <PropertyRef Name="LoaiGiaID" />
+    </Key>
+    <Property Name="LoaiGiaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="100" />
+    <Property Name="DienGiai" Type="nvarchar" MaxLength="255" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENULOAINHOM">
+    <Key>
+      <PropertyRef Name="LoaiNhomID" />
+    </Key>
+    <Property Name="LoaiNhomID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiNhom" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MENUMON">
+    <Key>
+      <PropertyRef Name="MonID" />
+    </Key>
+    <Property Name="MonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenNgan" Type="nvarchar" MaxLength="100" />
+    <Property Name="TenDai" Type="nvarchar" MaxLength="255" />
+    <Property Name="NhomID" Type="int" />
+    <Property Name="Gia" Type="decimal" />
+    <Property Name="GST" Type="int" />
+    <Property Name="MayIn" Type="int" />
+    <Property Name="SapXep" Type="int" />
+    <Property Name="GiamGia" Type="int" />
+    <Property Name="Font" Type="varbinary" MaxLength="1000" />
+    <Property Name="MauChu" Type="varbinary" MaxLength="50" />
+    <Property Name="MauNen" Type="varbinary" MaxLength="50" />
+    <Property Name="Hinh" Type="image" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENUNHOM">
+    <Key>
+      <PropertyRef Name="NhomID" />
+    </Key>
+    <Property Name="NhomID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenNgan" Type="nvarchar" MaxLength="100" />
+    <Property Name="TenDai" Type="nvarchar" MaxLength="255" />
+    <Property Name="LoaiNhomID" Type="int" />
+    <Property Name="MayIn" Type="int" />
+    <Property Name="XapSep" Type="int" />
+    <Property Name="GiamGia" Type="int" />
+    <Property Name="Hinh" Type="image" />
+    <Property Name="Font" Type="varbinary" MaxLength="1000" />
+    <Property Name="MauChu" Type="varchar" MaxLength="50" />
+    <Property Name="MauNen" Type="varchar" MaxLength="50" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="NhaCungCapID" />
+    </Key>
+    <Property Name="NhaCungCapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MaSoThue" Type="varchar" MaxLength="50" />
+    <Property Name="TenNhaCungCap" Type="nvarchar" MaxLength="255" />
+    <Property Name="SoNha" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenDuong" Type="nvarchar" MaxLength="255" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Fax" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="NhanVienID" />
+    </Key>
+    <Property Name="NhanVienID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenDangNhap" Type="varchar" MaxLength="50" />
+    <Property Name="TenNhanVien" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="255" />
+    <Property Name="LoaiNhanVienID" Type="int" />
+    <Property Name="Visual" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="NHAPKHO">
+    <Key>
+      <PropertyRef Name="NhapKhoID" />
+    </Key>
+    <Property Name="NhapKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="KhoID" Type="int" />
+    <Property Name="NhaCungCapID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="TongTien" Type="decimal" />
+  </EntityType>
+  <EntityType Name="NHOMCHUCNANG">
+    <Key>
+      <PropertyRef Name="NhomChucNangID" />
+    </Key>
+    <Property Name="NhomChucNangID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenNhomChucNang" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="QUYEN">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+    </Key>
+    <Property Name="MaQuyen" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenQuen" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="QUYENNHANVIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="QuyenID" Type="int" />
+    <Property Name="NhanVienID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TACHBAN">
+    <Key>
+      <PropertyRef Name="TachBanID" />
+    </Key>
+    <Property Name="TachBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVienID" Type="int" />
+    <Property Name="BanID" Type="int" />
+    <Property Name="ThoiGian" Type="datetime" />
+  </EntityType>
+  <EntityType Name="THAMSO">
+    <Key>
+      <PropertyRef Name="SoMay" />
+    </Key>
+    <Property Name="BanHangKhongKho" Type="bit" />
+    <Property Name="SoMay" Type="int" Nullable="false" />
+    <Property Name="MayInHoaDon" Type="int" />
+    <Property Name="MaBaoVe" Type="varchar" MaxLength="255" />
+    <Property Name="Logo" Type="image" />
+  </EntityType>
+  <EntityType Name="THE">
+    <Key>
+      <PropertyRef Name="TheID" />
+    </Key>
+    <Property Name="TheID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenThe" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChietKhau" Type="int" />
+  </EntityType>
+  <EntityType Name="THONGTIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GiaTri" Type="nvarchar" MaxLength="255" />
+    <Property Name="Font" Type="varbinary" MaxLength="1000" />
+    <Property Name="ForeColor" Type="varchar" MaxLength="50" />
+    <Property Name="SapXep" Type="int" />
+    <Property Name="LoaiThongTinID" Type="int" />
+  </EntityType>
+  <EntityType Name="TONKHO">
+    <Key>
+      <PropertyRef Name="TonKhoID" />
+    </Key>
+    <Property Name="TonKhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KichThuocMonID" Type="int" />
+    <Property Name="KhoID" Type="int" />
+    <Property Name="PhatSinhTuTonKhoID" Type="int" />
+    <Property Name="SoLuongNhap" Type="int" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="NgaySanXuat" Type="datetime" />
+    <Property Name="NgatHetHan" Type="datetime" />
+    <Property Name="GiaNhap" Type="decimal" />
+    <Property Name="LoaiPhatSinhID" Type="int" />
+    <Property Name="SoLuongPhatSinh" Type="int" />
+  </EntityType>
+  <EntityType Name="TONKHOTONG">
+    <Key>
+      <PropertyRef Name="KichThucMonID" />
+      <PropertyRef Name="KhoID" />
+    </Key>
+    <Property Name="KichThucMonID" Type="int" Nullable="false" />
+    <Property Name="KhoID" Type="int" Nullable="false" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="SoLuongBan" Type="int" />
+    <Property Name="SoLuongNhap" Type="int" />
+    <Property Name="SoLuongHu" Type="int" />
+    <Property Name="SoLuongChinh" Type="int" />
+  </EntityType>
+  <EntityType Name="TRANGTHAI">
+    <Key>
+      <PropertyRef Name="TrangThaiID" />
+    </Key>
+    <Property Name="TrangThaiID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenTrangThai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_BAN_KHU">
+    <End Role="KHU" Type="KaraokeModel.Store.KHU" Multiplicity="0..1" />
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHU">
+        <PropertyRef Name="KhuID" />
+      </Principal>
+      <Dependent Role="BAN">
+        <PropertyRef Name="KhuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BANHANG_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="BANHANG">
+        <PropertyRef Name="BanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BANHANG_KHACHHANG">
+    <End Role="KHACHHANG" Type="KaraokeModel.Store.KHACHHANG" Multiplicity="0..1" />
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="KhachHangID" />
+      </Principal>
+      <Dependent Role="BANHANG">
+        <PropertyRef Name="KhachHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BANHANG_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="BANHANG">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BANHANG_THE">
+    <End Role="THE" Type="KaraokeModel.Store.THE" Multiplicity="0..1" />
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THE">
+        <PropertyRef Name="TheID" />
+      </Principal>
+      <Dependent Role="BANHANG">
+        <PropertyRef Name="TheID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BANHANG_TRANGTHAI">
+    <End Role="TRANGTHAI" Type="KaraokeModel.Store.TRANGTHAI" Multiplicity="0..1" />
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAI">
+        <PropertyRef Name="TrangThaiID" />
+      </Principal>
+      <Dependent Role="BANHANG">
+        <PropertyRef Name="TrangThaiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHINHKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="CHINHKHO" Type="KaraokeModel.Store.CHINHKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="CHINHKHO">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHINHKHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="CHINHKHO" Type="KaraokeModel.Store.CHINHKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="CHINHKHO">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETBANHANG_BANHANG">
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="0..1" />
+    <End Role="CHITIETBANHANG" Type="KaraokeModel.Store.CHITIETBANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Principal>
+      <Dependent Role="CHITIETBANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETBANHANG_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="CHITIETBANHANG" Type="KaraokeModel.Store.CHITIETBANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="CHITIETBANHANG">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETBANHANG_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="CHITIETBANHANG" Type="KaraokeModel.Store.CHITIETBANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETBANHANG">
+        <PropertyRef Name="TonKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETCHINHKHO_CHINHKHO">
+    <End Role="CHINHKHO" Type="KaraokeModel.Store.CHINHKHO" Multiplicity="0..1" />
+    <End Role="CHITIETCHINHKHO" Type="KaraokeModel.Store.CHITIETCHINHKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHINHKHO">
+        <PropertyRef Name="ChiKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETCHINHKHO">
+        <PropertyRef Name="ChiKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETCHINHKHO_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="CHITIETCHINHKHO" Type="KaraokeModel.Store.CHITIETCHINHKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="CHITIETCHINHKHO">
+        <PropertyRef Name="KichThuocMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETCHINHKHO_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="CHITIETCHINHKHO" Type="KaraokeModel.Store.CHITIETCHINHKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETCHINHKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETGOPBAN_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="CHITIETGOPBAN" Type="KaraokeModel.Store.CHITIETGOPBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="CHITIETGOPBAN">
+        <PropertyRef Name="BanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETGOPBAN_GOPBAN">
+    <End Role="GOPBAN" Type="KaraokeModel.Store.GOPBAN" Multiplicity="0..1" />
+    <End Role="CHITIETGOPBAN" Type="KaraokeModel.Store.CHITIETGOPBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GOPBAN">
+        <PropertyRef Name="GopBanID" />
+      </Principal>
+      <Dependent Role="CHITIETGOPBAN">
+        <PropertyRef Name="GopBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHUKHO_HUKHO">
+    <End Role="HUKHO" Type="KaraokeModel.Store.HUKHO" Multiplicity="0..1" />
+    <End Role="CHITIETHUKHO" Type="KaraokeModel.Store.CHITIETHUKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HUKHO">
+        <PropertyRef Name="HuKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETHUKHO">
+        <PropertyRef Name="HuKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHUKHO_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="CHITIETHUKHO" Type="KaraokeModel.Store.CHITIETHUKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="CHITIETHUKHO">
+        <PropertyRef Name="KichThuocMonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHUKHO_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="CHITIETHUKHO" Type="KaraokeModel.Store.CHITIETHUKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETHUKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETMATKHO_MATKHO">
+    <End Role="MATKHO" Type="KaraokeModel.Store.MATKHO" Multiplicity="0..1" />
+    <End Role="CHITIETMATKHO" Type="KaraokeModel.Store.CHITIETMATKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATKHO">
+        <PropertyRef Name="MatKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETMATKHO">
+        <PropertyRef Name="MatKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETMATKHO_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="CHITIETMATKHO" Type="KaraokeModel.Store.CHITIETMATKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="CHITIETMATKHO">
+        <PropertyRef Name="KichThuocMonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETMATKHO_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="CHITIETMATKHO" Type="KaraokeModel.Store.CHITIETMATKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETMATKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETNHAPKHO_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="CHITIETNHAPKHO" Type="KaraokeModel.Store.CHITIETNHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="CHITIETNHAPKHO">
+        <PropertyRef Name="KichThuocMonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETNHAPKHO_NHAPKHO">
+    <End Role="NHAPKHO" Type="KaraokeModel.Store.NHAPKHO" Multiplicity="0..1" />
+    <End Role="CHITIETNHAPKHO" Type="KaraokeModel.Store.CHITIETNHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAPKHO">
+        <PropertyRef Name="NhapKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETNHAPKHO">
+        <PropertyRef Name="NhapKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETNHAPKHO_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="CHITIETNHAPKHO" Type="KaraokeModel.Store.CHITIETNHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="CHITIETNHAPKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETQUYEN_CHUCNANG">
+    <End Role="CHUCNANG" Type="KaraokeModel.Store.CHUCNANG" Multiplicity="0..1" />
+    <End Role="CHITIETQUYEN" Type="KaraokeModel.Store.CHITIETQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCNANG">
+        <PropertyRef Name="ChucNangID" />
+      </Principal>
+      <Dependent Role="CHITIETQUYEN">
+        <PropertyRef Name="ChucNangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETQUYEN_QUYEN">
+    <End Role="QUYEN" Type="KaraokeModel.Store.QUYEN" Multiplicity="0..1" />
+    <End Role="CHITIETQUYEN" Type="KaraokeModel.Store.CHITIETQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUYEN">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="CHITIETQUYEN">
+        <PropertyRef Name="QuyenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETTACHBAN_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="CHITIETTACHBAN" Type="KaraokeModel.Store.CHITIETTACHBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="CHITIETTACHBAN">
+        <PropertyRef Name="BanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETTACHBAN_BANHANG">
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="0..1" />
+    <End Role="CHITIETTACHBAN" Type="KaraokeModel.Store.CHITIETTACHBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Principal>
+      <Dependent Role="CHITIETTACHBAN">
+        <PropertyRef Name="BanHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETTACHBAN_TACHBAN">
+    <End Role="TACHBAN" Type="KaraokeModel.Store.TACHBAN" Multiplicity="0..1" />
+    <End Role="CHITIETTACHBAN" Type="KaraokeModel.Store.CHITIETTACHBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TACHBAN">
+        <PropertyRef Name="TachBanID" />
+      </Principal>
+      <Dependent Role="CHITIETTACHBAN">
+        <PropertyRef Name="TachBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUCNANG_NHOMCHUCNANG">
+    <End Role="NHOMCHUCNANG" Type="KaraokeModel.Store.NHOMCHUCNANG" Multiplicity="0..1" />
+    <End Role="CHUCNANG" Type="KaraokeModel.Store.CHUCNANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMCHUCNANG">
+        <PropertyRef Name="NhomChucNangID" />
+      </Principal>
+      <Dependent Role="CHUCNANG">
+        <PropertyRef Name="NhomChucNangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENBAN_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="CHUYENBAN" Type="KaraokeModel.Store.CHUYENBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="CHUYENBAN">
+        <PropertyRef Name="TuBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENBAN_BAN1">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="CHUYENBAN" Type="KaraokeModel.Store.CHUYENBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="CHUYENBAN">
+        <PropertyRef Name="DenBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENBAN_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="CHUYENBAN" Type="KaraokeModel.Store.CHUYENBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="CHUYENBAN">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="CHUYENKHO" Type="KaraokeModel.Store.CHUYENKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="CHUYENKHO">
+        <PropertyRef Name="KhoDiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENKHO_KHO1">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="CHUYENKHO" Type="KaraokeModel.Store.CHUYENKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="CHUYENKHO">
+        <PropertyRef Name="KhoDenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYENKHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="CHUYENKHO" Type="KaraokeModel.Store.CHUYENKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="CHUYENKHO">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DINHLUONG_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="DINHLUONG" Type="KaraokeModel.Store.DINHLUONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="DINHLUONG">
+        <PropertyRef Name="KichThuocMonChinhID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DINHLUONG_MENUKICHTHUOCMON1">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="DINHLUONG" Type="KaraokeModel.Store.DINHLUONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="DINHLUONG">
+        <PropertyRef Name="KichThuocMonPhuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GIAODIENCHUCNANGBANHANG_CHUCNANG">
+    <End Role="CHUCNANG" Type="KaraokeModel.Store.CHUCNANG" Multiplicity="0..1" />
+    <End Role="GIAODIENCHUCNANGBANHANG" Type="KaraokeModel.Store.GIAODIENCHUCNANGBANHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCNANG">
+        <PropertyRef Name="ChucNangID" />
+      </Principal>
+      <Dependent Role="GIAODIENCHUCNANGBANHANG">
+        <PropertyRef Name="ChucNangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GOPBAN_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="GOPBAN" Type="KaraokeModel.Store.GOPBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="GOPBAN">
+        <PropertyRef Name="GopThanhBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GOPBAN_BANHANG">
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="0..1" />
+    <End Role="GOPBAN" Type="KaraokeModel.Store.GOPBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Principal>
+      <Dependent Role="GOPBAN">
+        <PropertyRef Name="BanHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GOPBAN_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="GOPBAN" Type="KaraokeModel.Store.GOPBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="GOPBAN">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupTable_MENUPRICETYPE">
+    <End Role="MENULOAIGIA" Type="KaraokeModel.Store.MENULOAIGIA" Multiplicity="1" />
+    <End Role="KHU" Type="KaraokeModel.Store.KHU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENULOAIGIA">
+        <PropertyRef Name="LoaiGiaID" />
+      </Principal>
+      <Dependent Role="KHU">
+        <PropertyRef Name="LoaiGiaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOPDUNGTIEN_LOAIHOPDUNGTIEN">
+    <End Role="LOAIHOPDUNGTIEN" Type="KaraokeModel.Store.LOAIHOPDUNGTIEN" Multiplicity="0..1" />
+    <End Role="HOPDUNGTIEN" Type="KaraokeModel.Store.HOPDUNGTIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIHOPDUNGTIEN">
+        <PropertyRef Name="LoaiHopDungTienID" />
+      </Principal>
+      <Dependent Role="HOPDUNGTIEN">
+        <PropertyRef Name="LoaiHopDungTienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOPDUNGTIEN_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="HOPDUNGTIEN" Type="KaraokeModel.Store.HOPDUNGTIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="HOPDUNGTIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="HUKHO" Type="KaraokeModel.Store.HUKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="HUKHO">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUKHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="HUKHO" Type="KaraokeModel.Store.HUKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="HUKHO">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INHOADON_BANHANG">
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="0..1" />
+    <End Role="INHOADON" Type="KaraokeModel.Store.INHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Principal>
+      <Dependent Role="INHOADON">
+        <PropertyRef Name="BanHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INHOADON_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="INHOADON" Type="KaraokeModel.Store.INHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="INHOADON">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KHACHHANG_LOAIKHACHHANG">
+    <End Role="LOAIKHACHHANG" Type="KaraokeModel.Store.LOAIKHACHHANG" Multiplicity="0..1" />
+    <End Role="KHACHHANG" Type="KaraokeModel.Store.KHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIKHACHHANG">
+        <PropertyRef Name="LoaiKhachHangID" />
+      </Principal>
+      <Dependent Role="KHACHHANG">
+        <PropertyRef Name="LoaiKhachHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHBIEUDINHKY_LOAILICHBIEU">
+    <End Role="LOAILICHBIEU" Type="KaraokeModel.Store.LOAILICHBIEU" Multiplicity="0..1" />
+    <End Role="LICHBIEUDINHKY" Type="KaraokeModel.Store.LICHBIEUDINHKY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAILICHBIEU">
+        <PropertyRef Name="LoaiLichBieuID" />
+      </Principal>
+      <Dependent Role="LICHBIEUDINHKY">
+        <PropertyRef Name="LoaiLichBieuIDBatDau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHBIEUDINHKY_LOAILICHBIEU1">
+    <End Role="LOAILICHBIEU" Type="KaraokeModel.Store.LOAILICHBIEU" Multiplicity="0..1" />
+    <End Role="LICHBIEUDINHKY" Type="KaraokeModel.Store.LICHBIEUDINHKY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAILICHBIEU">
+        <PropertyRef Name="LoaiLichBieuID" />
+      </Principal>
+      <Dependent Role="LICHBIEUDINHKY">
+        <PropertyRef Name="LoaiLichBieuIDKetThuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHBIEUDINHKY_MENULOAIGIA">
+    <End Role="MENULOAIGIA" Type="KaraokeModel.Store.MENULOAIGIA" Multiplicity="0..1" />
+    <End Role="LICHBIEUDINHKY" Type="KaraokeModel.Store.LICHBIEUDINHKY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENULOAIGIA">
+        <PropertyRef Name="LoaiGiaID" />
+      </Principal>
+      <Dependent Role="LICHBIEUDINHKY">
+        <PropertyRef Name="LoaiGiaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHBIEUKHONGDINHKY_MENULOAIGIA">
+    <End Role="MENULOAIGIA" Type="KaraokeModel.Store.MENULOAIGIA" Multiplicity="0..1" />
+    <End Role="LICHBIEUKHONGDINHKY" Type="KaraokeModel.Store.LICHBIEUKHONGDINHKY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENULOAIGIA">
+        <PropertyRef Name="LoaiGiaID" />
+      </Principal>
+      <Dependent Role="LICHBIEUKHONGDINHKY">
+        <PropertyRef Name="LoaiGiaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHSUCONGNO_BANHANG">
+    <End Role="BANHANG" Type="KaraokeModel.Store.BANHANG" Multiplicity="0..1" />
+    <End Role="LICHSUCONGNO" Type="KaraokeModel.Store.LICHSUCONGNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANHANG">
+        <PropertyRef Name="BanHangID" />
+      </Principal>
+      <Dependent Role="LICHSUCONGNO">
+        <PropertyRef Name="BanHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHSUCONGNO_KHACHHANG">
+    <End Role="KHACHHANG" Type="KaraokeModel.Store.KHACHHANG" Multiplicity="0..1" />
+    <End Role="LICHSUCONGNO" Type="KaraokeModel.Store.LICHSUCONGNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="KhachHangID" />
+      </Principal>
+      <Dependent Role="LICHSUCONGNO">
+        <PropertyRef Name="KhachHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHSUCONGNO_THE">
+    <End Role="THE" Type="KaraokeModel.Store.THE" Multiplicity="0..1" />
+    <End Role="LICHSUCONGNO" Type="KaraokeModel.Store.LICHSUCONGNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THE">
+        <PropertyRef Name="TheID" />
+      </Principal>
+      <Dependent Role="LICHSUCONGNO">
+        <PropertyRef Name="TheID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHSUDANGNHAP_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="LICHSUDANGNHAP" Type="KaraokeModel.Store.LICHSUDANGNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="LICHSUDANGNHAP">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MATKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="MATKHO" Type="KaraokeModel.Store.MATKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="MATKHO">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MATKHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="MATKHO" Type="KaraokeModel.Store.MATKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="MATKHO">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MAYIN_MAYIN">
+    <End Role="MAYIN" Type="KaraokeModel.Store.MAYIN" Multiplicity="0..1" />
+    <End Role="MAYIN1" Type="KaraokeModel.Store.MAYIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAYIN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAYIN1">
+        <PropertyRef Name="MayInID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUGIA_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="MENUGIA" Type="KaraokeModel.Store.MENUGIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="MENUGIA">
+        <PropertyRef Name="KichThuocMonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUGIA_MENULOAIGIA">
+    <End Role="MENULOAIGIA" Type="KaraokeModel.Store.MENULOAIGIA" Multiplicity="0..1" />
+    <End Role="MENUGIA" Type="KaraokeModel.Store.MENUGIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENULOAIGIA">
+        <PropertyRef Name="LoaiGiaID" />
+      </Principal>
+      <Dependent Role="MENUGIA">
+        <PropertyRef Name="LoaiGiaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MENUGROUP_MENUGROUPTYPE">
+    <End Role="MENULOAINHOM" Type="KaraokeModel.Store.MENULOAINHOM" Multiplicity="0..1" />
+    <End Role="MENUNHOM" Type="KaraokeModel.Store.MENUNHOM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENULOAINHOM">
+        <PropertyRef Name="LoaiNhomID" />
+      </Principal>
+      <Dependent Role="MENUNHOM">
+        <PropertyRef Name="LoaiNhomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MENUITEM_MENUGROUP">
+    <End Role="MENUNHOM" Type="KaraokeModel.Store.MENUNHOM" Multiplicity="0..1" />
+    <End Role="MENUMON" Type="KaraokeModel.Store.MENUMON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUNHOM">
+        <PropertyRef Name="NhomID" />
+      </Principal>
+      <Dependent Role="MENUMON">
+        <PropertyRef Name="NhomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUITEMMAYIN_MAYINAO">
+    <End Role="MAYIN" Type="KaraokeModel.Store.MAYIN" Multiplicity="1" />
+    <End Role="MENUITEMMAYIN" Type="KaraokeModel.Store.MENUITEMMAYIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAYIN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MENUITEMMAYIN">
+        <PropertyRef Name="MayInAoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUITEMMAYIN_MENUMON">
+    <End Role="MENUMON" Type="KaraokeModel.Store.MENUMON" Multiplicity="1" />
+    <End Role="MENUITEMMAYIN" Type="KaraokeModel.Store.MENUITEMMAYIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUMON">
+        <PropertyRef Name="MonID" />
+      </Principal>
+      <Dependent Role="MENUITEMMAYIN">
+        <PropertyRef Name="MonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="MENUKHUYENMAI" Type="KaraokeModel.Store.MENUKHUYENMAI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="MENUKHUYENMAI">
+        <PropertyRef Name="KichThuocMonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON1">
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
+    <End Role="MENUKHUYENMAI" Type="KaraokeModel.Store.MENUKHUYENMAI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="KichThuocMonID" />
+      </Principal>
+      <Dependent Role="MENUKHUYENMAI">
+        <PropertyRef Name="KichThuocMonTang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUKICHTHUOCMON_LOAIBAN">
+    <End Role="LOAIBAN" Type="KaraokeModel.Store.LOAIBAN" Multiplicity="0..1" />
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIBAN">
+        <PropertyRef Name="LoaiBanID" />
+      </Principal>
+      <Dependent Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="LoaiBanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENUKICHTHUOCMON_MENUMON">
+    <End Role="MENUMON" Type="KaraokeModel.Store.MENUMON" Multiplicity="0..1" />
+    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENUMON">
+        <PropertyRef Name="MonID" />
+      </Principal>
+      <Dependent Role="MENUKICHTHUOCMON">
+        <PropertyRef Name="MonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_LOAINHANVIEN">
+    <End Role="LOAINHANVIEN" Type="KaraokeModel.Store.LOAINHANVIEN" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAINHANVIEN">
+        <PropertyRef Name="LoaiNhanVienID" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="LoaiNhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHAPKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="NHAPKHO" Type="KaraokeModel.Store.NHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="NHAPKHO">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHAPKHO_NHACUNGCAP">
+    <End Role="NHACUNGCAP" Type="KaraokeModel.Store.NHACUNGCAP" Multiplicity="0..1" />
+    <End Role="NHAPKHO" Type="KaraokeModel.Store.NHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="NhaCungCapID" />
+      </Principal>
+      <Dependent Role="NHAPKHO">
+        <PropertyRef Name="NhaCungCapID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHAPKHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="NHAPKHO" Type="KaraokeModel.Store.NHAPKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="NHAPKHO">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUYENNHANVIEN_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="QUYENNHANVIEN" Type="KaraokeModel.Store.QUYENNHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="QUYENNHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUYENNHANVIEN_QUYEN">
+    <End Role="QUYEN" Type="KaraokeModel.Store.QUYEN" Multiplicity="0..1" />
+    <End Role="QUYENNHANVIEN" Type="KaraokeModel.Store.QUYENNHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUYEN">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="QUYENNHANVIEN">
+        <PropertyRef Name="QuyenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TACHBAN_BAN">
+    <End Role="BAN" Type="KaraokeModel.Store.BAN" Multiplicity="0..1" />
+    <End Role="TACHBAN" Type="KaraokeModel.Store.TACHBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="BanID" />
+      </Principal>
+      <Dependent Role="TACHBAN">
+        <PropertyRef Name="BanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TACHBAN_NHANVIEN">
+    <End Role="NHANVIEN" Type="KaraokeModel.Store.NHANVIEN" Multiplicity="0..1" />
+    <End Role="TACHBAN" Type="KaraokeModel.Store.TACHBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVienID" />
+      </Principal>
+      <Dependent Role="TACHBAN">
+        <PropertyRef Name="NhanVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THONGTIN_LOAITHONGTIN">
+    <End Role="LOAITHONGTIN" Type="KaraokeModel.Store.LOAITHONGTIN" Multiplicity="0..1" />
+    <End Role="THONGTIN" Type="KaraokeModel.Store.THONGTIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAITHONGTIN">
+        <PropertyRef Name="LoaiThongTinID" />
+      </Principal>
+      <Dependent Role="THONGTIN">
+        <PropertyRef Name="LoaiThongTinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TONKHO_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="0..1" />
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="TONKHO">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TONKHO_LOAIPHATSINH">
+    <End Role="LOAIPHATSINH" Type="KaraokeModel.Store.LOAIPHATSINH" Multiplicity="0..1" />
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHATSINH">
+        <PropertyRef Name="LoaiPhatSinhID" />
+      </Principal>
+      <Dependent Role="TONKHO">
+        <PropertyRef Name="LoaiPhatSinhID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TONKHO_TONKHO">
+    <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
+    <End Role="TONKHO1" Type="KaraokeModel.Store.TONKHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TONKHO">
+        <PropertyRef Name="TonKhoID" />
+      </Principal>
+      <Dependent Role="TONKHO1">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TONKHOTONG_KHO">
+    <End Role="KHO" Type="KaraokeModel.Store.KHO" Multiplicity="1" />
+    <End Role="TONKHOTONG" Type="KaraokeModel.Store.TONKHOTONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="KhoID" />
+      </Principal>
+      <Dependent Role="TONKHOTONG">
+        <PropertyRef Name="KhoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'Karaoke.dbo.HUYHOADON' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="HUYHOADON">
+        <Property Name="HuyHoaDonID" Type="int" />
+        <Property Name="BanHangID" Type="int" />
+        <Property Name="ThoiGian" Type="datetime" />
+        <Property Name="NhanVienID" Type="int" />
+      </EntityType>-->
+</Schema>

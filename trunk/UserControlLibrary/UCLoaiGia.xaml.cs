@@ -9,27 +9,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace UserControlLibrary
 {
     /// <summary>
-    /// Interaction logic for WindowQuanLyLoaiGia.xaml
+    /// Interaction logic for UCLoaiGia.xaml
     /// </summary>
-    public partial class WindowQuanLyLoaiGia : Window
+    public partial class UCLoaiGia : UserControl
     {
         private Data.MENULOAIGIA mLoaiGia = null;
-        public WindowQuanLyLoaiGia()
+        private Data.Transit mTransit = null;
+        public UCLoaiGia(Data.Transit transit)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            mTransit = transit;
         }
 
         private void btnTaoMoi_Click(object sender, RoutedEventArgs e)
         {
-            txtDienGiai.Text = "";
-            txtLoaiGia.Text = "";
             mLoaiGia = null;
-            btnThemMoi.Content = "Thêm mới";
+            SetValues();
         }
 
         private void btnThemMoi_Click(object sender, RoutedEventArgs e)
@@ -38,14 +39,17 @@ namespace GUI
             {
                 GetValues();
                 Data.BOMenuLoaiGia.CapNhat(mLoaiGia);
-                GetData();
+                LoadDanhSachLoaiGia();
+                btnTaoMoi_Click(sender, e);
+                lbStatus.Text = "Thêm thành công";
             }
             else
             {
                 GetValues();
                 Data.BOMenuLoaiGia.Them(mLoaiGia);
                 btnTaoMoi_Click(null, null);
-                GetData();
+                LoadDanhSachLoaiGia();
+                lbStatus.Text = "Cập nhật thành công";
             }
         }
 
@@ -55,13 +59,24 @@ namespace GUI
             {
                 Data.BOMenuLoaiGia.Xoa(mLoaiGia.LoaiGiaID);
                 btnTaoMoi_Click(null, null);
-                GetData();
+                LoadDanhSachLoaiGia();
             }
         }
 
-        private void GetData()
-        {            
-            lvLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll();
+        private void LoadDanhSachLoaiGia()
+        {
+            lvData.ItemsSource = Data.BOMenuLoaiGia.GetAll();
+        }
+
+        private bool CheckValues()
+        {
+            lbStatus.Text = "";
+            if (txtLoaiGia.Text == "")
+            {
+                lbStatus.Text = "Loại giá không được bỏ trống";
+                return false;
+            }
+            return true;
         }
 
         private void GetValues()
@@ -82,21 +97,22 @@ namespace GUI
             {
                 txtDienGiai.Text = mLoaiGia.DienGiai;
                 txtLoaiGia.Text = mLoaiGia.Ten;
-                btnThemMoi.Content = "Cập nhật";
+                btnThem.Content = "Cập nhật";
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            GetData();
-        }
+            else
+            {
+                txtDienGiai.Text = "";
+                txtLoaiGia.Text = "";
+                btnThem.Content = "Thêm mới";
+            }
+        }        
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void lvLoaiGia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = (sender as ListView).SelectedItem;
             if (item != null)
@@ -104,6 +120,11 @@ namespace GUI
                 mLoaiGia = (item as Data.MENULOAIGIA);
                 SetValues();
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadDanhSachLoaiGia();
         }
     }
 }

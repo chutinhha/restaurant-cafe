@@ -45,17 +45,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOBan.cs" />
+    <Compile Include="BOBanHang.cs" />
+    <Compile Include="BOChinhKho.cs" />
+    <Compile Include="BOChiTietBanHang.cs" />
+    <Compile Include="BOChiTietChinhKho.cs" />
+    <Compile Include="BOChiTietGopBan.cs" />
+    <Compile Include="BOChiTietHuKho.cs" />
+    <Compile Include="BOChiTietMatKho.cs" />
+    <Compile Include="BOChiTietNhapKho.cs" />
+    <Compile Include="BOChiTietQuyen.cs" />
+    <Compile Include="BOChiTietTachBan.cs" />
+    <Compile Include="BOChucNang.cs" />
+    <Compile Include="BOChuyenBan.cs" />
+    <Compile Include="BOChuyenKhocs.cs" />
+    <Compile Include="BODinhLuong.cs" />
+    <Compile Include="BOGiaoDienChucNangBanHang.cs" />
+    <Compile Include="BOGopBan.cs" />
+    <Compile Include="BOHopDungTien.cs" />
+    <Compile Include="BOHuKho.cs" />
+    <Compile Include="BOHuyHoaDon.cs" />
+    <Compile Include="BOInHoaDon.cs" />
+    <Compile Include="BOKhachHang.cs" />
+    <Compile Include="BOKho.cs" />
+    <Compile Include="BOKhu.cs" />
+    <Compile Include="BOLichBieuDinhKy.cs" />
+    <Compile Include="BOLichBieuKhongDinhKy.cs" />
+    <Compile Include="BOLichSuCongNo.cs" />
+    <Compile Include="BOLichSuDangNhapcs.cs" />
+    <Compile Include="BOLoaiBan.cs" />
+    <Compile Include="BOLoaiHopDungTien.cs" />
+    <Compile Include="BOLoaiKhachHang.cs" />
+    <Compile Include="BOLoaiLichBieu.cs" />
+    <Compile Include="BOLoaiNhanVien.cs" />
+    <Compile Include="BOLoaiPhatSinh.cs" />
+    <Compile Include="BOLoaiThongTin.cs" />
+    <Compile Include="BOMatKho.cs" />
+    <Compile Include="BOMayIn.cs" />
+    <Compile Include="BOMenuGia.cs" />
+    <Compile Include="BOMenuItemMayIn.cs" />
+    <Compile Include="BOMenuKhuyenMai.cs" />
+    <Compile Include="BOMenuKichThuocMon.cs" />
+    <Compile Include="BOMenuLoaiGia.cs" />
+    <Compile Include="BOMenuMon.cs" />
+    <Compile Include="BOMenuNhom.cs" />
+    <Compile Include="BONhaCungCap.cs" />
+    <Compile Include="BONhanVien.cs" />
+    <Compile Include="BONhapKho.cs" />
+    <Compile Include="BONhomChucNang.cs" />
+    <Compile Include="BOQuyen.cs" />
+    <Compile Include="BOQuyenNhanVien.cs" />
+    <Compile Include="BOTachBan.cs" />
+    <Compile Include="BOThamSo.cs" />
+    <Compile Include="BOThe.cs" />
+    <Compile Include="BOThongTin.cs" />
+    <Compile Include="BOTonKho.cs" />
+    <Compile Include="BOTonKhoTong.cs" />
+    <Compile Include="BOTrangThai.cs" />
+    <Compile Include="Karaoke.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Karaoke.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Transit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="Karaoke.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Karaoke.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

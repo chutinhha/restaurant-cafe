@@ -18,4 +18,16 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="POSButtonTroVe" TargetType="Button">
+        <Setter Property="Background">
+            <Setter.Value>
+                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation">
+                    <GradientStop Color="#FFEF0B0B" Offset="0.5" />
+                    <GradientStop Color="#FF880404" Offset="1" />
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>       
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
 </ResourceDictionary>

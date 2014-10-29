@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/add%202.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("micro.ico")]
 
 

@@ -6,5 +6,6 @@
         <ResourceDictionary Source="DictionaryButton.xaml"/>
         <ResourceDictionary Source="DictionaryTextBox.xaml"/>
         <ResourceDictionary Source="DictionaryCombobox.xaml"/>
+        <ResourceDictionary Source="DictionaryTextBlock.xaml"/>        
     </ResourceDictionary.MergedDictionaries>    
 </ResourceDictionary>
