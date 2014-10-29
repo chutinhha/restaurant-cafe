@@ -1,8 +1,35 @@
-﻿<Window x:Class="GUI.MainWindow"
+﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="MainWindow" Height="768" Width="1024" Icon="/GUI;component/Micro.ico">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <my:UCTile Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+        <my:POSButtonIconVertical Content="Bán Hàng" Name="btnBanHang" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Tests.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnBanHang_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Nhân Viên" Name="btnQuanLyNhanVien" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/man.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyNhanVien_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Máy In" Name="btnQuanLyMayIn" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/printer%20green.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyMayIn_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Thực Đơn" Name="btnQuanLyThucDon" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Catalog.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyThucDon_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Khách Hàng" Name="btnQuanLyKhachHang" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Family.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyKhachHang_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Thu Chi" Name="btnQuanLyThuChi" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/us%20dollar.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyThuChi_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Giá, Khuyến Mãi" Name="btnQuanLyGiaKhuyenMai" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Sales%20report.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyGiaKhuyenMai_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Phân Quyền" Name="btnQuanLyPhanQuyen" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Themes.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyPhanQuyen_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Kho Hàng" Name="btnQuanLyKhoHang" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/uncompress.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyKhoHang_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Định Lượng" Name="btnQuanLyDinhLuong" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Binary%20tree.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanLyDinhLuong_Click" />
+        <my:POSButtonIconVertical Content="Quản Lý Sơ Đồ Bàn" Name="btnQuanSoDoBan" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/question%20type%20one%20correct.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnQuanSoDoBan_Click" />
+        <my:POSButtonIconVertical Content="Báo Cáo Thống Kê" Name="btnBaoCaoThongKe" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Report.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnBaoCaoThongKe_Click" />
+        <my:POSButtonIconVertical Content="Thông Tin Công Ty" Name="btnThongTinCongTy" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Info.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnThongTinCongTy_Click"  />
+        <my:POSButtonIconVertical Content="Thông Tin Phần Mềm" Name="btnThongTinPhanMem" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Unit.png" FontSize="24" Margin="10" ImageHeight="64" ImageWidth="64" Foreground="White" Click="btnThongTinPhanMem_Click" />
     </Grid>
 </Window>

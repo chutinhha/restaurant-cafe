@@ -342,6 +342,7 @@
         <MappingFragment StoreEntitySet="LOAIBAN">
           <ScalarProperty Name="LoaiBanID" ColumnName="LoaiBanID" />
           <ScalarProperty Name="TenLoaiBan" ColumnName="TenLoaiBan" />
+          <ScalarProperty Name="KichThuocBan" ColumnName="KichThuocBan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -408,10 +409,10 @@
     <EntitySetMapping Name="MAYINs">
       <EntityTypeMapping TypeName="KaraokeModel.MAYIN">
         <MappingFragment StoreEntitySet="MAYIN">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MayInID" ColumnName="MayInID" />
           <ScalarProperty Name="TenMayIn" ColumnName="TenMayIn" />
           <ScalarProperty Name="TieuDeIn" ColumnName="TieuDeIn" />
-          <ScalarProperty Name="MayInID" ColumnName="MayInID" />
+          <ScalarProperty Name="HopDungTien" ColumnName="HopDungTien" />
           <ScalarProperty Name="SoLanIn" ColumnName="SoLanIn" />
           <ScalarProperty Name="Visual" ColumnName="Visual" />
         </MappingFragment>
@@ -503,7 +504,7 @@
           <ScalarProperty Name="TenDai" ColumnName="TenDai" />
           <ScalarProperty Name="LoaiNhomID" ColumnName="LoaiNhomID" />
           <ScalarProperty Name="MayIn" ColumnName="MayIn" />
-          <ScalarProperty Name="XapSep" ColumnName="XapSep" />
+          <ScalarProperty Name="SapXep" ColumnName="SapXep" />
           <ScalarProperty Name="GiamGia" ColumnName="GiamGia" />
           <ScalarProperty Name="Hinh" ColumnName="Hinh" />
           <ScalarProperty Name="Font" ColumnName="Font" />
@@ -674,7 +675,7 @@
     </EntitySetMapping>
     <AssociationSetMapping Name="MENUITEMMAYIN" TypeName="KaraokeModel.MENUITEMMAYIN" StoreEntitySet="MENUITEMMAYIN">
       <EndProperty Name="MAYIN">
-        <ScalarProperty Name="ID" ColumnName="MayInAoID" />
+        <ScalarProperty Name="MayInID" ColumnName="MayInAoID" />
       </EndProperty>
       <EndProperty Name="MENUMON">
         <ScalarProperty Name="MonID" ColumnName="MonID" />

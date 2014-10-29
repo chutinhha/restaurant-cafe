@@ -11,7 +11,8 @@
     <RootNamespace>ControlLibrary</RootNamespace>
     <AssemblyName>ControlLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,6 +37,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -49,6 +53,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POSButtonChucNang.cs" />
+    <Compile Include="POSButtonIcon.cs" />
+    <Compile Include="POSButtonIconHorizontal.cs" />
+    <Compile Include="POSButtonIconVertical.cs" />
+    <Compile Include="POSButtonKeyPad.cs" />
+    <Compile Include="POSButtonMenu.cs" />
     <Compile Include="POSFont.cs" />
     <Compile Include="UCNewMon.xaml.cs">
       <DependentUpon>UCNewMon.xaml</DependentUpon>
@@ -76,6 +86,42 @@
     <Compile Include="WindowKeyPad.xaml.cs">
       <DependentUpon>WindowKeyPad.xaml</DependentUpon>
     </Compile>
+    <Page Include="Themes\DictionaryButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryCheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryCombobox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryRadio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DictionaryTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UCNewMon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +181,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,34 +191,47 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\arrow down Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow left down Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow left Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow left up Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow right down Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow right Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow right up Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\arrow up Green.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{6D4AA22F-0B6C-453B-8BE8-AFD13BB3ED9F}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{889AC656-45B7-48DA-8057-CDF4D99F9CB1}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Circle_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Food.png" />
+    <Resource Include="Images\Soft drink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Arrow-back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Circle_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Circle_Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Circle_Grey.png" />
+    <Resource Include="Images\Circle_Orange.png" />
+    <Resource Include="Images\Circle_Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoImages.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add 2.png" />
+    <Resource Include="Images\Back.png" />
+    <Resource Include="Images\Cancel.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\Down.png" />
+    <Resource Include="Images\Forward.png" />
+    <Resource Include="Images\Up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

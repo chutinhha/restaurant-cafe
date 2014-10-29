@@ -107,10 +107,6 @@
       <End Role="CHINHKHO" EntitySet="CHINHKHO" />
       <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
     </AssociationSet>
-    <AssociationSet Name="FK_CHITIETCHINHKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETCHINHKHO_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
-    </AssociationSet>
     <AssociationSet Name="FK_CHITIETCHINHKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETCHINHKHO_TONKHO">
       <End Role="TONKHO" EntitySet="TONKHO" />
       <End Role="CHITIETCHINHKHO" EntitySet="CHITIETCHINHKHO" />
@@ -127,10 +123,6 @@
       <End Role="HUKHO" EntitySet="HUKHO" />
       <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
     </AssociationSet>
-    <AssociationSet Name="FK_CHITIETHUKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETHUKHO_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
-    </AssociationSet>
     <AssociationSet Name="FK_CHITIETHUKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETHUKHO_TONKHO">
       <End Role="TONKHO" EntitySet="TONKHO" />
       <End Role="CHITIETHUKHO" EntitySet="CHITIETHUKHO" />
@@ -139,17 +131,9 @@
       <End Role="MATKHO" EntitySet="MATKHO" />
       <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
     </AssociationSet>
-    <AssociationSet Name="FK_CHITIETMATKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETMATKHO_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
-    </AssociationSet>
     <AssociationSet Name="FK_CHITIETMATKHO_TONKHO" Association="KaraokeModel.Store.FK_CHITIETMATKHO_TONKHO">
       <End Role="TONKHO" EntitySet="TONKHO" />
       <End Role="CHITIETMATKHO" EntitySet="CHITIETMATKHO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CHITIETNHAPKHO_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_CHITIETNHAPKHO_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="CHITIETNHAPKHO" EntitySet="CHITIETNHAPKHO" />
     </AssociationSet>
     <AssociationSet Name="FK_CHITIETNHAPKHO_NHAPKHO" Association="KaraokeModel.Store.FK_CHITIETNHAPKHO_NHAPKHO">
       <End Role="NHAPKHO" EntitySet="NHAPKHO" />
@@ -206,14 +190,6 @@
     <AssociationSet Name="FK_CHUYENKHO_NHANVIEN" Association="KaraokeModel.Store.FK_CHUYENKHO_NHANVIEN">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="CHUYENKHO" EntitySet="CHUYENKHO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DINHLUONG_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_DINHLUONG_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="DINHLUONG" EntitySet="DINHLUONG" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DINHLUONG_MENUKICHTHUOCMON1" Association="KaraokeModel.Store.FK_DINHLUONG_MENUKICHTHUOCMON1">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="DINHLUONG" EntitySet="DINHLUONG" />
     </AssociationSet>
     <AssociationSet Name="FK_GIAODIENCHUCNANGBANHANG_CHUCNANG" Association="KaraokeModel.Store.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG">
       <End Role="CHUCNANG" EntitySet="CHUCNANG" />
@@ -303,14 +279,6 @@
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="MATKHO" EntitySet="MATKHO" />
     </AssociationSet>
-    <AssociationSet Name="FK_MAYIN_MAYIN" Association="KaraokeModel.Store.FK_MAYIN_MAYIN">
-      <End Role="MAYIN" EntitySet="MAYIN" />
-      <End Role="MAYIN1" EntitySet="MAYIN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MENUGIA_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_MENUGIA_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="MENUGIA" EntitySet="MENUGIA" />
-    </AssociationSet>
     <AssociationSet Name="FK_MENUGIA_MENULOAIGIA" Association="KaraokeModel.Store.FK_MENUGIA_MENULOAIGIA">
       <End Role="MENULOAIGIA" EntitySet="MENULOAIGIA" />
       <End Role="MENUGIA" EntitySet="MENUGIA" />
@@ -330,14 +298,6 @@
     <AssociationSet Name="FK_MENUITEMMAYIN_MENUMON" Association="KaraokeModel.Store.FK_MENUITEMMAYIN_MENUMON">
       <End Role="MENUMON" EntitySet="MENUMON" />
       <End Role="MENUITEMMAYIN" EntitySet="MENUITEMMAYIN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON" Association="KaraokeModel.Store.FK_MENUKHUYENMAI_MENUKICHTHUOCMON">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="MENUKHUYENMAI" EntitySet="MENUKHUYENMAI" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON1" Association="KaraokeModel.Store.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1">
-      <End Role="MENUKICHTHUOCMON" EntitySet="MENUKICHTHUOCMON" />
-      <End Role="MENUKHUYENMAI" EntitySet="MENUKHUYENMAI" />
     </AssociationSet>
     <AssociationSet Name="FK_MENUKICHTHUOCMON_LOAIBAN" Association="KaraokeModel.Store.FK_MENUKICHTHUOCMON_LOAIBAN">
       <End Role="LOAIBAN" EntitySet="LOAIBAN" />
@@ -715,6 +675,7 @@
     </Key>
     <Property Name="LoaiBanID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TenLoaiBan" Type="nvarchar" MaxLength="100" />
+    <Property Name="KichThuocBan" Type="int" />
   </EntityType>
   <EntityType Name="LOAIHOPDUNGTIEN">
     <Key>
@@ -771,12 +732,12 @@
   </EntityType>
   <EntityType Name="MAYIN">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="MayInID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MayInID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TenMayIn" Type="nvarchar" MaxLength="255" />
     <Property Name="TieuDeIn" Type="nvarchar" MaxLength="255" />
-    <Property Name="MayInID" Type="int" />
+    <Property Name="HopDungTien" Type="bit" />
     <Property Name="SoLanIn" Type="int" />
     <Property Name="Visual" Type="bit" />
   </EntityType>
@@ -812,7 +773,7 @@
     <Key>
       <PropertyRef Name="KichThuocMonID" />
     </Key>
-    <Property Name="KichThuocMonID" Type="int" Nullable="false" />
+    <Property Name="KichThuocMonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="MonID" Type="int" />
     <Property Name="LoaiBanID" Type="int" />
     <Property Name="ThoiGia" Type="bit" />
@@ -869,7 +830,7 @@
     <Property Name="TenDai" Type="nvarchar" MaxLength="255" />
     <Property Name="LoaiNhomID" Type="int" />
     <Property Name="MayIn" Type="int" />
-    <Property Name="XapSep" Type="int" />
+    <Property Name="SapXep" Type="int" />
     <Property Name="GiamGia" Type="int" />
     <Property Name="Hinh" Type="image" />
     <Property Name="Font" Type="varbinary" MaxLength="1000" />
@@ -1167,18 +1128,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CHITIETCHINHKHO_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="CHITIETCHINHKHO" Type="KaraokeModel.Store.CHITIETCHINHKHO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="CHITIETCHINHKHO">
-        <PropertyRef Name="KichThuocMon" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CHITIETCHINHKHO_TONKHO">
     <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
     <End Role="CHITIETCHINHKHO" Type="KaraokeModel.Store.CHITIETCHINHKHO" Multiplicity="*" />
@@ -1227,18 +1176,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CHITIETHUKHO_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="CHITIETHUKHO" Type="KaraokeModel.Store.CHITIETHUKHO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="CHITIETHUKHO">
-        <PropertyRef Name="KichThuocMonID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CHITIETHUKHO_TONKHO">
     <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
     <End Role="CHITIETHUKHO" Type="KaraokeModel.Store.CHITIETHUKHO" Multiplicity="*" />
@@ -1263,18 +1200,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CHITIETMATKHO_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="CHITIETMATKHO" Type="KaraokeModel.Store.CHITIETMATKHO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="CHITIETMATKHO">
-        <PropertyRef Name="KichThuocMonID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CHITIETMATKHO_TONKHO">
     <End Role="TONKHO" Type="KaraokeModel.Store.TONKHO" Multiplicity="0..1" />
     <End Role="CHITIETMATKHO" Type="KaraokeModel.Store.CHITIETMATKHO" Multiplicity="*" />
@@ -1284,18 +1209,6 @@
       </Principal>
       <Dependent Role="CHITIETMATKHO">
         <PropertyRef Name="TonKhoID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CHITIETNHAPKHO_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="CHITIETNHAPKHO" Type="KaraokeModel.Store.CHITIETNHAPKHO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="CHITIETNHAPKHO">
-        <PropertyRef Name="KichThuocMonID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1464,30 +1377,6 @@
       </Principal>
       <Dependent Role="CHUYENKHO">
         <PropertyRef Name="NhanVienID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DINHLUONG_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="DINHLUONG" Type="KaraokeModel.Store.DINHLUONG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="DINHLUONG">
-        <PropertyRef Name="KichThuocMonChinhID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DINHLUONG_MENUKICHTHUOCMON1">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="DINHLUONG" Type="KaraokeModel.Store.DINHLUONG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="DINHLUONG">
-        <PropertyRef Name="KichThuocMonPhuID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1755,30 +1644,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_MAYIN_MAYIN">
-    <End Role="MAYIN" Type="KaraokeModel.Store.MAYIN" Multiplicity="0..1" />
-    <End Role="MAYIN1" Type="KaraokeModel.Store.MAYIN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MAYIN">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MAYIN1">
-        <PropertyRef Name="MayInID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MENUGIA_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="MENUGIA" Type="KaraokeModel.Store.MENUGIA" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="MENUGIA">
-        <PropertyRef Name="KichThuocMonID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_MENUGIA_MENULOAIGIA">
     <End Role="MENULOAIGIA" Type="KaraokeModel.Store.MENULOAIGIA" Multiplicity="0..1" />
     <End Role="MENUGIA" Type="KaraokeModel.Store.MENUGIA" Multiplicity="*" />
@@ -1820,7 +1685,7 @@
     <End Role="MENUITEMMAYIN" Type="KaraokeModel.Store.MENUITEMMAYIN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MAYIN">
-        <PropertyRef Name="ID" />
+        <PropertyRef Name="MayInID" />
       </Principal>
       <Dependent Role="MENUITEMMAYIN">
         <PropertyRef Name="MayInAoID" />
@@ -1836,30 +1701,6 @@
       </Principal>
       <Dependent Role="MENUITEMMAYIN">
         <PropertyRef Name="MonID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="MENUKHUYENMAI" Type="KaraokeModel.Store.MENUKHUYENMAI" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="MENUKHUYENMAI">
-        <PropertyRef Name="KichThuocMonID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MENUKHUYENMAI_MENUKICHTHUOCMON1">
-    <End Role="MENUKICHTHUOCMON" Type="KaraokeModel.Store.MENUKICHTHUOCMON" Multiplicity="0..1" />
-    <End Role="MENUKHUYENMAI" Type="KaraokeModel.Store.MENUKHUYENMAI" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENUKICHTHUOCMON">
-        <PropertyRef Name="KichThuocMonID" />
-      </Principal>
-      <Dependent Role="MENUKHUYENMAI">
-        <PropertyRef Name="KichThuocMonTang" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

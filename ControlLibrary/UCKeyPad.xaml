@@ -40,7 +40,7 @@
             </my:POSButtonKeyPad>
             <my:POSButtonKeyPad Grid.Row="3" Grid.Column="1" Content="." Click="btnNumber_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontWeight="Bold" Foreground="White">
             </my:POSButtonKeyPad>
-            <my:POSButtonKeyPad Grid.Row="3" Grid.Column="2" Content="DEL" Click="btnBackSpace_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Foreground="White">
+            <my:POSButtonKeyPad Grid.Row="3" Grid.Column="2" Content="XÓA" Click="btnBackSpace_Click" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" FontWeight="Bold" Foreground="White">
             </my:POSButtonKeyPad>
         </Grid>
     </Border>

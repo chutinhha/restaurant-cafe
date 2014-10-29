@@ -18,15 +18,16 @@ namespace GUI
     /// </summary>
     public partial class WindowLogin : Window
     {
+        private Data.Transit mTransit = null;
         public WindowLogin()
         {
             InitializeComponent();
-            
+            mTransit = new Data.Transit();
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace GUI
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {   
+        {
             txtUserID._UCKeyPad = uCKeyPad;
             txtPassword._UCKeyPad = uCKeyPad;
         }

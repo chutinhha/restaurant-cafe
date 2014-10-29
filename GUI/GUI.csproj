@@ -35,9 +35,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Micro.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,6 +64,12 @@
     <Compile Include="WindowBanHang.xaml.cs">
       <DependentUpon>WindowBanHang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowBaoCaoThongKe.xaml.cs">
+      <DependentUpon>WindowBaoCaoThongKe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowDanhSachBan.xaml.cs">
+      <DependentUpon>WindowDanhSachBan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowLogin.xaml.cs">
       <DependentUpon>WindowLogin.xaml</DependentUpon>
     </Compile>
@@ -67,8 +79,38 @@
     <Compile Include="WindowMenuChange.xaml.cs">
       <DependentUpon>WindowMenuChange.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowQuanLyGia.xaml.cs">
-      <DependentUpon>WindowQuanLyGia.xaml</DependentUpon>
+    <Compile Include="WindowQuanLyDinhLuong.xaml.cs">
+      <DependentUpon>WindowQuanLyDinhLuong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyGiaKhuyenMai.xaml.cs">
+      <DependentUpon>WindowQuanLyGiaKhuyenMai.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyKhachHang.xaml.cs">
+      <DependentUpon>WindowQuanLyKhachHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyKhoHang.xaml.cs">
+      <DependentUpon>WindowQuanLyKhoHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyMayIn.xaml.cs">
+      <DependentUpon>WindowQuanLyMayIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyNhanVien.xaml.cs">
+      <DependentUpon>WindowQuanLyNhanVien.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyPhanQuyen.xaml.cs">
+      <DependentUpon>WindowQuanLyPhanQuyen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLySoDoBan.xaml.cs">
+      <DependentUpon>WindowQuanLySoDoBan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowQuanLyThuChi.xaml.cs">
+      <DependentUpon>WindowQuanLyThuChi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowThongTinCongTy.xaml.cs">
+      <DependentUpon>WindowThongTinCongTy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowThongTinPhanMem.xaml.cs">
+      <DependentUpon>WindowThongTinPhanMem.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +128,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowBaoCaoThongKe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowDanhSachBan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,9 +148,49 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowQuanLyGia.xaml">
+    <Page Include="WindowQuanLyDinhLuong.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyGiaKhuyenMai.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyKhachHang.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyKhoHang.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyMayIn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyNhanVien.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowQuanLyPhanQuyen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLySoDoBan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowQuanLyThuChi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowThongTinCongTy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowThongTinPhanMem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -133,18 +223,73 @@
       <Project>{1149AB48-1492-468F-BFF2-6DBFEF6DD041}</Project>
       <Name>ControlLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{6D4AA22F-0B6C-453B-8BE8-AFD13BB3ED9F}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserControlLibrary\UserControlLibrary.csproj">
+      <Project>{368201DF-DD79-45F6-AF7A-E7A349F2BE57}</Project>
+      <Name>UserControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{889AC656-45B7-48DA-8057-CDF4D99F9CB1}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\LabyrinthWhiteandeige.jpg" />
+    <Resource Include="Images\Add 2.png" />
+    <Resource Include="Images\Back.png" />
+    <Resource Include="Images\Cancel.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\Down.png" />
+    <Resource Include="Images\Forward.png" />
+    <Resource Include="Images\Up.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\3colfwnce.jpg" />
+    <Resource Include="Images\Tests.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Grid-Background-to-repeat-250-px-high-grayscale.jpg" />
+    <Resource Include="Images\Report.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\small_off_white_bricks_seamless_pattern.gif" />
+    <Resource Include="Images\Family.png" />
+    <Resource Include="Images\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\uncompress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\question type one correct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Themes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sales report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\us dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Ordering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Binary tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Catalog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Unit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Micro.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
