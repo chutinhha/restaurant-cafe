@@ -11,7 +11,7 @@ namespace Data
         {
             using (KaraokeEntities ke = new KaraokeEntities())
             {
-                return ke.MENULOAIGIAs.Where(s => s.Deleted == false).ToList();
+                return ke.MENULOAIGIAs.Where(s => s.Deleted == false).OrderBy(s => s.Ten).ToList();
             }
         }
 

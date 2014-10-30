@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="924">
+             d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
@@ -18,21 +18,24 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
             <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Máy In" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbMayIn" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbMayIn" DisplayMemberPath="TieuDeIn" SelectedValuePath="MayInID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
 
-            <my:POSButtonIconHorizontal Grid.Row="2" Grid.Column="1" x:Name="btnThem" Content="Thêm" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
-            <my:POSButtonIconHorizontal Grid.Row="2" Grid.Column="0" x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+            
+            <my:POSButtonIconHorizontal Grid.Row="3" Grid.Column="1" x:Name="btnThem" Content="Thêm" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
+            <my:POSButtonIconHorizontal Grid.Row="3" Grid.Column="0" x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
 
-            <ListView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="lvMayIn" SelectionChanged="lvMayIn_SelectionChanged">
+            <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" SelectionChanged="lvData_SelectionChanged">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TenNhanVien}" Width="400" Header="Máy In"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=MAYIN.TieuDeIn}" Width="400" Header="Máy In"/>
                     </GridView>
                 </ListView.View>
             </ListView>

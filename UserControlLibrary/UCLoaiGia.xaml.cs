@@ -35,21 +35,24 @@ namespace UserControlLibrary
 
         private void btnThemMoi_Click(object sender, RoutedEventArgs e)
         {
-            if (mLoaiGia != null)
+            if (CheckValues())
             {
-                GetValues();
-                Data.BOMenuLoaiGia.CapNhat(mLoaiGia);
-                LoadDanhSachLoaiGia();
-                btnTaoMoi_Click(sender, e);
-                lbStatus.Text = "Thêm thành công";
-            }
-            else
-            {
-                GetValues();
-                Data.BOMenuLoaiGia.Them(mLoaiGia);
-                btnTaoMoi_Click(null, null);
-                LoadDanhSachLoaiGia();
-                lbStatus.Text = "Cập nhật thành công";
+                if (mLoaiGia != null)
+                {
+                    GetValues();
+                    Data.BOMenuLoaiGia.CapNhat(mLoaiGia);
+                    LoadDanhSachLoaiGia();
+                    btnTaoMoi_Click(sender, e);
+                    lbStatus.Text = "Thêm thành công";
+                }
+                else
+                {
+                    GetValues();
+                    Data.BOMenuLoaiGia.Them(mLoaiGia);
+                    btnTaoMoi_Click(null, null);
+                    LoadDanhSachLoaiGia();
+                    lbStatus.Text = "Cập nhật thành công";
+                }
             }
         }
 

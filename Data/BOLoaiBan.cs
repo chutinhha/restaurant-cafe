@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Data
 {
+    /// <summary>
+    /// Loại bán
+    /// </summary>
     public class BOLoaiBan
     {
         public static List<LOAIBAN> GetAll(int[] IDs)

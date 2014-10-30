@@ -34,8 +34,8 @@
         <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="200" Header="Loại khách hàng"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="500" Header="Phần trăm giảm"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenLoaiKhachHang}" Width="200" Header="Loại khách hàng"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PhanTramGiamGia}" Width="500" Header="Phần trăm giảm"/>
                 </GridView>
             </ListView.View>
         </ListView>
