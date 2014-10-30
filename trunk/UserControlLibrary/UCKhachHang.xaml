@@ -16,9 +16,9 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
@@ -36,18 +36,18 @@
         <TextBlock Grid.Row="4" Grid.Column="2" Text="Fax" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
 
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiKhachHang" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiKhachHang" DisplayMemberPath="TenLoaiKhachHang" SelectedValuePath="LoaiKhachHangID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDuNo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtDuNoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtEmail" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
 
         <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtSoNha" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtTenDuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <TextBox Grid.Row="2" Grid.Column="3" x:Name="txtDienThoaiĐong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+        <TextBox Grid.Row="2" Grid.Column="3" x:Name="txtDienThoaiDong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="3" Grid.Column="3" x:Name="txtDienThoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
         <TextBox Grid.Row="4" Grid.Column="3" x:Name="txtFax" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
 
         <my:POSButtonIconHorizontal Grid.Row="0" Grid.Column="4" Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnMoi_Click" />
         <my:POSButtonIconHorizontal Grid.Row="1" Grid.Column="4" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
@@ -56,17 +56,17 @@
 
         <ListView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
-                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Tên khách hàng"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Loại khách hàng"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Dư nợ"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Dư nợ tối thiểu"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Email"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Số nhà"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Tên đường"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="ĐT Di động"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="ĐT bàn"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Fax"/>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Danh sách khách hàng">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenKhachHang}" Width="200" Header="Tên khách hàng"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LOAIKHACHHANG.TenLoaiKhachHang}" Width="180" Header="Loại khách hàng"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DuNo}" Width="100" Header="Dư nợ"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DuNoToiThieu}" Width="200" Header="Dư nợ tối thiểu"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="200" Header="Email"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoNha}" Width="150" Header="Số nhà"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenDuong}" Width="200" Header="Tên đường"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Mobile}" Width="100" Header="ĐT Di động"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" Width="100" Header="ĐT bàn"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Fax}" Width="100" Header="Fax"/>
                 </GridView>
             </ListView.View>
         </ListView>

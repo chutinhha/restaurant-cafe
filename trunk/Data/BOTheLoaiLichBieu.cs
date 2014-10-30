@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Data
 {
-    public class BOLoaiThongTin
+    public class BOTheLoaiLichBieu
     {
-        public static List<LOAITHONGTIN> GetAll()
+        public static List<THELOAILICHBIEU> GetAll()
         {
             using (KaraokeEntities ke = new KaraokeEntities())
             {
-                return ke.LOAITHONGTINs.Where(s => s.Deleted == false).ToList();
+                return ke.THELOAILICHBIEUx.ToList();
             }
         }
     }

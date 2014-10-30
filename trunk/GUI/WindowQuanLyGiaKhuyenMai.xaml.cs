@@ -41,7 +41,7 @@ namespace GUI
             {
                 ucLichBieuDinhKy = new UserControlLibrary.UCLichBieuDinhKy(mTransit);
             }
-            spNoiDung.Children.Clear();
+            spNoiDung.Children.Clear();            
             spNoiDung.Children.Add(ucLichBieuDinhKy);
         }
 
