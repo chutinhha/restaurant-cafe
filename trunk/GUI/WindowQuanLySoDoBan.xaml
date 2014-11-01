@@ -1,8 +1,21 @@
 ﻿<Window x:Class="GUI.WindowQuanLySoDoBan"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowQuanLySoDoBan" Height="300" Width="300">
+        Title="WindowQuanLySoDoBan" Height="506" Width="934" WindowStartupLocation="CenterScreen" WindowState="Maximized" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <my:UCFloorPlan HorizontalAlignment="Stretch" Margin="0" Name="uCFloorPlan1" VerticalAlignment="Stretch" _OnEventFloorPlan="uCFloorPlan1__OnEventFloorPlan" _IsEdit="True" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,12,0,0" Name="textBlock1" Text="Khu Vực" VerticalAlignment="Top" Width="50" />
+        <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,12,0,0" Name="cboKhuVuc" VerticalAlignment="Top" Width="120" SelectionChanged="cboKhuVuc_SelectionChanged" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu"/>
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,50,0,0" Name="textBlock2" Text="Tên Bàn" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,49,0,0" Name="txtTenBan" VerticalAlignment="Top" Width="120" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,90,0,0" Name="textBlock3" Text="Hình Đại Diện" VerticalAlignment="Top" />
+        <my:POSButtonImage  Content="Button" Grid.Column="1" Height="55" HorizontalAlignment="Left" Margin="100,90,0,0" Name="btnHinhDaiDien" VerticalAlignment="Top" Width="65"/>
+        <my:POSButtonIconHorizontal Content="Thêm mới" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,168,0,0" Name="btnThemMoi" VerticalAlignment="Top" Width="156" Click="btnThemMoi_Click" Image="/GUI;component/Images/Add%202.png" />
+        <my:POSButtonIconHorizontal Content="Lưu" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,208,0,0" Name="pOSButtonIconHorizontal1" VerticalAlignment="Top" Width="156" Image="/GUI;component/Images/Save.jpg" Click="pOSButtonIconHorizontal1_Click" />
+        <my:POSButtonIconHorizontal Content="Xóa" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,251,0,0" Name="pOSButtonIconHorizontal2" VerticalAlignment="Top" Width="156" Image="/GUI;component/Images/Delete.png" />
     </Grid>
 </Window>

@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Data
 {
-    public class BOKhu
-    {                
+    public class BOTableArea
+    {
         public static List<KHU> GetAll()
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
+            using (KaraokeEntities ke=new KaraokeEntities())
             {
                 return ke.KHUs.ToList();
             }
-        }        
+        }
     }
 }
