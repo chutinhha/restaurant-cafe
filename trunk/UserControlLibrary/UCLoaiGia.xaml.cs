@@ -40,7 +40,7 @@ namespace UserControlLibrary
                 if (mLoaiGia != null)
                 {
                     GetValues();
-                    Data.BOMenuLoaiGia.CapNhat(mLoaiGia);
+                    Data.BOMenuLoaiGia.CapNhat(mLoaiGia, mTransit);
                     LoadDanhSachLoaiGia();
                     btnTaoMoi_Click(sender, e);
                     lbStatus.Text = "Thêm thành công";
@@ -48,7 +48,7 @@ namespace UserControlLibrary
                 else
                 {
                     GetValues();
-                    Data.BOMenuLoaiGia.Them(mLoaiGia);
+                    Data.BOMenuLoaiGia.Them(mLoaiGia, mTransit);
                     btnTaoMoi_Click(null, null);
                     LoadDanhSachLoaiGia();
                     lbStatus.Text = "Cập nhật thành công";
@@ -60,7 +60,7 @@ namespace UserControlLibrary
         {
             if (mLoaiGia != null)
             {
-                Data.BOMenuLoaiGia.Xoa(mLoaiGia.LoaiGiaID);
+                Data.BOMenuLoaiGia.Xoa(mLoaiGia.LoaiGiaID, mTransit);
                 btnTaoMoi_Click(null, null);
                 LoadDanhSachLoaiGia();
             }
@@ -68,7 +68,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSachLoaiGia()
         {
-            lvData.ItemsSource = Data.BOMenuLoaiGia.GetAll();
+            lvData.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
         }
 
         private bool CheckValues()
@@ -108,11 +108,6 @@ namespace UserControlLibrary
                 txtLoaiGia.Text = "";
                 btnThem.Content = "Thêm mới";
             }
-        }        
-
-        private void btnThoat_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -128,6 +123,7 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDanhSachLoaiGia();
+            btnTaoMoi_Click(sender, e);
         }
     }
 }

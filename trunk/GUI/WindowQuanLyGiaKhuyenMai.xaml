@@ -14,13 +14,17 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <my:POSButtonIconVertical Grid.Row="0" Content="Khuyến mãi" Name="btnKhuyenMai" Margin="5" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32" Click="btnKhuyenMai_Click" />
             <my:POSButtonIconVertical Grid.Row="1" Content="Lịch biểu định kỳ" Margin="5" Name="btnLichBieuDinhKy" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLichBieuDinhKy_Click"/>
             <my:POSButtonIconVertical Grid.Row="2" Content="Lịch biểu không định kỳ" Margin="5" Name="btnLichBieuKhongDinhKy" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLichBieuKhongDinhKy_Click"/>
             <my:POSButtonIconVertical Grid.Row="3" Content="Loại giá" Margin="5" Name="btnLoaiGia" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLoaiGia_Click"/>
+            <my:POSButtonIconVertical Grid.Row="4" Content="Danh sách bán" Margin="5" Name="btnDanhSachBan" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnDanhSachBan_Click"/>
+            <my:POSButtonIconVertical Grid.Row="5" Content="Quán lý giá" Margin="5" Name="btnQuanLyGia" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnQuanLyGia_Click"/>
         </Grid>
-        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">          
+        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
             <Rectangle.Stroke>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
                     <GradientStop Color="White" Offset="0"/>
@@ -29,7 +33,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Rectangle.Stroke>
-        </Rectangle>        
+        </Rectangle>
         <StackPanel Grid.Column="2" Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Window>

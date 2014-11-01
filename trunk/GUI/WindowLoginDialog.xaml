@@ -3,6 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="WindowLoginDialog" Height="300" Width="300">
     <Grid>
-        
+        <Image Height="194" HorizontalAlignment="Left" Margin="25,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="/GUI;component/Images/Family.png" />
     </Grid>
 </Window>

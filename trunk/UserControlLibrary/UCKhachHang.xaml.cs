@@ -41,7 +41,7 @@ namespace UserControlLibrary
                 {
                     mKhachHang = new Data.KHACHHANG();
                     GetValues();
-                    Data.BOKhachHang.Them(mKhachHang);
+                    Data.BOKhachHang.Them(mKhachHang, mTransit);
                     lbStatus.Text = "Thêm thành công";
                     LoadDanhSachKhachHang();
                     btnMoi_Click(sender, e);
@@ -49,7 +49,7 @@ namespace UserControlLibrary
                 else
                 {
                     GetValues();
-                    Data.BOKhachHang.Sua(mKhachHang);
+                    Data.BOKhachHang.Sua(mKhachHang, mTransit);
                     lbStatus.Text = "Cập nhật thành công";
                     LoadDanhSachKhachHang();
                 }
@@ -61,7 +61,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 mKhachHang = (Data.KHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOKhachHang.Xoa(mKhachHang.KhachHangID);
+                Data.BOKhachHang.Xoa(mKhachHang.KhachHangID, mTransit);
                 lbStatus.Text = "Xóa thành công";
             }
         }
@@ -86,7 +86,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSachKhachHang()
         {
-            System.Collections.Generic.List<Data.KHACHHANG> lsArray = Data.BOKhachHang.GetAll();
+            System.Collections.Generic.List<Data.KHACHHANG> lsArray = Data.BOKhachHang.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (Data.KHACHHANG item in lsArray)
             {
@@ -164,7 +164,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiKhachHang()
         {
-            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAll();
+            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAll(mTransit);
             if (cbbLoaiKhachHang.Items.Count > 0)
                 cbbLoaiKhachHang.SelectedIndex = 0;
         }

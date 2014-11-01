@@ -7,45 +7,33 @@ namespace Data
 {
     public class BOLoaiKhachHang
     {
-        public static List<LOAIKHACHHANG> GetAll()
+        public static List<LOAIKHACHHANG> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                return ke.LOAIKHACHHANGs.Where(s => s.Deleted == false).ToList();
-            }
+            return mTransit.KaraokeEntities.LOAIKHACHHANGs.Where(s => s.Deleted == false).ToList();
         }
 
-        public static int Them(LOAIKHACHHANG item)
+        public static int Them(LOAIKHACHHANG item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.LOAIKHACHHANGs.AddObject(item);
-                ke.SaveChanges();
-                return item.LoaiKhachHangID;
-            }
+            mTransit.KaraokeEntities.LOAIKHACHHANGs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiKhachHangID;
         }
 
-        public static int Xoa(int LoaiKhachHangID)
+        public static int Xoa(int LoaiKhachHangID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                LOAIKHACHHANG item = (from x in ke.LOAIKHACHHANGs where x.LoaiKhachHangID == LoaiKhachHangID select x).First();
-                ke.LOAIKHACHHANGs.DeleteObject(item);
-                ke.SaveChanges();
-                return item.LoaiKhachHangID;
-            }
+            LOAIKHACHHANG item = (from x in mTransit.KaraokeEntities.LOAIKHACHHANGs where x.LoaiKhachHangID == LoaiKhachHangID select x).First();
+            mTransit.KaraokeEntities.LOAIKHACHHANGs.DeleteObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiKhachHangID;
         }
 
-        public static int Sua(LOAIKHACHHANG item)
+        public static int Sua(LOAIKHACHHANG item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                LOAIKHACHHANG m = (from x in ke.LOAIKHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
-                m.TenLoaiKhachHang = item.TenLoaiKhachHang;
-                m.PhanTramGiamGia = item.PhanTramGiamGia;
-                ke.SaveChanges();
-                return item.LoaiKhachHangID;
-            }
+            LOAIKHACHHANG m = (from x in mTransit.KaraokeEntities.LOAIKHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
+            m.TenLoaiKhachHang = item.TenLoaiKhachHang;
+            m.PhanTramGiamGia = item.PhanTramGiamGia;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiKhachHangID;
         }
     }
 }

@@ -7,15 +7,17 @@ namespace GUI
     /// </summary>
     public partial class WindowMenuChange : Window
     {
-        public WindowMenuChange()
+        private Data.Transit mTransit = null;
+        public WindowMenuChange(Data.Transit transit)
         {
             InitializeComponent();
+            mTransit = transit;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             uCMenu.OnEventMenu += new ControlLibrary.UCMenu.EventMenu(uCMenu_OnEventMenu);
-            uCMenu.Init();
+            uCMenu.Init(mTransit);
         }
 
         private int LoaiNhomID = 0;
@@ -25,7 +27,7 @@ namespace GUI
         {
             if (ob is Data.MENUNHOM)
             {
-                ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(0);
+                ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(0, mTransit);
                 uc._Nhom = (Data.MENUNHOM)ob;
                 LoaiNhomID = (int)uc._Nhom.LoaiNhomID;
                 svChinhSuaMenu.Children.Clear();
@@ -37,9 +39,8 @@ namespace GUI
             }
             else if (ob is Data.MENUMON)
             {
-                ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(0);
+                ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(0,mTransit);
                 uc._Mon = (Data.MENUMON)ob;
-                uc.OnEvenDanhSachBanClick += new ControlLibrary.UCNewMon.EvenDanhSachBanClick(uc_OnEvenDanhSachBanClick);
                 svChinhSuaMenu.Children.Clear();
                 svChinhSuaMenu.Children.Add(uc);
                 btnCapNhat.Content = "Cập nhật món";
@@ -49,15 +50,9 @@ namespace GUI
             }
         }
 
-        void uc_OnEvenDanhSachBanClick(Data.MENUMON mon)
-        {
-            WindowDanhSachBan win = new WindowDanhSachBan(mon);
-            win.ShowDialog();
-        }
-
         private void btnNhomMoi_Click(object sender, RoutedEventArgs e)
         {
-            ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(LoaiNhomID);
+            ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
             svChinhSuaMenu.Children.Clear();
             svChinhSuaMenu.Children.Add(uc);
             btnCapNhat.Visibility = System.Windows.Visibility.Visible;
@@ -67,7 +62,7 @@ namespace GUI
 
         private void btnMonMoi_Click(object sender, RoutedEventArgs e)
         {
-            ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(NhomID);
+            ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(NhomID, mTransit);
             svChinhSuaMenu.Children.Clear();
             svChinhSuaMenu.Children.Add(uc);
             btnCapNhat.Visibility = System.Windows.Visibility.Visible;

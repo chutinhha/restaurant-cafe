@@ -12,16 +12,14 @@ namespace ControlLibrary
     public partial class UCNewMon : UserControl
     {
         private int NhomID = 0;
+        private Data.Transit mTransit = null;
 
-        public UCNewMon(int nhomID)
+        public UCNewMon(int nhomID, Data.Transit transit)
         {
             InitializeComponent();
             NhomID = nhomID;
+            mTransit = transit;
         }
-
-        public delegate void EvenDanhSachBanClick(Data.MENUMON mon);
-
-        public event EvenDanhSachBanClick OnEvenDanhSachBanClick;
 
         public Data.MENUMON _Mon { get; set; }
 
@@ -30,12 +28,12 @@ namespace ControlLibrary
             if (_Mon != null)
             {
                 GetData();
-                Data.BOMenuMon.CapNhat(_Mon);
+                Data.BOMenuMon.CapNhat(_Mon, mTransit);
             }
             else
             {
                 GetData();
-                Data.BOMenuMon.Them(_Mon);
+                Data.BOMenuMon.Them(_Mon, mTransit);
             }
         }
 
@@ -62,12 +60,7 @@ namespace ControlLibrary
 
         public void Xoa()
         {
-            Data.BOMenuMon.Xoa(_Mon.MonID);
-        }
-
-        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
-        {
-            OnEvenDanhSachBanClick(_Mon);
+            Data.BOMenuMon.Xoa(_Mon.MonID, mTransit);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -81,11 +74,6 @@ namespace ControlLibrary
                 {
                     mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.Hinh);
                 }
-                btnDanhSachBan.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                btnDanhSachBan.Visibility = System.Windows.Visibility.Hidden;
             }
         }
 
@@ -107,7 +95,7 @@ namespace ControlLibrary
                     mBitmapImage.BeginInit();
                     mBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                     mBitmapImage.StreamSource = fs;
-                    mBitmapImage.EndInit();                    
+                    mBitmapImage.EndInit();
                 }
             }
         }

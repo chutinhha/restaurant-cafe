@@ -15,6 +15,7 @@ namespace ControlLibrary
     {
         private List<Data.MENUMON> lsMenuMon = new List<Data.MENUMON>();
         private List<Data.MENUNHOM> lsMenuNhom = new List<Data.MENUNHOM>();
+        private Data.Transit mTransit = null;
         public bool _IsBanHang { get; set; }
 
         public delegate void EventMenu(object ob);
@@ -26,8 +27,10 @@ namespace ControlLibrary
             _IsBanHang = false;
         }
 
-        public void Init()
+        public void Init(Data.Transit transit)
         {
+            SetImageSizetItems();
+            mTransit = transit;
             LoadData();
         }
 
@@ -41,22 +44,82 @@ namespace ControlLibrary
 
         private int PageItems = 1;
 
+        private void SetItemPage()
+        {
+            btnItemBack.Content = "Trở về";
+            btnItemNext.Content = "Kế tiếp";
+        }
         public void LoadItem(int GroupID)
         {
-            lsMenuMon = Data.BOMenuMon.GetAll(GroupID);
-            List<Data.MENUMON> lsItemsTem = lsMenuMon.Skip((PageItems - 1) * gridItems.Children.Count).Take(gridItems.Children.Count).ToList();
-            for (int i = 0; i < lsItemsTem.Count; i++)
+            lsMenuMon = Data.BOMenuMon.GetAll(GroupID, mTransit);
+            if (lsMenuMon.Count > gridItems.Children.Count)
             {
-                if (i == 0)
+                int CountItems = gridItems.Children.Count - 2;
+                List<Data.MENUMON> lsItemsTem = lsMenuMon.Skip((PageItems - 1) * CountItems).Take(CountItems).ToList();
+                bool Chay = true;
+                int j = 0;
+                for (int i = 0; i < lsItemsTem.Count; i++, j++)
                 {
-                    if (IsRefershMenu)
-                        OnEventMenu(lsItemsTem[i]);
+                    if (i == 0)
+                    {
+                        if (IsRefershMenu)
+                            OnEventMenu(lsItemsTem[i]);
+                    }
+                    Chay = true;
+                    while (Chay)
+                    {
+                        Chay = false;
+                        if (Grid.GetRow(gridItems.Children[j]) != gridItems.RowDefinitions.Count - 1)
+                            SetButtonItem((POSButtonMenu)gridItems.Children[j], lsItemsTem[i]);
+                        else if (Grid.GetColumn(gridItems.Children[j]) > 0 && Grid.GetColumn(gridItems.Children[j]) < gridItems.ColumnDefinitions.Count - 1)
+                            SetButtonItem((POSButtonMenu)gridItems.Children[j], lsItemsTem[i]);
+                        else
+                        {
+                            Chay = true;
+                            j++;
+                        }
+                    }
+
                 }
-                SetButtonItem((POSButtonMenu)gridItems.Children[i], lsItemsTem[i]);
+                if (lsItemsTem.Count > gridItems.Children.Count - gridItems.ColumnDefinitions.Count)
+                    j++;
+                Chay = true;
+                for (; j < gridItems.Children.Count; j++)
+                {
+                    Chay = true;
+                    while (Chay)
+                    {
+                        Chay = false;
+                        if (Grid.GetRow(gridItems.Children[j]) != gridItems.RowDefinitions.Count - 1)
+                            SetButtonEmpty((POSButtonMenu)gridItems.Children[j]);
+                        else if (Grid.GetColumn(gridItems.Children[j]) > 0 && Grid.GetColumn(gridItems.Children[j]) < gridItems.ColumnDefinitions.Count - 1)
+                            SetButtonEmpty((POSButtonMenu)gridItems.Children[j]);
+                        else
+                        {
+                            Chay = true;
+                            j++;
+                            if (j > gridItems.Children.Count - 1)
+                                Chay = false;
+                        }
+                    }
+                }
+                SetItemPage();
             }
-            for (int i = lsItemsTem.Count; i < gridItems.Children.Count; i++)
+            else
             {
-                SetButtonEmpty((POSButtonMenu)gridItems.Children[i]);
+                for (int i = 0; i < lsMenuMon.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        if (IsRefershMenu)
+                            OnEventMenu(lsMenuMon[i]);
+                    }
+                    SetButtonItem((POSButtonMenu)gridItems.Children[i], lsMenuMon[i]);
+                }
+                for (int i = lsMenuMon.Count; i < gridItems.Children.Count; i++)
+                {
+                    SetButtonEmpty((POSButtonMenu)gridItems.Children[i]);
+                }
             }
         }
 
@@ -73,12 +136,16 @@ namespace ControlLibrary
 
         private void btnItemNext_Click(object sender, RoutedEventArgs e)
         {
-            if (MenuNhomIndex != null)
-                if (PageItems < lsMenuMon.Count / gridItems.Children.Count + 1)
-                {
-                    PageItems++;
-                    LoadItem(MenuNhomIndex.NhomID);
-                }
+
+            if (lsMenuMon.Count > gridItems.Children.Count)
+            {
+                if (MenuNhomIndex != null)
+                    if (PageItems < lsMenuMon.Count / (gridItems.Children.Count - 2) + 1)
+                    {
+                        PageItems++;
+                        LoadItem(MenuNhomIndex.NhomID);
+                    }
+            }
         }
 
         private Data.MENUMON MenuMonIndex = null;
@@ -116,9 +183,9 @@ namespace ControlLibrary
         {
 
             if (LoaiNhomID == 0)
-                lsMenuNhom = Data.BOMenuNhom.GetAll(-1);
+                lsMenuNhom = Data.BOMenuNhom.GetAll(-1, mTransit);
             else
-                lsMenuNhom = Data.BOMenuNhom.GetAll(LoaiNhomID);
+                lsMenuNhom = Data.BOMenuNhom.GetAll(LoaiNhomID, mTransit);
 
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
@@ -275,6 +342,37 @@ namespace ControlLibrary
             else
                 LoadItem(MenuNhomIndex.NhomID);
             IsRefershMenu = false;
+        }
+
+        private double ImageWidthItems = 0;
+        private double ImageHeightItems = 0;
+        private void SetImageSizetItems()
+        {
+            int col = gridItems.ColumnDefinitions.Count;
+            int row = gridItems.RowDefinitions.Count;
+            ImageWidthItems = gridItems.ActualWidth / col - (col * 4);
+            ImageHeightItems = gridItems.ActualHeight / row - (row * 24);
+            foreach (POSButtonMenu item in gridItems.Children)
+            {
+                item.ImageWidth = ImageWidthItems;
+                item.ImageHeight = ImageHeightItems;
+            }
+            foreach (POSButtonMenu item in gridLoaiGroup.Children)
+            {
+                item.ImageWidth = ImageWidthItems;
+                item.ImageHeight = ImageHeightItems;
+            }
+
+            foreach (POSButtonMenu item in gridGroup.Children)
+            {
+                item.ImageWidth = ImageWidthItems;
+                item.ImageHeight = ImageHeightItems;
+            }
+        }
+
+        private void btnGioKaraoke_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

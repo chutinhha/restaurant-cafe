@@ -9,9 +9,11 @@ namespace Data
     {
         public Data.NHANVIEN NhanVien { get; set; }
         public string HashMD5 { get; set; }
+        public KaraokeEntities KaraokeEntities { get; set; }
         public Transit()
         {
             HashMD5 = "KTr";
+            KaraokeEntities = new KaraokeEntities();
         }
     }
 }

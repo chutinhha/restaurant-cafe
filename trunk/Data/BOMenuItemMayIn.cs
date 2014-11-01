@@ -7,43 +7,34 @@ namespace Data
 {
     public class BOMenuItemMayIn
     {
-        public static List<MENUITEMMAYIN> GetAll(int MonID)
+        public static List<MENUITEMMAYIN> GetAll(int MonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                var res = (from mi in ke.MENUITEMMAYINs
-                           join m in ke.MENUMONs on mi.MonID equals m.MonID
-                           join i in ke.MAYINs on mi.MayInID equals i.MayInID
-                           where mi.Deleted == false && mi.Deleted == false && mi.MonID == MonID
-                           select new
-                           {
-                               MENUITEMMAYIN = mi,
-                               MENUMONs = m,
-                               MAYINs = i
-                           }).ToList().Select(s => s.MENUITEMMAYIN);
-                return res.ToList();
-            }
+            var res = (from mi in mTransit.KaraokeEntities.MENUITEMMAYINs
+                       join m in mTransit.KaraokeEntities.MENUMONs on mi.MonID equals m.MonID
+                       join i in mTransit.KaraokeEntities.MAYINs on mi.MayInID equals i.MayInID
+                       where mi.Deleted == false && mi.Deleted == false && mi.MonID == MonID
+                       select new
+                       {
+                           MENUITEMMAYIN = mi,
+                           MENUMONs = m,
+                           MAYINs = i
+                       }).ToList().Select(s => s.MENUITEMMAYIN);
+            return res.ToList();
         }
 
-        public static int Them(MENUITEMMAYIN item)
+        public static int Them(MENUITEMMAYIN item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.MENUITEMMAYINs.AddObject(item);
-                ke.SaveChanges();
-                return item.MayInID;
-            }
+            mTransit.KaraokeEntities.MENUITEMMAYINs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.MayInID;
         }
 
-        public static int Xoa(int MayInID, int MonID)
+        public static int Xoa(int MayInID, int MonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUITEMMAYIN item = (from x in ke.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).First();
-                ke.MENUITEMMAYINs.DeleteObject(item);
-                ke.SaveChanges();
-                return item.MayInID;
-            }
+            MENUITEMMAYIN item = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).First();
+            mTransit.KaraokeEntities.MENUITEMMAYINs.DeleteObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.MayInID;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace GUI
 
         private void btnQuanLyThucDon_Click(object sender, RoutedEventArgs e)
         {
-            WindowMenuChange win = new WindowMenuChange();
+            WindowMenuChange win = new WindowMenuChange(mTransit);
             win.ShowDialog();
         }
 

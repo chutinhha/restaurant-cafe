@@ -7,25 +7,38 @@
              d:DesignHeight="600" d:DesignWidth="500">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
             <RowDefinition Height="80*"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <Grid Name="gridLoaiGroup" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Name="gridLoaiGroup" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="NƯỚC" x:Name="btnNuoc" Click="btnNuoc_Click" Image="/ControlLibrary;component/Images/Soft%20drink.png" />
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="1" Content="THỨC ĂN" x:Name="btnThucAn" Click="btnThucAn_Click" Image="/ControlLibrary;component/Images/Food.png" />
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="TẤT CẢ" x:Name="btnTatCa" Click="btnTatCa_Click" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="0" Content="NƯỚC" x:Name="btnNuoc" Click="btnNuoc_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="1" Content="THỨC ĂN" x:Name="btnThucAn" Click="btnThucAn_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="2" Content="Giờ karaoke" x:Name="btnGioKaraoke" Click="btnGioKaraoke_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="3" Content="TẤT CẢ" x:Name="btnTatCa" Click="btnTatCa_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
         </Grid>
-        <Grid Name="gridItems" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Path Grid.Row="1" Stretch="Fill" Margin="0,0,0,0" VerticalAlignment="Center" Height="1" Data="M0,64 L608,64">
+            <Path.Stroke>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="Blue" Offset="0.1"/>
+                    <GradientStop Color="Red" Offset="0.9"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+        </Path>
+        <Grid Name="gridItems" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
@@ -33,6 +46,7 @@
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
@@ -64,13 +78,25 @@
             <my:POSButtonMenu Grid.Row="5" Grid.Column="0"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
             <my:POSButtonMenu Grid.Row="5" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
             <my:POSButtonMenu Grid.Row="5" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
-            <my:POSButtonMenu Grid.Row="5" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
-
+            <my:POSButtonMenu Grid.Row="5" Grid.Column="3"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />            
+            <my:POSButtonMenu Grid.Row="6" Grid.Column="0" x:Name="btnItemBack"  Click="btnItemBack_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="6" Grid.Column="1"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="6" Grid.Column="2"  Click="btnItems_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
+            <my:POSButtonMenu Grid.Row="6" Grid.Column="3" x:Name="btnItemNext"  Click="btnItemNext_Click" Image="/ControlLibrary;component/Images/NoImages.jpg" />
         </Grid>
-        <Grid Name="gridGroup" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Rectangle Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="1" Margin="2">
+            <Rectangle.Stroke>
+                <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0 0" EndPoint="0 0.05">
+                    <!--<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">-->
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="Blue" Offset="0.1"/>
+                    <GradientStop Color="Red" Offset="0.9"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+        </Rectangle>
+        <Grid Name="gridGroup" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
@@ -87,19 +113,7 @@
             <my:POSButtonMenu Grid.Row="4" Click="btnGroup_Click"/>
             <my:POSButtonMenu Grid.Row="5" Click="btnGroup_Click"/>
             <my:POSButtonMenu Grid.Row="6" Click="btnGroup_Click"/>
-            <my:POSButtonMenu Grid.Row="7" Click="btnGroup_Click"/>
-            <my:POSButtonMenu Grid.Row="8" Click="btnGroup_Click"/>
-            <my:POSButtonMenu x:Name="btnGroupNext" Grid.Row="10" Click="btnGroupNext_Click"/>
-        </Grid>
-        <Grid Name="gridButton" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="0" Content="Trờ Về" x:Name="btnItemBack" Click="btnItemBack_Click" Image="/ControlLibrary;component/Images/Back.png" />
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="1"/>
-            <my:POSButtonMenu Grid.Row="1" Grid.Column="2" Content="Tiếp Theo" x:Name="btnItemNext" Click="btnItemNext_Click" Image="/ControlLibrary;component/Images/Forward.png" />
+            <my:POSButtonMenu x:Name="btnGroupNext" Grid.Row="7" Click="btnGroupNext_Click"/>
         </Grid>
     </Grid>
 </UserControl>

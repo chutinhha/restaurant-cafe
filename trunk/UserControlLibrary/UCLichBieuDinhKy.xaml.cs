@@ -10,7 +10,7 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCLichBieuDinhKy : UserControl
     {
-        private Data.LICHBIEUDINHKY mLichBieuKhongDinhKy = null;
+        private Data.LICHBIEUDINHKY mLichBieuDinhKy = null;
         private Data.Transit mTransit = null;
 
         public UCLichBieuDinhKy(Data.Transit transit)
@@ -21,7 +21,7 @@ namespace UserControlLibrary
 
         private void btnMoi_Click(object sender, RoutedEventArgs e)
         {
-            mLichBieuKhongDinhKy = null;
+            mLichBieuDinhKy = null;
             SetValues();
         }
 
@@ -29,11 +29,11 @@ namespace UserControlLibrary
         {
             if (CheckValues())
             {
-                if (mLichBieuKhongDinhKy == null)
+                if (mLichBieuDinhKy == null)
                 {
-                    mLichBieuKhongDinhKy = new Data.LICHBIEUDINHKY();
+                    mLichBieuDinhKy = new Data.LICHBIEUDINHKY();
                     GetValues();
-                    Data.BOLichBieuDinhKy.Them(mLichBieuKhongDinhKy);
+                    Data.BOLichBieuDinhKy.Them(mLichBieuDinhKy, mTransit);
                     lbStatus.Text = "Thêm thành công";
                     LoadDanhSachLichBieu();
                     btnMoi_Click(sender, e);
@@ -41,7 +41,7 @@ namespace UserControlLibrary
                 else
                 {
                     GetValues();
-                    Data.BOLichBieuDinhKy.Sua(mLichBieuKhongDinhKy);
+                    Data.BOLichBieuDinhKy.Sua(mLichBieuDinhKy, mTransit);
                     lbStatus.Text = "Cập nhật thành công";
                     LoadDanhSachLichBieu();
                 }
@@ -52,8 +52,8 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mLichBieuKhongDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOMayIn.Xoa(mLichBieuKhongDinhKy.LichBieuDinhKyID);
+                mLichBieuDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                Data.BOMayIn.Xoa(mLichBieuDinhKy.LichBieuDinhKyID, mTransit);
                 lbStatus.Text = "Xóa thành công";
             }
         }
@@ -108,43 +108,43 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            mLichBieuKhongDinhKy.TenLichBieu = txtTenLichBieu.Text;
-            mLichBieuKhongDinhKy.TheLoaiID = (int)cbbTheLoai.SelectedValue;
-            mLichBieuKhongDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
-            mLichBieuKhongDinhKy.GiaTriBatDau = (int)cbbGiaTriBatDau.SelectedValue;
-            mLichBieuKhongDinhKy.GiaTriKetThuc = (int)cbbGiaTriKetThuc.SelectedValue;
-            mLichBieuKhongDinhKy.UuTien = System.Convert.ToInt32(txtUuTien.Text);
-            mLichBieuKhongDinhKy.Visual = true;
-            mLichBieuKhongDinhKy.Deleted = false;
-            mLichBieuKhongDinhKy.GioBatDau = timeBatDau.TimeCurent;
-            mLichBieuKhongDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
+            mLichBieuDinhKy.TenLichBieu = txtTenLichBieu.Text;
+            mLichBieuDinhKy.TheLoaiID = (int)cbbTheLoai.SelectedValue;
+            mLichBieuDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
+            mLichBieuDinhKy.GiaTriBatDau = (int)cbbGiaTriBatDau.SelectedValue;
+            mLichBieuDinhKy.GiaTriKetThuc = (int)cbbGiaTriKetThuc.SelectedValue;
+            mLichBieuDinhKy.UuTien = System.Convert.ToInt32(txtUuTien.Text);
+            mLichBieuDinhKy.Visual = true;
+            mLichBieuDinhKy.Deleted = false;
+            mLichBieuDinhKy.GioBatDau = timeBatDau.TimeCurent;
+            mLichBieuDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
 
-            switch (mLichBieuKhongDinhKy.TheLoaiID)
+            switch (mLichBieuDinhKy.TheLoaiID)
             {
                 case 1:
-                    if (mLichBieuKhongDinhKy.GiaTriBatDau == mLichBieuKhongDinhKy.GiaTriKetThuc)
+                    if (mLichBieuDinhKy.GiaTriBatDau == mLichBieuDinhKy.GiaTriKetThuc)
                     {
-                        mLichBieuKhongDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
+                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
                     }
                     else
                     {
-                        mLichBieuKhongDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
+                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
                     }
                     break;
 
                 case 2:
-                    if (mLichBieuKhongDinhKy.GiaTriBatDau == mLichBieuKhongDinhKy.GiaTriKetThuc)
+                    if (mLichBieuDinhKy.GiaTriBatDau == mLichBieuDinhKy.GiaTriKetThuc)
                     {
-                        mLichBieuKhongDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
+                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
                     }
                     else
                     {
-                        mLichBieuKhongDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
+                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
                     }
                     break;
 
                 case 3:
-                    mLichBieuKhongDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " " + cbbGiaTriKetThuc.Text;
+                    mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " " + cbbGiaTriKetThuc.Text;
                     break;
 
                 default:
@@ -154,7 +154,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSachLichBieu()
         {
-            List<Data.LICHBIEUDINHKY> lsArray = Data.BOLichBieuDinhKy.GetAll();
+            List<Data.LICHBIEUDINHKY> lsArray = Data.BOLichBieuDinhKy.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (Data.LICHBIEUDINHKY item in lsArray)
             {
@@ -167,7 +167,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll();
+            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
@@ -176,21 +176,21 @@ namespace UserControlLibrary
 
         private void LoadLoaiLichBieuBatDau(int TheLoaiID)
         {
-            cbbGiaTriBatDau.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID);
+            cbbGiaTriBatDau.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
             if (cbbGiaTriBatDau.Items.Count > 0)
                 cbbGiaTriBatDau.SelectedIndex = 0;
         }
 
         private void LoadLoaiLichBieuKetThuc(int TheLoaiID)
         {
-            cbbGiaTriKetThuc.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID);
+            cbbGiaTriKetThuc.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
             if (cbbGiaTriKetThuc.Items.Count > 0)
                 cbbGiaTriKetThuc.SelectedIndex = 0;
         }
 
         private void LoadTheLoai()
         {
-            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAll();
+            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAll(mTransit);
             if (cbbTheLoai.Items.Count > 0)
             {
                 cbbTheLoai.SelectedIndex = 0;
@@ -201,14 +201,14 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mLichBieuKhongDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mLichBieuDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
                 SetValues();
             }
         }
 
         private void SetValues()
         {
-            if (mLichBieuKhongDinhKy == null)
+            if (mLichBieuDinhKy == null)
             {
                 txtTenLichBieu.Text = "";
                 if (cbbLoaiGia.Items.Count > 0)
@@ -227,15 +227,15 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenLichBieu.Text = mLichBieuKhongDinhKy.TenLichBieu;
-                cbbLoaiGia.SelectedValue = mLichBieuKhongDinhKy.LoaiGiaID;
-                cbbTheLoai.SelectedValue = mLichBieuKhongDinhKy.TheLoaiID;
+                txtTenLichBieu.Text = mLichBieuDinhKy.TenLichBieu;
+                cbbLoaiGia.SelectedValue = mLichBieuDinhKy.LoaiGiaID;
+                cbbTheLoai.SelectedValue = mLichBieuDinhKy.TheLoaiID;
                 cbbTheLoai_SelectionChanged(null, null);
-                cbbGiaTriBatDau.SelectedValue = mLichBieuKhongDinhKy.GiaTriBatDau;
-                cbbGiaTriKetThuc.SelectedValue = mLichBieuKhongDinhKy.GiaTriKetThuc;
-                txtUuTien.Text = mLichBieuKhongDinhKy.UuTien.ToString();
-                timeBatDau.TimeCurent = (TimeSpan)mLichBieuKhongDinhKy.GioBatDau;
-                timeKetThuc.TimeCurent = (TimeSpan)mLichBieuKhongDinhKy.GioKetThuc;
+                cbbGiaTriBatDau.SelectedValue = mLichBieuDinhKy.GiaTriBatDau;
+                cbbGiaTriKetThuc.SelectedValue = mLichBieuDinhKy.GiaTriKetThuc;
+                txtUuTien.Text = mLichBieuDinhKy.UuTien.ToString();
+                timeBatDau.TimeCurent = (TimeSpan)mLichBieuDinhKy.GioBatDau;
+                timeKetThuc.TimeCurent = (TimeSpan)mLichBieuDinhKy.GioKetThuc;
                 btnThem.Content = "Cập nhật lịch biểu";
             }
         }

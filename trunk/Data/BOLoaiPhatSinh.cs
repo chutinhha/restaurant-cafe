@@ -7,12 +7,9 @@ namespace Data
 {
     public class BOLoaiPhatSinh
     {
-        public static List<LOAIPHATSINH> GetAll()
+        public static List<LOAIPHATSINH> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                return ke.LOAIPHATSINHs.Where(s => s.Deleted == false).ToList();
-            }
+            return mTransit.KaraokeEntities.LOAIPHATSINHs.Where(s => s.Deleted == false).ToList();
         }
     }
 }
