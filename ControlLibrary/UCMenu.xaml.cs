@@ -158,7 +158,7 @@ namespace ControlLibrary
         }
 
         private void SetButtonItem(POSButtonMenu btn, Data.MENUMON item)
-        {
+        {            
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;

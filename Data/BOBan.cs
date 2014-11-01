@@ -7,6 +7,10 @@ namespace Data
 {
     public class BOBan
     {
+        public static List<BAN> GetTablePerArea(Transit transit, KHU khu)
+        {
+            return transit.KaraokeEntities.BANs.Where(o => o.KhuID == khu.KhuID).ToList<BAN>();
+        }
         public static List<BAN> GetAll(Transit mTransit)
         {
             return mTransit.KaraokeEntities.BANs.ToList();
