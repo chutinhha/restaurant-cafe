@@ -7,12 +7,9 @@ namespace Data
 {
     public class BOTheLoaiLichBieu
     {
-        public static List<THELOAILICHBIEU> GetAll()
+        public static List<THELOAILICHBIEU> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                return ke.THELOAILICHBIEUx.ToList();
-            }
+            return mTransit.KaraokeEntities.THELOAILICHBIEUx.ToList();
         }
     }
 }

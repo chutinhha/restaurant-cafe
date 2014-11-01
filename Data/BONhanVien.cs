@@ -7,58 +7,46 @@ namespace Data
 {
     public class BONhanVien
     {
-        public static List<NHANVIEN> GetAll()
+        public static List<NHANVIEN> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                var res = (from n in ke.NHANVIENs
-                           join l in ke.LOAINHANVIENs on n.LoaiNhanVienID equals l.LoaiNhanVienID
-                           where n.Deleted == false
-                           select new
-                           {
-                               NHANVIENs = n,
-                               LOAINHANVIENs = l
-                           }).ToList().Select(s => s.NHANVIENs);
-                return res.ToList();
-            }
+            var res = (from n in mTransit.KaraokeEntities.NHANVIENs
+                       join l in mTransit.KaraokeEntities.LOAINHANVIENs on n.LoaiNhanVienID equals l.LoaiNhanVienID
+                       where n.Deleted == false
+                       select new
+                       {
+                           NHANVIENs = n,
+                           LOAINHANVIENs = l
+                       }).ToList().Select(s => s.NHANVIENs);
+            return res.ToList();
         }
 
-        public static int Them(NHANVIEN item)
+        public static int Them(NHANVIEN item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.NHANVIENs.AddObject(item);
-                ke.SaveChanges();
-                return item.NhanVienID;
-            }
+            mTransit.KaraokeEntities.NHANVIENs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhanVienID;
         }
 
-        public static int Xoa(int NhanVienID)
+        public static int Xoa(int NhanVienID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                NHANVIEN item = (from x in ke.NHANVIENs where x.NhanVienID == NhanVienID select x).First();
-                item.Deleted = true;
-                ke.SaveChanges();
-                return item.NhanVienID;
-            }
+            NHANVIEN item = (from x in mTransit.KaraokeEntities.NHANVIENs where x.NhanVienID == NhanVienID select x).First();
+            item.Deleted = true;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhanVienID;
         }
 
-        public static int CapNhat(NHANVIEN item)
+        public static int CapNhat(NHANVIEN item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                NHANVIEN m = (from x in ke.NHANVIENs where x.NhanVienID == item.NhanVienID select x).First();
-                m.TenNhanVien = item.TenNhanVien;
-                if (item.MatKhau != null)
-                    m.TenDangNhap = item.TenDangNhap;
-                m.LoaiNhanVienID = item.LoaiNhanVienID;
-                m.MatKhau = item.MatKhau;
-                m.Visual = item.Visual;
-                m.Deleted = item.Deleted;
-                ke.SaveChanges();
-                return item.NhanVienID;
-            }
+            NHANVIEN m = (from x in mTransit.KaraokeEntities.NHANVIENs where x.NhanVienID == item.NhanVienID select x).First();
+            m.TenNhanVien = item.TenNhanVien;
+            if (item.MatKhau != null)
+                m.TenDangNhap = item.TenDangNhap;
+            m.LoaiNhanVienID = item.LoaiNhanVienID;
+            m.MatKhau = item.MatKhau;
+            m.Visual = item.Visual;
+            m.Deleted = item.Deleted;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhanVienID;
         }
     }
 }

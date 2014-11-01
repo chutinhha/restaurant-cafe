@@ -7,44 +7,32 @@ namespace Data
 {
     public class BOLoaiNhanVien
     {
-        public static List<LOAINHANVIEN> GetAll()
+        public static List<LOAINHANVIEN> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                return ke.LOAINHANVIENs.ToList();
-            }
+            return mTransit.KaraokeEntities.LOAINHANVIENs.ToList();
         }
 
-        public static int Them(LOAINHANVIEN item)
+        public static int Them(LOAINHANVIEN item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.LOAINHANVIENs.AddObject(item);
-                ke.SaveChanges();
-                return item.LoaiNhanVienID;
-            }
+            mTransit.KaraokeEntities.LOAINHANVIENs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiNhanVienID;
         }
 
-        public static int Xoa(int LoaiNhanVienID)
+        public static int Xoa(int LoaiNhanVienID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                LOAINHANVIEN item = (from x in ke.LOAINHANVIENs where x.LoaiNhanVienID == LoaiNhanVienID select x).First();
-                ke.LOAINHANVIENs.DeleteObject(item);
-                ke.SaveChanges();
-                return item.LoaiNhanVienID;
-            }
+            LOAINHANVIEN item = (from x in mTransit.KaraokeEntities.LOAINHANVIENs where x.LoaiNhanVienID == LoaiNhanVienID select x).First();
+            mTransit.KaraokeEntities.LOAINHANVIENs.DeleteObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiNhanVienID;
         }
 
-        public static int CapNhat(LOAINHANVIEN item)
+        public static int CapNhat(LOAINHANVIEN item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                LOAINHANVIEN m = (from x in ke.LOAINHANVIENs where x.LoaiNhanVienID == item.LoaiNhanVienID select x).First();
-                m.TenLoaiNhanVien = item.TenLoaiNhanVien;
-                ke.SaveChanges();
-                return item.LoaiNhanVienID;
-            }
+            LOAINHANVIEN m = (from x in mTransit.KaraokeEntities.LOAINHANVIENs where x.LoaiNhanVienID == item.LoaiNhanVienID select x).First();
+            m.TenLoaiNhanVien = item.TenLoaiNhanVien;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.LoaiNhanVienID;
         }
     }
 }

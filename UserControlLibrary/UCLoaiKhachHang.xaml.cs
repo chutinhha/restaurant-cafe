@@ -40,7 +40,7 @@ namespace UserControlLibrary
                 {
                     mLoaiKhachHang = new Data.LOAIKHACHHANG();
                     GetValues();
-                    Data.BOLoaiKhachHang.Them(mLoaiKhachHang);
+                    Data.BOLoaiKhachHang.Them(mLoaiKhachHang, mTransit);
                     lbStatus.Text = "Thêm thành công";
                     LoadDanhSachLoaiKhachHang();
                     btnMoi_Click(sender, e);
@@ -48,7 +48,7 @@ namespace UserControlLibrary
                 else
                 {
                     GetValues();
-                    Data.BOLoaiKhachHang.Sua(mLoaiKhachHang);
+                    Data.BOLoaiKhachHang.Sua(mLoaiKhachHang, mTransit);
                     lbStatus.Text = "Cập nhật thành công";
                     LoadDanhSachLoaiKhachHang();
                 }
@@ -60,7 +60,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 mLoaiKhachHang = (Data.LOAIKHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOLoaiKhachHang.Xoa(mLoaiKhachHang.LoaiKhachHangID);
+                Data.BOLoaiKhachHang.Xoa(mLoaiKhachHang.LoaiKhachHangID, mTransit);
                 lbStatus.Text = "Xóa thành công";
             }
         }
@@ -84,7 +84,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSachLoaiKhachHang()
         {
-            System.Collections.Generic.List<Data.LOAIKHACHHANG> lsArray = Data.BOLoaiKhachHang.GetAll();
+            System.Collections.Generic.List<Data.LOAIKHACHHANG> lsArray = Data.BOLoaiKhachHang.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (Data.LOAIKHACHHANG item in lsArray)
             {

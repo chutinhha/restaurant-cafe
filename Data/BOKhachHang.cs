@@ -7,64 +7,52 @@ namespace Data
 {
     public class BOKhachHang
     {
-        public static List<KHACHHANG> GetAll()
+        public static List<KHACHHANG> GetAll(Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                var res = (from k in ke.KHACHHANGs
-                           join l in ke.LOAIKHACHHANGs on k.LoaiKhachHangID equals l.LoaiKhachHangID
-                           where k.Deleted == false && l.Deleted == false
-                           orderby k.TenKhachHang ascending
-                           select new
-                           {
-                               KHACHHANGs = k,
-                               LOAIKHACHHANGs = l
-                           }).ToList().Select(s => s.KHACHHANGs);
-                return res.ToList();
-            }
+            var res = (from k in mTransit.KaraokeEntities.KHACHHANGs
+                       join l in mTransit.KaraokeEntities.LOAIKHACHHANGs on k.LoaiKhachHangID equals l.LoaiKhachHangID
+                       where k.Deleted == false && l.Deleted == false
+                       orderby k.TenKhachHang ascending
+                       select new
+                       {
+                           KHACHHANGs = k,
+                           LOAIKHACHHANGs = l
+                       }).ToList().Select(s => s.KHACHHANGs);
+            return res.ToList();
         }
 
-        public static int Them(KHACHHANG item)
+        public static int Them(KHACHHANG item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.KHACHHANGs.AddObject(item);
-                ke.SaveChanges();
-                return item.KhachHangID;
-            }
+            mTransit.KaraokeEntities.KHACHHANGs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KhachHangID;
         }
 
-        public static int Xoa(int KhachHangID)
+        public static int Xoa(int KhachHangID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                KHACHHANG item = (from x in ke.KHACHHANGs where x.KhachHangID == KhachHangID select x).First();
-                item.Deleted = true;
-                ke.SaveChanges();
-                return item.KhachHangID;
-            }
+            KHACHHANG item = (from x in mTransit.KaraokeEntities.KHACHHANGs where x.KhachHangID == KhachHangID select x).First();
+            item.Deleted = true;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KhachHangID;
         }
 
-        public static int Sua(KHACHHANG item)
+        public static int Sua(KHACHHANG item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                KHACHHANG m = (from x in ke.KHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
-                m.TenKhachHang = item.TenKhachHang;
-                m.SoNha = item.SoNha;
-                m.TenDuong = item.TenDuong;
-                m.Mobile = item.Mobile;
-                m.Phone = item.Phone;
-                m.Fax = item.Fax;
-                m.DuNo = item.DuNo;
-                m.DuNoToiThieu = item.DuNoToiThieu;
-                m.Email = item.Email;
-                m.Visual = item.Visual;
-                m.Deleted = item.Deleted;
-                m.LoaiKhachHangID = item.LoaiKhachHangID;
-                ke.SaveChanges();
-                return item.KhachHangID;
-            }
+            KHACHHANG m = (from x in mTransit.KaraokeEntities.KHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
+            m.TenKhachHang = item.TenKhachHang;
+            m.SoNha = item.SoNha;
+            m.TenDuong = item.TenDuong;
+            m.Mobile = item.Mobile;
+            m.Phone = item.Phone;
+            m.Fax = item.Fax;
+            m.DuNo = item.DuNo;
+            m.DuNoToiThieu = item.DuNoToiThieu;
+            m.Email = item.Email;
+            m.Visual = item.Visual;
+            m.Deleted = item.Deleted;
+            m.LoaiKhachHangID = item.LoaiKhachHangID;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KhachHangID;
         }
     }
 }

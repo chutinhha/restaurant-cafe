@@ -9,25 +9,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace UserControlLibrary
 {
     /// <summary>
-    /// Interaction logic for WindowBanHang.xaml
+    /// Interaction logic for UCQuanLyGia.xaml
     /// </summary>
-    public partial class WindowBanHang : Window
+    public partial class UCQuanLyGia : UserControl
     {
         private Data.Transit mTransit = null;
-        public WindowBanHang(Data.Transit transit)
+        public UCQuanLyGia(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            uCMenuBanHang.Init(mTransit);
+
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

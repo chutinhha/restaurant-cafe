@@ -12,11 +12,13 @@ namespace ControlLibrary
     public partial class UCNewNhom : UserControl
     {
         private int LoaiNhomID = 0;
+        private Data.Transit mTransit = null;
 
-        public UCNewNhom(int loaiNhomID)
+        public UCNewNhom(int loaiNhomID, Data.Transit transit)
         {
             InitializeComponent();
             LoaiNhomID = loaiNhomID;
+            mTransit = transit;
         }
 
         public Data.MENUNHOM _Nhom { get; set; }
@@ -26,12 +28,12 @@ namespace ControlLibrary
             if (_Nhom != null)
             {
                 GetData();
-                Data.BOMenuNhom.CapNhat(_Nhom);
+                Data.BOMenuNhom.CapNhat(_Nhom, mTransit);
             }
             else
             {
                 GetData();
-                Data.BOMenuNhom.Them(_Nhom);
+                Data.BOMenuNhom.Them(_Nhom, mTransit);
             }
         }
 
@@ -63,7 +65,7 @@ namespace ControlLibrary
 
         public void Xoa()
         {
-            Data.BOMenuNhom.Xoa(_Nhom.NhomID);
+            Data.BOMenuNhom.Xoa(_Nhom.NhomID, mTransit);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

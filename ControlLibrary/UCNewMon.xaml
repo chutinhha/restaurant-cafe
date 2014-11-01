@@ -26,21 +26,12 @@
         <TextBlock Grid.Row="0" Text="Tên ngắn" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         <TextBlock Grid.Row="1" Text="Tên dài" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
         <TextBlock Grid.Row="2" Text="Sắp xếp" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="3" Text="Máy in" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="4" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="3" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         <!--<TextBlock Grid.Row="5" Text="Màu nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>-->
 
         <TextBox Grid.Row="0" Grid.Column="1" Name="txtTenNgan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18" DataContext="{Binding}" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="txtTenDai" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
         <TextBox Grid.Row="2" Grid.Column="1" Name="txtSapXep" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" Name="cbbMayIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
-        <Button Grid.Row="4" Grid.Column="1" Name="btnHinhAnh" Content="Hình" Margin="10,10,10,10" FontSize="18" Click="btnHinhAnh_Click" />
-        <Grid Grid.Row="8" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Name="btnDanhSachBan" Content="Danh sách bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18" Click="btnDanhSachBan_Click"/>
-        </Grid>
+        <Button Grid.Row="3" Grid.Column="1" Name="btnHinhAnh" Content="Hình" Margin="10,10,10,10" FontSize="18" Click="btnHinhAnh_Click" />
     </Grid>
 </UserControl>

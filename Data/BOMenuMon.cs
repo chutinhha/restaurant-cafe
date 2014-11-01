@@ -7,50 +7,42 @@ namespace Data
 {
     public class BOMenuMon
     {
-        public static List<MENUMON> GetAll(int GroupID)
+        public static List<MENUMON> GetAll(int GroupID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                if (GroupID > -1)
-                    return ke.MENUMONs.Where(s => s.NhomID == GroupID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
-                else
-                    return ke.MENUMONs.ToList();
-            }
+
+            if (GroupID > -1)
+                return mTransit.KaraokeEntities.MENUMONs.Where(s => s.NhomID == GroupID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
+            else
+                return mTransit.KaraokeEntities.MENUMONs.ToList();
+
         }
 
-        public static int Them(MENUMON item)
+        public static int Them(MENUMON item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.MENUMONs.AddObject(item);
-                ke.SaveChanges();
-                return item.MonID;
-            }
+            mTransit.KaraokeEntities.MENUMONs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.MonID;
         }
 
-        public static int Xoa(int MonID)
+        public static int Xoa(int MonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUMON item = (from x in ke.MENUMONs where x.MonID == MonID select x).First();
-                item.Deleted = true;
-                ke.SaveChanges();
-                return item.MonID;
-            }
+            MENUMON item = (from x in mTransit.KaraokeEntities.MENUMONs where x.MonID == MonID select x).First();
+            item.Deleted = true;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.MonID;
         }
 
-        public static int CapNhat(MENUMON item)
+        public static int CapNhat(MENUMON item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUMON m = (from x in ke.MENUMONs where x.MonID == item.MonID select x).First();
-                m.SapXep = item.SapXep;
-                m.TenDai = item.TenDai;
-                m.TenNgan = item.TenNgan;
-                m.Hinh = item.Hinh;
-                ke.SaveChanges();
-                return item.MonID;
-            }
+
+            MENUMON m = (from x in mTransit.KaraokeEntities.MENUMONs where x.MonID == item.MonID select x).First();
+            m.SapXep = item.SapXep;
+            m.TenDai = item.TenDai;
+            m.TenNgan = item.TenNgan;
+            m.Hinh = item.Hinh;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.MonID;
+
         }
     }
 }

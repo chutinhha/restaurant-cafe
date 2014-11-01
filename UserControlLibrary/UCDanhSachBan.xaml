@@ -1,0 +1,81 @@
+﻿<UserControl xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.UCDanhSachBan"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Kích thước loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Giá mặc định" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Số lượng bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Tồn kho tối đa" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Tồn kho tối thiểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" SelectionChanged="cbbLoaiBan_SelectionChanged" />
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtGiaMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtSoLuongBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtTonKhoToiDa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtTonKhoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <CheckBox Grid.Row="8" Grid.Column="1" x:Name="ckBan" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+
+            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+            <Grid Grid.Row="10" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <my:POSButtonIconHorizontal  Grid.Column="0" Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnTaoMoi_Click" />
+                <my:POSButtonIconHorizontal  Grid.Column="1" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThemMoi_Click" Image="/GUI;component/Images/Add%202.png" />
+                <my:POSButtonIconHorizontal  Grid.Column="2" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
+            </Grid>
+            <ListView Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TenLoaiBan}" Width="200" Header="Tên loại bán"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LOAIBAN.TenLoaiBan}" Width="150" Header="Loại bán"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=KichThuocLoaiBan}" Width="150" Header="Kich thước loại bán"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=GiaBanMacDinh}" Width="150" Header="Giá mặc định"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBanBan}" Width="150" Header="Số lượng bán"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TonKhoToiDa}" Width="150" Header="Tồn kho tối đa"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TonKhoToiThieu}" Width="150" Header="Tồn kho tối thiểu"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Bán"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <my:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" Name="uCMenu" VerticalAlignment="Stretch" />
+    </Grid>
+</UserControl>

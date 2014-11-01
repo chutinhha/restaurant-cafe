@@ -26,21 +26,11 @@
         <TextBlock Grid.Row="0" Text="Tên ngắn" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         <TextBlock Grid.Row="1" Text="Tên dài" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
         <TextBlock Grid.Row="2" Text="Sắp xếp" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="3" Text="Máy in" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="4" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <!--<TextBlock Grid.Row="5" Text="Màu nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>-->
+        <TextBlock Grid.Row="3" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>        
 
         <my:POSTextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenNgan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
         <my:POSTextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenDai" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
         <my:POSTextBox Grid.Row="2" Grid.Column="1" x:Name="txtSapXep" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
-        <my:POSCombobox Grid.Row="3" Grid.Column="1" x:Name="cbbMayIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
-        <Button Grid.Row="4" Grid.Column="1" Name="btnHinhAnh" Content="Hình" Margin="10,10,10,10" FontSize="18" Click="btnHinhAnh_Click" />
-        <Grid Grid.Row="8" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-
-        </Grid>
+        <Button Grid.Row="3" Grid.Column="1" Name="btnHinhAnh" Content="Hình" Margin="10,10,10,10" FontSize="18" Click="btnHinhAnh_Click" />        
     </Grid>
 </UserControl>

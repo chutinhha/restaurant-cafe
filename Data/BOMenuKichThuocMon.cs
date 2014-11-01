@@ -7,68 +7,58 @@ namespace Data
 {
     public class BOMenuKichThuocMon
     {
-        public static List<MENUKICHTHUOCMON> GetAll(int MonID)
+        public static List<MENUKICHTHUOCMON> GetAll(int MonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                return ke.MENUKICHTHUOCMONs.Where(s => s.MonID == MonID).ToList();
-            }
+            return mTransit.KaraokeEntities.MENUKICHTHUOCMONs.Where(s => s.MonID == MonID).ToList();
         }
 
-        public static List<MENUKICHTHUOCMON> GetAllName(int MonID)
+        public static List<MENUKICHTHUOCMON> GetAllName(int MonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                var res = (from k in ke.MENUKICHTHUOCMONs
-                           join l in ke.LOAIBANs on k.LoaiBanID equals l.LoaiBanID
-                           where k.MonID == MonID && k.Deleted == false
-                           select new
-                           {
-                               MENUKICHTHUOCMON = k,
-                               LOAIBAN = l
-                           }).ToList().Select(s => s.MENUKICHTHUOCMON);
-                return res.ToList();
-            }
+            var res = (from k in mTransit.KaraokeEntities.MENUKICHTHUOCMONs
+                       join l in mTransit.KaraokeEntities.LOAIBANs on k.LoaiBanID equals l.LoaiBanID
+                       where k.MonID == MonID && k.Deleted == false
+                       select new
+                       {
+                           MENUKICHTHUOCMON = k,
+                           LOAIBAN = l
+                       }).ToList().Select(s => s.MENUKICHTHUOCMON);
+            return res.ToList();
+
         }
 
-        public static int Them(MENUKICHTHUOCMON item)
+        public static int Them(MENUKICHTHUOCMON item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.MENUKICHTHUOCMONs.AddObject(item);
-                ke.SaveChanges();
-                return item.KichThuocMonID;
-            }
+            mTransit.KaraokeEntities.MENUKICHTHUOCMONs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KichThuocMonID;
         }
 
-        public static int CapNhat(MENUKICHTHUOCMON item)
+        public static int CapNhat(MENUKICHTHUOCMON item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUKICHTHUOCMON m = (from x in ke.MENUKICHTHUOCMONs where x.KichThuocMonID == item.KichThuocMonID select x).First();
-                m.MonID = item.MonID;
-                m.TonKhoToiDa = item.TonKhoToiDa;
-                m.TonKhoToiThieu = item.TonKhoToiThieu;
-                m.Deleted = item.Deleted;
-                m.Visual = item.Visual;
-                m.KichThuocBan = item.KichThuocBan;
-                m.KichThuocMon = item.KichThuocMon;
-                ke.SaveChanges();
-                return item.KichThuocMonID;
-            }
+            MENUKICHTHUOCMON m = (from x in mTransit.KaraokeEntities.MENUKICHTHUOCMONs where x.KichThuocMonID == item.KichThuocMonID select x).First();
+            m.MonID = item.MonID;
+            m.TonKhoToiDa = item.TonKhoToiDa;
+            m.LoaiBanID = item.LoaiBanID;
+            m.TenLoaiBan = item.TenLoaiBan;
+            m.SoLuongBanBan = item.SoLuongBanBan;
+            m.GiaBanMacDinh = item.GiaBanMacDinh;
+            m.KichThuocLoaiBan = item.KichThuocLoaiBan;
+            m.TonKhoToiThieu = item.TonKhoToiThieu;
+            m.KichThuocLoaiBan = item.KichThuocLoaiBan;
+            m.Deleted = item.Deleted;
+            m.Visual = item.Visual;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KichThuocMonID;
         }
 
-        public static int Xoa(int KichThuocMonID)
+        public static int Xoa(int KichThuocMonID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUKICHTHUOCMON item = (from x in ke.MENUKICHTHUOCMONs where x.KichThuocMonID == KichThuocMonID select x).First();
-                item.Deleted = true;
-                ke.SaveChanges();
-                return item.KichThuocMonID;
-            }
+            MENUKICHTHUOCMON item = (from x in mTransit.KaraokeEntities.MENUKICHTHUOCMONs where x.KichThuocMonID == KichThuocMonID select x).First();
+            item.Deleted = true;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.KichThuocMonID;
         }
 
-        
+
     }
 }

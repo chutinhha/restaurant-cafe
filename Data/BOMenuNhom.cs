@@ -7,51 +7,39 @@ namespace Data
 {
     public class BOMenuNhom
     {
-        public static List<MENUNHOM> GetAll(int LoaiNhomID)
+        public static List<MENUNHOM> GetAll(int LoaiNhomID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                if (LoaiNhomID > -1)
-                    return ke.MENUNHOMs.Where(s => s.LoaiNhomID == LoaiNhomID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
-                else
-                    return ke.MENUNHOMs.ToList();
-            }
+            if (LoaiNhomID > -1)
+                return mTransit.KaraokeEntities.MENUNHOMs.Where(s => s.LoaiNhomID == LoaiNhomID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
+            else
+                return mTransit.KaraokeEntities.MENUNHOMs.ToList();
 
         }
 
-        public static int Them(MENUNHOM item)
+        public static int Them(MENUNHOM item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                ke.MENUNHOMs.AddObject(item);
-                ke.SaveChanges();
-                return item.NhomID;
-            }
+            mTransit.KaraokeEntities.MENUNHOMs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhomID;
         }
 
-        public static int Xoa(int NhomID)
+        public static int Xoa(int NhomID, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUNHOM item = (from x in ke.MENUNHOMs where x.NhomID == NhomID select x).First();
-                item.Deleted = true;
-                ke.SaveChanges();
-                return item.NhomID;
-            }
+            MENUNHOM item = (from x in mTransit.KaraokeEntities.MENUNHOMs where x.NhomID == NhomID select x).First();
+            item.Deleted = true;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhomID;
         }
 
-        public static int CapNhat(MENUNHOM item)
+        public static int CapNhat(MENUNHOM item, Transit mTransit)
         {
-            using (KaraokeEntities ke = new KaraokeEntities())
-            {
-                MENUNHOM m = (from x in ke.MENUNHOMs where x.NhomID == item.NhomID select x).First();
-                m.SapXep = item.SapXep;
-                m.TenDai = item.TenDai;
-                m.TenNgan = item.TenNgan;
-                m.Hinh = item.Hinh;
-                ke.SaveChanges();
-                return item.NhomID;
-            }
+            MENUNHOM m = (from x in mTransit.KaraokeEntities.MENUNHOMs where x.NhomID == item.NhomID select x).First();
+            m.SapXep = item.SapXep;
+            m.TenDai = item.TenDai;
+            m.TenNgan = item.TenNgan;
+            m.Hinh = item.Hinh;
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.NhomID;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace GUI
                 mNhanVien.Deleted = false;
                 mNhanVien.Visual = true;
                 GetValues();
-                Data.BONhanVien.Them(mNhanVien);
+                Data.BONhanVien.Them(mNhanVien, mTransit);
                 LoadDanhSachNhanVien();
                 btnMoi_Click(sender, e);
                 lbStatus.Text = "Thêm thành công";
@@ -41,7 +41,7 @@ namespace GUI
             else
             {
                 GetValues();
-                Data.BONhanVien.CapNhat(mNhanVien);
+                Data.BONhanVien.CapNhat(mNhanVien, mTransit);
                 LoadDanhSachNhanVien();
                 lbStatus.Text = "Cập nhật thành công";
             }
@@ -57,7 +57,7 @@ namespace GUI
             if (lvNhanVien.SelectedItems.Count > 0)
             {
                 mNhanVien = (Data.NHANVIEN)((ListViewItem)lvNhanVien.SelectedItems[0]).Tag;
-                Data.BONhanVien.Xoa(mNhanVien.NhanVienID);
+                Data.BONhanVien.Xoa(mNhanVien.NhanVienID, mTransit);
                 LoadDanhSachNhanVien();
                 btnMoi_Click(sender, e);
             }
@@ -108,7 +108,7 @@ namespace GUI
 
         private void LoadDanhSachNhanVien()
         {
-            List<Data.NHANVIEN> lsArray = Data.BONhanVien.GetAll();
+            List<Data.NHANVIEN> lsArray = Data.BONhanVien.GetAll(mTransit);
             lvNhanVien.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -121,7 +121,7 @@ namespace GUI
 
         private void LoadLoaiNhanVien()
         {
-            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAll();
+            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAll(mTransit);
             if (cbbLoaiNhanVien.Items.Count > 0)
                 cbbLoaiNhanVien.SelectedIndex = 0;
         }

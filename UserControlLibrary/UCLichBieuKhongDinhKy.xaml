@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="924">
+             d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -23,17 +23,17 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên lịch biểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Ngày" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Ưu tiên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ngày" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>        
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Hoạt động" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtGioBatDau" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtGioKetThuc" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtNgay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtUuTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" x:Name="dtpNgay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" SelectedDateFormat="Short" />
+        <my:UCTimePicker Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch"  Name="timeBatDau" VerticalAlignment="Stretch" Margin="5" />
+        <my:UCTimePicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Name="timeKetThuc" VerticalAlignment="Stretch" Margin="5" />
+        <CheckBox Grid.Row="5" Grid.Column="1" x:Name="ckHoatDong" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
 
         <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
 
@@ -45,12 +45,12 @@
         <ListView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ten}" Width="Auto" Header="Tên lịch biểu"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="Auto" Header="Loại giá"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="Auto" Header="Giờ bắt đầu"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="Auto" Header="Giờ kết thúc"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="Auto" Header="Ngày"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DienGiai}" Width="Auto" Header="Ưu tiên"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenLichBieu}" Width="200" Header="Tên lịch biểu"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MENULOAIGIA.Ten}" Width="150" Header="Loại giá"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ngay}" Width="150" Header="Ngày"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GioBatDau}" Width="150" Header="Giờ bắt đầu"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GioKetThuc}" Width="150" Header="Giờ kết thúc"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="100" Header="Hoạt động"/>
                 </GridView>
             </ListView.View>
         </ListView>

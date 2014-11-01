@@ -89,7 +89,7 @@ namespace UserControlLibrary
                 {
                     mMayIn = new Data.MAYIN();
                     GetValues();
-                    Data.BOMayIn.Them(mMayIn);
+                    Data.BOMayIn.Them(mMayIn, mTransit);
                     lbStatus.Text = "Thêm thành công";
                     LoadDanhSachMayIn();
                     btnMoi_Click(sender, e);
@@ -97,7 +97,7 @@ namespace UserControlLibrary
                 else
                 {
                     GetValues();
-                    Data.BOMayIn.Sua(mMayIn);
+                    Data.BOMayIn.Sua(mMayIn, mTransit);
                     lbStatus.Text = "Cập nhật thành công";
                     LoadDanhSachMayIn();
                 }
@@ -109,14 +109,14 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 mMayIn = (Data.MAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOMayIn.Xoa(mMayIn.MayInID);
+                Data.BOMayIn.Xoa(mMayIn.MayInID, mTransit);
                 lbStatus.Text = "Xóa thành công";
             }
         }
 
         private void LoadDanhSachMayIn()
         {
-            System.Collections.Generic.List<Data.MAYIN> lsArray = Data.BOMayIn.GetAll();
+            System.Collections.Generic.List<Data.MAYIN> lsArray = Data.BOMayIn.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (Data.MAYIN item in lsArray)
             {

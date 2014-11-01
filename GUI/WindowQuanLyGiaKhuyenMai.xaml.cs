@@ -41,7 +41,7 @@ namespace GUI
             {
                 ucLichBieuDinhKy = new UserControlLibrary.UCLichBieuDinhKy(mTransit);
             }
-            spNoiDung.Children.Clear();            
+            spNoiDung.Children.Clear();
             spNoiDung.Children.Add(ucLichBieuDinhKy);
         }
 
@@ -59,6 +59,8 @@ namespace GUI
         private UserControlLibrary.UCKhuyenMai ucKhuyenMai = null;
         private UserControlLibrary.UCLichBieuDinhKy ucLichBieuDinhKy = null;
         private UserControlLibrary.UCLichBieuKhongDinhKy ucUCLichBieuKhongDinhKy = null;
+        private UserControlLibrary.UCQuanLyGia ucQuanLyGia = null;
+        private UserControlLibrary.UCDanhSachBan ucDanhSachBan = null;
         private void btnLoaiGia_Click(object sender, RoutedEventArgs e)
         {
             if (ucLoaiGia == null)
@@ -67,6 +69,26 @@ namespace GUI
             }
             spNoiDung.Children.Clear();
             spNoiDung.Children.Add(ucLoaiGia);
+        }
+
+        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
+        {            
+            if (ucDanhSachBan == null)
+            {
+                ucDanhSachBan = new UserControlLibrary.UCDanhSachBan(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucDanhSachBan);
+        }
+
+        private void btnQuanLyGia_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucQuanLyGia == null)
+            {
+                ucQuanLyGia = new UserControlLibrary.UCQuanLyGia(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucQuanLyGia);
         }
     }
 }

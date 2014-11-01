@@ -104,13 +104,13 @@
                                 <RowDefinition Height="50*"/>
                                 <RowDefinition Height="20" />
                             </Grid.RowDefinitions>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="{TemplateBinding IsEnabled}">
+                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Stretch="Fill" IsEnabled="{TemplateBinding IsEnabled}" />
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                                 </Border.Effect>
                             </Border>
-                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" />
                         </Grid>
                     </Button>
                 </ControlTemplate>

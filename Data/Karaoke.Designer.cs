@@ -8725,48 +8725,24 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> GiaBatDau
+        public global::System.String TenLichBieu
         {
             get
             {
-                return _GiaBatDau;
+                return _TenLichBieu;
             }
             set
             {
-                OnGiaBatDauChanging(value);
-                ReportPropertyChanging("GiaBatDau");
-                _GiaBatDau = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GiaBatDau");
-                OnGiaBatDauChanged();
+                OnTenLichBieuChanging(value);
+                ReportPropertyChanging("TenLichBieu");
+                _TenLichBieu = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenLichBieu");
+                OnTenLichBieuChanged();
             }
         }
-        private Nullable<global::System.TimeSpan> _GiaBatDau;
-        partial void OnGiaBatDauChanging(Nullable<global::System.TimeSpan> value);
-        partial void OnGiaBatDauChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> GioKetThuc
-        {
-            get
-            {
-                return _GioKetThuc;
-            }
-            set
-            {
-                OnGioKetThucChanging(value);
-                ReportPropertyChanging("GioKetThuc");
-                _GioKetThuc = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GioKetThuc");
-                OnGioKetThucChanged();
-            }
-        }
-        private Nullable<global::System.TimeSpan> _GioKetThuc;
-        partial void OnGioKetThucChanging(Nullable<global::System.TimeSpan> value);
-        partial void OnGioKetThucChanged();
+        private global::System.String _TenLichBieu;
+        partial void OnTenLichBieuChanging(global::System.String value);
+        partial void OnTenLichBieuChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8797,24 +8773,48 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TenLichBieu
+        public Nullable<global::System.TimeSpan> GioBatDau
         {
             get
             {
-                return _TenLichBieu;
+                return _GioBatDau;
             }
             set
             {
-                OnTenLichBieuChanging(value);
-                ReportPropertyChanging("TenLichBieu");
-                _TenLichBieu = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TenLichBieu");
-                OnTenLichBieuChanged();
+                OnGioBatDauChanging(value);
+                ReportPropertyChanging("GioBatDau");
+                _GioBatDau = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GioBatDau");
+                OnGioBatDauChanged();
             }
         }
-        private global::System.String _TenLichBieu;
-        partial void OnTenLichBieuChanging(global::System.String value);
-        partial void OnTenLichBieuChanged();
+        private Nullable<global::System.TimeSpan> _GioBatDau;
+        partial void OnGioBatDauChanging(Nullable<global::System.TimeSpan> value);
+        partial void OnGioBatDauChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.TimeSpan> GioKetThuc
+        {
+            get
+            {
+                return _GioKetThuc;
+            }
+            set
+            {
+                OnGioKetThucChanging(value);
+                ReportPropertyChanging("GioKetThuc");
+                _GioKetThuc = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GioKetThuc");
+                OnGioKetThucChanged();
+            }
+        }
+        private Nullable<global::System.TimeSpan> _GioKetThuc;
+        partial void OnGioKetThucChanging(Nullable<global::System.TimeSpan> value);
+        partial void OnGioKetThucChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -11815,6 +11815,30 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String TenLoaiBan
+        {
+            get
+            {
+                return _TenLoaiBan;
+            }
+            set
+            {
+                OnTenLoaiBanChanging(value);
+                ReportPropertyChanging("TenLoaiBan");
+                _TenLoaiBan = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenLoaiBan");
+                OnTenLoaiBanChanged();
+            }
+        }
+        private global::System.String _TenLoaiBan;
+        partial void OnTenLoaiBanChanging(global::System.String value);
+        partial void OnTenLoaiBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> LoaiBanID
         {
             get
@@ -11839,6 +11863,30 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> GiaBanMacDinh
+        {
+            get
+            {
+                return _GiaBanMacDinh;
+            }
+            set
+            {
+                OnGiaBanMacDinhChanging(value);
+                ReportPropertyChanging("GiaBanMacDinh");
+                _GiaBanMacDinh = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GiaBanMacDinh");
+                OnGiaBanMacDinhChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _GiaBanMacDinh;
+        partial void OnGiaBanMacDinhChanging(Nullable<global::System.Decimal> value);
+        partial void OnGiaBanMacDinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> ThoiGia
         {
             get
@@ -11857,6 +11905,54 @@ namespace Data
         private Nullable<global::System.Boolean> _ThoiGia;
         partial void OnThoiGiaChanging(Nullable<global::System.Boolean> value);
         partial void OnThoiGiaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KichThuocLoaiBan
+        {
+            get
+            {
+                return _KichThuocLoaiBan;
+            }
+            set
+            {
+                OnKichThuocLoaiBanChanging(value);
+                ReportPropertyChanging("KichThuocLoaiBan");
+                _KichThuocLoaiBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KichThuocLoaiBan");
+                OnKichThuocLoaiBanChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KichThuocLoaiBan;
+        partial void OnKichThuocLoaiBanChanging(Nullable<global::System.Int32> value);
+        partial void OnKichThuocLoaiBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongBanBan
+        {
+            get
+            {
+                return _SoLuongBanBan;
+            }
+            set
+            {
+                OnSoLuongBanBanChanging(value);
+                ReportPropertyChanging("SoLuongBanBan");
+                _SoLuongBanBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongBanBan");
+                OnSoLuongBanBanChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongBanBan;
+        partial void OnSoLuongBanBanChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongBanBanChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -11905,54 +12001,6 @@ namespace Data
         private Nullable<global::System.Int32> _TonKhoToiDa;
         partial void OnTonKhoToiDaChanging(Nullable<global::System.Int32> value);
         partial void OnTonKhoToiDaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMon
-        {
-            get
-            {
-                return _KichThuocMon;
-            }
-            set
-            {
-                OnKichThuocMonChanging(value);
-                ReportPropertyChanging("KichThuocMon");
-                _KichThuocMon = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMon");
-                OnKichThuocMonChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMon;
-        partial void OnKichThuocMonChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocBan
-        {
-            get
-            {
-                return _KichThuocBan;
-            }
-            set
-            {
-                OnKichThuocBanChanging(value);
-                ReportPropertyChanging("KichThuocBan");
-                _KichThuocBan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocBan");
-                OnKichThuocBanChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocBan;
-        partial void OnKichThuocBanChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocBanChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

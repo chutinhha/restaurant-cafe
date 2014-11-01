@@ -31,7 +31,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 mMenuItemMayIn = (Data.MENUITEMMAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOMenuItemMayIn.Xoa(mMenuItemMayIn.MayInID, mMenuItemMayIn.MonID);
+                Data.BOMenuItemMayIn.Xoa(mMenuItemMayIn.MayInID, mMenuItemMayIn.MonID, mTransit);
                 lbStatus.Text = "Xóa thành công thành công";
                 mMenuItemMayIn = null;
                 LoadDanhSachMayIn();
@@ -44,7 +44,7 @@ namespace UserControlLibrary
         {
             mMenuItemMayIn = new Data.MENUITEMMAYIN();
             GetValues();
-            Data.BOMenuItemMayIn.Them(mMenuItemMayIn);
+            Data.BOMenuItemMayIn.Them(mMenuItemMayIn, mTransit);
             mMenuItemMayIn = null;
             LoadDanhSachMayIn();
             LoadMayIn();
@@ -63,7 +63,7 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UCMenu.OnEventMenu += new ControlLibrary.UCMenu.EventMenu(UCMenu_OnEventMenu);
-            UCMenu.Init();
+            UCMenu.Init(mTransit);
 
         }
 
@@ -86,7 +86,7 @@ namespace UserControlLibrary
             lvData.Items.Clear();
             if (_Mon != null)
             {
-                System.Collections.Generic.List<Data.MENUITEMMAYIN> lsArray = Data.BOMenuItemMayIn.GetAll(_Mon.MonID);
+                System.Collections.Generic.List<Data.MENUITEMMAYIN> lsArray = Data.BOMenuItemMayIn.GetAll(_Mon.MonID, mTransit);
                 foreach (Data.MENUITEMMAYIN item in lsArray)
                 {
                     ListViewItem li = new ListViewItem();
@@ -99,7 +99,7 @@ namespace UserControlLibrary
 
         private void LoadMayIn()
         {
-            cbbMayIn.ItemsSource = Data.BOMayIn.GetAll(GetIDsMayIn());
+            cbbMayIn.ItemsSource = Data.BOMayIn.GetAll(GetIDsMayIn(), mTransit);
             if (cbbMayIn.Items.Count > 0)
             {
                 cbbMayIn.SelectedIndex = 0;
