@@ -23,6 +23,7 @@ namespace ControlLibrary
         public event EventFloorPlan _OnEventFloorPlan;
         public bool _IsEdit { get; set; }        
         private Data.Transit mTransit;
+        private Data.KHU mKhu;
         public UCFloorPlan()
         {            
             InitializeComponent();
@@ -66,14 +67,22 @@ namespace ControlLibrary
                 gridFloorPlan.Children.Remove(item);
             }
         }
+        public void LoadTable()
+        {
+            if (mKhu!=null)
+            {
+                var listBan = Data.BOBan.GetTablePerArea(mTransit, mKhu);
+                gridFloorPlan.Children.Clear();
+                foreach (var ban in listBan)
+                {
+                    addTable(ban);
+                }
+            }
+        }
         public void LoadTable(Data.KHU khu)
         {
-            var listBan = Data.BOBan.GetTablePerArea(mTransit,khu);
-            gridFloorPlan.Children.Clear();
-            foreach (var ban in listBan)
-            {
-                addTable(ban);
-            }
+            mKhu = khu;
+            LoadTable();            
         }
         public void addTable(Data.BAN ban)
         {
@@ -102,7 +111,10 @@ namespace ControlLibrary
         void tbl_Click(object sender, RoutedEventArgs e)
         {
             POSButtonTable tbl = (POSButtonTable)sender;
-            _OnEventFloorPlan(tbl);
+            if (_OnEventFloorPlan!=null)
+            {
+                _OnEventFloorPlan(tbl);
+            }
         }
     }
 }

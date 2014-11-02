@@ -21,6 +21,7 @@ namespace GUI
     {
         private Data.Transit mTransit = null;
         private Data.BAN mBan;
+        private ControlLibrary.POSButtonTable mTableButton;
         public WindowQuanLySoDoBan(Data.Transit transit)
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace GUI
         private void uCFloorPlan1__OnEventFloorPlan(object ob)
         {
             ControlLibrary.POSButtonTable tbl = (ControlLibrary.POSButtonTable)ob;
+            mTableButton = tbl;
             txtTenBan.Text = tbl._Ban.TenBan;
             if (tbl._Ban.Hinh != null && tbl._Ban.Hinh.Length > 0)
             {
@@ -67,29 +69,61 @@ namespace GUI
 
         private void btnThemMoi_Click(object sender, RoutedEventArgs e)
         {
-            mBan = null;
-            txtTenBan.Text = "";
-            btnHinhDaiDien.DefaultImage();
+            if (cboKhuVuc.SelectedIndex>=0)
+            {
+                Data.BAN ban = new Data.BAN();
+                ban.BanID = 0;
+                ban.TenBan = "Ban Moi";
+                ban.KhuID = (int)cboKhuVuc.SelectedValue;
+                ban.LocationX = 0;
+                ban.LocationY = 0;
+                ban.Width = mTransit.ThamSo.BanChieuNgang;
+                ban.Height = mTransit.ThamSo.BanChieuCao;
+                ban.Hinh = null;                
+                uCFloorPlan1.addTable(ban);                
+            }            
+        }
+                
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            uCFloorPlan1.SaveChange();
         }
 
-        private void pOSButtonIconHorizontal1_Click(object sender, RoutedEventArgs e)
+        private void txtTenBan_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (mBan==null)
+            if (mTableButton!=null)
             {
-                mBan = new Data.BAN();
-                mBan.TenBan = "";
-                mBan.Hinh = null;
+                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;
+                mTableButton._Ban.TenBan = txtTenBan.Text;
+                mTableButton.TableDraw();
             }
         }
-        private void  GetValue()
-        {
-            if (cboKhuVuc.SelectedIndex>0 && mBan!=null)
-            {
-                mBan.TenBan = txtTenBan.Text;
-                mBan.KhuID = (int)cboKhuVuc.SelectedValue;
-                mBan.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
-            }
 
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            if (mTableButton!=null)
+            {
+                txtTenBan.Text = "";
+                btnHinhDaiDien.DefaultImage();
+                uCFloorPlan1.removeTable(mTableButton);
+            }
+        }
+
+        private void btnHinhDaiDien__OnBitmapImageChanged(object sender)
+        {
+            if (mTableButton != null)
+            {
+                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;                             
+                mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
+                mTableButton.Image = btnHinhDaiDien.ImageBitmap;
+                //mTableButton.TableDraw();
+            }
+        }
+
+        private void btnHuyThayDoi_Click(object sender, RoutedEventArgs e)
+        {
+            uCFloorPlan1.LoadTable();
         }
     }
 }
