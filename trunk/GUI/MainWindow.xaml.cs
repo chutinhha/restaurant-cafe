@@ -46,7 +46,8 @@ namespace GUI
 
         private void btnBanHang_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowSoDoBan win = new WindowSoDoBan(mTransit);
+            win.ShowDialog();
         }
 
         private void btnQuanLyKhachHang_Click(object sender, RoutedEventArgs e)

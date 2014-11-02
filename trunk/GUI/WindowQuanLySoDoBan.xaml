@@ -17,5 +17,6 @@
         <my:POSButtonIconHorizontal Content="Thêm mới" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,168,0,0" Name="btnThemMoi" VerticalAlignment="Top" Width="156" Click="btnThemMoi_Click" Image="/GUI;component/Images/Add%202.png" />
         <my:POSButtonIconHorizontal Content="Lưu" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,251,0,0" Name="btnLuu" VerticalAlignment="Top" Width="156" Image="/GUI;component/Images/Save.jpg" Click="btnLuu_Click" />
         <my:POSButtonIconHorizontal Content="Xóa" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,209,0,0" Name="btnXoa" VerticalAlignment="Top" Width="156" Image="/GUI;component/Images/Delete.png" Click="btnXoa_Click" />
+        <my:POSButtonIconHorizontal Content="Hủy Thay Đổi" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="27,294,0,0" Name="btnHuyThayDoi" VerticalAlignment="Top" Width="156" Click="btnHuyThayDoi_Click" />
     </Grid>
 </Window>

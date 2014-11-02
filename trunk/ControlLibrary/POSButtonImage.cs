@@ -95,7 +95,10 @@ namespace ControlLibrary
                     //this.ImageBitmap = Utilities.ImageHandler.ImageToByte(mBitmapImage);
                     this.Image = mBitmapImage;
                     this.ImageBitmap = mBitmapImage;
-                    _OnBitmapImageChanged(this);
+                    if (_OnBitmapImageChanged!=null)
+                    {
+                        _OnBitmapImageChanged(this);
+                    }
                 }
             }
             base.OnClick();

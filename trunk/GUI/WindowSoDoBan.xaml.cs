@@ -23,16 +23,16 @@ namespace GUI
         {
             mTransit = tran;
             InitializeComponent();
-        }        
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        }                
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.Init(mTransit);
             uCListArea1._UCFloorPlan = uCFloorPlan1;
+        }
+
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
