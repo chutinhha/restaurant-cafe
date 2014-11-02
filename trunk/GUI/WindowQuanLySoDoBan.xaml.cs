@@ -35,8 +35,7 @@ namespace GUI
         }
 
         private void LoadKhuVuc()
-        {            
-            var listKhu = Data.BOKhu.GetAll();
+        {
             cboKhuVuc.ItemsSource = Data.BOKhu.GetAll();
             if (cboKhuVuc.Items.Count > 0)
             {
