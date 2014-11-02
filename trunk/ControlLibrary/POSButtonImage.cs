@@ -50,6 +50,8 @@ namespace ControlLibrary
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonImage), new FrameworkPropertyMetadata(typeof(POSButtonImage)));
         }
+        public delegate void EventBitmapImage(object sender);
+        public event EventBitmapImage _OnBitmapImageChanged;
         public ImageSource Image
         {
             get { return (ImageSource)GetValue(ImageProperty); }
@@ -60,7 +62,7 @@ namespace ControlLibrary
         {            
             var uriSource = new Uri(@"/ControlLibrary;component/Images/AddNewImage.png", UriKind.Relative);
             this.Image = new BitmapImage(uriSource);
-            this.ImageBitmap = null;            
+            this.ImageBitmap = null;
         }
         public override void OnApplyTemplate()
         {            
@@ -82,14 +84,18 @@ namespace ControlLibrary
             {
                 if ((checkStream = openFileDialog.OpenFile()) != null)
                 {
+
                     Stream fs = File.OpenRead(openFileDialog.FileName);
                     BitmapImage mBitmapImage = new BitmapImage();
                     mBitmapImage.BeginInit();
                     mBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                     mBitmapImage.StreamSource = fs;
                     mBitmapImage.EndInit();
+                    //this.ImageBitmap = Utilities.ImageHandler.BitmapImageCopy(mBitmapImage);                    
+                    //this.ImageBitmap = Utilities.ImageHandler.ImageToByte(mBitmapImage);
                     this.Image = mBitmapImage;
                     this.ImageBitmap = mBitmapImage;
+                    _OnBitmapImageChanged(this);
                 }
             }
             base.OnClick();
