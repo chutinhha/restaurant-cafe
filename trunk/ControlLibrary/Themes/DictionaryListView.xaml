@@ -21,10 +21,35 @@
         <Setter Property="Height" Value="30"/>
         <Style.Triggers>
             <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="Background" Value="LightGreen"></Setter>
             </Trigger>
             <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="Background" Value="LightYellow"></Setter>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="DarkBlue" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFC704" Offset="0.986"/>
+                            <GradientStop Color="#FFF4E057" Offset="0.5"/>
+                            <GradientStop Color="#FFF4E057" Offset="0.51"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Foreground" Value="DarkBlue" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFC704" Offset="0.986"/>
+                            <GradientStop Color="#FFF4E057" Offset="0.5"/>
+                            <GradientStop Color="#FFF4E057" Offset="0.51"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>

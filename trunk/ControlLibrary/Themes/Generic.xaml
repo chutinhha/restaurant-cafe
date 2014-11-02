@@ -99,18 +99,19 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonMenu}">
                     <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="{TemplateBinding VerticalAlignment}" VerticalAlignment="{TemplateBinding HorizontalAlignment}">
+
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50*"/>
                                 <RowDefinition Height="20" />
                             </Grid.RowDefinitions>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="{TemplateBinding IsEnabled}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="{TemplateBinding IsEnabled}" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}">
                                 <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Stretch="Fill" IsEnabled="{TemplateBinding IsEnabled}" />
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                                 </Border.Effect>
                             </Border>
-                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" />
+                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" Height="20" />
                         </Grid>
                     </Button>
                 </ControlTemplate>
@@ -150,13 +151,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonChucNang}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#FF56007C"
-                            BorderThickness="1">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Border.Effect>
-                            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-                        </Border.Effect>
+                    <Border Background="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+                            <Image Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="5,0,5,0" />
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Width="55" />
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -267,8 +266,8 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
-    </Style>  
-    
+    </Style>
+
     <Style TargetType="{x:Type local:POSButtonTableArea}">
         <Setter Property="Template">
             <Setter.Value>
@@ -278,7 +277,7 @@
                         VerticalAlignment="Stretch"
                         Content="{TemplateBinding Content}"
                         Background="{TemplateBinding Background}"
-                     />                                            
+                     />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

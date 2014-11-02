@@ -46,11 +46,8 @@ namespace ControlLibrary
             _Mon.TenDai = txtTenDai.Text;
             _Mon.TenNgan = txtTenNgan.Text;
             if (mBitmapImage != null)
-            {                
-                byte[] imageData = new byte[mBitmapImage.StreamSource.Length];
-                mBitmapImage.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
-                mBitmapImage.StreamSource.Read(imageData, 0, imageData.Length);
-                _Mon.Hinh = imageData;
+            {
+                _Mon.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhAnh.ImageBitmap); ;
             }
             if (txtSapXep.Text == "")
                 _Mon.SapXep = 0;
@@ -73,6 +70,7 @@ namespace ControlLibrary
                 if (_Mon.Hinh != null && _Mon.Hinh.Length > 0)
                 {
                     mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.Hinh);
+                    btnHinhAnh.Image = mBitmapImage;
                 }
             }
         }
@@ -98,6 +96,11 @@ namespace ControlLibrary
                     mBitmapImage.EndInit();
                 }
             }
+        }
+
+        private void btnMauNen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

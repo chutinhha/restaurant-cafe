@@ -7,14 +7,20 @@ namespace Data
 {
     public class BOMenuMon
     {
-        public static List<MENUMON> GetAll(int GroupID, Transit mTransit)
+        public static List<MENUMON> GetAll(int GroupID, bool IsBanHang, Transit mTransit)
         {
-
+            return GetAll(GroupID, IsBanHang, false, mTransit);
+        }
+        public static List<MENUMON> GetAll(int GroupID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        {
+            System.Linq.IOrderedQueryable<MENUMON> lsArray = mTransit.KaraokeEntities.MENUMONs;
             if (GroupID > -1)
-                return mTransit.KaraokeEntities.MENUMONs.Where(s => s.NhomID == GroupID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
-            else
-                return mTransit.KaraokeEntities.MENUMONs.ToList();
-
+                lsArray = lsArray.Where(s => s.NhomID == GroupID && s.Deleted == false).OrderBy(s => s.SapXep);
+            if (IsBanHang)
+                lsArray = lsArray.Where(s => s.SoLuongKichThuocMon > 0).OrderBy(s => s.SapXep);
+            if (IsVisual)
+                lsArray = lsArray.Where(s => s.Visual == true).OrderBy(s => s.SapXep);
+            return lsArray.OrderBy(s => s.SapXep).ToList();
         }
 
         public static int Them(MENUMON item, Transit mTransit)

@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -22,6 +11,7 @@ namespace UserControlLibrary
         private Data.MENUMON mMon = null;
         private Data.MENUKICHTHUOCMON mKichThuocMon = null;
         private Data.Transit mTransit = null;
+
         public UCDanhSachBan(Data.Transit transit)
         {
             InitializeComponent();
@@ -124,7 +114,7 @@ namespace UserControlLibrary
                 txtTonKhoToiDa.Text = "0";
                 txtTonKhoToiThieu.Text = "0";
                 txtSoLuongBan.Text = "1";
-                ckBan.IsChecked = ckBan.IsChecked;
+                ckBan.IsChecked = true;
                 btnThem.Content = "Thêm mới";
             }
         }
@@ -142,12 +132,13 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadLoaiBan();
-            uCMenu._IsBanHang = false;
             uCMenu.OnEventMenu += new ControlLibrary.UCMenu.EventMenu(uCMenu_OnEventMenu);
             uCMenu.Init(mTransit);
+            mKichThuocMon = null;
+            SetValues();
         }
 
-        void uCMenu_OnEventMenu(object ob)
+        private void uCMenu_OnEventMenu(object ob)
         {
             if (ob is Data.MENUMON)
             {
@@ -169,6 +160,7 @@ namespace UserControlLibrary
                         txtKichThuocLoaiBan.IsEnabled = false;
                         txtKichThuocLoaiBan.Text = "1";
                         break;
+
                     case 2:
                     case 3:
                         txtKichThuocLoaiBan.IsEnabled = true;
@@ -182,6 +174,7 @@ namespace UserControlLibrary
                 }
             }
         }
+
         private void LoadLoaiBan()
         {
             cbbLoaiBan.ItemsSource = Data.BOLoaiBan.GetAll(null, mTransit);

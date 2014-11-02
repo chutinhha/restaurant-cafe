@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
-using System;
 
 namespace ControlLibrary
 {
@@ -15,10 +15,21 @@ namespace ControlLibrary
     {
         private List<Data.MENUMON> lsMenuMon = new List<Data.MENUMON>();
         private List<Data.MENUNHOM> lsMenuNhom = new List<Data.MENUNHOM>();
+        private List<Data.MENUKICHTHUOCMON> lsMenuKichThuocMon = new List<Data.MENUKICHTHUOCMON>();
         private Data.Transit mTransit = null;
+
         public bool _IsBanHang { get; set; }
 
+        private enum LoaiMenu
+        {
+            None = 0,
+            Nhom = 1,
+            Mon = 2,
+            KichThuocMon = 3
+        }
+
         public delegate void EventMenu(object ob);
+
         public event EventMenu OnEventMenu;
 
         public UCMenu()
@@ -44,14 +55,32 @@ namespace ControlLibrary
 
         private int PageItems = 1;
 
-        private void SetItemPage()
+        private void SetItemPage(LoaiMenu loaiMenu)
         {
-            btnItemBack.Content = "Trở về";
-            btnItemNext.Content = "Kế tiếp";
+            btnItemBack.Tag = loaiMenu;
+            btnItemNext.Tag = loaiMenu;
+            switch (loaiMenu)
+            {
+                case LoaiMenu.None:
+                    break;
+
+                case LoaiMenu.Nhom:
+                    break;
+
+                case LoaiMenu.Mon:
+                case LoaiMenu.KichThuocMon:
+                    btnItemBack.Content = "Trở về";
+                    btnItemNext.Content = "Kế tiếp";
+                    break;
+
+                default:
+                    break;
+            }
         }
-        public void LoadItem(int GroupID)
+
+        public void LoadMon(int NhomID)
         {
-            lsMenuMon = Data.BOMenuMon.GetAll(GroupID, mTransit);
+            lsMenuMon = Data.BOMenuMon.GetAll(NhomID, _IsBanHang, mTransit);
             if (lsMenuMon.Count > gridItems.Children.Count)
             {
                 int CountItems = gridItems.Children.Count - 2;
@@ -79,7 +108,6 @@ namespace ControlLibrary
                             j++;
                         }
                     }
-
                 }
                 if (lsItemsTem.Count > gridItems.Children.Count - gridItems.ColumnDefinitions.Count)
                     j++;
@@ -103,7 +131,7 @@ namespace ControlLibrary
                         }
                     }
                 }
-                SetItemPage();
+                SetItemPage(LoaiMenu.Mon);
             }
             else
             {
@@ -120,45 +148,104 @@ namespace ControlLibrary
                 {
                     SetButtonEmpty((POSButtonMenu)gridItems.Children[i]);
                 }
+                SetItemPage(LoaiMenu.None);
             }
         }
 
         private void btnItemBack_Click(object sender, RoutedEventArgs e)
         {
-            if (MenuNhomIndex != null)
+            LoaiMenu lm = (LoaiMenu)btnItemBack.Tag;
+            switch (lm)
+            {
+                case LoaiMenu.None:
+                    btnItems_Click(sender, e);
+                    break;
 
-                if (PageItems > 1)
-                {
-                    PageItems--;
-                    LoadItem(MenuNhomIndex.NhomID);
-                }
+                case LoaiMenu.Nhom:
+                    break;
+
+                case LoaiMenu.Mon:
+                    if (PageItems > 1)
+                    {
+                        PageItems--;
+                        LoadMon(MenuNhomIndex.NhomID);
+                    }
+                    break;
+
+                case LoaiMenu.KichThuocMon:
+                    if (PageKichThuocMon > 1)
+                    {
+                        PageKichThuocMon--;
+                        LoadKichThuocMon(MenuMonIndex);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void btnItemNext_Click(object sender, RoutedEventArgs e)
         {
-
-            if (lsMenuMon.Count > gridItems.Children.Count)
+            LoaiMenu lm = (LoaiMenu)btnItemNext.Tag;
+            switch (lm)
             {
-                if (MenuNhomIndex != null)
-                    if (PageItems < lsMenuMon.Count / (gridItems.Children.Count - 2) + 1)
-                    {
-                        PageItems++;
-                        LoadItem(MenuNhomIndex.NhomID);
-                    }
+                case LoaiMenu.None:
+                    btnItems_Click(sender, e);
+                    break;
+
+                case LoaiMenu.Nhom:
+                    break;
+
+                case LoaiMenu.Mon:
+                    if (MenuNhomIndex != null)
+                        if (PageItems < lsMenuMon.Count / (gridItems.Children.Count - 2) + 1)
+                        {
+                            PageItems++;
+                            LoadMon(MenuNhomIndex.NhomID);
+                        }
+                    break;
+
+                case LoaiMenu.KichThuocMon:
+                    if (MenuNhomIndex != null)
+                        if (PageKichThuocMon < lsMenuKichThuocMon.Count / (gridItems.Children.Count - 2) + 1)
+                        {
+                            PageKichThuocMon++;
+                            LoadKichThuocMon(MenuMonIndex);
+                        }
+                    break;
+
+                default:
+                    break;
             }
         }
 
         private Data.MENUMON MenuMonIndex = null;
+
         private void btnItems_Click(object sender, RoutedEventArgs e)
         {
             POSButtonMenu btn = (POSButtonMenu)sender;
-            MenuMonIndex = (Data.MENUMON)btn.Tag;
-            PageItems = 1;
-            OnEventMenu(MenuMonIndex);
+            if (btn.Tag is Data.MENUMON)
+            {
+                MenuMonIndex = (Data.MENUMON)btn.Tag;
+                if (_IsBanHang)
+                {
+                    PageKichThuocMon = 1;
+                    LoadKichThuocMon(MenuMonIndex);
+                }
+
+                else
+                    OnEventMenu(MenuMonIndex);
+            }
+            else if (btn.Tag is Data.MENUKICHTHUOCMON)
+            {
+                MenuKichThuocMonIndex = (Data.MENUKICHTHUOCMON)btn.Tag;
+                OnEventMenu(MenuKichThuocMonIndex);
+            }
         }
 
         private void SetButtonItem(POSButtonMenu btn, Data.MENUMON item)
-        {            
+        {
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;
@@ -181,12 +268,7 @@ namespace ControlLibrary
 
         public void LoadGroup()
         {
-
-            if (LoaiNhomID == 0)
-                lsMenuNhom = Data.BOMenuNhom.GetAll(-1, mTransit);
-            else
-                lsMenuNhom = Data.BOMenuNhom.GetAll(LoaiNhomID, mTransit);
-
+            lsMenuNhom = Data.BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, mTransit);
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 int CountGroup = gridGroup.Children.Count - 2;
@@ -197,9 +279,8 @@ namespace ControlLibrary
                     {
                         MenuNhomIndex = lsGroupTem[i];
                         PageItems = 1;
-                        LoadItem(lsMenuNhom[i].NhomID);
+                        LoadMon(lsMenuNhom[i].NhomID);
                         OnEventMenu(MenuNhomIndex);
-
                     }
                     SetButtonGroup((POSButtonMenu)gridGroup.Children[i + 1], lsGroupTem[i]);
                 }
@@ -217,7 +298,7 @@ namespace ControlLibrary
                     {
                         MenuNhomIndex = lsMenuNhom[i];
                         PageItems = 1;
-                        LoadItem(lsMenuNhom[i].NhomID);
+                        LoadMon(lsMenuNhom[i].NhomID);
                         OnEventMenu(MenuNhomIndex);
                     }
                     SetButtonGroup((POSButtonMenu)gridGroup.Children[i], lsMenuNhom[i]);
@@ -261,7 +342,7 @@ namespace ControlLibrary
             POSButtonMenu btn = (POSButtonMenu)sender;
             MenuNhomIndex = (Data.MENUNHOM)btn.Tag;
             PageItems = 1;
-            LoadItem(MenuNhomIndex.NhomID);
+            LoadMon(MenuNhomIndex.NhomID);
             if (!_IsBanHang)
             {
                 OnEventMenu(MenuNhomIndex);
@@ -326,53 +407,164 @@ namespace ControlLibrary
 
         #endregion Loại Nhóm
 
+        #region Kích thước món
+
+        private int PageKichThuocMon = 1;
+
+        private void SetKichThuocMonPage()
+        {
+            btnItemBack.Content = "Trở về";
+            btnItemNext.Content = "Kế tiếp";
+        }
+
+        public void LoadKichThuocMon(Data.MENUMON mon)
+        {
+            lsMenuKichThuocMon = Data.BOMenuKichThuocMon.GetAll(mon.MonID, mTransit);
+            if (lsMenuKichThuocMon.Count == 1)
+            {
+                OnEventMenu(lsMenuKichThuocMon[0]);
+            }
+            else if (lsMenuKichThuocMon.Count > gridItems.Children.Count)
+            {
+                int SoLuongKichThuocMon = gridItems.Children.Count - 2;
+                List<Data.MENUKICHTHUOCMON> lsKichThuocMonTem = lsMenuKichThuocMon.Skip((PageKichThuocMon - 1) * SoLuongKichThuocMon).Take(SoLuongKichThuocMon).ToList();
+                bool Chay = true;
+                int j = 0;
+                for (int i = 0; i < lsKichThuocMonTem.Count; i++, j++)
+                {
+                    if (i == 0)
+                    {
+                        if (IsRefershMenu)
+                            OnEventMenu(lsKichThuocMonTem[i]);
+                    }
+                    Chay = true;
+                    while (Chay)
+                    {
+                        Chay = false;
+                        if (Grid.GetRow(gridItems.Children[j]) != gridItems.RowDefinitions.Count - 1)
+                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i], mon);
+                        else if (Grid.GetColumn(gridItems.Children[j]) > 0 && Grid.GetColumn(gridItems.Children[j]) < gridItems.ColumnDefinitions.Count - 1)
+                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i], mon);
+                        else
+                        {
+                            Chay = true;
+                            j++;
+                        }
+                    }
+                }
+                if (lsKichThuocMonTem.Count > gridItems.Children.Count - gridItems.ColumnDefinitions.Count)
+                    j++;
+                Chay = true;
+                for (; j < gridItems.Children.Count; j++)
+                {
+                    Chay = true;
+                    while (Chay)
+                    {
+                        Chay = false;
+                        if (Grid.GetRow(gridItems.Children[j]) != gridItems.RowDefinitions.Count - 1)
+                            SetButtonEmpty((POSButtonMenu)gridItems.Children[j]);
+                        else if (Grid.GetColumn(gridItems.Children[j]) > 0 && Grid.GetColumn(gridItems.Children[j]) < gridItems.ColumnDefinitions.Count - 1)
+                            SetButtonEmpty((POSButtonMenu)gridItems.Children[j]);
+                        else
+                        {
+                            Chay = true;
+                            j++;
+                            if (j > gridItems.Children.Count - 1)
+                                Chay = false;
+                        }
+                    }
+                }
+                SetItemPage(LoaiMenu.KichThuocMon);
+            }
+            else
+            {
+                for (int i = 0; i < lsMenuKichThuocMon.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        if (IsRefershMenu)
+                            OnEventMenu(lsMenuKichThuocMon[i]);
+                    }
+                    SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[i], lsMenuKichThuocMon[i], mon);
+                }
+                for (int i = lsMenuKichThuocMon.Count; i < gridItems.Children.Count; i++)
+                {
+                    SetButtonEmpty((POSButtonMenu)gridItems.Children[i]);
+                }
+                SetItemPage(LoaiMenu.None);
+            }
+        }
+
+        private Data.MENUKICHTHUOCMON MenuKichThuocMonIndex = null;
+
+        private void SetButtonKichThuocMon(POSButtonMenu btn, Data.MENUKICHTHUOCMON item, Data.MENUMON mon)
+        {
+            btn.Tag = item;
+            btn.IsEnabled = true;
+            btn.Content = item.TenLoaiBan;
+            if (mon.Hinh != null && mon.Hinh.Length > 0)
+            {
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mon.Hinh);
+            }
+            else
+            {
+                var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                btn.Image = new BitmapImage(uriSource);
+            }
+        }
+
+        #endregion Kích thước món
+
         public void SetButtonEmpty(POSButtonMenu btn)
         {
             btn.Content = "";
+            btn.Image = null;
+            btn.Background = System.Windows.Media.Brushes.Gray;
             btn.IsEnabled = false;
         }
 
-
         private bool IsRefershMenu = false;
+
         public void RefershMenu(bool IsNhom)
         {
             IsRefershMenu = true;
             if (IsNhom)
                 LoadGroup();
             else
-                LoadItem(MenuNhomIndex.NhomID);
+                LoadMon(MenuNhomIndex.NhomID);
             IsRefershMenu = false;
         }
 
         private double ImageWidthItems = 0;
         private double ImageHeightItems = 0;
+
         private void SetImageSizetItems()
         {
             int col = gridItems.ColumnDefinitions.Count;
             int row = gridItems.RowDefinitions.Count;
-            ImageWidthItems = gridItems.ActualWidth / col - (col * 4);
-            ImageHeightItems = gridItems.ActualHeight / row - (row * 24);
+            ImageWidthItems = gridItems.ActualWidth / col - 4;
+            ImageHeightItems = gridItems.ActualHeight / row - 4;
+            double HeightText = 20;
             foreach (POSButtonMenu item in gridItems.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems;
+                item.ImageHeight = ImageHeightItems - HeightText;
             }
             foreach (POSButtonMenu item in gridLoaiGroup.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems;
+                item.ImageHeight = ImageHeightItems - HeightText;
             }
 
             foreach (POSButtonMenu item in gridGroup.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems;
+                item.ImageHeight = ImageHeightItems - HeightText;
             }
         }
 
         private void btnGioKaraoke_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

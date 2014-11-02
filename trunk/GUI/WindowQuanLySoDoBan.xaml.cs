@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.IO;
 
 namespace GUI
 {
@@ -22,6 +14,7 @@ namespace GUI
         private Data.Transit mTransit = null;
         private Data.BAN mBan;
         private ControlLibrary.POSButtonTable mTableButton;
+
         public WindowQuanLySoDoBan(Data.Transit transit)
         {
             InitializeComponent();
@@ -31,7 +24,7 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.Init(mTransit);
-            LoadKhuVuc();            
+            LoadKhuVuc();
         }
 
         private void LoadKhuVuc()
@@ -39,14 +32,14 @@ namespace GUI
             cboKhuVuc.ItemsSource = Data.BOKhu.GetAll();
             if (cboKhuVuc.Items.Count > 0)
             {
-                cboKhuVuc.SelectedItem=cboKhuVuc.Items[0];
+                cboKhuVuc.SelectedItem = cboKhuVuc.Items[0];
                 uCFloorPlan1.LoadTable((Data.KHU)cboKhuVuc.Items[0]);
-            }            
+            }
         }
 
         private void cboKhuVuc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;            
+            Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;
             uCFloorPlan1.LoadTable(khu);
         }
 
@@ -64,11 +57,11 @@ namespace GUI
                 var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
                 btnHinhDaiDien.Image = new BitmapImage(uriSource);
             }
-        }        
+        }
 
         private void btnThemMoi_Click(object sender, RoutedEventArgs e)
         {
-            if (cboKhuVuc.SelectedIndex>=0)
+            if (cboKhuVuc.SelectedIndex >= 0)
             {
                 Data.BAN ban = new Data.BAN();
                 ban.BanID = 0;
@@ -78,11 +71,12 @@ namespace GUI
                 ban.LocationY = 0;
                 ban.Width = mTransit.ThamSo.BanChieuNgang;
                 ban.Height = mTransit.ThamSo.BanChieuCao;
-                ban.Hinh = null;                
-                uCFloorPlan1.addTable(ban);                
-            }            
+                ban.Hinh = null;
+                uCFloorPlan1.addTable(ban);
+            }
         }
-                
+
+
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
@@ -91,7 +85,7 @@ namespace GUI
 
         private void txtTenBan_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (mTableButton!=null)
+            if (mTableButton != null)
             {
                 mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;
                 mTableButton._Ban.TenBan = txtTenBan.Text;
@@ -101,7 +95,7 @@ namespace GUI
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            if (mTableButton!=null)
+            if (mTableButton != null)
             {
                 txtTenBan.Text = "";
                 btnHinhDaiDien.DefaultImage();
@@ -113,7 +107,7 @@ namespace GUI
         {
             if (mTableButton != null)
             {
-                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;                             
+                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;
                 mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
                 mTableButton.Image = btnHinhDaiDien.ImageBitmap;
                 //mTableButton.TableDraw();
