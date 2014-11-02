@@ -34,44 +34,71 @@ namespace ControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {            
         }
+        public void SaveChange()
+        {
+            List<POSButtonTable> listWillRemove = new List<POSButtonTable>();
+            foreach (POSButtonTable tbl in this.gridFloorPlan.Children)
+            {
+                if (tbl._Ban.BanID==0)
+                {
+                    Data.BOBan.Them(tbl._Ban, mTransit);
+                    tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
+                }
+                else
+                {
+                    switch (tbl._ButtonTableStatus)
+                    {                        
+                        case POSButtonTable.POSButtonTableStatus.Edit:
+                            Data.BOBan.CapNhat(tbl._Ban, mTransit);
+                            tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
+                            break;
+                        case POSButtonTable.POSButtonTableStatus.Delete:
+                            Data.BOBan.Xoa(tbl._Ban.BanID, mTransit);
+                            listWillRemove.Add(tbl);
+                            break;
+                        default:
+                            break;
+                    }                         
+                }                
+            }
+            foreach (var item in listWillRemove)
+            {
+                gridFloorPlan.Children.Remove(item);
+            }
+        }
         public void LoadTable(Data.KHU khu)
         {
             var listBan = Data.BOBan.GetTablePerArea(mTransit,khu);
             gridFloorPlan.Children.Clear();
             foreach (var ban in listBan)
             {
-                POSButtonTable tbl = new POSButtonTable();
-                tbl.IsEnabled = true;
-                double x = this.RenderSize.Width * (double)ban.LocationX;
-                double y = this.RenderSize.Height * (double)ban.LocationY;
-                tbl.Width = this.RenderSize.Width * (double)ban.Width;
-                tbl.Height = this.RenderSize.Height * (double)ban.Height;
-                tbl.Margin = new Thickness(
-                    x,
-                    y,
-                    this.RenderSize.Width - tbl.Width - x,
-                    this.RenderSize.Height - tbl.Height - y
-                );
-                tbl.Content = ban.TenBan;
-                tbl._Ban = ban;
-                tbl._IsEdit = _IsEdit;
-                tbl._UserControlParent = this;
-                tbl.Click += new RoutedEventHandler(tbl_Click);                                
-                if (ban.Hinh != null && ban.Hinh.Length > 0)
-                {
-                    tbl.Image = Utilities.ImageHandler.BitmapImageFromByteArray(ban.Hinh);
-                }
-                else
-                {
-                    var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
-                    tbl.Image = new BitmapImage(uriSource);
-                }                
-                //tbl.setText(ban.TenBan);
-                //tbl._Ban = ban;                
-                gridFloorPlan.Children.Add(tbl);                
+                addTable(ban);
             }
-        }        
-
+        }
+        public void addTable(Data.BAN ban)
+        {
+            POSButtonTable tbl = new POSButtonTable();
+            tbl.IsEnabled = true;            
+            tbl._UserControlParent = this;
+            tbl._Ban = ban;
+            tbl._IsEdit = this._IsEdit;
+            tbl.TableDraw();
+            tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
+            tbl.Click += new RoutedEventHandler(tbl_Click);
+            gridFloorPlan.Children.Add(tbl);            
+        }
+        public void removeTable(POSButtonTable ban)
+        {
+            if (ban._Ban.BanID==0)
+            {
+                gridFloorPlan.Children.Remove(ban);
+            }
+            else
+            {
+                ban._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Delete;
+                ban.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
         void tbl_Click(object sender, RoutedEventArgs e)
         {
             POSButtonTable tbl = (POSButtonTable)sender;

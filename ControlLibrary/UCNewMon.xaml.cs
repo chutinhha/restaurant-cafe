@@ -46,7 +46,7 @@ namespace ControlLibrary
             _Mon.TenDai = txtTenDai.Text;
             _Mon.TenNgan = txtTenNgan.Text;
             if (mBitmapImage != null)
-            {
+            {                
                 byte[] imageData = new byte[mBitmapImage.StreamSource.Length];
                 mBitmapImage.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
                 mBitmapImage.StreamSource.Read(imageData, 0, imageData.Length);
