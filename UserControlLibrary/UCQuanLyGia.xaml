@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1024">
-    <Grid>
+             d:DesignHeight="768" d:DesignWidth="1024" Loaded="UserControl_Loaded">
+    <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
@@ -27,8 +27,8 @@
             <TextBlock Grid.Row="1" Text="Loại giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
             <TextBlock Grid.Row="2" Text="Giá loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGiaBan" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" />
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" IsEnabled="False" />
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGiaBan" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" SelectionChanged="cbbLoaiGiaBan_SelectionChanged" />
             <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
 
             <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
@@ -43,6 +43,6 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <my:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" Name="uCMenu" VerticalAlignment="Stretch" />
+        <my:UCMenu Grid.Column="1" Name="uCMenu" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" _IsBanHang="True" />
     </Grid>
 </UserControl>

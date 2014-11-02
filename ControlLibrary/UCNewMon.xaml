@@ -11,7 +11,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -26,12 +26,16 @@
         <TextBlock Grid.Row="0" Text="Tên ngắn" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
         <TextBlock Grid.Row="1" Text="Tên dài" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
         <TextBlock Grid.Row="2" Text="Sắp xếp" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="3" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <!--<TextBlock Grid.Row="5" Text="Màu nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>-->
+        <TextBlock Grid.Row="3" Text="Bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="4" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>        
 
         <TextBox Grid.Row="0" Grid.Column="1" Name="txtTenNgan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18" DataContext="{Binding}" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="txtTenDai" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
         <TextBox Grid.Row="2" Grid.Column="1" Name="txtSapXep" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="18"/>
-        <Button Grid.Row="3" Grid.Column="1" Name="btnHinhAnh" Content="Hình" Margin="10,10,10,10" FontSize="18" Click="btnHinhAnh_Click" />
+        <CheckBox Grid.Row="3" Grid.Column="1" x:Name="ckBan" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+            <my:POSButtonImage Width="80" Height="80" Margin="10,10,10,10" x:Name="btnHinhAnh"/>
+            <Button Name="btnMauNen" Content="Màu nền" Margin="10,10,10,10" FontSize="18" Click="btnMauNen_Click" Width="80" Height="80"/>
+        </StackPanel>        
     </Grid>
 </UserControl>

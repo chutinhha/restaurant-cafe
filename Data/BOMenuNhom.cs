@@ -7,12 +7,20 @@ namespace Data
 {
     public class BOMenuNhom
     {
-        public static List<MENUNHOM> GetAll(int LoaiNhomID, Transit mTransit)
+        public static List<MENUNHOM> GetAll(int LoaiNhomID, bool IsBanHang, Transit mTransit)
         {
-            if (LoaiNhomID > -1)
-                return mTransit.KaraokeEntities.MENUNHOMs.Where(s => s.LoaiNhomID == LoaiNhomID && s.Deleted == false).OrderBy(s => s.SapXep).ToList();
-            else
-                return mTransit.KaraokeEntities.MENUNHOMs.ToList();
+            return GetAll(LoaiNhomID, IsBanHang, false, mTransit);
+        }
+        public static List<MENUNHOM> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        {
+            System.Linq.IOrderedQueryable<MENUNHOM> lsArray = mTransit.KaraokeEntities.MENUNHOMs;
+            if (LoaiNhomID > 0)
+                lsArray = lsArray.Where(s => s.LoaiNhomID == LoaiNhomID && s.Deleted == false).OrderBy(s => s.SapXep);
+            if (IsBanHang)
+                lsArray = lsArray.Where(s => s.Visual == true && s.SoLuongMon > 0).OrderBy(s => s.SapXep);
+            if (IsVisual)
+                lsArray = lsArray.Where(s => s.Visual == true).OrderBy(s => s.SapXep);
+            return lsArray.ToList();
 
         }
 

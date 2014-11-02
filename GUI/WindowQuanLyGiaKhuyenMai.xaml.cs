@@ -32,6 +32,8 @@ namespace GUI
                 ucKhuyenMai = new UserControlLibrary.UCKhuyenMai(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucKhuyenMai.Height = spNoiDung.ActualHeight;
+            ucKhuyenMai.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucKhuyenMai);
         }
 
@@ -42,6 +44,8 @@ namespace GUI
                 ucLichBieuDinhKy = new UserControlLibrary.UCLichBieuDinhKy(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucLichBieuDinhKy.Height = spNoiDung.ActualHeight;
+            ucLichBieuDinhKy.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucLichBieuDinhKy);
         }
 
@@ -52,6 +56,8 @@ namespace GUI
                 ucUCLichBieuKhongDinhKy = new UserControlLibrary.UCLichBieuKhongDinhKy(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucUCLichBieuKhongDinhKy.Height = spNoiDung.ActualHeight;
+            ucUCLichBieuKhongDinhKy.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucUCLichBieuKhongDinhKy);
         }
 
@@ -68,6 +74,8 @@ namespace GUI
                 ucLoaiGia = new UserControlLibrary.UCLoaiGia(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucLoaiGia.Height = spNoiDung.ActualHeight;
+            ucLoaiGia.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucLoaiGia);
         }
 
@@ -78,6 +86,8 @@ namespace GUI
                 ucDanhSachBan = new UserControlLibrary.UCDanhSachBan(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucDanhSachBan.Height = spNoiDung.ActualHeight;
+            ucDanhSachBan.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucDanhSachBan);
         }
 
@@ -86,9 +96,18 @@ namespace GUI
             if (ucQuanLyGia == null)
             {
                 ucQuanLyGia = new UserControlLibrary.UCQuanLyGia(mTransit);
-            }
-            spNoiDung.Children.Clear();
+            }            
+            ucQuanLyGia.Height = spNoiDung.ActualHeight;
+            ucQuanLyGia.Width = spNoiDung.ActualWidth;
+            spNoiDung.Children.Clear();            
             spNoiDung.Children.Add(ucQuanLyGia);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            spNoiDung.Height = spNoiDung.ActualHeight;
+            spNoiDung.Width = spNoiDung.ActualWidth;
+            btnQuanLyGia_Click(sender, e);
         }
     }
 }

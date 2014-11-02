@@ -1,8 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 namespace ControlLibrary
 {
@@ -13,12 +13,19 @@ namespace ControlLibrary
     {
         private int LoaiNhomID = 0;
         private Data.Transit mTransit = null;
+        private BitmapImage mBitmapImage = null;
 
         public UCNewNhom(int loaiNhomID, Data.Transit transit)
         {
             InitializeComponent();
             LoaiNhomID = loaiNhomID;
             mTransit = transit;
+            btnHinhAnh._OnBitmapImageChanged += new POSButtonImage.EventBitmapImage(btnHinhAnh__OnBitmapImageChanged);
+        }
+
+        private void btnHinhAnh__OnBitmapImageChanged(object sender)
+        {
+            mBitmapImage = btnHinhAnh.ImageBitmap;
         }
 
         public Data.MENUNHOM _Nhom { get; set; }
@@ -50,10 +57,7 @@ namespace ControlLibrary
             }
             if (mBitmapImage != null)
             {
-                byte[] imageData = new byte[mBitmapImage.StreamSource.Length];
-                mBitmapImage.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
-                mBitmapImage.StreamSource.Read(imageData, 0, imageData.Length);
-                _Nhom.Hinh = imageData;
+                _Nhom.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhAnh.ImageBitmap);
             }
             _Nhom.TenDai = txtTenDai.Text;
             _Nhom.TenNgan = txtTenNgan.Text;
@@ -77,7 +81,8 @@ namespace ControlLibrary
                 txtSapXep.Text = _Nhom.SapXep.ToString();
                 if (_Nhom.Hinh != null && _Nhom.Hinh.Length > 0)
                 {
-                    mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);
+                    mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);                    
+                    btnHinhAnh.Image = mBitmapImage;
                 }
             }
             else
@@ -88,7 +93,6 @@ namespace ControlLibrary
             }
         }
 
-        private BitmapImage mBitmapImage = null;
         private void btnHinhAnh_Click(object sender, RoutedEventArgs e)
         {
             Stream checkStream = null;
@@ -98,7 +102,6 @@ namespace ControlLibrary
             openFileDialog.Filter = "All Image Files | *.*";
             if ((bool)openFileDialog.ShowDialog())
             {
-
                 if ((checkStream = openFileDialog.OpenFile()) != null)
                 {
                     Stream fs = File.OpenRead(openFileDialog.FileName);
@@ -109,6 +112,10 @@ namespace ControlLibrary
                     mBitmapImage.EndInit();
                 }
             }
+        }
+
+        private void btnMauNen_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
