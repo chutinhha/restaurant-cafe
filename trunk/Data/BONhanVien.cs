@@ -48,5 +48,22 @@ namespace Data
             mTransit.KaraokeEntities.SaveChanges();
             return item.NhanVienID;
         }
+
+        public static void Luu(List<NHANVIEN> lsNhanVien, List<NHANVIEN> lsNhanVienXoa, Transit mTransit)
+        {
+            if (lsNhanVien != null)
+                foreach (NHANVIEN item in lsNhanVien)
+                {
+                    if (item.NhanVienID > 0)
+                        CapNhat(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsNhanVienXoa != null)
+                foreach (NHANVIEN item in lsNhanVienXoa)
+                {
+                    Xoa(item.NhanVienID, mTransit);
+                }
+        }
     }
 }

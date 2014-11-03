@@ -31,6 +31,9 @@ namespace Data
         {
             LOAINHANVIEN m = (from x in mTransit.KaraokeEntities.LOAINHANVIENs where x.LoaiNhanVienID == item.LoaiNhanVienID select x).First();
             m.TenLoaiNhanVien = item.TenLoaiNhanVien;
+            m.LoaiNhanVienID = item.LoaiNhanVienID;
+            m.Visual = item.Visual;
+            m.Edit = false;
             mTransit.KaraokeEntities.SaveChanges();
             return item.LoaiNhanVienID;
         }
