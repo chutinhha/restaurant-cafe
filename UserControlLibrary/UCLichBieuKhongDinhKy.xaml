@@ -17,29 +17,29 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên lịch biểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ngày" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>        
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Hoạt động" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên lịch biểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ngày" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>        
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Hoạt động" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
         
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <DatePicker Grid.Row="2" Grid.Column="1" x:Name="dtpNgay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" SelectedDateFormat="Short" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" x:Name="dtpNgay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" SelectedDateFormat="Short" />
         <my:UCTimePicker Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch"  Name="timeBatDau" VerticalAlignment="Stretch" Margin="5" />
         <my:UCTimePicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Name="timeKetThuc" VerticalAlignment="Stretch" Margin="5" />
         <CheckBox Grid.Row="5" Grid.Column="1" x:Name="ckHoatDong" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
 
-        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 
-        <my:POSButtonIconHorizontal Grid.Row="0" Grid.Column="2" x:Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnMoi_Click" />
-        <my:POSButtonIconHorizontal Grid.Row="1" Grid.Column="2" x:Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
-        <my:POSButtonIconHorizontal Grid.Row="2" Grid.Column="2" x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
+        <my:POSButtonFuntion Grid.Row="0" Grid.Column="4" Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnMoi_Click" Image="/GUI;component/Images/Notifications.png" />
+        <my:POSButtonFuntion Grid.Row="1" Grid.Column="4" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnThem_Click" Image="/GUI;component/Images/Save.png" />
+        <my:POSButtonFuntion Grid.Row="2" Grid.Column="4" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnXoa_Click" Image="/GUI;component/Images/RecycleBinFull.png" />
 
 
         <ListView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">

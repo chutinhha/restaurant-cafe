@@ -388,12 +388,14 @@ namespace ControlLibrary
         private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 1;
+            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
         private void btnThucAn_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 2;
+            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
@@ -402,6 +404,7 @@ namespace ControlLibrary
         private void btnTatCa_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 0;
+            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
@@ -542,24 +545,23 @@ namespace ControlLibrary
         {
             int col = gridItems.ColumnDefinitions.Count;
             int row = gridItems.RowDefinitions.Count;
-            ImageWidthItems = gridItems.ActualWidth / col - 4;
-            ImageHeightItems = gridItems.ActualHeight / row - 4;
-            double HeightText = 20;
+            ImageWidthItems = (gridItems.ActualWidth / col - 4) - 10;
+            ImageHeightItems = ((gridItems.ActualHeight - 10) / row - 4) - 30;
             foreach (POSButtonMenu item in gridItems.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems - HeightText;
+                item.ImageHeight = ImageHeightItems;
             }
             foreach (POSButtonMenu item in gridLoaiGroup.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems - HeightText;
+                item.ImageHeight = ImageHeightItems;
             }
 
             foreach (POSButtonMenu item in gridGroup.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems - HeightText;
+                item.ImageHeight = ImageHeightItems;
             }
         }
 

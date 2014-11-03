@@ -23,16 +23,16 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="1" Text="Loại giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="2" Text="Giá loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="1" Text="Loại giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="2" Text="Giá loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" IsEnabled="False" />
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGiaBan" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" SelectionChanged="cbbLoaiGiaBan_SelectionChanged" />
-            <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" IsEnabled="False" />
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGiaBan" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" SelectionChanged="cbbLoaiGiaBan_SelectionChanged" />
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
 
-            <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
-            <my:POSButtonIconHorizontal Grid.Row="4" Grid.ColumnSpan="2"  Name="btnThem" Content="Cập nhật" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
+            <my:POSButtonFuntion Grid.Row="4" Grid.Column="2" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnThem_Click" Image="/GUI;component/Images/Save.png" />
 
             <ListView Grid.Row="5" Grid.ColumnSpan="2" Name="lvData" SelectionChanged="lvData_SelectionChanged">
                 <ListView.View>
