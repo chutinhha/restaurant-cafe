@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace GUI
 {
@@ -12,98 +13,19 @@ namespace GUI
     {
         private Data.NHANVIEN mNhanVien = null;
         private Data.Transit mTransit = null;
+        List<Data.NHANVIEN> lsNhanVienXoa = null;
 
         public WindowQuanLyNhanVien(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            uCTile.TenChucNang = "Quản lý nhân viên";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
 
-        private void btnMoi_Click(object sender, RoutedEventArgs e)
+        void uCTile_OnEventExit()
         {
-            mNhanVien = null;
-            SetValues();
-        }
-
-        private void btnThem_Click(object sender, RoutedEventArgs e)
-        {
-            if (mNhanVien == null)
-            {
-                mNhanVien = new Data.NHANVIEN();
-                mNhanVien.Deleted = false;
-                mNhanVien.Visual = true;
-                GetValues();
-                Data.BONhanVien.Them(mNhanVien, mTransit);
-                LoadDanhSachNhanVien();
-                btnMoi_Click(sender, e);
-                lbStatus.Text = "Thêm thành công";
-            }
-            else
-            {
-                GetValues();
-                Data.BONhanVien.CapNhat(mNhanVien, mTransit);
-                LoadDanhSachNhanVien();
-                lbStatus.Text = "Cập nhật thành công";
-            }
-        }
-
-        private void btnThoat_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-        }
-
-        private void btnXoa_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvNhanVien.SelectedItems.Count > 0)
-            {
-                mNhanVien = (Data.NHANVIEN)((ListViewItem)lvNhanVien.SelectedItems[0]).Tag;
-                Data.BONhanVien.Xoa(mNhanVien.NhanVienID, mTransit);
-                LoadDanhSachNhanVien();
-                btnMoi_Click(sender, e);
-            }
-        }
-
-        private void GetValues()
-        {
-            mNhanVien.TenNhanVien = txtTenNhanVien.Text;
-            mNhanVien.TenDangNhap = txtTenDangNhap.Text;
-            mNhanVien.LoaiNhanVienID = (int)cbbLoaiNhanVien.SelectedValue;
-            if (txtMatKhau.Password != "")
-            {
-                mNhanVien.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
-            }
-        }
-
-        private bool CheckValues()
-        {
-            lbStatus.Text = "";
-            if (txtTenNhanVien.Text == "")
-            {
-                lbStatus.Text = "Tên nhân viên không được bỏ trống";
-                return false;
-            }
-            else if (txtTenDangNhap.Text == "")
-            {
-                lbStatus.Text = "Tên đăng nhập không được bỏ trống";
-                return false;
-            }
-            else if (txtTenDangNhap.Text.Length < 4)
-            {
-                lbStatus.Text = "Tên đăng nhập không được nhỏ hơn 4 ký tự";
-                return false;
-            }
-            else if (mNhanVien.NhanVienID == 0 && txtMatKhau.Password == "")
-            {
-                lbStatus.Text = "Mật khẩu không được bỏ trống";
-                return false;
-            }
-            else if (mNhanVien.NhanVienID == 0 && txtMatKhau.Password.Length < 4)
-            {
-                lbStatus.Text = "Mật khẩu không được nhỏ hơn 4 ký tự";
-                return false;
-            }
-
-            return true;
+            this.Close();
         }
 
         private void LoadDanhSachNhanVien()
@@ -112,58 +34,127 @@ namespace GUI
             lvNhanVien.Items.Clear();
             foreach (var item in lsArray)
             {
-                ListViewItem li = new ListViewItem();
-                li.Content = item;
-                li.Tag = item;
-                lvNhanVien.Items.Add(li);
+                AddList(item);
             }
         }
 
-        private void LoadLoaiNhanVien()
+        private void AddList(Data.NHANVIEN item)
         {
-            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAll(mTransit);
-            if (cbbLoaiNhanVien.Items.Count > 0)
-                cbbLoaiNhanVien.SelectedIndex = 0;
+            ListViewItem li = new ListViewItem();
+            li.Content = item;
+            li.Tag = item;
+            lvNhanVien.Items.Add(li);
         }
+
 
         private void lvNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvNhanVien.SelectedItems.Count > 0)
             {
-                mNhanVien = (Data.NHANVIEN)((ListViewItem)lvNhanVien.SelectedItems[0]).Tag;
-                SetValues();
-            }
-        }
-
-        private void SetValues()
-        {
-            if (mNhanVien == null)
-            {
-                if (cbbLoaiNhanVien.Items.Count > 0)
-                {
-                    cbbLoaiNhanVien.SelectedIndex = 0;
-                }
-                txtTenNhanVien.Text = "";
-                txtTenDangNhap.Text = "";
-                txtMatKhau.Password = "";
-                btnThem.Content = "Thêm nhân viên";
-            }
-            else
-            {
-                if (cbbLoaiNhanVien.Items.Count > 0)
-                {
-                    cbbLoaiNhanVien.SelectedValue = mNhanVien.LoaiNhanVienID;
-                }
-                txtTenNhanVien.Text = mNhanVien.TenNhanVien;
-                txtTenDangNhap.Text = mNhanVien.TenDangNhap;
-                btnThem.Content = "Cập nhật nhân viên";
-                txtMatKhau.Password = null;
+                ListViewItem li = (ListViewItem)lvNhanVien.SelectedItems[0];
+                mNhanVien = (Data.NHANVIEN)li.Tag;
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadLoaiNhanVien();
+            LoadDanhSachNhanVien();
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
+            if (win.ShowDialog() == true)
+            {
+                AddList(win._NhanVien);
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvNhanVien.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvNhanVien.SelectedItems[0];
+                mNhanVien = (Data.NHANVIEN)li.Tag;
+
+                UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
+                win._NhanVien = mNhanVien;
+                if (win.ShowDialog() == true)
+                {
+                    win._NhanVien.Edit = true;
+                    li.Tag = win._NhanVien;
+                    li.Content = win._NhanVien;
+                    lvNhanVien.Items.Refresh();
+                }
+            }
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvNhanVien.SelectedItems.Count > 0)
+            {
+                mNhanVien = (Data.NHANVIEN)((ListViewItem)lvNhanVien.SelectedItems[0]).Tag;
+                if (lsNhanVienXoa == null)
+                {
+                    lsNhanVienXoa = new List<Data.NHANVIEN>();
+                }
+                if (mNhanVien.NhanVienID > 0)
+                    lsNhanVienXoa.Add(mNhanVien);
+                lvNhanVien.Items.Remove(lvNhanVien.SelectedItems[0]);
+                if (lvNhanVien.Items.Count > 0)
+                {
+                    lvNhanVien.SelectedIndex = 0;
+                }
+            }
+        }
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            List<Data.NHANVIEN> lsNhanVien = null;
+            foreach (ListViewItem li in lvNhanVien.Items)
+            {
+                mNhanVien = (Data.NHANVIEN)li.Tag;
+                if (mNhanVien.NhanVienID == 0 || mNhanVien.Edit == true)
+                {
+                    if (lsNhanVien == null)
+                        lsNhanVien = new List<Data.NHANVIEN>();
+                    lsNhanVien.Add(mNhanVien);
+                }
+            }
+            Data.BONhanVien.Luu(lsNhanVien, lsNhanVienXoa, mTransit);
+            LoadDanhSachNhanVien();
+            MessageBox.Show("Lưu thành công");
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnLuu_Click(null, null);
+            }
+            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnThem_Click(null, null);
+            }
+            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnDanhSach_Click(null, null);
+            }
+            if (e.Key == System.Windows.Input.Key.F2)
+            {
+                btnSua_Click(null, null);
+            }
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+            }
+        }
+
+        private void btnDanhSach_Click(object sender, RoutedEventArgs e)
+        {
+            mNhanVien = null;
+            lsNhanVienXoa = null;
             LoadDanhSachNhanVien();
         }
     }
