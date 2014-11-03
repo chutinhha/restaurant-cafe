@@ -50,17 +50,17 @@ namespace ControlLibrary
             {
                 _Nhom = new Data.MENUNHOM();
                 _Nhom.Deleted = false;
-                _Nhom.Visual = true;
                 _Nhom.MayIn = 0;
                 _Nhom.GiamGia = 0;
                 _Nhom.LoaiNhomID = LoaiNhomID;
             }
             if (mBitmapImage != null)
             {
-                _Nhom.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhAnh.ImageBitmap);
+                _Nhom.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
             }
             _Nhom.TenDai = txtTenDai.Text;
             _Nhom.TenNgan = txtTenNgan.Text;
+            _Nhom.Visual = ckBan.IsChecked;
             if (txtSapXep.Text == "")
                 _Nhom.SapXep = 0;
             else
@@ -72,17 +72,17 @@ namespace ControlLibrary
             Data.BOMenuNhom.Xoa(_Nhom.NhomID, mTransit);
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void SetValues()
         {
             if (_Nhom != null)
             {
                 txtTenDai.Text = _Nhom.TenDai;
                 txtTenNgan.Text = _Nhom.TenNgan;
                 txtSapXep.Text = _Nhom.SapXep.ToString();
+                ckBan.IsChecked = _Nhom.Visual;
                 if (_Nhom.Hinh != null && _Nhom.Hinh.Length > 0)
                 {
-                    mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);                    
-                    btnHinhAnh.Image = mBitmapImage;
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);
                 }
             }
             else
@@ -90,28 +90,13 @@ namespace ControlLibrary
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
                 txtSapXep.Text = "";
+                ckBan.IsChecked = true;
             }
         }
 
-        private void btnHinhAnh_Click(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Stream checkStream = null;
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Multiselect = false;
-            openFileDialog.InitialDirectory = "c:\\";
-            openFileDialog.Filter = "All Image Files | *.*";
-            if ((bool)openFileDialog.ShowDialog())
-            {
-                if ((checkStream = openFileDialog.OpenFile()) != null)
-                {
-                    Stream fs = File.OpenRead(openFileDialog.FileName);
-                    mBitmapImage = new BitmapImage();
-                    mBitmapImage.BeginInit();
-                    mBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    mBitmapImage.StreamSource = fs;
-                    mBitmapImage.EndInit();
-                }
-            }
+            SetValues();
         }
 
         private void btnMauNen_Click(object sender, RoutedEventArgs e)

@@ -27,13 +27,13 @@ namespace UserControlLibrary
             mTransit = transit;
         }
 
-        private void btnTaoMoi_Click(object sender, RoutedEventArgs e)
+        private void btnMoi_Click(object sender, RoutedEventArgs e)
         {
             mLoaiGia = null;
             SetValues();
         }
 
-        private void btnThemMoi_Click(object sender, RoutedEventArgs e)
+        private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             if (CheckValues())
             {
@@ -42,14 +42,14 @@ namespace UserControlLibrary
                     GetValues();
                     Data.BOMenuLoaiGia.CapNhat(mLoaiGia, mTransit);
                     LoadDanhSachLoaiGia();
-                    btnTaoMoi_Click(sender, e);
+                    btnMoi_Click(sender, e);
                     lbStatus.Text = "Thêm thành công";
                 }
                 else
                 {
                     GetValues();
                     Data.BOMenuLoaiGia.Them(mLoaiGia, mTransit);
-                    btnTaoMoi_Click(null, null);
+                    btnMoi_Click(null, null);
                     LoadDanhSachLoaiGia();
                     lbStatus.Text = "Cập nhật thành công";
                 }
@@ -61,7 +61,7 @@ namespace UserControlLibrary
             if (mLoaiGia != null)
             {
                 Data.BOMenuLoaiGia.Xoa(mLoaiGia.LoaiGiaID, mTransit);
-                btnTaoMoi_Click(null, null);
+                btnMoi_Click(null, null);
                 LoadDanhSachLoaiGia();
             }
         }
@@ -123,7 +123,7 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDanhSachLoaiGia();
-            btnTaoMoi_Click(sender, e);
+            btnMoi_Click(sender, e);
         }
     }
 }

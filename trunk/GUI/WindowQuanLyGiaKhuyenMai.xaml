@@ -10,19 +10,43 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <my:POSButtonIconVertical Grid.Row="0" Content="Khuyến mãi" Name="btnKhuyenMai" Margin="5" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32" Click="btnKhuyenMai_Click" />
-            <my:POSButtonIconVertical Grid.Row="1" Content="Lịch biểu định kỳ" Margin="5" Name="btnLichBieuDinhKy" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLichBieuDinhKy_Click"/>
-            <my:POSButtonIconVertical Grid.Row="2" Content="Lịch biểu không định kỳ" Margin="5" Name="btnLichBieuKhongDinhKy" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLichBieuKhongDinhKy_Click"/>
-            <my:POSButtonIconVertical Grid.Row="3" Content="Loại giá" Margin="5" Name="btnLoaiGia" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnLoaiGia_Click"/>
-            <my:POSButtonIconVertical Grid.Row="4" Content="Danh sách bán" Margin="5" Name="btnDanhSachBan" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnDanhSachBan_Click"/>
-            <my:POSButtonIconVertical Grid.Row="5" Content="Quán lý giá" Margin="5" Name="btnQuanLyGia" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnQuanLyGia_Click"/>
+            <Button Grid.Row="0" Name="btnKhuyenMai" Margin="5" Click="btnKhuyenMai_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Khuyến mãi" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="1" Margin="5" Name="btnLichBieuDinhKy" Click="btnLichBieuDinhKy_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Lịch biểu định kỳ" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="2" Margin="5" Name="btnLichBieuKhongDinhKy" Click="btnLichBieuKhongDinhKy_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Lịch biểu không định kỳ" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="3" Margin="5" Name="btnLoaiGia" Click="btnLoaiGia_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Loại giá" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="4" Margin="5" Name="btnDanhSachBan" Click="btnDanhSachBan_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Danh sách bán" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="5" Margin="5" Name="btnQuanLyGia" Click="btnQuanLyGia_Click" Style="{StaticResource ButtonFuntion}" Background="#FF4EB89B">
+                <Button.Content>
+                    <TextBlock Text="Quán lý giá" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button.Content>
+            </Button>
         </Grid>
         <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
             <Rectangle.Stroke>

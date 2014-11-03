@@ -24,6 +24,7 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = new Data.Transit();
+            uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
         }
 
         private void btnQuanLyThucDon_Click(object sender, RoutedEventArgs e)
@@ -109,6 +110,11 @@ namespace GUI
         {
             WindowThongTinPhanMem win = new WindowThongTinPhanMem(mTransit);
             win.ShowDialog();
+        }
+
+        private void btnThoatPhanMem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -12,25 +12,26 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-            <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Máy In" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbMayIn" DisplayMemberPath="TieuDeIn" SelectedValuePath="MayInID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+            <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Máy In" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbMayIn" DisplayMemberPath="TieuDeIn" SelectedValuePath="MayInID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
+
+            <my:POSButtonFuntion Grid.Row="3" Grid.Column="1" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnThem_Click" Image="/GUI;component/Images/Save.png" />
+            <my:POSButtonFuntion Grid.Row="3" Grid.Column="0" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnXoa_Click" Image="/GUI;component/Images/RecycleBinFull.png" />           
             
-            <my:POSButtonIconHorizontal Grid.Row="3" Grid.Column="1" x:Name="btnThem" Content="Thêm" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
-            <my:POSButtonIconHorizontal Grid.Row="3" Grid.Column="0" x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
 
             <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" SelectionChanged="lvData_SelectionChanged">
                 <ListView.View>

@@ -5,18 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="768" Loaded="UserControl_Loaded">
-    <Grid Background="#FF21C256">
+    <Grid Background="#FF009F3B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
-            <ColumnDefinition Width="50*" />            
-        </Grid.ColumnDefinitions>  
-        <TextBox Grid.Column="0" Text="KARAOKE" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="16" BorderThickness="0" />
-        <TextBox Grid.Column="1" Text="Version 1.5.6.4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="16" BorderThickness="0" />
-        <TextBox Grid.Column="2" Text="KARAOKE" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="16" BorderThickness="0" />
-        <TextBox Grid.Column="3" Text="KARAOKE" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="16" BorderThickness="0" />
-        <TextBox Grid.Column="4" Name="lbTime" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="16" BorderThickness="0" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="60" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Text="Karaoke" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="1" Text="Version 1.5.6.4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="2" Name="lbTenChucNang" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="4" Name="lbTime" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14" />
+        <Grid Grid.Column="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="btnMinimized" Click="btnMinimized_Click" Content="-" />
+            <Button Grid.Column="1" Name="btnExit" Click="btnExit_Click" Content="X" Background="#FFE04343" Foreground="White" FontWeight="Bold" />
+        </Grid>
     </Grid>
 </UserControl>

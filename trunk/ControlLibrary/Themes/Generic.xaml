@@ -95,6 +95,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:POSButtonMenu}">
+        <Setter Property="Margin" Value="5,0,5,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonMenu}">
@@ -103,15 +104,15 @@
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50*"/>
-                                <RowDefinition Height="20" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="{TemplateBinding IsEnabled}" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}">
-                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Stretch="Fill" IsEnabled="{TemplateBinding IsEnabled}" />
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" IsEnabled="{TemplateBinding IsEnabled}" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}">
+                                <Image Grid.Row="0" Source="{TemplateBinding Image}" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Stretch="Fill" IsEnabled="{TemplateBinding IsEnabled}" />
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                                 </Border.Effect>
                             </Border>
-                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" Height="20" />
+                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" />
                         </Grid>
                     </Button>
                 </ControlTemplate>
@@ -244,12 +245,10 @@
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
-                        <!--<Button Background="{x:Null}" BorderBrush="#FF56007C" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
                             <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="{TemplateBinding ImageHeight}" Width="{TemplateBinding ImageWidth}" Margin="10" />
                             <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}"  TextWrapping="Wrap" TextAlignment="Center" />
                         </StackPanel>
-                        <!--</Button>-->
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -317,6 +316,46 @@
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSButtonFuntion}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonFuntion}">
+                    <Border Background="#FF58595B" CornerRadius="0" BorderBrush="#FF56007C" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+                            <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" />
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" Foreground="White" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSButtonMain}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonMain}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="0" BorderBrush="{TemplateBinding Background}" BorderThickness="0">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0"  Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" />
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{TemplateBinding TextTo}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="16" Foreground="White" Margin="5, 10, 5, 10" />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{TemplateBinding TextNho}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="14" Foreground="White" Margin="10, 0, 10, 0"  />
+                        </Grid>
+
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

@@ -14,22 +14,22 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nhóm quyền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nhóm quyền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbbNhomQuyen" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbNhanVien" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbbNhomQuyen" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbNhanVien" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" Foreground="Red" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 
-        <my:POSButtonIconHorizontal Grid.Row="0" Grid.Column="2" Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnMoi_Click" />
-        <my:POSButtonIconHorizontal Grid.Row="1" Grid.Column="2" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnThem_Click" Image="/GUI;component/Images/Add%202.png" />
-        <my:POSButtonIconHorizontal Grid.Row="2" Grid.Column="2" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="18" Click="btnXoa_Click" Image="/GUI;component/Images/Delete.png" />
+        <my:POSButtonFuntion Grid.Row="0" Grid.Column="4" Name="btnMoi" Content="Tạo mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnMoi_Click" Image="/GUI;component/Images/Notifications.png" />
+        <my:POSButtonFuntion Grid.Row="1" Grid.Column="4" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnThem_Click" Image="/GUI;component/Images/Save.png" />
+        <my:POSButtonFuntion Grid.Row="2" Grid.Column="4" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnXoa_Click" Image="/GUI;component/Images/RecycleBinFull.png" />
 
         <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>

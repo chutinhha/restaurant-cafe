@@ -31,11 +31,46 @@ namespace ControlLibrary
             newTimer.Interval = System.TimeSpan.FromSeconds(1);
             newTimer.Tick += newTimer_Tick;
             newTimer.Start();
+            if (OnEventMinimized == null)
+                btnMinimized.Visibility = System.Windows.Visibility.Hidden;
+            if (OnEventExit == null)
+                btnExit.Visibility = System.Windows.Visibility.Hidden;
+
         }
 
         private void newTimer_Tick(object sender, object e)
         {
-            lbTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");            
+            lbTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
+
+        private void btnMinimized_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnEventMinimized != null)
+            {
+                OnEventMinimized();
+            }
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnEventExit != null)
+            {
+                OnEventExit();
+            }
+        }
+
+        public string TenChucNang
+        {            
+            set
+            {
+                lbTenChucNang.Text = value;
+            }
+        }
+
+        public delegate void OnExit();
+        public delegate void OnMinimized();
+        public event OnExit OnEventExit;
+        public event OnMinimized OnEventMinimized;
     }
 }
+

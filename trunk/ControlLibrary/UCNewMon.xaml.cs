@@ -27,32 +27,35 @@ namespace ControlLibrary
         {
             if (_Mon != null)
             {
-                GetData();
+                GetValues();
                 Data.BOMenuMon.CapNhat(_Mon, mTransit);
             }
             else
             {
-                GetData();
+                GetValues();
                 Data.BOMenuMon.Them(_Mon, mTransit);
             }
         }
 
-        public void GetData()
+        private void GetValues()
         {
             if (_Mon == null)
             {
                 _Mon = new Data.MENUMON();
+                _Mon.Deleted = false;
+                _Mon.NhomID = NhomID;
             }
             _Mon.TenDai = txtTenDai.Text;
-            _Mon.TenNgan = txtTenNgan.Text;
+            _Mon.TenNgan = txtTenNgan.Text;            
             if (mBitmapImage != null)
             {
-                _Mon.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhAnh.ImageBitmap); ;
+                _Mon.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
             }
             if (txtSapXep.Text == "")
                 _Mon.SapXep = 0;
             else
                 _Mon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
+            _Mon.Visual = ckBan.IsChecked;
         }
 
         public void Xoa()
@@ -60,47 +63,42 @@ namespace ControlLibrary
             Data.BOMenuMon.Xoa(_Mon.MonID, mTransit);
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void SetValues()
         {
             if (_Mon != null)
             {
                 txtTenDai.Text = _Mon.TenDai;
                 txtTenNgan.Text = _Mon.TenNgan;
                 txtSapXep.Text = _Mon.SapXep.ToString();
+                ckBan.IsChecked = _Mon.Visual;
                 if (_Mon.Hinh != null && _Mon.Hinh.Length > 0)
                 {
-                    mBitmapImage = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.Hinh);
-                    btnHinhAnh.Image = mBitmapImage;
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.Hinh);
                 }
             }
+            else
+            {
+                txtTenDai.Text = "";
+                txtTenNgan.Text = "";
+                txtSapXep.Text = "1";
+                ckBan.IsChecked = true;
+            }
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetValues();
         }
 
         private BitmapImage mBitmapImage = null;
-        private void btnHinhAnh_Click(object sender, RoutedEventArgs e)
-        {
-            Stream checkStream = null;
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Multiselect = false;
-            openFileDialog.InitialDirectory = "c:\\";
-            openFileDialog.Filter = "All Image Files | *.*";
-            if ((bool)openFileDialog.ShowDialog())
-            {
-
-                if ((checkStream = openFileDialog.OpenFile()) != null)
-                {
-                    Stream fs = File.OpenRead(openFileDialog.FileName);
-                    mBitmapImage = new BitmapImage();
-                    mBitmapImage.BeginInit();
-                    mBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    mBitmapImage.StreamSource = fs;
-                    mBitmapImage.EndInit();
-                }
-            }
-        }
 
         private void btnMauNen_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnHinhAnh__OnBitmapImageChanged(object sender)
+        {
+            mBitmapImage = btnHinhAnh.ImageBitmap;
         }
     }
 }
