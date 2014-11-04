@@ -8,6 +8,8 @@ namespace Data
     public class Transit
     {
         public Data.NHANVIEN NhanVien { get; set; }
+        public BAN Ban { get; set; }
+        public ProcessOrder.BanHang BanHang { get; set; }
         public string HashMD5 { get; set; }
         public KaraokeEntities KaraokeEntities { get; set; }
         public THAMSO ThamSo { get; set; }
