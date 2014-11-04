@@ -131,6 +131,7 @@
                             <SolidColorBrush />
                         </Border.BorderBrush>
                         <Border.Background>
+
                             <ImageBrush ImageSource="/ControlLibrary;component/Images/Circle_Green.png" Stretch="Uniform" TileMode="None" />
                         </Border.Background>
                     </Border>
@@ -149,14 +150,19 @@
     </Style>
 
     <Style TargetType="{x:Type local:POSButtonChucNang}">
+        <Setter Property="Margin" Value="4"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonChucNang}">
-                    <Border Background="White" BorderBrush="{x:Null}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="32*"/>
+                            </Grid.ColumnDefinitions>
                             <Image Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="5,0,5,0" />
-                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Width="55" />
-                        </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14" Foreground="White" />
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

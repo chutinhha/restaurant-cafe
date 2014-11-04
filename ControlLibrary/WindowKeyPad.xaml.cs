@@ -1,82 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ControlLibrary
 {
     /// <summary>
     /// Interaction logic for WindowKeyPad.xaml
     /// </summary>
-    public partial class WindowKeyPad : Window
-    {        
-        public WindowKeyPad()
+    public partial class WindowKeyPad : Window, INotifyPropertyChanged
+    {
+        #region Public Properties
+
+        private string _result;
+
+        public string Result
         {
-            _TextBox = null;
-            InitializeComponent();
+            get { return _result; }
+            private set { _result = value; this.OnPropertyChanged("Result"); }
         }
 
-        public TextBox _TextBox { get; set; }
-        public TypeKeyPad _TypeKeyPad { get; set; }
+        #endregion Public Properties
 
-        private void btnNumber_Click(object sender, RoutedEventArgs e)
+        public WindowKeyPad(Window owner)
         {
-            if (_TextBox != null)
+            InitializeComponent();
+            this.Owner = owner;
+            this.DataContext = this;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            switch (button.CommandParameter.ToString())
             {
-                Button btn = (Button)sender;
-                string input = btn.Content.ToString();
-                switch (input)
-                {
-                    case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                    case "5":
-                    case "6":
-                    case "7":
-                    case "8":
-                    case "9":
-                        _TextBox.Text += btn;
-                        break;
-                    case ".":
-                        if (_TypeKeyPad == TypeKeyPad.Decimal)
-                            if (_TextBox.Text.Length == 0)
+                case "ESC":
+                    this.DialogResult = false;
+                    break;
 
-                                _TextBox.Text += "0.";
+                case "RETURN":
+                    this.DialogResult = true;
+                    break;
 
-                            else if (!_TextBox.Text.Contains('.'))
-                                _TextBox.Text += ".";
-                        break;
-                }
+                case "BACK":
+                    if (Result.Length > 0)
+                        Result = Result.Remove(Result.Length - 1);
+                    break;
+
+                default:
+                    Result += button.Content.ToString();
+                    break;
             }
         }
 
-        private void btnEnter_Click(object sender, RoutedEventArgs e)
-        {
+        #region INotifyPropertyChanged members
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
         }
 
-        private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnBackSpace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion INotifyPropertyChanged members
     }
 }
