@@ -8,16 +8,7 @@ namespace Data
     public class BOBan
     {
         public static List<BAN> GetTablePerArea(Transit transit, KHU khu)
-        {
-            //var list = transit.KaraokeEntities.KHUs.Where(o => 1 == 1).Select(s => s.).ToList();           
-
-
-            var res = from x in transit.KaraokeEntities.KHUs.Where(s => s.KhuID == khu.KhuID)
-                      select new KHU() { TenKhu = x.TenKhu, KhuID = x.KhuID };
-            foreach (KHU item in res)
-            {
-                Console.WriteLine(item);
-            }
+        {           
             return transit.KaraokeEntities.BANs.Where(o => o.KhuID == khu.KhuID).ToList<BAN>();
         }
         public static List<BAN> GetAll(Transit mTransit)

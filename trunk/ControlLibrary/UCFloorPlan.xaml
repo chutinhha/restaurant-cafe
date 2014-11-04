@@ -5,5 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="573" d:DesignWidth="648" xmlns:my="clr-namespace:ControlLibrary" Loaded="UserControl_Loaded">
-    <Grid Background="{x:Null}" Name="gridFloorPlan"></Grid>
+    <Grid>
+        <Image Name="imgBackground" Stretch="Fill"></Image>
+        <Grid Background="{x:Null}" Name="gridFloorPlan"></Grid>
+    </Grid>
 </UserControl>

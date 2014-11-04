@@ -23,7 +23,7 @@ namespace ControlLibrary
             InitializeComponent();
         }
 
-        public int FontSize { get; set; }
+        public int _FontSize { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
