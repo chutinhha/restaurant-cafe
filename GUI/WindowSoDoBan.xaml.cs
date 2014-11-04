@@ -35,5 +35,12 @@ namespace GUI
         {
             this.Close();
         }
+
+        private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
+        {
+            mTransit.Ban = tbl._Ban;
+            WindowBanHang win = new WindowBanHang(mTransit);
+            win.ShowDialog();
+        }
     }
 }

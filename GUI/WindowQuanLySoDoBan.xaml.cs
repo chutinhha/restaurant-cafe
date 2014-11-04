@@ -49,9 +49,8 @@ namespace GUI
                 btnHinhSoDoBan.Image = Utilities.ImageHandler.BitmapImageFromByteArray(khu.Hinh);                
             }
         }
-        private void uCFloorPlan1__OnEventFloorPlan(object ob)
-        {
-            ControlLibrary.POSButtonTable tbl = (ControlLibrary.POSButtonTable)ob;
+        private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
+        {            
             mTableButton = tbl;
             txtTenBan.Text = tbl._Ban.TenBan;
             if (tbl._Ban.Hinh != null && tbl._Ban.Hinh.Length > 0)

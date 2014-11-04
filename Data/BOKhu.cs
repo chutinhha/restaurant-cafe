@@ -8,8 +8,8 @@ namespace Data
     public class BOKhu
     {
         public static List<KHU> GetAllVisual(Transit transit)
-        {
-            return transit.KaraokeEntities.KHUs.Where(k => k.Deleted == false).Where(k => k.Visual == true).ToList();
+        {            
+            return transit.KaraokeEntities.KHUs.Where(k => k.Deleted == false && k.Visual == true).ToList();
         }
         public static List<KHU> GetAll(Transit transit)
         {

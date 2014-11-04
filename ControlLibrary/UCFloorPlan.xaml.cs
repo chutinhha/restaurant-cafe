@@ -19,11 +19,11 @@ namespace ControlLibrary
     /// </summary>
     public partial class UCFloorPlan : UserControl
     {
-        public delegate void EventFloorPlan(object ob);
+        public delegate void EventFloorPlan(POSButtonTable tbl);
         public event EventFloorPlan _OnEventFloorPlan;
         public bool _IsEdit { get; set; }        
         private Data.Transit mTransit;
-        private Data.KHU mKhu;
+        public Data.KHU _Khu { get; set; }
         public UCFloorPlan()
         {            
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace ControlLibrary
         public void Init(Data.Transit tran)
         {
             mTransit = tran;
-        }
+        }        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {            
         }
@@ -69,20 +69,26 @@ namespace ControlLibrary
         }
         public void LoadTable()
         {
-            if (mKhu!=null)
+            if (_Khu != null)
             {
-                var listBan = Data.BOBan.GetTablePerArea(mTransit, mKhu);
+                var listBan = Data.BOBan.GetTablePerArea(mTransit, _Khu);
                 gridFloorPlan.Children.Clear();
                 foreach (var ban in listBan)
                 {
                     addTable(ban);
                 }
+
+                imgBackground.Source = Utilities.ImageHandler.BitmapImageFromByteArray(_Khu.Hinh);
             }
+        }
+        public void LoadBackgroundImage(BitmapImage img)
+        {
+            imgBackground.Source = img;
         }
         public void LoadTable(Data.KHU khu)
         {
-            mKhu = khu;
-            LoadTable();            
+            _Khu = khu;
+            LoadTable();
         }
         public void addTable(Data.BAN ban)
         {

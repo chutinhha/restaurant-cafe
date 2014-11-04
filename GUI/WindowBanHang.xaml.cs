@@ -8,12 +8,11 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
-        private Data.Transit mTransit = null;
-        private Data.ProcessOrder.BanHang mBanHang=null;
+        private Data.Transit mTransit = null;        
         public WindowBanHang(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;
+            mTransit = transit;            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
