@@ -28,44 +28,42 @@ namespace ControlLibrary
         }
         public TextBox _TextBox { get; set; }
         public TypeKeyPad _TypeKeyPad { get; set; }
+        public bool _Decimal { get; set; }
 
-        private void btnNumber_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
             if (_TextBox != null)
-            {
-                Button btn = (Button)sender;
-                string input = btn.Content.ToString();
-                switch (input)
+            {                
+                Button button = sender as Button;                
+                switch (button.CommandParameter.ToString())
                 {
-                    case "0":
-                    case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                    case "5":
-                    case "6":
-                    case "7":
-                    case "8":
-                    case "9":
-                        _TextBox.Text += input;
+                    case "ESC":
                         break;
-                    case ".":
-                        if (_TypeKeyPad == TypeKeyPad.Decimal)
-                            if (_TextBox.Text.Length == 0)
-                                _TextBox.Text += "0.";
-                            else if (!_TextBox.Text.Contains('.'))
-                                _TextBox.Text += ".";
+
+                    case "RETURN":
+                        break;
+
+                    case "BACK":
+                        if (_TextBox.Text.Length > 0)
+                            _TextBox.Text = _TextBox.Text.Remove(_TextBox.Text.Length - 1);
+                        break;
+                    case "DECIMAL":
+                        _TextBox.Text += button.Content.ToString();
+                        break;
+                    default:
+                        _TextBox.Text += button.Content.ToString();
                         break;
                 }
             }
-        }
+        }       
 
-        private void btnBackSpace_Click(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_TextBox != null && _TextBox.Text.Length > 0)
+            if (_Decimal == false)
             {
-                _TextBox.Text = _TextBox.Text.Remove(_TextBox.Text.Length - 1);
-            }            
+                gDecimal.Visibility = System.Windows.Visibility.Hidden;
+                gNumpad0.SetValue(Grid.ColumnSpanProperty, 2);
+            }
         }
     }
 }

@@ -246,6 +246,7 @@ namespace ControlLibrary
 
         private void SetButtonItem(POSButtonMenu btn, Data.MENUMON item)
         {
+            btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;
@@ -313,6 +314,7 @@ namespace ControlLibrary
 
         public void SetButtonGroup(POSButtonMenu btn, Data.MENUNHOM item)
         {
+            btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenNgan;
@@ -502,6 +504,7 @@ namespace ControlLibrary
 
         private void SetButtonKichThuocMon(POSButtonMenu btn, Data.MENUKICHTHUOCMON item, Data.MENUMON mon)
         {
+            btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
             btn.Content = item.TenLoaiBan;
@@ -520,6 +523,7 @@ namespace ControlLibrary
 
         public void SetButtonEmpty(POSButtonMenu btn)
         {
+            btn.Visibility = System.Windows.Visibility.Hidden;
             btn.Content = "";
             btn.Image = null;
             btn.Background = System.Windows.Media.Brushes.Gray;
@@ -555,7 +559,7 @@ namespace ControlLibrary
             foreach (POSButtonMenu item in gridLoaiGroup.Children)
             {
                 item.ImageWidth = ImageWidthItems;
-                item.ImageHeight = ImageHeightItems;
+                item.ImageHeight = ImageHeightItems - 20;
             }
 
             foreach (POSButtonMenu item in gridGroup.Children)

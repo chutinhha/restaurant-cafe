@@ -1,13 +1,18 @@
 ﻿<Window x:Class="GUI.WindowBanHang"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowBanHang" Height="768" Width="1024" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+        Title="WindowBanHang" Height="768" Width="1024" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+        <Grid Grid.Column="0" Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="20*"/>
@@ -32,26 +37,33 @@
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/GUI;component/Images/us%20dollar.png" />
-                <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Thay đổi giá" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="3" Name="btnChucNang_3" Content="Chuyển bàn" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="4" Name="btnChucNang_4" Content="Tách bàn" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="5" Name="btnChucNang_5" Content="" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="6" Name="btnChucNang_6" Content="" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="7" Name="btnChucNang_7" Content="" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="8" Name="btnChucNang_8" Content="" Click="btnChucNang_Click" />
-                <my:POSButtonChucNang Grid.Row="9" Name="btnChucNang_9" Content="Thoát" Click="btnChucNang_Click" />
+                <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/GUI;component/Images/us%20dollar.png" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Thay đổi giá" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="3" Name="btnChucNang_3" Content="Chuyển bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="4" Name="btnChucNang_4" Content="Tách bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="5" Name="btnChucNang_5" Content="Xóa món" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="6" Name="btnChucNang_6" Content="Xóa toàn bộ món" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="7" Name="btnChucNang_7" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="8" Name="btnChucNang_8" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="9" Name="btnChucNang_9" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
 
             </Grid>
-            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1" Margin="5"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5"/>
             <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
-                <ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBan}" Width="70" Header="SL"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="200" Header="Tên món"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ThanhTien}" Width="150" Header="Thành tiền"/>
+                    </GridView>
+                </ListView.View>
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ListViewItem>
                             <Border CornerRadius="0" BorderBrush="#FF56007C" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2">
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Height="30" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="200"/>
@@ -69,9 +81,9 @@
                             </Border>
                         </ListViewItem>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
             </ListView>
-            <my:UCKeyPad Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  Name="uCKeyPad1" VerticalAlignment="Stretch" />
+            <my:UCKeyPad Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  Name="uCKeyPad" VerticalAlignment="Stretch" _Decimal="False" />
             <Grid Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Stretch"  Name="grid1" VerticalAlignment="Stretch" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
@@ -79,12 +91,12 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"  Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-                <TextBox Grid.Row="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
-                <TextBlock Grid.Row="2"  Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap"/>
-                <TextBox Grid.Row="3"  x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"/>
+                <TextBlock Grid.Row="0"  Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+                <TextBox Grid.Row="1"  x:Name="txtTenMon" Text="Trần Minh Tiến" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"/>
+                <TextBlock Grid.Row="2"  Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+                <TextBox Grid.Row="3"  x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" />
             </Grid>
         </Grid>
-        <my:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" />
+        <my:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" />
     </Grid>
 </Window>
