@@ -1,7 +1,7 @@
 ﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.WindowQuanLyMayIn"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowQuanLyMayIn" Height="768" Width="1024" Loaded="Window_Loaded">
+        Title="WindowQuanLyMayIn" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>

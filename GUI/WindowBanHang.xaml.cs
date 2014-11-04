@@ -9,7 +9,7 @@ namespace GUI
     public partial class WindowBanHang : Window
     {
         private Data.Transit mTransit = null;
-
+        private Data.ProcessOrder.BanHang mBanHang=null;
         public WindowBanHang(Data.Transit transit)
         {
             InitializeComponent();
@@ -34,21 +34,12 @@ namespace GUI
         {
             if (ob is Data.MENUKICHTHUOCMON)
             {
-                Data.POSChiTietBanHang item = new Data.POSChiTietBanHang();
                 Data.MENUKICHTHUOCMON ktm = (Data.MENUKICHTHUOCMON)ob;
-                item.MENUKICHTHUOCMON = new Data.MENUKICHTHUOCMON();
-                item.MENUKICHTHUOCMON.GiaBanMacDinh = ktm.GiaBanMacDinh;
-                item.MENUKICHTHUOCMON.SoLuongBanBan = ktm.SoLuongBanBan;
-                item.SoLuongBan = ktm.SoLuongBanBan;
-                item.GiaBan = ktm.GiaBanMacDinh;
-                item.MENUKICHTHUOCMON.TenLoaiBan = ktm.TenLoaiBan;
-                item.MENUKICHTHUOCMON.MENUMON = new Data.MENUMON();
-                item.MENUKICHTHUOCMON.MENUMON.TenDai = ktm.MENUMON.TenDai;
+                Data.ProcessOrder.ChiTietBanHang item = new Data.ProcessOrder.ChiTietBanHang(ktm);
                 AddChiTietBanHang(item);
             }
         }
-
-        private Data.CHITIETBANHANG mChiTietBanHang = null;
+        
 
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
@@ -89,9 +80,9 @@ namespace GUI
             lvData.Items.Clear();
         }
 
-        private Data.POSChiTietBanHang mPOSChiTietBanHang = null;
+        private Data.ProcessOrder.ChiTietBanHang mChiTietBanHang = null;
 
-        private void AddChiTietBanHang(Data.POSChiTietBanHang item)
+        private void AddChiTietBanHang(Data.ProcessOrder.ChiTietBanHang item)
         {
             ListViewItem li = new ListViewItem();
             li.Content = item;
@@ -106,7 +97,7 @@ namespace GUI
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mPOSChiTietBanHang = (Data.POSChiTietBanHang)lvData.SelectedItems[0];
+                mChiTietBanHang = (Data.ProcessOrder.ChiTietBanHang)lvData.SelectedItems[0];
                 ThayDoiQty();
             }
         }
@@ -114,11 +105,11 @@ namespace GUI
         private bool IsThayDoiSoLuong = true;
         private void ThayDoiQty()
         {
-            if (mPOSChiTietBanHang != null)
+            if (mChiTietBanHang != null)
             {
                 IsThayDoiSoLuong = false;
-                txtSoLuong.Text = mPOSChiTietBanHang.SoLuongBan.ToString();
-                txtTenMon.Text = mPOSChiTietBanHang.TenMon.ToString();
+                txtSoLuong.Text = mChiTietBanHang.SoLuongBan.ToString();
+                txtTenMon.Text = mChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
                 TextBox_PreviewMouseDown(txtSoLuong, null);
                 IsThayDoiSoLuong = true;
@@ -134,17 +125,17 @@ namespace GUI
 
         private void txtSoLuong_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (mPOSChiTietBanHang != null && IsThayDoiSoLuong)
+            if (mChiTietBanHang != null && IsThayDoiSoLuong)
             {
                 string str = "1";
                 if (txtSoLuong.Text != "")
                 {
                     str = txtSoLuong.Text;
                 }
-                mPOSChiTietBanHang.SoLuongBan = System.Convert.ToInt32(str);
+                mChiTietBanHang.SoLuongBan = System.Convert.ToInt32(str);
                 if (lvData.SelectedItems.Count > 0)
                 {
-                    lvData.SelectedItems[0] = mPOSChiTietBanHang;
+                    lvData.SelectedItems[0] = mChiTietBanHang;
                     lvData.Items.Refresh();
                 }
             }

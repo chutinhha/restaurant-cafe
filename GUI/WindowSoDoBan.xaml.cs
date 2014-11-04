@@ -27,7 +27,8 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.Init(mTransit);
-            uCListArea1._UCFloorPlan = uCFloorPlan1;
+            uCListArea1.Init(mTransit);
+            uCListArea1._UCFloorPlan = uCFloorPlan1;            
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)

@@ -11,8 +11,7 @@ namespace GUI
     /// </summary>
     public partial class WindowQuanLySoDoBan : Window
     {
-        private Data.Transit mTransit = null;
-        private Data.BAN mBan;
+        private Data.Transit mTransit = null;          
         private ControlLibrary.POSButtonTable mTableButton;
 
         public WindowQuanLySoDoBan(Data.Transit transit)
@@ -29,20 +28,27 @@ namespace GUI
 
         private void LoadKhuVuc()
         {
-            cboKhuVuc.ItemsSource = Data.BOKhu.GetAll();
+            cboKhuVuc.ItemsSource = Data.BOKhu.GetAll(mTransit);
             if (cboKhuVuc.Items.Count > 0)
             {
                 cboKhuVuc.SelectedItem = cboKhuVuc.Items[0];
-                uCFloorPlan1.LoadTable((Data.KHU)cboKhuVuc.Items[0]);
+                LoadChiTietKhuVuc((Data.KHU)cboKhuVuc.Items[0]);                
             }
         }
 
         private void cboKhuVuc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;
-            uCFloorPlan1.LoadTable(khu);
+            Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;            
+            LoadChiTietKhuVuc(khu);
         }
-
+        private void LoadChiTietKhuVuc(Data.KHU khu)
+        {            
+            uCFloorPlan1.LoadTable(khu);            
+            if (khu.Hinh!=null &&khu.Hinh.Length>0)
+            {
+                btnHinhSoDoBan.Image = Utilities.ImageHandler.BitmapImageFromByteArray(khu.Hinh);                
+            }
+        }
         private void uCFloorPlan1__OnEventFloorPlan(object ob)
         {
             ControlLibrary.POSButtonTable tbl = (ControlLibrary.POSButtonTable)ob;
@@ -81,6 +87,7 @@ namespace GUI
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.SaveChange();
+            Data.BOKhu.CapNhatHinh(uCFloorPlan1._Khu, mTransit);
         }
 
         private void txtTenBan_TextChanged(object sender, TextChangedEventArgs e)
@@ -113,10 +120,15 @@ namespace GUI
                 //mTableButton.TableDraw();
             }
         }
-
+        private void btnHinhSoDoBan__OnBitmapImageChanged(object sender)
+        {
+            uCFloorPlan1.LoadBackgroundImage(btnHinhSoDoBan.ImageBitmap);
+            uCFloorPlan1._Khu.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhSoDoBan.ImageBitmap);
+        }
         private void btnHuyThayDoi_Click(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.LoadTable();
         }
+        
     }
 }

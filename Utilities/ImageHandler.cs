@@ -50,13 +50,17 @@ namespace Utilities
 
         public static BitmapImage BitmapImageFromByteArray(Byte[] bytes)
         {
-            MemoryStream stream = new MemoryStream(bytes);
-            stream.Seek(0, SeekOrigin.Begin);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
+            if (bytes!=null && bytes.Length>0)
+            {
+                MemoryStream stream = new MemoryStream(bytes);
+                stream.Seek(0, SeekOrigin.Begin);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.EndInit();
+                return image;
+            }
+            return null;
         }
 
         public static BitmapImage BitmapImageCopy(BitmapImage img)
