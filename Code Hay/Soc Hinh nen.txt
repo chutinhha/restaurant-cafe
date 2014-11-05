@@ -1,0 +1,6 @@
+<LinearGradientBrush EndPoint="0,0" StartPoint="8,8" MappingMode="Absolute" SpreadMethod="Repeat">
+    <GradientStop Color="Black" Offset="0" />
+    <GradientStop Color="Black" Offset="0.1" />
+    <GradientStop Color="White" Offset="0.1" />
+    <GradientStop Color="White" Offset="1" />
+</LinearGradientBrush>
