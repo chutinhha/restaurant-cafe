@@ -35,7 +35,7 @@ namespace Data
             return item.NhanVienID;
         }
 
-        public static int CapNhat(NHANVIEN item, Transit mTransit)
+        public static int Sua(NHANVIEN item, Transit mTransit)
         {
             NHANVIEN m = (from x in mTransit.KaraokeEntities.NHANVIENs where x.NhanVienID == item.NhanVienID select x).First();
             m.TenNhanVien = item.TenNhanVien;
@@ -49,18 +49,18 @@ namespace Data
             return item.NhanVienID;
         }
 
-        public static void Luu(List<NHANVIEN> lsNhanVien, List<NHANVIEN> lsNhanVienXoa, Transit mTransit)
+        public static void Luu(List<NHANVIEN> lsArray, List<NHANVIEN> lsArrayDeleted, Transit mTransit)
         {
-            if (lsNhanVien != null)
-                foreach (NHANVIEN item in lsNhanVien)
+            if (lsArray != null)
+                foreach (NHANVIEN item in lsArray)
                 {
                     if (item.NhanVienID > 0)
-                        CapNhat(item, mTransit);
+                        Sua(item, mTransit);
                     else
                         Them(item, mTransit);
                 }
-            if (lsNhanVienXoa != null)
-                foreach (NHANVIEN item in lsNhanVienXoa)
+            if (lsArrayDeleted != null)
+                foreach (NHANVIEN item in lsArrayDeleted)
                 {
                     Xoa(item.NhanVienID, mTransit);
                 }

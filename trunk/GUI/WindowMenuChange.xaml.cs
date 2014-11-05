@@ -24,7 +24,7 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenu.OnEventMenu += new ControlLibrary.UCMenu.EventMenu(uCMenu_OnEventMenu);
+            uCMenu.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(uCMenu_OnEventMenu);
             uCMenu.Init(mTransit);
         }
 
@@ -36,7 +36,7 @@ namespace GUI
             if (ob is Data.MENUNHOM)
             {
 
-                ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
+                UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
                 uc._Nhom = (Data.MENUNHOM)ob;
                 NhomID = uc._Nhom.NhomID;
                 svChinhSuaMenu.Children.Clear();
@@ -50,7 +50,7 @@ namespace GUI
             else if (ob is Data.MENUMON)
             {
 
-                ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(NhomID, mTransit);
+                UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit);
                 uc._Mon = (Data.MENUMON)ob;
                 svChinhSuaMenu.Children.Clear();
                 svChinhSuaMenu.Children.Add(uc);
@@ -71,7 +71,7 @@ namespace GUI
             lbStatus.Text = "";
             if (LoaiNhomID != 0)
             {
-                ControlLibrary.UCNewNhom uc = new ControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
+                UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
                 svChinhSuaMenu.Children.Clear();
                 svChinhSuaMenu.Children.Add(uc);
                 btnCapNhat.Visibility = System.Windows.Visibility.Visible;
@@ -89,7 +89,7 @@ namespace GUI
             if (NhomID != 0)
             {
                 lbStatus.Text = "";
-                ControlLibrary.UCNewMon uc = new ControlLibrary.UCNewMon(NhomID, mTransit);
+                UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit);
                 svChinhSuaMenu.Children.Clear();
                 svChinhSuaMenu.Children.Add(uc);
                 btnCapNhat.Visibility = System.Windows.Visibility.Visible;
@@ -104,16 +104,16 @@ namespace GUI
 
         private void btnCapNhat_Click(object sender, RoutedEventArgs e)
         {
-            if (svChinhSuaMenu.Children[0] is ControlLibrary.UCNewNhom)
+            if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewNhom)
             {
-                ControlLibrary.UCNewNhom uc = (ControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
+                UserControlLibrary.UCNewNhom uc = (UserControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
                 uc.CapNhat();
                 lbStatus.Text = "Cập nhật nhóm thành công";
                 uCMenu.RefershMenu(true);
             }
-            else if (svChinhSuaMenu.Children[0] is ControlLibrary.UCNewMon)
+            else if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewMon)
             {
-                ControlLibrary.UCNewMon uc = (ControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
+                UserControlLibrary.UCNewMon uc = (UserControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
                 uc.CapNhat();
                 lbStatus.Text = "Cập nhật món thành công";
                 uCMenu.RefershMenu(false);
@@ -122,16 +122,16 @@ namespace GUI
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            if (svChinhSuaMenu.Children[0] is ControlLibrary.UCNewNhom)
+            if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewNhom)
             {
-                ControlLibrary.UCNewNhom uc = (ControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
+                UserControlLibrary.UCNewNhom uc = (UserControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
                 uc.Xoa();
                 lbStatus.Text = "Xóa nhóm thành công";
                 uCMenu.RefershMenu(true);
             }
-            else if (svChinhSuaMenu.Children[0] is ControlLibrary.UCNewMon)
+            else if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewMon)
             {
-                ControlLibrary.UCNewMon uc = (ControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
+                UserControlLibrary.UCNewMon uc = (UserControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
                 uc.Xoa();
                 lbStatus.Text = "Xóa món thành công";
                 uCMenu.RefershMenu(false);

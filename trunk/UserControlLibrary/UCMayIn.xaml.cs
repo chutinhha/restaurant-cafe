@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace UserControlLibrary
 {
@@ -9,7 +11,8 @@ namespace UserControlLibrary
     public partial class UCMayIn : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.MAYIN mMayIn = null;
+        private Data.MAYIN mItem = null;
+        List<Data.MAYIN> lsArrayDeleted = null;
 
         public UCMayIn(Data.Transit transit)
         {
@@ -17,89 +20,58 @@ namespace UserControlLibrary
             mTransit = transit;
         }
 
-        private void SetValues()
+        private void LoadDanhSach()
         {
-            if (mMayIn == null)
+            List<Data.MAYIN> lsArray = Data.BOMayIn.GetAll(mTransit);
+            lvData.Items.Clear();
+            foreach (var item in lsArray)
             {
-
-                txtTieuDeMayIn.Text = "";
-                txtSoLanIn.Text = "1";
-                ckHopDungTien.IsChecked = false;
-                ckChoPhepIn.IsChecked = true;
-                if (cbbTenMayIn.Items.Count > 0)
-                {
-                    cbbTenMayIn.SelectedIndex = 0;
-                }
-                btnThem.Content = "Thêm máy in";
-            }
-            else
-            {
-                txtSoLanIn.Text = mMayIn.SoLanIn.ToString();
-                txtTieuDeMayIn.Text = mMayIn.TieuDeIn;
-                ckHopDungTien.IsChecked = mMayIn.HopDungTien;
-                cbbTenMayIn.SelectedItem = mMayIn.TenMayIn;
-                ckChoPhepIn.IsChecked = mMayIn.Visual;
-                btnThem.Content = "Cập nhật máy in";
+                AddList(item);
             }
         }
 
-        private void GetValues()
+        private void AddList(Data.MAYIN item)
         {
-            mMayIn.TieuDeIn = txtTieuDeMayIn.Text;
-            mMayIn.SoLanIn = System.Convert.ToInt32(txtSoLanIn.Text);
-            mMayIn.HopDungTien = ckHopDungTien.IsChecked;
-            mMayIn.TenMayIn = cbbTenMayIn.SelectedItem.ToString();
-            mMayIn.Visual = ckChoPhepIn.IsChecked;
+            ListViewItem li = new ListViewItem();
+            li.Content = item;
+            li.Tag = item;
+            lvData.Items.Add(li);
         }
 
-        private bool CheckValues()
-        {
-            lbStatus.Text = "";
-            if (txtTieuDeMayIn.Text == "")
-            {
-                lbStatus.Text = "Tiêu đề máy in không được bỏ trống";
-                return false;
-            }
-
-            if (txtSoLanIn.Text == "")
-                txtSoLanIn.Text = "1";
-            return true;
-        }
-
-        private void lvMayIn_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mMayIn = (Data.MAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                SetValues();
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.MAYIN)li.Tag;
             }
         }
 
-        private void btnMoi_Click(object sender, RoutedEventArgs e)
-        {
-            mMayIn = null;
-            SetValues();
-        }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckValues())
+            UserControlLibrary.WindowThemMayIn win = new UserControlLibrary.WindowThemMayIn(mTransit);
+            if (win.ShowDialog() == true)
             {
-                if (mMayIn == null)
+                AddList(win._Item);
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.MAYIN)li.Tag;
+
+                UserControlLibrary.WindowThemMayIn win = new UserControlLibrary.WindowThemMayIn(mTransit);
+                win._Item = mItem;
+                if (win.ShowDialog() == true)
                 {
-                    mMayIn = new Data.MAYIN();
-                    GetValues();
-                    Data.BOMayIn.Them(mMayIn, mTransit);
-                    lbStatus.Text = "Thêm thành công";
-                    LoadDanhSachMayIn();
-                    btnMoi_Click(sender, e);
-                }
-                else
-                {
-                    GetValues();
-                    Data.BOMayIn.Sua(mMayIn, mTransit);
-                    lbStatus.Text = "Cập nhật thành công";
-                    LoadDanhSachMayIn();
+                    win._Item.Edit = true;
+                    li.Tag = win._Item;
+                    li.Content = win._Item;
+                    lvData.Items.Refresh();
                 }
             }
         }
@@ -108,44 +80,78 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mMayIn = (Data.MAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOMayIn.Xoa(mMayIn.MayInID, mTransit);
-                lbStatus.Text = "Xóa thành công";
+                mItem = (Data.MAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                if (lsArrayDeleted == null)
+                {
+                    lsArrayDeleted = new List<Data.MAYIN>();
+                }
+                if (mItem.MayInID > 0)
+                    lsArrayDeleted.Add(mItem);
+                lvData.Items.Remove(lvData.SelectedItems[0]);
+                if (lvData.Items.Count > 0)
+                {
+                    lvData.SelectedIndex = 0;
+                }
             }
         }
 
-        private void LoadDanhSachMayIn()
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            System.Collections.Generic.List<Data.MAYIN> lsArray = Data.BOMayIn.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (Data.MAYIN item in lsArray)
+            List<Data.MAYIN> lsArray = null;
+            foreach (ListViewItem li in lvData.Items)
             {
-                ListViewItem li = new ListViewItem();
-                li.Content = item;
-                li.Tag = item;
-                lvData.Items.Add(li);
+                mItem = (Data.MAYIN)li.Tag;
+                if (mItem.MayInID == 0 || mItem.Edit == true)
+                {
+                    if (lsArray == null)
+                        lsArray = new List<Data.MAYIN>();
+                    lsArray.Add(mItem);
+                }
+            }
+            Data.BOMayIn.Luu(lsArray, lsArrayDeleted, mTransit);
+            LoadDanhSach();
+            MessageBox.Show("Lưu thành công");
+        }
+
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnThem_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnDanhSach_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.F2)
+            {
+                btnSua_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+                return;
             }
         }
 
-        private void LoadPrinter()
+        private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            foreach (string s in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
-            {
-                cbbTenMayIn.Items.Add(s);
-            }
-            if (cbbTenMayIn.Items.Count > 0)
-            {
-                cbbTenMayIn.SelectedIndex = 0;
-            }
-
+            mItem = null;
+            lsArrayDeleted = null;
+            LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            mMayIn = null;
-            SetValues();
-            LoadPrinter();
-            LoadDanhSachMayIn();
+            LoadDanhSach();
         }
     }
 }

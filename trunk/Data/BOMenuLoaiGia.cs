@@ -27,7 +27,7 @@ namespace Data
             return item.LoaiGiaID;
         }
 
-        public static int CapNhat(MENULOAIGIA item, Transit mTransit)
+        public static int Sua(MENULOAIGIA item, Transit mTransit)
         {
             MENULOAIGIA m = (from x in mTransit.KaraokeEntities.MENULOAIGIAs where x.LoaiGiaID == item.LoaiGiaID select x).First();
             m.DienGiai = item.DienGiai;
@@ -36,6 +36,23 @@ namespace Data
             m.Deleted = item.Deleted;
             mTransit.KaraokeEntities.SaveChanges();
             return item.LoaiGiaID;
+        }
+
+        public static void Luu(List<MENULOAIGIA> lsArray, List<MENULOAIGIA> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (MENULOAIGIA item in lsArray)
+                {
+                    if (item.LoaiGiaID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (MENULOAIGIA item in lsArrayDeleted)
+                {
+                    Xoa(item.LoaiGiaID, mTransit);
+                }
         }
     }
 }

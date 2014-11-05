@@ -32,8 +32,27 @@ namespace Data
             LOAIKHACHHANG m = (from x in mTransit.KaraokeEntities.LOAIKHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
             m.TenLoaiKhachHang = item.TenLoaiKhachHang;
             m.PhanTramGiamGia = item.PhanTramGiamGia;
+            m.Visual = item.Visual;
+            m.Edit = false;
             mTransit.KaraokeEntities.SaveChanges();
             return item.LoaiKhachHangID;
+        }
+
+        public static void Luu(List<LOAIKHACHHANG> lsArray, List<LOAIKHACHHANG> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (LOAIKHACHHANG item in lsArray)
+                {
+                    if (item.LoaiKhachHangID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (LOAIKHACHHANG item in lsArrayDeleted)
+                {
+                    Xoa(item.LoaiKhachHangID, mTransit);
+                }
         }
     }
 }

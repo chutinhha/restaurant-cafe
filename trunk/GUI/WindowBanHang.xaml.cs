@@ -17,7 +17,7 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenuBanHang.OnEventMenu += new ControlLibrary.UCMenu.EventMenu(uCMenuBanHang_OnEventMenu);
+            uCMenuBanHang.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(uCMenuBanHang_OnEventMenu);
             uCMenuBanHang.Init(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";

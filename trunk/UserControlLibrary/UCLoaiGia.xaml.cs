@@ -19,111 +19,148 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCLoaiGia : UserControl
     {
-        private Data.MENULOAIGIA mLoaiGia = null;
         private Data.Transit mTransit = null;
+        private Data.MENULOAIGIA mItem = null;
+        List<Data.MENULOAIGIA> lsArrayDeleted = null;
+
         public UCLoaiGia(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
         }
 
-        private void btnMoi_Click(object sender, RoutedEventArgs e)
+        private void LoadDanhSach()
         {
-            mLoaiGia = null;
-            SetValues();
+            List<Data.MENULOAIGIA> lsArray = Data.BOMenuLoaiGia.GetAll(mTransit);
+            lvData.Items.Clear();
+            foreach (var item in lsArray)
+            {
+                AddList(item);
+            }
         }
+
+        private void AddList(Data.MENULOAIGIA item)
+        {
+            ListViewItem li = new ListViewItem();
+            li.Content = item;
+            li.Tag = item;
+            lvData.Items.Add(li);
+        }
+
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.MENULOAIGIA)li.Tag;
+            }
+        }
+
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckValues())
+            UserControlLibrary.WindowThemLoaiGia win = new UserControlLibrary.WindowThemLoaiGia(mTransit);
+            if (win.ShowDialog() == true)
             {
-                if (mLoaiGia != null)
+                AddList(win._Item);
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.MENULOAIGIA)li.Tag;
+
+                UserControlLibrary.WindowThemLoaiGia win = new UserControlLibrary.WindowThemLoaiGia(mTransit);
+                win._Item = mItem;
+                if (win.ShowDialog() == true)
                 {
-                    GetValues();
-                    Data.BOMenuLoaiGia.CapNhat(mLoaiGia, mTransit);
-                    LoadDanhSachLoaiGia();
-                    btnMoi_Click(sender, e);
-                    lbStatus.Text = "Thêm thành công";
-                }
-                else
-                {
-                    GetValues();
-                    Data.BOMenuLoaiGia.Them(mLoaiGia, mTransit);
-                    btnMoi_Click(null, null);
-                    LoadDanhSachLoaiGia();
-                    lbStatus.Text = "Cập nhật thành công";
+                    win._Item.Edit = true;
+                    li.Tag = win._Item;
+                    li.Content = win._Item;
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            if (mLoaiGia != null)
+            if (lvData.SelectedItems.Count > 0)
             {
-                Data.BOMenuLoaiGia.Xoa(mLoaiGia.LoaiGiaID, mTransit);
-                btnMoi_Click(null, null);
-                LoadDanhSachLoaiGia();
+                mItem = (Data.MENULOAIGIA)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                if (lsArrayDeleted == null)
+                {
+                    lsArrayDeleted = new List<Data.MENULOAIGIA>();
+                }
+                if (mItem.LoaiGiaID > 0)
+                    lsArrayDeleted.Add(mItem);
+                lvData.Items.Remove(lvData.SelectedItems[0]);
+                if (lvData.Items.Count > 0)
+                {
+                    lvData.SelectedIndex = 0;
+                }
             }
         }
 
-        private void LoadDanhSachLoaiGia()
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            lvData.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
+            List<Data.MENULOAIGIA> lsArray = null;
+            foreach (ListViewItem li in lvData.Items)
+            {
+                mItem = (Data.MENULOAIGIA)li.Tag;
+                if (mItem.LoaiGiaID == 0 || mItem.Edit == true)
+                {
+                    if (lsArray == null)
+                        lsArray = new List<Data.MENULOAIGIA>();
+                    lsArray.Add(mItem);
+                }
+            }
+            Data.BOMenuLoaiGia.Luu(lsArray, lsArrayDeleted, mTransit);
+            LoadDanhSach();
+            MessageBox.Show("Lưu thành công");
         }
 
-        private bool CheckValues()
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            lbStatus.Text = "";
-            if (txtLoaiGia.Text == "")
+            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                lbStatus.Text = "Loại giá không được bỏ trống";
-                return false;
+                btnLuu_Click(null, null);
+                return;
             }
-            return true;
-        }
-
-        private void GetValues()
-        {
-            if (mLoaiGia == null)
+            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                mLoaiGia = new Data.MENULOAIGIA();
+                btnThem_Click(null, null);
+                return;
             }
-            mLoaiGia.DienGiai = txtDienGiai.Text;
-            mLoaiGia.Ten = txtLoaiGia.Text;
-            mLoaiGia.Deleted = false;
-            mLoaiGia.Visual = true;
-        }
-
-        private void SetValues()
-        {
-            if (mLoaiGia != null)
+            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                txtDienGiai.Text = mLoaiGia.DienGiai;
-                txtLoaiGia.Text = mLoaiGia.Ten;
-                btnThem.Content = "Cập nhật";
+                btnDanhSach_Click(null, null);
+                return;
             }
-            else
+            if (e.Key == System.Windows.Input.Key.F2)
             {
-                txtDienGiai.Text = "";
-                txtLoaiGia.Text = "";
-                btnThem.Content = "Thêm mới";
+                btnSua_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+                return;
             }
         }
 
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as ListView).SelectedItem;
-            if (item != null)
-            {
-                mLoaiGia = (item as Data.MENULOAIGIA);
-                SetValues();
-            }
+            mItem = null;
+            lsArrayDeleted = null;
+            LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadDanhSachLoaiGia();
-            btnMoi_Click(sender, e);
+            LoadDanhSach();
         }
     }
 }

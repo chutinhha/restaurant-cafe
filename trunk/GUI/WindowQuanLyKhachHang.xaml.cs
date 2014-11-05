@@ -50,6 +50,21 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             btnKhachHang_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý Khách Hàng";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (spNoiDung.Children[0] is UserControlLibrary.UCLoaiKhachHang)
+                ucLoaiKhachHang.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCKhachHang)
+                ucKhachHang.Window_KeyDown(sender, e);
         }
     }
 }

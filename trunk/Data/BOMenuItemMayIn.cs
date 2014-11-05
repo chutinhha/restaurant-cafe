@@ -36,5 +36,25 @@ namespace Data
             mTransit.KaraokeEntities.SaveChanges();
             return item.MayInID;
         }
+
+
+        public static void Luu(List<MENUITEMMAYIN> lsArray, Transit mTransit)
+        {
+            foreach (MENUITEMMAYIN item in lsArray)
+            {
+                if (item.Deleted == true)
+                {
+                    Xoa(item.MayInID, item.MonID, mTransit);
+                }
+                else
+                {
+                    int count = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == item.MayInID && x.MonID == item.MonID select x).Count();
+                    if (count == 0)
+                    {
+                        Them(item, mTransit);
+                    }
+                }
+            }
+        }
     }
 }

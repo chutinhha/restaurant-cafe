@@ -19,7 +19,7 @@ namespace UserControlLibrary
     public partial class WindowThemNhanVien : Window
     {
         private Data.Transit mTransit;
-        public Data.NHANVIEN _NhanVien { get; set; }
+        public Data.NHANVIEN _Item { get; set; }
         public WindowThemNhanVien(Data.Transit transit)
         {
             InitializeComponent();
@@ -41,13 +41,13 @@ namespace UserControlLibrary
         {
             if (CheckValues())
             {
-                if (_NhanVien == null)
+                if (_Item == null)
                 {
-                    _NhanVien = new Data.NHANVIEN();
-                    _NhanVien.Visual = true;
-                    _NhanVien.Deleted = false;
-                    _NhanVien.Edit = false;
-                    _NhanVien.NhanVienID = 0;
+                    _Item = new Data.NHANVIEN();
+                    _Item.Visual = true;
+                    _Item.Deleted = false;
+                    _Item.Edit = false;
+                    _Item.NhanVienID = 0;
                 }
 
                 GetValues();
@@ -65,7 +65,7 @@ namespace UserControlLibrary
 
         private void SetValues()
         {
-            if (_NhanVien == null)
+            if (_Item == null)
             {
                 if (cbbLoaiNhanVien.Items.Count > 0)
                 {
@@ -74,18 +74,18 @@ namespace UserControlLibrary
                 txtTenNhanVien.Text = "";
                 txtTenDangNhap.Text = "";
                 txtMatKhau.Password = "";
-                btnLuu.Content = "Thêm";
+                btnLuu.Content = mTransit.StringButton.Them;
                 lbTieuDe.Text = "Thêm Nhân Viên";
             }
             else
             {
                 if (cbbLoaiNhanVien.Items.Count > 0)
                 {
-                    cbbLoaiNhanVien.SelectedValue = _NhanVien.LoaiNhanVienID;
+                    cbbLoaiNhanVien.SelectedValue = _Item.LoaiNhanVienID;
                 }
-                txtTenNhanVien.Text = _NhanVien.TenNhanVien;
-                txtTenDangNhap.Text = _NhanVien.TenDangNhap;
-                btnLuu.Content = "Lưu";
+                txtTenNhanVien.Text = _Item.TenNhanVien;
+                txtTenDangNhap.Text = _Item.TenDangNhap;
+                btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Nhân Viên";
                 txtMatKhau.Password = null;
             }
@@ -93,18 +93,18 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _NhanVien.TenNhanVien = txtTenNhanVien.Text;
-            _NhanVien.TenDangNhap = txtTenDangNhap.Text;
-            _NhanVien.LoaiNhanVienID = (int)cbbLoaiNhanVien.SelectedValue;
+            _Item.TenNhanVien = txtTenNhanVien.Text;
+            _Item.TenDangNhap = txtTenDangNhap.Text;
+            _Item.LoaiNhanVienID = (int)cbbLoaiNhanVien.SelectedValue;
             if (txtMatKhau.Password != "")
             {
-                _NhanVien.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
+                _Item.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
             }
-            if (_NhanVien.LOAINHANVIEN == null)
+            if (_Item.LOAINHANVIEN == null)
             {
-                _NhanVien.LOAINHANVIEN = new Data.LOAINHANVIEN();
+                _Item.LOAINHANVIEN = new Data.LOAINHANVIEN();
                 Data.LOAINHANVIEN lnv = (Data.LOAINHANVIEN)cbbLoaiNhanVien.SelectedItem;
-                _NhanVien.LOAINHANVIEN.TenLoaiNhanVien = lnv.TenLoaiNhanVien;
+                _Item.LOAINHANVIEN.TenLoaiNhanVien = lnv.TenLoaiNhanVien;
             }
         }
 
@@ -126,18 +126,34 @@ namespace UserControlLibrary
                 lbStatus.Text = "Tên đăng nhập không được nhỏ hơn 4 ký tự";
                 return false;
             }
-            else if (_NhanVien == null && txtMatKhau.Password == "")
+            else if (_Item == null && txtMatKhau.Password == "")
             {
                 lbStatus.Text = "Mật khẩu không được bỏ trống";
                 return false;
             }
-            else if (_NhanVien == null && txtMatKhau.Password.Length < 4)
+            else if (_Item == null && txtMatKhau.Password.Length < 4)
             {
                 lbStatus.Text = "Mật khẩu không được nhỏ hơn 4 ký tự";
                 return false;
             }
 
             return true;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
+
         }
     }
 }

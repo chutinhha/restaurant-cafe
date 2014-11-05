@@ -49,8 +49,26 @@ namespace Data
             m.GiaTriKetThuc = item.GiaTriKetThuc;
             m.Visual = item.Visual;
             m.Deleted = item.Deleted;
+            m.Edit = false;
             mTransit.KaraokeEntities.SaveChanges();
             return item.LichBieuDinhKyID;
+        }
+
+        public static void Luu(List<LICHBIEUDINHKY> lsArray, List<LICHBIEUDINHKY> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (LICHBIEUDINHKY item in lsArray)
+                {
+                    if (item.LichBieuDinhKyID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (LICHBIEUDINHKY item in lsArrayDeleted)
+                {
+                    Xoa(item.LichBieuDinhKyID, mTransit);
+                }
         }
     }
 }

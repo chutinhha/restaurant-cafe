@@ -32,6 +32,6 @@
         <my:POSButtonMain Name="btnBaoCaoThongKe" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Report.png" Margin="10" Click="btnBaoCaoThongKe_Click" Background="#FFFF3535" TextNho="Báo cáo" TextTo="Báo cáo ngày, tháng, năm"  />
         <my:POSButtonMain Name="btnThongTinCongTy" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Info.png" Margin="10" Click="btnThongTinCongTy_Click"  Background="#FF808081" TextNho="Công ty" TextTo="Thông tin công ty"  />
         <my:POSButtonMain Name="btnThongTinPhanMem" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/Unit.png" Margin="10" Click="btnThongTinPhanMem_Click" Background="#FF3568EE" TextNho="Giới thiệu" TextTo="Thông tin phần mềm"  />
-        <my:POSButtonMain Name="btnThoatPhanMem" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/ExtrasShutdown.png" Margin="10" Click="btnThoatPhanMem_Click" Background="#FFF04D4E" TextNho="Thoát" TextTo="Đóng chương trình"  />
+        <my:POSButtonMain Name="btnThoatPhanMem" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/GUI;component/Images/ExtrasShutdown.png" Margin="10" Click="btnThoatPhanMem_Click" Background="#FFF04D4E" TextNho="Thoát" TextTo="Đóng chương trình" />
     </Grid>
 </Window>

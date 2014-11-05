@@ -1,31 +1,47 @@
 ﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.WindowQuanLyMayIn"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowQuanLyMayIn" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="WindowQuanLyMayIn" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="100*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-            </Grid.RowDefinitions>
-            <my:POSButtonIconVertical Grid.Row="0" Content="Danh Sách Máy In" Name="btnMayIn"  Margin="5" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32" Click="btnMayIn_Click" />
-            <my:POSButtonIconVertical Grid.Row="1" Content="Menu máy in" Margin="5" Name="btnMenuMayIn" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnMenuMayIn_Click"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Name="btnMayIn" Margin="5" Click="btnMayIn_Click" Style="{StaticResource ButtonFuntion}" Background="#FF6C4727">
+                    <Button.Content>
+                        <TextBlock Text="Danh Sách Máy In" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Name="btnMenuMayIn" Margin="5" Click="btnMenuMayIn_Click" Style="{StaticResource ButtonFuntion}" Background="#FF6C4727">
+                    <Button.Content>
+                        <TextBlock Text="Menu máy in" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Blue" Offset="0.1"/>
+                        <GradientStop Color="Red" Offset="0.9"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+            </Rectangle>
+            <StackPanel Grid.Column="2" Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
-        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
-            <Rectangle.Stroke>
-                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
-                    <GradientStop Color="White" Offset="0"/>
-                    <GradientStop Color="Blue" Offset="0.1"/>
-                    <GradientStop Color="Red" Offset="0.9"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Rectangle.Stroke>
-        </Rectangle>
-        <StackPanel Grid.Column="2" Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Window>

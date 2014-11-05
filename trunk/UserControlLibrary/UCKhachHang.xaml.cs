@@ -20,38 +20,67 @@ namespace UserControlLibrary
     public partial class UCKhachHang : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.KHACHHANG mKhachHang = null;
+        private Data.KHACHHANG mItem = null;
+        List<Data.KHACHHANG> lsArrayDeleted = null;
+
         public UCKhachHang(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
         }
 
-        private void btnMoi_Click(object sender, RoutedEventArgs e)
+        private void LoadDanhSach()
         {
-            mKhachHang = null;
-            SetValues();
+            List<Data.KHACHHANG> lsArray = Data.BOKhachHang.GetAll(mTransit);
+            lvData.Items.Clear();
+            foreach (var item in lsArray)
+            {
+                AddList(item);
+            }
         }
+
+        private void AddList(Data.KHACHHANG item)
+        {
+            ListViewItem li = new ListViewItem();
+            li.Content = item;
+            li.Tag = item;
+            lvData.Items.Add(li);
+        }
+
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.KHACHHANG)li.Tag;
+            }
+        }
+
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckValues())
+            UserControlLibrary.WindowThemKhachHang win = new UserControlLibrary.WindowThemKhachHang(mTransit);
+            if (win.ShowDialog() == true)
             {
-                if (mKhachHang == null)
+                AddList(win._Item);
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.KHACHHANG)li.Tag;
+
+                UserControlLibrary.WindowThemKhachHang win = new UserControlLibrary.WindowThemKhachHang(mTransit);
+                win._Item = mItem;
+                if (win.ShowDialog() == true)
                 {
-                    mKhachHang = new Data.KHACHHANG();
-                    GetValues();
-                    Data.BOKhachHang.Them(mKhachHang, mTransit);
-                    lbStatus.Text = "Thêm thành công";
-                    LoadDanhSachKhachHang();
-                    btnMoi_Click(sender, e);
-                }
-                else
-                {
-                    GetValues();
-                    Data.BOKhachHang.Sua(mKhachHang, mTransit);
-                    lbStatus.Text = "Cập nhật thành công";
-                    LoadDanhSachKhachHang();
+                    win._Item.Edit = true;
+                    li.Tag = win._Item;
+                    li.Content = win._Item;
+                    lvData.Items.Refresh();
                 }
             }
         }
@@ -60,113 +89,78 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mKhachHang = (Data.KHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOKhachHang.Xoa(mKhachHang.KhachHangID, mTransit);
-                lbStatus.Text = "Xóa thành công";
+                mItem = (Data.KHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                if (lsArrayDeleted == null)
+                {
+                    lsArrayDeleted = new List<Data.KHACHHANG>();
+                }
+                if (mItem.KhachHangID > 0)
+                    lsArrayDeleted.Add(mItem);
+                lvData.Items.Remove(lvData.SelectedItems[0]);
+                if (lvData.Items.Count > 0)
+                {
+                    lvData.SelectedIndex = 0;
+                }
             }
         }
 
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            if (lvData.SelectedItems.Count > 0)
+            List<Data.KHACHHANG> lsArray = null;
+            foreach (ListViewItem li in lvData.Items)
             {
-                mKhachHang = (Data.KHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                SetValues();
+                mItem = (Data.KHACHHANG)li.Tag;
+                if (mItem.KhachHangID == 0 || mItem.Edit == true)
+                {
+                    if (lsArray == null)
+                        lsArray = new List<Data.KHACHHANG>();
+                    lsArray.Add(mItem);
+                }
             }
+            Data.BOKhachHang.Luu(lsArray, lsArrayDeleted, mTransit);
+            LoadDanhSach();
+            MessageBox.Show("Lưu thành công");
+        }
+
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnThem_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnDanhSach_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.F2)
+            {
+                btnSua_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+                return;
+            }
+        }
+
+        private void btnDanhSach_Click(object sender, RoutedEventArgs e)
+        {
+            mItem = null;
+            lsArrayDeleted = null;
+            LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            mKhachHang = null;
-            btnMoi_Click(sender, e);
-            SetValues();
-            LoadLoaiKhachHang();
-            LoadDanhSachKhachHang();
-        }
-
-        private void LoadDanhSachKhachHang()
-        {
-            System.Collections.Generic.List<Data.KHACHHANG> lsArray = Data.BOKhachHang.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (Data.KHACHHANG item in lsArray)
-            {
-                ListViewItem li = new ListViewItem();
-                li.Content = item;
-                li.Tag = item;
-                lvData.Items.Add(li);
-            }
-        }
-        private void SetValues()
-        {
-            if (mKhachHang == null)
-            {
-                txtTenKhachHang.Text = "";
-                txtEmail.Text = "";
-                txtFax.Text = "";
-                txtSoNha.Text = "";
-                txtTenDuong.Text = "";
-                txtDienThoaiBan.Text = "";
-                txtDienThoaiDong.Text = "";
-                txtDuNo.Text = "";
-                txtDuNoToiThieu.Text = "";
-                if (cbbLoaiKhachHang.Items.Count > 0)
-                    cbbLoaiKhachHang.SelectedIndex = 0;
-
-                btnThem.Content = "Thêm loại khách hàng";
-            }
-            else
-            {
-                txtTenKhachHang.Text = mKhachHang.TenKhachHang;
-                txtEmail.Text = mKhachHang.Email;
-                txtFax.Text = mKhachHang.Fax;
-                txtSoNha.Text = mKhachHang.SoNha;
-                txtTenDuong.Text = mKhachHang.TenDuong;
-                txtDienThoaiBan.Text = mKhachHang.Phone;
-                txtDienThoaiDong.Text = mKhachHang.Phone;
-                txtDuNo.Text = mKhachHang.DuNo.ToString();
-                txtDuNoToiThieu.Text = mKhachHang.DuNoToiThieu.ToString();
-                cbbLoaiKhachHang.SelectedValue = mKhachHang.LoaiKhachHangID;
-                btnThem.Content = "Cập nhật máy in";
-            }
-        }
-
-        private void GetValues()
-        {
-            mKhachHang.Visual = true;
-            mKhachHang.Deleted = false;
-            mKhachHang.TenKhachHang = txtTenKhachHang.Text;
-            mKhachHang.Email = txtEmail.Text;
-            mKhachHang.Fax = txtFax.Text;
-            mKhachHang.SoNha = txtSoNha.Text;
-            mKhachHang.TenDuong = txtTenDuong.Text;
-            mKhachHang.Mobile = txtDienThoaiBan.Text;
-            mKhachHang.Phone = txtDienThoaiDong.Text;
-            mKhachHang.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
-            mKhachHang.DuNo = System.Convert.ToDecimal(txtDuNo.Text);
-            mKhachHang.DuNoToiThieu = System.Convert.ToDecimal(txtDuNoToiThieu.Text);
-        }
-
-        private bool CheckValues()
-        {
-            lbStatus.Text = "";
-            if (txtTenKhachHang.Text == "")
-            {
-                lbStatus.Text = "Tên khách hàng không được bỏ trống";
-                return false;
-            }
-
-            if (txtDuNo.Text == "")
-                txtDuNo.Text = "0";
-            if (txtDuNoToiThieu.Text == "")
-                txtDuNoToiThieu.Text = "1000";
-            return true;
-        }
-
-        private void LoadLoaiKhachHang()
-        {
-            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAll(mTransit);
-            if (cbbLoaiKhachHang.Items.Count > 0)
-                cbbLoaiKhachHang.SelectedIndex = 0;
+            LoadDanhSach();
         }
     }
 }

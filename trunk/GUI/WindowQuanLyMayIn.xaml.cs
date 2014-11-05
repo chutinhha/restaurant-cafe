@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace GUI
 {
@@ -21,20 +10,11 @@ namespace GUI
         private Data.Transit mTransit;
         private UserControlLibrary.UCMayIn ucMayIn = null;
         private UserControlLibrary.UCMenuMayIn ucMenuMayIn = null;
+
         public WindowQuanLyMayIn(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-        }
-
-        private void btnMenuMayIn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ucMenuMayIn == null)
-            {
-                ucMenuMayIn = new UserControlLibrary.UCMenuMayIn(mTransit);
-            }
-            spNoiDung.Children.Clear();
-            spNoiDung.Children.Add(ucMenuMayIn);
         }
 
         private void btnMayIn_Click(object sender, RoutedEventArgs e)
@@ -47,9 +27,33 @@ namespace GUI
             spNoiDung.Children.Add(ucMayIn);
         }
 
+        private void btnMenuMayIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucMenuMayIn == null)
+            {
+                ucMenuMayIn = new UserControlLibrary.UCMenuMayIn(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucMenuMayIn);
+        }
+
+        private void uCTile_OnEventExit()
+        {
+            this.Close();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            btnMayIn_Click(sender, e);            
+            btnMayIn_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý Máy In";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (spNoiDung.Children[0] is UserControlLibrary.UCMayIn)
+                ucMayIn.Window_KeyDown(sender, e);            
+        }
+
     }
 }

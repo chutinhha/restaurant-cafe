@@ -18,56 +18,37 @@ namespace ControlLibrary
         {
             get
             {
-                return new TimeSpan(Convert.ToInt32(cbbHours.Text), Convert.ToInt32(cbbMinutes.Text), Convert.ToInt32(cbbSeconds.Text));
+                return new TimeSpan(Convert.ToInt32(txtHours.Text), Convert.ToInt32(txtMinutes.Text), Convert.ToInt32(txtSeconds.Text));
             }
             set
             {
-                cbbHours.Text = value.Hours.ToString();
-                cbbMinutes.Text = value.Minutes.ToString();
-                cbbSeconds.Text = value.Seconds.ToString();
+                if (value != null)
+                {
+                    txtHours.Text = value.Hours.ToString("00");
+                    txtMinutes.Text = value.Minutes.ToString("00");
+                    txtSeconds.Text = value.Seconds.ToString("00");
+                }
+                else
+                {
+                    txtHours.Text = "00";
+                    txtMinutes.Text = "00";
+                    txtSeconds.Text = "00";
+                }
             }
-        }
-
-        public TimeSpan TimeMax { get; set; }
-
-        public TimeSpan TimeMin { get; set; }
-
-        private void LoadHours()
-        {
-            cbbHours.Items.Clear();
-            for (int i = 0; i < 24; i++)
-            {
-                cbbHours.Items.Add((i).ToString());
-            }
-            cbbHours.SelectedIndex = 0;
-        }
-
-        private void LoadMinutes()
-        {
-            cbbMinutes.Items.Clear();
-            for (int i = 0; i < 12; i++)
-            {
-                cbbMinutes.Items.Add((i * 5).ToString());
-            }
-            cbbMinutes.SelectedIndex = 0;
-        }
-
-        private void LoadSeconds()
-        {
-            cbbSeconds.Items.Clear();
-            for (int i = 0; i < 12; i++)
-            {
-                cbbSeconds.Items.Add((i * 5).ToString());
-            }
-            cbbSeconds.SelectedIndex = 0;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadHours();
-            LoadMinutes();
-            LoadSeconds();
-            
+
+
+        }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }
