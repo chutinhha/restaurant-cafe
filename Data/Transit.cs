@@ -13,15 +13,28 @@ namespace Data
         public string HashMD5 { get; set; }
         public KaraokeEntities KaraokeEntities { get; set; }
         public THAMSO ThamSo { get; set; }
+        public ClassStringButton StringButton { get; set; }
         public Transit()
         {
+            StringButton = new ClassStringButton();
             HashMD5 = "KTr";
             KaraokeEntities = new KaraokeEntities();
-            var list= KaraokeEntities.THAMSOes.Where(o=>o.SoMay==1).ToList<THAMSO>();
-            if (list.Count>0)
+            var list = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).ToList<THAMSO>();
+            if (list.Count > 0)
             {
                 ThamSo = list[0];
             }
+        }
+
+        public class ClassStringButton
+        {
+            public string ThemMoi = "Thêm mới";
+            public string CapNhat = "Cập nhật";
+            public string Huy = "Hủy";
+            public string Luu = "Lưu";
+            public string Them = "Thêm";
+            
+
         }
     }
 }

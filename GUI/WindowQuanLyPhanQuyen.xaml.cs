@@ -28,11 +28,17 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             btnPhanQuyen_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý Phân quyên";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            this.Close();
         }
 
         private UserControlLibrary.UCPhanQuyen ucPhanQuyen = null;
-        private UserControlLibrary.UCNhomQuyen ucNhomQuyen = null;
-        private UserControlLibrary.UCNhomQuyenNhanVien ucNhomQuyenNhanVien = null;
+        private UserControlLibrary.UCQuyen ucQuyen = null;
 
         private void btnPhanQuyen_Click(object sender, RoutedEventArgs e)
         {
@@ -44,24 +50,22 @@ namespace GUI
             spNoiDung.Children.Add(ucPhanQuyen);
         }
 
-        private void btnNhomQuyen_Click(object sender, RoutedEventArgs e)
+        private void btnQuyen_Click(object sender, RoutedEventArgs e)
         {
-            if (ucNhomQuyen == null)
+            if (ucQuyen == null)
             {
-                ucNhomQuyen = new UserControlLibrary.UCNhomQuyen(mTransit);
+                ucQuyen = new UserControlLibrary.UCQuyen(mTransit);
             }
             spNoiDung.Children.Clear();
-            spNoiDung.Children.Add(ucNhomQuyen);
+            spNoiDung.Children.Add(ucQuyen);
         }
 
-        private void btnNhomQuyenNhanVien_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (ucNhomQuyenNhanVien == null)
-            {
-                ucNhomQuyenNhanVien = new UserControlLibrary.UCNhomQuyenNhanVien(mTransit);
-            }
-            spNoiDung.Children.Clear();
-            spNoiDung.Children.Add(ucNhomQuyenNhanVien);
+            //if (spNoiDung.Children[0] is UserControlLibrary.UCPhanQuyen)
+            //    ucPhanQuyen.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCQuyen)
+                ucQuyen.Window_KeyDown(sender, e);
         }
     }
 }

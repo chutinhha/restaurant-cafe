@@ -39,13 +39,30 @@ namespace Data
         {
             MAYIN m = (from x in mTransit.KaraokeEntities.MAYINs where x.MayInID == item.MayInID select x).First();
             m.TenMayIn = item.TenMayIn;
-            m.TieuDeIn = item.TieuDeIn;
-            m.Visual = item.Visual;
+            m.TieuDeIn = item.TieuDeIn;            
             m.HopDungTien = item.HopDungTien;
-            m.SoLanIn = item.SoLanIn;
+            m.SoLanIn = item.SoLanIn;            
             m.Visual = item.Visual;
+            m.Edit = false;
             mTransit.KaraokeEntities.SaveChanges();
             return item.MayInID;
+        }
+
+        public static void Luu(List<MAYIN> lsArray, List<MAYIN> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (MAYIN item in lsArray)
+                {
+                    if (item.MayInID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (MAYIN item in lsArrayDeleted)
+                {
+                    Xoa(item.MayInID, mTransit);
+                }
         }
     }
 }

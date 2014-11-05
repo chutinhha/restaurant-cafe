@@ -4,43 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded">
+             d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded" xmlns:my1="clr-namespace:UserControlLibrary">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
-            <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Máy In" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbMayIn" DisplayMemberPath="TieuDeIn" SelectedValuePath="MayInID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
+        <my1:UCMenuSetMayIn HorizontalAlignment="Stretch" x:Name="uCMenuSetMayIn" VerticalAlignment="Stretch" />        
+        <my1:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" x:Name="UCMenu"  VerticalAlignment="Stretch" _IsBanHang="False" />
 
-            <my:POSButtonFuntion Grid.Row="3" Grid.Column="1" Name="btnThem" Content="Thêm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnThem_Click" Image="/GUI;component/Images/Save.png" />
-            <my:POSButtonFuntion Grid.Row="3" Grid.Column="0" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" FontSize="14" Click="btnXoa_Click" Image="/GUI;component/Images/RecycleBinFull.png" />           
-            
-
-            <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" SelectionChanged="lvData_SelectionChanged">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=MAYIN.TieuDeIn}" Width="400" Header="Máy In"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-        <my:UCMenu Grid.Column="1" HorizontalAlignment="Stretch" x:Name="UCMenu"  VerticalAlignment="Stretch" _IsBanHang="False" />
     </Grid>
 </UserControl>

@@ -49,5 +49,22 @@ namespace Data
             mTransit.KaraokeEntities.SaveChanges();
             return item.LichBieuKhongDinhKyID;
         }
+
+        public static void Luu(List<LICHBIEUKHONGDINHKY> lsArray, List<LICHBIEUKHONGDINHKY> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (LICHBIEUKHONGDINHKY item in lsArray)
+                {
+                    if (item.LichBieuKhongDinhKyID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (LICHBIEUKHONGDINHKY item in lsArrayDeleted)
+                {
+                    Xoa(item.LichBieuKhongDinhKyID, mTransit);
+                }
+        }
     }
 }

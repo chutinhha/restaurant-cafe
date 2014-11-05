@@ -1,0 +1,40 @@
+﻿<UserControl xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.UCDanhSachBanList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Add%202.png" Background="#FF03AEDA" Click="btnThem_Click" />
+            <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
+            <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
+            <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/GUI;component/Images/Cancel.png" Background="#FFDF0023" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
+            <my:POSButtonFuntion Name="btnDanhSachGia" Content="Danh sách giá" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/GUI;component/Images/us%20dollar.png" Background="#FF4EB89B" Click="btnDanhSachGia_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách bán" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/GUI;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
+        </StackPanel>
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenLoaiBan}" Width="200" Header="Tên loại bán"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LOAIBAN.TenLoaiBan}" Width="150" Header="Loại bán"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KichThuocLoaiBan}" Width="150" Header="Kich thước loại bán"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GiaBanMacDinh}" Width="150" Header="Giá mặc định"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBanBan}" Width="150" Header="Số lượng bán"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TonKhoToiDa}" Width="150" Header="Tồn kho tối đa"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TonKhoToiThieu}" Width="150" Header="Tồn kho tối thiểu"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Bán"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

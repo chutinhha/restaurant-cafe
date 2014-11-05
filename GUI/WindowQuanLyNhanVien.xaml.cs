@@ -11,9 +11,9 @@ namespace GUI
     /// </summary>
     public partial class WindowQuanLyNhanVien : Window
     {
-        private Data.NHANVIEN mNhanVien = null;
+        private Data.NHANVIEN mItem = null;
         private Data.Transit mTransit = null;
-        List<Data.NHANVIEN> lsNhanVienXoa = null;
+        List<Data.NHANVIEN> lsArrayDeleted = null;
 
         public WindowQuanLyNhanVien(Data.Transit transit)
         {
@@ -28,10 +28,11 @@ namespace GUI
             this.Close();
         }
 
-        private void LoadDanhSachNhanVien()
+        private void LoadDanhSach()
         {
+            
             List<Data.NHANVIEN> lsArray = Data.BONhanVien.GetAll(mTransit);
-            lvNhanVien.Items.Clear();
+            lvData.Items.Clear();
             foreach (var item in lsArray)
             {
                 AddList(item);
@@ -43,22 +44,22 @@ namespace GUI
             ListViewItem li = new ListViewItem();
             li.Content = item;
             li.Tag = item;
-            lvNhanVien.Items.Add(li);
+            lvData.Items.Add(li);
         }
 
 
         private void lvNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lvNhanVien.SelectedItems.Count > 0)
+            if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvNhanVien.SelectedItems[0];
-                mNhanVien = (Data.NHANVIEN)li.Tag;
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.NHANVIEN)li.Tag;
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadDanhSachNhanVien();
+            LoadDanhSach();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -66,96 +67,100 @@ namespace GUI
             UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._NhanVien);
+                AddList(win._Item);
             }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvNhanVien.SelectedItems.Count > 0)
+        {            
+            if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvNhanVien.SelectedItems[0];
-                mNhanVien = (Data.NHANVIEN)li.Tag;
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.NHANVIEN)li.Tag;
 
                 UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
-                win._NhanVien = mNhanVien;
+                win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
-                    win._NhanVien.Edit = true;
-                    li.Tag = win._NhanVien;
-                    li.Content = win._NhanVien;
-                    lvNhanVien.Items.Refresh();
+                    win._Item.Edit = true;
+                    li.Tag = win._Item;
+                    li.Content = win._Item;
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            if (lvNhanVien.SelectedItems.Count > 0)
+            if (lvData.SelectedItems.Count > 0)
             {
-                mNhanVien = (Data.NHANVIEN)((ListViewItem)lvNhanVien.SelectedItems[0]).Tag;
-                if (lsNhanVienXoa == null)
+                mItem = (Data.NHANVIEN)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                if (lsArrayDeleted == null)
                 {
-                    lsNhanVienXoa = new List<Data.NHANVIEN>();
+                    lsArrayDeleted = new List<Data.NHANVIEN>();
                 }
-                if (mNhanVien.NhanVienID > 0)
-                    lsNhanVienXoa.Add(mNhanVien);
-                lvNhanVien.Items.Remove(lvNhanVien.SelectedItems[0]);
-                if (lvNhanVien.Items.Count > 0)
+                if (mItem.NhanVienID > 0)
+                    lsArrayDeleted.Add(mItem);
+                lvData.Items.Remove(lvData.SelectedItems[0]);
+                if (lvData.Items.Count > 0)
                 {
-                    lvNhanVien.SelectedIndex = 0;
+                    lvData.SelectedIndex = 0;
                 }
             }
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.NHANVIEN> lsNhanVien = null;
-            foreach (ListViewItem li in lvNhanVien.Items)
+            List<Data.NHANVIEN> lsArray = null;
+            foreach (ListViewItem li in lvData.Items)
             {
-                mNhanVien = (Data.NHANVIEN)li.Tag;
-                if (mNhanVien.NhanVienID == 0 || mNhanVien.Edit == true)
+                mItem = (Data.NHANVIEN)li.Tag;
+                if (mItem.NhanVienID == 0 || mItem.Edit == true)
                 {
-                    if (lsNhanVien == null)
-                        lsNhanVien = new List<Data.NHANVIEN>();
-                    lsNhanVien.Add(mNhanVien);
+                    if (lsArray == null)
+                        lsArray = new List<Data.NHANVIEN>();
+                    lsArray.Add(mItem);
                 }
             }
-            Data.BONhanVien.Luu(lsNhanVien, lsNhanVienXoa, mTransit);
-            LoadDanhSachNhanVien();
+            Data.BONhanVien.Luu(lsArray, lsArrayDeleted, mTransit);
+            LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
             if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnLuu_Click(null, null);
+                return;
             }
             if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnThem_Click(null, null);
+                return;
             }
             if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnDanhSach_Click(null, null);
+                return;
             }
             if (e.Key == System.Windows.Input.Key.F2)
             {
                 btnSua_Click(null, null);
+                return;
             }
             if (e.Key == System.Windows.Input.Key.Delete)
             {
                 btnXoa_Click(null, null);
+                return;
             }
         }
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mNhanVien = null;
-            lsNhanVienXoa = null;
-            LoadDanhSachNhanVien();
+            mItem = null;
+            lsArrayDeleted = null;
+            LoadDanhSach();
         }
     }
 }

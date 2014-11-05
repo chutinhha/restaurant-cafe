@@ -54,5 +54,22 @@ namespace Data
             mTransit.KaraokeEntities.SaveChanges();
             return item.KhachHangID;
         }
+
+        public static void Luu(List<KHACHHANG> lsArray, List<KHACHHANG> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (KHACHHANG item in lsArray)
+                {
+                    if (item.KhachHangID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (KHACHHANG item in lsArrayDeleted)
+                {
+                    Xoa(item.KhachHangID, mTransit);
+                }
+        }
     }
 }

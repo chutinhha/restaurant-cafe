@@ -44,7 +44,7 @@ namespace Data
             return item.GiaID;
         }
 
-        public static int CapNhat(MENUGIA item, Transit mTransit)
+        public static int Sua(MENUGIA item, Transit mTransit)
         {
             MENUGIA m = (from x in mTransit.KaraokeEntities.MENUGIAs where x.GiaID == item.GiaID select x).First();
             m.LoaiGiaID = item.LoaiGiaID;
@@ -52,6 +52,14 @@ namespace Data
             m.KichThuocMonID = item.KichThuocMonID;
             mTransit.KaraokeEntities.SaveChanges();
             return item.GiaID;
+        }
+
+        public static void Luu(List<MENUGIA> lsArray, Transit mTransit)
+        {
+            foreach (MENUGIA item in lsArray)
+            {
+                Sua(item, mTransit);
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Data
             return item.KichThuocMonID;
         }
 
-        public static int CapNhat(MENUKICHTHUOCMON item, Transit mTransit)
+        public static int Sua(MENUKICHTHUOCMON item, Transit mTransit)
         {
             MENUKICHTHUOCMON m = (from x in mTransit.KaraokeEntities.MENUKICHTHUOCMONs where x.KichThuocMonID == item.KichThuocMonID select x).First();
             m.MonID = item.MonID;
@@ -59,6 +59,22 @@ namespace Data
             return item.KichThuocMonID;
         }
 
+        public static void Luu(List<MENUKICHTHUOCMON> lsArray, List<MENUKICHTHUOCMON> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (MENUKICHTHUOCMON item in lsArray)
+                {
+                    if (item.KichThuocMonID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (MENUKICHTHUOCMON item in lsArrayDeleted)
+                {
+                    Xoa(item.KichThuocMonID, mTransit);
+                }
+        }
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System;
+using System.Windows.Input;
 
 namespace UserControlLibrary
 {
@@ -10,8 +11,9 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCLichBieuDinhKy : UserControl
     {
-        private Data.LICHBIEUDINHKY mLichBieuDinhKy = null;
         private Data.Transit mTransit = null;
+        private Data.LICHBIEUDINHKY mItem = null;
+        List<Data.LICHBIEUDINHKY> lsArrayDeleted = null;
 
         public UCLichBieuDinhKy(Data.Transit transit)
         {
@@ -19,31 +21,58 @@ namespace UserControlLibrary
             mTransit = transit;
         }
 
-        private void btnMoi_Click(object sender, RoutedEventArgs e)
+        private void LoadDanhSach()
         {
-            mLichBieuDinhKy = null;
-            SetValues();
+            List<Data.LICHBIEUDINHKY> lsArray = Data.BOLichBieuDinhKy.GetAll(mTransit);
+            lvData.Items.Clear();
+            foreach (var item in lsArray)
+            {
+                AddList(item);
+            }
         }
+
+        private void AddList(Data.LICHBIEUDINHKY item)
+        {
+            ListViewItem li = new ListViewItem();
+            li.Content = item;
+            li.Tag = item;
+            lvData.Items.Add(li);
+        }
+
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.LICHBIEUDINHKY)li.Tag;
+            }
+        }
+
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckValues())
+            UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
+            if (win.ShowDialog() == true)
             {
-                if (mLichBieuDinhKy == null)
+                AddList(win._Item);
+            }
+        }       
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.LICHBIEUDINHKY)li.Tag;
+
+                UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
+                win._Item = mItem;
+                if (win.ShowDialog() == true)
                 {
-                    mLichBieuDinhKy = new Data.LICHBIEUDINHKY();
-                    GetValues();
-                    Data.BOLichBieuDinhKy.Them(mLichBieuDinhKy, mTransit);
-                    lbStatus.Text = "Thêm thành công";
-                    LoadDanhSachLichBieu();
-                    btnMoi_Click(sender, e);
-                }
-                else
-                {
-                    GetValues();
-                    Data.BOLichBieuDinhKy.Sua(mLichBieuDinhKy, mTransit);
-                    lbStatus.Text = "Cập nhật thành công";
-                    LoadDanhSachLichBieu();
+                    win._Item.Edit = true;
+                    li.Tag = win._Item;
+                    li.Content = win._Item;
+                    lvData.Items.Refresh();
                 }
             }
         }
@@ -52,200 +81,79 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mLichBieuDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                Data.BOMayIn.Xoa(mLichBieuDinhKy.LichBieuDinhKyID, mTransit);
-                lbStatus.Text = "Xóa thành công";
-            }
-        }
-
-        private void cbbTheLoai_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbbTheLoai.SelectedValue != null)
-            {
-                int TheLoaiID = (int)cbbTheLoai.SelectedValue;
-                switch (TheLoaiID)
+                mItem = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                if (lsArrayDeleted == null)
                 {
-                    case 1:
-                        LoadLoaiLichBieuBatDau(1);
-                        LoadLoaiLichBieuKetThuc(1);
-                        lbGiaTriBatDau.Text = "Thứ bắt đầu";
-                        lbGiaTriKetThuc.Text = "Thứ kết thúc";
-                        break;
-
-                    case 2:
-                        LoadLoaiLichBieuBatDau(2);
-                        LoadLoaiLichBieuKetThuc(2);
-                        lbGiaTriBatDau.Text = "Ngày bắt đầu";
-                        lbGiaTriKetThuc.Text = "Ngày kết thúc";
-                        break;
-
-                    case 3:
-                        LoadLoaiLichBieuBatDau(2);
-                        LoadLoaiLichBieuKetThuc(3);
-                        lbGiaTriBatDau.Text = "Ngày";
-                        lbGiaTriKetThuc.Text = "Tháng";
-                        break;
-
-                    default:
-                        break;
+                    lsArrayDeleted = new List<Data.LICHBIEUDINHKY>();
+                }
+                if (mItem.LichBieuDinhKyID > 0)
+                    lsArrayDeleted.Add(mItem);
+                lvData.Items.Remove(lvData.SelectedItems[0]);
+                if (lvData.Items.Count > 0)
+                {
+                    lvData.SelectedIndex = 0;
                 }
             }
         }
 
-        private bool CheckValues()
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            lbStatus.Text = "";
-            if (txtTenLichBieu.Text == "")
+            List<Data.LICHBIEUDINHKY> lsArray = null;
+            foreach (ListViewItem li in lvData.Items)
             {
-                lbStatus.Text = "Tên lịch biểu không được bỏ trống";
-                return false;
-            }
-
-            if (txtUuTien.Text == "")
-                txtUuTien.Text = "1";
-            return true;
-        }
-
-        private void GetValues()
-        {
-            mLichBieuDinhKy.TenLichBieu = txtTenLichBieu.Text;
-            mLichBieuDinhKy.TheLoaiID = (int)cbbTheLoai.SelectedValue;
-            mLichBieuDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
-            mLichBieuDinhKy.GiaTriBatDau = (int)cbbGiaTriBatDau.SelectedValue;
-            mLichBieuDinhKy.GiaTriKetThuc = (int)cbbGiaTriKetThuc.SelectedValue;
-            mLichBieuDinhKy.UuTien = System.Convert.ToInt32(txtUuTien.Text);
-            mLichBieuDinhKy.Visual = true;
-            mLichBieuDinhKy.Deleted = false;
-            mLichBieuDinhKy.GioBatDau = timeBatDau.TimeCurent;
-            mLichBieuDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
-
-            switch (mLichBieuDinhKy.TheLoaiID)
-            {
-                case 1:
-                    if (mLichBieuDinhKy.GiaTriBatDau == mLichBieuDinhKy.GiaTriKetThuc)
-                    {
-                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
-                    }
-                    else
-                    {
-                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
-                    }
-                    break;
-
-                case 2:
-                    if (mLichBieuDinhKy.GiaTriBatDau == mLichBieuDinhKy.GiaTriKetThuc)
-                    {
-                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
-                    }
-                    else
-                    {
-                        mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
-                    }
-                    break;
-
-                case 3:
-                    mLichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " " + cbbGiaTriKetThuc.Text;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void LoadDanhSachLichBieu()
-        {
-            List<Data.LICHBIEUDINHKY> lsArray = Data.BOLichBieuDinhKy.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (Data.LICHBIEUDINHKY item in lsArray)
-            {
-                ListViewItem li = new ListViewItem();
-                li.Content = item;
-                li.Tag = item;
-                lvData.Items.Add(li);
-            }
-        }
-
-        private void LoadLoaiGia()
-        {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
-            if (cbbLoaiGia.Items.Count > 0)
-            {
-                cbbLoaiGia.SelectedIndex = 0;
-            }
-        }
-
-        private void LoadLoaiLichBieuBatDau(int TheLoaiID)
-        {
-            cbbGiaTriBatDau.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
-            if (cbbGiaTriBatDau.Items.Count > 0)
-                cbbGiaTriBatDau.SelectedIndex = 0;
-        }
-
-        private void LoadLoaiLichBieuKetThuc(int TheLoaiID)
-        {
-            cbbGiaTriKetThuc.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
-            if (cbbGiaTriKetThuc.Items.Count > 0)
-                cbbGiaTriKetThuc.SelectedIndex = 0;
-        }
-
-        private void LoadTheLoai()
-        {
-            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAll(mTransit);
-            if (cbbTheLoai.Items.Count > 0)
-            {
-                cbbTheLoai.SelectedIndex = 0;
-            }
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                mLichBieuDinhKy = (Data.LICHBIEUDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                SetValues();
-            }
-        }
-
-        private void SetValues()
-        {
-            if (mLichBieuDinhKy == null)
-            {
-                txtTenLichBieu.Text = "";
-                if (cbbLoaiGia.Items.Count > 0)
+                mItem = (Data.LICHBIEUDINHKY)li.Tag;
+                if (mItem.LichBieuDinhKyID == 0 || mItem.Edit == true)
                 {
-                    cbbLoaiGia.SelectedIndex = 0;
+                    if (lsArray == null)
+                        lsArray = new List<Data.LICHBIEUDINHKY>();
+                    lsArray.Add(mItem);
                 }
-                if (cbbTheLoai.Items.Count > 0)
-                {
-                    cbbTheLoai.SelectedIndex = 0;
-                }
-                txtUuTien.Text = "1";
-                timeBatDau.TimeCurent = new TimeSpan(0, 0, 0);
-                timeKetThuc.TimeCurent = new TimeSpan(0, 0, 0);
+            }
+            Data.BOLichBieuDinhKy.Luu(lsArray, lsArrayDeleted, mTransit);
+            LoadDanhSach();
+            MessageBox.Show("Lưu thành công");
+        }
 
-                btnThem.Content = "Thêm lịch biểu";
-            }
-            else
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                txtTenLichBieu.Text = mLichBieuDinhKy.TenLichBieu;
-                cbbLoaiGia.SelectedValue = mLichBieuDinhKy.LoaiGiaID;
-                cbbTheLoai.SelectedValue = mLichBieuDinhKy.TheLoaiID;
-                cbbTheLoai_SelectionChanged(null, null);
-                cbbGiaTriBatDau.SelectedValue = mLichBieuDinhKy.GiaTriBatDau;
-                cbbGiaTriKetThuc.SelectedValue = mLichBieuDinhKy.GiaTriKetThuc;
-                txtUuTien.Text = mLichBieuDinhKy.UuTien.ToString();
-                timeBatDau.TimeCurent = (TimeSpan)mLichBieuDinhKy.GioBatDau;
-                timeKetThuc.TimeCurent = (TimeSpan)mLichBieuDinhKy.GioKetThuc;
-                btnThem.Content = "Cập nhật lịch biểu";
+                btnLuu_Click(null, null);
+                return;
             }
+            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnThem_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnDanhSach_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.F2)
+            {
+                btnSua_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+                return;
+            }
+        }
+
+        private void btnDanhSach_Click(object sender, RoutedEventArgs e)
+        {
+            mItem = null;
+            lsArrayDeleted = null;
+            LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadTheLoai();
-            LoadLoaiGia();
-            LoadDanhSachLichBieu();
-            btnMoi_Click(sender, e);
+            LoadDanhSach();
+            
         }
     }
 }
