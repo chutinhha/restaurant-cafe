@@ -1,0 +1,14 @@
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\SystemImages.dll
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\SystemImages.pdb
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\ControlLibrary.dll
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\Data.dll
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\Utilities.dll
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\ControlLibrary.pdb
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\Data.pdb
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\bin\Debug\Utilities.pdb
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.csprojResolveAssemblyReference.cache
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.g.resources
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.Properties.Resources.resources
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.csproj.GenerateResource.Cache
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.dll
+E:\Minh Tien\KiemTien\Karaoke\SystemImages\obj\Debug\SystemImages.pdb
