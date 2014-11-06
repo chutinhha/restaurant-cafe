@@ -116,5 +116,11 @@ namespace GUI
         {
             this.Close();
         }
+
+        private void btnQuanLyThe_Click(object sender, RoutedEventArgs e)
+        {
+            WindowQuanLyThe win = new WindowQuanLyThe(mTransit);
+            win.ShowDialog();
+        }
     }
 }

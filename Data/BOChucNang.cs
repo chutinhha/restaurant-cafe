@@ -7,5 +7,16 @@ namespace Data
 {
     public class BOChucNang
     {
+        public static List<CHUCNANG> GetAll(Transit mTransit)
+        {
+            return mTransit.KaraokeEntities.CHUCNANGs.Where(s => s.Deleted == false).ToList();
+        }
+
+        public static int Them(CHUCNANG item, Transit mTransit)
+        {
+            mTransit.KaraokeEntities.CHUCNANGs.AddObject(item);
+            mTransit.KaraokeEntities.SaveChanges();
+            return item.ChucNangID;
+        }
     }
 }

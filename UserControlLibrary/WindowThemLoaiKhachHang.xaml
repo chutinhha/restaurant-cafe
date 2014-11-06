@@ -14,32 +14,32 @@
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60*"/>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Thêm Loại Khách Hàng" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold"/>
+            <TextBlock Name="lbTieuDe" Text="Thêm Loại Khách Hàng" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="1" Background="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="226*"/>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="226*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Loại khách hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Phần trăm giảm" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Loại khách hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Phần trăm giảm" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"/>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPhanTramGiam" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" PreviewTextInput="txt_PreviewTextInput"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPhanTramGiam" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" PreviewTextInput="txt_PreviewTextInput" />
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 
-                <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/GUI;component/Images/Cancel.png" Background="#FFDF0023" />
-                <my:POSButtonFuntion Content="Thêm" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/GUI;component/Images/Save.png" Background="#FF009F3B" />
+                <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Thêm" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
             </Grid>
         </Grid>
     </Border>

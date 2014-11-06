@@ -49,7 +49,7 @@ namespace Data
             m.DuNoToiThieu = item.DuNoToiThieu;
             m.Email = item.Email;
             m.Visual = item.Visual;
-            m.Deleted = item.Deleted;
+            m.Edit = false;
             m.LoaiKhachHangID = item.LoaiKhachHangID;
             mTransit.KaraokeEntities.SaveChanges();
             return item.KhachHangID;

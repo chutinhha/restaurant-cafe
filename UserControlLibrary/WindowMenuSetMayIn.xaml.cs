@@ -16,7 +16,6 @@ namespace UserControlLibrary
             uCMenuSetMayIn.OnEventExit += new UCMenuSetMayIn.OnExit(uCMenuSetMayIn_OnEventExit);
             uCMenuSetMayIn.Init(mTransit);
             uCMenuSetMayIn.SetValues(mon);
-            
         }
 
         private void uCMenuSetMayIn_OnEventExit()

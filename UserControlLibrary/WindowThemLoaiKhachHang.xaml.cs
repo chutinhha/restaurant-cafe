@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -19,7 +10,9 @@ namespace UserControlLibrary
     public partial class WindowThemLoaiKhachHang : Window
     {
         private Data.Transit mTransit;
+
         public Data.LOAIKHACHHANG _Item { get; set; }
+
         public WindowThemLoaiKhachHang(Data.Transit transit)
         {
             InitializeComponent();
@@ -50,25 +43,23 @@ namespace UserControlLibrary
                 GetValues();
                 DialogResult = true;
             }
-
         }
 
         private void SetValues()
         {
             if (_Item == null)
             {
-
                 txtLoaiKhachHang.Text = "";
                 txtPhanTramGiam.Text = "0";
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Sửa Loại Khách Hàng";
+                lbTieuDe.Text = "Thêm Loại Khách Hàng";
             }
             else
             {
                 txtLoaiKhachHang.Text = _Item.TenLoaiKhachHang;
                 txtPhanTramGiam.Text = _Item.PhanTramGiamGia.ToString();
                 btnLuu.Content = mTransit.StringButton.Luu;
-                lbTieuDe.Text = "Sửa Loại Khách Hang";
+                lbTieuDe.Text = "Sửa Loại Khách Hàng";
             }
         }
 

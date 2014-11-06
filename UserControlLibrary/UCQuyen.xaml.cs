@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -21,12 +13,14 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.QUYEN mItem = null;
-        List<Data.QUYEN> lsArrayDeleted = null;
+        private List<Data.QUYEN> lsArrayDeleted = null;
 
         public UCQuyen(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            btnQuyenNhanVien.Visibility = System.Windows.Visibility.Hidden;
+            btnCaiDatChucNang.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void LoadDanhSach()
@@ -53,9 +47,18 @@ namespace UserControlLibrary
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
                 mItem = (Data.QUYEN)li.Tag;
+                if (mItem.MaQuyen > 0)
+                {
+                    btnQuyenNhanVien.Visibility = System.Windows.Visibility.Visible;
+                    btnCaiDatChucNang.Visibility = System.Windows.Visibility.Visible;
+                }
+                else
+                {
+                    btnQuyenNhanVien.Visibility = System.Windows.Visibility.Hidden;
+                    btnCaiDatChucNang.Visibility = System.Windows.Visibility.Hidden;
+                }
             }
         }
-
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
@@ -93,7 +96,7 @@ namespace UserControlLibrary
                 if (lsArrayDeleted == null)
                 {
                     lsArrayDeleted = new List<Data.QUYEN>();
-                }                
+                }
                 if (mItem.MaQuyen > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);
@@ -170,6 +173,17 @@ namespace UserControlLibrary
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
                 mItem = (Data.QUYEN)li.Tag;
                 WindowThemQuyenNhanVien win = new WindowThemQuyenNhanVien(mItem, mTransit);
+                win.ShowDialog();
+            }
+        }
+
+        private void btnCaiDatChucNang_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
+                mItem = (Data.QUYEN)li.Tag;
+                WindowThemCaiDatChucNang win = new WindowThemCaiDatChucNang(mItem, mTransit);
                 win.ShowDialog();
             }
         }

@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -20,6 +13,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.MENUKICHTHUOCMON mKichThuocMon = null;
+
         public WindowDanhSachGia(Data.MENUKICHTHUOCMON kichthuocmon, Data.Transit transit)
         {
             InitializeComponent();
@@ -53,7 +47,7 @@ namespace UserControlLibrary
         {
             Data.MENUGIA item = ((Button)sender).DataContext as Data.MENUGIA;
             item.Gia = mKichThuocMon.GiaBanMacDinh;
-            lvData.Items.Refresh();            
+            lvData.Items.Refresh();
         }
 
         private void LoadDanhSachGiaBan()

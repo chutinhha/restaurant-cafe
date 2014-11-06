@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -19,8 +10,9 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCNewMon : UserControl
     {
-        private int NhomID = 0;
+        private BitmapImage mBitmapImage = null;
         private Data.Transit mTransit = null;
+        private int NhomID = 0;
 
         public UCNewMon(int nhomID, Data.Transit transit)
         {
@@ -45,6 +37,32 @@ namespace UserControlLibrary
             }
         }
 
+        public void Xoa()
+        {
+            Data.BOMenuMon.Xoa(_Mon.MonID, mTransit);
+        }
+
+        private void btnCaiDatMayIn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowMenuSetMayIn win = new WindowMenuSetMayIn(_Mon, mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
+        {
+            WindowDanhSachBan win = new WindowDanhSachBan(_Mon, mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnHinhAnh__OnBitmapImageChanged(object sender)
+        {
+            mBitmapImage = btnHinhAnh.ImageBitmap;
+        }
+
+        private void btnMauNen_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
         private void GetValues()
         {
             if (_Mon == null)
@@ -64,11 +82,6 @@ namespace UserControlLibrary
             else
                 _Mon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
             _Mon.Visual = ckBan.IsChecked;
-        }
-
-        public void Xoa()
-        {
-            Data.BOMenuMon.Xoa(_Mon.MonID, mTransit);
         }
 
         private void SetValues()
@@ -96,33 +109,10 @@ namespace UserControlLibrary
                 btnDanhSachBan.Visibility = System.Windows.Visibility.Hidden;
             }
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             SetValues();
-        }
-
-        private BitmapImage mBitmapImage = null;
-
-        private void btnMauNen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnHinhAnh__OnBitmapImageChanged(object sender)
-        {
-            mBitmapImage = btnHinhAnh.ImageBitmap;
-        }
-
-        private void btnCaiDatMayIn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowMenuSetMayIn win = new WindowMenuSetMayIn(_Mon, mTransit);
-            win.ShowDialog();
-        }
-
-        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
-        {
-            WindowDanhSachBan win = new WindowDanhSachBan(_Mon, mTransit);
-            win.ShowDialog();
         }
     }
 }

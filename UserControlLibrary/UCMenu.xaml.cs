@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ControlLibrary;
 
 namespace UserControlLibrary
@@ -77,14 +71,14 @@ namespace UserControlLibrary
                 case LoaiMenu.Mon:
                 case LoaiMenu.KichThuocMon:
                     btnItemBack.Content = "Trờ Về";
-                    var uriSource = new Uri(@"/GUI;component/Images/Back.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/SystemImages;component/Images/Back.png", UriKind.Relative);
                     btnItemBack.Background = System.Windows.Media.Brushes.White;
                     btnItemBack.Image = new BitmapImage(uriSource);
                     btnItemNext.Content = "Tiếp Theo";
-                    uriSource = new Uri(@"/GUI;component/Images/Forward.png", UriKind.Relative);
+                    uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
                     btnItemNext.Background = System.Windows.Media.Brushes.White;
                     btnItemNext.Image = new BitmapImage(uriSource);
-                    
+
                     break;
 
                 default:
@@ -247,7 +241,6 @@ namespace UserControlLibrary
                     PageKichThuocMon = 1;
                     LoadKichThuocMon(MenuMonIndex);
                 }
-
                 else
                     OnEventMenu(MenuMonIndex);
             }
@@ -270,7 +263,7 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/GUI;component/Images/NoImages.jpg", UriKind.Relative);
+                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
                 btn.Image = new BitmapImage(uriSource);
             }
         }
@@ -338,7 +331,7 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/GUI;component/Images/NoImages.jpg", UriKind.Relative);
+                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
                 btn.Image = new BitmapImage(uriSource);
             }
         }
@@ -346,10 +339,10 @@ namespace UserControlLibrary
         public void SetGroupPage()
         {
             btnGroupBack.Content = "Trờ Về";
-            var uriSource = new Uri(@"/GUI;component/Images/Back.png", UriKind.Relative);
+            var uriSource = new Uri(@"/SystemImages;component/Images/Back.png", UriKind.Relative);
             btnGroupBack.Image = new BitmapImage(uriSource);
             btnGroupNext.Content = "Tiếp Theo";
-            uriSource = new Uri(@"/GUI;component/Images/Forward.png", UriKind.Relative);
+            uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
             btnGroupNext.Image = new BitmapImage(uriSource);
         }
 
@@ -528,7 +521,7 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/GUI;component/Images/NoImages.jpg", UriKind.Relative);
+                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
                 btn.Image = new BitmapImage(uriSource);
             }
         }

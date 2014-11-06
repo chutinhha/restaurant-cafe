@@ -21,8 +21,16 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <my:POSButtonIconVertical Grid.Row="0" Content="Loại khách hàng" Name="btnLoaiKhachHang" Margin="5" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32" Click="btnLoaiKhachHang_Click" />
-                <my:POSButtonIconVertical Grid.Row="1" Content="Khách hàng" Margin="5" Name="btnKhachHang" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnKhachHang_Click"/>
+                <Button Grid.Row="0" Name="btnLoaiKhachHang" Margin="5" Click="btnLoaiKhachHang_Click" Style="{StaticResource ButtonFuntion}" Background="#FFC13A00">
+                    <Button.Content>
+                        <TextBlock Text="Loại khách hàng" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Name="btnKhachHang" Margin="5" Click="btnKhachHang_Click" Style="{StaticResource ButtonFuntion}" Background="#FFC13A00">
+                    <Button.Content>
+                        <TextBlock Text="Khách hàng" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
                 <Rectangle.Stroke>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System;
 using System.Windows.Input;
 
 namespace UserControlLibrary
@@ -13,7 +12,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.LICHBIEUDINHKY mItem = null;
-        List<Data.LICHBIEUDINHKY> lsArrayDeleted = null;
+        private List<Data.LICHBIEUDINHKY> lsArrayDeleted = null;
 
         public UCLichBieuDinhKy(Data.Transit transit)
         {
@@ -48,7 +47,6 @@ namespace UserControlLibrary
             }
         }
 
-
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
@@ -56,7 +54,7 @@ namespace UserControlLibrary
             {
                 AddList(win._Item);
             }
-        }       
+        }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
@@ -153,7 +151,6 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDanhSach();
-            
         }
     }
 }

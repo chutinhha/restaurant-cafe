@@ -1,0 +1,14 @@
+﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  xmlns:my1="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"  x:Class="GUI.WindowQuanLyThe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowQuanLyThe" Height="768" Width="1024" Loaded="Window_Loaded" KeyDown="Window_KeyDown" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <my:UCTile Grid.Row="0"  Name="uCTile" />
+        <my1:UCThe Grid.Row="1" Name="uCThe"/>
+
+    </Grid>
+</Window>

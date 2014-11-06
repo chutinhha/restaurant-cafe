@@ -1,30 +1,30 @@
 ﻿<UserControl xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.UCMayIn"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="924" Loaded="UserControl_Loaded">
     <Grid>
-        <Grid.RowDefinitions>            
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40*"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Add%202.png" Background="#FF03AEDA" Click="btnThem_Click" />
-            <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
-            <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
-            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/GUI;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
+            <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThem_Click" />
+            <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
+            <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
+            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
         </StackPanel>
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TieuDeIn}" Width="200" Header="Tiêu đề máy in"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenMayIn}" Width="300" Header="Tên máy in"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=HopDungTien}" Width="150" Header="Hộp đựng tiền"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoLanIn}" Width="100" Header="Số lần in"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Cho phép in"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TieuDeIn}" Width="200" Header="Tiêu đề máy in" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenMayIn}" Width="300" Header="Tên máy in" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=HopDungTien}" Width="150" Header="Hộp đựng tiền" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoLanIn}" Width="100" Header="Số lần in" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Cho phép in" />
                 </GridView>
             </ListView.View>
         </ListView>

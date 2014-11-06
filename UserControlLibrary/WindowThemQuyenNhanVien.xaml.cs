@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -19,8 +12,8 @@ namespace UserControlLibrary
     public partial class WindowThemQuyenNhanVien : Window
     {
         private Data.Transit mTransit;
-        public Data.QUYENNHANVIEN _Item { get; set; }
         private Data.QUYEN mQuyen = null;
+
         public WindowThemQuyenNhanVien(Data.QUYEN quyen, Data.Transit transit)
         {
             InitializeComponent();
@@ -30,7 +23,7 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtTenQuyen.Text = mQuyen.TenQuen;
+            txtTenQuyen.Text = mQuyen.TenQuyen;
             LoadDanhSach();
         }
 
