@@ -14,18 +14,18 @@
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60*"/>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Danh Sách Giá" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold"/>
+            <TextBlock Name="lbTieuDe" Text="Danh Sách Giá" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="1" Background="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="226*"/>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="226*" />
                 </Grid.ColumnDefinitions>
                 <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
                     <ListView.ItemTemplate>
@@ -33,13 +33,13 @@
                             <StackPanel Orientation="Horizontal" Height="40">
                                 <TextBlock Text="{Binding MENULOAIGIA.Ten}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="150" />
                                 <TextBox Text="{Binding Gia}" x:Name="txtGia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" Width="150" PreviewTextInput="txt_PreviewTextInput" />
-                                <my:POSButtonFuntion Content="Lấy giá mặc định" CommandParameter="{Binding}" HorizontalAlignment="Right" x:Name="btnGiaMacDinh" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnGiaMacDinh_Click" Image="/GUI;component/Images/Save.png" Background="#FF009F3B" />
+                                <my:POSButtonFuntion Content="Lấy giá mặc định" CommandParameter="{Binding}" HorizontalAlignment="Right" x:Name="btnGiaMacDinh" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnGiaMacDinh_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/GUI;component/Images/Cancel.png" Background="#FFDF0023" />
-                <my:POSButtonFuntion Content="Lưu" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/GUI;component/Images/Save.png" Background="#FF009F3B" />
+                <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Lưu" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
             </Grid>
         </Grid>
     </Border>

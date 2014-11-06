@@ -11,11 +11,11 @@
         </Grid.RowDefinitions>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Add%202.png" Background="#FF03AEDA" Click="btnThem_Click" />
-            <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
-            <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
-            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/GUI;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/GUI;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
+            <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThem_Click" />
+            <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
+            <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
+            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
         </StackPanel>
         
         <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvNhanVien_SelectionChanged">

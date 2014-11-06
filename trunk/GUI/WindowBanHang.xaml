@@ -37,7 +37,7 @@
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/GUI;component/Images/us%20dollar.png" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Thay đổi giá" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="3" Name="btnChucNang_3" Content="Chuyển bàn" Click="btnChucNang_Click" Background="#FF022A3A" />

@@ -65,5 +65,20 @@ namespace Data
                     Xoa(item.NhanVienID, mTransit);
                 }
         }
+
+        public static NHANVIEN Login(string TenDangNhap, string MatKhau, Data.Transit mTransit)
+        {
+            if (TenDangNhap != null && MatKhau != null)
+            {
+                var Parameter_TenDangNhap = new System.Data.SqlClient.SqlParameter("@TenDangNhap", System.Data.SqlDbType.VarChar, 50);
+                Parameter_TenDangNhap.Value = TenDangNhap;
+                var Parameter_MatKhau = new System.Data.SqlClient.SqlParameter("@MatKhau", System.Data.SqlDbType.VarChar, 255);
+                Parameter_MatKhau.Value = MatKhau;
+                List<NHANVIEN> lsArray = mTransit.KaraokeEntities.ExecuteStoreQuery<NHANVIEN>("SP_Login_NhanVien @TenDangNhap, @MatKhau", Parameter_TenDangNhap, Parameter_MatKhau).ToList();
+                if (lsArray.Count > 0)
+                    return lsArray[0];
+            }
+            return null;
+        }
     }
 }

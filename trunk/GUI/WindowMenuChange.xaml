@@ -25,10 +25,10 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 
-            <my:POSButtonFuntion Grid.Row="2" Grid.Column="0" Name="btnNhomMoi" Content="Nhóm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/GUI;component/Images/Add%202.png" Background="#FF03AEDA" Click="btnNhomMoi_Click" />
-            <my:POSButtonFuntion Grid.Row="2" Grid.Column="1" Name="btnMonMoi" Content="Món mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/GUI;component/Images/Add%202.png" Background="#FF03AEDA" Click="btnMonMoi_Click" />
-            <my:POSButtonFuntion Grid.Row="3" Grid.Column="0" Name="btnCapNhat" Content="Cập nhật" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/GUI;component/Images/Save.png" Background="#FF5EB30E" Click="btnCapNhat_Click" />
-            <my:POSButtonFuntion Grid.Row="3" Grid.Column="1" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/GUI;component/Images/Delete.png" Background="#FFCC0020" Click="btnXoa_Click" />           
+            <my:POSButtonFuntion Grid.Row="2" Grid.Column="0" Name="btnNhomMoi" Content="Nhóm mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnNhomMoi_Click" />
+            <my:POSButtonFuntion Grid.Row="2" Grid.Column="1" Name="btnMonMoi" Content="Món mới" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnMonMoi_Click" />
+            <my:POSButtonFuntion Grid.Row="3" Grid.Column="0" Name="btnCapNhat" Content="Cập nhật" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF5EB30E" Click="btnCapNhat_Click" />
+            <my:POSButtonFuntion Grid.Row="3" Grid.Column="1" Name="btnXoa" Content="Xóa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFCC0020" Click="btnXoa_Click" />           
             
 
             <StackPanel Name="svChinhSuaMenu" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

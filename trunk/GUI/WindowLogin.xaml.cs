@@ -27,7 +27,11 @@ namespace GUI
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            
+            mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text, txtPassword.Text, mTransit);
+            if (mTransit.NhanVien != null)
+            {
+
+            }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -22,12 +14,11 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.MENUKICHTHUOCMON mItem = null;
         private Data.MENUMON mMon = null;
-        List<Data.MENUKICHTHUOCMON> lsArrayDeleted = null;
+        private List<Data.MENUKICHTHUOCMON> lsArrayDeleted = null;
 
         public delegate void OnExit();
-        public delegate void OnMinimized();
+
         public event OnExit OnEventExit;
-        public event OnMinimized OnEventMinimized;
 
         public UCDanhSachBanList()
         {
@@ -40,6 +31,7 @@ namespace UserControlLibrary
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
             mTransit = transit;
             mMon = mon;
+            btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
         }
 
         public void LoadDanhSach()
@@ -66,9 +58,12 @@ namespace UserControlLibrary
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
                 mItem = (Data.MENUKICHTHUOCMON)li.Tag;
+                if (mItem.KichThuocMonID > 0)
+                    btnDanhSachGia.Visibility = System.Windows.Visibility.Visible;
+                else
+                    btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
             }
         }
-
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {

@@ -30,7 +30,7 @@ namespace Data
         public static int Sua(QUYEN item, Transit mTransit)
         {
             QUYEN m = (from x in mTransit.KaraokeEntities.QUYENs where x.MaQuyen == item.MaQuyen select x).First();
-            m.TenQuen = item.TenQuen;
+            m.TenQuyen = item.TenQuyen;
             m.Visual = item.Visual;
             m.Edit = false;
             mTransit.KaraokeEntities.SaveChanges();

@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -19,7 +11,9 @@ namespace UserControlLibrary
     public partial class WindowThemLichBieuDinhKy : Window
     {
         private Data.Transit mTransit;
+
         public Data.LICHBIEUDINHKY _Item { get; set; }
+
         public WindowThemLichBieuDinhKy(Data.Transit transit)
         {
             InitializeComponent();
@@ -52,7 +46,6 @@ namespace UserControlLibrary
                 GetValues();
                 DialogResult = true;
             }
-
         }
 
         private void SetValues()

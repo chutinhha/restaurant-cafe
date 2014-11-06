@@ -93,8 +93,11 @@ namespace UserControlLibrary
         }
 
         public delegate void OnExit();
+
         public delegate void OnMinimized();
+
         public event OnExit OnEventExit;
+
         public event OnMinimized OnEventMinimized;
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)

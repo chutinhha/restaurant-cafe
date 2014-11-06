@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UserControlLibrary
 {
@@ -21,7 +13,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.LICHBIEUKHONGDINHKY mItem = null;
-        List<Data.LICHBIEUKHONGDINHKY> lsArrayDeleted = null;
+        private List<Data.LICHBIEUKHONGDINHKY> lsArrayDeleted = null;
 
         public UCLichBieuKhongDinhKy(Data.Transit transit)
         {
@@ -55,7 +47,6 @@ namespace UserControlLibrary
                 mItem = (Data.LICHBIEUKHONGDINHKY)li.Tag;
             }
         }
-
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
@@ -161,7 +152,6 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDanhSach();
-
         }
     }
 }

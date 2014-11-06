@@ -21,8 +21,12 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <my:POSButtonIconVertical Grid.Row="0" Content="Phân quyền" Name="btnPhanQuyen" Margin="5" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32" Click="btnPhanQuyen_Click" />
-                <my:POSButtonIconVertical Grid.Row="1" Content="Nhóm quyền" Margin="5" Name="btnQuyen" Image="/GUI;component/Images/printer%20green.png" ImageHeight="32" ImageWidth="32"  Click="btnQuyen_Click"/>
+
+                <Button Grid.Row="0" Name="btnQuyen" Margin="5" Click="btnQuyen_Click" Style="{StaticResource ButtonFuntion}" Background="#FFE5AD04">
+                    <Button.Content>
+                        <TextBlock Text="Danh sách quyền" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
                 <Rectangle.Stroke>

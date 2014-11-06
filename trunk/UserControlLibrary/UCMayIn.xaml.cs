@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace UserControlLibrary
@@ -12,7 +12,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.MAYIN mItem = null;
-        List<Data.MAYIN> lsArrayDeleted = null;
+        private List<Data.MAYIN> lsArrayDeleted = null;
 
         public UCMayIn(Data.Transit transit)
         {
@@ -46,7 +46,6 @@ namespace UserControlLibrary
                 mItem = (Data.MAYIN)li.Tag;
             }
         }
-
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {

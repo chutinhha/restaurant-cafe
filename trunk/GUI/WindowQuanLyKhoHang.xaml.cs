@@ -24,5 +24,48 @@ namespace GUI
             InitializeComponent();
             mTransit = transit;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnKho_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý kho hàng";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            this.Close();
+        }
+
+        private UserControlLibrary.UCKho ucKho = null;
+        private UserControlLibrary.UCNhaCungCap ucNhaCungCap = null;
+
+        private void btnKho_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucKho == null)
+            {
+                ucKho = new UserControlLibrary.UCKho(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucKho);
+        }
+
+        private void btnNhaCungCap_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucNhaCungCap == null)
+            {
+                ucNhaCungCap = new UserControlLibrary.UCNhaCungCap(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucNhaCungCap);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (spNoiDung.Children[0] is UserControlLibrary.UCKho)
+                ucKho.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCNhaCungCap)
+                ucNhaCungCap.Window_KeyDown(sender, e);
+        }
     }
 }
