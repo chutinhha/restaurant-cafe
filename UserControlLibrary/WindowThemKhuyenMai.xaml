@@ -1,7 +1,57 @@
 ﻿<Window x:Class="UserControlLibrary.WindowThemKhuyenMai"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowThemKhuyenMai" Height="300" Width="300" Loaded="Window_Loaded" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
-    </Grid>
+        Title="WindowThemKhuyenMai" Height="520" Width="600" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF457ECE" Offset="0" />
+                <GradientStop Color="#FF69A7EC" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
+            </Grid.RowDefinitions>
+            <TextBlock Name="lbTieuDe" Text="Thêm Khuyễn Mãi" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <Grid Grid.Row="1" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="226*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món chính" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox  x:Name="txtTenMonChinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" Width="282" />
+                    <my:POSButtonFuntion Name="btnChonMonChinh" Grid.Row="1" Grid.Column="1" Content="Chọn món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnChonMonChinh_Click" />
+                </StackPanel>
+                <my:POSButtonFuntion Name="btnThemMonPhu" Grid.Row="1" Grid.Column="1" Content="Thêm món khuyễn mãi" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMonPhu_Click" />
+                <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="40">
+                                <TextBlock Text="{Binding MENULOAIGIA.Ten}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="250" />
+                                <TextBox Text="{Binding Gia}" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" Width="100" PreviewTextInput="txt_PreviewTextInput" />
+                                <my:POSButtonFuntion Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Thêm" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

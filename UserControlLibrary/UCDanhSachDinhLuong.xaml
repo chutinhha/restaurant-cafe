@@ -1,0 +1,38 @@
+﻿<UserControl xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.UCDanhSachDinhLuong"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="75*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" Visibility="Hidden" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF4EB89B" Click="btnDanhSach_Click" Visibility="Hidden" />
+            <my:POSButtonFuntion Name="btnThemMon" Content="Thêm món" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMon_Click" Visibility="Hidden" />
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" />
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <TextBlock Text="{Binding TenMon}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="200" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" ItemsSource="{Binding Loaiban}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding LoaiBanID}" />
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Width="150" Text="{Binding KichThuocBan}" IsEnabled="{Binding IsEnabled}" />
+                        <my:POSButtonFuntion Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Width="100" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

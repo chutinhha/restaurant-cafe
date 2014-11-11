@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI
 {
@@ -19,22 +9,45 @@ namespace GUI
     public partial class WindowQuanLyGiaKhuyenMai : Window
     {
         private Data.Transit mTransit = null;
+        private UserControlLibrary.UCDanhSachBan ucDanhSachBan = null;
+
+        private UserControlLibrary.UCDanhSachKhuyenMai ucDanhSachKhuyenMai = null;
+
+        private UserControlLibrary.UCLichBieuDinhKy ucLichBieuDinhKy = null;
+
+        private UserControlLibrary.UCLichBieuKhongDinhKy ucLichBieuKhongDinhKy = null;
+
+        private UserControlLibrary.UCLoaiGia ucLoaiGia = null;
+
+
         public WindowQuanLyGiaKhuyenMai(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
         }
 
-        private void btnKhuyenMai_Click(object sender, RoutedEventArgs e)
+        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
         {
-            if (ucKhuyenMai == null)
+            if (ucDanhSachBan == null)
             {
-                ucKhuyenMai = new UserControlLibrary.UCKhuyenMai(mTransit);
+                ucDanhSachBan = new UserControlLibrary.UCDanhSachBan(mTransit);
             }
             spNoiDung.Children.Clear();
-            ucKhuyenMai.Height = spNoiDung.ActualHeight;
-            ucKhuyenMai.Width = spNoiDung.ActualWidth;
-            spNoiDung.Children.Add(ucKhuyenMai);
+            ucDanhSachBan.Height = spNoiDung.ActualHeight;
+            ucDanhSachBan.Width = spNoiDung.ActualWidth;
+            spNoiDung.Children.Add(ucDanhSachBan);
+        }
+
+        private void btnKhuyenMai_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucDanhSachKhuyenMai == null)
+            {
+                ucDanhSachKhuyenMai = new UserControlLibrary.UCDanhSachKhuyenMai(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            ucDanhSachKhuyenMai.Height = spNoiDung.ActualHeight;
+            ucDanhSachKhuyenMai.Width = spNoiDung.ActualWidth;
+            spNoiDung.Children.Add(ucDanhSachKhuyenMai);
         }
 
         private void btnLichBieuDinhKy_Click(object sender, RoutedEventArgs e)
@@ -61,11 +74,6 @@ namespace GUI
             spNoiDung.Children.Add(ucLichBieuKhongDinhKy);
         }
 
-        private UserControlLibrary.UCLoaiGia ucLoaiGia = null;
-        private UserControlLibrary.UCKhuyenMai ucKhuyenMai = null;
-        private UserControlLibrary.UCLichBieuDinhKy ucLichBieuDinhKy = null;
-        private UserControlLibrary.UCLichBieuKhongDinhKy ucLichBieuKhongDinhKy = null;
-        private UserControlLibrary.UCDanhSachBan ucDanhSachBan = null;
         private void btnLoaiGia_Click(object sender, RoutedEventArgs e)
         {
             if (ucLoaiGia == null)
@@ -78,28 +86,7 @@ namespace GUI
             spNoiDung.Children.Add(ucLoaiGia);
         }
 
-        private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
-        {
-            if (ucDanhSachBan == null)
-            {
-                ucDanhSachBan = new UserControlLibrary.UCDanhSachBan(mTransit);
-            }
-            spNoiDung.Children.Clear();
-            ucDanhSachBan.Height = spNoiDung.ActualHeight;
-            ucDanhSachBan.Width = spNoiDung.ActualWidth;
-            spNoiDung.Children.Add(ucDanhSachBan);
-        }        
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            spNoiDung.Height = spNoiDung.ActualHeight;
-            spNoiDung.Width = spNoiDung.ActualWidth;
-            btnDanhSachBan_Click(sender, e);
-            uCTile.TenChucNang = "Quản Lý Giá, Khuyễn Mãi";
-            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
-        }
-
-        void uCTile_OnEventExit()
+        private void uCTile_OnEventExit()
         {
             this.Close();
         }
@@ -114,6 +101,15 @@ namespace GUI
                 ucLoaiGia.Window_KeyDown(sender, e);
             if (spNoiDung.Children[0] is UserControlLibrary.UCDanhSachBan)
                 ucDanhSachBan.Window_KeyDown(sender, e);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            spNoiDung.Height = spNoiDung.ActualHeight;
+            spNoiDung.Width = spNoiDung.ActualWidth;
+            btnDanhSachBan_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý Giá, Khuyễn Mãi";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
     }
 }

@@ -1,0 +1,48 @@
+﻿<Window xmlns:my1="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.WindowChonMon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowChonMon" Height="768" Width="800" xmlns:my="clr-namespace:UserControlLibrary" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF457ECE" Offset="0" />
+                <GradientStop Color="#FF69A7EC" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
+            </Grid.RowDefinitions>
+            <TextBlock Name="lbTieuDe" Text="Chọn món" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <Grid Grid.Row="1" Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <my:UCMenu HorizontalAlignment="Stretch"  x:Name="uCMenu" VerticalAlignment="Stretch" />
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                    <TextBox Grid.Row="1" x:Name="txtTenLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True" />
+                    <my1:POSButtonFuntion Name="btnChonMon" Grid.Row="2" Content="Chọn Món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnChonMon_Click" />
+                    <my1:POSButtonFuntion Name="btnDong" Content="Đóng" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnDong_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

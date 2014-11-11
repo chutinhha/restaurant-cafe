@@ -61,6 +61,7 @@ namespace UserControlLibrary
             _Nhom.TenDai = txtTenDai.Text;
             _Nhom.TenNgan = txtTenNgan.Text;
             _Nhom.Visual = ckBan.IsChecked;
+            _Nhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
             if (txtSapXep.Text == "")
                 _Nhom.SapXep = 0;
             else
@@ -80,6 +81,7 @@ namespace UserControlLibrary
                 txtTenNgan.Text = _Nhom.TenNgan;
                 txtSapXep.Text = _Nhom.SapXep.ToString();
                 ckBan.IsChecked = _Nhom.Visual;
+                cbbLoaiNhom.SelectedValue = _Nhom.LoaiNhomID;
                 if (_Nhom.Hinh != null && _Nhom.Hinh.Length > 0)
                 {
                     btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);
@@ -90,17 +92,21 @@ namespace UserControlLibrary
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
                 txtSapXep.Text = "";
+                cbbLoaiNhom.SelectedValue = LoaiNhomID;
                 ckBan.IsChecked = true;
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadLoaiNhom();
             SetValues();
+
         }
 
-        private void btnMauNen_Click(object sender, RoutedEventArgs e)
+        private void LoadLoaiNhom()
         {
+            cbbLoaiNhom.ItemsSource = Data.BOLoaiNhom.GetAll(mTransit);
         }
     }
 }

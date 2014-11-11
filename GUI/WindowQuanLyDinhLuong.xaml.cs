@@ -22,7 +22,25 @@ namespace GUI
         public WindowQuanLyDinhLuong(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;
+            mTransit = transit;            
+            uCTile.TenChucNang = "Quản lý định lượng";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+            ucDinhLuong.Init(mTransit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
