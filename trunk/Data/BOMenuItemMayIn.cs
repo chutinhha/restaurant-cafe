@@ -31,10 +31,13 @@ namespace Data
 
         public static int Xoa(int MayInID, int MonID, Transit mTransit)
         {
-            MENUITEMMAYIN item = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).First();
-            mTransit.KaraokeEntities.MENUITEMMAYINs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.MayInID;
+            if ((from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).Count() > 0)
+            {
+                MENUITEMMAYIN item = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).First();
+                mTransit.KaraokeEntities.MENUITEMMAYINs.DeleteObject(item);
+                mTransit.KaraokeEntities.SaveChanges();
+            }
+            return MayInID;
         }
 
 

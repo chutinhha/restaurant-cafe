@@ -39,6 +39,7 @@ namespace GUI
 
         private UserControlLibrary.UCKho ucKho = null;
         private UserControlLibrary.UCNhaCungCap ucNhaCungCap = null;
+        private UserControlLibrary.UCNhapKho ucNhapKho = null;
 
         private void btnKho_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +67,18 @@ namespace GUI
                 ucKho.Window_KeyDown(sender, e);
             if (spNoiDung.Children[0] is UserControlLibrary.UCNhaCungCap)
                 ucNhaCungCap.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCNhapKho)
+                ucNhapKho.Window_KeyDown(sender, e);
+        }
+
+        private void btnNhapKho_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucNhapKho == null)
+            {
+                ucNhapKho = new UserControlLibrary.UCNhapKho(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucNhapKho);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace UserControlLibrary
         public void Init(Data.Transit transit)
         {
             mTransit = transit;
+            mTransit.KaraokeEntities = new Data.KaraokeEntities();
+            mTransit.KaraokeEntities.THEs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             LoadDanhSach();
         }
 

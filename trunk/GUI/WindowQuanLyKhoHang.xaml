@@ -32,6 +32,11 @@
                         <TextBlock Text="Nhà cung cấp" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button.Content>
                 </Button>
+                <Button Grid.Row="2" Name="btnNhapKho" Margin="5" Click="btnNhapKho_Click" Style="{StaticResource ButtonFuntion}" Background="#FF945054">
+                    <Button.Content>
+                        <TextBlock Text="Nhập kho" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
             </Grid>
             <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
                 <Rectangle.Stroke>
