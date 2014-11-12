@@ -18,6 +18,8 @@ namespace UserControlLibrary
         {
             InitializeComponent();
             mTransit = transit;
+            mTransit.KaraokeEntities = new Data.KaraokeEntities();
+            mTransit.KaraokeEntities.MENUGIAs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             mKichThuocMon = kichthuocmon;
         }
 

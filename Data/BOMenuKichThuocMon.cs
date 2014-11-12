@@ -47,6 +47,7 @@ namespace Data
             m.KichThuocLoaiBan = item.KichThuocLoaiBan;
             m.Deleted = item.Deleted;
             m.Visual = item.Visual;
+            mTransit.KaraokeEntities.MENUKICHTHUOCMONs.Attach(m);
             mTransit.KaraokeEntities.SaveChanges();
             return item.KichThuocMonID;
         }
@@ -55,6 +56,7 @@ namespace Data
         {
             MENUKICHTHUOCMON item = (from x in mTransit.KaraokeEntities.MENUKICHTHUOCMONs where x.KichThuocMonID == KichThuocMonID select x).First();
             item.Deleted = true;
+            mTransit.KaraokeEntities.MENUKICHTHUOCMONs.Attach(item);
             mTransit.KaraokeEntities.SaveChanges();
             return item.KichThuocMonID;
         }

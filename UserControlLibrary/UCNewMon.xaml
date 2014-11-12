@@ -36,7 +36,6 @@
 
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
             <my:POSButtonImage Width="80" Height="80" Margin="10,10,10,10" x:Name="btnHinhAnh" _OnBitmapImageChanged="btnHinhAnh__OnBitmapImageChanged" />
-            <Button Name="btnMauNen" Content="Màu nền" Margin="10,10,10,10" FontSize="18" Click="btnMauNen_Click" Width="80" Height="80" />
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnCaiDatMayIn" Content="Cài đặt máy in" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnCaiDatMayIn_Click" />

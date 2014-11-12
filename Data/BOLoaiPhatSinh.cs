@@ -12,4 +12,13 @@ namespace Data
             return mTransit.KaraokeEntities.LOAIPHATSINHs.Where(s => s.Deleted == false).ToList();
         }
     }
+
+    public enum TypeLoaiPhatSinh
+    {
+        NhapKho = 1,
+        XuatKho,
+        ChuyenKho,
+        MatKho,
+        ChinhKho
+    }
 }

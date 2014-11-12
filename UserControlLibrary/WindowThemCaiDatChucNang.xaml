@@ -46,7 +46,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                 <my:POSButtonFuntion Content="Lưu" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
             </Grid>
         </Grid>

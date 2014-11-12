@@ -14,16 +14,19 @@ namespace Data
         public KaraokeEntities KaraokeEntities { get; set; }
         public THAMSO ThamSo { get; set; }
         public ClassStringButton StringButton { get; set; }
+        public List<DONVI> ListDonVi { get; set; }
         public Transit()
         {
             StringButton = new ClassStringButton();
             HashMD5 = "KTr";
             KaraokeEntities = new KaraokeEntities();
-            var list = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).ToList<THAMSO>();
+            KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
+            var list = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).ToList<THAMSO>();            
             if (list.Count > 0)
             {
                 ThamSo = list[0];
             }
+            ListDonVi = BODonVi.GetAll(this);
         }
 
         public class ClassStringButton
@@ -33,7 +36,7 @@ namespace Data
             public string Huy = "Hủy";
             public string Luu = "Lưu";
             public string Them = "Thêm";
-            
+
 
         }
     }

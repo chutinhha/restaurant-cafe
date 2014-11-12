@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
         <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-        <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+        <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
         <my:POSButtonFuntion Name="btnLuu" Grid.Row="1" Grid.Column="1" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
         <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
             <ListView.ItemTemplate>

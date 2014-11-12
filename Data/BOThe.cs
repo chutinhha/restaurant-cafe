@@ -15,26 +15,25 @@ namespace Data
         public static int Them(THE item, Transit mTransit)
         {
             mTransit.KaraokeEntities.THEs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
             return item.TheID;
         }
 
         public static int Xoa(int TheID, Transit mTransit)
         {
             THE item = (from x in mTransit.KaraokeEntities.THEs where x.TheID == TheID select x).First();
+            mTransit.KaraokeEntities.THEs.Attach(item);
             mTransit.KaraokeEntities.THEs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
             return item.TheID;
         }
 
         public static int Sua(THE item, Transit mTransit)
         {
             THE m = (from x in mTransit.KaraokeEntities.THEs where x.TheID == item.TheID select x).First();
+            mTransit.KaraokeEntities.THEs.Attach(m);
             m.TenThe = item.TenThe;
             m.ChietKhau = item.ChietKhau;
             m.Visual = item.Visual;
             m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
             return item.TheID;
         }
 
@@ -53,6 +52,7 @@ namespace Data
                 {
                     Xoa(item.TheID, mTransit);
                 }
+            mTransit.KaraokeEntities.SaveChanges();
         }
     }
 }

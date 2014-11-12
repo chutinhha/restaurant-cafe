@@ -39,7 +39,8 @@ namespace Data
         public static int Xoa(int GiaID, Transit mTransit)
         {
             MENUGIA item = (from x in mTransit.KaraokeEntities.MENUGIAs where x.GiaID == GiaID select x).First();
-            mTransit.KaraokeEntities.MENUGIAs.DeleteObject(item);
+            mTransit.KaraokeEntities.MENUGIAs.Attach(item);
+            mTransit.KaraokeEntities.MENUGIAs.DeleteObject(item);            
             mTransit.KaraokeEntities.SaveChanges();
             return item.GiaID;
         }
@@ -47,19 +48,21 @@ namespace Data
         public static int Sua(MENUGIA item, Transit mTransit)
         {
             MENUGIA m = (from x in mTransit.KaraokeEntities.MENUGIAs where x.GiaID == item.GiaID select x).First();
+            mTransit.KaraokeEntities.MENUGIAs.Attach(m);
             m.LoaiGiaID = item.LoaiGiaID;
             m.Gia = item.Gia;
-            m.KichThuocMonID = item.KichThuocMonID;
-            mTransit.KaraokeEntities.SaveChanges();
+            m.KichThuocMonID = item.KichThuocMonID;            
             return item.GiaID;
         }
 
         public static void Luu(List<MENUGIA> lsArray, Transit mTransit)
         {
+            mTransit.KaraokeEntities.MENUGIAs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             foreach (MENUGIA item in lsArray)
             {
                 Sua(item, mTransit);
             }
+            mTransit.KaraokeEntities.SaveChanges();
         }
     }
 }

@@ -30,6 +30,8 @@ namespace UserControlLibrary
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
             mTransit = transit;
+            mTransit.KaraokeEntities = new Data.KaraokeEntities();
+            mTransit.KaraokeEntities.MENUKICHTHUOCMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             mMon = mon;
             btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
         }

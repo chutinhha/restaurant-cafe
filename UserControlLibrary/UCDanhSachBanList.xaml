@@ -15,7 +15,7 @@
             <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThem_Click" />
             <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
             <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
-            <my:POSButtonFuntion Content="Hủy" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+            <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />

@@ -10,20 +10,56 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCMenuSetMayIn : UserControl
     {
-        public Data.MENUMON _Mon { get; set; }
+        private Data.Transit mTransit = null;
 
         public UCMenuSetMayIn()
         {
             InitializeComponent();
         }
 
-        private Data.Transit mTransit = null;
+        public delegate void OnExit();
+
+        public event OnExit OnEventExit;
+
+        public Data.MENUMON _Mon { get; set; }
 
         public void Init(Data.Transit transit)
         {
             mTransit = transit;
+            mTransit.KaraokeEntities = new Data.KaraokeEntities();
+            mTransit.KaraokeEntities.MENUITEMMAYINs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        public void SetValues(Data.MENUMON mon)
+        {
+            _Mon = mon;
+            if (_Mon != null)
+            {
+                txtTenMon.Text = _Mon.TenDai;
+                LoadDanhSach();
+            }
+        }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnEventExit != null)
+            {
+                OnEventExit();
+            }
+        }
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            List<Data.MENUITEMMAYIN> lsMonMayIn = new List<Data.MENUITEMMAYIN>();
+            foreach (ShowData item in lvData.Items)
+            {
+                lsMonMayIn.Add(new Data.MENUITEMMAYIN() { MonID = item.MonID, MayInID = item.MayInID, Deleted = !item.Values });
+            }
+            Data.BOMenuItemMayIn.Luu(lsMonMayIn, mTransit);
+            LoadDanhSach();
+            MessageBox.Show("Lưu thành công");
         }
 
         private void LoadDanhSach()
@@ -46,43 +82,13 @@ namespace UserControlLibrary
             lvData.ItemsSource = lsShowData;
         }
 
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
-        {
-            List<Data.MENUITEMMAYIN> lsMonMayIn = new List<Data.MENUITEMMAYIN>();
-            foreach (ShowData item in lvData.Items)
-            {
-                lsMonMayIn.Add(new Data.MENUITEMMAYIN() { MonID = item.MonID, MayInID = item.MayInID, Deleted = !item.Values });
-            }
-            Data.BOMenuItemMayIn.Luu(lsMonMayIn, mTransit);
-            LoadDanhSach();
-            MessageBox.Show("Lưu thành công");
-        }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             SetValues(_Mon);
         }
 
-        public void SetValues(Data.MENUMON mon)
-        {
-            _Mon = mon;
-            if (_Mon != null)
-            {
-                txtTenMon.Text = _Mon.TenDai;
-                LoadDanhSach();
-            }
-        }
-
         private class ShowData
         {
-            public string TenMayIn { get; set; }
-
-            public int MayInID { get; set; }
-
-            public bool Values { get; set; }
-
-            public int MonID { get; set; }
-
             public ShowData()
             {
                 Values = false;
@@ -90,22 +96,14 @@ namespace UserControlLibrary
                 MonID = 0;
                 TenMayIn = "";
             }
-        }
 
-        public delegate void OnExit();
+            public int MayInID { get; set; }
 
-        public delegate void OnMinimized();
+            public int MonID { get; set; }
 
-        public event OnExit OnEventExit;
+            public string TenMayIn { get; set; }
 
-        public event OnMinimized OnEventMinimized;
-
-        private void btnHuy_Click(object sender, RoutedEventArgs e)
-        {
-            if (OnEventExit != null)
-            {
-                OnEventExit();
-            }
+            public bool Values { get; set; }
         }
     }
 }
