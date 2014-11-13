@@ -13,15 +13,21 @@ namespace Data
         private KaraokeEntities mKaraokeEntities;
         private List<TEntityObject> mListEntityObjectAttact;        
         public FrameworkRepository(KaraokeEntities kara, ObjectSet<TEntityObject> objectSet)
-        {
+        {            
             mListEntityObjectAttact = new List<TEntityObject>();
             mKaraokeEntities = kara;
             mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             mObjectSet = objectSet;
             mObjectSet.MergeOption = MergeOption.NoTracking;              
         }
+        public static IQueryable<TEntityObject> QueryAppendOnly(ObjectSet<TEntityObject> objectSet, MergeOption mergeOption)
+        {
+            objectSet.MergeOption = mergeOption;
+            return objectSet;
+        }
         public static IQueryable<TEntityObject> QueryNoTracking(ObjectSet<TEntityObject> objectSet)
         {
+            objectSet.MergeOption = MergeOption.NoTracking;
             return objectSet;
         }
         public IQueryable<TEntityObject> Query()
