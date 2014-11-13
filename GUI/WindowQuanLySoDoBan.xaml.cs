@@ -125,8 +125,8 @@ namespace GUI
             uCFloorPlan1._Khu.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhSoDoBan.ImageBitmap);
         }
         private void btnHuyThayDoi_Click(object sender, RoutedEventArgs e)
-        {
-            uCFloorPlan1.LoadTable();
+        {            
+            uCFloorPlan1.reloadTable();
         }
         
     }

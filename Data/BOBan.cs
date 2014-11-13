@@ -6,10 +6,11 @@ using System.Text;
 namespace Data
 {
     public class BOBan
-    {
+    {        
         public static List<BAN> GetTablePerArea(Transit transit, KHU khu)
-        {           
-            return transit.KaraokeEntities.BANs.Where(o => o.KhuID == khu.KhuID).ToList<BAN>();
+        {            
+            var list=transit.KaraokeEntities.BANs.Where(o => o.KhuID == khu.KhuID).ToList();            
+            return list;
         }
         public static List<BAN> GetAll(Transit mTransit)
         {
@@ -32,7 +33,7 @@ namespace Data
         }
 
         public static int CapNhat(BAN item, Transit mTransit)
-        {
+        {            
             BAN m = (from x in mTransit.KaraokeEntities.BANs where x.BanID == item.BanID select x).First();
             m.TenBan = item.TenBan;
             m.KhuID = item.KhuID;
@@ -41,7 +42,7 @@ namespace Data
             m.Width = item.Width;
             m.LocationX = item.LocationX;
             m.LocationY = item.LocationY;
-            mTransit.KaraokeEntities.SaveChanges();
+            mTransit.KaraokeEntities.SaveChanges();            
             return item.BanID;
         }
     }

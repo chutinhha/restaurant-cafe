@@ -9,7 +9,8 @@ namespace Data
     {
         public static List<KHO> GetAll(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.KHOes.Where(s => s.Deleted == false).ToList();
+            return (from k in mTransit.KaraokeEntities.KHOes where k.Deleted == false select k).ToList(); ;
+            //return mTransit.KaraokeEntities.KHOes.Where(s => s.Deleted == false).ToList();
         }
 
         public static int Them(KHO item, Transit mTransit)
@@ -22,14 +23,14 @@ namespace Data
         public static int Xoa(int KhoID, Transit mTransit)
         {
             KHO item = (from x in mTransit.KaraokeEntities.KHOes where x.KhoID == KhoID select x).First();
-            mTransit.KaraokeEntities.KHOes.DeleteObject(item);
+            mTransit.KaraokeEntities.KHOes.DeleteObject(item);            
             mTransit.KaraokeEntities.SaveChanges();
             return item.KhoID;
         }
 
         public static int Sua(KHO item, Transit mTransit)
         {
-            KHO m = (from x in mTransit.KaraokeEntities.KHOes where x.KhoID == item.KhoID select x).First();
+            KHO m = (from x in mTransit.KaraokeEntities.KHOes where x.KhoID == item.KhoID select x).First();            
             m.TenKho = item.TenKho;
             m.Visual = item.Visual;
             m.Edit = false;

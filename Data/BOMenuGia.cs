@@ -21,14 +21,14 @@ namespace Data
         }
 
         public static int Them(MENUGIA item, Transit mTransit)
-        {
+        {                                    
             mTransit.KaraokeEntities.MENUGIAs.AddObject(item);
             mTransit.KaraokeEntities.SaveChanges();
             return item.GiaID;
         }
 
         public static MENUGIA GetByID(int LoaiGiaID, int KichThuocMonID, Transit mTransit)
-        {
+        {            
             List<MENUGIA> lsArray = (from x in mTransit.KaraokeEntities.MENUGIAs where x.LoaiGiaID == LoaiGiaID && x.KichThuocMonID == KichThuocMonID select x).ToList();
             if (lsArray.Count > 0)
                 return lsArray[0];
