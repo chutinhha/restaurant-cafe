@@ -6,18 +6,23 @@ using System.Data.Objects.DataClasses;
 using System.Data.Objects;
 namespace Data
 {
-    class FrameworkRepository<TEntityObject> where TEntityObject : EntityObject
+    
+    internal class FrameworkRepository<TEntityObject> where TEntityObject : EntityObject
     {        
         private ObjectSet<TEntityObject> mObjectSet;
         private KaraokeEntities mKaraokeEntities;
-        private List<TEntityObject> mListEntityObjectAttact;
-        public FrameworkRepository()
+        private List<TEntityObject> mListEntityObjectAttact;        
+        public FrameworkRepository(KaraokeEntities kara, ObjectSet<TEntityObject> objectSet)
         {
             mListEntityObjectAttact = new List<TEntityObject>();
-            mKaraokeEntities = new KaraokeEntities();
+            mKaraokeEntities = kara;
             mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            mObjectSet = mKaraokeEntities.CreateObjectSet<TEntityObject>();
+            mObjectSet = objectSet;
             mObjectSet.MergeOption = MergeOption.NoTracking;              
+        }
+        public static IQueryable<TEntityObject> QueryNoTracking(ObjectSet<TEntityObject> objectSet)
+        {
+            return objectSet;
         }
         public IQueryable<TEntityObject> Query()
         {
@@ -68,7 +73,10 @@ namespace Data
         }
         private void Detach(TEntityObject obj)
         {
-            mObjectSet.Detach(obj);
+            if (obj.EntityState!=System.Data.EntityState.Detached)
+            {
+                mObjectSet.Detach(obj);
+            }
         }
         public void Commit()
         {
@@ -81,6 +89,24 @@ namespace Data
                 }
             }
             mListEntityObjectAttact.Clear();
+        }
+        public void Refresh(TEntityObject obj)
+        {
+            this.Attach(obj);
+            mKaraokeEntities.Refresh(RefreshMode.StoreWins, obj);
+            this.Detach(obj);
+        }
+        public void Refresh(IEnumerable<TEntityObject> list)
+        {
+            foreach (var item in list)
+            {
+                this.Attach(item);
+            }
+            mKaraokeEntities.Refresh(RefreshMode.StoreWins, list);
+            foreach (var item in list)
+            {
+                this.Detach(item);
+            }
         }
     }
 }
