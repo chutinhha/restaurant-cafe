@@ -49,8 +49,8 @@
                 <my:POSButtonChucNang Grid.Row="9" Name="btnChucNang_9" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
 
             </Grid>
-            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1" Margin="5"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1" Margin="5" Name="txtMaHoaDon" TextAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5" Name="txtTenNhanVien" TextAlignment="Center" />
             <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
@@ -96,7 +96,7 @@
                 <TextBlock Grid.Row="2"  Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
                 <TextBox Grid.Row="3"  x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" />
             </Grid>
-        </Grid>
-        <my1:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" />
+        </Grid>        
+        <my1:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" />
     </Grid>
 </Window>

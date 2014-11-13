@@ -23,11 +23,13 @@ namespace ControlLibrary
         public event EventFloorPlan _OnEventFloorPlan;
         public bool _IsEdit { get; set; }        
         private Data.Transit mTransit;
+        private List<Data.BAN> mListBan;
         public Data.KHU _Khu { get; set; }
         public UCFloorPlan()
         {            
             InitializeComponent();
         }
+        
         public void Init(Data.Transit tran)
         {
             mTransit = tran;
@@ -70,16 +72,20 @@ namespace ControlLibrary
         public void LoadTable()
         {
             if (_Khu != null)
-            {
-                var listBan = Data.BOBan.GetTablePerArea(mTransit, _Khu);
-                gridFloorPlan.Children.Clear();
-                foreach (var ban in listBan)
-                {
-                    addTable(ban);
-                }
-
-                imgBackground.Source = Utilities.ImageHandler.BitmapImageFromByteArray(_Khu.Hinh);
+            {                
+                //var listBan = Data.BOBan.GetTablePerArea(mTransit, _Khu);                                
+                mListBan = Data.BOBan.GetTablePerArea(mTransit, _Khu);
+                LoadDataToGui();
             }
+        }
+        private void LoadDataToGui()
+        {
+            gridFloorPlan.Children.Clear();
+            foreach (var ban in mListBan)
+            {
+                addTable(ban);
+            }
+            imgBackground.Source = Utilities.ImageHandler.BitmapImageFromByteArray(_Khu.Hinh);
         }
         public void LoadBackgroundImage(BitmapImage img)
         {
@@ -113,6 +119,11 @@ namespace ControlLibrary
                 ban._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Delete;
                 ban.Visibility = System.Windows.Visibility.Hidden;
             }
+        }
+        public void reloadTable()
+        {
+            mTransit.KaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mListBan);
+            LoadDataToGui();
         }
         void tbl_Click(object sender, RoutedEventArgs e)
         {
