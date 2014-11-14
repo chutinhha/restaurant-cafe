@@ -25,7 +25,8 @@ namespace Data
         public KHACHHANG KhachHang { get; set; }
 
         public LOAIKHACHHANG LoaiKhachHang { get; set; }
-        public List<BOKhachHang> GetAll(Transit mTransit)
+
+        public IQueryable<BOKhachHang> GetAll(Transit mTransit)
         {
             return (from k in frmKhachHang.Query()
                     join l in frmLoaiKhachHang.Query() on k.LoaiKhachHangID equals l.LoaiKhachHangID
@@ -34,7 +35,7 @@ namespace Data
                     {
                         KhachHang = k,
                         LoaiKhachHang = l
-                    }).ToList();
+                    });
         }
 
         public void Luu(List<BOKhachHang> lsArray, List<BOKhachHang> lsArrayDeleted, Transit mTransit)

@@ -15,14 +15,13 @@ namespace Data
             frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIKHACHHANGs);
         }
 
-        public List<LOAIKHACHHANG> GetAll(Transit mTransit)
+        public IQueryable<LOAIKHACHHANG> GetAll(Transit mTransit)
         {
-            FrameworkRepository<LOAIKHACHHANG> frm = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
-            return frm.Query().ToList();
+            return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
         }
-        public static List<LOAIKHACHHANG> GetAllNoTracking(Transit mTransit)
+        public static IQueryable<LOAIKHACHHANG> GetAllNoTracking(Transit mTransit)
         {
-            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(mTransit.KaraokeEntities.LOAIKHACHHANGs).ToList();
+            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(mTransit.KaraokeEntities.LOAIKHACHHANGs).Where(s => s.Deleted == false);
         }
 
         private int Them(LOAIKHACHHANG item, Transit mTransit)
@@ -33,19 +32,20 @@ namespace Data
 
         private int Xoa(LOAIKHACHHANG item, Transit mTransit)
         {
-            frmLoaiKhachHang.DeleteObject(item);
+            item.Deleted = true;
+            frmLoaiKhachHang.Update(item);
             return item.LoaiKhachHangID;
         }
 
         private int Sua(LOAIKHACHHANG item, Transit mTransit)
         {
+            item.Deleted = true;
             frmLoaiKhachHang.Update(item);
             return item.LoaiKhachHangID;
         }
 
         public void Luu(List<LOAIKHACHHANG> lsArray, List<LOAIKHACHHANG> lsArrayDeleted, Transit mTransit)
         {
-
             if (lsArray != null)
                 foreach (LOAIKHACHHANG item in lsArray)
                 {

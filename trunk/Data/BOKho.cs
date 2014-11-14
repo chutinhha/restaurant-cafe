@@ -7,51 +7,58 @@ namespace Data
 {
     public class BOKho
     {
-        public static List<KHO> GetAll(Transit mTransit)
+        FrameworkRepository<KHO> frmKho = null;
+        public BOKho(Data.Transit transit)
         {
-            FrameworkRepository<KHO> frm = new FrameworkRepository<KHO>(mTransit.KaraokeEntities);
-            return frm.Query().ToList();
-        }
-        public static List<KHO> GetAllNoTracking(Transit mTransit)
-        {
-            return FrameworkRepository<KHO>.QueryNoTracking(mTransit.KaraokeEntities.KHOes).ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
         }
 
-        private static int Them(KHO item, Transit mTransit, FrameworkRepository<KHO> frm)
+        public IQueryable<KHO> GetAll(Transit mTransit)
         {
-            frm.AddObject(item);
+            return frmKho.Query().Where(s => s.Deleted == false);
+        }
+        public static IQueryable<KHO> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<KHO>.QueryNoTracking(mTransit.KaraokeEntities.KHOes).Where(s => s.Deleted == false);
+        }
+
+        private int Them(KHO item, Transit mTransit)
+        {
+            frmKho.AddObject(item);
             return item.KhoID;
         }
 
-        private static int Xoa(KHO item, Transit mTransit, FrameworkRepository<KHO> frm)
+        private int Xoa(KHO item, Transit mTransit)
         {
-            frm.DeleteObject(item);
+            item.Deleted = true;
+            frmKho.Update(item);
             return item.KhoID;
         }
 
-        private static int Sua(KHO item, Transit mTransit, FrameworkRepository<KHO> frm)
+        private int Sua(KHO item, Transit mTransit)
         {
-            frm.Update(item);
+            item.Deleted = true;
+            frmKho.Update(item);
             return item.KhoID;
         }
 
-        public static void Luu(List<KHO> lsArray, List<KHO> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<KHO> lsArray, List<KHO> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<KHO> frm = new FrameworkRepository<KHO>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (KHO item in lsArray)
                 {
                     if (item.KhoID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (KHO item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmKho.Commit();
         }
     }
 }

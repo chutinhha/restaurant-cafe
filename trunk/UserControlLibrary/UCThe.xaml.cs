@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -14,6 +15,7 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.THE mItem = null;
         private List<Data.THE> lsArrayDeleted = null;
+        private Data.BOThe BOThe = null;
 
         public UCThe()
         {
@@ -23,14 +25,13 @@ namespace UserControlLibrary
         public void Init(Data.Transit transit)
         {
             mTransit = transit;
-            mTransit.KaraokeEntities = new Data.KaraokeEntities();
-            mTransit.KaraokeEntities.THEs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+            BOThe = new Data.BOThe(transit);
             LoadDanhSach();
         }
 
         private void LoadDanhSach()
         {
-            List<Data.THE> lsArray = Data.BOThe.GetAll(mTransit);
+            IQueryable<Data.THE> lsArray = BOThe.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -115,7 +116,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOThe.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOThe.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

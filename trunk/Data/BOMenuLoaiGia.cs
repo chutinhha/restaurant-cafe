@@ -7,51 +7,56 @@ namespace Data
 {
     public class BOMenuLoaiGia
     {
-        public static List<MENULOAIGIA> GetAll(Transit mTransit)
+        FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
+        public BOMenuLoaiGia(Data.Transit transit)
         {
-            FrameworkRepository<MENULOAIGIA> frm = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities);
-            return frm.Query().ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
         }
-        public static List<MENULOAIGIA> GetAllNoTracking(Transit mTransit)
+        public IQueryable<MENULOAIGIA> GetAll(Transit mTransit)
         {
-            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(mTransit.KaraokeEntities.MENULOAIGIAs).ToList();
+            return frmLoaiGia.Query().Where(s => s.Deleted == false);
+        }
+        public static IQueryable<MENULOAIGIA> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(mTransit.KaraokeEntities.MENULOAIGIAs);
         }
 
-        private static int Them(MENULOAIGIA item, Transit mTransit, FrameworkRepository<MENULOAIGIA> frm)
+        private int Them(MENULOAIGIA item, Transit mTransit)
         {
-            frm.AddObject(item);
+            frmLoaiGia.AddObject(item);
             return item.LoaiGiaID;
         }
 
-        private static int Xoa(MENULOAIGIA item, Transit mTransit, FrameworkRepository<MENULOAIGIA> frm)
+        private int Xoa(MENULOAIGIA item, Transit mTransit)
         {
-            frm.DeleteObject(item);
+            item.Deleted = true;
+            frmLoaiGia.Update(item);
             return item.LoaiGiaID;
         }
 
-        private static int Sua(MENULOAIGIA item, Transit mTransit, FrameworkRepository<MENULOAIGIA> frm)
+        private int Sua(MENULOAIGIA item, Transit mTransit)
         {
-            frm.Update(item);
+            frmLoaiGia.Update(item);
             return item.LoaiGiaID;
         }
 
-        public static void Luu(List<MENULOAIGIA> lsArray, List<MENULOAIGIA> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<MENULOAIGIA> lsArray, List<MENULOAIGIA> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<MENULOAIGIA> frm = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (MENULOAIGIA item in lsArray)
                 {
                     if (item.LoaiGiaID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (MENULOAIGIA item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmLoaiGia.Commit();
         }
     }
 }

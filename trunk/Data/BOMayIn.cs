@@ -7,48 +7,42 @@ namespace Data
 {
     public class BOMayIn
     {
-        public static List<MAYIN> GetAll(Transit mTransit)
+        FrameworkRepository<MAYIN> frmMayIn = null;
+        public BOMayIn(Data.Transit transit)
         {
-            return mTransit.KaraokeEntities.MAYINs.ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmMayIn = new FrameworkRepository<MAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MAYINs);
         }
 
-        public static List<MAYIN> GetAll(int[] IDs, Transit mTransit)
+        public IQueryable<MAYIN> GetAll(Transit mTransit)
         {
-            if (IDs != null)
-                return mTransit.KaraokeEntities.MAYINs.Where(s => !IDs.Contains(s.MayInID)).ToList();
-            else
-                return mTransit.KaraokeEntities.MAYINs.ToList();
+            return frmMayIn.Query().Where(s => s.Deleted == false);
+        }
+        public static IQueryable<MAYIN> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<MAYIN>.QueryNoTracking(mTransit.KaraokeEntities.MAYINs).Where(s => s.Deleted == false);
         }
 
-        public static int Them(MAYIN item, Transit mTransit)
+        private int Them(MAYIN item, Transit mTransit)
         {
-            mTransit.KaraokeEntities.MAYINs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frmMayIn.AddObject(item);
             return item.MayInID;
         }
 
-        public static int Xoa(int MayInID, Transit mTransit)
+        private int Xoa(MAYIN item, Transit mTransit)
         {
-            MAYIN item = (from x in mTransit.KaraokeEntities.MAYINs where x.MayInID == MayInID select x).First();
-            mTransit.KaraokeEntities.MAYINs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            item.Deleted = true;
+            frmMayIn.Update(item);
             return item.MayInID;
         }
 
-        public static int Sua(MAYIN item, Transit mTransit)
+        private int Sua(MAYIN item, Transit mTransit)
         {
-            MAYIN m = (from x in mTransit.KaraokeEntities.MAYINs where x.MayInID == item.MayInID select x).First();
-            m.TenMayIn = item.TenMayIn;
-            m.TieuDeIn = item.TieuDeIn;            
-            m.HopDungTien = item.HopDungTien;
-            m.SoLanIn = item.SoLanIn;            
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
+            frmMayIn.Update(item);
             return item.MayInID;
         }
 
-        public static void Luu(List<MAYIN> lsArray, List<MAYIN> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<MAYIN> lsArray, List<MAYIN> lsArrayDeleted, Transit mTransit)
         {
             if (lsArray != null)
                 foreach (MAYIN item in lsArray)
@@ -61,8 +55,9 @@ namespace Data
             if (lsArrayDeleted != null)
                 foreach (MAYIN item in lsArrayDeleted)
                 {
-                    Xoa(item.MayInID, mTransit);
+                    Xoa(item, mTransit);
                 }
+            frmMayIn.Commit();
         }
     }
 }

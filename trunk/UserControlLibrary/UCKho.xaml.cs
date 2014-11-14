@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -13,17 +14,19 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.KHO mItem = null;
-        private List<Data.KHO> lsArrayDeleted = null;        
+        private List<Data.KHO> lsArrayDeleted = null;
+        private Data.BOKho BOKho = null;
 
         public UCKho(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;            
+            mTransit = transit;
+            BOKho = new Data.BOKho(transit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.KHO> lsArray = Data.BOKho.GetAll(mTransit);
+            IQueryable<Data.KHO> lsArray = BOKho.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -108,7 +111,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOKho.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOKho.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

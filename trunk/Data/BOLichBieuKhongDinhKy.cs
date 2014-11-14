@@ -7,64 +7,75 @@ namespace Data
 {
     public class BOLichBieuKhongDinhKy
     {
-        public static List<LICHBIEUKHONGDINHKY> GetAll(Transit mTransit)
+        public LICHBIEUKHONGDINHKY LichBieuKhongDinhKy { get; set; }
+        public MENULOAIGIA MenuLoaiGia { get; set; }
+        FrameworkRepository<LICHBIEUKHONGDINHKY> frmLichBieuKhongDinhKy = null;
+        FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
+        public BOLichBieuKhongDinhKy(Transit transit)
         {
-            var res = (from lb in mTransit.KaraokeEntities.LICHBIEUKHONGDINHKies
-                       join l in mTransit.KaraokeEntities.MENULOAIGIAs on lb.LoaiGiaID equals l.LoaiGiaID
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmLichBieuKhongDinhKy = new FrameworkRepository<LICHBIEUKHONGDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUKHONGDINHKies);
+            frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
+        }
+
+        public BOLichBieuKhongDinhKy()
+        {
+
+        }
+
+        public IQueryable<BOLichBieuKhongDinhKy> GetAll(Transit mTransit)
+        {
+            var res = (from lb in frmLichBieuKhongDinhKy.Query()
+                       join l in frmMenuLoaiGia.Query() on lb.LoaiGiaID equals l.LoaiGiaID
                        where lb.LoaiGiaID == l.LoaiGiaID
                        orderby l.Ten ascending, lb.TenLichBieu ascending
-                       select new
+                       select new BOLichBieuKhongDinhKy
                        {
-                           LICHBIEUKHONGDINHKies = lb,
-                           MENULOAIGIAs = l
-                       }).ToList().Select(s => s.LICHBIEUKHONGDINHKies);
-            return res.ToList();
-
+                           LichBieuKhongDinhKy = lb,
+                           MenuLoaiGia = l
+                       });
+            return res;
         }
 
-        public static int Them(LICHBIEUKHONGDINHKY item, Transit mTransit)
+        public int Them(BOLichBieuKhongDinhKy item, Transit mTransit)
         {
-            mTransit.KaraokeEntities.LICHBIEUKHONGDINHKies.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.LichBieuKhongDinhKyID;
+            frmLichBieuKhongDinhKy.AddObject(item.LichBieuKhongDinhKy);
+            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
         }
 
-        public static int Xoa(int LichBieuKhongDinhKyID, Transit mTransit)
+        public int Xoa(BOLichBieuKhongDinhKy item, Transit mTransit)
         {
-            LICHBIEUKHONGDINHKY item = (from x in mTransit.KaraokeEntities.LICHBIEUKHONGDINHKies where x.LichBieuKhongDinhKyID == LichBieuKhongDinhKyID select x).First();
-            item.Deleted = true;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.LichBieuKhongDinhKyID;
+            item.LichBieuKhongDinhKy.Deleted = true;
+            frmLichBieuKhongDinhKy.Update(item.LichBieuKhongDinhKy);
+            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
         }
 
-        public static int Sua(LICHBIEUKHONGDINHKY item, Transit mTransit)
+        public int Sua(BOLichBieuKhongDinhKy item, Transit mTransit)
         {
-            LICHBIEUKHONGDINHKY m = (from x in mTransit.KaraokeEntities.LICHBIEUKHONGDINHKies where x.LichBieuKhongDinhKyID == item.LichBieuKhongDinhKyID select x).First();
-            m.LoaiGiaID = item.LoaiGiaID;
-            m.TenLichBieu = item.TenLichBieu;
-            m.GioBatDau = item.GioBatDau;
-            m.GioKetThuc = item.GioKetThuc;
-            m.Visual = item.Visual;
-            m.Deleted = item.Deleted;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.LichBieuKhongDinhKyID;
+            item.LichBieuKhongDinhKy.Edit = false;
+            frmLichBieuKhongDinhKy.Update(item.LichBieuKhongDinhKy);
+            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
         }
 
-        public static void Luu(List<LICHBIEUKHONGDINHKY> lsArray, List<LICHBIEUKHONGDINHKY> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<BOLichBieuKhongDinhKy> lsArray, List<BOLichBieuKhongDinhKy> lsArrayDeleted, Transit mTransit)
         {
             if (lsArray != null)
-                foreach (LICHBIEUKHONGDINHKY item in lsArray)
+                foreach (BOLichBieuKhongDinhKy item in lsArray)
                 {
-                    if (item.LichBieuKhongDinhKyID > 0)
+                    if (item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID > 0)
                         Sua(item, mTransit);
                     else
                         Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
-                foreach (LICHBIEUKHONGDINHKY item in lsArrayDeleted)
+                foreach (BOLichBieuKhongDinhKy item in lsArrayDeleted)
                 {
-                    Xoa(item.LichBieuKhongDinhKyID, mTransit);
+                    Xoa(item, mTransit);
                 }
+
+            frmLichBieuKhongDinhKy.Commit();
         }
+
+
     }
 }

@@ -14,11 +14,13 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
         private Data.QUYEN mQuyen = null;
+        private Data.BOChiTietQuyen BOChiTietQuyen = null;
 
         public WindowThemCaiDatChucNang(Data.QUYEN quyen, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOChiTietQuyen = new Data.BOChiTietQuyen(mTransit);
             mQuyen = quyen;
         }
 
@@ -35,74 +37,41 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.CHITIETQUYEN> lsChiTietQuyen = new List<Data.CHITIETQUYEN>();
-            foreach (ShowData item in lvData.Items)
+            List<Data.BOChiTietQuyen> lsArray = new List<Data.BOChiTietQuyen>();
+            foreach (Data.BOChiTietQuyen item in lvData.Items)
             {
-                bool deleted = true;
-                if (item.Xem || item.Them || item.Sua || item.Xoa || item.DangNhap)
-                    deleted = false;
-                lsChiTietQuyen.Add(new Data.CHITIETQUYEN() { QuyenID = item.QuyenID, ChucNangID = item.ChucNangID, Xem = item.Xem, Them = item.Them, Sua = item.Sua, Xoa = item.Xoa, DangNhap = item.DangNhap, Deleted = deleted });
+                lsArray.Add(item);
             }
-            Data.BOChiTietQuyen.Luu(lsChiTietQuyen, mTransit);
+            BOChiTietQuyen.Luu(lsArray, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }
 
         private void LoadDanhSach()
         {
-            List<Data.CHUCNANG> lsChucNang = Data.BOChucNang.GetAll(mTransit);
-            List<Data.CHITIETQUYEN> lsChiTietQuyen = Data.BOChiTietQuyen.GetAll(mQuyen.MaQuyen, mTransit);
-            List<ShowData> lsShowData = new List<ShowData>();
+            IQueryable<Data.CHUCNANG> lsChucNang = Data.BOChucNang.GetAllNoTracking(mTransit);
+            IQueryable<Data.BOChiTietQuyen> lsChiTietQuyen = BOChiTietQuyen.GetAll(mQuyen.MaQuyen, mTransit);
+            List<Data.BOChiTietQuyen> lsShowData = new List<Data.BOChiTietQuyen>();
             foreach (Data.CHUCNANG mi in lsChucNang)
             {
-                ShowData item = new ShowData();
-                item.TenChucNang = mi.TenChucNang;
-                item.QuyenID = mQuyen.MaQuyen;
-                item.ChucNangID = mi.ChucNangID;
-                if (lsChiTietQuyen.Exists(s => s.ChucNangID == mi.ChucNangID))
+                Data.BOChiTietQuyen item = null;
+                if (lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == mi.ChucNangID).Count() > 0)
                 {
-                    Data.CHITIETQUYEN ctq = lsChiTietQuyen.Where(s => s.ChucNangID == mi.ChucNangID).First();
-                    item.Xem = (bool)ctq.Xem;
-                    item.Them = (bool)ctq.Them;
-                    item.Sua = (bool)ctq.Sua;
-                    item.Xoa = (bool)ctq.Xoa;
-                    item.DangNhap = (bool)ctq.DangNhap;
+                    item = lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == mi.ChucNangID).FirstOrDefault();
+                }
+                else
+                {
+                    item = new Data.BOChiTietQuyen();
+                    item.ChucNang = mi;
+                    item.ChiTietQuyen.ChucNangID = mi.ChucNangID;
+                    item.ChiTietQuyen.QuyenID = mQuyen.MaQuyen;
+                    item.ChiTietQuyen.Deleted = false;
+                    item.ChiTietQuyen.Edit = false;
                 }
 
                 lsShowData.Add(item);
             }
             lvData.ItemsSource = lsShowData;
-        }
-
-        private class ShowData
-        {
-            public string TenChucNang { get; set; }
-
-            public int ChucNangID { get; set; }
-
-            public int QuyenID { get; set; }
-
-            public bool Xem { get; set; }
-
-            public bool Xoa { get; set; }
-
-            public bool Sua { get; set; }
-
-            public bool Them { get; set; }
-
-            public bool DangNhap { get; set; }
-
-            public ShowData()
-            {
-                ChucNangID = 0;
-                QuyenID = 0;
-                TenChucNang = "";
-                Xem = false;
-                Xoa = false;
-                Sua = false;
-                Them = false;
-                DangNhap = false;
-            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

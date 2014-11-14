@@ -7,37 +7,43 @@ namespace Data
 {
     public class BOThe
     {
-        public static List<THE> GetAll(Transit mTransit)
+        FrameworkRepository<THE> frmLoaiKhachHang = null;
+        public BOThe(Data.Transit transit)
         {
-            return mTransit.KaraokeEntities.THEs.Where(s => s.Deleted == false).ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmLoaiKhachHang = new FrameworkRepository<THE>(transit.KaraokeEntities, transit.KaraokeEntities.THEs);
         }
 
-        public static int Them(THE item, Transit mTransit)
+        public IQueryable<THE> GetAll(Transit mTransit)
         {
-            mTransit.KaraokeEntities.THEs.AddObject(item);
+            return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
+        }
+        public static IQueryable<THE> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<THE>.QueryNoTracking(mTransit.KaraokeEntities.THEs).Where(s => s.Deleted == false);
+        }
+
+        private int Them(THE item, Transit mTransit)
+        {
+            frmLoaiKhachHang.AddObject(item);
             return item.TheID;
         }
 
-        public static int Xoa(int TheID, Transit mTransit)
+        private int Xoa(THE item, Transit mTransit)
         {
-            THE item = (from x in mTransit.KaraokeEntities.THEs where x.TheID == TheID select x).First();
-            mTransit.KaraokeEntities.THEs.Attach(item);
-            mTransit.KaraokeEntities.THEs.DeleteObject(item);
+            item.Deleted = true;
+            frmLoaiKhachHang.Update(item);
             return item.TheID;
         }
 
-        public static int Sua(THE item, Transit mTransit)
+        private int Sua(THE item, Transit mTransit)
         {
-            THE m = (from x in mTransit.KaraokeEntities.THEs where x.TheID == item.TheID select x).First();
-            mTransit.KaraokeEntities.THEs.Attach(m);
-            m.TenThe = item.TenThe;
-            m.ChietKhau = item.ChietKhau;
-            m.Visual = item.Visual;
-            m.Edit = false;
+            item.Deleted = true;
+            frmLoaiKhachHang.Update(item);
             return item.TheID;
         }
 
-        public static void Luu(List<THE> lsArray, List<THE> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<THE> lsArray, List<THE> lsArrayDeleted, Transit mTransit)
         {
             if (lsArray != null)
                 foreach (THE item in lsArray)
@@ -50,9 +56,9 @@ namespace Data
             if (lsArrayDeleted != null)
                 foreach (THE item in lsArrayDeleted)
                 {
-                    Xoa(item.TheID, mTransit);
+                    Xoa(item, mTransit);
                 }
-            mTransit.KaraokeEntities.SaveChanges();
+            frmLoaiKhachHang.Commit();
         }
     }
 }

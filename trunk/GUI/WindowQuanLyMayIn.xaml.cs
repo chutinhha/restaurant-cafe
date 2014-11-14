@@ -24,6 +24,8 @@ namespace GUI
                 ucMayIn = new UserControlLibrary.UCMayIn(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucMayIn.Height = spNoiDung.ActualHeight;
+            ucMayIn.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucMayIn);
         }
 
@@ -34,6 +36,8 @@ namespace GUI
                 ucMenuMayIn = new UserControlLibrary.UCMenuMayIn(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucMenuMayIn.Height = spNoiDung.ActualHeight;
+            ucMenuMayIn.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucMenuMayIn);
         }
 
@@ -52,7 +56,7 @@ namespace GUI
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (spNoiDung.Children[0] is UserControlLibrary.UCMayIn)
-                ucMayIn.Window_KeyDown(sender, e);            
+                ucMayIn.Window_KeyDown(sender, e);
         }
 
     }

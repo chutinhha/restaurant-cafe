@@ -34,7 +34,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="30">
                                 <CheckBox Name="ckValues" IsChecked="{Binding Values}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                                <TextBlock Text="{Binding TenNhanVien}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                                <TextBlock Text="{Binding QuyenNhanVien.NhanVien.TenNhanVien}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

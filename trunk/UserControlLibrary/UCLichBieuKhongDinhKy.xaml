@@ -20,12 +20,12 @@
         <ListView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenLichBieu}" Width="200" Header="Tên lịch biểu" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MENULOAIGIA.Ten}" Width="150" Header="Loại giá" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ngay}" Width="150" Header="Ngày" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=GioBatDau}" Width="150" Header="Giờ bắt đầu" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=GioKetThuc}" Width="150" Header="Giờ kết thúc" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="100" Header="Hoạt động" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuKhongDinhKy.TenLichBieu}" Width="200" Header="Tên lịch biểu" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuLoaiGia.Ten}" Width="150" Header="Loại giá" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuKhongDinhKy.Ngay}" Width="150" Header="Ngày" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuKhongDinhKy.GioBatDau}" Width="150" Header="Giờ bắt đầu" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuKhongDinhKy.GioKetThuc}" Width="150" Header="Giờ kết thúc" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuKhongDinhKy.Visual}" Width="100" Header="Hoạt động" />
                 </GridView>
             </ListView.View>
         </ListView>

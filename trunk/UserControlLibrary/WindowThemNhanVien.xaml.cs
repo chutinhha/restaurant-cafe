@@ -93,7 +93,7 @@ namespace UserControlLibrary
                 _Item.NhanVien.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
             }
             Data.LOAINHANVIEN lnv = (Data.LOAINHANVIEN)cbbLoaiNhanVien.SelectedItem;
-            _Item.LoaiNhanVien.TenLoaiNhanVien = lnv.TenLoaiNhanVien;            
+            _Item.LoaiNhanVien.TenLoaiNhanVien = lnv.TenLoaiNhanVien;
         }
 
         private bool CheckValues()

@@ -33,12 +33,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="30">
-                                <TextBlock Text="{Binding TenChucNang}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="200" />
-                                <CheckBox Name="ckDangNhap" IsChecked="{Binding DangNhap}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Đăng nhập" />
-                                <CheckBox Name="ckXem" IsChecked="{Binding Xem}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xem" />
-                                <CheckBox Name="ckThem" IsChecked="{Binding Them}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Thêm" />
-                                <CheckBox Name="ckSua" IsChecked="{Binding Sua}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Sửa" />
-                                <CheckBox Name="ckXoa" IsChecked="{Binding Xoa}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xóa" />                                
+                                <TextBlock Text="{Binding ChucNang.TenChucNang}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="200" />
+                                <CheckBox Name="ckDangNhap" IsChecked="{Binding ChiTietQuyen.DangNhap}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Đăng nhập" />
+                                <CheckBox Name="ckXem" IsChecked="{Binding ChiTietQuyen.Xem}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xem" />
+                                <CheckBox Name="ckThem" IsChecked="{Binding ChiTietQuyen.Them}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Thêm" />
+                                <CheckBox Name="ckSua" IsChecked="{Binding ChiTietQuyen.Sua}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Sửa" />
+                                <CheckBox Name="ckXoa" IsChecked="{Binding ChiTietQuyen.Xoa}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xóa" />                                
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

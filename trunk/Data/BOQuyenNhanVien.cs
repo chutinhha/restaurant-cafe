@@ -10,16 +10,25 @@ namespace Data
         public QUYEN Quyen { get; set; }
         public QUYENNHANVIEN QuyenNhanVien { get; set; }
         public NHANVIEN NhanVien { get; set; }
+        FrameworkRepository<NHANVIEN> frmNhanVien = null;
+        FrameworkRepository<QUYEN> frmQuyen = null;
+        FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = null;
+
+        public BOQuyenNhanVien(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
+            frmQuyen = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
+            frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENNHANVIENs);
+        }
         public BOQuyenNhanVien()
         {
-
+            Quyen = new QUYEN();
+            QuyenNhanVien = new QUYENNHANVIEN();
+            NhanVien = new NHANVIEN();
         }
-        public static List<BOQuyenNhanVien> GetAll(int MaQuyen, Transit mTransit)
+        public IQueryable<BOQuyenNhanVien> GetAll(int MaQuyen, Transit mTransit)
         {
-            FrameworkRepository<NHANVIEN> frmNhanVien = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
-            FrameworkRepository<QUYEN> frmQuyen = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
-            FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(mTransit.KaraokeEntities);
-
             return (from qnv in frmQuyenNhanVien.Query()
                     join q in frmQuyen.Query() on qnv.QuyenID equals q.MaQuyen
                     join nv in frmNhanVien.Query() on qnv.NhanVienID equals nv.NhanVienID
@@ -29,46 +38,45 @@ namespace Data
                         QuyenNhanVien = qnv,
                         Quyen = q,
                         NhanVien = nv
-                    }).ToList();
+                    });
 
         }
 
-        private static int Them(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        private int Them(BOQuyenNhanVien item, Transit mTransit)
         {
-            frm.AddObject(item.QuyenNhanVien);
+            frmQuyenNhanVien.AddObject(item.QuyenNhanVien);
             return item.QuyenNhanVien.ID;
         }
 
-        private static int Xoa(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        private int Xoa(BOQuyenNhanVien item, Transit mTransit)
         {
-            frm.DeleteObject(item.QuyenNhanVien);
+            frmQuyenNhanVien.DeleteObject(item.QuyenNhanVien);
             return item.QuyenNhanVien.ID;
         }
 
-        private static int Sua(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        private int Sua(BOQuyenNhanVien item, Transit mTransit)
         {
-            frm.Update(item.QuyenNhanVien);
+            frmQuyenNhanVien.Update(item.QuyenNhanVien);
             return item.QuyenNhanVien.ID;
         }
 
-        public static void Luu(List<BOQuyenNhanVien> lsArray, List<BOQuyenNhanVien> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<BOQuyenNhanVien> lsArray, List<BOQuyenNhanVien> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<QUYENNHANVIEN> frm = new FrameworkRepository<QUYENNHANVIEN>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (BOQuyenNhanVien item in lsArray)
                 {
                     if (item.QuyenNhanVien.ID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (BOQuyenNhanVien item in lsArrayDeleted)
                 {
                     if (item.QuyenNhanVien.ID > 0)
-                        Xoa(item, mTransit, frm);
+                        Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmQuyenNhanVien.Commit();
         }
     }
 }

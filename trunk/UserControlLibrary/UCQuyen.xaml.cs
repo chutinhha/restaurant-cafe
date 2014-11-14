@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -14,18 +15,20 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.QUYEN mItem = null;
         private List<Data.QUYEN> lsArrayDeleted = null;
+        private Data.BOQuyen BOQuyen = null;
 
         public UCQuyen(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOQuyen = new Data.BOQuyen(mTransit);
             btnQuyenNhanVien.Visibility = System.Windows.Visibility.Hidden;
             btnCaiDatChucNang.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void LoadDanhSach()
         {
-            List<Data.QUYEN> lsArray = Data.BOQuyen.GetAll(mTransit);
+            IQueryable<Data.QUYEN> lsArray = BOQuyen.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -120,7 +123,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOQuyen.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOQuyen.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

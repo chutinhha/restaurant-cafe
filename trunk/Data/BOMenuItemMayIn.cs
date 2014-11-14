@@ -7,57 +7,68 @@ namespace Data
 {
     public class BOMenuItemMayIn
     {
-        public static List<MENUITEMMAYIN> GetAll(int MonID, Transit mTransit)
+        private FrameworkRepository<MENUITEMMAYIN> frmMenuItemMayIn = null;
+        private FrameworkRepository<MAYIN> frmMayIn = null;
+        private FrameworkRepository<MENUMON> frmMenuMon = null;
+
+        public MENUITEMMAYIN MenuItemMayIn { get; set; }
+        public MAYIN MayIn { get; set; }
+        public MENUMON MenuMon { get; set; }
+
+        public BOMenuItemMayIn(Data.Transit transit)
         {
-            var res = (from mi in mTransit.KaraokeEntities.MENUITEMMAYINs
-                       join m in mTransit.KaraokeEntities.MENUMONs on mi.MonID equals m.MonID
-                       join i in mTransit.KaraokeEntities.MAYINs on mi.MayInID equals i.MayInID
-                       where mi.Deleted == false && mi.Deleted == false && mi.MonID == MonID
-                       select new
-                       {
-                           MENUITEMMAYIN = mi,
-                           MENUMONs = m,
-                           MAYINs = i
-                       }).ToList().Select(s => s.MENUITEMMAYIN);
-            return res.ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmMenuItemMayIn = new FrameworkRepository<MENUITEMMAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MENUITEMMAYINs);
+            frmMayIn = new FrameworkRepository<MAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MAYINs);
+            frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
         }
 
-        public static int Them(MENUITEMMAYIN item, Transit mTransit)
+        public BOMenuItemMayIn()
         {
-            mTransit.KaraokeEntities.MENUITEMMAYINs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.MayInID;
+            MenuItemMayIn = new MENUITEMMAYIN();
+            MayIn = new MAYIN();
+            MenuMon = new MENUMON();
         }
 
-        public static int Xoa(int MayInID, int MonID, Transit mTransit)
+        public IQueryable<BOMenuItemMayIn> GetAll(int MonID, Transit mTransit)
         {
-            if ((from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).Count() > 0)
-            {
-                MENUITEMMAYIN item = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == MayInID && x.MonID == MonID select x).First();
-                mTransit.KaraokeEntities.MENUITEMMAYINs.DeleteObject(item);
-                mTransit.KaraokeEntities.SaveChanges();
-            }
-            return MayInID;
-        }
-
-
-        public static void Luu(List<MENUITEMMAYIN> lsArray, Transit mTransit)
-        {
-            foreach (MENUITEMMAYIN item in lsArray)
-            {
-                if (item.Deleted == true)
-                {
-                    Xoa(item.MayInID, item.MonID, mTransit);
-                }
-                else
-                {
-                    int count = (from x in mTransit.KaraokeEntities.MENUITEMMAYINs where x.MayInID == item.MayInID && x.MonID == item.MonID select x).Count();
-                    if (count == 0)
+            return (from mim in frmMenuItemMayIn.Query()
+                    join mi in frmMayIn.Query() on mim.MayInID equals mi.MayInID
+                    join m in frmMenuMon.Query() on mim.MonID equals m.MonID
+                    where mim.Deleted == false && mim.MonID == MonID
+                    select new BOMenuItemMayIn
                     {
-                        Them(item, mTransit);
-                    }
+                        MenuItemMayIn = mim,
+                        MayIn = mi,
+                        MenuMon = m
+                    });
+        }
+
+        public void Luu(List<BOMenuItemMayIn> lsArray, List<BOMenuItemMayIn> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (BOMenuItemMayIn item in lsArray)
+                {
+                    Them(item, mTransit);
                 }
-            }
+            if (lsArrayDeleted != null)
+                foreach (BOMenuItemMayIn item in lsArrayDeleted)
+                {
+                    Xoa(item, mTransit);
+                }
+            frmMenuItemMayIn.Commit();
+        }
+
+        private int Them(BOMenuItemMayIn item, Transit mTransit)
+        {
+            frmMenuItemMayIn.AddObject(item.MenuItemMayIn);
+            return item.MenuItemMayIn.MayInID;
+        }
+
+        private int Xoa(BOMenuItemMayIn item, Transit mTransit)
+        {
+            frmMenuItemMayIn.DeleteObject(item.MenuItemMayIn);
+            return item.MenuItemMayIn.MayInID;
         }
     }
 }

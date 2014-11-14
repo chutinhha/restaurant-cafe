@@ -7,51 +7,58 @@ namespace Data
 {
     public class BOQuyen
     {
-        public static List<QUYEN> GetAll(Transit mTransit)
+        FrameworkRepository<QUYEN> frmLoaiKhachHang = null;
+        public BOQuyen(Data.Transit transit)
         {
-            FrameworkRepository<QUYEN> frm = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
-            return frm.Query().ToList();
-        }
-        public static List<QUYEN> GetAllNoTracking(Transit mTransit)
-        {
-            return FrameworkRepository<QUYEN>.QueryNoTracking(mTransit.KaraokeEntities.QUYENs).ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmLoaiKhachHang = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
         }
 
-        private static int Them(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
+        public IQueryable<QUYEN> GetAll(Transit mTransit)
         {
-            frm.AddObject(item);
+            return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
+        }
+        public static IQueryable<QUYEN> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<QUYEN>.QueryNoTracking(mTransit.KaraokeEntities.QUYENs).Where(s => s.Deleted == false);
+        }
+
+        private int Them(QUYEN item, Transit mTransit)
+        {
+            frmLoaiKhachHang.AddObject(item);
             return item.MaQuyen;
         }
 
-        private static int Xoa(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
+        private int Xoa(QUYEN item, Transit mTransit)
         {
-            frm.DeleteObject(item);
+            item.Deleted = true;
+            frmLoaiKhachHang.Update(item);
             return item.MaQuyen;
         }
 
-        private static int Sua(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
+        private int Sua(QUYEN item, Transit mTransit)
         {
-            frm.Update(item);
+            item.Deleted = true;
+            frmLoaiKhachHang.Update(item);
             return item.MaQuyen;
         }
 
-        public static void Luu(List<QUYEN> lsArray, List<QUYEN> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<QUYEN> lsArray, List<QUYEN> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<QUYEN> frm = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (QUYEN item in lsArray)
                 {
                     if (item.MaQuyen > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (QUYEN item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmLoaiKhachHang.Commit();
         }
     }
 }
