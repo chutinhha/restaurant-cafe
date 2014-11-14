@@ -33,7 +33,7 @@
                 <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenNhanVien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiNhanVien" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Tên đang nhập" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Tên đăng nhập" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBox Grid.Row="2" Grid.Column="1"  x:Name="txtTenDangNhap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Mật khẩu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <PasswordBox Grid.Row="3" Grid.Column="1"  x:Name="txtMatKhau" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
