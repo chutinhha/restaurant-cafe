@@ -12,7 +12,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.LICHBIEUDINHKY _Item { get; set; }
+        public Data.BOLichBieuDinhKy _Item { get; set; }
 
         public WindowThemLichBieuDinhKy(Data.Transit transit)
         {
@@ -38,10 +38,10 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.LICHBIEUDINHKY();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BOLichBieuDinhKy();
+                    _Item.LichBieuDinhKy.Visual = true;
+                    _Item.LichBieuDinhKy.Deleted = false;
+                    _Item.LichBieuDinhKy.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -70,15 +70,15 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenLichBieu.Text = _Item.TenLichBieu;
-                cbbLoaiGia.SelectedValue = _Item.LoaiGiaID;
-                cbbTheLoai.SelectedValue = _Item.TheLoaiID;
+                txtTenLichBieu.Text = _Item.LichBieuDinhKy.TenLichBieu;
+                cbbLoaiGia.SelectedValue = _Item.LichBieuDinhKy.LoaiGiaID;
+                cbbTheLoai.SelectedValue = _Item.LichBieuDinhKy.TheLoaiID;
                 cbbTheLoai_SelectionChanged(null, null);
-                cbbGiaTriBatDau.SelectedValue = _Item.GiaTriBatDau;
-                cbbGiaTriKetThuc.SelectedValue = _Item.GiaTriKetThuc;
-                txtUuTien.Text = _Item.UuTien.ToString();
-                timeBatDau.TimeCurent = (TimeSpan)_Item.GioBatDau;
-                timeKetThuc.TimeCurent = (TimeSpan)_Item.GioKetThuc;
+                cbbGiaTriBatDau.SelectedValue = _Item.LichBieuDinhKy.GiaTriBatDau;
+                cbbGiaTriKetThuc.SelectedValue = _Item.LichBieuDinhKy.GiaTriKetThuc;
+                txtUuTien.Text = _Item.LichBieuDinhKy.UuTien.ToString();
+                timeBatDau.TimeCurent = (TimeSpan)_Item.LichBieuDinhKy.GioBatDau;
+                timeKetThuc.TimeCurent = (TimeSpan)_Item.LichBieuDinhKy.GioKetThuc;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Thêm Lịch Biểu Định Kỳ";
             }
@@ -86,43 +86,43 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.TenLichBieu = txtTenLichBieu.Text;
-            _Item.TheLoaiID = (int)cbbTheLoai.SelectedValue;
-            _Item.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
-            _Item.GiaTriBatDau = (int)cbbGiaTriBatDau.SelectedValue;
-            _Item.GiaTriKetThuc = (int)cbbGiaTriKetThuc.SelectedValue;
-            _Item.UuTien = System.Convert.ToInt32(txtUuTien.Text);
-            _Item.Visual = true;
-            _Item.Deleted = false;
-            _Item.GioBatDau = timeBatDau.TimeCurent;
-            _Item.GioKetThuc = timeKetThuc.TimeCurent;
+            _Item.LichBieuDinhKy.TenLichBieu = txtTenLichBieu.Text;
+            _Item.LichBieuDinhKy.TheLoaiID = (int)cbbTheLoai.SelectedValue;
+            _Item.LichBieuDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
+            _Item.LichBieuDinhKy.GiaTriBatDau = (int)cbbGiaTriBatDau.SelectedValue;
+            _Item.LichBieuDinhKy.GiaTriKetThuc = (int)cbbGiaTriKetThuc.SelectedValue;
+            _Item.LichBieuDinhKy.UuTien = System.Convert.ToInt32(txtUuTien.Text);
+            _Item.LichBieuDinhKy.Visual = true;
+            _Item.LichBieuDinhKy.Deleted = false;
+            _Item.LichBieuDinhKy.GioBatDau = timeBatDau.TimeCurent;
+            _Item.LichBieuDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
 
-            switch (_Item.TheLoaiID)
+            switch (_Item.LichBieuDinhKy.TheLoaiID)
             {
                 case 1:
-                    if (_Item.GiaTriBatDau == _Item.GiaTriKetThuc)
+                    if (_Item.LichBieuDinhKy.GiaTriBatDau == _Item.LichBieuDinhKy.GiaTriKetThuc)
                     {
-                        _Item.TenHienThi = cbbGiaTriBatDau.Text;
+                        _Item.LichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
                     }
                     else
                     {
-                        _Item.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
+                        _Item.LichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
                     }
                     break;
 
                 case 2:
-                    if (_Item.GiaTriBatDau == _Item.GiaTriKetThuc)
+                    if (_Item.LichBieuDinhKy.GiaTriBatDau == _Item.LichBieuDinhKy.GiaTriKetThuc)
                     {
-                        _Item.TenHienThi = cbbGiaTriBatDau.Text;
+                        _Item.LichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text;
                     }
                     else
                     {
-                        _Item.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
+                        _Item.LichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " - " + cbbGiaTriKetThuc.Text;
                     }
                     break;
 
                 case 3:
-                    _Item.TenHienThi = cbbGiaTriBatDau.Text + " " + cbbGiaTriKetThuc.Text;
+                    _Item.LichBieuDinhKy.TenHienThi = cbbGiaTriBatDau.Text + " " + cbbGiaTriKetThuc.Text;
                     break;
 
                 default:

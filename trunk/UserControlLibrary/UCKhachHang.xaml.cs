@@ -14,16 +14,18 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.BOKhachHang mItem = null;
         private List<Data.BOKhachHang> lsArrayDeleted = null;
+        private Data.BOKhachHang BOKhachHang = null;
 
         public UCKhachHang(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOKhachHang = new Data.BOKhachHang(transit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.BOKhachHang> lsArray = Data.BOKhachHang.GetAll(mTransit);
+            List<Data.BOKhachHang> lsArray = BOKhachHang.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -108,7 +110,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOKhachHang.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOKhachHang.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

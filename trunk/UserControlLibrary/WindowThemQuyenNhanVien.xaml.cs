@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -71,7 +72,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            List<Data.NHANVIEN> lsNhanVien = Data.BONhanVien.GetAllNoTracking(mTransit);
+            IQueryable<Data.NHANVIEN> lsNhanVien = Data.BONhanVien.GetAllNoTracking(mTransit);
             List<Data.BOQuyenNhanVien> lsQuyenNhanVien = Data.BOQuyenNhanVien.GetAll(mQuyen.MaQuyen, mTransit);
             List<ShowData> lsShowData = new List<ShowData>();
             foreach (Data.NHANVIEN mi in lsNhanVien)

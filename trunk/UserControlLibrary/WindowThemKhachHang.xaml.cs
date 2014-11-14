@@ -20,7 +20,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiKhachHang()
         {
-            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAll(mTransit);
+            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAllNoTracking(mTransit);
             if (cbbLoaiKhachHang.Items.Count > 0)
                 cbbLoaiKhachHang.SelectedIndex = 0;
         }
