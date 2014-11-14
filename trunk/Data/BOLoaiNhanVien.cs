@@ -7,10 +7,10 @@ namespace Data
 {
     public class BOLoaiNhanVien
     {
-        public static List<LOAINHANVIEN> GetAllNoTracking(Transit mTransit)
+        public static IQueryable<LOAINHANVIEN> GetAllNoTracking(Transit mTransit)
         {
-            return FrameworkRepository<LOAINHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.LOAINHANVIENs).ToList();
-        }        
+            return FrameworkRepository<LOAINHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.LOAINHANVIENs);
+        }
 
         private static int Them(LOAINHANVIEN item, Transit mTransit, FrameworkRepository<LOAINHANVIEN> frm)
         {

@@ -7,7 +7,15 @@ namespace Data
 {
     public class BOLoaiKhachHang
     {
-        public static List<LOAIKHACHHANG> GetAll(Transit mTransit)
+
+        FrameworkRepository<LOAIKHACHHANG> frmLoaiKhachHang = null;
+        public BOLoaiKhachHang(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIKHACHHANGs);
+        }
+
+        public List<LOAIKHACHHANG> GetAll(Transit mTransit)
         {
             FrameworkRepository<LOAIKHACHHANG> frm = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
             return frm.Query().ToList();
@@ -17,41 +25,41 @@ namespace Data
             return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(mTransit.KaraokeEntities.LOAIKHACHHANGs).ToList();
         }
 
-        private static int Them(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
+        private int Them(LOAIKHACHHANG item, Transit mTransit)
         {
-            frm.AddObject(item);
+            frmLoaiKhachHang.AddObject(item);
             return item.LoaiKhachHangID;
         }
 
-        private static int Xoa(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
+        private int Xoa(LOAIKHACHHANG item, Transit mTransit)
         {
-            frm.DeleteObject(item);
+            frmLoaiKhachHang.DeleteObject(item);
             return item.LoaiKhachHangID;
         }
 
-        private static int Sua(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
+        private int Sua(LOAIKHACHHANG item, Transit mTransit)
         {
-            frm.Update(item);
+            frmLoaiKhachHang.Update(item);
             return item.LoaiKhachHangID;
         }
 
-        public static void Luu(List<LOAIKHACHHANG> lsArray, List<LOAIKHACHHANG> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<LOAIKHACHHANG> lsArray, List<LOAIKHACHHANG> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<LOAIKHACHHANG> frm = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
+
             if (lsArray != null)
                 foreach (LOAIKHACHHANG item in lsArray)
                 {
                     if (item.LoaiKhachHangID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (LOAIKHACHHANG item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmLoaiKhachHang.Commit();
         }
     }
 }
