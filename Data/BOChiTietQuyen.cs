@@ -7,75 +7,69 @@ namespace Data
 {
     public class BOChiTietQuyen
     {
-        public static List<CHITIETQUYEN> GetAll(int MaQuyen, Transit mTransit)
+        public CHITIETQUYEN ChiTietQuyen { get; set; }
+        public QUYEN Quyen { get; set; }
+        public CHUCNANG ChucNang { get; set; }
+        FrameworkRepository<CHITIETQUYEN> frmChiTietQuyen = null;
+        FrameworkRepository<QUYEN> frmQuyen = null;
+        FrameworkRepository<CHUCNANG> frmChucNang = null;
+        public BOChiTietQuyen(Transit transit)
         {
-            var res = (from mi in mTransit.KaraokeEntities.CHITIETQUYENs
-                       join m in mTransit.KaraokeEntities.QUYENs on mi.QuyenID equals m.MaQuyen
-                       join i in mTransit.KaraokeEntities.CHUCNANGs on mi.ChucNangID equals i.ChucNangID
-                       where mi.Deleted == false && mi.Deleted == false && mi.QuyenID == MaQuyen
-                       select new
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmChiTietQuyen = new FrameworkRepository<CHITIETQUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.CHITIETQUYENs);
+            frmQuyen = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
+            frmChucNang = new FrameworkRepository<CHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.CHUCNANGs);
+        }
+        public BOChiTietQuyen()
+        {
+            ChiTietQuyen = new CHITIETQUYEN();
+            Quyen = new QUYEN();
+            ChucNang = new CHUCNANG();
+        }
+
+        public IQueryable<BOChiTietQuyen> GetAll(int MaQuyen, Transit mTransit)
+        {
+            var res = (from ctq in frmChiTietQuyen.Query()
+                       join q in frmQuyen.Query() on ctq.QuyenID equals q.MaQuyen
+                       join cn in frmChucNang.Query() on ctq.ChucNangID equals cn.ChucNangID
+                       where ctq.Deleted == false && ctq.Deleted == false && ctq.QuyenID == MaQuyen
+                       select new BOChiTietQuyen
                        {
-                           CHITIETQUYENs = mi,
-                           QUYENs = m,
-                           CHUCNANGs = i
-                       }).ToList().Select(s => s.CHITIETQUYENs);
-            return res.ToList();
+                           ChiTietQuyen = ctq,
+                           Quyen = q,
+                           ChucNang = cn
+                       });
+            return res;
+        }
+        private int Them(BOChiTietQuyen item, Transit mTransit)
+        {
+            frmChiTietQuyen.AddObject(item.ChiTietQuyen);
+            return item.ChiTietQuyen.ChiTietQuyenID;
         }
 
-        public static int Them(CHITIETQUYEN item, Transit mTransit)
+        private int Xoa(BOChiTietQuyen item, Transit mTransit)
         {
-            mTransit.KaraokeEntities.CHITIETQUYENs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return (int)item.QuyenID;
+            frmChiTietQuyen.DeleteObject(item.ChiTietQuyen);
+            return item.ChiTietQuyen.ChiTietQuyenID;
         }
 
-        public static int Xoa(int QuyenID, int ChucNangID, Transit mTransit)
+        private int Sua(BOChiTietQuyen item, Transit mTransit)
         {
-            CHITIETQUYEN item = (from x in mTransit.KaraokeEntities.CHITIETQUYENs where x.QuyenID == QuyenID && x.ChucNangID == ChucNangID select x).First();
-            mTransit.KaraokeEntities.CHITIETQUYENs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return (int)item.QuyenID;
+            frmChiTietQuyen.Update(item.ChiTietQuyen);
+            return item.ChiTietQuyen.ChiTietQuyenID;
         }
 
-        public static int Sua(CHITIETQUYEN item, Transit mTransit)
+        public void Luu(List<BOChiTietQuyen> lsArray, Transit mTransit)
         {
-            CHITIETQUYEN m = (from x in mTransit.KaraokeEntities.CHITIETQUYENs where x.QuyenID == item.QuyenID && x.ChucNangID == item.ChucNangID select x).First();
-            m.QuyenID = item.QuyenID;
-            m.ChucNangID = item.ChucNangID;
-            m.Xem = item.Xem;
-            m.Them = item.Them;
-            m.Xoa = item.Xoa;
-            m.Sua = item.Sua;
-            m.DangNhap = item.DangNhap;
-            m.Deleted = item.Deleted;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ChiTietQuyenID;
-        }
-
-
-        public static void Luu(List<CHITIETQUYEN> lsArray, Transit mTransit)
-        {
-            foreach (CHITIETQUYEN item in lsArray)
-            {
-                if (item.Deleted == true)
+            if (lsArray != null)
+                foreach (BOChiTietQuyen item in lsArray)
                 {
-                    Xoa((int)item.QuyenID, (int)item.ChucNangID, mTransit);
-                }
-                else
-                {
-                    int count = (from x in mTransit.KaraokeEntities.CHITIETQUYENs where x.QuyenID == item.QuyenID && x.ChucNangID == item.ChucNangID select x).Count();
-                    if (count == 0)
-                    {
-                        Them(item, mTransit);
-                    }
-                    else
-                    {
+                    if (item.ChiTietQuyen.ChiTietQuyenID > 0)
                         Sua(item, mTransit);
-                    }
+                    else
+                        Them(item, mTransit);
                 }
-            }
+            frmChiTietQuyen.Commit();
         }
     }
 }

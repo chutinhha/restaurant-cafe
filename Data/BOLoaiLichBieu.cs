@@ -7,9 +7,9 @@ namespace Data
 {
     public class BOLoaiLichBieu
     {
-        public static List<LOAILICHBIEU> GetAll(int TheLoaiID, Transit mTransit)
+        public static IQueryable<LOAILICHBIEU> GetAll(int TheLoaiID, Transit mTransit)
         {
-            return mTransit.KaraokeEntities.LOAILICHBIEUx.Where(s => s.Deleted == false && s.TheLoaiID == TheLoaiID).ToList();
+            return FrameworkRepository<LOAILICHBIEU>.QueryNoTracking(mTransit.KaraokeEntities.LOAILICHBIEUx).Where(s => s.TheLoaiID == TheLoaiID);
         }
     }
 }

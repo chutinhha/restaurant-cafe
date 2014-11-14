@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -12,18 +13,20 @@ namespace UserControlLibrary
     public partial class UCLichBieuKhongDinhKy : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.LICHBIEUKHONGDINHKY mItem = null;
-        private List<Data.LICHBIEUKHONGDINHKY> lsArrayDeleted = null;
+        private Data.BOLichBieuKhongDinhKy mItem = null;
+        private List<Data.BOLichBieuKhongDinhKy> lsArrayDeleted = null;
+        private Data.BOLichBieuKhongDinhKy BOLichBieuKhongDinhKy = null;
 
         public UCLichBieuKhongDinhKy(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOLichBieuKhongDinhKy = new Data.BOLichBieuKhongDinhKy(mTransit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.LICHBIEUKHONGDINHKY> lsArray = Data.BOLichBieuKhongDinhKy.GetAll(mTransit);
+            IQueryable<Data.BOLichBieuKhongDinhKy> lsArray = BOLichBieuKhongDinhKy.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -31,7 +34,7 @@ namespace UserControlLibrary
             }
         }
 
-        private void AddList(Data.LICHBIEUKHONGDINHKY item)
+        private void AddList(Data.BOLichBieuKhongDinhKy item)
         {
             ListViewItem li = new ListViewItem();
             li.Content = item;
@@ -44,7 +47,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.LICHBIEUKHONGDINHKY)li.Tag;
+                mItem = (Data.BOLichBieuKhongDinhKy)li.Tag;
             }
         }
 
@@ -62,13 +65,13 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.LICHBIEUKHONGDINHKY)li.Tag;
+                mItem = (Data.BOLichBieuKhongDinhKy)li.Tag;
 
                 UserControlLibrary.WindowThemLichBieuKhongDinhKy win = new UserControlLibrary.WindowThemLichBieuKhongDinhKy(mTransit);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
+                    win._Item.LichBieuKhongDinhKy.Edit = true;
                     li.Tag = win._Item;
                     li.Content = win._Item;
                     lvData.Items.Refresh();
@@ -80,12 +83,12 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.LICHBIEUKHONGDINHKY)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mItem = (Data.BOLichBieuKhongDinhKy)((ListViewItem)lvData.SelectedItems[0]).Tag;
                 if (lsArrayDeleted == null)
                 {
-                    lsArrayDeleted = new List<Data.LICHBIEUKHONGDINHKY>();
+                    lsArrayDeleted = new List<Data.BOLichBieuKhongDinhKy>();
                 }
-                if (mItem.LichBieuKhongDinhKyID > 0)
+                if (mItem.LichBieuKhongDinhKy.LichBieuKhongDinhKyID > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);
                 if (lvData.Items.Count > 0)
@@ -97,18 +100,18 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.LICHBIEUKHONGDINHKY> lsArray = null;
+            List<Data.BOLichBieuKhongDinhKy> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
             {
-                mItem = (Data.LICHBIEUKHONGDINHKY)li.Tag;
-                if (mItem.LichBieuKhongDinhKyID == 0 || mItem.Edit == true)
+                mItem = (Data.BOLichBieuKhongDinhKy)li.Tag;
+                if (mItem.LichBieuKhongDinhKy.LichBieuKhongDinhKyID == 0 || mItem.LichBieuKhongDinhKy.Edit == true)
                 {
                     if (lsArray == null)
-                        lsArray = new List<Data.LICHBIEUKHONGDINHKY>();
+                        lsArray = new List<Data.BOLichBieuKhongDinhKy>();
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOLichBieuKhongDinhKy.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOLichBieuKhongDinhKy.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

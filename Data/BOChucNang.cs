@@ -7,6 +7,11 @@ namespace Data
 {
     public class BOChucNang
     {
+        public static IQueryable<CHUCNANG> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<CHUCNANG>.QueryNoTracking(mTransit.KaraokeEntities.CHUCNANGs).Where(s => s.Deleted == false);
+        }
+
         public static List<CHUCNANG> GetAll(Transit mTransit)
         {
             return mTransit.KaraokeEntities.CHUCNANGs.Where(s => s.Deleted == false).ToList();

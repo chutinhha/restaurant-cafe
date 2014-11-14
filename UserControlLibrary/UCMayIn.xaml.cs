@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -13,16 +14,18 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.MAYIN mItem = null;
         private List<Data.MAYIN> lsArrayDeleted = null;
+        private Data.BOMayIn BOMayIn = null;
 
         public UCMayIn(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOMayIn = new Data.BOMayIn(mTransit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.MAYIN> lsArray = Data.BOMayIn.GetAll(mTransit);
+            IQueryable<Data.MAYIN> lsArray = BOMayIn.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -107,7 +110,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOMayIn.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOMayIn.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

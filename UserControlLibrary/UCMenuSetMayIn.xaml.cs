@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -23,11 +24,12 @@ namespace UserControlLibrary
 
         public Data.BOMenuMon _Mon { get; set; }
 
+        private Data.BOMenuItemMayIn BOMenuItemMayIn = null;
+
         public void Init(Data.Transit transit)
         {
             mTransit = transit;
-            mTransit.KaraokeEntities = new Data.KaraokeEntities();
-            mTransit.KaraokeEntities.MENUITEMMAYINs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+            BOMenuItemMayIn = new Data.BOMenuItemMayIn(mTransit);
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
         }
@@ -52,30 +54,50 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.MENUITEMMAYIN> lsMonMayIn = new List<Data.MENUITEMMAYIN>();
+            List<Data.BOMenuItemMayIn> lsArray = new List<Data.BOMenuItemMayIn>();
+            List<Data.BOMenuItemMayIn> lsArrayDeleted = new List<Data.BOMenuItemMayIn>();
             foreach (ShowData item in lvData.Items)
             {
-                lsMonMayIn.Add(new Data.MENUITEMMAYIN() { MonID = item.MonID, MayInID = item.MayInID, Deleted = !item.Values });
+                if (item.Values == true)
+                {
+                    if (item.MenuItemMayIn.MenuItemMayIn.MayInID == 0 || item.MenuItemMayIn.MenuItemMayIn.MayInID == null)
+                    {
+                        item.MenuItemMayIn.MenuItemMayIn.MayInID = item.MenuItemMayIn.MayIn.MayInID;
+                        item.MenuItemMayIn.MenuItemMayIn.MonID = _Mon.MenuMon.MonID;
+                        item.MenuItemMayIn.MenuItemMayIn.Deleted = false;
+                        item.MenuItemMayIn.MenuItemMayIn.Visual = true;
+                        lsArray.Add(item.MenuItemMayIn);
+                    }
+                }
+                else
+                {
+                    if (item.MenuItemMayIn.MenuItemMayIn.MayInID > 0)
+                    {
+                        lsArrayDeleted.Add(item.MenuItemMayIn);
+                    }
+                }
             }
-            Data.BOMenuItemMayIn.Luu(lsMonMayIn, mTransit);
+            BOMenuItemMayIn.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }
 
         private void LoadDanhSach()
         {
-            List<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAll(mTransit);
-            List<Data.MENUITEMMAYIN> lsMonMayIn = Data.BOMenuItemMayIn.GetAll(_Mon.MenuMon.MonID, mTransit);
+            IQueryable<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAllNoTracking(mTransit);
+            IQueryable<Data.BOMenuItemMayIn> lsMonMayIn = BOMenuItemMayIn.GetAll(_Mon.MenuMon.MonID, mTransit);
             List<ShowData> lsShowData = new List<ShowData>();
             foreach (Data.MAYIN mi in lsMayIn)
             {
-                ShowData item = new ShowData();
-                item.TenMayIn = mi.TieuDeIn;
-                item.MonID = _Mon.MenuMon.MonID;
-                item.MayInID = mi.MayInID;
-                if (lsMonMayIn.Exists(s => s.MayInID == mi.MayInID))
+                ShowData item = null;
+                if (lsMonMayIn.Where(s => s.MayIn.MayInID == mi.MayInID).Count() > 0)
                 {
-                    item.Values = true;
+                    item = new ShowData(lsMonMayIn.Where(s => s.MayIn.MayInID == mi.MayInID).FirstOrDefault(), true);
+                }
+                else
+                {
+                    item = new ShowData();
+                    item.MenuItemMayIn.MayIn = mi;
                 }
                 lsShowData.Add(item);
             }
@@ -89,21 +111,20 @@ namespace UserControlLibrary
 
         private class ShowData
         {
+            public Data.BOMenuItemMayIn MenuItemMayIn { get; set; }
+            public bool Values { get; set; }
+
             public ShowData()
             {
+                MenuItemMayIn = new Data.BOMenuItemMayIn();
                 Values = false;
-                MayInID = 0;
-                MonID = 0;
-                TenMayIn = "";
             }
 
-            public int MayInID { get; set; }
-
-            public int MonID { get; set; }
-
-            public string TenMayIn { get; set; }
-
-            public bool Values { get; set; }
+            public ShowData(Data.BOMenuItemMayIn menuItemMayIn, bool value)
+            {
+                MenuItemMayIn = menuItemMayIn;
+                Values = value;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -14,16 +15,18 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.NHACUNGCAP mItem = null;
         private List<Data.NHACUNGCAP> lsArrayDeleted = null;
+        private Data.BONhaCungCap BONhaCungCap = null;
 
         public UCNhaCungCap(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BONhaCungCap = new Data.BONhaCungCap(mTransit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.NHACUNGCAP> lsArray = Data.BONhaCungCap.GetAll(mTransit);
+            IQueryable<Data.NHACUNGCAP> lsArray = BONhaCungCap.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -108,7 +111,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BONhaCungCap.Luu(lsArray, lsArrayDeleted, mTransit);
+            BONhaCungCap.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -25,7 +26,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            List<Data.LOAIKHACHHANG> lsArray = BOLoaiKhachHang.GetAll(mTransit);
+            IQueryable<Data.LOAIKHACHHANG> lsArray = BOLoaiKhachHang.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {

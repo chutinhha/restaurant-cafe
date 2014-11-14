@@ -11,7 +11,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.LICHBIEUKHONGDINHKY _Item { get; set; }
+        public Data.BOLichBieuKhongDinhKy _Item { get; set; }
 
         public WindowThemLichBieuKhongDinhKy(Data.Transit transit)
         {
@@ -36,10 +36,10 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.LICHBIEUKHONGDINHKY();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BOLichBieuKhongDinhKy();
+                    _Item.LichBieuKhongDinhKy.Visual = true;
+                    _Item.LichBieuKhongDinhKy.Deleted = false;
+                    _Item.LichBieuKhongDinhKy.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -65,12 +65,12 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenLichBieu.Text = _Item.TenLichBieu;
-                cbbLoaiGia.SelectedValue = _Item.LoaiGiaID;
-                ckHoatDong.IsChecked = _Item.Visual;
-                dtpNgay.SelectedDate = _Item.Ngay;
-                timeBatDau.TimeCurent = (TimeSpan)_Item.GioBatDau;
-                timeKetThuc.TimeCurent = (TimeSpan)_Item.GioKetThuc;
+                txtTenLichBieu.Text = _Item.LichBieuKhongDinhKy.TenLichBieu;
+                cbbLoaiGia.SelectedValue = _Item.LichBieuKhongDinhKy.LoaiGiaID;
+                ckHoatDong.IsChecked = _Item.LichBieuKhongDinhKy.Visual;
+                dtpNgay.SelectedDate = _Item.LichBieuKhongDinhKy.Ngay;
+                timeBatDau.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioBatDau;
+                timeKetThuc.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioKetThuc;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Lịch Biểu Không Định Kỳ";
             }
@@ -78,14 +78,13 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.TenLichBieu = txtTenLichBieu.Text;
-            _Item.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
-            _Item.Ngay = dtpNgay.SelectedDate;
-            _Item.GioBatDau = timeBatDau.TimeCurent;
-            _Item.GioKetThuc = timeKetThuc.TimeCurent;
-            _Item.Visual = ckHoatDong.IsChecked;
-            _Item.Visual = true;
-            _Item.Deleted = false;
+            _Item.LichBieuKhongDinhKy.TenLichBieu = txtTenLichBieu.Text;
+            _Item.LichBieuKhongDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
+            _Item.LichBieuKhongDinhKy.Ngay = dtpNgay.SelectedDate;
+            _Item.LichBieuKhongDinhKy.GioBatDau = timeBatDau.TimeCurent;
+            _Item.LichBieuKhongDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
+            _Item.LichBieuKhongDinhKy.Visual = ckHoatDong.IsChecked;            
+            _Item.LichBieuKhongDinhKy.Deleted = false;
         }
 
         private bool CheckValues()
