@@ -11,11 +11,11 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.MENUKICHTHUOCMON _Item { get; set; }
+        public Data.BOMenuKichThuocMon _Item { get; set; }
 
-        public Data.MENUMON mMon { get; set; }
+        public Data.BOMenuMon mMon { get; set; }
 
-        public WindowThemDanhSachBan(Data.MENUMON mon, Data.Transit transit)
+        public WindowThemDanhSachBan(Data.BOMenuMon mon, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
@@ -39,10 +39,10 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.MENUKICHTHUOCMON();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BOMenuKichThuocMon();
+                    _Item.MenuKichThuocMon.Visual = true;
+                    _Item.MenuKichThuocMon.Deleted = false;
+                    _Item.MenuKichThuocMon.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -51,17 +51,17 @@ namespace UserControlLibrary
 
         private void SetValues()
         {
-            txtTenMon.Text = mMon.TenDai;
+            txtTenMon.Text = mMon.MenuMon.TenDai;
             if (_Item != null)
             {
-                cbbLoaiBan.SelectedValue = _Item.LoaiBanID;
+                cbbLoaiBan.SelectedValue = _Item.MenuKichThuocMon.LoaiBanID;
                 cbbLoaiBan_SelectionChanged(null, null);
-                txtTenLoaiBan.Text = _Item.TenLoaiBan;
-                txtGiaMacDinh.Text = _Item.GiaBanMacDinh.ToString();
-                txtTonKhoToiDa.Text = _Item.TonKhoToiDa.ToString();
-                txtTonKhoToiThieu.Text = _Item.TonKhoToiThieu.ToString();
-                txtSoLuongBan.Text = _Item.SoLuongBanBan.ToString();
-                ckBan.IsChecked = _Item.Visual;
+                txtTenLoaiBan.Text = _Item.MenuKichThuocMon.TenLoaiBan;
+                txtGiaMacDinh.Text = _Item.MenuKichThuocMon.GiaBanMacDinh.ToString();
+                txtTonKhoToiDa.Text = _Item.MenuKichThuocMon.TonKhoToiDa.ToString();
+                txtTonKhoToiThieu.Text = _Item.MenuKichThuocMon.TonKhoToiThieu.ToString();
+                txtSoLuongBan.Text = _Item.MenuKichThuocMon.SoLuongBanBan.ToString();
+                ckBan.IsChecked = _Item.MenuKichThuocMon.Visual;
                 btnLuu.Content = mTransit.StringButton.Them;
                 lbTieuDe.Text = "Thêm Loại Giá";
             }
@@ -84,19 +84,19 @@ namespace UserControlLibrary
         {
             if (_Item == null)
             {
-                _Item = new Data.MENUKICHTHUOCMON();
+                _Item = new Data.BOMenuKichThuocMon();
             }
-            _Item.MonID = mMon.MonID;
-            _Item.LoaiBanID = (int)cbbLoaiBan.SelectedValue;
-            _Item.TenLoaiBan = txtTenLoaiBan.Text;
-            _Item.KichThuocLoaiBan = System.Convert.ToInt32(txtKichThuocLoaiBan.Text);
-            _Item.GiaBanMacDinh = System.Convert.ToDecimal(txtGiaMacDinh.Text);
-            _Item.TonKhoToiDa = System.Convert.ToInt32(txtTonKhoToiDa.Text);
-            _Item.TonKhoToiThieu = System.Convert.ToInt32(txtTonKhoToiThieu.Text);
-            _Item.SoLuongBanBan = System.Convert.ToInt32(txtSoLuongBan.Text);
-            _Item.Visual = ckBan.IsChecked;
-            _Item.ThoiGia = false;
-            _Item.Deleted = false;
+            _Item.MenuKichThuocMon.MonID = mMon.MenuMon.MonID;
+            _Item.MenuKichThuocMon.LoaiBanID = (int)cbbLoaiBan.SelectedValue;
+            _Item.MenuKichThuocMon.TenLoaiBan = txtTenLoaiBan.Text;
+            _Item.MenuKichThuocMon.KichThuocLoaiBan = System.Convert.ToInt32(txtKichThuocLoaiBan.Text);
+            _Item.MenuKichThuocMon.GiaBanMacDinh = System.Convert.ToDecimal(txtGiaMacDinh.Text);
+            _Item.MenuKichThuocMon.TonKhoToiDa = System.Convert.ToInt32(txtTonKhoToiDa.Text);
+            _Item.MenuKichThuocMon.TonKhoToiThieu = System.Convert.ToInt32(txtTonKhoToiThieu.Text);
+            _Item.MenuKichThuocMon.SoLuongBanBan = System.Convert.ToInt32(txtSoLuongBan.Text);
+            _Item.MenuKichThuocMon.Visual = ckBan.IsChecked;
+            _Item.MenuKichThuocMon.ThoiGia = false;
+            _Item.MenuKichThuocMon.Deleted = false;
         }
 
         private bool CheckValues()
@@ -142,8 +142,8 @@ namespace UserControlLibrary
                         txtKichThuocLoaiBan.IsEnabled = true;
                         if (_Item == null)
                             txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
-                        else if (_Item.LoaiBanID == lb.LoaiBanID)
-                            txtKichThuocLoaiBan.Text = _Item.KichThuocLoaiBan.ToString();
+                        else if (_Item.MenuKichThuocMon.LoaiBanID == lb.LoaiBanID)
+                            txtKichThuocLoaiBan.Text = _Item.MenuKichThuocMon.KichThuocLoaiBan.ToString();
                         else
                             txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
                         break;
@@ -153,7 +153,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiBan()
         {
-            cbbLoaiBan.ItemsSource = Data.BOLoaiBan.GetAll(null, mTransit);
+            cbbLoaiBan.ItemsSource = Data.BOLoaiBan.GetAllNoTracking(mTransit);
         }
     }
 }

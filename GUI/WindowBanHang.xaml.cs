@@ -13,12 +13,12 @@ namespace GUI
         public WindowBanHang(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;            
+            mTransit = transit;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenuBanHang.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(uCMenuBanHang_OnEventMenu);
+            //uCMenuBanHang.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(uCMenuBanHang_OnEventMenu);
             uCMenuBanHang.Init(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
@@ -37,11 +37,11 @@ namespace GUI
             if (ob is Data.MENUKICHTHUOCMON)
             {
                 Data.MENUKICHTHUOCMON ktm = (Data.MENUKICHTHUOCMON)ob;
-                Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ktm,mTransit);
+                Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ktm, mTransit);
                 AddChiTietBanHang(item);
             }
         }
-        
+
 
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
@@ -71,7 +71,7 @@ namespace GUI
         }
         private void GuiNhaBep()
         {
-            mTransit.BanHang.GuiNhaBep();            
+            mTransit.BanHang.GuiNhaBep();
             this.Close();
         }
         private void XoaMon()
@@ -88,12 +88,12 @@ namespace GUI
         {
             lvData.Items.Clear();
         }
-        
+
 
         private void LoadBanHang(Data.BOBanHang banHang)
         {
-            txtMaHoaDon.Text = "Mã Hóa Đơn: "+banHang.BANHANG.MaHoaDon.ToString();
-            txtTenNhanVien.Text ="Nhân Viên: " +mTransit.NhanVien.TenNhanVien;
+            txtMaHoaDon.Text = "Mã Hóa Đơn: " + banHang.BANHANG.MaHoaDon.ToString();
+            txtTenNhanVien.Text = "Nhân Viên: " + mTransit.NhanVien.TenNhanVien;
             lvData.Items.Clear();
             foreach (var item in mTransit.BanHang._ListChiTietBanHang)
             {

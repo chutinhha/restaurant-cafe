@@ -9,9 +9,9 @@ namespace UserControlLibrary
     public partial class WindowDanhSachBan : Window
     {
         private Data.Transit mTransit = null;
-        private Data.MENUMON mMon = null;
+        private Data.BOMenuMon mMon = null;
 
-        public WindowDanhSachBan(Data.MENUMON mon, Data.Transit transit)
+        public WindowDanhSachBan(Data.BOMenuMon mon, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;

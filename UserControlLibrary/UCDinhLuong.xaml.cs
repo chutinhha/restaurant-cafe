@@ -22,28 +22,25 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         public UCDinhLuong()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void Init(Data.Transit transit)
         {
             mTransit = transit;
-            uCMenu.OnEventMenu += new UCMenu.EventMenu(uCMenu_OnEventMenu);
+            uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu.Init(mTransit);
+        }
+
+        void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
+        {
+            uCDanhSachDinhLuong.Init(ob, mTransit);
+            uCDanhSachDinhLuong.LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
-        }
 
-        void uCMenu_OnEventMenu(object ob)
-        {
-            if (ob is Data.MENUKICHTHUOCMON)
-            {
-                uCDanhSachDinhLuong.Init((Data.MENUKICHTHUOCMON)ob, mTransit);
-                uCDanhSachDinhLuong.LoadDanhSach();
-            }
         }
     }
 }

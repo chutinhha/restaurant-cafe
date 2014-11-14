@@ -8,10 +8,7 @@
                 <GradientStop Color="#FF457ECE" Offset="0" />
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
+        </Border.Background>        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -31,7 +28,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên Kho" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenKho" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenKho" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
                 <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />

@@ -8,10 +8,7 @@
                 <GradientStop Color="#FF457ECE" Offset="0" />
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
+        </Border.Background>        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -47,15 +44,15 @@
                 <TextBlock Grid.Row="7" Grid.Column="0" Text="Tồn kho tối thiểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="8" Grid.Column="0" Text="Bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" SelectionChanged="cbbLoaiBan_SelectionChanged" />
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtGiaMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtSoLuongBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtTonKhoToiDa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtTonKhoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <CheckBox Grid.Row="8" Grid.Column="1" x:Name="ckBan" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtGiaMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtSoLuongBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtTonKhoToiDa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtTonKhoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <CheckBox Grid.Row="8" Grid.Column="1" x:Name="ckBan" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
 
                 <TextBlock Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 

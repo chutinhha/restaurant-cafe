@@ -7,9 +7,9 @@ namespace Data
 {
     public class BOTheLoaiLichBieu
     {
-        public static List<THELOAILICHBIEU> GetAll(Transit mTransit)
+        public static List<THELOAILICHBIEU> GetAllNoTracking(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.THELOAILICHBIEUx.ToList();
+            return FrameworkRepository<THELOAILICHBIEU>.QueryNoTracking(mTransit.KaraokeEntities.THELOAILICHBIEUx).ToList();
         }
     }
 }

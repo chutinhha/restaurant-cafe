@@ -21,7 +21,7 @@ namespace UserControlLibrary
             mTransit = transit;
         }
 
-        public Data.MENUMON _Mon { get; set; }
+        public Data.BOMenuMon _Mon { get; set; }
 
         public void CapNhat()
         {
@@ -39,7 +39,7 @@ namespace UserControlLibrary
 
         public void Xoa()
         {
-            Data.BOMenuMon.Xoa(_Mon.MonID, mTransit);
+            Data.BOMenuMon.Xoa(_Mon, mTransit);
         }
 
         private void btnCaiDatMayIn_Click(object sender, RoutedEventArgs e)
@@ -67,34 +67,34 @@ namespace UserControlLibrary
         {
             if (_Mon == null)
             {
-                _Mon = new Data.MENUMON();
-                _Mon.Deleted = false;
-                _Mon.NhomID = NhomID;
+                _Mon = new Data.BOMenuMon();
+                _Mon.MenuMon.Deleted = false;
+                _Mon.MenuMon.NhomID = NhomID;
             }
-            _Mon.TenDai = txtTenDai.Text;
-            _Mon.TenNgan = txtTenNgan.Text;
+            _Mon.MenuMon.TenDai = txtTenDai.Text;
+            _Mon.MenuMon.TenNgan = txtTenNgan.Text;
             if (mBitmapImage != null)
             {
-                _Mon.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                _Mon.MenuMon.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
             }
             if (txtSapXep.Text == "")
-                _Mon.SapXep = 0;
+                _Mon.MenuMon.SapXep = 0;
             else
-                _Mon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
-            _Mon.Visual = ckBan.IsChecked;
+                _Mon.MenuMon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
+            _Mon.MenuMon.Visual = ckBan.IsChecked;
         }
 
         private void SetValues()
         {
             if (_Mon != null)
             {
-                txtTenDai.Text = _Mon.TenDai;
-                txtTenNgan.Text = _Mon.TenNgan;
-                txtSapXep.Text = _Mon.SapXep.ToString();
-                ckBan.IsChecked = _Mon.Visual;
-                if (_Mon.Hinh != null && _Mon.Hinh.Length > 0)
+                txtTenDai.Text = _Mon.MenuMon.TenDai;
+                txtTenNgan.Text = _Mon.MenuMon.TenNgan;
+                txtSapXep.Text = _Mon.MenuMon.SapXep.ToString();
+                ckBan.IsChecked = _Mon.MenuMon.Visual;
+                if (_Mon.MenuMon.Hinh != null && _Mon.MenuMon.Hinh.Length > 0)
                 {
-                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.Hinh);
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.MenuMon.Hinh);
                 }
                 btnCaiDatMayIn.Visibility = System.Windows.Visibility.Visible;
                 btnDanhSachBan.Visibility = System.Windows.Visibility.Visible;

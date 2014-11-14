@@ -11,10 +11,9 @@ namespace GUI
     /// </summary>
     public partial class WindowQuanLyNhanVien : Window
     {
-        private Data.NHANVIEN mItem = null;
+        private Data.BONhanVien mItem = null;
         private Data.Transit mTransit = null;
-        List<Data.NHANVIEN> lsArrayDeleted = null;
-
+        List<Data.BONhanVien> lsArrayDeleted = null;
         public WindowQuanLyNhanVien(Data.Transit transit)
         {
             InitializeComponent();
@@ -30,8 +29,8 @@ namespace GUI
 
         private void LoadDanhSach()
         {
-            
-            List<Data.NHANVIEN> lsArray = Data.BONhanVien.GetAll(mTransit);
+
+            List<Data.BONhanVien> lsArray = Data.BONhanVien.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -39,7 +38,7 @@ namespace GUI
             }
         }
 
-        private void AddList(Data.NHANVIEN item)
+        private void AddList(Data.BONhanVien item)
         {
             ListViewItem li = new ListViewItem();
             li.Content = item;
@@ -53,7 +52,7 @@ namespace GUI
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.NHANVIEN)li.Tag;
+                mItem = (Data.BONhanVien)li.Tag;
             }
         }
 
@@ -72,17 +71,17 @@ namespace GUI
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.NHANVIEN)li.Tag;
+                mItem = (Data.BONhanVien)li.Tag;
 
                 UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
+                    win._Item.NhanVien.Edit = true;
                     li.Tag = win._Item;
                     li.Content = win._Item;
                     lvData.Items.Refresh();
@@ -94,12 +93,12 @@ namespace GUI
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.NHANVIEN)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mItem = (Data.BONhanVien)((ListViewItem)lvData.SelectedItems[0]).Tag;
                 if (lsArrayDeleted == null)
                 {
-                    lsArrayDeleted = new List<Data.NHANVIEN>();
+                    lsArrayDeleted = new List<Data.BONhanVien>();
                 }
-                if (mItem.NhanVienID > 0)
+                if (mItem.NhanVien.NhanVienID > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);
                 if (lvData.Items.Count > 0)
@@ -111,14 +110,14 @@ namespace GUI
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.NHANVIEN> lsArray = null;
+            List<Data.BONhanVien> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
             {
-                mItem = (Data.NHANVIEN)li.Tag;
-                if (mItem.NhanVienID == 0 || mItem.Edit == true)
+                mItem = (Data.BONhanVien)li.Tag;
+                if (mItem.NhanVien.NhanVienID == 0 || mItem.NhanVien.Edit == true)
                 {
                     if (lsArray == null)
-                        lsArray = new List<Data.NHANVIEN>();
+                        lsArray = new List<Data.BONhanVien>();
                     lsArray.Add(mItem);
                 }
             }

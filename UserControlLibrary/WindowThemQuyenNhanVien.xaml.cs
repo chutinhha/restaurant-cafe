@@ -34,29 +34,53 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.QUYENNHANVIEN> lsQuyenNhanVien = new List<Data.QUYENNHANVIEN>();
+            List<Data.BOQuyenNhanVien> lsQuyenNhanVien = new List<Data.BOQuyenNhanVien>();
+            List<Data.BOQuyenNhanVien> lsQuyenNhanVienDeleted = new List<Data.BOQuyenNhanVien>();
             foreach (ShowData item in lvData.Items)
             {
-                lsQuyenNhanVien.Add(new Data.QUYENNHANVIEN() { QuyenID = item.QuyenID, NhanVienID = item.NhanVienID, Deleted = !item.Values });
+                if (item.Values)
+                {
+                    Data.QUYENNHANVIEN qnv = null;
+                    if (item.QuyenNhanVien.ID > 0)
+                        qnv = item.QuyenNhanVien;
+                    else
+                    {
+                        qnv = new Data.QUYENNHANVIEN();
+                        qnv.QuyenID = mQuyen.MaQuyen;
+                        qnv.NhanVienID = item.NhanVien.NhanVienID;
+                        qnv.Deleted = false;
+                        qnv.Edit = false;
+                        qnv.Visual = true;
+                    }
+
+                    lsQuyenNhanVien.Add(new Data.BOQuyenNhanVien()
+                        {
+                            QuyenNhanVien = qnv
+                        });
+                }
+                else
+                {
+                    if (item.QuyenNhanVien.ID > 0)
+                        lsQuyenNhanVienDeleted.Add(new Data.BOQuyenNhanVien() { QuyenNhanVien = item.QuyenNhanVien });
+                }
             }
-            Data.BOQuyenNhanVien.Luu(lsQuyenNhanVien, mTransit);
+            Data.BOQuyenNhanVien.Luu(lsQuyenNhanVien, lsQuyenNhanVienDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }
 
         private void LoadDanhSach()
         {
-            List<Data.NHANVIEN> lsNhanVien = Data.BONhanVien.GetAll(mTransit);
-            List<Data.QUYENNHANVIEN> lsQuyenNhanVien = Data.BOQuyenNhanVien.GetAll(mQuyen.MaQuyen, mTransit);
+            List<Data.NHANVIEN> lsNhanVien = Data.BONhanVien.GetAllNoTracking(mTransit);
+            List<Data.BOQuyenNhanVien> lsQuyenNhanVien = Data.BOQuyenNhanVien.GetAll(mQuyen.MaQuyen, mTransit);
             List<ShowData> lsShowData = new List<ShowData>();
             foreach (Data.NHANVIEN mi in lsNhanVien)
             {
                 ShowData item = new ShowData();
-                item.TenNhanVien = mi.TenNhanVien;
-                item.QuyenID = mQuyen.MaQuyen;
-                item.NhanVienID = mi.NhanVienID;
-                if (lsQuyenNhanVien.Exists(s => s.NhanVienID == mi.NhanVienID))
+                item.NhanVien = mi;
+                if (lsQuyenNhanVien.Exists(s => s.QuyenNhanVien.NhanVienID == mi.NhanVienID))
                 {
+                    item.QuyenNhanVien = lsQuyenNhanVien.Find(s => s.QuyenNhanVien.NhanVienID == mi.NhanVienID).QuyenNhanVien;
                     item.Values = true;
                 }
                 lsShowData.Add(item);
@@ -66,20 +90,15 @@ namespace UserControlLibrary
 
         private class ShowData
         {
-            public string TenNhanVien { get; set; }
-
-            public int NhanVienID { get; set; }
-
+            public Data.NHANVIEN NhanVien { get; set; }
+            public Data.QUYENNHANVIEN QuyenNhanVien { get; set; }
             public bool Values { get; set; }
-
-            public int QuyenID { get; set; }
 
             public ShowData()
             {
                 Values = false;
-                NhanVienID = 0;
-                QuyenID = 0;
-                TenNhanVien = "";
+                NhanVien = new Data.NHANVIEN();
+                QuyenNhanVien = new Data.QUYENNHANVIEN();
             }
         }
 

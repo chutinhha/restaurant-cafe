@@ -9,9 +9,6 @@
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -39,10 +36,10 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Số lần in" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Cho phép in" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTieuDeMayIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTieuDeMayIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbTenMayIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
                 <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ckHopDungTien" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtSoLanIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtSoLanIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <CheckBox Grid.Row="4" Grid.Column="1" x:Name="ckChoPhepIn" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
 
                 <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />

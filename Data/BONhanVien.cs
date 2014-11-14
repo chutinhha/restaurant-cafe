@@ -7,63 +7,67 @@ namespace Data
 {
     public class BONhanVien
     {
-        public static List<NHANVIEN> GetAll(Transit mTransit)
+
+        public NHANVIEN NhanVien { get; set; }
+        public LOAINHANVIEN LoaiNhanVien { get; set; }
+        public BONhanVien()
         {
-            var res = (from n in mTransit.KaraokeEntities.NHANVIENs
-                       join l in mTransit.KaraokeEntities.LOAINHANVIENs on n.LoaiNhanVienID equals l.LoaiNhanVienID
-                       where n.Deleted == false
-                       select new
-                       {
-                           NHANVIENs = n,
-                           LOAINHANVIENs = l
-                       }).ToList().Select(s => s.NHANVIENs);
-            return res.ToList();
+
+        }
+        public static List<NHANVIEN> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs).ToList();
+        }
+        public static List<BONhanVien> GetAll(Transit mTransit)
+        {
+            FrameworkRepository<NHANVIEN> frmNhanVien = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
+            FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(mTransit.KaraokeEntities);
+
+            return (from n in frmNhanVien.Query()
+                    join l in frmLoaiNhanVien.Query() on n.LoaiNhanVienID equals l.LoaiNhanVienID
+                    where n.Deleted == false
+                    select new BONhanVien
+                    {
+                        NhanVien = n,
+                        LoaiNhanVien = l
+                    }).ToList();
         }
 
-        public static int Them(NHANVIEN item, Transit mTransit)
+        private static int Them(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
         {
-            mTransit.KaraokeEntities.NHANVIENs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.NhanVienID;
+            frm.AddObject(item.NhanVien);
+            return item.NhanVien.NhanVienID;
         }
 
-        public static int Xoa(int NhanVienID, Transit mTransit)
+        private static int Xoa(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
         {
-            NHANVIEN item = (from x in mTransit.KaraokeEntities.NHANVIENs where x.NhanVienID == NhanVienID select x).First();
-            item.Deleted = true;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.NhanVienID;
+            frm.DeleteObject(item.NhanVien);
+            return item.NhanVien.NhanVienID;
         }
 
-        public static int Sua(NHANVIEN item, Transit mTransit)
+        private static int Sua(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
         {
-            NHANVIEN m = (from x in mTransit.KaraokeEntities.NHANVIENs where x.NhanVienID == item.NhanVienID select x).First();
-            m.TenNhanVien = item.TenNhanVien;
-            if (item.MatKhau != null)
-                m.TenDangNhap = item.TenDangNhap;
-            m.LoaiNhanVienID = item.LoaiNhanVienID;
-            m.MatKhau = item.MatKhau;
-            m.Visual = item.Visual;
-            m.Deleted = item.Deleted;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.NhanVienID;
+            frm.Update(item.NhanVien);
+            return item.NhanVien.NhanVienID;
         }
 
-        public static void Luu(List<NHANVIEN> lsArray, List<NHANVIEN> lsArrayDeleted, Transit mTransit)
+        public static void Luu(List<BONhanVien> lsArray, List<BONhanVien> lsArrayDeleted, Transit mTransit)
         {
+            FrameworkRepository<NHANVIEN> frm = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
             if (lsArray != null)
-                foreach (NHANVIEN item in lsArray)
+                foreach (BONhanVien item in lsArray)
                 {
-                    if (item.NhanVienID > 0)
-                        Sua(item, mTransit);
+                    if (item.NhanVien.NhanVienID > 0)
+                        Sua(item, mTransit, frm);
                     else
-                        Them(item, mTransit);
+                        Them(item, mTransit, frm);
                 }
             if (lsArrayDeleted != null)
-                foreach (NHANVIEN item in lsArrayDeleted)
+                foreach (BONhanVien item in lsArrayDeleted)
                 {
-                    Xoa(item.NhanVienID, mTransit);
+                    Xoa(item, mTransit, frm);
                 }
+            frm.Commit();
         }
 
         public static NHANVIEN Login(string TenDangNhap, string MatKhau, Data.Transit mTransit)

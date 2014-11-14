@@ -9,56 +9,49 @@ namespace Data
     {
         public static List<NHACUNGCAP> GetAll(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.NHACUNGCAPs.Where(s => s.Deleted == false).ToList();
+            FrameworkRepository<NHACUNGCAP> frm = new FrameworkRepository<NHACUNGCAP>(mTransit.KaraokeEntities);
+            return frm.Query().ToList();
+        }
+        public static List<NHACUNGCAP> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<NHACUNGCAP>.QueryNoTracking(mTransit.KaraokeEntities.NHACUNGCAPs).ToList();
         }
 
-        public static int Them(NHACUNGCAP item, Transit mTransit)
+        private static int Them(NHACUNGCAP item, Transit mTransit, FrameworkRepository<NHACUNGCAP> frm)
         {
-            mTransit.KaraokeEntities.NHACUNGCAPs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.AddObject(item);
             return item.NhaCungCapID;
         }
 
-        public static int Xoa(int NhaCungCapID, Transit mTransit)
+        private static int Xoa(NHACUNGCAP item, Transit mTransit, FrameworkRepository<NHACUNGCAP> frm)
         {
-            NHACUNGCAP item = (from x in mTransit.KaraokeEntities.NHACUNGCAPs where x.NhaCungCapID == NhaCungCapID select x).First();
-            mTransit.KaraokeEntities.NHACUNGCAPs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.DeleteObject(item);
             return item.NhaCungCapID;
         }
 
-        public static int Sua(NHACUNGCAP item, Transit mTransit)
+        private static int Sua(NHACUNGCAP item, Transit mTransit, FrameworkRepository<NHACUNGCAP> frm)
         {
-            NHACUNGCAP m = (from x in mTransit.KaraokeEntities.NHACUNGCAPs where x.NhaCungCapID == item.NhaCungCapID select x).First();
-            m.TenNhaCungCap = item.TenNhaCungCap;
-            m.SoNha = item.SoNha;
-            m.TenDuong = item.TenDuong;
-            m.Mobile = item.Mobile;
-            m.Phone = item.Phone;
-            m.Fax = item.Fax;
-            m.MaSoThue = item.MaSoThue;
-            m.Email = item.Email;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.Update(item);
             return item.NhaCungCapID;
         }
 
         public static void Luu(List<NHACUNGCAP> lsArray, List<NHACUNGCAP> lsArrayDeleted, Transit mTransit)
         {
+            FrameworkRepository<NHACUNGCAP> frm = new FrameworkRepository<NHACUNGCAP>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (NHACUNGCAP item in lsArray)
                 {
                     if (item.NhaCungCapID > 0)
-                        Sua(item, mTransit);
+                        Sua(item, mTransit, frm);
                     else
-                        Them(item, mTransit);
+                        Them(item, mTransit, frm);
                 }
             if (lsArrayDeleted != null)
                 foreach (NHACUNGCAP item in lsArrayDeleted)
                 {
-                    Xoa(item.NhaCungCapID, mTransit);
+                    Xoa(item, mTransit, frm);
                 }
+            frm.Commit();
         }
     }
 }

@@ -30,14 +30,14 @@ namespace UserControlLibrary
 
         private void LoadKhoHang()
         {
-            cbbKhoHang.ItemsSource = Data.BOKho.GetAll(mTransit);
+            cbbKhoHang.ItemsSource = Data.BOKho.GetAllNoTracking(mTransit);
             if (cbbKhoHang.Items.Count > 0)
                 cbbKhoHang.SelectedIndex = 0;
         }
 
         private void LoadNhaCungCap()
         {
-            cbbNhaCungCap.ItemsSource = Data.BONhaCungCap.GetAll(mTransit);
+            cbbNhaCungCap.ItemsSource = Data.BONhaCungCap.GetAllNoTracking(mTransit);
             if (cbbNhaCungCap.Items.Count > 0)
                 cbbNhaCungCap.SelectedIndex = 0;
         }

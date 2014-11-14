@@ -12,14 +12,12 @@ namespace UserControlLibrary
     public partial class WindowDanhSachGia : Window
     {
         private Data.Transit mTransit = null;
-        private Data.MENUKICHTHUOCMON mKichThuocMon = null;
+        private Data.BOMenuKichThuocMon mKichThuocMon = null;
 
-        public WindowDanhSachGia(Data.MENUKICHTHUOCMON kichthuocmon, Data.Transit transit)
+        public WindowDanhSachGia(Data.BOMenuKichThuocMon kichthuocmon, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            mTransit.KaraokeEntities = new Data.KaraokeEntities();
-            mTransit.KaraokeEntities.MENUGIAs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             mKichThuocMon = kichthuocmon;
         }
 
@@ -35,8 +33,8 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.MENUGIA> lsArray = new List<Data.MENUGIA>();
-            foreach (Data.MENUGIA li in lvData.Items)
+            List<Data.BOMenuGia> lsArray = new List<Data.BOMenuGia>();
+            foreach (Data.BOMenuGia li in lvData.Items)
             {
                 lsArray.Add(li);
             }
@@ -47,8 +45,8 @@ namespace UserControlLibrary
 
         private void btnGiaMacDinh_Click(object sender, RoutedEventArgs e)
         {
-            Data.MENUGIA item = ((Button)sender).DataContext as Data.MENUGIA;
-            item.Gia = mKichThuocMon.GiaBanMacDinh;
+            Data.BOMenuGia item = ((Button)sender).DataContext as Data.BOMenuGia;
+            item.MenuGia.Gia = mKichThuocMon.MenuKichThuocMon.GiaBanMacDinh;
             lvData.Items.Refresh();
         }
 
@@ -56,7 +54,7 @@ namespace UserControlLibrary
         {
             if (mKichThuocMon != null)
             {
-                lvData.ItemsSource = Data.BOMenuGia.GetAll(mKichThuocMon.KichThuocMonID, mTransit);
+                lvData.ItemsSource = Data.BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
             }
         }
 

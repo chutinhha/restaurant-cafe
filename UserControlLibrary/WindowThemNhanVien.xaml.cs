@@ -10,7 +10,8 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.NHANVIEN _Item { get; set; }
+
+        public Data.BONhanVien _Item { get; set; }
 
         public WindowThemNhanVien(Data.Transit transit)
         {
@@ -35,11 +36,11 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.NHANVIEN();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
-                    _Item.NhanVienID = 0;
+                    _Item = new Data.BONhanVien();
+                    _Item.NhanVien.Visual = true;
+                    _Item.NhanVien.Deleted = false;
+                    _Item.NhanVien.Edit = false;
+                    _Item.NhanVien.NhanVienID = 0;
                 }
 
                 GetValues();
@@ -49,7 +50,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiNhanVien()
         {
-            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAll(mTransit);
+            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAllNoTracking(mTransit);
             if (cbbLoaiNhanVien.Items.Count > 0)
                 cbbLoaiNhanVien.SelectedIndex = 0;
         }
@@ -72,10 +73,10 @@ namespace UserControlLibrary
             {
                 if (cbbLoaiNhanVien.Items.Count > 0)
                 {
-                    cbbLoaiNhanVien.SelectedValue = _Item.LoaiNhanVienID;
+                    cbbLoaiNhanVien.SelectedValue = _Item.NhanVien.LoaiNhanVienID;
                 }
-                txtTenNhanVien.Text = _Item.TenNhanVien;
-                txtTenDangNhap.Text = _Item.TenDangNhap;
+                txtTenNhanVien.Text = _Item.NhanVien.TenNhanVien;
+                txtTenDangNhap.Text = _Item.NhanVien.TenDangNhap;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Nhân Viên";
                 txtMatKhau.Password = null;
@@ -84,19 +85,15 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.TenNhanVien = txtTenNhanVien.Text;
-            _Item.TenDangNhap = txtTenDangNhap.Text;
-            _Item.LoaiNhanVienID = (int)cbbLoaiNhanVien.SelectedValue;
+            _Item.NhanVien.TenNhanVien = txtTenNhanVien.Text;
+            _Item.NhanVien.TenDangNhap = txtTenDangNhap.Text;
+            _Item.NhanVien.LoaiNhanVienID = (int)cbbLoaiNhanVien.SelectedValue;
             if (txtMatKhau.Password != "")
             {
-                _Item.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
+                _Item.NhanVien.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash(txtMatKhau.Password, mTransit.HashMD5);
             }
-            if (_Item.LOAINHANVIEN == null)
-            {
-                _Item.LOAINHANVIEN = new Data.LOAINHANVIEN();
-                Data.LOAINHANVIEN lnv = (Data.LOAINHANVIEN)cbbLoaiNhanVien.SelectedItem;
-                _Item.LOAINHANVIEN.TenLoaiNhanVien = lnv.TenLoaiNhanVien;
-            }
+            Data.LOAINHANVIEN lnv = (Data.LOAINHANVIEN)cbbLoaiNhanVien.SelectedItem;
+            _Item.LoaiNhanVien.TenLoaiNhanVien = lnv.TenLoaiNhanVien;            
         }
 
         private bool CheckValues()

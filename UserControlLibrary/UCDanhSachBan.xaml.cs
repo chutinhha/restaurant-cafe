@@ -15,22 +15,17 @@ namespace UserControlLibrary
         {
             InitializeComponent();
             mTransit = transit;
+            uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
         }
 
-        private void uCMenu_OnEventMenu(object ob)
+        void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
         {
-            if (ob is Data.MENUMON)
-            {
-                mMon = (Data.MENUMON)ob;
-
-                uCDanhSachBanList.Init(mMon, mTransit);
-                uCDanhSachBanList.LoadDanhSach();
-            }
+            uCDanhSachBanList.Init(ob, mTransit);
+            uCDanhSachBanList.LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenu.OnEventMenu += new UCMenu.EventMenu(uCMenu_OnEventMenu);
             uCMenu.Init(mTransit);
         }
 

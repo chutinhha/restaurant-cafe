@@ -9,50 +9,49 @@ namespace Data
     {
         public static List<LOAIKHACHHANG> GetAll(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.LOAIKHACHHANGs.Where(s => s.Deleted == false).ToList();
+            FrameworkRepository<LOAIKHACHHANG> frm = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
+            return frm.Query().ToList();
+        }
+        public static List<LOAIKHACHHANG> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(mTransit.KaraokeEntities.LOAIKHACHHANGs).ToList();
         }
 
-        public static int Them(LOAIKHACHHANG item, Transit mTransit)
+        private static int Them(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
         {
-            mTransit.KaraokeEntities.LOAIKHACHHANGs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.AddObject(item);
             return item.LoaiKhachHangID;
         }
 
-        public static int Xoa(int LoaiKhachHangID, Transit mTransit)
+        private static int Xoa(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
         {
-            LOAIKHACHHANG item = (from x in mTransit.KaraokeEntities.LOAIKHACHHANGs where x.LoaiKhachHangID == LoaiKhachHangID select x).First();
-            mTransit.KaraokeEntities.LOAIKHACHHANGs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.DeleteObject(item);
             return item.LoaiKhachHangID;
         }
 
-        public static int Sua(LOAIKHACHHANG item, Transit mTransit)
+        private static int Sua(LOAIKHACHHANG item, Transit mTransit, FrameworkRepository<LOAIKHACHHANG> frm)
         {
-            LOAIKHACHHANG m = (from x in mTransit.KaraokeEntities.LOAIKHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
-            m.TenLoaiKhachHang = item.TenLoaiKhachHang;
-            m.PhanTramGiamGia = item.PhanTramGiamGia;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.Update(item);
             return item.LoaiKhachHangID;
         }
 
         public static void Luu(List<LOAIKHACHHANG> lsArray, List<LOAIKHACHHANG> lsArrayDeleted, Transit mTransit)
         {
+            FrameworkRepository<LOAIKHACHHANG> frm = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (LOAIKHACHHANG item in lsArray)
                 {
                     if (item.LoaiKhachHangID > 0)
-                        Sua(item, mTransit);
+                        Sua(item, mTransit, frm);
                     else
-                        Them(item, mTransit);
+                        Them(item, mTransit, frm);
                 }
             if (lsArrayDeleted != null)
                 foreach (LOAIKHACHHANG item in lsArrayDeleted)
                 {
-                    Xoa(item.LoaiKhachHangID, mTransit);
+                    Xoa(item, mTransit, frm);
                 }
+            frm.Commit();
         }
     }
 }

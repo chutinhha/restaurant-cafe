@@ -161,7 +161,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
+            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
@@ -184,7 +184,7 @@ namespace UserControlLibrary
 
         private void LoadTheLoai()
         {
-            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAll(mTransit);
+            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAllNoTracking(mTransit);
             if (cbbTheLoai.Items.Count > 0)
             {
                 cbbTheLoai.SelectedIndex = 0;

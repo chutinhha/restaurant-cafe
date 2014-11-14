@@ -9,9 +9,6 @@
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -45,13 +42,13 @@
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="7" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  />
                 <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbbTheLoai" DisplayMemberPath="TenTheLoai" SelectedValuePath="TheLoaiID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" SelectionChanged="cbbTheLoai_SelectionChanged" />
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtUuTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="cbbGiaTriBatDau" DisplayMemberPath="TenLoaiLichBieu" SelectedValuePath="GiaTri"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <ComboBox Grid.Row="5" Grid.Column="1" x:Name="cbbGiaTriKetThuc" DisplayMemberPath="TenLoaiLichBieu" SelectedValuePath="GiaTri"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <my:UCTimePicker Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch"  Name="timeBatDau" VerticalAlignment="Stretch" Margin="5" />
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtUuTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="cbbGiaTriBatDau" DisplayMemberPath="TenLoaiLichBieu" SelectedValuePath="GiaTri"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"   />
+                <ComboBox Grid.Row="5" Grid.Column="1" x:Name="cbbGiaTriKetThuc" DisplayMemberPath="TenLoaiLichBieu" SelectedValuePath="GiaTri"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"   />
+                <my:UCTimePicker Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch"  Name="timeBatDau" VerticalAlignment="Stretch" Margin="5"   />
                 <my:UCTimePicker Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" Name="timeKetThuc" VerticalAlignment="Stretch" Margin="5" />
 
                 <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />

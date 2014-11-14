@@ -28,7 +28,7 @@ namespace UserControlLibrary
             mBitmapImage = btnHinhAnh.ImageBitmap;
         }
 
-        public Data.MENUNHOM _Nhom { get; set; }
+        public Data.BOMenuNhom _Nhom { get; set; }
 
         public void CapNhat()
         {
@@ -48,43 +48,43 @@ namespace UserControlLibrary
         {
             if (_Nhom == null)
             {
-                _Nhom = new Data.MENUNHOM();
-                _Nhom.Deleted = false;
-                _Nhom.MayIn = 0;
-                _Nhom.GiamGia = 0;
-                _Nhom.LoaiNhomID = LoaiNhomID;
+                _Nhom = new Data.BOMenuNhom();
+                _Nhom.MenuNhom.Deleted = false;
+                _Nhom.MenuNhom.MayIn = 0;
+                _Nhom.MenuNhom.GiamGia = 0;
+                _Nhom.MenuNhom.LoaiNhomID = LoaiNhomID;
             }
             if (mBitmapImage != null)
             {
-                _Nhom.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                _Nhom.MenuNhom.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
             }
-            _Nhom.TenDai = txtTenDai.Text;
-            _Nhom.TenNgan = txtTenNgan.Text;
-            _Nhom.Visual = ckBan.IsChecked;
-            _Nhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
+            _Nhom.MenuNhom.TenDai = txtTenDai.Text;
+            _Nhom.MenuNhom.TenNgan = txtTenNgan.Text;
+            _Nhom.MenuNhom.Visual = ckBan.IsChecked;
+            _Nhom.MenuNhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
             if (txtSapXep.Text == "")
-                _Nhom.SapXep = 0;
+                _Nhom.MenuNhom.SapXep = 0;
             else
-                _Nhom.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
+                _Nhom.MenuNhom.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
         }
 
         public void Xoa()
         {
-            Data.BOMenuNhom.Xoa(_Nhom.NhomID, mTransit);
+            Data.BOMenuNhom.Xoa(_Nhom, mTransit);
         }
 
         private void SetValues()
         {
             if (_Nhom != null)
             {
-                txtTenDai.Text = _Nhom.TenDai;
-                txtTenNgan.Text = _Nhom.TenNgan;
-                txtSapXep.Text = _Nhom.SapXep.ToString();
-                ckBan.IsChecked = _Nhom.Visual;
-                cbbLoaiNhom.SelectedValue = _Nhom.LoaiNhomID;
-                if (_Nhom.Hinh != null && _Nhom.Hinh.Length > 0)
+                txtTenDai.Text = _Nhom.MenuNhom.TenDai;
+                txtTenNgan.Text = _Nhom.MenuNhom.TenNgan;
+                txtSapXep.Text = _Nhom.MenuNhom.SapXep.ToString();
+                ckBan.IsChecked = _Nhom.MenuNhom.Visual;
+                cbbLoaiNhom.SelectedValue = _Nhom.MenuNhom.LoaiNhomID;
+                if (_Nhom.MenuNhom.Hinh != null && _Nhom.MenuNhom.Hinh.Length > 0)
                 {
-                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.Hinh);
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Nhom.MenuNhom.Hinh);
                 }
             }
             else

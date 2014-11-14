@@ -10,7 +10,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.KHACHHANG _Item { get; set; }
+        public Data.BOKhachHang _Item { get; set; }
 
         public WindowThemKhachHang(Data.Transit transit)
         {
@@ -42,10 +42,10 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.KHACHHANG();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BOKhachHang();
+                    _Item.KhachHang.Visual = true;
+                    _Item.KhachHang.Deleted = false;
+                    _Item.KhachHang.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -72,16 +72,16 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenKhachHang.Text = _Item.TenKhachHang;
-                txtEmail.Text = _Item.Email;
-                txtFax.Text = _Item.Fax;
-                txtSoNha.Text = _Item.SoNha;
-                txtTenDuong.Text = _Item.TenDuong;
-                txtDienThoaiBan.Text = _Item.Phone;
-                txtDienThoaiDong.Text = _Item.Phone;
-                txtDuNo.Text = _Item.DuNo.ToString();
-                txtDuNoToiThieu.Text = _Item.DuNoToiThieu.ToString();
-                cbbLoaiKhachHang.SelectedValue = _Item.LoaiKhachHangID;
+                txtTenKhachHang.Text = _Item.KhachHang.TenKhachHang;
+                txtEmail.Text = _Item.KhachHang.Email;
+                txtFax.Text = _Item.KhachHang.Fax;
+                txtSoNha.Text = _Item.KhachHang.SoNha;
+                txtTenDuong.Text = _Item.KhachHang.TenDuong;
+                txtDienThoaiBan.Text = _Item.KhachHang.Phone;
+                txtDienThoaiDong.Text = _Item.KhachHang.Phone;
+                txtDuNo.Text = _Item.KhachHang.DuNo.ToString();
+                txtDuNoToiThieu.Text = _Item.KhachHang.DuNoToiThieu.ToString();
+                cbbLoaiKhachHang.SelectedValue = _Item.KhachHang.LoaiKhachHangID;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Khách Hàng";
             }
@@ -89,18 +89,18 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.Visual = true;
-            _Item.Deleted = false;
-            _Item.TenKhachHang = txtTenKhachHang.Text;
-            _Item.Email = txtEmail.Text;
-            _Item.Fax = txtFax.Text;
-            _Item.SoNha = txtSoNha.Text;
-            _Item.TenDuong = txtTenDuong.Text;
-            _Item.Mobile = txtDienThoaiBan.Text;
-            _Item.Phone = txtDienThoaiDong.Text;
-            _Item.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
-            _Item.DuNo = System.Convert.ToDecimal(txtDuNo.Text);
-            _Item.DuNoToiThieu = System.Convert.ToDecimal(txtDuNoToiThieu.Text);
+            _Item.KhachHang.Visual = true;
+            _Item.KhachHang.Deleted = false;
+            _Item.KhachHang.TenKhachHang = txtTenKhachHang.Text;
+            _Item.KhachHang.Email = txtEmail.Text;
+            _Item.KhachHang.Fax = txtFax.Text;
+            _Item.KhachHang.SoNha = txtSoNha.Text;
+            _Item.KhachHang.TenDuong = txtTenDuong.Text;
+            _Item.KhachHang.Mobile = txtDienThoaiBan.Text;
+            _Item.KhachHang.Phone = txtDienThoaiDong.Text;
+            _Item.KhachHang.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
+            _Item.KhachHang.DuNo = System.Convert.ToDecimal(txtDuNo.Text);
+            _Item.KhachHang.DuNoToiThieu = System.Convert.ToDecimal(txtDuNoToiThieu.Text);
         }
 
         private bool CheckValues()

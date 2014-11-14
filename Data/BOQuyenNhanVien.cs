@@ -7,54 +7,68 @@ namespace Data
 {
     public class BOQuyenNhanVien
     {
-        public static List<QUYENNHANVIEN> GetAll(int MaQuyen, Transit mTransit)
+        public QUYEN Quyen { get; set; }
+        public QUYENNHANVIEN QuyenNhanVien { get; set; }
+        public NHANVIEN NhanVien { get; set; }
+        public BOQuyenNhanVien()
         {
-            var res = (from mi in mTransit.KaraokeEntities.QUYENNHANVIENs
-                       join m in mTransit.KaraokeEntities.QUYENs on mi.QuyenID equals m.MaQuyen
-                       join i in mTransit.KaraokeEntities.NHANVIENs on mi.NhanVienID equals i.NhanVienID
-                       where mi.Deleted == false && mi.Deleted == false && mi.QuyenID == MaQuyen
-                       select new
-                       {
-                           QUYENNHANVIENs = mi,
-                           QUYENs = m,
-                           NHANVIENs = i
-                       }).ToList().Select(s => s.QUYENNHANVIENs);
-            return res.ToList();
+
         }
-
-        public static int Them(QUYENNHANVIEN item, Transit mTransit)
+        public static List<BOQuyenNhanVien> GetAll(int MaQuyen, Transit mTransit)
         {
-            mTransit.KaraokeEntities.QUYENNHANVIENs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return (int)item.QuyenID;
-        }
+            FrameworkRepository<NHANVIEN> frmNhanVien = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
+            FrameworkRepository<QUYEN> frmQuyen = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
+            FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(mTransit.KaraokeEntities);
 
-        public static int Xoa(int QuyenID, int NhanVienID, Transit mTransit)
-        {
-            QUYENNHANVIEN item = (from x in mTransit.KaraokeEntities.QUYENNHANVIENs where x.QuyenID == QuyenID && x.NhanVienID == NhanVienID select x).First();
-            mTransit.KaraokeEntities.QUYENNHANVIENs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return (int)item.QuyenID;
-        }
-
-
-        public static void Luu(List<QUYENNHANVIEN> lsArray, Transit mTransit)
-        {
-            foreach (QUYENNHANVIEN item in lsArray)
-            {
-                if (item.Deleted == true)
-                {
-                    Xoa((int)item.QuyenID, (int)item.NhanVienID, mTransit);
-                }
-                else
-                {
-                    int count = (from x in mTransit.KaraokeEntities.QUYENNHANVIENs where x.QuyenID == item.QuyenID && x.NhanVienID == item.NhanVienID select x).Count();
-                    if (count == 0)
+            return (from qnv in frmQuyenNhanVien.Query()
+                    join q in frmQuyen.Query() on qnv.QuyenID equals q.MaQuyen
+                    join nv in frmNhanVien.Query() on qnv.NhanVienID equals nv.NhanVienID
+                    where qnv.Deleted == false && qnv.Deleted == false && qnv.QuyenID == MaQuyen
+                    select new BOQuyenNhanVien
                     {
-                        Them(item, mTransit);
-                    }
+                        QuyenNhanVien = qnv,
+                        Quyen = q,
+                        NhanVien = nv
+                    }).ToList();
+
+        }
+
+        private static int Them(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        {
+            frm.AddObject(item.QuyenNhanVien);
+            return item.QuyenNhanVien.ID;
+        }
+
+        private static int Xoa(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        {
+            frm.DeleteObject(item.QuyenNhanVien);
+            return item.QuyenNhanVien.ID;
+        }
+
+        private static int Sua(BOQuyenNhanVien item, Transit mTransit, FrameworkRepository<QUYENNHANVIEN> frm)
+        {
+            frm.Update(item.QuyenNhanVien);
+            return item.QuyenNhanVien.ID;
+        }
+
+        public static void Luu(List<BOQuyenNhanVien> lsArray, List<BOQuyenNhanVien> lsArrayDeleted, Transit mTransit)
+        {
+            FrameworkRepository<QUYENNHANVIEN> frm = new FrameworkRepository<QUYENNHANVIEN>(mTransit.KaraokeEntities);
+            if (lsArray != null)
+                foreach (BOQuyenNhanVien item in lsArray)
+                {
+                    if (item.QuyenNhanVien.ID > 0)
+                        Sua(item, mTransit, frm);
+                    else
+                        Them(item, mTransit, frm);
                 }
-            }
+            if (lsArrayDeleted != null)
+                foreach (BOQuyenNhanVien item in lsArrayDeleted)
+                {
+                    if (item.QuyenNhanVien.ID > 0)
+                        Xoa(item, mTransit, frm);
+                }
+            frm.Commit();
         }
     }
 }

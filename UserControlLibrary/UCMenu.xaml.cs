@@ -14,9 +14,9 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCMenu : UserControl
     {
-        private List<Data.MENUMON> lsMenuMon = new List<Data.MENUMON>();
-        private List<Data.MENUNHOM> lsMenuNhom = new List<Data.MENUNHOM>();
-        private List<Data.MENUKICHTHUOCMON> lsMenuKichThuocMon = new List<Data.MENUKICHTHUOCMON>();
+        private List<Data.BOMenuMon> lsMenuMon = new List<Data.BOMenuMon>();
+        private List<Data.BOMenuNhom> lsMenuNhom = new List<Data.BOMenuNhom>();
+        private List<Data.BOMenuKichThuocMon> lsMenuKichThuocMon = new List<Data.BOMenuKichThuocMon>();
         private Data.Transit mTransit = null;
 
         public bool _IsBanHang { get; set; }
@@ -29,9 +29,13 @@ namespace UserControlLibrary
             KichThuocMon = 3
         }
 
-        public delegate void EventMenu(object ob);
+        public delegate void EventMenuGroup(Data.BOMenuNhom ob);
+        public delegate void EventMenuMon(Data.BOMenuMon ob);
+        public delegate void EventMenuKichThuocMon(Data.BOMenuKichThuocMon ob);
 
-        public event EventMenu OnEventMenu;
+        public event EventMenuGroup _OnEventMenuNhom;
+        public event EventMenuMon _OnEventMenuMon;
+        public event EventMenuKichThuocMon _OnEventMenuKichThuocMon;
 
         public UCMenu()
         {
@@ -92,7 +96,7 @@ namespace UserControlLibrary
             if (lsMenuMon.Count > gridItems.Children.Count)
             {
                 int CountItems = gridItems.Children.Count - 2;
-                List<Data.MENUMON> lsItemsTem = lsMenuMon.Skip((PageItems - 1) * CountItems).Take(CountItems).ToList();
+                List<Data.BOMenuMon> lsItemsTem = lsMenuMon.Skip((PageItems - 1) * CountItems).Take(CountItems).ToList();
                 bool Chay = true;
                 int j = 0;
                 for (int i = 0; i < lsItemsTem.Count; i++, j++)
@@ -100,7 +104,8 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            OnEventMenu(lsItemsTem[i]);
+                            if (_OnEventMenuMon != null)
+                                _OnEventMenuMon(lsItemsTem[i]);
                     }
                     Chay = true;
                     while (Chay)
@@ -148,7 +153,8 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            OnEventMenu(lsMenuMon[i]);
+                            if (_OnEventMenuMon != null)
+                                _OnEventMenuMon(lsMenuMon[i]);
                     }
                     SetButtonItem((POSButtonMenu)gridItems.Children[i], lsMenuMon[i]);
                 }
@@ -176,7 +182,7 @@ namespace UserControlLibrary
                     if (PageItems > 1)
                     {
                         PageItems--;
-                        LoadMon(MenuNhomIndex.NhomID);
+                        LoadMon(MenuNhomIndex.MenuNhom.NhomID);
                     }
                     break;
 
@@ -210,7 +216,7 @@ namespace UserControlLibrary
                         if (PageItems < lsMenuMon.Count / (gridItems.Children.Count - 2) + 1)
                         {
                             PageItems++;
-                            LoadMon(MenuNhomIndex.NhomID);
+                            LoadMon(MenuNhomIndex.MenuNhom.NhomID);
                         }
                     break;
 
@@ -228,38 +234,40 @@ namespace UserControlLibrary
             }
         }
 
-        private Data.MENUMON MenuMonIndex = null;
+        private Data.BOMenuMon MenuMonIndex = null;
 
         private void btnItems_Click(object sender, RoutedEventArgs e)
         {
             POSButtonMenu btn = (POSButtonMenu)sender;
-            if (btn.Tag is Data.MENUMON)
+            if (btn.Tag is Data.BOMenuMon)
             {
-                MenuMonIndex = (Data.MENUMON)btn.Tag;
+                MenuMonIndex = (Data.BOMenuMon)btn.Tag;
                 if (_IsBanHang)
                 {
                     PageKichThuocMon = 1;
                     LoadKichThuocMon(MenuMonIndex);
                 }
                 else
-                    OnEventMenu(MenuMonIndex);
+                    if (_OnEventMenuMon != null)
+                        _OnEventMenuMon(MenuMonIndex);
             }
-            else if (btn.Tag is Data.MENUKICHTHUOCMON)
+            else if (btn.Tag is Data.BOMenuKichThuocMon)
             {
-                MenuKichThuocMonIndex = (Data.MENUKICHTHUOCMON)btn.Tag;
-                OnEventMenu(MenuKichThuocMonIndex);
+                MenuKichThuocMonIndex = (Data.BOMenuKichThuocMon)btn.Tag;
+                if (_OnEventMenuKichThuocMon != null)
+                    _OnEventMenuKichThuocMon(MenuKichThuocMonIndex);
             }
         }
 
-        private void SetButtonItem(POSButtonMenu btn, Data.MENUMON item)
+        private void SetButtonItem(POSButtonMenu btn, Data.BOMenuMon item)
         {
             btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
-            btn.Content = item.TenNgan;
-            if (item.Hinh != null && item.Hinh.Length > 0)
+            btn.Content = item.MenuMon.TenNgan;
+            if (item.MenuMon.Hinh != null && item.MenuMon.Hinh.Length > 0)
             {
-                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.MenuMon.Hinh);
             }
             else
             {
@@ -280,17 +288,18 @@ namespace UserControlLibrary
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 int CountGroup = gridGroup.Children.Count - 2;
-                List<Data.MENUNHOM> lsGroupTem = lsMenuNhom.Skip((PageGroup - 1) * CountGroup).Take(CountGroup).ToList();
+                List<Data.BOMenuNhom> lsGroupTem = lsMenuNhom.Skip((PageGroup - 1) * CountGroup).Take(CountGroup).ToList();
                 for (int i = 0; i < lsGroupTem.Count; i++)
                 {
                     if (i == 0)
                     {
                         MenuNhomIndex = lsGroupTem[i];
                         PageItems = 1;
-                        LoadMon(lsMenuNhom[i].NhomID);
-                        OnEventMenu(MenuNhomIndex);
+                        LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
+                        if (_OnEventMenuNhom != null)
+                            _OnEventMenuNhom(MenuNhomIndex);
                     }
-                    SetButtonGroup((POSButtonMenu)gridGroup.Children[i + 1], lsGroupTem[i]);
+                    SetButtonNhom((POSButtonMenu)gridGroup.Children[i + 1], lsGroupTem[i]);
                 }
                 for (int i = lsGroupTem.Count; i < CountGroup; i++)
                 {
@@ -306,10 +315,11 @@ namespace UserControlLibrary
                     {
                         MenuNhomIndex = lsMenuNhom[i];
                         PageItems = 1;
-                        LoadMon(lsMenuNhom[i].NhomID);
-                        OnEventMenu(MenuNhomIndex);
+                        LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
+                        if (_OnEventMenuNhom != null)
+                            _OnEventMenuNhom(MenuNhomIndex);
                     }
-                    SetButtonGroup((POSButtonMenu)gridGroup.Children[i], lsMenuNhom[i]);
+                    SetButtonNhom((POSButtonMenu)gridGroup.Children[i], lsMenuNhom[i]);
                 }
 
                 for (int i = lsMenuNhom.Count; i < gridGroup.Children.Count; i++)
@@ -317,17 +327,17 @@ namespace UserControlLibrary
             }
         }
 
-        private Data.MENUNHOM MenuNhomIndex = null;
+        private Data.BOMenuNhom MenuNhomIndex = null;
 
-        public void SetButtonGroup(POSButtonMenu btn, Data.MENUNHOM item)
+        public void SetButtonNhom(POSButtonMenu btn, Data.BOMenuNhom item)
         {
             btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
-            btn.Content = item.TenNgan;
-            if (item.Hinh != null && item.Hinh.Length > 0)
+            btn.Content = item.MenuNhom.TenNgan;
+            if (item.MenuNhom.Hinh != null && item.MenuNhom.Hinh.Length > 0)
             {
-                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.MenuNhom.Hinh);
             }
             else
             {
@@ -349,12 +359,13 @@ namespace UserControlLibrary
         private void btnGroup_Click(object sender, RoutedEventArgs e)
         {
             POSButtonMenu btn = (POSButtonMenu)sender;
-            MenuNhomIndex = (Data.MENUNHOM)btn.Tag;
+            MenuNhomIndex = (Data.BOMenuNhom)btn.Tag;
             PageItems = 1;
-            LoadMon(MenuNhomIndex.NhomID);
+            LoadMon(MenuNhomIndex.MenuNhom.NhomID);
             if (!_IsBanHang)
             {
-                OnEventMenu(MenuNhomIndex);
+                if (_OnEventMenuNhom != null)
+                    _OnEventMenuNhom(MenuNhomIndex);
             }
         }
 
@@ -397,14 +408,12 @@ namespace UserControlLibrary
         private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 1;
-            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
         private void btnThucAn_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 2;
-            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
@@ -413,7 +422,6 @@ namespace UserControlLibrary
         private void btnTatCa_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 0;
-            OnEventMenu(LoaiNhomID);
             LoadGroup();
         }
 
@@ -429,17 +437,18 @@ namespace UserControlLibrary
             btnItemNext.Content = "Kế tiếp";
         }
 
-        public void LoadKichThuocMon(Data.MENUMON mon)
+        public void LoadKichThuocMon(Data.BOMenuMon mon)
         {
-            lsMenuKichThuocMon = Data.BOMenuKichThuocMon.GetAll(mon.MonID, mTransit);
+            lsMenuKichThuocMon = Data.BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, mTransit);
             if (lsMenuKichThuocMon.Count == 1)
             {
-                OnEventMenu(lsMenuKichThuocMon[0]);
+                if (_OnEventMenuKichThuocMon != null)
+                    _OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);
             }
             else if (lsMenuKichThuocMon.Count > gridItems.Children.Count)
             {
                 int SoLuongKichThuocMon = gridItems.Children.Count - 2;
-                List<Data.MENUKICHTHUOCMON> lsKichThuocMonTem = lsMenuKichThuocMon.Skip((PageKichThuocMon - 1) * SoLuongKichThuocMon).Take(SoLuongKichThuocMon).ToList();
+                List<Data.BOMenuKichThuocMon> lsKichThuocMonTem = lsMenuKichThuocMon.Skip((PageKichThuocMon - 1) * SoLuongKichThuocMon).Take(SoLuongKichThuocMon).ToList();
                 bool Chay = true;
                 int j = 0;
                 for (int i = 0; i < lsKichThuocMonTem.Count; i++, j++)
@@ -447,16 +456,17 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            OnEventMenu(lsKichThuocMonTem[i]);
+                            if (_OnEventMenuKichThuocMon != null)
+                                _OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
                     }
                     Chay = true;
                     while (Chay)
                     {
                         Chay = false;
                         if (Grid.GetRow(gridItems.Children[j]) != gridItems.RowDefinitions.Count - 1)
-                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i], mon);
+                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i]);
                         else if (Grid.GetColumn(gridItems.Children[j]) > 0 && Grid.GetColumn(gridItems.Children[j]) < gridItems.ColumnDefinitions.Count - 1)
-                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i], mon);
+                            SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[j], lsKichThuocMonTem[i]);
                         else
                         {
                             Chay = true;
@@ -495,9 +505,10 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            OnEventMenu(lsMenuKichThuocMon[i]);
+                            if (_OnEventMenuKichThuocMon != null)
+                                _OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
                     }
-                    SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[i], lsMenuKichThuocMon[i], mon);
+                    SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[i], lsMenuKichThuocMon[i]);
                 }
                 for (int i = lsMenuKichThuocMon.Count; i < gridItems.Children.Count; i++)
                 {
@@ -507,17 +518,17 @@ namespace UserControlLibrary
             }
         }
 
-        private Data.MENUKICHTHUOCMON MenuKichThuocMonIndex = null;
+        private Data.BOMenuKichThuocMon MenuKichThuocMonIndex = null;
 
-        private void SetButtonKichThuocMon(POSButtonMenu btn, Data.MENUKICHTHUOCMON item, Data.MENUMON mon)
+        private void SetButtonKichThuocMon(POSButtonMenu btn, Data.BOMenuKichThuocMon item)
         {
             btn.Visibility = System.Windows.Visibility.Visible;
             btn.Tag = item;
             btn.IsEnabled = true;
-            btn.Content = item.TenLoaiBan;
-            if (mon.Hinh != null && mon.Hinh.Length > 0)
+            btn.Content = item.MenuKichThuocMon.TenLoaiBan;
+            if (item.MenuMon.Hinh != null && item.MenuMon.Hinh.Length > 0)
             {
-                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mon.Hinh);
+                btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.MenuMon.Hinh);
             }
             else
             {
@@ -545,7 +556,7 @@ namespace UserControlLibrary
             if (IsNhom)
                 LoadGroup();
             else
-                LoadMon(MenuNhomIndex.NhomID);
+                LoadMon(MenuNhomIndex.MenuNhom.NhomID);
             IsRefershMenu = false;
         }
 
