@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace GUI
 {
@@ -13,11 +14,13 @@ namespace GUI
     {
         private Data.BONhanVien mItem = null;
         private Data.Transit mTransit = null;
+        Data.BONhanVien BONhanVien = null;
         List<Data.BONhanVien> lsArrayDeleted = null;
         public WindowQuanLyNhanVien(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BONhanVien = new Data.BONhanVien(transit);
             uCTile.TenChucNang = "Quản lý nhân viên";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
@@ -30,7 +33,7 @@ namespace GUI
         private void LoadDanhSach()
         {
 
-            List<Data.BONhanVien> lsArray = Data.BONhanVien.GetAll(mTransit);
+            IQueryable<Data.BONhanVien> lsArray = BONhanVien.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -121,7 +124,7 @@ namespace GUI
                     lsArray.Add(mItem);
                 }
             }
-            Data.BONhanVien.Luu(lsArray, lsArrayDeleted, mTransit);
+            BONhanVien.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

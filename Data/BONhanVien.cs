@@ -7,22 +7,30 @@ namespace Data
 {
     public class BONhanVien
     {
+        public FrameworkRepository<NHANVIEN> frmNhanVien = null;
+        public FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = null;
 
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
+        public BONhanVien(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
+            frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAINHANVIENs);
+        }
+
         public BONhanVien()
         {
-
+            NhanVien = new NHANVIEN();
+            LoaiNhanVien = new LOAINHANVIEN();
         }
-        public static List<NHANVIEN> GetAllNoTracking(Transit mTransit)
-        {
-            return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs).ToList();
-        }
-        public static List<BONhanVien> GetAll(Transit mTransit)
-        {
-            FrameworkRepository<NHANVIEN> frmNhanVien = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
-            FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(mTransit.KaraokeEntities);
 
+        public static IQueryable<NHANVIEN> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs);
+        }
+        public IQueryable<BONhanVien> GetAll(Transit mTransit)
+        {
             return (from n in frmNhanVien.Query()
                     join l in frmLoaiNhanVien.Query() on n.LoaiNhanVienID equals l.LoaiNhanVienID
                     where n.Deleted == false
@@ -30,45 +38,45 @@ namespace Data
                     {
                         NhanVien = n,
                         LoaiNhanVien = l
-                    }).ToList();
+                    });
         }
 
-        private static int Them(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
+        private int Them(BONhanVien item, Transit mTransit)
         {
-            frm.AddObject(item.NhanVien);
+            frmNhanVien.AddObject(item.NhanVien);
             return item.NhanVien.NhanVienID;
         }
 
-        private static int Xoa(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
+        private int Xoa(BONhanVien item, Transit mTransit)
         {
             item.NhanVien.Deleted = true;
-            frm.Update(item.NhanVien);
+            frmNhanVien.Update(item.NhanVien);
             return item.NhanVien.NhanVienID;
         }
 
-        private static int Sua(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
+        private int Sua(BONhanVien item, Transit mTransit)
         {
-            frm.Update(item.NhanVien);
+            item.NhanVien.Edit = false;
+            frmNhanVien.Update(item.NhanVien);
             return item.NhanVien.NhanVienID;
         }
 
-        public static void Luu(List<BONhanVien> lsArray, List<BONhanVien> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<BONhanVien> lsArray, List<BONhanVien> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<NHANVIEN> frm = new FrameworkRepository<NHANVIEN>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (BONhanVien item in lsArray)
                 {
                     if (item.NhanVien.NhanVienID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (BONhanVien item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmNhanVien.Commit();
         }
 
         public static NHANVIEN Login(string TenDangNhap, string MatKhau, Data.Transit mTransit)
