@@ -7,17 +7,27 @@ using System.Data.Objects;
 namespace Data
 {
     
-    internal class FrameworkRepository<TEntityObject> where TEntityObject : EntityObject
+    public class FrameworkRepository<TEntityObject> where TEntityObject : EntityObject
     {        
         private ObjectSet<TEntityObject> mObjectSet;
         private KaraokeEntities mKaraokeEntities;
-        private List<TEntityObject> mListEntityObjectAttact;        
-        public FrameworkRepository(KaraokeEntities kara, ObjectSet<TEntityObject> objectSet)
-        {            
-            mListEntityObjectAttact = new List<TEntityObject>();
+        private List<MyEntityObject> mListEntityObject;
+        public FrameworkRepository(KaraokeEntities kara)
+        {
             mKaraokeEntities = kara;
-            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
+            mObjectSet = mKaraokeEntities.CreateObjectSet<TEntityObject>();
+            Init();
+        }
+        public FrameworkRepository(KaraokeEntities kara, ObjectSet<TEntityObject> objectSet)
+        {
+            mKaraokeEntities = kara;
             mObjectSet = objectSet;
+            Init();
+        }
+        private void Init()
+        {
+            mListEntityObject = new List<MyEntityObject>();
+            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             mObjectSet.MergeOption = MergeOption.NoTracking;              
         }
         public static IQueryable<TEntityObject> QueryAppendOnly(ObjectSet<TEntityObject> objectSet, MergeOption mergeOption)
@@ -46,28 +56,42 @@ namespace Data
             }
             return null;
         }
+        private void MakeChangeEntityObject(MyEntityObject obj)
+        {
+            switch (obj.Type)
+            {
+                case FrameworkRepository<TEntityObject>.MyEntityObjectType.Added:
+                    mObjectSet.AddObject(obj.EntityObject);                    
+                    break;
+                case FrameworkRepository<TEntityObject>.MyEntityObjectType.Edit:
+                    this.Attach(obj.EntityObject);
+                    mKaraokeEntities.ObjectStateManager.ChangeObjectState(obj.EntityObject, System.Data.EntityState.Modified);                    
+                    break;
+                case FrameworkRepository<TEntityObject>.MyEntityObjectType.Delete:
+                    this.Attach(obj.EntityObject);
+                    mObjectSet.DeleteObject(obj.EntityObject);                    
+                    break;
+                default:
+                    break;
+            }
+        }
         public void AddObject(TEntityObject obj)
-        {                        
-            mObjectSet.AddObject(obj);
-            this.AddEntityObjectAttact(obj);
+        {                                    
+            this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Added, obj));
         }
         public void Update(TEntityObject obj)
-        {
-            this.Attach(obj);
-            mKaraokeEntities.ObjectStateManager.ChangeObjectState(obj, System.Data.EntityState.Modified);
-            this.AddEntityObjectAttact(obj);
+        {                        
+            this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Edit, obj));
         }
         public void DeleteObject(TEntityObject obj)
-        {
-            this.Attach(obj);
-            mObjectSet.DeleteObject(obj);
-            this.AddEntityObjectAttact(obj);
+        {            
+            this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Delete, obj));
         }
-        private void AddEntityObjectAttact(TEntityObject obj)
+        private void AddMyEntityObject(MyEntityObject obj)
         {
-            if (!mListEntityObjectAttact.Contains(obj))
+            if (!mListEntityObject.Contains(obj))
             {
-                mListEntityObjectAttact.Add(obj);
+                mListEntityObject.Add(obj);
             }
         }
         private void Attach(TEntityObject obj)
@@ -86,33 +110,36 @@ namespace Data
         }
         public void Commit()
         {
-            mKaraokeEntities.SaveChanges(SaveOptions.DetectChangesBeforeSave);
-            foreach (TEntityObject item in mListEntityObjectAttact)
+            foreach (var item in mListEntityObject)
             {
-                if (item.EntityState!=System.Data.EntityState.Detached)
-                {
-                    mKaraokeEntities.ObjectStateManager.ChangeObjectState(item, System.Data.EntityState.Detached);
-                }
+                this.MakeChangeEntityObject(item);
             }
-            mListEntityObjectAttact.Clear();
+            mKaraokeEntities.SaveChanges();
+            foreach (var item in mListEntityObject)
+            {
+                this.Detach(item.EntityObject);
+            }
+            mListEntityObject.Clear();
         }
-        public void Refresh(TEntityObject obj)
+        public void Refresh()
         {
-            this.Attach(obj);
-            mKaraokeEntities.Refresh(RefreshMode.StoreWins, obj);
-            this.Detach(obj);
+            mListEntityObject.Clear();
+        }        
+        private class MyEntityObject
+        {
+            public MyEntityObjectType Type { get; set; }
+            public TEntityObject EntityObject { get; set; }
+            public MyEntityObject(MyEntityObjectType type, TEntityObject obj)
+            {
+                this.Type = type;
+                this.EntityObject = obj;
+            }
         }
-        public void Refresh(IEnumerable<TEntityObject> list)
+        private enum MyEntityObjectType
         {
-            foreach (var item in list)
-            {
-                this.Attach(item);
-            }
-            mKaraokeEntities.Refresh(RefreshMode.StoreWins, list);
-            foreach (var item in list)
-            {
-                this.Detach(item);
-            }
+            Added,
+            Edit,
+            Delete
         }
     }
 }

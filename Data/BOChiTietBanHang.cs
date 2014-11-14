@@ -14,20 +14,20 @@ namespace Data
         public int SoLuongBanTam { get; set; }
         public bool XoaMon { get; set; }
         private Transit mTransit;
-        public static List<BOChiTietBanHang> getAll(int banHangId, KaraokeEntities entity)
+        public static IQueryable<BOChiTietBanHang> Query(int banHangId, BOBanHang banhang)
         {            
             var iQuery =
-                from chitiet in entity.CHITIETBANHANGs
-                join kichthuoc in entity.MENUKICHTHUOCMONs on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
-                join menu in entity.MENUMONs on kichthuoc.MonID equals menu.MonID
+                from chitiet in banhang.frChiTietBanHang.Query()
+                join kichthuoc in banhang.frMenuKichThuocMon.Query() on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
+                join menu in banhang.frMenuMon.Query() on kichthuoc.MonID equals menu.MonID
                 where chitiet.BanHangID == banHangId
                 select new BOChiTietBanHang
                 {                    
                     MENUKICHTHUOCMON=kichthuoc,
                     CHITIETBANHANG=chitiet,
                     MENUMON=menu                    
-                };            
-            return iQuery.ToList<BOChiTietBanHang>();
+                };
+            return iQuery;
         }
         public static int Xoa(int chiTietBanHangId, Transit mTransit)
         {
@@ -69,7 +69,7 @@ namespace Data
             this.CHITIETBANHANG.ThanhTien=this.CHITIETBANHANG.SoLuongBan*this.CHITIETBANHANG.GiaBan;
             //this.CHITIETBANHANG.MENUKICHTHUOCMON = ktm;
             //this.CHITIETBANHANG.NHANVIEN = mTransit.NhanVien;
-            this.CHITIETBANHANG.KichThuocMonID = 10;            
+            this.CHITIETBANHANG.KichThuocMonID = 2;            
             this.MENUKICHTHUOCMON = ktm;
             this.MENUMON = ktm.MENUMON;
 
@@ -80,7 +80,8 @@ namespace Data
         {
             get
             {
-                return this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                //return this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                return this.MENUMON==null?"Mon": this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
             }
         }
         public string ThanhTien
