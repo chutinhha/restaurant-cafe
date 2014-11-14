@@ -8,8 +8,8 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
-        private Data.Transit mTransit = null;
-        private Data.BOChiTietBanHang mChiTietBanHang = null;
+        private Data.Transit mTransit = null;        
+        private ProcessOrder.ProcessOrder mProcessOrder;
         public WindowBanHang(Data.Transit transit)
         {
             InitializeComponent();
@@ -22,9 +22,9 @@ namespace GUI
             uCMenuBanHang.Init(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
-            mTransit.BanHang = new Data.BOBanHang(mTransit);
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
             GanChucNang();
-            LoadBanHang(mTransit.BanHang);
+            LoadBanHang();
         }
 
         private void uCTile_OnEventExit()
@@ -71,7 +71,7 @@ namespace GUI
         }
         private void GuiNhaBep()
         {
-            mTransit.BanHang.GuiNhaBep();
+            mProcessOrder.SendOrder();
             this.Close();
         }
         private void XoaMon()
@@ -89,13 +89,12 @@ namespace GUI
             lvData.Items.Clear();
         }
 
-
-        private void LoadBanHang(Data.BOBanHang banHang)
+        private void LoadBanHang()
         {
-            txtMaHoaDon.Text = "Mã Hóa Đơn: " + banHang.BANHANG.MaHoaDon.ToString();
-            txtTenNhanVien.Text = "Nhân Viên: " + mTransit.NhanVien.TenNhanVien;
+            txtMaHoaDon.Text = "Mã Hóa Đơn: "+mProcessOrder.BanHang.MaHoaDon.ToString();
+            txtTenNhanVien.Text ="Nhân Viên: " +mTransit.NhanVien.TenNhanVien;
             lvData.Items.Clear();
-            foreach (var item in mTransit.BanHang._ListChiTietBanHang)
+            foreach (var item in mProcessOrder.ListChiTietBanHang)
             {
                 lvData.Items.Add(item);
             }
@@ -106,7 +105,7 @@ namespace GUI
             ListViewItem li = new ListViewItem();
             li.Content = item;
             lvData.Items.Add(item);
-            mTransit.BanHang.AddChiTietBanHang(item);
+            mProcessOrder.AddChiTietBanHang(item);
             if (lvData.Items.Count > 0)
             {
                 lvData.SelectedIndex = lvData.Items.Count - 1;
@@ -117,7 +116,7 @@ namespace GUI
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mChiTietBanHang = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
+                mProcessOrder.CurrentChiTietBanHang = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
                 ThayDoiQty();
             }
         }
@@ -125,11 +124,11 @@ namespace GUI
         private bool IsThayDoiSoLuong = true;
         private void ThayDoiQty()
         {
-            if (mChiTietBanHang != null)
+            if (mProcessOrder.CurrentChiTietBanHang != null)
             {
                 IsThayDoiSoLuong = false;
-                txtSoLuong.Text = mChiTietBanHang.CHITIETBANHANG.SoLuongBan.ToString();
-                txtTenMon.Text = mChiTietBanHang.TenMon.ToString();
+                txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.CHITIETBANHANG.SoLuongBan.ToString();
+                txtTenMon.Text = mProcessOrder.CurrentChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
                 TextBox_PreviewMouseDown(txtSoLuong, null);
                 IsThayDoiSoLuong = true;
@@ -145,18 +144,17 @@ namespace GUI
 
         private void txtSoLuong_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (mChiTietBanHang != null && IsThayDoiSoLuong)
+            if (mProcessOrder.CurrentChiTietBanHang != null && IsThayDoiSoLuong)
             {
                 string str = "1";
                 if (txtSoLuong.Text != "")
                 {
                     str = txtSoLuong.Text;
                 }
-                mChiTietBanHang.CHITIETBANHANG.SoLuongBan = System.Convert.ToInt32(str);
-                mChiTietBanHang.CHITIETBANHANG.ThanhTien = mChiTietBanHang.CHITIETBANHANG.SoLuongBan * mChiTietBanHang.CHITIETBANHANG.GiaBan;
+                mProcessOrder.CurrentChiTietBanHang.ChangeQty(System.Convert.ToInt32(str));                
                 if (lvData.SelectedItems.Count > 0)
                 {
-                    lvData.SelectedItems[0] = mChiTietBanHang;
+                    lvData.SelectedItems[0] = mProcessOrder.CurrentChiTietBanHang;
                     lvData.Items.Refresh();
                 }
             }

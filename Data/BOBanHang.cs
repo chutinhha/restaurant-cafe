@@ -83,8 +83,9 @@ namespace Data
             chiTiet.CHITIETBANHANG.NhanVienID = this.BANHANG.NhanVienID;
             _ListChiTietBanHang.Add(chiTiet);
         }
-        public void GuiNhaBep()
-        {            
+        public int GuiNhaBep()
+        {
+            int lichSuBanHangId = 0;
             if (this.BANHANG.BanHangID==0)
             {                
                 frBanHang.AddObject(this.BANHANG);
@@ -92,6 +93,7 @@ namespace Data
                 LICHSUBANHANG lichsu = GetLichSuBanHang();
                 frLichSu.AddObject(lichsu);
                 frLichSu.Commit();
+                lichSuBanHangId = lichsu.LichSuBanHangID;
 
                 foreach (BOChiTietBanHang item in _ListChiTietBanHang)
                 {
@@ -112,6 +114,7 @@ namespace Data
                     LICHSUBANHANG lichsu = GetLichSuBanHang();
                     frLichSu.AddObject(lichsu);
                     frLichSu.Commit();
+                    lichSuBanHangId = lichsu.LichSuBanHangID;
                     foreach (BOChiTietBanHang item in _ListChiTietBanHang)
                     {                        
                         if (item.CHITIETBANHANG.ChiTietBanHangID==0)
@@ -141,7 +144,8 @@ namespace Data
                     frChiTietBanHang.Commit();
                     frChiTietLichSuBanHang.Commit();
                 }
-            }            
+            }
+            return lichSuBanHangId;
         }
         private LICHSUBANHANG GetLichSuBanHang()
         {
