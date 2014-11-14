@@ -41,7 +41,8 @@ namespace Data
 
         private static int Xoa(BONhanVien item, Transit mTransit, FrameworkRepository<NHANVIEN> frm)
         {
-            frm.DeleteObject(item.NhanVien);
+            item.NhanVien.Deleted = true;
+            frm.Update(item.NhanVien);
             return item.NhanVien.NhanVienID;
         }
 
