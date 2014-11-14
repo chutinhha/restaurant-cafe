@@ -13,8 +13,7 @@ namespace Data
             public string Loai { get; set; }
         }
         public Data.NHANVIEN NhanVien { get; set; }
-        public BAN Ban { get; set; }
-        public BOBanHang BanHang { get; set; }
+        public BAN Ban { get; set; }        
         //=================
         public KHACHHANG KhachHang { get; set; }
         public THE The { get; set; }

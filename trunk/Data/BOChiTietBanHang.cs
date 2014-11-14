@@ -75,7 +75,11 @@ namespace Data
 
             SoLuongBanTam = (int)this.CHITIETBANHANG.SoLuongBan;
         }
-
+        public void ChangeQty(int qty)
+        {
+            this.CHITIETBANHANG.SoLuongBan = qty;
+            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+        }
         public string TenMon
         {
             get
