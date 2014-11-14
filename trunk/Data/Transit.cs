@@ -36,9 +36,7 @@ namespace Data
             NhanVien = KaraokeEntities.NHANVIENs.Where(o => o.NhanVienID == 1).FirstOrDefault();
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();            
             The = KaraokeEntities.THEs.FirstOrDefault();            
-            ListDonVi = BODonVi.GetAll(this);
-            
-
+            ListDonVi = BODonVi.GetAll(this);            
         }
 
         public class ClassStringButton
