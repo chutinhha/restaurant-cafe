@@ -13,12 +13,12 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.KHO mItem = null;
-        private List<Data.KHO> lsArrayDeleted = null;
+        private List<Data.KHO> lsArrayDeleted = null;        
 
         public UCKho(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;
+            mTransit = transit;            
         }
 
         private void LoadDanhSach()

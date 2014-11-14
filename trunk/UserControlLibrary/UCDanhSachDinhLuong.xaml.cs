@@ -14,7 +14,7 @@ namespace UserControlLibrary
         private List<Data.DINHLUONG> lsArrayDeleted = null;
         private List<Data.LOAIBAN> lsLoaiBan = null;
         private List<ShowData> lsShowData = null;
-        private Data.MENUKICHTHUOCMON mKichThuocMon = null;
+        private Data.BOMenuKichThuocMon mKichThuocMon = null;
         private Data.Transit mTransit = null;
 
         public UCDanhSachDinhLuong()
@@ -22,11 +22,11 @@ namespace UserControlLibrary
             InitializeComponent();
         }
 
-        public void Init(Data.MENUKICHTHUOCMON kichThuocMon, Data.Transit transit)
+        public void Init(Data.BOMenuKichThuocMon kichThuocMon, Data.Transit transit)
         {
             mTransit = transit;
             mKichThuocMon = kichThuocMon;
-            lsLoaiBan = Data.BOLoaiBan.GetAll(null, mTransit);
+            lsLoaiBan = Data.BOLoaiBan.GetAllNoTracking(mTransit);
             if (mKichThuocMon != null)
             {
                 btnLuu.Visibility = System.Windows.Visibility.Visible;
@@ -37,10 +37,10 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
-            txtTenMon.Text = mKichThuocMon.MENUMON.TenDai + " (" + mKichThuocMon.TenLoaiBan + ")";
+            txtTenMon.Text = mKichThuocMon.MenuMon.TenDai + " (" + mKichThuocMon.MenuKichThuocMon.TenLoaiBan + ")";
             lsShowData = new List<ShowData>();
             lsShowData.Clear();
-            List<Data.DINHLUONG> lsArray = Data.BODinhLuong.GetAll((int)mKichThuocMon.KichThuocMonID, mTransit);
+            List<Data.DINHLUONG> lsArray = Data.BODinhLuong.GetAll((int)mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
             foreach (Data.DINHLUONG mi in lsArray)
             {
                 ShowData item = new ShowData(lsLoaiBan);
@@ -66,7 +66,7 @@ namespace UserControlLibrary
             foreach (ShowData s in lvData.Items)
             {
                 Data.DINHLUONG dl = new Data.DINHLUONG();
-                dl.KichThuocMonChinhID = mKichThuocMon.KichThuocMonID;
+                dl.KichThuocMonChinhID = mKichThuocMon.MenuKichThuocMon.KichThuocMonID;
                 dl.ID = s.ID;
                 dl.LoaiBanID = s.LoaiBanID;
                 dl.KichThuocBan = s.KichThuocBan;
@@ -87,9 +87,9 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 ShowData item = new ShowData(lsLoaiBan);
-                item.TenMon = win._ItemMon.TenNgan;
+                item.TenMon = win._ItemMon.MenuMon.TenNgan;
                 item.KichThuocBan = 1;
-                item.MonID = win._ItemMon.MonID;
+                item.MonID = win._ItemMon.MenuMon.MonID;
                 lsShowData.Add(item);
                 lvData.Items.Refresh();
             }

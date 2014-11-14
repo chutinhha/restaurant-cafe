@@ -10,9 +10,6 @@
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -33,7 +30,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên món chính" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                    <TextBox  x:Name="txtTenMonChinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" Width="282" />
+                    <TextBox  x:Name="txtTenMonChinh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" Width="282"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                     <my:POSButtonFuntion Name="btnChonMonChinh" Grid.Row="1" Grid.Column="1" Content="Chọn món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnChonMonChinh_Click" />
                 </StackPanel>
                 <my:POSButtonFuntion Name="btnThemMonPhu" Grid.Row="1" Grid.Column="1" Content="Thêm món khuyễn mãi" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMonPhu_Click" />

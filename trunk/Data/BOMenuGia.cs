@@ -7,60 +7,41 @@ namespace Data
 {
     public class BOMenuGia
     {
-        public static List<MENUGIA> GetAll(int KichThuocMonID, Transit mTransit)
+        public MENUGIA MenuGia { get; set; }
+        public MENULOAIGIA LoaiGia { get; set; }
+        public BOMenuGia()
         {
-            var res = (from g in mTransit.KaraokeEntities.MENUGIAs
-                       join l in mTransit.KaraokeEntities.MENULOAIGIAs on g.LoaiGiaID equals l.LoaiGiaID
+            MenuGia = new MENUGIA();
+            LoaiGia = new MENULOAIGIA();
+        }
+        public static List<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
+        {
+            FrameworkRepository<MENUGIA> frmMenuGia = new FrameworkRepository<MENUGIA>(mTransit.KaraokeEntities);
+            FrameworkRepository<MENULOAIGIA> frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities);
+
+            var res = (from g in frmMenuGia.Query()
+                       join l in frmLoaiGia.Query() on g.LoaiGiaID equals l.LoaiGiaID
                        where g.KichThuocMonID == KichThuocMonID
-                       select new
+                       select new BOMenuGia
                        {
-                           MENUGIAs = g,
-                           MENULOAIGIAs = l
-                       }).ToList().Select(s => s.MENUGIAs);
-            return res.ToList();
+                           MenuGia = g,
+                           LoaiGia = l
+                       }).ToList();
+            return res;
         }
 
-        public static int Them(MENUGIA item, Transit mTransit)
-        {                                    
-            mTransit.KaraokeEntities.MENUGIAs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.GiaID;
-        }
-
-        public static MENUGIA GetByID(int LoaiGiaID, int KichThuocMonID, Transit mTransit)
-        {            
-            List<MENUGIA> lsArray = (from x in mTransit.KaraokeEntities.MENUGIAs where x.LoaiGiaID == LoaiGiaID && x.KichThuocMonID == KichThuocMonID select x).ToList();
-            if (lsArray.Count > 0)
-                return lsArray[0];
-            else
-                return null;
-        }
-
-        public static int Xoa(int GiaID, Transit mTransit)
+        private static int Sua(BOMenuGia item, Transit mTransit, FrameworkRepository<MENUGIA> frm)
         {
-            MENUGIA item = (from x in mTransit.KaraokeEntities.MENUGIAs where x.GiaID == GiaID select x).First();
-            mTransit.KaraokeEntities.MENUGIAs.Attach(item);
-            mTransit.KaraokeEntities.MENUGIAs.DeleteObject(item);            
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.GiaID;
+            frm.Update(item.MenuGia);
+            return item.MenuGia.GiaID;
         }
 
-        public static int Sua(MENUGIA item, Transit mTransit)
+        public static void Luu(List<BOMenuGia> lsArray, Transit mTransit)
         {
-            MENUGIA m = (from x in mTransit.KaraokeEntities.MENUGIAs where x.GiaID == item.GiaID select x).First();
-            mTransit.KaraokeEntities.MENUGIAs.Attach(m);
-            m.LoaiGiaID = item.LoaiGiaID;
-            m.Gia = item.Gia;
-            m.KichThuocMonID = item.KichThuocMonID;            
-            return item.GiaID;
-        }
-
-        public static void Luu(List<MENUGIA> lsArray, Transit mTransit)
-        {
-            mTransit.KaraokeEntities.MENUGIAs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-            foreach (MENUGIA item in lsArray)
+            FrameworkRepository<MENUGIA> frm = new FrameworkRepository<MENUGIA>(mTransit.KaraokeEntities);
+            foreach (BOMenuGia item in lsArray)
             {
-                Sua(item, mTransit);
+                Sua(item, mTransit, frm);
             }
             mTransit.KaraokeEntities.SaveChanges();
         }

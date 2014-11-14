@@ -35,7 +35,7 @@ namespace UserControlLibrary
             WindowChonMon win = new WindowChonMon(mTransit, false);
             if (win.ShowDialog() == true)
             {
-                _Item.MENUKICHTHUOCMON = win._ItemKichThuocMon;
+                _Item.MENUKICHTHUOCMON = win._ItemKichThuocMon.MenuKichThuocMon;
                 SetValues();
             }
             else

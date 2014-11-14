@@ -8,10 +8,7 @@
                 <GradientStop Color="#FF457ECE" Offset="0" />
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
+        </Border.Background>        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -32,12 +29,12 @@
                     <ColumnDefinition Width="226*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="16" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="16" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Mặc định" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="16" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Hình" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="16" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Mặc định" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Hình" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenKhu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="16" />
+                <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenKhu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
                 <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ckMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">

@@ -7,69 +7,67 @@ namespace Data
 {
     public class BOKhachHang
     {
-        public static List<KHACHHANG> GetAll(Transit mTransit)
+        public KHACHHANG KhachHang { get; set; }
+        public LOAIKHACHHANG LoaiKhachHang { get; set; }
+
+        public BOKhachHang()
         {
-            var res = (from k in mTransit.KaraokeEntities.KHACHHANGs
-                       join l in mTransit.KaraokeEntities.LOAIKHACHHANGs on k.LoaiKhachHangID equals l.LoaiKhachHangID
-                       where k.Deleted == false && l.Deleted == false
-                       orderby k.TenKhachHang ascending
-                       select new
-                       {
-                           KHACHHANGs = k,
-                           LOAIKHACHHANGs = l
-                       }).ToList().Select(s => s.KHACHHANGs);
-            return res.ToList();
+            KhachHang = new KHACHHANG();
+            LoaiKhachHang = new LOAIKHACHHANG();
         }
 
-        public static int Them(KHACHHANG item, Transit mTransit)
+        public static List<BOKhachHang> GetAll(Transit mTransit)
         {
-            mTransit.KaraokeEntities.KHACHHANGs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhachHangID;
+            FrameworkRepository<KHACHHANG> frmKhachHang = new FrameworkRepository<KHACHHANG>(mTransit.KaraokeEntities);
+            FrameworkRepository<LOAIKHACHHANG> frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(mTransit.KaraokeEntities);
+
+            return (from k in frmKhachHang.Query()
+                    join l in frmLoaiKhachHang.Query() on k.LoaiKhachHangID equals l.LoaiKhachHangID
+                    where k.Deleted == false
+                    select new BOKhachHang
+                    {
+                        KhachHang = k,
+                        LoaiKhachHang = l
+                    }).ToList();
         }
 
-        public static int Xoa(int KhachHangID, Transit mTransit)
+        private static int Them(BOKhachHang item, Transit mTransit, FrameworkRepository<KHACHHANG> frm)
         {
-            KHACHHANG item = (from x in mTransit.KaraokeEntities.KHACHHANGs where x.KhachHangID == KhachHangID select x).First();
-            item.Deleted = true;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhachHangID;
+            frm.AddObject(item.KhachHang);
+            return item.KhachHang.KhachHangID;
         }
 
-        public static int Sua(KHACHHANG item, Transit mTransit)
+        private static int Xoa(BOKhachHang item, Transit mTransit, FrameworkRepository<KHACHHANG> frm)
         {
-            KHACHHANG m = (from x in mTransit.KaraokeEntities.KHACHHANGs where x.LoaiKhachHangID == item.LoaiKhachHangID select x).First();
-            m.TenKhachHang = item.TenKhachHang;
-            m.SoNha = item.SoNha;
-            m.TenDuong = item.TenDuong;
-            m.Mobile = item.Mobile;
-            m.Phone = item.Phone;
-            m.Fax = item.Fax;
-            m.DuNo = item.DuNo;
-            m.DuNoToiThieu = item.DuNoToiThieu;
-            m.Email = item.Email;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            m.LoaiKhachHangID = item.LoaiKhachHangID;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhachHangID;
+            frm.DeleteObject(item.KhachHang);
+            return item.KhachHang.KhachHangID;
         }
 
-        public static void Luu(List<KHACHHANG> lsArray, List<KHACHHANG> lsArrayDeleted, Transit mTransit)
+        private static int Sua(BOKhachHang item, Transit mTransit, FrameworkRepository<KHACHHANG> frm)
         {
+            frm.Update(item.KhachHang);
+            return item.KhachHang.KhachHangID;
+        }
+
+        public static void Luu(List<BOKhachHang> lsArray, List<BOKhachHang> lsArrayDeleted, Transit mTransit)
+        {
+            FrameworkRepository<KHACHHANG> frm = new FrameworkRepository<KHACHHANG>(mTransit.KaraokeEntities);
             if (lsArray != null)
-                foreach (KHACHHANG item in lsArray)
+                foreach (BOKhachHang item in lsArray)
                 {
-                    if (item.KhachHangID > 0)
-                        Sua(item, mTransit);
+                    if (item.KhachHang.KhachHangID > 0)
+                        Sua(item, mTransit, frm);
                     else
-                        Them(item, mTransit);
+                        Them(item, mTransit, frm);
                 }
             if (lsArrayDeleted != null)
-                foreach (KHACHHANG item in lsArrayDeleted)
+                foreach (BOKhachHang item in lsArrayDeleted)
                 {
-                    Xoa(item.KhachHangID, mTransit);
+                    Xoa(item, mTransit, frm);
                 }
+            frm.Commit();
         }
+
+
     }
 }

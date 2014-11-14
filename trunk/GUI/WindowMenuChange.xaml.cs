@@ -24,64 +24,48 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenu.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(uCMenu_OnEventMenu);
+            uCMenu._OnEventMenuMon += new UserControlLibrary.UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
+            uCMenu._OnEventMenuNhom += new UserControlLibrary.UCMenu.EventMenuGroup(uCMenu__OnEventMenuNhom);
             uCMenu.Init(mTransit);
         }
 
-        private int LoaiNhomID = 0;
-        private int NhomID = 0;
-
-        private void uCMenu_OnEventMenu(object ob)
+        void uCMenu__OnEventMenuNhom(Data.BOMenuNhom ob)
         {
-            if (ob is Data.MENUNHOM)
-            {
-
-                UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
-                uc._Nhom = (Data.MENUNHOM)ob;
-                NhomID = uc._Nhom.NhomID;
-                svChinhSuaMenu.Children.Clear();
-                svChinhSuaMenu.Children.Add(uc);
-                btnCapNhat.Content = "Cập nhật nhóm";
-                btnXoa.Content = "Xóa nhóm";
-                btnCapNhat.Visibility = System.Windows.Visibility.Visible;
-                btnXoa.Visibility = System.Windows.Visibility.Visible;
-
-            }
-            else if (ob is Data.MENUMON)
-            {
-
-                UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit);
-                uc._Mon = (Data.MENUMON)ob;
-                svChinhSuaMenu.Children.Clear();
-                svChinhSuaMenu.Children.Add(uc);
-                btnCapNhat.Content = "Cập nhật món";
-                btnXoa.Content = "Xóa món";
-                btnCapNhat.Visibility = System.Windows.Visibility.Visible;
-                btnXoa.Visibility = System.Windows.Visibility.Visible;
-
-            }
-            else if (ob is int)
-            {
-                LoaiNhomID = (int)ob;
-            }
+            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
+            uc._Nhom = (Data.BOMenuNhom)ob;
+            NhomID = uc._Nhom.MenuNhom.NhomID;
+            svChinhSuaMenu.Children.Clear();
+            svChinhSuaMenu.Children.Add(uc);
+            btnCapNhat.Content = "Cập nhật nhóm";
+            btnXoa.Content = "Xóa nhóm";
+            btnCapNhat.Visibility = System.Windows.Visibility.Visible;
+            btnXoa.Visibility = System.Windows.Visibility.Visible;
         }
+
+        void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
+        {
+            UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit);
+            uc._Mon = (Data.BOMenuMon)ob;
+            svChinhSuaMenu.Children.Clear();
+            svChinhSuaMenu.Children.Add(uc);
+            btnCapNhat.Content = "Cập nhật món";
+            btnXoa.Content = "Xóa món";
+            btnCapNhat.Visibility = System.Windows.Visibility.Visible;
+            btnXoa.Visibility = System.Windows.Visibility.Visible;
+        }        
+
+        private int LoaiNhomID = 0;
+        private int NhomID = 0;       
 
         private void btnNhomMoi_Click(object sender, RoutedEventArgs e)
         {
             lbStatus.Text = "";
-            if (LoaiNhomID != 0)
-            {
-                UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
-                svChinhSuaMenu.Children.Clear();
-                svChinhSuaMenu.Children.Add(uc);
-                btnCapNhat.Visibility = System.Windows.Visibility.Visible;
-                btnCapNhat.Content = "Thêm nhóm";
-                btnXoa.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else
-            {
-                lbStatus.Text = "Chưa chọn loại nhóm";
-            }
+            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit);
+            svChinhSuaMenu.Children.Clear();
+            svChinhSuaMenu.Children.Add(uc);
+            btnCapNhat.Visibility = System.Windows.Visibility.Visible;
+            btnCapNhat.Content = "Thêm nhóm";
+            btnXoa.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void btnMonMoi_Click(object sender, RoutedEventArgs e)

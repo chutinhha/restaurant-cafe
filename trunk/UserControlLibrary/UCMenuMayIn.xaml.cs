@@ -19,20 +19,17 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             uCMenuSetMayIn.Init(mTransit);
-            UCMenu.OnEventMenu += new UserControlLibrary.UCMenu.EventMenu(UCMenu_OnEventMenu);
+            UCMenu._OnEventMenuMon += new UserControlLibrary.UCMenu.EventMenuMon(UCMenu__OnEventMenuMon);            
             UCMenu.Init(mTransit);
         }
 
-        private Data.MENUMON _Mon = null;
-
-        private void UCMenu_OnEventMenu(object ob)
+        void UCMenu__OnEventMenuMon(Data.BOMenuMon ob)
         {
-            if (ob is Data.MENUMON)
-            {
-                _Mon = (Data.MENUMON)ob;
-                uCMenuSetMayIn.SetValues(_Mon);
-            }
+            _Mon = ob;
+            uCMenuSetMayIn.SetValues(_Mon);
         }
+
+        private Data.BOMenuMon _Mon = null;        
 
         private void uCMenuSetMayIn_Loaded(object sender, RoutedEventArgs e)
         {

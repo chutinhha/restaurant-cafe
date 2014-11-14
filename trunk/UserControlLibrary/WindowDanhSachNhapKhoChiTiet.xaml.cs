@@ -27,7 +27,7 @@ namespace UserControlLibrary
         {
             mTransit = transit;
             mNhapKho = nhapKho;
-            lsLoaiBan = Data.BOLoaiBan.GetAll(null, mTransit);
+            lsLoaiBan = Data.BOLoaiBan.GetAllNoTracking(mTransit);
             if (mNhapKho != null)
             {
                 btnLuu.Visibility = System.Windows.Visibility.Visible;
@@ -99,9 +99,9 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 ShowData item = new ShowData(lsLoaiBan);
-                item.TenMon = win._ItemMon.TenNgan;
+                item.TenMon = win._ItemMon.MenuMon.TenNgan;
                 item.KichThuocBan = 1;
-                item.MonID = win._ItemMon.MonID;
+                item.MonID = win._ItemMon.MenuMon.MonID;
                 item.SoLuong = 1;
                 item.GiaBan = 0;
                 item.GiaMua = 0;

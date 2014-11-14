@@ -21,7 +21,7 @@ namespace UserControlLibrary
 
         public event OnExit OnEventExit;
 
-        public Data.MENUMON _Mon { get; set; }
+        public Data.BOMenuMon _Mon { get; set; }
 
         public void Init(Data.Transit transit)
         {
@@ -32,12 +32,12 @@ namespace UserControlLibrary
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        public void SetValues(Data.MENUMON mon)
+        public void SetValues(Data.BOMenuMon mon)
         {
             _Mon = mon;
             if (_Mon != null)
             {
-                txtTenMon.Text = _Mon.TenDai;
+                txtTenMon.Text = _Mon.MenuMon.TenDai;
                 LoadDanhSach();
             }
         }
@@ -65,13 +65,13 @@ namespace UserControlLibrary
         private void LoadDanhSach()
         {
             List<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAll(mTransit);
-            List<Data.MENUITEMMAYIN> lsMonMayIn = Data.BOMenuItemMayIn.GetAll(_Mon.MonID, mTransit);
+            List<Data.MENUITEMMAYIN> lsMonMayIn = Data.BOMenuItemMayIn.GetAll(_Mon.MenuMon.MonID, mTransit);
             List<ShowData> lsShowData = new List<ShowData>();
             foreach (Data.MAYIN mi in lsMayIn)
             {
                 ShowData item = new ShowData();
                 item.TenMayIn = mi.TieuDeIn;
-                item.MonID = _Mon.MonID;
+                item.MonID = _Mon.MenuMon.MonID;
                 item.MayInID = mi.MayInID;
                 if (lsMonMayIn.Exists(s => s.MayInID == mi.MayInID))
                 {

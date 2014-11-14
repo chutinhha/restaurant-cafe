@@ -9,49 +9,49 @@ namespace Data
     {
         public static List<QUYEN> GetAll(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.QUYENs.Where(s => s.Deleted == false).ToList();
+            FrameworkRepository<QUYEN> frm = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
+            return frm.Query().ToList();
+        }
+        public static List<QUYEN> GetAllNoTracking(Transit mTransit)
+        {
+            return FrameworkRepository<QUYEN>.QueryNoTracking(mTransit.KaraokeEntities.QUYENs).ToList();
         }
 
-        public static int Them(QUYEN item, Transit mTransit)
+        private static int Them(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
         {
-            mTransit.KaraokeEntities.QUYENs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.AddObject(item);
             return item.MaQuyen;
         }
 
-        public static int Xoa(int MaQuyen, Transit mTransit)
+        private static int Xoa(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
         {
-            QUYEN item = (from x in mTransit.KaraokeEntities.QUYENs where x.MaQuyen == MaQuyen select x).First();
-            mTransit.KaraokeEntities.QUYENs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.DeleteObject(item);
             return item.MaQuyen;
         }
 
-        public static int Sua(QUYEN item, Transit mTransit)
+        private static int Sua(QUYEN item, Transit mTransit, FrameworkRepository<QUYEN> frm)
         {
-            QUYEN m = (from x in mTransit.KaraokeEntities.QUYENs where x.MaQuyen == item.MaQuyen select x).First();
-            m.TenQuyen = item.TenQuyen;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.Update(item);
             return item.MaQuyen;
         }
 
         public static void Luu(List<QUYEN> lsArray, List<QUYEN> lsArrayDeleted, Transit mTransit)
         {
+            FrameworkRepository<QUYEN> frm = new FrameworkRepository<QUYEN>(mTransit.KaraokeEntities);
             if (lsArray != null)
                 foreach (QUYEN item in lsArray)
                 {
                     if (item.MaQuyen > 0)
-                        Sua(item, mTransit);
+                        Sua(item, mTransit, frm);
                     else
-                        Them(item, mTransit);
+                        Them(item, mTransit, frm);
                 }
             if (lsArrayDeleted != null)
                 foreach (QUYEN item in lsArrayDeleted)
                 {
-                    Xoa(item.MaQuyen, mTransit);
+                    Xoa(item, mTransit, frm);
                 }
+            frm.Commit();
         }
     }
 }

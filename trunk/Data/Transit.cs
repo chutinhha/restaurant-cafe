@@ -27,6 +27,7 @@ namespace Data
         public Transit()
         {
             StringButton = new ClassStringButton();
+            
             HashMD5 = "KTr";
             KaraokeEntities = new KaraokeEntities();
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            

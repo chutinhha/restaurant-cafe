@@ -9,7 +9,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
 
-        public WindowMenuSetMayIn(Data.MENUMON mon, Data.Transit transit)
+        public WindowMenuSetMayIn(Data.BOMenuMon mon, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;

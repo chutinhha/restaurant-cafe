@@ -9,10 +9,7 @@
                 <GradientStop Color="#FF457ECE" Offset="0" />
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
+        </Border.Background>        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -49,16 +46,16 @@
                 <TextBlock Grid.Row="8" Grid.Column="0" Text="Số nhà" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="9" Grid.Column="0" Text="Tên đường" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiKhachHang" DisplayMemberPath="TenLoaiKhachHang" SelectedValuePath="LoaiKhachHangID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDuNo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtDuNoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtDienThoaiDong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtDienThoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtEmail" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtFax" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="8" Grid.Column="1" x:Name="txtSoNha" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                <TextBox Grid.Row="9" Grid.Column="1" x:Name="txtTenDuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDuNo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtDuNoToiThieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtDienThoaiDong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtDienThoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtEmail" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtFax" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="8" Grid.Column="1" x:Name="txtSoNha" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="9" Grid.Column="1" x:Name="txtTenDuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                 <TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 
                 <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />

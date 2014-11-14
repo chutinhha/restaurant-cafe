@@ -7,34 +7,26 @@ namespace Data
 {
     public class BOLoaiNhanVien
     {
-        public static List<LOAINHANVIEN> GetAll(Transit mTransit)
+        public static List<LOAINHANVIEN> GetAllNoTracking(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.LOAINHANVIENs.ToList();
-        }
+            return FrameworkRepository<LOAINHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.LOAINHANVIENs).ToList();
+        }        
 
-        public static int Them(LOAINHANVIEN item, Transit mTransit)
+        private static int Them(LOAINHANVIEN item, Transit mTransit, FrameworkRepository<LOAINHANVIEN> frm)
         {
-            mTransit.KaraokeEntities.LOAINHANVIENs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.AddObject(item);
             return item.LoaiNhanVienID;
         }
 
-        public static int Xoa(int LoaiNhanVienID, Transit mTransit)
+        private static int Xoa(LOAINHANVIEN item, Transit mTransit, FrameworkRepository<LOAINHANVIEN> frm)
         {
-            LOAINHANVIEN item = (from x in mTransit.KaraokeEntities.LOAINHANVIENs where x.LoaiNhanVienID == LoaiNhanVienID select x).First();
-            mTransit.KaraokeEntities.LOAINHANVIENs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.DeleteObject(item);
             return item.LoaiNhanVienID;
         }
 
-        public static int CapNhat(LOAINHANVIEN item, Transit mTransit)
+        private static int Sua(LOAINHANVIEN item, Transit mTransit, FrameworkRepository<LOAINHANVIEN> frm)
         {
-            LOAINHANVIEN m = (from x in mTransit.KaraokeEntities.LOAINHANVIENs where x.LoaiNhanVienID == item.LoaiNhanVienID select x).First();
-            m.TenLoaiNhanVien = item.TenLoaiNhanVien;
-            m.LoaiNhanVienID = item.LoaiNhanVienID;
-            m.Visual = item.Visual;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
+            frm.Update(item);
             return item.LoaiNhanVienID;
         }
     }

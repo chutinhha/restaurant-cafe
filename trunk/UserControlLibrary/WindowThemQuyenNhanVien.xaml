@@ -9,9 +9,6 @@
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -30,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên Quyền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenQuyen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenQuyen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
 
                 <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
                     <ListView.ItemTemplate>

@@ -12,9 +12,9 @@ namespace UserControlLibrary
     public partial class UCDanhSachBanList : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.MENUKICHTHUOCMON mItem = null;
-        private Data.MENUMON mMon = null;
-        private List<Data.MENUKICHTHUOCMON> lsArrayDeleted = null;
+        private Data.BOMenuKichThuocMon mItem = null;
+        private Data.BOMenuMon mMon = null;
+        private List<Data.BOMenuKichThuocMon> lsArrayDeleted = null;
 
         public delegate void OnExit();
 
@@ -25,20 +25,18 @@ namespace UserControlLibrary
             InitializeComponent();
         }
 
-        public void Init(Data.MENUMON mon, Data.Transit transit)
+        public void Init(Data.BOMenuMon mon, Data.Transit transit)
         {
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
-            mTransit = transit;
-            mTransit.KaraokeEntities = new Data.KaraokeEntities();
-            mTransit.KaraokeEntities.MENUKICHTHUOCMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+            mTransit = transit;            
             mMon = mon;
             btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
         }
 
         public void LoadDanhSach()
         {
-            List<Data.MENUKICHTHUOCMON> lsArray = Data.BOMenuKichThuocMon.GetAll(mMon.MonID, mTransit);
+            List<Data.BOMenuKichThuocMon> lsArray = Data.BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -46,7 +44,7 @@ namespace UserControlLibrary
             }
         }
 
-        private void AddList(Data.MENUKICHTHUOCMON item)
+        private void AddList(Data.BOMenuKichThuocMon item)
         {
             ListViewItem li = new ListViewItem();
             li.Content = item;
@@ -59,8 +57,8 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MENUKICHTHUOCMON)li.Tag;
-                if (mItem.KichThuocMonID > 0)
+                mItem = (Data.BOMenuKichThuocMon)li.Tag;
+                if (mItem.MenuKichThuocMon.KichThuocMonID > 0)
                     btnDanhSachGia.Visibility = System.Windows.Visibility.Visible;
                 else
                     btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
@@ -81,13 +79,13 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MENUKICHTHUOCMON)li.Tag;
+                mItem = (Data.BOMenuKichThuocMon)li.Tag;
 
                 UserControlLibrary.WindowThemDanhSachBan win = new UserControlLibrary.WindowThemDanhSachBan(mMon, mTransit);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
+                    win._Item.MenuKichThuocMon.Edit = true;
                     li.Tag = win._Item;
                     li.Content = win._Item;
                     lvData.Items.Refresh();
@@ -99,12 +97,12 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.MENUKICHTHUOCMON)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mItem = (Data.BOMenuKichThuocMon)((ListViewItem)lvData.SelectedItems[0]).Tag;
                 if (lsArrayDeleted == null)
                 {
-                    lsArrayDeleted = new List<Data.MENUKICHTHUOCMON>();
+                    lsArrayDeleted = new List<Data.BOMenuKichThuocMon>();
                 }
-                if (mItem.KichThuocMonID > 0)
+                if (mItem.MenuKichThuocMon.KichThuocMonID > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);
                 if (lvData.Items.Count > 0)
@@ -116,14 +114,14 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.MENUKICHTHUOCMON> lsArray = null;
+            List<Data.BOMenuKichThuocMon> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
             {
-                mItem = (Data.MENUKICHTHUOCMON)li.Tag;
-                if (mItem.KichThuocMonID == 0 || mItem.Edit == true)
+                mItem = (Data.BOMenuKichThuocMon)li.Tag;
+                if (mItem.MenuKichThuocMon.KichThuocMonID == 0 || mItem.MenuKichThuocMon.Edit == true)
                 {
                     if (lsArray == null)
-                        lsArray = new List<Data.MENUKICHTHUOCMON>();
+                        lsArray = new List<Data.BOMenuKichThuocMon>();
                     lsArray.Add(mItem);
                 }
             }
@@ -178,7 +176,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MENUKICHTHUOCMON)li.Tag;
+                mItem = (Data.BOMenuKichThuocMon)li.Tag;
                 WindowDanhSachGia win = new WindowDanhSachGia(mItem, mTransit);
                 win.ShowDialog();
             }

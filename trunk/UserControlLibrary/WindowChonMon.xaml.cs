@@ -18,8 +18,8 @@ namespace UserControlLibrary
     /// </summary>
     public partial class WindowChonMon : Window
     {
-        public Data.MENUKICHTHUOCMON _ItemKichThuocMon = null;
-        public Data.MENUMON _ItemMon = null;
+        public Data.BOMenuKichThuocMon _ItemKichThuocMon = null;
+        public Data.BOMenuMon _ItemMon = null;
         private Data.Transit mTransit = null;
         bool IsMon = true;
         public WindowChonMon(Data.Transit transit, bool isMon)
@@ -28,29 +28,27 @@ namespace UserControlLibrary
             mTransit = transit;
             IsMon = isMon;
             uCMenu._IsBanHang = !IsMon;
-            uCMenu.OnEventMenu += new UCMenu.EventMenu(uCMenu_OnEventMenu);
+            uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
+            uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu.Init(mTransit);
         }
 
-        void uCMenu_OnEventMenu(object ob)
+        void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
         {
-            if (ob is Data.MENUKICHTHUOCMON)
+            if (!IsMon)
             {
-                if (!IsMon)
-                {
-                    _ItemKichThuocMon = (Data.MENUKICHTHUOCMON)ob;
-                    txtTenLoaiBan.Text = _ItemKichThuocMon.MENUMON.TenDai + " (" + _ItemKichThuocMon.TenLoaiBan + ")";
-                }
+                _ItemKichThuocMon = ob;
+                txtTenLoaiBan.Text = _ItemKichThuocMon.MenuMon.TenDai + " (" + _ItemKichThuocMon.MenuKichThuocMon.TenLoaiBan + ")";
             }
-            else if (ob is Data.MENUMON)
-            {
-                if (IsMon)
-                {
-                    _ItemMon = (Data.MENUMON)ob;
-                    txtTenLoaiBan.Text = _ItemMon.TenDai;
-                }
-            }
+        }
 
+        void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
+        {
+            if (IsMon)
+            {
+                _ItemMon = ob;
+                txtTenLoaiBan.Text = _ItemMon.MenuMon.TenDai;
+            }
         }
 
         private void btnChonMon_Click(object sender, RoutedEventArgs e)
