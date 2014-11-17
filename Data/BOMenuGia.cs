@@ -14,11 +14,18 @@ namespace Data
             MenuGia = new MENUGIA();
             LoaiGia = new MENULOAIGIA();
         }
-        public static List<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
-        {
-            FrameworkRepository<MENUGIA> frmMenuGia = new FrameworkRepository<MENUGIA>(mTransit.KaraokeEntities);
-            FrameworkRepository<MENULOAIGIA> frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities);
 
+        public BOMenuGia(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmMenuGia = new FrameworkRepository<MENUGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENUGIAs);
+            frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
+        }
+        FrameworkRepository<MENUGIA> frmMenuGia = null;
+        FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
+
+        public List<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
+        {
             var res = (from g in frmMenuGia.Query()
                        join l in frmLoaiGia.Query() on g.LoaiGiaID equals l.LoaiGiaID
                        where g.KichThuocMonID == KichThuocMonID
@@ -30,20 +37,19 @@ namespace Data
             return res;
         }
 
-        private static int Sua(BOMenuGia item, Transit mTransit, FrameworkRepository<MENUGIA> frm)
+        private int Sua(BOMenuGia item, Transit mTransit)
         {
-            frm.Update(item.MenuGia);
+            frmMenuGia.Update(item.MenuGia);            
             return item.MenuGia.GiaID;
         }
 
-        public static void Luu(List<BOMenuGia> lsArray, Transit mTransit)
+        public void Luu(List<BOMenuGia> lsArray, Transit mTransit)
         {
-            FrameworkRepository<MENUGIA> frm = new FrameworkRepository<MENUGIA>(mTransit.KaraokeEntities);
             foreach (BOMenuGia item in lsArray)
             {
-                Sua(item, mTransit, frm);
+                Sua(item, mTransit);
             }
-            mTransit.KaraokeEntities.SaveChanges();
+            frmMenuGia.Commit();
         }
     }
 }

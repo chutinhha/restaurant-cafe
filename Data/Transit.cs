@@ -13,7 +13,9 @@ namespace Data
             public string Loai { get; set; }
         }
         public Data.NHANVIEN NhanVien { get; set; }
-        public BAN Ban { get; set; }        
+        public Data.NHANVIEN Admin { get; set; }
+        public BAN Ban { get; set; }
+        public BOBanHang BanHang { get; set; }
         //=================
         public KHACHHANG KhachHang { get; set; }
         public THE The { get; set; }
@@ -26,17 +28,23 @@ namespace Data
         public Transit()
         {
             StringButton = new ClassStringButton();
-            
             HashMD5 = "KTr";
+            Admin = new NHANVIEN();
+            Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.QuanLy;
+            Admin.TenNhanVien = "Admin";
+            Admin.TenDangNhap = "0000";
+            Admin.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash("0000", HashMD5);
+
+
             KaraokeEntities = new KaraokeEntities();
-            KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            
+            KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             KaraokeEntities.MENUKICHTHUOCMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             KaraokeEntities.MENUMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();                        
+            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
             NhanVien = KaraokeEntities.NHANVIENs.Where(o => o.NhanVienID == 1).FirstOrDefault();
-            KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();            
-            The = KaraokeEntities.THEs.FirstOrDefault();            
-            ListDonVi = BODonVi.GetAll(this);            
+            KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
+            The = KaraokeEntities.THEs.FirstOrDefault();
+            ListDonVi = BODonVi.GetAll(this);
         }
 
         public class ClassStringButton
@@ -51,7 +59,7 @@ namespace Data
         }
         public static string ConvertDateTimeToString(DateTime dt)
         {
-            return String.Format("{0:0000}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}",dt.Year,dt.Month,dt.Day,dt.Hour,dt.Minute,dt.Second);
+            return String.Format("{0:0000}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
         }
         public static DateTime ConvertStringToDateTime(string str)
         {

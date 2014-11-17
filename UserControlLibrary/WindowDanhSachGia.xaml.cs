@@ -13,11 +13,13 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.BOMenuKichThuocMon mKichThuocMon = null;
+        private Data.BOMenuGia BOMenuGia = null;
 
         public WindowDanhSachGia(Data.BOMenuKichThuocMon kichthuocmon, Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            BOMenuGia = new Data.BOMenuGia(transit);
             mKichThuocMon = kichthuocmon;
         }
 
@@ -38,7 +40,7 @@ namespace UserControlLibrary
             {
                 lsArray.Add(li);
             }
-            Data.BOMenuGia.Luu(lsArray, mTransit);
+            BOMenuGia.Luu(lsArray, mTransit);
             MessageBox.Show("Lưu thành công");
             LoadDanhSachGiaBan();
         }
@@ -54,7 +56,7 @@ namespace UserControlLibrary
         {
             if (mKichThuocMon != null)
             {
-                lvData.ItemsSource = Data.BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
+                lvData.ItemsSource = BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
             }
         }
 

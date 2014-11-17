@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="768" Loaded="UserControl_Loaded">
+             d:DesignHeight="30" d:DesignWidth="768">
     <Grid Background="#FF009F3B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -14,11 +14,11 @@
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="60" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Karaoke" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
-        <TextBlock Grid.Column="1" Text="Version 1.5.6.4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
-        <TextBlock Grid.Column="2" Name="lbTenChucNang" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
-        <TextBlock Grid.Column="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
-        <TextBlock Grid.Column="4" Name="lbTime" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14" />
+        <TextBlock Grid.Column="0" Name="lbTenNhaHang" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="1" Name="lbPhienBan"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="2" Name="lbTenChucNang" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="3" Name="lbNhanVien" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <TextBlock Grid.Column="4" Name="lbTime" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14" />
         <Grid Grid.Column="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*" />

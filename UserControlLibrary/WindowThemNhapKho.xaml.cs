@@ -20,12 +20,16 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
-        public Data.NHAPKHO _Item { get; set; }
+        public Data.BONhapKho _Item { get; set; }
+        Data.BONhapKho BONhapKho = null;
+        Data.BOQuanLyKho BOQuanLyKho = null;
 
-        public WindowThemNhapKho(Data.Transit transit)
+        public WindowThemNhapKho(Data.Transit transit, Data.BONhapKho bONhapKho)
         {
             InitializeComponent();
             mTransit = transit;
+            BOQuanLyKho = new Data.BOQuanLyKho(transit);
+            BONhapKho = bONhapKho;
         }
 
         private void LoadKhoHang()
@@ -60,13 +64,15 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.NHAPKHO();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BONhapKho();
+                    _Item.NhapKho.Visual = true;
+                    _Item.NhapKho.Deleted = false;
+                    _Item.NhapKho.Edit = false;
                 }
                 GetValues();
-                Data.BONhapKho.Them(_Item, (List<Data.CHITIETNHAPKHO>)btnDanhSachChiTiet.Tag, mTransit);
+                List<Data.BOChiTietNhapKho> lsChiTietNhapKho = (List<Data.BOChiTietNhapKho>)btnDanhSachChiTiet.Tag;
+                BONhapKho.Them(_Item, lsChiTietNhapKho, mTransit);
+                BOQuanLyKho.NhapKho(lsChiTietNhapKho, mTransit);
                 MessageBox.Show(lbTieuDe.Text + " thành công");
                 DialogResult = true;
             }
@@ -85,8 +91,8 @@ namespace UserControlLibrary
             }
             else
             {
-                cbbNhaCungCap.SelectedValue = _Item.NhaCungCapID;
-                cbbKhoHang.SelectedValue = _Item.KhoID;
+                cbbNhaCungCap.SelectedValue = _Item.NhapKho.NhaCungCapID;
+                cbbKhoHang.SelectedValue = _Item.NhapKho.KhoID;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa nhập kho";
             }
@@ -94,15 +100,21 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.Visual = true;
-            _Item.Deleted = false;
-            _Item.KhoID = 0;
-            _Item.NhaCungCapID = 0;
-            _Item.ThoiGian = DateTime.Now;
+            _Item.NhapKho.Visual = true;
+            _Item.NhapKho.Deleted = false;
+            _Item.NhapKho.KhoID = 0;
+            _Item.NhapKho.NhaCungCapID = 0;
+            _Item.NhapKho.ThoiGian = DateTime.Now;
             if (cbbKhoHang.Items.Count > 0)
-                _Item.KhoID = (int)cbbKhoHang.SelectedValue;
+            {
+                _Item.NhapKho.KhoID = (int)cbbKhoHang.SelectedValue;
+                _Item.Kho = (Data.KHO)cbbKhoHang.SelectedItem;
+            }
             if (cbbNhaCungCap.Items.Count > 0)
-                _Item.NhaCungCapID = (int)cbbNhaCungCap.SelectedValue;
+            {
+                _Item.NhapKho.NhaCungCapID = (int)cbbNhaCungCap.SelectedValue;
+                _Item.NhaCungCap = (Data.NHACUNGCAP)cbbNhaCungCap.SelectedItem;
+            }
         }
 
         private bool CheckValues()

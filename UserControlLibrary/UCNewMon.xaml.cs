@@ -13,12 +13,14 @@ namespace UserControlLibrary
         private BitmapImage mBitmapImage = null;
         private Data.Transit mTransit = null;
         private int NhomID = 0;
+        public Data.BOMenuMon BOMenuMon = null;
 
-        public UCNewMon(int nhomID, Data.Transit transit)
+        public UCNewMon(int nhomID, Data.Transit transit, Data.BOMenuMon bOMenuMon)
         {
             InitializeComponent();
             NhomID = nhomID;
             mTransit = transit;
+            BOMenuMon = bOMenuMon;
         }
 
         public Data.BOMenuMon _Mon { get; set; }
@@ -28,18 +30,18 @@ namespace UserControlLibrary
             if (_Mon != null)
             {
                 GetValues();
-                Data.BOMenuMon.CapNhat(_Mon, mTransit);
+                BOMenuMon.Sua(_Mon, mTransit);
             }
             else
             {
                 GetValues();
-                Data.BOMenuMon.Them(_Mon, mTransit);
+                BOMenuMon.Them(_Mon, mTransit);
             }
         }
 
         public void Xoa()
         {
-            Data.BOMenuMon.Xoa(_Mon, mTransit);
+            BOMenuMon.Xoa(_Mon, mTransit);
         }
 
         private void btnCaiDatMayIn_Click(object sender, RoutedEventArgs e)

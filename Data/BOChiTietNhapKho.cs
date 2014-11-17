@@ -7,59 +7,48 @@ namespace Data
 {
     public class BOChiTietNhapKho
     {
-        public static List<CHITIETNHAPKHO> GetAll(int NhapKhoID, Transit mTransit)
+        public Data.CHITIETNHAPKHO ChiTietNhapKho { get; set; }
+        public Data.MENUMON MenuMon { get; set; }
+        public Data.LOAIBAN LoaiBan { get; set; }
+        public Data.NHAPKHO NhapKho { get; set; }
+        public List<LOAIBAN> ListLoaiBan { get; set; }
+
+        FrameworkRepository<CHITIETNHAPKHO> frmChiTietNhapKho = null;
+        FrameworkRepository<MENUMON> frmMenuMon = null;
+        FrameworkRepository<LOAIBAN> frmLoaiBan = null;
+        FrameworkRepository<NHAPKHO> frmNhapKho = null;
+
+        public BOChiTietNhapKho(Transit transit)
         {
-            var res = (from g in mTransit.KaraokeEntities.CHITIETNHAPKHOes
-                       join l in mTransit.KaraokeEntities.MENUMONs on g.MonID equals l.MonID
-                       where g.NhapKhoID == NhapKhoID
-                       select new
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmChiTietNhapKho = new FrameworkRepository<CHITIETNHAPKHO>(transit.KaraokeEntities, transit.KaraokeEntities.CHITIETNHAPKHOes);
+            frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
+            frmLoaiBan = new FrameworkRepository<LOAIBAN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIBANs);
+            frmNhapKho = new FrameworkRepository<NHAPKHO>(transit.KaraokeEntities, transit.KaraokeEntities.NHAPKHOes);
+        }
+
+        public BOChiTietNhapKho()
+        {
+            ChiTietNhapKho = new CHITIETNHAPKHO();
+            MenuMon = new MENUMON();
+            LoaiBan = new LOAIBAN();
+        }
+
+        public IQueryable<BOChiTietNhapKho> GetAll(int NhapKhoID, Transit mTransit)
+        {
+            var res = (from ctnk in frmChiTietNhapKho.Query()
+                       join mm in frmMenuMon.Query() on ctnk.MonID equals mm.MonID
+                       join lb in frmLoaiBan.Query() on ctnk.LoaiBanID equals lb.LoaiBanID
+                       join nk in frmNhapKho.Query() on ctnk.NhapKhoID equals nk.NhapKhoID
+                       where ctnk.NhapKhoID == NhapKhoID
+                       select new BOChiTietNhapKho
                        {
-                           CHITIETNHAPKHOes = g,
-                           MENUMONs = l
-                       }).ToList().Select(s => s.CHITIETNHAPKHOes);
-            return res.ToList();
-        }
-
-        public static int Them(CHITIETNHAPKHO item, Transit mTransit)
-        {
-            mTransit.KaraokeEntities.CHITIETNHAPKHOes.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ChiTietNhapKhoID;
-        }        
-
-        public static int Xoa(int ChiTietNhapKhoID, Transit mTransit)
-        {
-            CHITIETNHAPKHO item = (from x in mTransit.KaraokeEntities.CHITIETNHAPKHOes where x.ChiTietNhapKhoID == ChiTietNhapKhoID select x).First();
-            mTransit.KaraokeEntities.CHITIETNHAPKHOes.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ChiTietNhapKhoID;
-        }
-
-        public static int Sua(CHITIETNHAPKHO item, Transit mTransit)
-        {
-            CHITIETNHAPKHO m = (from x in mTransit.KaraokeEntities.CHITIETNHAPKHOes where x.ChiTietNhapKhoID == item.ChiTietNhapKhoID select x).First();
-            m.LoaiBanID = item.LoaiBanID;
-            m.KichThuocBan = item.KichThuocBan;
-            m.MonID = item.MonID;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ChiTietNhapKhoID;
-        }
-
-        public static void Luu(List<CHITIETNHAPKHO> lsArray, List<CHITIETNHAPKHO> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (CHITIETNHAPKHO item in lsArray)
-                {
-                    if (item.ChiTietNhapKhoID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
-                }
-            if (lsArrayDeleted != null)
-                foreach (CHITIETNHAPKHO item in lsArrayDeleted)
-                {
-                    Xoa(item.ChiTietNhapKhoID, mTransit);
-                }
+                           ChiTietNhapKho = ctnk,
+                           MenuMon = mm,
+                           LoaiBan = lb,
+                           NhapKho = nk
+                       });
+            return res;
         }
     }
 }

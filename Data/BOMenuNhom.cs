@@ -9,6 +9,14 @@ namespace Data
     {
         public Data.MENUNHOM MenuNhom { get; set; }
         public Data.MENULOAINHOM MenuLoaiNhom { get; set; }
+        FrameworkRepository<MENUNHOM> frmNhom = null;
+        FrameworkRepository<MENULOAINHOM> frmLoaiNhom = null;
+        public BOMenuNhom(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
+            frmLoaiNhom = new FrameworkRepository<MENULOAINHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAINHOMs);
+        }
         public BOMenuNhom()
         {
             MenuNhom = new MENUNHOM();
@@ -20,15 +28,13 @@ namespace Data
             MenuNhom = menuNhom;
             MenuLoaiNhom = menuLoaiNhom;
         }
-        public static List<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, Transit mTransit)
+        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, Transit mTransit)
         {
             return GetAll(LoaiNhomID, IsBanHang, false, mTransit);
         }
-        public static List<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
-        {
-            FrameworkRepository<MENUNHOM> frm = new FrameworkRepository<MENUNHOM>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUNHOMs);
-
-            var lsArray = from n in frm.Query() select new BOMenuNhom { MenuNhom = n };
+        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        {            
+            var lsArray = from n in frmNhom.Query() select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
                 lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false).OrderBy(s => s.MenuNhom.SapXep);
             if (IsBanHang)
@@ -36,32 +42,28 @@ namespace Data
             if (IsVisual)
                 lsArray = lsArray.Where(s => s.MenuNhom.Visual == true).OrderBy(s => s.MenuNhom.SapXep);
 
-            return lsArray.ToList();
+            return lsArray;
 
         }
 
-        public static int Them(BOMenuNhom item, Transit mTransit)
+        public int Them(BOMenuNhom item, Transit mTransit)
         {
-            FrameworkRepository<MENUNHOM> frm = new FrameworkRepository<MENUNHOM>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUNHOMs);
-            frm.AddObject(item.MenuNhom);
-            frm.Commit();
+            frmNhom.AddObject(item.MenuNhom);
+            frmNhom.Commit();
             return item.MenuNhom.NhomID;
         }
 
-        public static int Xoa(BOMenuNhom item, Transit mTransit)
+        public int Xoa(BOMenuNhom item, Transit mTransit)
         {
-            FrameworkRepository<MENUNHOM> frm = new FrameworkRepository<MENUNHOM>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUNHOMs);
-            frm.DeleteObject(item.MenuNhom);
-            frm.Commit();
+            frmNhom.DeleteObject(item.MenuNhom);
+            frmNhom.Commit();
             return item.MenuNhom.NhomID;
         }
 
-        public static int CapNhat(BOMenuNhom item, Transit mTransit)
+        public int Sua(BOMenuNhom item, Transit mTransit)
         {
-            FrameworkRepository<MENUNHOM> frm = new FrameworkRepository<MENUNHOM>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUNHOMs);
-            frm.Update(item.MenuNhom);
-            frm.Commit();
-            MENUNHOM m = (from x in mTransit.KaraokeEntities.MENUNHOMs where x.NhomID == item.MenuNhom.NhomID select x).First();
+            frmNhom.Update(item.MenuNhom);
+            frmNhom.Commit();            
             return item.MenuNhom.NhomID;
         }
     }

@@ -27,7 +27,7 @@
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.TenLoaiBan}" Width="200" Header="Tên loại bán" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBan.TenLoaiBan}" Width="150" Header="Loại bán" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.KichThuocLoaiBan}" Width="150" Header="Kich thước loại bán" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KichThuocLoaiBan}" Width="150" Header="Kich thước loại bán" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.GiaBanMacDinh}" Width="150" Header="Giá mặc định" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.SoLuongBanBan}" Width="150" Header="Số lượng bán" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.TonKhoToiDa}" Width="150" Header="Tồn kho tối đa" />

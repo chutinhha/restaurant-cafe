@@ -88,13 +88,17 @@ namespace UserControlLibrary
             }
             _Item.MenuKichThuocMon.MonID = mMon.MenuMon.MonID;
             _Item.MenuKichThuocMon.LoaiBanID = (int)cbbLoaiBan.SelectedValue;
+            Data.LOAIBAN loaiBan = (Data.LOAIBAN)cbbLoaiBan.SelectedItem;
+            _Item.LoaiBan = loaiBan;
             _Item.MenuKichThuocMon.TenLoaiBan = txtTenLoaiBan.Text;
             _Item.MenuKichThuocMon.KichThuocLoaiBan = System.Convert.ToInt32(txtKichThuocLoaiBan.Text);
+            _Item.MenuKichThuocMon.KichThuocLoaiBan = _Item.MenuKichThuocMon.KichThuocLoaiBan * loaiBan.KichThuocBan;
             _Item.MenuKichThuocMon.GiaBanMacDinh = System.Convert.ToDecimal(txtGiaMacDinh.Text);
             _Item.MenuKichThuocMon.TonKhoToiDa = System.Convert.ToInt32(txtTonKhoToiDa.Text);
             _Item.MenuKichThuocMon.TonKhoToiThieu = System.Convert.ToInt32(txtTonKhoToiThieu.Text);
             _Item.MenuKichThuocMon.SoLuongBanBan = System.Convert.ToInt32(txtSoLuongBan.Text);
             _Item.MenuKichThuocMon.Visual = ckBan.IsChecked;
+
             _Item.MenuKichThuocMon.ThoiGia = false;
             _Item.MenuKichThuocMon.Deleted = false;
         }
@@ -132,20 +136,27 @@ namespace UserControlLibrary
                 Data.LOAIBAN lb = (Data.LOAIBAN)cbbLoaiBan.SelectedItem;
                 switch (lb.LoaiBanID)
                 {
-                    case 1:
+                    case (int)Data.EnumLoaiBan.Cai:
+                    case (int)Data.EnumLoaiBan.DinhLuong:
                         txtKichThuocLoaiBan.IsEnabled = false;
                         txtKichThuocLoaiBan.Text = "1";
                         break;
-
-                    case 2:
-                    case 3:
+                    case (int)Data.EnumLoaiBan.Gram:
+                    case (int)Data.EnumLoaiBan.Millilit:
+                    case (int)Data.EnumLoaiBan.Kg:
+                    case (int)Data.EnumLoaiBan.Lit:
+                    case (int)Data.EnumLoaiBan.Gio:
+                    case (int)Data.EnumLoaiBan.Phut:
+                    case (int)Data.EnumLoaiBan.Giay:
                         txtKichThuocLoaiBan.IsEnabled = true;
                         if (_Item == null)
-                            txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
+                            txtKichThuocLoaiBan.Text = "1";
                         else if (_Item.MenuKichThuocMon.LoaiBanID == lb.LoaiBanID)
-                            txtKichThuocLoaiBan.Text = _Item.MenuKichThuocMon.KichThuocLoaiBan.ToString();
+                            txtKichThuocLoaiBan.Text = ((int)(_Item.MenuKichThuocMon.KichThuocLoaiBan / lb.KichThuocBan)).ToString();
                         else
-                            txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
+                            txtKichThuocLoaiBan.Text = "1";
+                        break;
+                    default:
                         break;
                 }
             }

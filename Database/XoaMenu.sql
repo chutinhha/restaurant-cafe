@@ -40,7 +40,8 @@ DELETE FROM LOAIPHATSINH
 DBCC CHECKIDENT (LOAIPHATSINH, RESEED, 0)
 GO
 INSERT INTO LOAIPHATSINH(Ten) Values(N'Nhập kho'), (N'Xuất kho'), (N'Chuyển kho'),(N'Mất kho'),(N'Chỉnh kho');
-INSERT INTO DONVI(TenDonVi) Values(N'Số lượng'), (N'Trọng lượng'), (N'Thể tích'),(N'Thời gian');
+INSERT INTO DONVI(TenDonVi) Values(N'Số lượng'), (N'Trọng lượng'), (N'Thể tích'),(N'Thời gian'),(N'Định lượng');
+
 INSERT INTO LOAIBAN(TenLoaiBan,KichThuocBan,DonViID) Values
 (N'Cái',1,1),
 (N'Gram',1,2),
@@ -49,7 +50,8 @@ INSERT INTO LOAIBAN(TenLoaiBan,KichThuocBan,DonViID) Values
 (N'Lít',1000,3),
 (N'Giờ',3600,4),
 (N'Phút',60,4),
-(N'Giây',1,4);
+(N'Giây',1,4),
+(N'Định lượng',1,5);
 GO
 INSERT INTO [dbo].[MENUNHOM]([TenNgan],[TenDai],[LoaiNhomID],[MayIn],[SapXep],[GiamGia],[Hinh],[Font],[MauChu],[MauNen],[SoLuongMon],[Visual],[Deleted]) VALUES
 (N'Nước',N'Nước',1,0,1,0,NULL,NULL,NULL,NULL,0,1,0),

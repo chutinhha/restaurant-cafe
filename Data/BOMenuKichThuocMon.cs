@@ -10,6 +10,21 @@ namespace Data
         public Data.MENUKICHTHUOCMON MenuKichThuocMon { get; set; }
         public Data.MENUMON MenuMon { get; set; }
         public Data.LOAIBAN LoaiBan { get; set; }
+
+        public int KichThuocLoaiBan
+        {
+            get
+            {
+                if (MenuKichThuocMon != null && LoaiBan != null)
+                    return (int)(MenuKichThuocMon.KichThuocLoaiBan / LoaiBan.KichThuocBan);
+                return 0;
+            }
+        }
+
+        FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = null;
+        FrameworkRepository<MENUMON> frmmenuMon = null;
+        FrameworkRepository<LOAIBAN> frmLoaiBan = null;
+
         public BOMenuKichThuocMon()
         {
             MenuKichThuocMon = new MENUKICHTHUOCMON();
@@ -17,17 +32,21 @@ namespace Data
             LoaiBan = new LOAIBAN();
         }
 
+        public BOMenuKichThuocMon(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
+            frmmenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
+            frmLoaiBan = new FrameworkRepository<LOAIBAN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIBANs);
+        }
+
         public BOMenuKichThuocMon(Data.MENUKICHTHUOCMON menuKichThuocMon, Data.MENUMON menuMon)
         {
             MenuKichThuocMon = menuKichThuocMon;
             MenuMon = menuMon;
         }
-        public static List<BOMenuKichThuocMon> GetAll(int MonID, Transit mTransit)
+        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, Transit mTransit)
         {
-            FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mTransit.KaraokeEntities);
-            FrameworkRepository<MENUMON> frmmenuMon = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities);
-            FrameworkRepository<LOAIBAN> frmLoaiBan = new FrameworkRepository<LOAIBAN>(mTransit.KaraokeEntities);
-
             return (from k in frmKichThuocMon.Query()
                     join m in frmmenuMon.Query() on k.MonID equals m.MonID
                     join l in frmLoaiBan.Query() on k.LoaiBanID equals l.LoaiBanID
@@ -37,44 +56,43 @@ namespace Data
                         MenuKichThuocMon = k,
                         MenuMon = m,
                         LoaiBan = l
-                    }).ToList();
+                    });
         }
 
-        private static int Them(BOMenuKichThuocMon item, Transit mTransit, FrameworkRepository<MENUKICHTHUOCMON> frm)
+        private int Them(BOMenuKichThuocMon item, Transit mTransit)
         {
-            frm.AddObject(item.MenuKichThuocMon);
+            frmKichThuocMon.AddObject(item.MenuKichThuocMon);
             return item.MenuKichThuocMon.KichThuocMonID;
         }
 
-        private static int Sua(BOMenuKichThuocMon item, Transit mTransit, FrameworkRepository<MENUKICHTHUOCMON> frm)
+        private int Sua(BOMenuKichThuocMon item, Transit mTransit)
         {
-            frm.Update(item.MenuKichThuocMon);
+            frmKichThuocMon.Update(item.MenuKichThuocMon);
             return item.MenuKichThuocMon.KichThuocMonID;
         }
 
-        private static int Xoa(BOMenuKichThuocMon item, Transit mTransit, FrameworkRepository<MENUKICHTHUOCMON> frm)
+        private int Xoa(BOMenuKichThuocMon item, Transit mTransit)
         {
-            frm.DeleteObject(item.MenuKichThuocMon);
+            frmKichThuocMon.DeleteObject(item.MenuKichThuocMon);
             return item.MenuKichThuocMon.KichThuocMonID;
         }
 
-        public static void Luu(List<BOMenuKichThuocMon> lsArray, List<BOMenuKichThuocMon> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<BOMenuKichThuocMon> lsArray, List<BOMenuKichThuocMon> lsArrayDeleted, Transit mTransit)
         {
-            FrameworkRepository<MENUKICHTHUOCMON> frm = new FrameworkRepository<MENUKICHTHUOCMON>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUKICHTHUOCMONs);
             if (lsArray != null)
                 foreach (BOMenuKichThuocMon item in lsArray)
                 {
                     if (item.MenuKichThuocMon.KichThuocMonID > 0)
-                        Sua(item, mTransit, frm);
+                        Sua(item, mTransit);
                     else
-                        Them(item, mTransit, frm);
+                        Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
                 foreach (BOMenuKichThuocMon item in lsArrayDeleted)
                 {
-                    Xoa(item, mTransit, frm);
+                    Xoa(item, mTransit);
                 }
-            frm.Commit();
+            frmKichThuocMon.Commit();
         }
 
     }
