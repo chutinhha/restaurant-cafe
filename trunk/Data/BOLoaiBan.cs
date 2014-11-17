@@ -10,9 +10,9 @@ namespace Data
     /// </summary>
     public class BOLoaiBan
     {
-        public static List<LOAIBAN> GetAllNoTracking(Transit mTransit)
+        public static IQueryable<LOAIBAN> GetAllNoTracking(Transit mTransit)
         {
-            return FrameworkRepository<LOAIBAN>.QueryNoTracking(mTransit.KaraokeEntities.LOAIBANs).ToList();
+            return FrameworkRepository<LOAIBAN>.QueryNoTracking(mTransit.KaraokeEntities.LOAIBANs);
         }
 
 

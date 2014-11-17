@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -15,6 +16,7 @@ namespace UserControlLibrary
         private Data.BOMenuKichThuocMon mItem = null;
         private Data.BOMenuMon mMon = null;
         private List<Data.BOMenuKichThuocMon> lsArrayDeleted = null;
+        private Data.BOMenuKichThuocMon BOMenuKichThuocMon = null;
 
         public delegate void OnExit();
 
@@ -29,14 +31,15 @@ namespace UserControlLibrary
         {
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
-            mTransit = transit;            
+            mTransit = transit;
+            BOMenuKichThuocMon = new Data.BOMenuKichThuocMon(mTransit);
             mMon = mon;
             btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
         }
 
         public void LoadDanhSach()
         {
-            List<Data.BOMenuKichThuocMon> lsArray = Data.BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, mTransit);
+            IQueryable<Data.BOMenuKichThuocMon> lsArray = BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -125,7 +128,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            Data.BOMenuKichThuocMon.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOMenuKichThuocMon.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

@@ -9,6 +9,10 @@ namespace Data
     {
         public Data.MENUMON MenuMon { get; set; }
         public Data.MENUNHOM MenuNhom { get; set; }
+
+        FrameworkRepository<MENUMON> frmMon = null;
+        FrameworkRepository<MENUNHOM> frmNhom = null;
+
         public BOMenuMon()
         {
             MenuMon = new MENUMON();
@@ -21,15 +25,21 @@ namespace Data
             MenuNhom = menuNhom;
         }
 
-        public static List<BOMenuMon> GetAll(int GroupID, bool IsBanHang, Transit mTransit)
+        public BOMenuMon(Data.Transit transit)
+        {
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
+            frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
+        }
+
+        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, Transit mTransit)
         {
             return GetAll(GroupID, IsBanHang, false, mTransit);
         }
-        public static List<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsVisual, Transit mTransit)
         {
-            FrameworkRepository<MENUMON> frm = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUMONs);
-            FrameworkRepository<MENUNHOM> frmNhom = new FrameworkRepository<MENUNHOM>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUNHOMs);
-            var lsArray = from m in frm.Query()
+
+            var lsArray = from m in frmMon.Query()
                           join n in frmNhom.Query() on (int)m.NhomID equals (int)n.NhomID
                           select new BOMenuMon
                               {
@@ -42,30 +52,27 @@ namespace Data
                 lsArray = lsArray.Where(s => s.MenuMon.SoLuongKichThuocMon > 0).OrderBy(s => s.MenuMon.SapXep);
             if (IsVisual)
                 lsArray = lsArray.Where(s => s.MenuMon.Visual == true).OrderBy(s => s.MenuMon.SapXep);
-            return lsArray.OrderBy(s => s.MenuMon.SapXep).ToList();
+            return lsArray.OrderBy(s => s.MenuMon.SapXep);
         }
 
-        public static int Them(BOMenuMon item, Transit mTransit)
+        public int Them(BOMenuMon item, Transit mTransit)
         {
-            FrameworkRepository<MENUMON> frm = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUMONs);
-            frm.AddObject(item.MenuMon);
-            frm.Commit();
+            frmMon.AddObject(item.MenuMon);
+            frmMon.Commit();
             return item.MenuMon.MonID;
         }
 
-        public static int Xoa(BOMenuMon item, Transit mTransit)
+        public int Xoa(BOMenuMon item, Transit mTransit)
         {
-            FrameworkRepository<MENUMON> frm = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUMONs);
-            frm.DeleteObject(item.MenuMon);
-            frm.Commit();
+            frmMon.DeleteObject(item.MenuMon);
+            frmMon.Commit();
             return item.MenuMon.MonID;
         }
 
-        public static int CapNhat(BOMenuMon item, Transit mTransit)
+        public int Sua(BOMenuMon item, Transit mTransit)
         {
-            FrameworkRepository<MENUMON> frm = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENUMONs);
-            frm.Update(item.MenuMon);
-            frm.Commit();
+            frmMon.Update(item.MenuMon);
+            frmMon.Commit();
             return item.MenuMon.MonID;
 
         }

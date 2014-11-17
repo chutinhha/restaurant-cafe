@@ -23,15 +23,30 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = new Data.Transit();
+            ucTile.SetTransit(mTransit);
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text, txtPassword.Text, mTransit);
+            mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), txtPassword.Text.Trim(), mTransit);
+            if (mTransit.NhanVien == null)
+            {
+                if (mTransit.Admin.TenDangNhap == txtUserID.Text.Trim() && mTransit.Admin.MatKhau == Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5))
+                {
+                    mTransit.NhanVien = new Data.NHANVIEN();
+                    mTransit.NhanVien.NhanVienID = 0;
+                    mTransit.NhanVien.LoaiNhanVienID = mTransit.Admin.LoaiNhanVienID;
+                    mTransit.NhanVien.TenNhanVien = mTransit.Admin.TenNhanVien;
+                }
+            }
             if (mTransit.NhanVien != null)
             {
 
+                //MainWindow win = new MainWindow(mTransit);
+                this.Hide();
+                //win.ShowDialog();                
             }
+
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -58,6 +73,21 @@ namespace GUI
         {
             txtUserID._UCKeyPad = uCKeyPad;
             txtPassword._UCKeyPad = uCKeyPad;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnEnter_Click(null, null);
+                return;
+            }
+
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnExit_Click(null, null);
+                return;
+            }
         }
     }
 }

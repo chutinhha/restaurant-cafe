@@ -10,6 +10,7 @@ namespace Data
         public DINHLUONG DinhLuong { get; set; }
         public MENUMON MenuMon { get; set; }
         public LOAIBAN LoaiBan { get; set; }
+        public List<LOAIBAN> ListLoaiBan { get; set; }
         private FrameworkRepository<DINHLUONG> frmDinhLuong = null;
         private FrameworkRepository<MENUMON> frmMenuMon = null;
         private FrameworkRepository<LOAIBAN> frmLoaiBan = null;
@@ -23,18 +24,22 @@ namespace Data
         }
         public BODinhLuong()
         {
-
+            DinhLuong = new DINHLUONG();
+            MenuMon = new MENUMON();
+            LoaiBan = new LOAIBAN();
         }
 
         public IQueryable<BODinhLuong> GetAll(int KichThuocMonID, Transit mTransit)
         {
-            var res = (from g in frmDinhLuong.Query()
-                       join l in frmMenuMon.Query() on g.MonID equals l.MonID
-                       where g.KichThuocMonChinhID == KichThuocMonID
+            var res = (from dl in frmDinhLuong.Query()
+                       join mm in frmMenuMon.Query() on dl.MonID equals mm.MonID
+                       join lb in frmLoaiBan.Query() on dl.LoaiBanID equals lb.LoaiBanID
+                       where dl.KichThuocMonChinhID == KichThuocMonID
                        select new BODinhLuong
                        {
-                           DinhLuong = g,
-                           MenuMon = l
+                           DinhLuong = dl,
+                           MenuMon = mm,
+                           LoaiBan = lb
                        });
             return res;
         }

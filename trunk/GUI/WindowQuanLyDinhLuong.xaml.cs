@@ -35,7 +35,7 @@ namespace GUI
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-
+            ucDinhLuong.Window_KeyDown(sender, e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

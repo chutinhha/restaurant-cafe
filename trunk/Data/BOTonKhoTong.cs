@@ -7,5 +7,6 @@ namespace Data
 {
     public class BOTonKhoTong
     {
+
     }
 }

@@ -42,5 +42,10 @@ namespace UserControlLibrary
         {
 
         }
+
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            uCDanhSachDinhLuong.Window_KeyDown(sender, e);            
+        }
     }
 }

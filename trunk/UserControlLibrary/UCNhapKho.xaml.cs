@@ -20,51 +20,37 @@ namespace UserControlLibrary
     public partial class UCNhapKho : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.NHAPKHO mItem = null;
-        private List<Data.NHAPKHO> lsArrayDeleted = null;
+        private Data.BONhapKho mItem = null;
+        private List<Data.BONhapKho> lsArrayDeleted = null;
+        private Data.BONhapKho BONhapKho = null;
 
         public UCNhapKho(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            mTransit.KaraokeEntities = new Data.KaraokeEntities();
-            mTransit.KaraokeEntities.CHITIETNHAPKHOes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-            mTransit.KaraokeEntities.NHAPKHOes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+            dtpThoiGian.SelectedDate = DateTime.Now;
+            BONhapKho = new Data.BONhapKho(transit);
         }
 
         private void LoadDanhSach()
         {
-            List<Data.NHAPKHO> lsArray = Data.BONhapKho.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.NHAPKHO item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
+            lvData.ItemsSource = BONhapKho.GetAll(mTransit, (DateTime)dtpThoiGian.SelectedDate);
         }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.NHAPKHO)li.Tag;
+                mItem = (Data.BONhapKho)lvData.SelectedItems[0];
             }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit);
+            UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit, BONhapKho);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                LoadDanhSach();
             }
         }
 
@@ -73,13 +59,13 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.NHAPKHO)li.Tag;
+                mItem = (Data.BONhapKho)li.Tag;
 
-                UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit);
+                UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit, BONhapKho);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
+                    win._Item.NhapKho.Edit = true;
                     li.Tag = win._Item;
                     li.Content = win._Item;
                     lvData.Items.Refresh();
@@ -91,12 +77,12 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.NHAPKHO)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mItem = (Data.BONhapKho)((ListViewItem)lvData.SelectedItems[0]).Tag;
                 if (lsArrayDeleted == null)
                 {
-                    lsArrayDeleted = new List<Data.NHAPKHO>();
+                    lsArrayDeleted = new List<Data.BONhapKho>();
                 }
-                if (mItem.NhapKhoID > 0)
+                if (mItem.NhapKho.NhapKhoID > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);
                 if (lvData.Items.Count > 0)
@@ -108,18 +94,18 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.NHAPKHO> lsArray = null;
+            List<Data.BONhapKho> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
             {
-                mItem = (Data.NHAPKHO)li.Tag;
-                if (mItem.NhapKhoID == 0 || mItem.Edit == true)
+                mItem = (Data.BONhapKho)li.Tag;
+                if (mItem.NhapKho.NhapKhoID == 0 || mItem.NhapKho.Edit == true)
                 {
                     if (lsArray == null)
-                        lsArray = new List<Data.NHAPKHO>();
+                        lsArray = new List<Data.BONhapKho>();
                     lsArray.Add(mItem);
                 }
             }
-            Data.BONhapKho.Luu(lsArray, lsArrayDeleted, mTransit);
+            BONhapKho.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
             MessageBox.Show("Lưu thành công");
         }

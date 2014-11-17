@@ -14,10 +14,13 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCMenu : UserControl
     {
-        private List<Data.BOMenuMon> lsMenuMon = new List<Data.BOMenuMon>();
-        private List<Data.BOMenuNhom> lsMenuNhom = new List<Data.BOMenuNhom>();
-        private List<Data.BOMenuKichThuocMon> lsMenuKichThuocMon = new List<Data.BOMenuKichThuocMon>();
+        private List<Data.BOMenuMon> lsMenuMon = null;
+        private List<Data.BOMenuNhom> lsMenuNhom = null;
+        private List<Data.BOMenuKichThuocMon> lsMenuKichThuocMon = null;
         private Data.Transit mTransit = null;
+        public Data.BOMenuMon BOMenuMon = null;
+        public Data.BOMenuNhom BOMenuNhom = null;
+        public Data.BOMenuKichThuocMon BOMenuKichThuocMon = null;
 
         public bool _IsBanHang { get; set; }
 
@@ -47,6 +50,9 @@ namespace UserControlLibrary
         {
             SetImageSizetItems();
             mTransit = transit;
+            BOMenuMon = new Data.BOMenuMon(transit);
+            BOMenuNhom = new Data.BOMenuNhom(transit);
+            BOMenuKichThuocMon = new Data.BOMenuKichThuocMon(transit);
             LoadData();
         }
 
@@ -92,7 +98,7 @@ namespace UserControlLibrary
 
         public void LoadMon(int NhomID)
         {
-            lsMenuMon = Data.BOMenuMon.GetAll(NhomID, _IsBanHang, mTransit);
+            lsMenuMon = BOMenuMon.GetAll(NhomID, _IsBanHang, mTransit).ToList();
             if (lsMenuMon.Count > gridItems.Children.Count)
             {
                 int CountItems = gridItems.Children.Count - 2;
@@ -284,7 +290,7 @@ namespace UserControlLibrary
 
         public void LoadGroup()
         {
-            lsMenuNhom = Data.BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, mTransit);
+            lsMenuNhom = BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, mTransit).ToList();
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 int CountGroup = gridGroup.Children.Count - 2;
@@ -439,7 +445,7 @@ namespace UserControlLibrary
 
         public void LoadKichThuocMon(Data.BOMenuMon mon)
         {
-            lsMenuKichThuocMon = Data.BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, mTransit);
+            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, mTransit).ToList();
             if (lsMenuKichThuocMon.Count == 1)
             {
                 if (_OnEventMenuKichThuocMon != null)

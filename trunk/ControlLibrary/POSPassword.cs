@@ -1,6 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
 using System.Windows.Controls;
-using System;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace ControlLibrary
 {
@@ -8,14 +18,14 @@ namespace ControlLibrary
     /// Follow steps 1a or 1b and then 2 to use this custom control in a XAML file.
     ///
     /// Step 1a) Using this custom control in a XAML file that exists in the current project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is
+    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
     /// to be used:
     ///
     ///     xmlns:MyNamespace="clr-namespace:ControlLibrary"
     ///
     ///
     /// Step 1b) Using this custom control in a XAML file that exists in a different project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is
+    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
     /// to be used:
     ///
     ///     xmlns:MyNamespace="clr-namespace:ControlLibrary;assembly=ControlLibrary"
@@ -30,10 +40,10 @@ namespace ControlLibrary
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:POSTextBox/>
+    ///     <MyNamespace:POSPassword/>
     ///
     /// </summary>
-    public class POSTextBox : TextBox
+    public class POSPassword : TextBox
     {
         private TypeKeyPad typeTextBox = TypeKeyPad.None;
 
@@ -41,9 +51,9 @@ namespace ControlLibrary
 
         private WindowKeyboard _WindowKeyboard { get; set; }
 
-        static POSTextBox()
+        static POSPassword()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSTextBox), new FrameworkPropertyMetadata(typeof(POSTextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSPassword), new FrameworkPropertyMetadata(typeof(POSPassword)));
         }
 
         public TypeKeyPad _TypeTextBox
@@ -90,29 +100,6 @@ namespace ControlLibrary
             base.OnPreviewMouseDown(e);
         }
 
-        protected override void OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs e)
-        {
-            switch (typeTextBox)
-            {
-                case TypeKeyPad.None:
-                    break;
-                case TypeKeyPad.Number:
-                    if (Char.IsNumber(e.Text, e.Text.Length - 1))
-                        e.Handled = false;
-                    else
-                        e.Handled = true;
-                    break;
-                case TypeKeyPad.Decimal:
-                    if (Char.IsDigit(e.Text, e.Text.Length - 1))
-                        e.Handled = false;
-                    else
-                        e.Handled = true;
-                    break;
-                case TypeKeyPad.Text:
-                    break;
-                default:
-                    break;
-            }
-        }
+
     }
 }

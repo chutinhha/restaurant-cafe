@@ -14,12 +14,14 @@ namespace UserControlLibrary
         private int LoaiNhomID = 0;
         private Data.Transit mTransit = null;
         private BitmapImage mBitmapImage = null;
+        private Data.BOMenuNhom BOMenuNhom = null;
 
-        public UCNewNhom(int loaiNhomID, Data.Transit transit)
+        public UCNewNhom(int loaiNhomID, Data.Transit transit, Data.BOMenuNhom bOMenuNhom)
         {
             InitializeComponent();
             LoaiNhomID = loaiNhomID;
             mTransit = transit;
+            BOMenuNhom = bOMenuNhom;
             btnHinhAnh._OnBitmapImageChanged += new POSButtonImage.EventBitmapImage(btnHinhAnh__OnBitmapImageChanged);
         }
 
@@ -35,12 +37,12 @@ namespace UserControlLibrary
             if (_Nhom != null)
             {
                 GetData();
-                Data.BOMenuNhom.CapNhat(_Nhom, mTransit);
+                BOMenuNhom.Sua(_Nhom, mTransit);
             }
             else
             {
                 GetData();
-                Data.BOMenuNhom.Them(_Nhom, mTransit);
+                BOMenuNhom.Them(_Nhom, mTransit);
             }
         }
 
@@ -70,7 +72,7 @@ namespace UserControlLibrary
 
         public void Xoa()
         {
-            Data.BOMenuNhom.Xoa(_Nhom, mTransit);
+            BOMenuNhom.Xoa(_Nhom, mTransit);
         }
 
         private void SetValues()

@@ -33,8 +33,8 @@ namespace ControlLibrary
         private void button_Click(object sender, RoutedEventArgs e)
         {
             if (_TextBox != null)
-            {                
-                Button button = sender as Button;                
+            {
+                Button button = sender as Button;
                 switch (button.CommandParameter.ToString())
                 {
                     case "ESC":
@@ -55,7 +55,8 @@ namespace ControlLibrary
                         break;
                 }
             }
-        }       
+
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -64,6 +65,6 @@ namespace ControlLibrary
                 gDecimal.Visibility = System.Windows.Visibility.Hidden;
                 gNumpad0.SetValue(Grid.ColumnSpanProperty, 2);
             }
-        }
+        }        
     }
 }

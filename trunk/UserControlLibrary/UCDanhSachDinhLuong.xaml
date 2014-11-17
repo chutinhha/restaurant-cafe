@@ -26,9 +26,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="40">
-                        <TextBlock Text="{Binding TenMon}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="200" />
-                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" ItemsSource="{Binding Loaiban}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding LoaiBanID}" />
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Width="150" Text="{Binding KichThuocBan}" IsEnabled="{Binding IsEnabled}" PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                        <TextBlock Text="{Binding MenuMon.TenDai}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="200" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" ItemsSource="{Binding ListLoaiBan}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding DinhLuong.LoaiBanID}" />
+                        <TextBox Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Width="150" Text="{Binding DinhLuong.KichThuocBan}" PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                         <my:POSButtonFuntion Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Width="100" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                     </StackPanel>
                 </DataTemplate>

@@ -25,7 +25,14 @@ namespace ControlLibrary
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private Data.Transit mTransit = null;
+        public void SetTransit(Data.Transit transit)
+        {
+            mTransit = transit;
+            LoadData();
+        }
+
+        private void LoadData()
         {
             DispatcherTimer newTimer = new DispatcherTimer();
             newTimer.Interval = System.TimeSpan.FromSeconds(1);
@@ -35,7 +42,15 @@ namespace ControlLibrary
                 btnMinimized.Visibility = System.Windows.Visibility.Hidden;
             if (OnEventExit == null)
                 btnExit.Visibility = System.Windows.Visibility.Hidden;
-
+            if (mTransit != null)
+            {
+                if (mTransit.NhanVien != null)
+                {
+                    lbNhanVien.Text = mTransit.NhanVien.TenNhanVien;
+                }
+            }
+            lbPhienBan.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            lbTenNhaHang.Text = "Karaoke";
         }
 
         private void newTimer_Tick(object sender, object e)
@@ -60,7 +75,7 @@ namespace ControlLibrary
         }
 
         public string TenChucNang
-        {            
+        {
             set
             {
                 lbTenChucNang.Text = value;
