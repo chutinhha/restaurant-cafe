@@ -56,15 +56,6 @@ namespace Data
             public string Them = "Thêm";
 
 
-        }
-        public static string ConvertDateTimeToString(DateTime dt)
-        {
-            return String.Format("{0:0000}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-        }
-        public static DateTime ConvertStringToDateTime(string str)
-        {
-            return Convert.ToDateTime(str);
-            //return DateTime.ParseExact(str, "yyyy-MM-dd hh:MM:ss", System.Globalization.CultureInfo.InvariantCulture);
-        }
+        }        
     }
 }

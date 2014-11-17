@@ -8,6 +8,7 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
+        private bool IsThayDoiSoLuong = true;
         private Data.Transit mTransit = null;        
         private ProcessOrder.ProcessOrder mProcessOrder;
         public WindowBanHang(Data.Transit transit)
@@ -24,24 +25,13 @@ namespace GUI
             uCTile.TenChucNang = "Bán hàng";
             mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
             GanChucNang();
-            LoadBanHang();
+            LoadBanHang();            
         }
 
         private void uCTile_OnEventExit()
         {
             this.Close();
-        }
-
-        private void uCMenuBanHang_OnEventMenu(object ob)
-        {
-            if (ob is Data.MENUKICHTHUOCMON)
-            {
-                Data.MENUKICHTHUOCMON ktm = (Data.MENUKICHTHUOCMON)ob;
-                Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ktm, mTransit);
-                AddChiTietBanHang(item);
-            }
-        }
-
+        }        
 
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
@@ -55,9 +45,10 @@ namespace GUI
                     XoaToanBoMon();
                     break;
                 case Data.EnumChucNang.TinhTien:
-                    GuiNhaBep();
+                    TinhTien();
                     break;
                 case Data.EnumChucNang.LuuHoaDon:
+                    GuiNhaBep();
                     break;
                 case Data.EnumChucNang.ThayDoiGia:
                     break;
@@ -74,13 +65,26 @@ namespace GUI
             mProcessOrder.SendOrder();
             this.Close();
         }
+        private void TinhTien()
+        {
+            WindowTinhTien win = new WindowTinhTien(mTransit,mProcessOrder.GetBanHang());
+            win.ShowDialog(); ;
+            //mProcessOrder.TinhTien();
+            //this.Close();
+        }
         private void XoaMon()
         {
+            //Khong duoc xoa het
             if (lvData.SelectedItems.Count > 0)
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
-                chitiet.XoaMon = true;
+                mProcessOrder.XoaChiTietBanHang(chitiet);
                 lvData.Items.Remove(chitiet);
+                ReloadData();
+                if (lvData.Items.Count>0)
+                {
+                    lvData.SelectedIndex = lvData.Items.Count - 1;
+                }
             }
         }
 
@@ -91,15 +95,21 @@ namespace GUI
 
         private void LoadBanHang()
         {
-            txtMaHoaDon.Text = "Mã Hóa Đơn: "+mProcessOrder.BanHang.MaHoaDon.ToString();
-            txtTenNhanVien.Text ="Nhân Viên: " +mTransit.NhanVien.TenNhanVien;
+            txtMaHoaDon.Text = "HĐ: "+mProcessOrder.BanHang.MaHoaDon.ToString();
+            txtTenNhanVien.Text ="NV: " +mTransit.NhanVien.TenNhanVien;
+            txtTenBan.Text = mTransit.Ban.TenBan;
+            ReloadData();
             lvData.Items.Clear();
             foreach (var item in mProcessOrder.ListChiTietBanHang)
             {
                 lvData.Items.Add(item);
             }
-        }
 
+        }
+        private void ReloadData()
+        {
+            txtTongTien.Text = Utilities.MoneyFormat.ConvertToStringFull(mProcessOrder.GetBanHang().TongTien());
+        }
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
         {
             ListViewItem li = new ListViewItem();
@@ -121,7 +131,6 @@ namespace GUI
             }
         }
 
-        private bool IsThayDoiSoLuong = true;
         private void ThayDoiQty()
         {
             if (mProcessOrder.CurrentChiTietBanHang != null)
@@ -130,8 +139,8 @@ namespace GUI
                 txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.CHITIETBANHANG.SoLuongBan.ToString();
                 txtTenMon.Text = mProcessOrder.CurrentChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
-                TextBox_PreviewMouseDown(txtSoLuong, null);
-                IsThayDoiSoLuong = true;
+                TextBox_PreviewMouseDown(txtSoLuong, null);                
+                IsThayDoiSoLuong = true;                
             }
         }
 
@@ -151,7 +160,8 @@ namespace GUI
                 {
                     str = txtSoLuong.Text;
                 }
-                mProcessOrder.CurrentChiTietBanHang.ChangeQty(System.Convert.ToInt32(str));                
+                mProcessOrder.CurrentChiTietBanHang.ChangeQty(System.Convert.ToInt32(str));
+                ReloadData();
                 if (lvData.SelectedItems.Count > 0)
                 {
                     lvData.SelectedItems[0] = mProcessOrder.CurrentChiTietBanHang;
@@ -165,6 +175,14 @@ namespace GUI
             btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
             btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
             btnChucNang_0.CommandParameter = Data.EnumChucNang.TinhTien;
+            btnChucNang_1.CommandParameter = Data.EnumChucNang.LuuHoaDon;
+        }
+
+        private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
+        {            
+            Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);
+            AddChiTietBanHang(item);
+            ReloadData();
         }
     }
 }

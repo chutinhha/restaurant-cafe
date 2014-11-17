@@ -14,9 +14,9 @@
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
         <Grid Grid.Column="0" Grid.Row="1" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="201*"/>
+                <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -49,8 +49,17 @@
                 <my:POSButtonChucNang Grid.Row="9" Name="btnChucNang_9" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
 
             </Grid>
-            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1" Margin="5" Name="txtMaHoaDon" TextAlignment="Center" />
-            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5" Name="txtTenNhanVien" TextAlignment="Center" />
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Hóa đơn: 1" Margin="5" Name="txtMaHoaDon" TextAlignment="Center" FontSize="14" />
+                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="20" Margin="0" Name="txtTenBan" TextAlignment="Center" Background="#FF009F3B" Foreground="White" FontSize="20" />
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5" Name="txtTenNhanVien" TextAlignment="Center" FontSize="14" />
+            </Grid>
+            
             <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
@@ -90,13 +99,15 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="127*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"  Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
                 <TextBox Grid.Row="1"  x:Name="txtTenMon" Text="Trần Minh Tiến" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"/>
                 <TextBlock Grid.Row="2"  Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
                 <TextBox Grid.Row="3"  x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" />
+                <TextBlock Grid.Row="4" Height="35" HorizontalAlignment="Stretch" Margin="3,15,3,0" Name="txtTongTien" Text="1000.000" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" FontStretch="Normal" FontWeight="Medium" Foreground="#FF009F3B" />
             </Grid>
         </Grid>        
-        <my1:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" />
+        <my1:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" _OnEventMenuKichThuocMon="uCMenuBanHang__OnEventMenuKichThuocMon" />
     </Grid>
 </Window>

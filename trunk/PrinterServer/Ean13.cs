@@ -4,7 +4,7 @@ using System;
 using System.Text;
 
 #endregion Using directives
-namespace PrintServer
+namespace PrinterServer
 {
     public class Ean13
     {

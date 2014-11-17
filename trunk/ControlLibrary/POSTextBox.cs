@@ -53,9 +53,14 @@ namespace ControlLibrary
         }
 
         public UCKeyPad _UCKeyPad { get; set; }
+        public UCMoneyKeyPad _UCMoneyKeyPad { get; set; }
 
         private void IniForcus()
         {
+            if (_UCMoneyKeyPad!=null)
+            {
+                _UCMoneyKeyPad._TextBox = this;
+            }
             switch (_TypeTextBox)
             {
                 case TypeKeyPad.None:

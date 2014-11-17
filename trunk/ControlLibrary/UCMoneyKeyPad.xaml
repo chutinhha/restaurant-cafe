@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="ControlLibrary.UCMoneyKeyPad"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="148" d:DesignWidth="278" xmlns:my="clr-namespace:ControlLibrary">    
+    <Grid>
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="pOSButtonMoney1" VerticalAlignment="Top" Width="135" _SoTien="10000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="141,0,0,0" x:Name="pOSButtonMoney2" VerticalAlignment="Top" Width="135" _SoTien="20000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,51,0,0" x:Name="pOSButtonMoney3" VerticalAlignment="Top" Width="135" _SoTien="50000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="141,51,0,0" x:Name="pOSButtonMoney4" VerticalAlignment="Top" Width="135" _SoTien="100000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,102,0,0" x:Name="pOSButtonMoney5" VerticalAlignment="Top" Width="276" _SoTien="500000" Click="pOSButtonMoney5_Click" />
+    </Grid>
+</UserControl>
