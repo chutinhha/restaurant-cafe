@@ -60,18 +60,17 @@ namespace Data
             mTransit = transit;
             SoLuongBanTam = (int)CHITIETBANHANG.SoLuongBan;            
         }
-        public BOChiTietBanHang(MENUKICHTHUOCMON ktm,Transit transit)
+        public BOChiTietBanHang(Data.BOMenuKichThuocMon ktm,Transit transit)
         {
             mTransit = transit;
+            
             this.CHITIETBANHANG = new CHITIETBANHANG();
-            this.CHITIETBANHANG.SoLuongBan = ktm.SoLuongBanBan;
-            this.CHITIETBANHANG.GiaBan = ktm.GiaBanMacDinh;
-            this.CHITIETBANHANG.ThanhTien=this.CHITIETBANHANG.SoLuongBan*this.CHITIETBANHANG.GiaBan;
-            //this.CHITIETBANHANG.MENUKICHTHUOCMON = ktm;
-            //this.CHITIETBANHANG.NHANVIEN = mTransit.NhanVien;
-            this.CHITIETBANHANG.KichThuocMonID = 2;            
-            this.MENUKICHTHUOCMON = ktm;
-            this.MENUMON = ktm.MENUMON;
+            this.CHITIETBANHANG.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
+            this.CHITIETBANHANG.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
+            this.CHITIETBANHANG.ThanhTien=this.CHITIETBANHANG.SoLuongBan*this.CHITIETBANHANG.GiaBan;            
+            this.CHITIETBANHANG.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;            
+            this.MENUKICHTHUOCMON = ktm.MenuKichThuocMon;
+            this.MENUMON = ktm.MenuMon;
 
             SoLuongBanTam = (int)this.CHITIETBANHANG.SoLuongBan;
         }
@@ -84,8 +83,8 @@ namespace Data
         {
             get
             {
-                //return this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
-                return this.MENUMON==null?"Mon": this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                return this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                //return this.MENUMON==null?"Mon": this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
             }
         }
         public string ThanhTien

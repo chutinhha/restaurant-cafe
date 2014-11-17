@@ -7,8 +7,15 @@ namespace Data
 {
     public class BOMayIn
     {
-        FrameworkRepository<MAYIN> frmMayIn = null;
-        public BOMayIn(Data.Transit transit)
+        public int MayInID { get; set; }
+        public string TenMayIn { get; set; }
+        public string TieuDeIn { get; set; }        
+        public bool HocDungTien { get; set; }
+        public int SoLanIn { get; set; }
+        FrameworkRepository<MAYIN> frmMayIn=null;
+        public BOMayIn()
+        { }
+        public BOMayIn(Transit transit)
         {
             transit.KaraokeEntities = new KaraokeEntities();
             frmMayIn = new FrameworkRepository<MAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MAYINs);

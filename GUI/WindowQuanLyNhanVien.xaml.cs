@@ -44,7 +44,7 @@ namespace GUI
         private void AddList(Data.BONhanVien item)
         {
             ListViewItem li = new ListViewItem();
-            li.Content = item;
+            li.Content = item;            
             li.Tag = item;
             lvData.Items.Add(li);
         }

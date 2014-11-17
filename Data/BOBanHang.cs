@@ -77,7 +77,7 @@ namespace Data
                 }
             }
             return false;
-        }
+        }        
         public void AddChiTietBanHang(BOChiTietBanHang chiTiet)
         {
             chiTiet.CHITIETBANHANG.NhanVienID = this.BANHANG.NhanVienID;
@@ -146,6 +146,25 @@ namespace Data
                 }
             }
             return lichSuBanHangId;
+        }
+        public int TinhTien()
+        {
+            this.BANHANG.TrangThaiID = 4;
+            frBanHang.Update(this.BANHANG);
+            frBanHang.Commit();
+            return this.BANHANG.BanHangID;
+        }
+        public double TongTien()
+        {
+            double tong = 0;
+            foreach (var item in _ListChiTietBanHang)
+            {
+                if (item.IsDeleted==false)
+                {
+                    tong += (double)item.CHITIETBANHANG.ThanhTien;
+                }
+            }
+            return tong;
         }
         private LICHSUBANHANG GetLichSuBanHang()
         {

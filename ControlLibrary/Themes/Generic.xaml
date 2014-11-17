@@ -6,9 +6,12 @@
     <Style TargetType="{x:Type local:POSTextBox}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border BorderBrush="#FF56007C" BorderThickness="1">
-                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}" VerticalAlignment="Center"  HorizontalContentAlignment="Center" />
+                <ControlTemplate TargetType="{x:Type local:POSTextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="#FF56007C"                            
+                            BorderThickness="1">
+                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}" />
+                        
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -210,9 +213,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonIconHorizontal}">
                     <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1">
+                        <!--
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
+                        -->
                         <!--<Button Background="{x:Null}" BorderBrush="#FF56007C" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
                             <Image Grid.Column="0" Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="20,0,20,0" />
@@ -370,5 +375,17 @@
         </Setter>
     </Style>
 
-    
+    <Style TargetType="{x:Type local:POSButtonMoney}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSButtonMoney}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

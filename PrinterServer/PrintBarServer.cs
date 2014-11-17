@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 
-namespace PrintServer
+namespace PrinterServer
 {
     
     //public class PrintBarServer
@@ -85,83 +85,7 @@ namespace PrintServer
     //                return FontStyle.Regular;
     //        }
     //        return FontStyle.Regular;
-    //    }
-
-    //    public void DrawCancelLine(System.Drawing.Printing.PrintPageEventArgs e, float y_start, float y_end)
-    //    {
-    //        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Brushes.Black);
-    //        e.Graphics.DrawLine(pen, 0, y_start, e.PageBounds.Width, y_end);
-    //        e.Graphics.DrawLine(pen, 0, y_end, e.PageBounds.Width, y_start);
-    //    }
-
-    //    public float DrawLine(System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, float y, TextAlign textAlign)
-    //    {
-    //        if (mTransit.ReadConfig.ItemLineHeight != 0)
-    //        {
-    //            y = DrawString("  ", e, font, y, TextAlign.Left);
-    //        }
-    //        return y;
-    //    }
-
-    //    public float DrawLine(string s, System.Drawing.Font font, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Drawing2D.DashStyle dashStyle, float y, int textAlign)
-    //    {
-    //        float x;
-    //        float width;
-    //        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Brushes.Black);
-    //        if (dashStyle != System.Drawing.Drawing2D.DashStyle.Custom)
-    //        {
-    //            pen.DashStyle = dashStyle;
-    //        }
-    //        if (s == "" || s == null)
-    //        {
-    //            width = e.PageBounds.Width;
-    //        }
-    //        else
-    //        {
-    //            width = e.Graphics.MeasureString(s, font).Width;
-    //        }
-    //        if (textAlign == 1)
-    //        {
-    //            x = 0;
-    //        }
-    //        else if (textAlign == 2)
-    //        {
-    //            x = (float)Math.Abs(((float)e.PageBounds.Width - e.Graphics.MeasureString(s, font).Width) / 2);
-    //        }
-    //        else
-    //        {
-    //            x = e.PageBounds.Width - e.Graphics.MeasureString(s, font).Width;
-    //        }
-    //        e.Graphics.DrawLine(pen, x, y, x + width, y);
-    //        y += 2;
-    //        return y;
-    //    }
-
-    //    public float DrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, float y, TextAlign textAlign)
-    //    {
-    //        float x;
-    //        List<string> list = SplitStringLine(s, e, font);
-    //        foreach (string item in list)
-    //        {
-    //            if (textAlign == TextAlign.Left)
-    //            {
-    //                x = 0;
-    //            }
-    //            else if (textAlign == TextAlign.Center)
-    //            {
-    //                x = (float)Math.Abs(((float)e.PageBounds.Width - e.Graphics.MeasureString(item, font).Width) / 2);
-    //            }
-    //            else
-    //            {
-    //                x = e.PageBounds.Width - e.Graphics.MeasureString(item, font).Width;
-    //            }
-    //            e.Graphics.DrawString(item, font, System.Drawing.Brushes.Black, x, y);
-    //            y += e.Graphics.MeasureString(item, font).Height;
-    //        }
-
-    //        return y;
-    //    }
-
+    //    }   
     //    public List<BecasData.Order.ItemOrderK> getListOrder(PrintData data)
     //    {
     //        if (data.Function == 16)

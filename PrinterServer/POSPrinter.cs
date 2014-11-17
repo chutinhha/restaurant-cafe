@@ -5,18 +5,18 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Printing;
 
-namespace PrintServer
+namespace PrinterServer
 {
     class POSPrinter:PrintDocument
-    {
+    {        
         public object _Tag { get; set; }
 
         public POSPrinter()
         {
-            this.PrintController = new StandardPrintController();
+            this.PrintController = new StandardPrintController();                                                
         }
 
-        public void SetPrinterName(string name)
+        public void POSSetPrinterName(string name)
         {
             this.PrinterSettings.PrinterName = name;
         }
@@ -28,7 +28,7 @@ namespace PrintServer
         /// <param name="font"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public float DrawMessenge(string s, System.Drawing.Printing.PrintPageEventArgs e,Color color, System.Drawing.Font font, float y)
+        public float POSDrawMessenge(string s, System.Drawing.Printing.PrintPageEventArgs e, Color color, System.Drawing.Font font, float y,TextAlign align,float margin)
         {
             while (s.Contains("  "))
             {
@@ -38,18 +38,18 @@ namespace PrintServer
             string resuilt = "";
             for (int i = 0; i < list.Length; i++)            
             {
-                string data = list[i];                
-                if (e.Graphics.MeasureString(resuilt + " " + data, font).Width > e.PageBounds.Width)
-                {                    
-                    y = DrawString(resuilt, e, font, color, y, TextAlign.Left, 0);
+                string data = list[i];
+                if (e.Graphics.MeasureString(resuilt + " " + data, font).Width > POSGetWidthPrinter(e))
+                {
+                    y = POSDrawString(resuilt, e, font, color, y, align, margin);
                     resuilt = data;
                 }
                 else
                 {
                     resuilt += data + " ";
                     if (i == (list.Length - 1))
-                    {                        
-                        y = DrawString(resuilt, e, font, color, y, TextAlign.Left, 0);
+                    {
+                        y = POSDrawString(resuilt, e, font, color, y, align, margin);
                     }
                 }
             }
@@ -58,7 +58,7 @@ namespace PrintServer
             return y;
         }
 
-        public int GetHeightPrinterLine()
+        public int POSGetHeightPrinterLine()
         {
             string s = PrinterSettings.PrinterName.ToUpper();
             if (s.Contains("PRP"))
@@ -69,73 +69,86 @@ namespace PrintServer
             {
                 return 10;
             }
-        }        
+        }
 
-        public float DrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, Color color, float y, TextAlign textAlign, int MarginsRight)
+        public float POSDrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, Color color, float y, TextAlign textAlign, float margin)
         {
             float x = 0;
-            List<string> list = SplitStringLine(s, e, font);
+            List<string> list = POSSplitStringLine(s, e, font);
             foreach (string item in list)
             {
                 switch (textAlign)
                 {
                     case TextAlign.Left:
-                        x = 0;
+                        x = margin;
                         break;
                     case TextAlign.Center:
-                        x = (float)Math.Abs(((float)e.PageBounds.Width - e.Graphics.MeasureString(item, font).Width) / 2);
+                        x = (float)Math.Abs((POSGetWidthPrinter(e) - e.Graphics.MeasureString(item, font).Width) / 2);
                         break;
                     case TextAlign.Right:
-                        x = (e.PageBounds.Width - MarginsRight) - e.Graphics.MeasureString(item, font).Width;
+                        x = (POSGetWidthPrinter(e) - margin) - e.Graphics.MeasureString(item, font).Width;
                         break;
                     default:
                         break;
-                }                                
-                e.Graphics.DrawString(item, font, new SolidBrush(color), x, y);
+                }                    
+                e.Graphics.DrawString(item, font, new SolidBrush(color), x, y);                                
                 y += e.Graphics.MeasureString(item, font).Height;
             }
 
             return y;
-        }        
-        public void DrawCancelLine(System.Drawing.Printing.PrintPageEventArgs e, float y_start, float y_end)
-        {
-            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Brushes.Black);            
-            float y=(y_start + y_end) / 2;
-            e.Graphics.DrawLine(pen, 0, y, e.PageBounds.Width, y);
-            e.Graphics.DrawLine(pen, 0, y+3, e.PageBounds.Width, y+3);
         }
-        public void DrawLine(System.Drawing.Printing.PrintPageEventArgs e,Color color, System.Drawing.Drawing2D.DashStyle dashStyle, float y,float fFloat, TextAlign textAlign)
+        public void POSDrawCancelLine(System.Drawing.Printing.PrintPageEventArgs e, float y_start, float y_end,float margin)
         {
-            float width = e.PageBounds.Width * fFloat;
-            float x = GetXWithAlign(e,textAlign,width);
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Brushes.Black);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            //float y=(y_start + y_end) / 2-3;
+            e.Graphics.DrawLine(pen, margin, y_start, POSGetWidthPrinter(e)- margin, y_end);
+            e.Graphics.DrawLine(pen, margin, y_end, POSGetWidthPrinter(e) - margin, y_start);
+            //POSDrawLine(e, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, y, 1, TextAlign.Center, margin);            
+            //POSDrawLine(e, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, y+6, 1, TextAlign.Center, margin);
+        }
+        public void POSDrawLine(System.Drawing.Printing.PrintPageEventArgs e, Color color, System.Drawing.Drawing2D.DashStyle dashStyle, float y, float fFloat, TextAlign textAlign,float margin)
+        {
+            float realWidth = POSGetWidthPrinter(e) - margin * 2;
+            float width = POSGetWidthPrinter(e) * fFloat;
+            if (width > realWidth)
+            {
+                width = realWidth;
+            }
+            float x = POSGetXWithAlign(e, textAlign, width,margin);
             System.Drawing.Pen pen = new System.Drawing.Pen(color);
+            pen.DashStyle = dashStyle;            
             e.Graphics.DrawLine(pen, x, y, x + width, y);
         }
-        
-        private float GetXWithAlign(System.Drawing.Printing.PrintPageEventArgs e, TextAlign textAlign, float width)
+        public float POSGetWidthPrinter(System.Drawing.Printing.PrintPageEventArgs e)
+        {            
+            return e.PageSettings.PrintableArea.Width;
+            //return e.PageSettings.PaperSize.Width - e.PageSettings.Margins.Left - e.PageSettings.Margins.Right;
+        }
+        private float POSGetXWithAlign(System.Drawing.Printing.PrintPageEventArgs e, TextAlign textAlign, float width,float margin)
         {
-            float x=0;
+            float x=0;            
             switch (textAlign)
             {
                 case TextAlign.Left:
-                    x = 0;
+                    x = margin;
                     break;
                 case TextAlign.Center:
-                    x = (float)Math.Abs(((float)e.PageBounds.Width - width) / 2);
+                    x = (float)Math.Abs((POSGetWidthPrinter(e) - width) / 2);
                     break;
                 case TextAlign.Right:
-                    x = e.PageBounds.Width - width;
+                    x = POSGetWidthPrinter(e) - width - margin;
                     break;
                 default:
                     break;
             }
             return x;
-        }        
-        public float DrawBarcode(string dataBarcode, System.Drawing.Printing.PrintPageEventArgs e, float y,Color color, TextAlign textAlign)
+        }
+        public float POSDrawBarcode(string dataBarcode, System.Drawing.Printing.PrintPageEventArgs e, float y, Color color, TextAlign textAlign)
         {
             if (dataBarcode.Length != 12)
             {
-                y = DrawString("", e, new Font("Arial", 11), color, y, textAlign, 0);
+                y = POSDrawString("", e, new Font("Arial", 11), color, y, textAlign, 0);
                 return y;
             }
             Ean13 ean13 = new Ean13(dataBarcode);
@@ -146,7 +159,7 @@ namespace PrintServer
                     x = 0;
                     break;
                 case TextAlign.Center:
-                    x = e.PageBounds.Width - ean13.Width;
+                    x = POSGetWidthPrinter(e) - ean13.Width;
                     if (x < 0)
                     {
                         x = 0;
@@ -154,7 +167,7 @@ namespace PrintServer
                     x = x / 2;
                     break;
                 case TextAlign.Right:
-                    x = e.PageBounds.Width - ean13.Width;
+                    x = POSGetWidthPrinter(e) - ean13.Width;
                     if (x < 0)
                     {
                         x = 0;
@@ -167,7 +180,7 @@ namespace PrintServer
             y += ean13.Height + 2;
             return y;
         }
-        private List<string> SplitStringLine(string str, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font)
+        private List<string> POSSplitStringLine(string str, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font)
         {
             List<string> list = new List<string>();
             string[] s = str.Split(' ');
@@ -177,13 +190,13 @@ namespace PrintServer
             {
                 if (s[i].Length > 0)
                 {
-                    if (e.Graphics.MeasureString(resuilt + s[i], font).Width > e.PageBounds.Width && resuilt.Length > 0)
+                    if (e.Graphics.MeasureString(resuilt + s[i], font).Width > POSGetWidthPrinter(e) && resuilt.Length > 0)
                     {
                         list.Add(resuilt);
                         i--;
                         resuilt = "";
                     }
-                    else if (e.Graphics.MeasureString(s[i], font).Width > e.PageBounds.Width)
+                    else if (e.Graphics.MeasureString(s[i], font).Width > POSGetWidthPrinter(e))
                     {
                         list.Add(s[i]);
                         resuilt = "";
@@ -199,6 +212,10 @@ namespace PrintServer
                 list.Add(resuilt);
             }
             return list;
+        }
+        public float POSGetFloat(float f)
+        {
+            return f;
         }
     }
 }
