@@ -1,7 +1,7 @@
 ﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="768" Width="1024" Icon="/GUI;component/Micro.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" >
+        Title="MainWindow" Height="768" Width="1024" Icon="/GUI;component/Micro.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

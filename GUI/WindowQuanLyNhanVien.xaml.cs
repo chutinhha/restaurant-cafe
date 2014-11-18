@@ -126,7 +126,8 @@ namespace GUI
             }
             BONhanVien.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
-            MessageBox.Show("Lưu thành công");
+            UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
+            messageBox.ShowDialog();            
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

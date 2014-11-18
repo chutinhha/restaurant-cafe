@@ -54,8 +54,10 @@ namespace Data
             public string Huy = "Hủy";
             public string Luu = "Lưu";
             public string Them = "Thêm";
-
-
-        }        
+            public string LuuThanhCong = "Lưu thành công";
+            public string XoaThanhCong = "Xóa thành công";
+            public string SuaThanhCong = "Sua thành công";
+            public string ThemThanhCong = "Sua thành công";
+        }
     }
 }

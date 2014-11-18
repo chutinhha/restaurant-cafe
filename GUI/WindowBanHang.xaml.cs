@@ -9,7 +9,7 @@ namespace GUI
     public partial class WindowBanHang : Window
     {
         private bool IsThayDoiSoLuong = true;
-        private Data.Transit mTransit = null;        
+        private Data.Transit mTransit = null;
         private ProcessOrder.ProcessOrder mProcessOrder;
         public WindowBanHang(Data.Transit transit)
         {
@@ -23,15 +23,16 @@ namespace GUI
             uCMenuBanHang.Init(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
+            uCTile.SetTransit(mTransit);
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
             GanChucNang();
-            LoadBanHang();            
+            LoadBanHang();
         }
 
         private void uCTile_OnEventExit()
         {
             this.Close();
-        }        
+        }
 
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +68,7 @@ namespace GUI
         }
         private void TinhTien()
         {
-            WindowTinhTien win = new WindowTinhTien(mTransit,mProcessOrder.GetBanHang());
+            WindowTinhTien win = new WindowTinhTien(mTransit, mProcessOrder.GetBanHang());
             win.ShowDialog(); ;
             //mProcessOrder.TinhTien();
             //this.Close();
@@ -81,7 +82,7 @@ namespace GUI
                 mProcessOrder.XoaChiTietBanHang(chitiet);
                 lvData.Items.Remove(chitiet);
                 ReloadData();
-                if (lvData.Items.Count>0)
+                if (lvData.Items.Count > 0)
                 {
                     lvData.SelectedIndex = lvData.Items.Count - 1;
                 }
@@ -95,8 +96,8 @@ namespace GUI
 
         private void LoadBanHang()
         {
-            txtMaHoaDon.Text = "HĐ: "+mProcessOrder.BanHang.MaHoaDon.ToString();
-            txtTenNhanVien.Text ="NV: " +mTransit.NhanVien.TenNhanVien;
+            txtMaHoaDon.Text = "HĐ: " + mProcessOrder.BanHang.MaHoaDon.ToString();
+            txtTenNhanVien.Text = "NV: " + mTransit.NhanVien.TenNhanVien;
             txtTenBan.Text = mTransit.Ban.TenBan;
             ReloadData();
             lvData.Items.Clear();
@@ -139,8 +140,8 @@ namespace GUI
                 txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.CHITIETBANHANG.SoLuongBan.ToString();
                 txtTenMon.Text = mProcessOrder.CurrentChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
-                TextBox_PreviewMouseDown(txtSoLuong, null);                
-                IsThayDoiSoLuong = true;                
+                TextBox_PreviewMouseDown(txtSoLuong, null);
+                IsThayDoiSoLuong = true;
             }
         }
 
@@ -179,7 +180,7 @@ namespace GUI
         }
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
-        {            
+        {
             Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);
             AddChiTietBanHang(item);
             ReloadData();

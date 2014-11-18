@@ -14,15 +14,36 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCMenu : UserControl
     {
-        private List<Data.BOMenuMon> lsMenuMon = null;
-        private List<Data.BOMenuNhom> lsMenuNhom = null;
-        private List<Data.BOMenuKichThuocMon> lsMenuKichThuocMon = null;
-        private Data.Transit mTransit = null;
+        public Data.BOMenuKichThuocMon BOMenuKichThuocMon = null;
         public Data.BOMenuMon BOMenuMon = null;
         public Data.BOMenuNhom BOMenuNhom = null;
-        public Data.BOMenuKichThuocMon BOMenuKichThuocMon = null;
+        public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
+        public bool _IsDanhSachKhuyenMai { get; set; }
+        private double ImageHeightItems = 0;
+        private double ImageWidthItems = 0;
+        private bool IsRefershMenu = false;
+        private List<Data.BOMenuKichThuocMon> lsMenuKichThuocMon = null;
+        private List<Data.BOMenuMon> lsMenuMon = null;
+        private List<Data.BOMenuNhom> lsMenuNhom = null;
+        private Data.Transit mTransit = null;
+        public UCMenu()
+        {
+            InitializeComponent();
+            _IsBanHang = false;
+            _IsDanhSachKhuyenMai = false;
+        }
 
-        public bool _IsBanHang { get; set; }
+        public delegate void EventMenuGroup(Data.BOMenuNhom ob);
+
+        public delegate void EventMenuKichThuocMon(Data.BOMenuKichThuocMon ob);
+
+        public delegate void EventMenuMon(Data.BOMenuMon ob);
+
+        public event EventMenuKichThuocMon _OnEventMenuKichThuocMon;
+
+        public event EventMenuMon _OnEventMenuMon;
+
+        public event EventMenuGroup _OnEventMenuNhom;
 
         private enum LoaiMenu
         {
@@ -32,20 +53,7 @@ namespace UserControlLibrary
             KichThuocMon = 3
         }
 
-        public delegate void EventMenuGroup(Data.BOMenuNhom ob);
-        public delegate void EventMenuMon(Data.BOMenuMon ob);
-        public delegate void EventMenuKichThuocMon(Data.BOMenuKichThuocMon ob);
-
-        public event EventMenuGroup _OnEventMenuNhom;
-        public event EventMenuMon _OnEventMenuMon;
-        public event EventMenuKichThuocMon _OnEventMenuKichThuocMon;
-
-        public UCMenu()
-        {
-            InitializeComponent();
-            _IsBanHang = false;
-        }
-
+        public bool _IsBanHang { get; set; }
         public void Init(Data.Transit transit)
         {
             SetImageSizetItems();
@@ -53,6 +61,7 @@ namespace UserControlLibrary
             BOMenuMon = new Data.BOMenuMon(transit);
             BOMenuNhom = new Data.BOMenuNhom(transit);
             BOMenuKichThuocMon = new Data.BOMenuKichThuocMon(transit);
+            BOMenuKhuyenMai = new Data.BOMenuKhuyenMai();
             LoadData();
         }
 
@@ -64,36 +73,13 @@ namespace UserControlLibrary
 
         #region Items
 
+        private Data.BOMenuMon MenuMonIndex = null;
         private int PageItems = 1;
 
-        private void SetItemPage(LoaiMenu loaiMenu)
+        private void OnEventMenuMon(Data.BOMenuMon item)
         {
-            btnItemBack.Tag = loaiMenu;
-            btnItemNext.Tag = loaiMenu;
-            switch (loaiMenu)
-            {
-                case LoaiMenu.None:
-                    break;
-
-                case LoaiMenu.Nhom:
-                    break;
-
-                case LoaiMenu.Mon:
-                case LoaiMenu.KichThuocMon:
-                    btnItemBack.Content = "Trờ Về";
-                    var uriSource = new Uri(@"/SystemImages;component/Images/Back.png", UriKind.Relative);
-                    btnItemBack.Background = System.Windows.Media.Brushes.White;
-                    btnItemBack.Image = new BitmapImage(uriSource);
-                    btnItemNext.Content = "Tiếp Theo";
-                    uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
-                    btnItemNext.Background = System.Windows.Media.Brushes.White;
-                    btnItemNext.Image = new BitmapImage(uriSource);
-
-                    break;
-
-                default:
-                    break;
-            }
+            if (_OnEventMenuMon != null)
+                _OnEventMenuMon(item);
         }
 
         public void LoadMon(int NhomID)
@@ -110,8 +96,7 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            if (_OnEventMenuMon != null)
-                                _OnEventMenuMon(lsItemsTem[i]);
+                            OnEventMenuMon(lsItemsTem[i]);
                     }
                     Chay = true;
                     while (Chay)
@@ -159,8 +144,7 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            if (_OnEventMenuMon != null)
-                                _OnEventMenuMon(lsMenuMon[i]);
+                            OnEventMenuMon(lsMenuMon[i]);
                     }
                     SetButtonItem((POSButtonMenu)gridItems.Children[i], lsMenuMon[i]);
                 }
@@ -240,8 +224,6 @@ namespace UserControlLibrary
             }
         }
 
-        private Data.BOMenuMon MenuMonIndex = null;
-
         private void btnItems_Click(object sender, RoutedEventArgs e)
         {
             POSButtonMenu btn = (POSButtonMenu)sender;
@@ -254,16 +236,16 @@ namespace UserControlLibrary
                     LoadKichThuocMon(MenuMonIndex);
                 }
                 else
-                    if (_OnEventMenuMon != null)
-                        _OnEventMenuMon(MenuMonIndex);
+                    OnEventMenuMon(MenuMonIndex);
             }
             else if (btn.Tag is Data.BOMenuKichThuocMon)
             {
                 MenuKichThuocMonIndex = (Data.BOMenuKichThuocMon)btn.Tag;
-                if (_OnEventMenuKichThuocMon != null)
-                    _OnEventMenuKichThuocMon(MenuKichThuocMonIndex);
+                OnEventMenuKichThuocMon(MenuKichThuocMonIndex);
             }
         }
+
+
 
         private void SetButtonItem(POSButtonMenu btn, Data.BOMenuMon item)
         {
@@ -282,10 +264,40 @@ namespace UserControlLibrary
             }
         }
 
+        private void SetItemPage(LoaiMenu loaiMenu)
+        {
+            btnItemBack.Tag = loaiMenu;
+            btnItemNext.Tag = loaiMenu;
+            switch (loaiMenu)
+            {
+                case LoaiMenu.None:
+                    break;
+
+                case LoaiMenu.Nhom:
+                    break;
+
+                case LoaiMenu.Mon:
+                case LoaiMenu.KichThuocMon:
+                    btnItemBack.Content = "Trờ Về";
+                    var uriSource = new Uri(@"/SystemImages;component/Images/Back.png", UriKind.Relative);
+                    btnItemBack.Background = System.Windows.Media.Brushes.White;
+                    btnItemBack.Image = new BitmapImage(uriSource);
+                    btnItemNext.Content = "Tiếp Theo";
+                    uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
+                    btnItemNext.Background = System.Windows.Media.Brushes.White;
+                    btnItemNext.Image = new BitmapImage(uriSource);
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
         #endregion Items
 
         #region Nhóm
 
+        private Data.BOMenuNhom MenuNhomIndex = null;
         private int PageGroup = 0;
 
         public void LoadGroup()
@@ -302,8 +314,7 @@ namespace UserControlLibrary
                         MenuNhomIndex = lsGroupTem[i];
                         PageItems = 1;
                         LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
-                        if (_OnEventMenuNhom != null)
-                            _OnEventMenuNhom(MenuNhomIndex);
+                        OnEventMenuNhom(MenuNhomIndex);
                     }
                     SetButtonNhom((POSButtonMenu)gridGroup.Children[i + 1], lsGroupTem[i]);
                 }
@@ -322,8 +333,7 @@ namespace UserControlLibrary
                         MenuNhomIndex = lsMenuNhom[i];
                         PageItems = 1;
                         LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
-                        if (_OnEventMenuNhom != null)
-                            _OnEventMenuNhom(MenuNhomIndex);
+                        OnEventMenuNhom(MenuNhomIndex);
                     }
                     SetButtonNhom((POSButtonMenu)gridGroup.Children[i], lsMenuNhom[i]);
                 }
@@ -332,9 +342,6 @@ namespace UserControlLibrary
                     SetButtonEmpty((POSButtonMenu)gridGroup.Children[i]);
             }
         }
-
-        private Data.BOMenuNhom MenuNhomIndex = null;
-
         public void SetButtonNhom(POSButtonMenu btn, Data.BOMenuNhom item)
         {
             btn.Visibility = System.Windows.Visibility.Visible;
@@ -370,8 +377,7 @@ namespace UserControlLibrary
             LoadMon(MenuNhomIndex.MenuNhom.NhomID);
             if (!_IsBanHang)
             {
-                if (_OnEventMenuNhom != null)
-                    _OnEventMenuNhom(MenuNhomIndex);
+                OnEventMenuNhom(MenuNhomIndex);
             }
         }
 
@@ -407,13 +413,27 @@ namespace UserControlLibrary
             }
         }
 
+        private void OnEventMenuNhom(Data.BOMenuNhom item)
+        {
+            if (_OnEventMenuNhom != null)
+                _OnEventMenuNhom(item);
+        }
+
         #endregion Nhóm
 
         #region Loại Nhóm
 
+        private int LoaiNhomID = 0;
+
         private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 1;
+            LoadGroup();
+        }
+
+        private void btnTatCa_Click(object sender, RoutedEventArgs e)
+        {
+            LoaiNhomID = 0;
             LoadGroup();
         }
 
@@ -422,25 +442,23 @@ namespace UserControlLibrary
             LoaiNhomID = 2;
             LoadGroup();
         }
-
-        private int LoaiNhomID = 0;
-
-        private void btnTatCa_Click(object sender, RoutedEventArgs e)
-        {
-            LoaiNhomID = 0;
-            LoadGroup();
-        }
-
         #endregion Loại Nhóm
 
         #region Kích thước món
 
+        private Data.BOMenuKichThuocMon MenuKichThuocMonIndex = null;
         private int PageKichThuocMon = 1;
 
-        private void SetKichThuocMonPage()
+        private void OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon item)
         {
-            btnItemBack.Content = "Trở về";
-            btnItemNext.Content = "Kế tiếp";
+            if (_OnEventMenuKichThuocMon != null)
+            {
+                if (_IsDanhSachKhuyenMai)
+                {
+                    BOMenuKhuyenMai.GetAll(item, mTransit);
+                }
+                _OnEventMenuKichThuocMon(item);
+            }
         }
 
         public void LoadKichThuocMon(Data.BOMenuMon mon)
@@ -448,8 +466,7 @@ namespace UserControlLibrary
             lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, mTransit).ToList();
             if (lsMenuKichThuocMon.Count == 1)
             {
-                if (_OnEventMenuKichThuocMon != null)
-                    _OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);
+                OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);
             }
             else if (lsMenuKichThuocMon.Count > gridItems.Children.Count)
             {
@@ -462,8 +479,7 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            if (_OnEventMenuKichThuocMon != null)
-                                _OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
+                            OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
                     }
                     Chay = true;
                     while (Chay)
@@ -511,8 +527,7 @@ namespace UserControlLibrary
                     if (i == 0)
                     {
                         if (IsRefershMenu)
-                            if (_OnEventMenuKichThuocMon != null)
-                                _OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
+                            OnEventMenuKichThuocMon(lsMenuKichThuocMon[i]);
                     }
                     SetButtonKichThuocMon((POSButtonMenu)gridItems.Children[i], lsMenuKichThuocMon[i]);
                 }
@@ -523,8 +538,6 @@ namespace UserControlLibrary
                 SetItemPage(LoaiMenu.None);
             }
         }
-
-        private Data.BOMenuKichThuocMon MenuKichThuocMonIndex = null;
 
         private void SetButtonKichThuocMon(POSButtonMenu btn, Data.BOMenuKichThuocMon item)
         {
@@ -543,18 +556,12 @@ namespace UserControlLibrary
             }
         }
 
-        #endregion Kích thước món
-
-        public void SetButtonEmpty(POSButtonMenu btn)
+        private void SetKichThuocMonPage()
         {
-            btn.Visibility = System.Windows.Visibility.Hidden;
-            btn.Content = "";
-            btn.Image = null;
-            btn.Background = System.Windows.Media.Brushes.Gray;
-            btn.IsEnabled = false;
+            btnItemBack.Content = "Trở về";
+            btnItemNext.Content = "Kế tiếp";
         }
-
-        private bool IsRefershMenu = false;
+        #endregion Kích thước món
 
         public void RefershMenu(bool IsNhom)
         {
@@ -566,9 +573,14 @@ namespace UserControlLibrary
             IsRefershMenu = false;
         }
 
-        private double ImageWidthItems = 0;
-        private double ImageHeightItems = 0;
-
+        public void SetButtonEmpty(POSButtonMenu btn)
+        {
+            btn.Visibility = System.Windows.Visibility.Hidden;
+            btn.Content = "";
+            btn.Image = null;
+            btn.Background = System.Windows.Media.Brushes.Gray;
+            btn.IsEnabled = false;
+        }
         private void SetImageSizetItems()
         {
             int col = gridItems.ColumnDefinitions.Count;

@@ -130,7 +130,8 @@ namespace UserControlLibrary
             }
             BOMenuKichThuocMon.Luu(lsArray, lsArrayDeleted, mTransit);
             LoadDanhSach();
-            MessageBox.Show("Lưu thành công");
+            UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
+            messageBox.ShowDialog();
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

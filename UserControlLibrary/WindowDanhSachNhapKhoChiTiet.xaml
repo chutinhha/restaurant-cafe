@@ -34,8 +34,8 @@
                 <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
                     <Label Width="200" Content="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
                     <Label Width="75" Content="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
-                    <Label Width="125" Content="Loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
-                    <Label Width="75" Content="Kích thước bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
+                    <Label Width="125" Content="Loại đơn vị tính" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
+                    <Label Width="75" Content="Đơn vị tính" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
                     <Label Width="100" Content="Giá mua" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
                     <Label Width="100" Content="Giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
                     <Label Width="150" Content="Ngày sản xuất" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
