@@ -108,7 +108,7 @@ namespace UserControlLibrary
             lbStatus.Text = "";
             if (txtTenLoaiBan.Text == "")
             {
-                lbStatus.Text = "Tên loại bán không được bỏ trống";
+                lbStatus.Text = "Tên đơn vị không được bỏ trống";
                 return false;
             }
             return true;

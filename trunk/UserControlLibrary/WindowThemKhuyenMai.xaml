@@ -38,8 +38,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="40">
-                                <TextBlock Text="{Binding MENULOAIGIA.Ten}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="250" />
-                                <TextBox Text="{Binding Gia}" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" Width="100" PreviewTextInput="txt_PreviewTextInput" />
+                                <TextBlock Text="{Binding KichThuocMonTang.TenMon}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="250" />                                
                                 <my:POSButtonFuntion Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                             </StackPanel>
                         </DataTemplate>
