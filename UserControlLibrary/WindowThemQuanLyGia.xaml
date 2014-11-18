@@ -28,9 +28,9 @@
                     <ColumnDefinition Width="226*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên đơn vị" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="1" Text="Loại giá bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="2" Text="Giá loại bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2" Text="Giá đơn vị" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" IsEnabled="False"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGiaBan" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" SelectionChanged="cbbLoaiGiaBan_SelectionChanged" />

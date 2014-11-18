@@ -21,17 +21,22 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
+        private List<Data.BOMenuKhuyenMai> lsArrayDeleted = null;
+        private List<Data.BOMenuKichThuocMon> lsArray = null;
 
         public UCDanhSachKhuyenMai(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            lsArrayDeleted = new List<Data.BOMenuKhuyenMai>();
             BOMenuKhuyenMai = new Data.BOMenuKhuyenMai(mTransit);
         }
 
         private void LoadDanhSach()
         {
-            lvData.ItemsSource = BOMenuKhuyenMai.GetDanhSachKichThuocMon(mTransit);
+            lsArrayDeleted.Clear();
+            lvData.ItemsSource = lsArray = BOMenuKhuyenMai.GetDanhSachKichThuocMon(mTransit);
+            LoadButton();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -46,17 +51,51 @@ namespace UserControlLibrary
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-
+            if (lvData.SelectedItems.Count > 0)
+            {
+                UserControlLibrary.WindowThemKhuyenMai win = new UserControlLibrary.WindowThemKhuyenMai((Data.BOMenuKichThuocMon)lvData.SelectedItems[0], mTransit, BOMenuKhuyenMai);
+                if (win.ShowDialog() == true)
+                {
+                    LoadDanhSach();
+                }
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
+            if (lvData.SelectedItems.Count > 0)
+            {
+                Data.BOMenuKichThuocMon item = (Data.BOMenuKichThuocMon)lvData.SelectedItems[0];
+                foreach (Data.BOMenuKhuyenMai line in item.DanhSachKhuyenMai)
+                {
+                    lsArrayDeleted.Add(line);
+                }
+                lsArray.Remove(item);
+                lvData.Items.Refresh();                
+                LoadButton();
+            }
 
+        }
+
+        private void LoadButton()
+        {
+            if (lsArrayDeleted.Count > 0)
+            {
+                btnThem.Visibility = System.Windows.Visibility.Hidden;
+                btnSua.Visibility = System.Windows.Visibility.Hidden;
+            }
+            else
+            {
+                btnThem.Visibility = System.Windows.Visibility.Visible;
+                btnSua.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-
+            BOMenuKhuyenMai.Luu(null, lsArrayDeleted, mTransit);
+            UserControlLibrary.WindowMessageBox win = new WindowMessageBox(mTransit.StringButton.LuuThanhCong);
+            win.ShowDialog();
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

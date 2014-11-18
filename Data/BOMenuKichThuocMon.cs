@@ -35,6 +35,41 @@ namespace Data
 
         }
 
+        public int SoLuongMonKhuyenMai
+        {
+            get
+            {
+
+                if (DanhSachKhuyenMai != null)
+                {
+                    return DanhSachKhuyenMai.Count();
+                }
+
+                return 0;
+
+            }
+        }
+
+        public string DanhSachTenMonKhuyenMai
+        {
+            get
+            {
+                string result = "";
+                if (DanhSachKhuyenMai != null)
+                {
+                    foreach (BOMenuKhuyenMai item in DanhSachKhuyenMai)
+                    {
+                        result += item.KichThuocMonTang.TenMon + ", ";
+                    }
+                    if (DanhSachKhuyenMai.Count > 0)
+                    {
+                        result = result.Trim().Remove(result.Length - 2);
+                    }
+                }
+                return result;
+            }
+        }
+
         FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = null;
         FrameworkRepository<MENUMON> frmmenuMon = null;
         FrameworkRepository<LOAIBAN> frmLoaiBan = null;
