@@ -42,9 +42,9 @@ namespace GUI
             if (mTransit.NhanVien != null)
             {
 
-                //MainWindow win = new MainWindow(mTransit);
+                MainWindow win = new MainWindow(mTransit);
                 this.Hide();
-                //win.ShowDialog();                
+                win.ShowDialog();                
             }
 
         }

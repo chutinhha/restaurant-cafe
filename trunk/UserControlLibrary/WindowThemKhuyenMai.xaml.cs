@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System;
+using System.Collections.Generic;
 
 namespace UserControlLibrary
 {
@@ -8,12 +9,16 @@ namespace UserControlLibrary
     /// </summary>
     public partial class WindowThemKhuyenMai : Window
     {
-        public Data.MENUKHUYENMAI _Item = null;
+        public Data.BOMenuKichThuocMon _Item = null;
+        private Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
+        private List<Data.BOMenuKichThuocMon> lsArrayDeleted = null;
         Data.Transit mTransit = null;
-        public WindowThemKhuyenMai(Data.Transit transit)
+        public WindowThemKhuyenMai(Data.BOMenuKichThuocMon item, Data.Transit transit, Data.BOMenuKhuyenMai bOMenuKhuyenMai)
         {
             InitializeComponent();
             mTransit = transit;
+            BOMenuKhuyenMai = bOMenuKhuyenMai;
+            _Item = item;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -25,8 +30,12 @@ namespace UserControlLibrary
         {
             if (_Item != null)
             {
+                txtTenMonChinh.Text = _Item.TenMon;
                 LoadDanhSach();
-                txtTenMonChinh.Text = _Item.MENUKICHTHUOCMON.TenLoaiBan;
+            }
+            else
+            {
+                btnChonMonChinh_Click(null, null);
             }
         }
 
@@ -35,7 +44,7 @@ namespace UserControlLibrary
             WindowChonMon win = new WindowChonMon(mTransit, false);
             if (win.ShowDialog() == true)
             {
-                _Item.MENUKICHTHUOCMON = win._ItemKichThuocMon.MenuKichThuocMon;
+                _Item = win._ItemKichThuocMon;
                 SetValues();
             }
             else
@@ -46,12 +55,26 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lvData.ItemsSource = Data.BOMenuKhuyenMai.GetAll((int)_Item.KichThuocMonID, mTransit);
+            BOMenuKhuyenMai.GetAll(_Item, mTransit);
+            lvData.ItemsSource = _Item.DanhSachKhuyenMai;
         }
 
         private void btnThemMonPhu_Click(object sender, RoutedEventArgs e)
         {
+            WindowChonMon win = new WindowChonMon(mTransit, false);
+            if (win.ShowDialog() == true)
+            {
+                if (_Item == null)
+                    _Item = new Data.BOMenuKichThuocMon();
+                Data.BOMenuKhuyenMai km = new Data.BOMenuKhuyenMai();
+                km.KichThuocMonTang = win._ItemKichThuocMon.MenuKichThuocMon;
+                _Item.DanhSachKhuyenMai.Add(km);
 
+            }
+            else
+            {
+                btnHuy_Click(sender, e);
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
@@ -66,6 +89,7 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
+
             DialogResult = true;
         }
 

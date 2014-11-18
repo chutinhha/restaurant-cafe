@@ -21,6 +21,7 @@ namespace UserControlLibrary
         public Data.BOMenuKichThuocMon _ItemKichThuocMon = null;
         public Data.BOMenuMon _ItemMon = null;
         private Data.Transit mTransit = null;
+
         bool IsMon = true;
         public WindowChonMon(Data.Transit transit, bool isMon)
         {
@@ -38,7 +39,7 @@ namespace UserControlLibrary
             if (!IsMon)
             {
                 _ItemKichThuocMon = ob;
-                txtTenLoaiBan.Text = _ItemKichThuocMon.MenuMon.TenDai + " (" + _ItemKichThuocMon.MenuKichThuocMon.TenLoaiBan + ")";
+                txtTenLoaiBan.Text = _ItemKichThuocMon.TenMon;
             }
         }
 

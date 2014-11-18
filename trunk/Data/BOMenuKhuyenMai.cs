@@ -7,79 +7,112 @@ namespace Data
 {
     public class BOMenuKhuyenMai
     {
-        public static List<MENUKHUYENMAI> GetAll(Transit mTransit)
+        public Data.MENUKHUYENMAI MenuKhuyenMai { get; set; }
+        public Data.MENUKICHTHUOCMON KichThuocMonChinh { get; set; }
+        public Data.MENUKICHTHUOCMON KichThuocMonTang { get; set; }
+        public Data.MENUMON MenuMonChinh { get; set; }
+        public Data.MENUMON MenuMonTang { get; set; }
+
+        private FrameworkRepository<MENUKHUYENMAI> frmMenuKhuyenMai = null;
+        private FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = null;
+        private FrameworkRepository<MENUMON> frmMenuMon = null;
+        public BOMenuKhuyenMai()
         {
-            var res = (from g in mTransit.KaraokeEntities.MENUKHUYENMAIs
-                       join l in mTransit.KaraokeEntities.MENUKICHTHUOCMONs on g.KichThuocMonTang equals l.KichThuocMonID
-                       select new
-                       {
-                           MENUKHUYENMAIs = g,
-                           MENUKICHTHUOCMONs = l
-                       }).ToList().Select(s => s.MENUKHUYENMAIs);
-            return res.ToList();
+            MenuKhuyenMai = new MENUKHUYENMAI();
+            KichThuocMonChinh = new MENUKICHTHUOCMON();
+            KichThuocMonTang = new MENUKICHTHUOCMON();
+            MenuMonChinh = new MENUMON();
+            MenuMonTang = new MENUMON();
         }
 
-        public static List<MENUKHUYENMAI> GetAll(int KichThuocMonID, Transit mTransit)
+        public BOMenuKhuyenMai(Data.Transit transit)
         {
-            var res = (from g in mTransit.KaraokeEntities.MENUKHUYENMAIs
-                       join l in mTransit.KaraokeEntities.MENUKICHTHUOCMONs on g.KichThuocMonTang equals l.KichThuocMonID
-                       where g.KichThuocMonID == KichThuocMonID
-                       select new
-                       {
-                           MENUKHUYENMAIs = g,
-                           MENUKICHTHUOCMONs = l
-                       }).ToList().Select(s => s.MENUKHUYENMAIs);
-            return res.ToList();
+            transit.KaraokeEntities = new KaraokeEntities();
+            frmMenuKhuyenMai = new FrameworkRepository<MENUKHUYENMAI>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKHUYENMAIs);
+            frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
+            frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
         }
 
-        public static int Them(MENUKHUYENMAI item, Transit mTransit)
+        public IQueryable<BOMenuKichThuocMon> GetDanhSachKichThuocMon(Data.Transit transit)
         {
-            mTransit.KaraokeEntities.MENUKHUYENMAIs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ID;
+            return from km in frmMenuKhuyenMai.Query()
+                   join ktm in frmKichThuocMon.Query() on km.KichThuocMonTang equals ktm.KichThuocMonID
+                   join mm in frmMenuMon.Query() on ktm.MonID equals mm.MonID
+                   select new BOMenuKichThuocMon
+                   {
+                       MenuMon = mm,
+                       MenuKichThuocMon = ktm
+                   };
+
         }
 
-        public static int Xoa(int ID, Transit mTransit)
+        public void GetAll(Data.BOMenuKichThuocMon item, Data.Transit transit)
         {
-            MENUKHUYENMAI item = (from x in mTransit.KaraokeEntities.MENUKHUYENMAIs where x.ID == ID select x).First();
-            mTransit.KaraokeEntities.MENUKHUYENMAIs.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ID;
+            var res = from km in frmMenuKhuyenMai.Query()
+                      join ktm in frmKichThuocMon.Query() on km.KichThuocMonTang equals ktm.KichThuocMonID
+                      join mm in frmMenuMon.Query() on ktm.MonID equals mm.MonID
+                      where km.KichThuocMonID == item.MenuKichThuocMon.KichThuocMonID
+                      select new BOMenuKhuyenMai
+                      {
+                          MenuKhuyenMai = km,
+                          KichThuocMonTang = ktm,
+                          MenuMonTang = mm
+                      };
+            foreach (var line in res)
+            {
+                item.DanhSachKhuyenMai.Add(line);
+            }
         }
 
-        public static int Sua(MENUKHUYENMAI item, Transit mTransit)
+
+        public IQueryable<BOMenuKhuyenMai> GetAllGroupBy(Data.Transit transit)
         {
-            MENUKHUYENMAI m = (from x in mTransit.KaraokeEntities.MENUKHUYENMAIs where x.ID == item.ID select x).First();
-            m.KichThuocMonID = item.KichThuocMonID;
-            m.KichThuocMonTang = item.KichThuocMonTang;
-            m.TenKhuyenMai = item.TenKhuyenMai;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ID;
+            return from km in frmMenuKhuyenMai.Query()
+                   group new { } by new { km.KichThuocMonID, km } into resultSet
+                   select new BOMenuKhuyenMai()
+                      {
+                          MenuKhuyenMai = resultSet.Key.km
+                      };
+
         }
 
-        public static void Luu(List<MENUKHUYENMAI> lsArray, List<MENUKHUYENMAI> lsArrayDeleted, Transit mTransit)
+        public void Luu(List<BOMenuKhuyenMai> lsArray, List<BOMenuKhuyenMai> lsArrayDeleted, Transit mTransit)
         {
             if (lsArray != null)
-                foreach (MENUKHUYENMAI item in lsArray)
+                foreach (BOMenuKhuyenMai item in lsArray)
                 {
-                    if (item.ID > 0)
+                    if (item.MenuKhuyenMai.ID > 0)
                         Sua(item, mTransit);
                     else
                         Them(item, mTransit);
                 }
             if (lsArrayDeleted != null)
-                foreach (MENUKHUYENMAI item in lsArrayDeleted)
+                foreach (BOMenuKhuyenMai item in lsArrayDeleted)
                 {
-                    Xoa(item.ID, mTransit);
+                    Xoa(item, mTransit);
                 }
+            frmMenuKhuyenMai.Commit();
         }
 
-        public static void Luu(List<MENUKHUYENMAI> lsArray, Transit mTransit)
+        private int Them(BOMenuKhuyenMai item, Transit mTransit)
         {
-            foreach (MENUKHUYENMAI item in lsArray)
-            {
-                Sua(item, mTransit);
-            }
+            frmMenuKhuyenMai.AddObject(item.MenuKhuyenMai);
+            return item.MenuKhuyenMai.ID;
         }
+
+        private int Xoa(BOMenuKhuyenMai item, Transit mTransit)
+        {
+            item.MenuKhuyenMai.Deleted = true;
+            frmMenuKhuyenMai.Update(item.MenuKhuyenMai);
+            return item.MenuKhuyenMai.ID;
+        }
+
+        private int Sua(BOMenuKhuyenMai item, Transit mTransit)
+        {
+            item.MenuKhuyenMai.Edit = false;
+            frmMenuKhuyenMai.Update(item.MenuKhuyenMai);
+            return item.MenuKhuyenMai.ID;
+        }
+
     }
 }

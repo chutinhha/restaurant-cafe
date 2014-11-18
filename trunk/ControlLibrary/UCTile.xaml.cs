@@ -37,11 +37,7 @@ namespace ControlLibrary
             DispatcherTimer newTimer = new DispatcherTimer();
             newTimer.Interval = System.TimeSpan.FromSeconds(1);
             newTimer.Tick += newTimer_Tick;
-            newTimer.Start();
-            if (OnEventMinimized == null)
-                btnMinimized.Visibility = System.Windows.Visibility.Hidden;
-            if (OnEventExit == null)
-                btnExit.Visibility = System.Windows.Visibility.Hidden;
+            newTimer.Start();            
             if (mTransit != null)
             {
                 if (mTransit.NhanVien != null)
@@ -86,6 +82,14 @@ namespace ControlLibrary
         public delegate void OnMinimized();
         public event OnExit OnEventExit;
         public event OnMinimized OnEventMinimized;
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (OnEventMinimized == null)
+                btnMinimized.Visibility = System.Windows.Visibility.Hidden;
+            if (OnEventExit == null)
+                btnExit.Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }
 

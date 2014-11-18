@@ -67,7 +67,8 @@ namespace UserControlLibrary
             }
             BODinhLuong.Luu(ls, lsArrayDeleted, mTransit);
             LoadDanhSach();
-            MessageBox.Show("Lưu thành công");
+            UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
+            messageBox.ShowDialog();
         }
 
         private void btnThemMon_Click(object sender, RoutedEventArgs e)

@@ -20,10 +20,11 @@ namespace GUI
     public partial class MainWindow : Window
     {
         private Data.Transit mTransit = null;
-        public MainWindow()
+        public MainWindow(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = new Data.Transit();
+            mTransit = transit;
+            uCTile.SetTransit(mTransit);
             uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
         }
 
@@ -121,6 +122,11 @@ namespace GUI
         {
             WindowQuanLyThe win = new WindowQuanLyThe(mTransit);
             win.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnBanHang_Click(null, null);
         }
     }
 }

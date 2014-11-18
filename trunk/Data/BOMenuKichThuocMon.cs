@@ -10,6 +10,7 @@ namespace Data
         public Data.MENUKICHTHUOCMON MenuKichThuocMon { get; set; }
         public Data.MENUMON MenuMon { get; set; }
         public Data.LOAIBAN LoaiBan { get; set; }
+        public List<BOMenuKhuyenMai> DanhSachKhuyenMai { get; set; }
 
         public int KichThuocLoaiBan
         {
@@ -21,6 +22,19 @@ namespace Data
             }
         }
 
+        public string TenMon
+        {
+            get
+            {
+                if (MenuMon != null && MenuKichThuocMon != null)
+                    return MenuMon.TenDai + " (" + MenuKichThuocMon.TenLoaiBan + ")";
+                else
+                    return "";
+            }
+
+
+        }
+
         FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = null;
         FrameworkRepository<MENUMON> frmmenuMon = null;
         FrameworkRepository<LOAIBAN> frmLoaiBan = null;
@@ -30,6 +44,7 @@ namespace Data
             MenuKichThuocMon = new MENUKICHTHUOCMON();
             MenuMon = new MENUMON();
             LoaiBan = new LOAIBAN();
+            DanhSachKhuyenMai = new List<BOMenuKhuyenMai>();
         }
 
         public BOMenuKichThuocMon(Data.Transit transit)

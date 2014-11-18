@@ -41,7 +41,8 @@ namespace UserControlLibrary
                 lsArray.Add(li);
             }
             BOMenuGia.Luu(lsArray, mTransit);
-            MessageBox.Show("Lưu thành công");
+            UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
+            messageBox.ShowDialog();
             LoadDanhSachGiaBan();
         }
 
