@@ -12,10 +12,10 @@
             <RowDefinition/>
             <RowDefinition Height="70" />
         </Grid.RowDefinitions>
-        <my:UCTile Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+        <my:UCTile Name="ucTile" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
         <my:UCFloorPlan HorizontalAlignment="Stretch" Name="uCFloorPlan1" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="True" IsHitTestVisible="True" IsManipulationEnabled="True" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0" AllowDrop="False" ClipToBounds="False" OverridesDefaultStyle="False" _OnEventFloorPlan="uCFloorPlan1__OnEventFloorPlan" />
         <my:UCListArea Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="0,0,0,0" Name="uCListArea1" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
         </my:UCListArea>
-        <Button Content="Thoát" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnThoat" VerticalAlignment="Stretch" Click="btnThoat_Click" />
+        <my:POSButtonIcon Grid.Column="1" Grid.Row="2" Name="btnThoat" Click="btnThoat_Click" Content="Thoát" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="5" />        
     </Grid>
 </Window>

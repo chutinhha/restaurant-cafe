@@ -60,21 +60,30 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckValues())
+
+            List<Data.BOChiTietNhapKho> lsChiTietNhapKho = (List<Data.BOChiTietNhapKho>)btnDanhSachChiTiet.Tag;
+            if (lsChiTietNhapKho != null && lsChiTietNhapKho.Count > 0)
             {
-                if (_Item == null)
+                if (CheckValues())
                 {
-                    _Item = new Data.BONhapKho();
-                    _Item.NhapKho.Visual = true;
-                    _Item.NhapKho.Deleted = false;
-                    _Item.NhapKho.Edit = false;
+                    if (_Item == null)
+                    {
+                        _Item = new Data.BONhapKho();
+                        _Item.NhapKho.Visual = true;
+                        _Item.NhapKho.Deleted = false;
+                        _Item.NhapKho.Edit = false;
+                        _Item.NhapKho.NhanVienID = mTransit.NhanVien.NhanVienID;
+                    }
+                    GetValues();
+                    BONhapKho.Them(_Item, lsChiTietNhapKho, mTransit);
+                    BOQuanLyKho.NhapKho(lsChiTietNhapKho, mTransit);
+                    MessageBox.Show(lbTieuDe.Text + " thành công");
+                    DialogResult = true;
                 }
-                GetValues();
-                List<Data.BOChiTietNhapKho> lsChiTietNhapKho = (List<Data.BOChiTietNhapKho>)btnDanhSachChiTiet.Tag;
-                BONhapKho.Them(_Item, lsChiTietNhapKho, mTransit);
-                BOQuanLyKho.NhapKho(lsChiTietNhapKho, mTransit);
-                MessageBox.Show(lbTieuDe.Text + " thành công");
-                DialogResult = true;
+            }
+            else
+            {
+                lbStatus.Text = "Chưa chọn danh sách món";
             }
         }
 
@@ -100,8 +109,6 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.NhapKho.Visual = true;
-            _Item.NhapKho.Deleted = false;
             _Item.NhapKho.KhoID = 0;
             _Item.NhapKho.NhaCungCapID = 0;
             _Item.NhapKho.ThoiGian = DateTime.Now;

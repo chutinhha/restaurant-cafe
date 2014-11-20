@@ -54,7 +54,10 @@ namespace UserControlLibrary
 
         private void btnChonMon_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (_ItemMon != null)
+            {
+                DialogResult = true;
+            }
         }
 
         private void btnDong_Click(object sender, RoutedEventArgs e)

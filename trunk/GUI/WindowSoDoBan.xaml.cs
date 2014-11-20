@@ -23,17 +23,28 @@ namespace GUI
         {
             mTransit = tran;
             InitializeComponent();
-        }                
+            ucTile.SetTransit(tran);
+            ucTile.TenChucNang = "Sơ đồ bàn";
+
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.Init(mTransit);
             uCListArea1.Init(mTransit);
-            uCListArea1._UCFloorPlan = uCFloorPlan1;            
+            uCListArea1._UCFloorPlan = uCFloorPlan1;
+
+            if (mTransit.NhanVien.LoaiNhanVienID < 2)
+                btnThoat.Content = "Màn hình chính";
+            else
+                btnThoat.Content = "Thoát";
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (mTransit.NhanVien.LoaiNhanVienID < 2)
+                DialogResult = false;
+            else
+                DialogResult = true;
         }
 
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)

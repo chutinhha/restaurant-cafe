@@ -45,21 +45,20 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETBANHANG_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "CHITIETBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETBANHANG_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETCHINHKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHINHKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.CHUYENKHO), "CHITIETCHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHUYENKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETCHUYENKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETCHUYENKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETGOPBAN_GOPBAN", "GOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.GOPBAN), "CHITIETGOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETGOPBAN), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_HUKHO", "HUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.HUKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETLICHSUBANHANG_LICHSUBANHANG", "LICHSUBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.LICHSUBANHANG), "CHITIETLICHSUBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETLICHSUBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETLICHSUBANHANG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "CHITIETLICHSUBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETLICHSUBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETLICHSUBANHANG_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETLICHSUBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETLICHSUBANHANG), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETMATKHO_MATKHO", "MATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MATKHO), "CHITIETMATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETMATKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETMATKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETMATKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.LOAIBAN), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_NHAPKHO", "NHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHAPKHO), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETNHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETNHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETQUYEN_CHUCNANG", "CHUCNANG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.CHUCNANG), "CHITIETQUYEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETQUYEN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETQUYEN_QUYEN", "QUYEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.QUYEN), "CHITIETQUYEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETQUYEN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETTACHBAN_TACHBAN", "TACHBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TACHBAN), "CHITIETTACHBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETTACHBAN), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_HUKHO", "HUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.HUKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "CHITIETHUKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHITIETHUKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHUCNANG_NHOMCHUCNANG", "NHOMCHUCNANG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHOMCHUCNANG), "CHUCNANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHUCNANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.CHUCNANG), "GIAODIENCHUCNANGBANHANG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.GIAODIENCHUCNANGBANHANG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_CHUYENBAN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "CHUYENBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.CHUYENBAN), true)]
@@ -70,6 +69,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_DINHLUONG_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "DINHLUONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.DINHLUONG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_DINHLUONG_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "DINHLUONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.DINHLUONG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_LOAIBAN_DONVI", "DONVI", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.DONVI), "LOAIBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.LOAIBAN), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHO_DONVI", "DONVI", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.DONVI), "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHOTONG_DONVI", "DONVI", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.DONVI), "TONKHOTONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHOTONG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_GOPBAN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "GOPBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.GOPBAN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_HOPDUNGTIEN_LOAIHOPDUNGTIEN", "LOAIHOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.LOAIHOPDUNGTIEN), "HOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.HOPDUNGTIEN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_HOPDUNGTIEN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "HOPDUNGTIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.HOPDUNGTIEN), true)]
@@ -100,17 +101,19 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUITEMMAYIN_MAYIN", "MAYIN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.MAYIN), "MENUITEMMAYIN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUITEMMAYIN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUGIA_MENULOAIGIA", "MENULOAIGIA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENULOAIGIA), "MENUGIA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUGIA), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUITEMMAYIN_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.MENUMON), "MENUITEMMAYIN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUITEMMAYIN), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKICHTHUOCMON), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "MENUKHUYENMAI", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKHUYENMAI), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUKICHTHUOCMON), "MENUKHUYENMAI", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKHUYENMAI), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "MENUKICHTHUOCMON", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUKICHTHUOCMON), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "fk_MENUGROUP_MENUGROUPTYPE", "MENULOAINHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENULOAINHOM), "MENUNHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUNHOM), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "fk_MENUITEM_MENUGROUP", "MENUNHOM", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUNHOM), "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.MENUMON), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHO_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.MENUMON), "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHOTONG_MENUMON", "MENUMON", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.MENUMON), "TONKHOTONG", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHOTONG), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_NHAPKHO_NHACUNGCAP", "NHACUNGCAP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHACUNGCAP), "NHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.NHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_NHAPKHO_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "NHAPKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.NHAPKHO), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_QUYENNHANVIEN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "QUYENNHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.QUYENNHANVIEN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TACHBAN_NHANVIEN", "NHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.NHANVIEN), "TACHBAN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TACHBAN), true)]
 [assembly: EdmRelationshipAttribute("KaraokeModel", "FK_QUYENNHANVIEN_QUYEN", "QUYEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.QUYEN), "QUYENNHANVIEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.QUYENNHANVIEN), true)]
-[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHO_TONKHO", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "TONKHO1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHO), true)]
+[assembly: EdmRelationshipAttribute("KaraokeModel", "FK_TONKHO_TONKHO1", "TONKHO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.TONKHO), "TONKHO1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.TONKHO), true)]
 
 #endregion
 
@@ -245,6 +248,22 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<CHITIETCHUYENKHO> CHITIETCHUYENKHOes
+        {
+            get
+            {
+                if ((_CHITIETCHUYENKHOes == null))
+                {
+                    _CHITIETCHUYENKHOes = base.CreateObjectSet<CHITIETCHUYENKHO>("CHITIETCHUYENKHOes");
+                }
+                return _CHITIETCHUYENKHOes;
+            }
+        }
+        private ObjectSet<CHITIETCHUYENKHO> _CHITIETCHUYENKHOes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<CHITIETGOPBAN> CHITIETGOPBANs
         {
             get
@@ -257,6 +276,22 @@ namespace Data
             }
         }
         private ObjectSet<CHITIETGOPBAN> _CHITIETGOPBANs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CHITIETHUKHO> CHITIETHUKHOes
+        {
+            get
+            {
+                if ((_CHITIETHUKHOes == null))
+                {
+                    _CHITIETHUKHOes = base.CreateObjectSet<CHITIETHUKHO>("CHITIETHUKHOes");
+                }
+                return _CHITIETHUKHOes;
+            }
+        }
+        private ObjectSet<CHITIETHUKHO> _CHITIETHUKHOes;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -341,22 +376,6 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CHITIETHUKHO> CHITIETHUKHOes
-        {
-            get
-            {
-                if ((_CHITIETHUKHOes == null))
-                {
-                    _CHITIETHUKHOes = base.CreateObjectSet<CHITIETHUKHO>("CHITIETHUKHOes");
-                }
-                return _CHITIETHUKHOes;
-            }
-        }
-        private ObjectSet<CHITIETHUKHO> _CHITIETHUKHOes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<CHUCNANG> CHUCNANGs
         {
             get
@@ -437,22 +456,6 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<GOPBAN> GOPBANs
-        {
-            get
-            {
-                if ((_GOPBANs == null))
-                {
-                    _GOPBANs = base.CreateObjectSet<GOPBAN>("GOPBANs");
-                }
-                return _GOPBANs;
-            }
-        }
-        private ObjectSet<GOPBAN> _GOPBANs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<GIAODIENCHUCNANGBANHANG> GIAODIENCHUCNANGBANHANGs
         {
             get
@@ -465,6 +468,22 @@ namespace Data
             }
         }
         private ObjectSet<GIAODIENCHUCNANGBANHANG> _GIAODIENCHUCNANGBANHANGs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<GOPBAN> GOPBANs
+        {
+            get
+            {
+                if ((_GOPBANs == null))
+                {
+                    _GOPBANs = base.CreateObjectSet<GOPBAN>("GOPBANs");
+                }
+                return _GOPBANs;
+            }
+        }
+        private ObjectSet<GOPBAN> _GOPBANs;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -837,22 +856,6 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<MENUKICHTHUOCMON> MENUKICHTHUOCMONs
-        {
-            get
-            {
-                if ((_MENUKICHTHUOCMONs == null))
-                {
-                    _MENUKICHTHUOCMONs = base.CreateObjectSet<MENUKICHTHUOCMON>("MENUKICHTHUOCMONs");
-                }
-                return _MENUKICHTHUOCMONs;
-            }
-        }
-        private ObjectSet<MENUKICHTHUOCMON> _MENUKICHTHUOCMONs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<MENUKHUYENMAI> MENUKHUYENMAIs
         {
             get
@@ -865,6 +868,22 @@ namespace Data
             }
         }
         private ObjectSet<MENUKHUYENMAI> _MENUKHUYENMAIs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MENUKICHTHUOCMON> MENUKICHTHUOCMONs
+        {
+            get
+            {
+                if ((_MENUKICHTHUOCMONs == null))
+                {
+                    _MENUKICHTHUOCMONs = base.CreateObjectSet<MENUKICHTHUOCMON>("MENUKICHTHUOCMONs");
+                }
+                return _MENUKICHTHUOCMONs;
+            }
+        }
+        private ObjectSet<MENUKICHTHUOCMON> _MENUKICHTHUOCMONs;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1029,6 +1048,22 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<TACHBAN> TACHBANs
         {
             get
@@ -1041,38 +1076,6 @@ namespace Data
             }
         }
         private ObjectSet<TACHBAN> _TACHBANs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<TONKHO> TONKHOes
-        {
-            get
-            {
-                if ((_TONKHOes == null))
-                {
-                    _TONKHOes = base.CreateObjectSet<TONKHO>("TONKHOes");
-                }
-                return _TONKHOes;
-            }
-        }
-        private ObjectSet<TONKHO> _TONKHOes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<TONKHOTONG> TONKHOTONGs
-        {
-            get
-            {
-                if ((_TONKHOTONGs == null))
-                {
-                    _TONKHOTONGs = base.CreateObjectSet<TONKHOTONG>("TONKHOTONGs");
-                }
-                return _TONKHOTONGs;
-            }
-        }
-        private ObjectSet<TONKHOTONG> _TONKHOTONGs;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1141,6 +1144,38 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<TONKHO> TONKHOes
+        {
+            get
+            {
+                if ((_TONKHOes == null))
+                {
+                    _TONKHOes = base.CreateObjectSet<TONKHO>("TONKHOes");
+                }
+                return _TONKHOes;
+            }
+        }
+        private ObjectSet<TONKHO> _TONKHOes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TONKHOTONG> TONKHOTONGs
+        {
+            get
+            {
+                if ((_TONKHOTONGs == null))
+                {
+                    _TONKHOTONGs = base.CreateObjectSet<TONKHOTONG>("TONKHOTONGs");
+                }
+                return _TONKHOTONGs;
+            }
+        }
+        private ObjectSet<TONKHOTONG> _TONKHOTONGs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<TRANGTHAI> TRANGTHAIs
         {
             get
@@ -1153,6 +1188,38 @@ namespace Data
             }
         }
         private ObjectSet<TRANGTHAI> _TRANGTHAIs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BAOCAOLICHDANGNHAP> BAOCAOLICHDANGNHAPs
+        {
+            get
+            {
+                if ((_BAOCAOLICHDANGNHAPs == null))
+                {
+                    _BAOCAOLICHDANGNHAPs = base.CreateObjectSet<BAOCAOLICHDANGNHAP>("BAOCAOLICHDANGNHAPs");
+                }
+                return _BAOCAOLICHDANGNHAPs;
+            }
+        }
+        private ObjectSet<BAOCAOLICHDANGNHAP> _BAOCAOLICHDANGNHAPs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BAOCAONGAY> BAOCAONGAYs
+        {
+            get
+            {
+                if ((_BAOCAONGAYs == null))
+                {
+                    _BAOCAONGAYs = base.CreateObjectSet<BAOCAONGAY>("BAOCAONGAYs");
+                }
+                return _BAOCAONGAYs;
+            }
+        }
+        private ObjectSet<BAOCAONGAY> _BAOCAONGAYs;
 
         #endregion
 
@@ -1199,11 +1266,27 @@ namespace Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the CHITIETCHUYENKHOes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCHITIETCHUYENKHOes(CHITIETCHUYENKHO cHITIETCHUYENKHO)
+        {
+            base.AddObject("CHITIETCHUYENKHOes", cHITIETCHUYENKHO);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the CHITIETGOPBANs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCHITIETGOPBANs(CHITIETGOPBAN cHITIETGOPBAN)
         {
             base.AddObject("CHITIETGOPBANs", cHITIETGOPBAN);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CHITIETHUKHOes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCHITIETHUKHOes(CHITIETHUKHO cHITIETHUKHO)
+        {
+            base.AddObject("CHITIETHUKHOes", cHITIETHUKHO);
         }
     
         /// <summary>
@@ -1247,14 +1330,6 @@ namespace Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the CHITIETHUKHOes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCHITIETHUKHOes(CHITIETHUKHO cHITIETHUKHO)
-        {
-            base.AddObject("CHITIETHUKHOes", cHITIETHUKHO);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the CHUCNANGs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCHUCNANGs(CHUCNANG cHUCNANG)
@@ -1295,19 +1370,19 @@ namespace Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the GOPBANs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToGOPBANs(GOPBAN gOPBAN)
-        {
-            base.AddObject("GOPBANs", gOPBAN);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the GIAODIENCHUCNANGBANHANGs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToGIAODIENCHUCNANGBANHANGs(GIAODIENCHUCNANGBANHANG gIAODIENCHUCNANGBANHANG)
         {
             base.AddObject("GIAODIENCHUCNANGBANHANGs", gIAODIENCHUCNANGBANHANG);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the GOPBANs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToGOPBANs(GOPBAN gOPBAN)
+        {
+            base.AddObject("GOPBANs", gOPBAN);
         }
     
         /// <summary>
@@ -1495,19 +1570,19 @@ namespace Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the MENUKICHTHUOCMONs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMENUKICHTHUOCMONs(MENUKICHTHUOCMON mENUKICHTHUOCMON)
-        {
-            base.AddObject("MENUKICHTHUOCMONs", mENUKICHTHUOCMON);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the MENUKHUYENMAIs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToMENUKHUYENMAIs(MENUKHUYENMAI mENUKHUYENMAI)
         {
             base.AddObject("MENUKHUYENMAIs", mENUKHUYENMAI);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MENUKICHTHUOCMONs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMENUKICHTHUOCMONs(MENUKICHTHUOCMON mENUKICHTHUOCMON)
+        {
+            base.AddObject("MENUKICHTHUOCMONs", mENUKICHTHUOCMON);
         }
     
         /// <summary>
@@ -1591,27 +1666,19 @@ namespace Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the TACHBANs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTACHBANs(TACHBAN tACHBAN)
         {
             base.AddObject("TACHBANs", tACHBAN);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the TONKHOes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTONKHOes(TONKHO tONKHO)
-        {
-            base.AddObject("TONKHOes", tONKHO);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the TONKHOTONGs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTONKHOTONGs(TONKHOTONG tONKHOTONG)
-        {
-            base.AddObject("TONKHOTONGs", tONKHOTONG);
         }
     
         /// <summary>
@@ -1647,11 +1714,43 @@ namespace Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the TONKHOes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTONKHOes(TONKHO tONKHO)
+        {
+            base.AddObject("TONKHOes", tONKHO);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TONKHOTONGs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTONKHOTONGs(TONKHOTONG tONKHOTONG)
+        {
+            base.AddObject("TONKHOTONGs", tONKHOTONG);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the TRANGTHAIs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTRANGTHAIs(TRANGTHAI tRANGTHAI)
         {
             base.AddObject("TRANGTHAIs", tRANGTHAI);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BAOCAOLICHDANGNHAPs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBAOCAOLICHDANGNHAPs(BAOCAOLICHDANGNHAP bAOCAOLICHDANGNHAP)
+        {
+            base.AddObject("BAOCAOLICHDANGNHAPs", bAOCAOLICHDANGNHAP);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BAOCAONGAYs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBAOCAONGAYs(BAOCAONGAY bAOCAONGAY)
+        {
+            base.AddObject("BAOCAONGAYs", bAOCAONGAY);
         }
 
         #endregion
@@ -1881,6 +1980,78 @@ namespace Data
         private global::System.Byte[] _Hinh;
         partial void OnHinhChanging(global::System.Byte[] value);
         partial void OnHinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
 
         #endregion
 
@@ -2875,6 +3046,576 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="BAOCAOLICHDANGNHAP")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BAOCAOLICHDANGNHAP : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BAOCAOLICHDANGNHAP object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static BAOCAOLICHDANGNHAP CreateBAOCAOLICHDANGNHAP(global::System.Int32 id)
+        {
+            BAOCAOLICHDANGNHAP bAOCAOLICHDANGNHAP = new BAOCAOLICHDANGNHAP();
+            bAOCAOLICHDANGNHAP.ID = id;
+            return bAOCAOLICHDANGNHAP;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ThoiGian
+        {
+            get
+            {
+                return _ThoiGian;
+            }
+            set
+            {
+                OnThoiGianChanging(value);
+                ReportPropertyChanging("ThoiGian");
+                _ThoiGian = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ThoiGian");
+                OnThoiGianChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ThoiGian;
+        partial void OnThoiGianChanging(Nullable<global::System.DateTime> value);
+        partial void OnThoiGianChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TenNhanVien
+        {
+            get
+            {
+                return _TenNhanVien;
+            }
+            set
+            {
+                OnTenNhanVienChanging(value);
+                ReportPropertyChanging("TenNhanVien");
+                _TenNhanVien = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenNhanVien");
+                OnTenNhanVienChanged();
+            }
+        }
+        private global::System.String _TenNhanVien;
+        partial void OnTenNhanVienChanging(global::System.String value);
+        partial void OnTenNhanVienChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TenLoaiNhanVien
+        {
+            get
+            {
+                return _TenLoaiNhanVien;
+            }
+            set
+            {
+                OnTenLoaiNhanVienChanging(value);
+                ReportPropertyChanging("TenLoaiNhanVien");
+                _TenLoaiNhanVien = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenLoaiNhanVien");
+                OnTenLoaiNhanVienChanged();
+            }
+        }
+        private global::System.String _TenLoaiNhanVien;
+        partial void OnTenLoaiNhanVienChanging(global::System.String value);
+        partial void OnTenLoaiNhanVienChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="BAOCAONGAY")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BAOCAONGAY : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BAOCAONGAY object.
+        /// </summary>
+        /// <param name="banHangID">Initial value of the BanHangID property.</param>
+        public static BAOCAONGAY CreateBAOCAONGAY(global::System.Int32 banHangID)
+        {
+            BAOCAONGAY bAOCAONGAY = new BAOCAONGAY();
+            bAOCAONGAY.BanHangID = banHangID;
+            return bAOCAONGAY;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 BanHangID
+        {
+            get
+            {
+                return _BanHangID;
+            }
+            set
+            {
+                if (_BanHangID != value)
+                {
+                    OnBanHangIDChanging(value);
+                    ReportPropertyChanging("BanHangID");
+                    _BanHangID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("BanHangID");
+                    OnBanHangIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _BanHangID;
+        partial void OnBanHangIDChanging(global::System.Int32 value);
+        partial void OnBanHangIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NhanVienID
+        {
+            get
+            {
+                return _NhanVienID;
+            }
+            set
+            {
+                OnNhanVienIDChanging(value);
+                ReportPropertyChanging("NhanVienID");
+                _NhanVienID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NhanVienID");
+                OnNhanVienIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NhanVienID;
+        partial void OnNhanVienIDChanging(Nullable<global::System.Int32> value);
+        partial void OnNhanVienIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BanID
+        {
+            get
+            {
+                return _BanID;
+            }
+            set
+            {
+                OnBanIDChanging(value);
+                ReportPropertyChanging("BanID");
+                _BanID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BanID");
+                OnBanIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BanID;
+        partial void OnBanIDChanging(Nullable<global::System.Int32> value);
+        partial void OnBanIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TrangThaiID
+        {
+            get
+            {
+                return _TrangThaiID;
+            }
+            set
+            {
+                OnTrangThaiIDChanging(value);
+                ReportPropertyChanging("TrangThaiID");
+                _TrangThaiID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrangThaiID");
+                OnTrangThaiIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TrangThaiID;
+        partial void OnTrangThaiIDChanging(Nullable<global::System.Int32> value);
+        partial void OnTrangThaiIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NgayBan
+        {
+            get
+            {
+                return _NgayBan;
+            }
+            set
+            {
+                OnNgayBanChanging(value);
+                ReportPropertyChanging("NgayBan");
+                _NgayBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NgayBan");
+                OnNgayBanChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NgayBan;
+        partial void OnNgayBanChanging(Nullable<global::System.DateTime> value);
+        partial void OnNgayBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MaHoaDon
+        {
+            get
+            {
+                return _MaHoaDon;
+            }
+            set
+            {
+                OnMaHoaDonChanging(value);
+                ReportPropertyChanging("MaHoaDon");
+                _MaHoaDon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaHoaDon");
+                OnMaHoaDonChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MaHoaDon;
+        partial void OnMaHoaDonChanging(Nullable<global::System.Int32> value);
+        partial void OnMaHoaDonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienMat
+        {
+            get
+            {
+                return _TienMat;
+            }
+            set
+            {
+                OnTienMatChanging(value);
+                ReportPropertyChanging("TienMat");
+                _TienMat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienMat");
+                OnTienMatChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienMat;
+        partial void OnTienMatChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienMatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TheID
+        {
+            get
+            {
+                return _TheID;
+            }
+            set
+            {
+                OnTheIDChanging(value);
+                ReportPropertyChanging("TheID");
+                _TheID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TheID");
+                OnTheIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TheID;
+        partial void OnTheIDChanging(Nullable<global::System.Int32> value);
+        partial void OnTheIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienThe
+        {
+            get
+            {
+                return _TienThe;
+            }
+            set
+            {
+                OnTienTheChanging(value);
+                ReportPropertyChanging("TienThe");
+                _TienThe = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienThe");
+                OnTienTheChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienThe;
+        partial void OnTienTheChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienTheChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienTraLai
+        {
+            get
+            {
+                return _TienTraLai;
+            }
+            set
+            {
+                OnTienTraLaiChanging(value);
+                ReportPropertyChanging("TienTraLai");
+                _TienTraLai = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienTraLai");
+                OnTienTraLaiChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienTraLai;
+        partial void OnTienTraLaiChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienTraLaiChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienGiam
+        {
+            get
+            {
+                return _TienGiam;
+            }
+            set
+            {
+                OnTienGiamChanging(value);
+                ReportPropertyChanging("TienGiam");
+                _TienGiam = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienGiam");
+                OnTienGiamChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienGiam;
+        partial void OnTienGiamChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienGiamChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ChietKhau
+        {
+            get
+            {
+                return _ChietKhau;
+            }
+            set
+            {
+                OnChietKhauChanging(value);
+                ReportPropertyChanging("ChietKhau");
+                _ChietKhau = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChietKhau");
+                OnChietKhauChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ChietKhau;
+        partial void OnChietKhauChanging(Nullable<global::System.Decimal> value);
+        partial void OnChietKhauChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienBo
+        {
+            get
+            {
+                return _TienBo;
+            }
+            set
+            {
+                OnTienBoChanging(value);
+                ReportPropertyChanging("TienBo");
+                _TienBo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienBo");
+                OnTienBoChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienBo;
+        partial void OnTienBoChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienBoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> PhiDichVu
+        {
+            get
+            {
+                return _PhiDichVu;
+            }
+            set
+            {
+                OnPhiDichVuChanging(value);
+                ReportPropertyChanging("PhiDichVu");
+                _PhiDichVu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PhiDichVu");
+                OnPhiDichVuChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _PhiDichVu;
+        partial void OnPhiDichVuChanging(Nullable<global::System.Decimal> value);
+        partial void OnPhiDichVuChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TongTien
+        {
+            get
+            {
+                return _TongTien;
+            }
+            set
+            {
+                OnTongTienChanging(value);
+                ReportPropertyChanging("TongTien");
+                _TongTien = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TongTien");
+                OnTongTienChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TongTien;
+        partial void OnTongTienChanging(Nullable<global::System.Decimal> value);
+        partial void OnTongTienChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KhachHangID
+        {
+            get
+            {
+                return _KhachHangID;
+            }
+            set
+            {
+                OnKhachHangIDChanging(value);
+                ReportPropertyChanging("KhachHangID");
+                _KhachHangID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KhachHangID");
+                OnKhachHangIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KhachHangID;
+        partial void OnKhachHangIDChanging(Nullable<global::System.Int32> value);
+        partial void OnKhachHangIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TienKhacHang
+        {
+            get
+            {
+                return _TienKhacHang;
+            }
+            set
+            {
+                OnTienKhacHangChanging(value);
+                ReportPropertyChanging("TienKhacHang");
+                _TienKhacHang = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TienKhacHang");
+                OnTienKhacHangChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TienKhacHang;
+        partial void OnTienKhacHangChanging(Nullable<global::System.Decimal> value);
+        partial void OnTienKhacHangChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="CHINHKHO")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2885,11 +3626,11 @@ namespace Data
         /// <summary>
         /// Create a new CHINHKHO object.
         /// </summary>
-        /// <param name="chiKhoID">Initial value of the ChiKhoID property.</param>
-        public static CHINHKHO CreateCHINHKHO(global::System.Int32 chiKhoID)
+        /// <param name="chinhKhoID">Initial value of the ChinhKhoID property.</param>
+        public static CHINHKHO CreateCHINHKHO(global::System.Int32 chinhKhoID)
         {
             CHINHKHO cHINHKHO = new CHINHKHO();
-            cHINHKHO.ChiKhoID = chiKhoID;
+            cHINHKHO.ChinhKhoID = chinhKhoID;
             return cHINHKHO;
         }
 
@@ -2902,27 +3643,27 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ChiKhoID
+        public global::System.Int32 ChinhKhoID
         {
             get
             {
-                return _ChiKhoID;
+                return _ChinhKhoID;
             }
             set
             {
-                if (_ChiKhoID != value)
+                if (_ChinhKhoID != value)
                 {
-                    OnChiKhoIDChanging(value);
-                    ReportPropertyChanging("ChiKhoID");
-                    _ChiKhoID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ChiKhoID");
-                    OnChiKhoIDChanged();
+                    OnChinhKhoIDChanging(value);
+                    ReportPropertyChanging("ChinhKhoID");
+                    _ChinhKhoID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ChinhKhoID");
+                    OnChinhKhoIDChanged();
                 }
             }
         }
-        private global::System.Int32 _ChiKhoID;
-        partial void OnChiKhoIDChanging(global::System.Int32 value);
-        partial void OnChiKhoIDChanged();
+        private global::System.Int32 _ChinhKhoID;
+        partial void OnChinhKhoIDChanging(global::System.Int32 value);
+        partial void OnChinhKhoIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3019,6 +3760,78 @@ namespace Data
         private Nullable<global::System.Decimal> _TongTien;
         partial void OnTongTienChanging(Nullable<global::System.Decimal> value);
         partial void OnTongTienChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
 
         #endregion
 
@@ -3589,54 +4402,6 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMon
-        {
-            get
-            {
-                return _KichThuocMon;
-            }
-            set
-            {
-                OnKichThuocMonChanging(value);
-                ReportPropertyChanging("KichThuocMon");
-                _KichThuocMon = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMon");
-                OnKichThuocMonChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMon;
-        partial void OnKichThuocMonChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuong
-        {
-            get
-            {
-                return _SoLuong;
-            }
-            set
-            {
-                OnSoLuongChanging(value);
-                ReportPropertyChanging("SoLuong");
-                _SoLuong = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuong");
-                OnSoLuongChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuong;
-        partial void OnSoLuongChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> TonKhoID
         {
             get
@@ -3805,6 +4570,263 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETCHINHKHO_TONKHO", "TONKHO", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="CHITIETCHUYENKHO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CHITIETCHUYENKHO : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CHITIETCHUYENKHO object.
+        /// </summary>
+        /// <param name="chiTietChuyenKhoID">Initial value of the ChiTietChuyenKhoID property.</param>
+        public static CHITIETCHUYENKHO CreateCHITIETCHUYENKHO(global::System.Int32 chiTietChuyenKhoID)
+        {
+            CHITIETCHUYENKHO cHITIETCHUYENKHO = new CHITIETCHUYENKHO();
+            cHITIETCHUYENKHO.ChiTietChuyenKhoID = chiTietChuyenKhoID;
+            return cHITIETCHUYENKHO;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ChiTietChuyenKhoID
+        {
+            get
+            {
+                return _ChiTietChuyenKhoID;
+            }
+            set
+            {
+                if (_ChiTietChuyenKhoID != value)
+                {
+                    OnChiTietChuyenKhoIDChanging(value);
+                    ReportPropertyChanging("ChiTietChuyenKhoID");
+                    _ChiTietChuyenKhoID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ChiTietChuyenKhoID");
+                    OnChiTietChuyenKhoIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ChiTietChuyenKhoID;
+        partial void OnChiTietChuyenKhoIDChanging(global::System.Int32 value);
+        partial void OnChiTietChuyenKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ChuyenKhoID
+        {
+            get
+            {
+                return _ChuyenKhoID;
+            }
+            set
+            {
+                OnChuyenKhoIDChanging(value);
+                ReportPropertyChanging("ChuyenKhoID");
+                _ChuyenKhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChuyenKhoID");
+                OnChuyenKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ChuyenKhoID;
+        partial void OnChuyenKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnChuyenKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TonKhoID
+        {
+            get
+            {
+                return _TonKhoID;
+            }
+            set
+            {
+                OnTonKhoIDChanging(value);
+                ReportPropertyChanging("TonKhoID");
+                _TonKhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TonKhoID");
+                OnTonKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TonKhoID;
+        partial void OnTonKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnTonKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO")]
+        public CHUYENKHO CHUYENKHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CHUYENKHO> CHUYENKHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHUYENKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_TONKHO", "TONKHO")]
+        public TONKHO TONKHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "TONKHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "TONKHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TONKHO> TONKHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "TONKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "TONKHO", value);
                 }
             }
         }
@@ -4062,6 +5084,407 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GOPBAN>("KaraokeModel.FK_CHITIETGOPBAN_GOPBAN", "GOPBAN", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="CHITIETHUKHO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CHITIETHUKHO : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CHITIETHUKHO object.
+        /// </summary>
+        /// <param name="chiTietHuKhoID">Initial value of the ChiTietHuKhoID property.</param>
+        public static CHITIETHUKHO CreateCHITIETHUKHO(global::System.Int32 chiTietHuKhoID)
+        {
+            CHITIETHUKHO cHITIETHUKHO = new CHITIETHUKHO();
+            cHITIETHUKHO.ChiTietHuKhoID = chiTietHuKhoID;
+            return cHITIETHUKHO;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ChiTietHuKhoID
+        {
+            get
+            {
+                return _ChiTietHuKhoID;
+            }
+            set
+            {
+                if (_ChiTietHuKhoID != value)
+                {
+                    OnChiTietHuKhoIDChanging(value);
+                    ReportPropertyChanging("ChiTietHuKhoID");
+                    _ChiTietHuKhoID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ChiTietHuKhoID");
+                    OnChiTietHuKhoIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ChiTietHuKhoID;
+        partial void OnChiTietHuKhoIDChanging(global::System.Int32 value);
+        partial void OnChiTietHuKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> HuKhoID
+        {
+            get
+            {
+                return _HuKhoID;
+            }
+            set
+            {
+                OnHuKhoIDChanging(value);
+                ReportPropertyChanging("HuKhoID");
+                _HuKhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HuKhoID");
+                OnHuKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _HuKhoID;
+        partial void OnHuKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnHuKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MonID
+        {
+            get
+            {
+                return _MonID;
+            }
+            set
+            {
+                OnMonIDChanging(value);
+                ReportPropertyChanging("MonID");
+                _MonID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MonID");
+                OnMonIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MonID;
+        partial void OnMonIDChanging(Nullable<global::System.Int32> value);
+        partial void OnMonIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DonViID
+        {
+            get
+            {
+                return _DonViID;
+            }
+            set
+            {
+                OnDonViIDChanging(value);
+                ReportPropertyChanging("DonViID");
+                _DonViID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DonViID");
+                OnDonViIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DonViID;
+        partial void OnDonViIDChanging(Nullable<global::System.Int32> value);
+        partial void OnDonViIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DonViTinh
+        {
+            get
+            {
+                return _DonViTinh;
+            }
+            set
+            {
+                OnDonViTinhChanging(value);
+                ReportPropertyChanging("DonViTinh");
+                _DonViTinh = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DonViTinh");
+                OnDonViTinhChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DonViTinh;
+        partial void OnDonViTinhChanging(Nullable<global::System.Int32> value);
+        partial void OnDonViTinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LoaiBanID
+        {
+            get
+            {
+                return _LoaiBanID;
+            }
+            set
+            {
+                OnLoaiBanIDChanging(value);
+                ReportPropertyChanging("LoaiBanID");
+                _LoaiBanID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LoaiBanID");
+                OnLoaiBanIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _LoaiBanID;
+        partial void OnLoaiBanIDChanging(Nullable<global::System.Int32> value);
+        partial void OnLoaiBanIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuong
+        {
+            get
+            {
+                return _SoLuong;
+            }
+            set
+            {
+                OnSoLuongChanging(value);
+                ReportPropertyChanging("SoLuong");
+                _SoLuong = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuong");
+                OnSoLuongChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuong;
+        partial void OnSoLuongChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Gia
+        {
+            get
+            {
+                return _Gia;
+            }
+            set
+            {
+                OnGiaChanging(value);
+                ReportPropertyChanging("Gia");
+                _Gia = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Gia");
+                OnGiaChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Gia;
+        partial void OnGiaChanging(Nullable<global::System.Decimal> value);
+        partial void OnGiaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TonKhoID
+        {
+            get
+            {
+                return _TonKhoID;
+            }
+            set
+            {
+                OnTonKhoIDChanging(value);
+                ReportPropertyChanging("TonKhoID");
+                _TonKhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TonKhoID");
+                OnTonKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TonKhoID;
+        partial void OnTonKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnTonKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_HUKHO", "HUKHO")]
+        public HUKHO HUKHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<HUKHO> HUKHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO")]
+        public TONKHO TONKHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TONKHO> TONKHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO", value);
                 }
             }
         }
@@ -4470,78 +5893,6 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MatKhoID
-        {
-            get
-            {
-                return _MatKhoID;
-            }
-            set
-            {
-                OnMatKhoIDChanging(value);
-                ReportPropertyChanging("MatKhoID");
-                _MatKhoID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MatKhoID");
-                OnMatKhoIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _MatKhoID;
-        partial void OnMatKhoIDChanging(Nullable<global::System.Int32> value);
-        partial void OnMatKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMonID
-        {
-            get
-            {
-                return _KichThuocMonID;
-            }
-            set
-            {
-                OnKichThuocMonIDChanging(value);
-                ReportPropertyChanging("KichThuocMonID");
-                _KichThuocMonID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMonID");
-                OnKichThuocMonIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMonID;
-        partial void OnKichThuocMonIDChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuong
-        {
-            get
-            {
-                return _SoLuong;
-            }
-            set
-            {
-                OnSoLuongChanging(value);
-                ReportPropertyChanging("SoLuong");
-                _SoLuong = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuong");
-                OnSoLuongChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuong;
-        partial void OnSoLuongChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> Gia
         {
             get
@@ -4668,44 +6019,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_MATKHO", "MATKHO")]
-        public MATKHO MATKHO
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "MATKHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "MATKHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MATKHO> MATKHOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "MATKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "MATKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "TONKHO")]
         public TONKHO TONKHO
         {
@@ -4823,150 +6136,6 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuong
-        {
-            get
-            {
-                return _SoLuong;
-            }
-            set
-            {
-                OnSoLuongChanging(value);
-                ReportPropertyChanging("SoLuong");
-                _SoLuong = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuong");
-                OnSoLuongChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuong;
-        partial void OnSoLuongChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MonID
-        {
-            get
-            {
-                return _MonID;
-            }
-            set
-            {
-                OnMonIDChanging(value);
-                ReportPropertyChanging("MonID");
-                _MonID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MonID");
-                OnMonIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _MonID;
-        partial void OnMonIDChanging(Nullable<global::System.Int32> value);
-        partial void OnMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> LoaiBanID
-        {
-            get
-            {
-                return _LoaiBanID;
-            }
-            set
-            {
-                OnLoaiBanIDChanging(value);
-                ReportPropertyChanging("LoaiBanID");
-                _LoaiBanID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LoaiBanID");
-                OnLoaiBanIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _LoaiBanID;
-        partial void OnLoaiBanIDChanging(Nullable<global::System.Int32> value);
-        partial void OnLoaiBanIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocBan
-        {
-            get
-            {
-                return _KichThuocBan;
-            }
-            set
-            {
-                OnKichThuocBanChanging(value);
-                ReportPropertyChanging("KichThuocBan");
-                _KichThuocBan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocBan");
-                OnKichThuocBanChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocBan;
-        partial void OnKichThuocBanChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocBanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> GiaMua
-        {
-            get
-            {
-                return _GiaMua;
-            }
-            set
-            {
-                OnGiaMuaChanging(value);
-                ReportPropertyChanging("GiaMua");
-                _GiaMua = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GiaMua");
-                OnGiaMuaChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _GiaMua;
-        partial void OnGiaMuaChanging(Nullable<global::System.Decimal> value);
-        partial void OnGiaMuaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> GiaBan
-        {
-            get
-            {
-                return _GiaBan;
-            }
-            set
-            {
-                OnGiaBanChanging(value);
-                ReportPropertyChanging("GiaBan");
-                _GiaBan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GiaBan");
-                OnGiaBanChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _GiaBan;
-        partial void OnGiaBanChanging(Nullable<global::System.Decimal> value);
-        partial void OnGiaBanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> TonKhoID
         {
             get
@@ -4985,54 +6154,6 @@ namespace Data
         private Nullable<global::System.Int32> _TonKhoID;
         partial void OnTonKhoIDChanging(Nullable<global::System.Int32> value);
         partial void OnTonKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> NgaySanXuat
-        {
-            get
-            {
-                return _NgaySanXuat;
-            }
-            set
-            {
-                OnNgaySanXuatChanging(value);
-                ReportPropertyChanging("NgaySanXuat");
-                _NgaySanXuat = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NgaySanXuat");
-                OnNgaySanXuatChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _NgaySanXuat;
-        partial void OnNgaySanXuatChanging(Nullable<global::System.DateTime> value);
-        partial void OnNgaySanXuatChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> NgayHetHan
-        {
-            get
-            {
-                return _NgayHetHan;
-            }
-            set
-            {
-                OnNgayHetHanChanging(value);
-                ReportPropertyChanging("NgayHetHan");
-                _NgayHetHan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NgayHetHan");
-                OnNgayHetHanChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _NgayHetHan;
-        partial void OnNgayHetHanChanging(Nullable<global::System.DateTime> value);
-        partial void OnNgayHetHanChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5110,82 +6231,6 @@ namespace Data
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN")]
-        public LOAIBAN LOAIBAN
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIBAN>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIBAN>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<LOAIBAN> LOAIBANReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIBAN>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LOAIBAN>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "LOAIBAN", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUMON", "MENUMON")]
-        public MENUMON MENUMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "MENUMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "MENUMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUMON> MENUMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "MENUMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUMON>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "MENUMON", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5372,6 +6417,54 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> ChoPhep
+        {
+            get
+            {
+                return _ChoPhep;
+            }
+            set
+            {
+                OnChoPhepChanging(value);
+                ReportPropertyChanging("ChoPhep");
+                _ChoPhep = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChoPhep");
+                OnChoPhepChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _ChoPhep;
+        partial void OnChoPhepChanging(Nullable<global::System.Boolean> value);
+        partial void OnChoPhepChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> DangNhap
+        {
+            get
+            {
+                return _DangNhap;
+            }
+            set
+            {
+                OnDangNhapChanging(value);
+                ReportPropertyChanging("DangNhap");
+                _DangNhap = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DangNhap");
+                OnDangNhapChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _DangNhap;
+        partial void OnDangNhapChanging(Nullable<global::System.Boolean> value);
+        partial void OnDangNhapChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> Xem
         {
             get
@@ -5462,30 +6555,6 @@ namespace Data
         private Nullable<global::System.Boolean> _Sua;
         partial void OnSuaChanging(Nullable<global::System.Boolean> value);
         partial void OnSuaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> DangNhap
-        {
-            get
-            {
-                return _DangNhap;
-            }
-            set
-            {
-                OnDangNhapChanging(value);
-                ReportPropertyChanging("DangNhap");
-                _DangNhap = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DangNhap");
-                OnDangNhapChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _DangNhap;
-        partial void OnDangNhapChanging(Nullable<global::System.Boolean> value);
-        partial void OnDangNhapChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5966,335 +7035,6 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="CHITIETHUKHO")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CHITIETHUKHO : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CHITIETHUKHO object.
-        /// </summary>
-        /// <param name="chiTietHuKhoID">Initial value of the ChiTietHuKhoID property.</param>
-        public static CHITIETHUKHO CreateCHITIETHUKHO(global::System.Int32 chiTietHuKhoID)
-        {
-            CHITIETHUKHO cHITIETHUKHO = new CHITIETHUKHO();
-            cHITIETHUKHO.ChiTietHuKhoID = chiTietHuKhoID;
-            return cHITIETHUKHO;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ChiTietHuKhoID
-        {
-            get
-            {
-                return _ChiTietHuKhoID;
-            }
-            set
-            {
-                if (_ChiTietHuKhoID != value)
-                {
-                    OnChiTietHuKhoIDChanging(value);
-                    ReportPropertyChanging("ChiTietHuKhoID");
-                    _ChiTietHuKhoID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ChiTietHuKhoID");
-                    OnChiTietHuKhoIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ChiTietHuKhoID;
-        partial void OnChiTietHuKhoIDChanging(global::System.Int32 value);
-        partial void OnChiTietHuKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> HuKhoID
-        {
-            get
-            {
-                return _HuKhoID;
-            }
-            set
-            {
-                OnHuKhoIDChanging(value);
-                ReportPropertyChanging("HuKhoID");
-                _HuKhoID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HuKhoID");
-                OnHuKhoIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _HuKhoID;
-        partial void OnHuKhoIDChanging(Nullable<global::System.Int32> value);
-        partial void OnHuKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMonID
-        {
-            get
-            {
-                return _KichThuocMonID;
-            }
-            set
-            {
-                OnKichThuocMonIDChanging(value);
-                ReportPropertyChanging("KichThuocMonID");
-                _KichThuocMonID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMonID");
-                OnKichThuocMonIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMonID;
-        partial void OnKichThuocMonIDChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuong
-        {
-            get
-            {
-                return _SoLuong;
-            }
-            set
-            {
-                OnSoLuongChanging(value);
-                ReportPropertyChanging("SoLuong");
-                _SoLuong = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuong");
-                OnSoLuongChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuong;
-        partial void OnSoLuongChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Gia
-        {
-            get
-            {
-                return _Gia;
-            }
-            set
-            {
-                OnGiaChanging(value);
-                ReportPropertyChanging("Gia");
-                _Gia = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Gia");
-                OnGiaChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _Gia;
-        partial void OnGiaChanging(Nullable<global::System.Decimal> value);
-        partial void OnGiaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> TonKhoID
-        {
-            get
-            {
-                return _TonKhoID;
-            }
-            set
-            {
-                OnTonKhoIDChanging(value);
-                ReportPropertyChanging("TonKhoID");
-                _TonKhoID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TonKhoID");
-                OnTonKhoIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _TonKhoID;
-        partial void OnTonKhoIDChanging(Nullable<global::System.Int32> value);
-        partial void OnTonKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Visual
-        {
-            get
-            {
-                return _Visual;
-            }
-            set
-            {
-                OnVisualChanging(value);
-                ReportPropertyChanging("Visual");
-                _Visual = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Visual");
-                OnVisualChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Visual;
-        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
-        partial void OnVisualChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Deleted;
-        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Edit
-        {
-            get
-            {
-                return _Edit;
-            }
-            set
-            {
-                OnEditChanging(value);
-                ReportPropertyChanging("Edit");
-                _Edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Edit");
-                OnEditChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Edit;
-        partial void OnEditChanging(Nullable<global::System.Boolean> value);
-        partial void OnEditChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_HUKHO", "HUKHO")]
-        public HUKHO HUKHO
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<HUKHO> HUKHOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HUKHO>("KaraokeModel.FK_CHITIETHUKHO_HUKHO", "HUKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "TONKHO")]
-        public TONKHO TONKHO
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<TONKHO> TONKHOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "TONKHO", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="CHUCNANG")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -6397,24 +7137,144 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MaChucNang
+        public Nullable<global::System.Boolean> ChoPhep
         {
             get
             {
-                return _MaChucNang;
+                return _ChoPhep;
             }
             set
             {
-                OnMaChucNangChanging(value);
-                ReportPropertyChanging("MaChucNang");
-                _MaChucNang = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MaChucNang");
-                OnMaChucNangChanged();
+                OnChoPhepChanging(value);
+                ReportPropertyChanging("ChoPhep");
+                _ChoPhep = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChoPhep");
+                OnChoPhepChanged();
             }
         }
-        private Nullable<global::System.Int32> _MaChucNang;
-        partial void OnMaChucNangChanging(Nullable<global::System.Int32> value);
-        partial void OnMaChucNangChanged();
+        private Nullable<global::System.Boolean> _ChoPhep;
+        partial void OnChoPhepChanging(Nullable<global::System.Boolean> value);
+        partial void OnChoPhepChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Xem
+        {
+            get
+            {
+                return _Xem;
+            }
+            set
+            {
+                OnXemChanging(value);
+                ReportPropertyChanging("Xem");
+                _Xem = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Xem");
+                OnXemChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Xem;
+        partial void OnXemChanging(Nullable<global::System.Boolean> value);
+        partial void OnXemChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Them
+        {
+            get
+            {
+                return _Them;
+            }
+            set
+            {
+                OnThemChanging(value);
+                ReportPropertyChanging("Them");
+                _Them = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Them");
+                OnThemChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Them;
+        partial void OnThemChanging(Nullable<global::System.Boolean> value);
+        partial void OnThemChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Xoa
+        {
+            get
+            {
+                return _Xoa;
+            }
+            set
+            {
+                OnXoaChanging(value);
+                ReportPropertyChanging("Xoa");
+                _Xoa = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Xoa");
+                OnXoaChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Xoa;
+        partial void OnXoaChanging(Nullable<global::System.Boolean> value);
+        partial void OnXoaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Sua
+        {
+            get
+            {
+                return _Sua;
+            }
+            set
+            {
+                OnSuaChanging(value);
+                ReportPropertyChanging("Sua");
+                _Sua = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sua");
+                OnSuaChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Sua;
+        partial void OnSuaChanging(Nullable<global::System.Boolean> value);
+        partial void OnSuaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> DangNhap
+        {
+            get
+            {
+                return _DangNhap;
+            }
+            set
+            {
+                OnDangNhapChanging(value);
+                ReportPropertyChanging("DangNhap");
+                _DangNhap = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DangNhap");
+                OnDangNhapChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _DangNhap;
+        partial void OnDangNhapChanging(Nullable<global::System.Boolean> value);
+        partial void OnDangNhapChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7177,6 +8037,28 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_CHUYENKHO", "CHITIETCHUYENKHO")]
+        public EntityCollection<CHITIETCHUYENKHO> CHITIETCHUYENKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETCHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHITIETCHUYENKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETCHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_CHUYENKHO", "CHITIETCHUYENKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHUYENKHO_KHO", "KHO")]
         public KHO KHO
         {
@@ -7830,6 +8712,317 @@ namespace Data
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_DONVI", "TONKHO")]
+        public EntityCollection<TONKHO> TONKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_DONVI", "TONKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_DONVI", "TONKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_DONVI", "TONKHOTONG")]
+        public EntityCollection<TONKHOTONG> TONKHOTONGs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHOTONG>("KaraokeModel.FK_TONKHOTONG_DONVI", "TONKHOTONG");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHOTONG>("KaraokeModel.FK_TONKHOTONG_DONVI", "TONKHOTONG", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="GIAODIENCHUCNANGBANHANG")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class GIAODIENCHUCNANGBANHANG : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GIAODIENCHUCNANGBANHANG object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static GIAODIENCHUCNANGBANHANG CreateGIAODIENCHUCNANGBANHANG(global::System.Int32 id)
+        {
+            GIAODIENCHUCNANGBANHANG gIAODIENCHUCNANGBANHANG = new GIAODIENCHUCNANGBANHANG();
+            gIAODIENCHUCNANGBANHANG.ID = id;
+            return gIAODIENCHUCNANGBANHANG;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TenChucNang
+        {
+            get
+            {
+                return _TenChucNang;
+            }
+            set
+            {
+                OnTenChucNangChanging(value);
+                ReportPropertyChanging("TenChucNang");
+                _TenChucNang = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenChucNang");
+                OnTenChucNangChanged();
+            }
+        }
+        private global::System.String _TenChucNang;
+        partial void OnTenChucNangChanging(global::System.String value);
+        partial void OnTenChucNangChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ChucNangID
+        {
+            get
+            {
+                return _ChucNangID;
+            }
+            set
+            {
+                OnChucNangIDChanging(value);
+                ReportPropertyChanging("ChucNangID");
+                _ChucNangID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChucNangID");
+                OnChucNangIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ChucNangID;
+        partial void OnChucNangIDChanging(Nullable<global::System.Int32> value);
+        partial void OnChucNangIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Hinh
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Hinh);
+            }
+            set
+            {
+                OnHinhChanging(value);
+                ReportPropertyChanging("Hinh");
+                _Hinh = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Hinh");
+                OnHinhChanged();
+            }
+        }
+        private global::System.Byte[] _Hinh;
+        partial void OnHinhChanging(global::System.Byte[] value);
+        partial void OnHinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoThuTu
+        {
+            get
+            {
+                return _SoThuTu;
+            }
+            set
+            {
+                OnSoThuTuChanging(value);
+                ReportPropertyChanging("SoThuTu");
+                _SoThuTu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoThuTu");
+                OnSoThuTuChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoThuTu;
+        partial void OnSoThuTuChanging(Nullable<global::System.Int32> value);
+        partial void OnSoThuTuChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG")]
+        public CHUCNANG CHUCNANG
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CHUCNANG> CHUCNANGReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -8203,321 +9396,6 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="GIAODIENCHUCNANGBANHANG")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class GIAODIENCHUCNANGBANHANG : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new GIAODIENCHUCNANGBANHANG object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        public static GIAODIENCHUCNANGBANHANG CreateGIAODIENCHUCNANGBANHANG(global::System.Int32 id)
-        {
-            GIAODIENCHUCNANGBANHANG gIAODIENCHUCNANGBANHANG = new GIAODIENCHUCNANGBANHANG();
-            gIAODIENCHUCNANGBANHANG.ID = id;
-            return gIAODIENCHUCNANGBANHANG;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ChucNangID
-        {
-            get
-            {
-                return _ChucNangID;
-            }
-            set
-            {
-                OnChucNangIDChanging(value);
-                ReportPropertyChanging("ChucNangID");
-                _ChucNangID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ChucNangID");
-                OnChucNangIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _ChucNangID;
-        partial void OnChucNangIDChanging(Nullable<global::System.Int32> value);
-        partial void OnChucNangIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] Font
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_Font);
-            }
-            set
-            {
-                OnFontChanging(value);
-                ReportPropertyChanging("Font");
-                _Font = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Font");
-                OnFontChanged();
-            }
-        }
-        private global::System.Byte[] _Font;
-        partial void OnFontChanging(global::System.Byte[] value);
-        partial void OnFontChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] MauChu
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_MauChu);
-            }
-            set
-            {
-                OnMauChuChanging(value);
-                ReportPropertyChanging("MauChu");
-                _MauChu = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauChu");
-                OnMauChuChanged();
-            }
-        }
-        private global::System.Byte[] _MauChu;
-        partial void OnMauChuChanging(global::System.Byte[] value);
-        partial void OnMauChuChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] MauNen
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_MauNen);
-            }
-            set
-            {
-                OnMauNenChanging(value);
-                ReportPropertyChanging("MauNen");
-                _MauNen = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauNen");
-                OnMauNenChanged();
-            }
-        }
-        private global::System.Byte[] _MauNen;
-        partial void OnMauNenChanging(global::System.Byte[] value);
-        partial void OnMauNenChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] Hinh
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_Hinh);
-            }
-            set
-            {
-                OnHinhChanging(value);
-                ReportPropertyChanging("Hinh");
-                _Hinh = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Hinh");
-                OnHinhChanged();
-            }
-        }
-        private global::System.Byte[] _Hinh;
-        partial void OnHinhChanging(global::System.Byte[] value);
-        partial void OnHinhChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoThuTu
-        {
-            get
-            {
-                return _SoThuTu;
-            }
-            set
-            {
-                OnSoThuTuChanging(value);
-                ReportPropertyChanging("SoThuTu");
-                _SoThuTu = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoThuTu");
-                OnSoThuTuChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoThuTu;
-        partial void OnSoThuTuChanging(Nullable<global::System.Int32> value);
-        partial void OnSoThuTuChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Visual
-        {
-            get
-            {
-                return _Visual;
-            }
-            set
-            {
-                OnVisualChanging(value);
-                ReportPropertyChanging("Visual");
-                _Visual = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Visual");
-                OnVisualChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Visual;
-        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
-        partial void OnVisualChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Deleted;
-        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Edit
-        {
-            get
-            {
-                return _Edit;
-            }
-            set
-            {
-                OnEditChanging(value);
-                ReportPropertyChanging("Edit");
-                _Edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Edit");
-                OnEditChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Edit;
-        partial void OnEditChanging(Nullable<global::System.Boolean> value);
-        partial void OnEditChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG")]
-        public CHUCNANG CHUCNANG
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CHUCNANG> CHUCNANGReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CHUCNANG>("KaraokeModel.FK_GIAODIENCHUCNANGBANHANG_CHUCNANG", "CHUCNANG", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="HOPDUNGTIEN")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -8596,23 +9474,23 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] ThoiGian
+        public Nullable<global::System.DateTime> ThoiGian
         {
             get
             {
-                return StructuralObject.GetValidValue(_ThoiGian);
+                return _ThoiGian;
             }
             set
             {
                 OnThoiGianChanging(value);
                 ReportPropertyChanging("ThoiGian");
-                _ThoiGian = StructuralObject.SetValidValue(value, true);
+                _ThoiGian = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ThoiGian");
                 OnThoiGianChanged();
             }
         }
-        private global::System.Byte[] _ThoiGian;
-        partial void OnThoiGianChanging(global::System.Byte[] value);
+        private Nullable<global::System.DateTime> _ThoiGian;
+        partial void OnThoiGianChanging(Nullable<global::System.DateTime> value);
         partial void OnThoiGianChanged();
     
         /// <summary>
@@ -9228,23 +10106,23 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] ThoiGian
+        public Nullable<global::System.DateTime> ThoiGian
         {
             get
             {
-                return StructuralObject.GetValidValue(_ThoiGian);
+                return _ThoiGian;
             }
             set
             {
                 OnThoiGianChanging(value);
                 ReportPropertyChanging("ThoiGian");
-                _ThoiGian = StructuralObject.SetValidValue(value, true);
+                _ThoiGian = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ThoiGian");
                 OnThoiGianChanged();
             }
         }
-        private global::System.Byte[] _ThoiGian;
-        partial void OnThoiGianChanging(global::System.Byte[] value);
+        private Nullable<global::System.DateTime> _ThoiGian;
+        partial void OnThoiGianChanging(Nullable<global::System.DateTime> value);
         partial void OnThoiGianChanged();
     
         /// <summary>
@@ -12341,23 +13219,23 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] ThoiGian
+        public Nullable<global::System.DateTime> ThoiGian
         {
             get
             {
-                return StructuralObject.GetValidValue(_ThoiGian);
+                return _ThoiGian;
             }
             set
             {
                 OnThoiGianChanging(value);
                 ReportPropertyChanging("ThoiGian");
-                _ThoiGian = StructuralObject.SetValidValue(value, true);
+                _ThoiGian = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ThoiGian");
                 OnThoiGianChanged();
             }
         }
-        private global::System.Byte[] _ThoiGian;
-        partial void OnThoiGianChanging(global::System.Byte[] value);
+        private Nullable<global::System.DateTime> _ThoiGian;
+        partial void OnThoiGianChanging(Nullable<global::System.DateTime> value);
         partial void OnThoiGianChanged();
     
         /// <summary>
@@ -12679,28 +13557,6 @@ namespace Data
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_LOAIBAN", "CHITIETNHAPKHO")]
-        public EntityCollection<CHITIETNHAPKHO> CHITIETNHAPKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "CHITIETNHAPKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_LOAIBAN", "CHITIETNHAPKHO", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -14225,28 +15081,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_MATKHO", "CHITIETMATKHO")]
-        public EntityCollection<CHITIETMATKHO> CHITIETMATKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "CHITIETMATKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_MATKHO", "CHITIETMATKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MATKHO_KHO", "KHO")]
         public KHO KHO
         {
@@ -14960,6 +15794,287 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="MENUKHUYENMAI")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MENUKHUYENMAI : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MENUKHUYENMAI object.
+        /// </summary>
+        /// <param name="khuyenMaiID">Initial value of the KhuyenMaiID property.</param>
+        public static MENUKHUYENMAI CreateMENUKHUYENMAI(global::System.Int32 khuyenMaiID)
+        {
+            MENUKHUYENMAI mENUKHUYENMAI = new MENUKHUYENMAI();
+            mENUKHUYENMAI.KhuyenMaiID = khuyenMaiID;
+            return mENUKHUYENMAI;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 KhuyenMaiID
+        {
+            get
+            {
+                return _KhuyenMaiID;
+            }
+            set
+            {
+                if (_KhuyenMaiID != value)
+                {
+                    OnKhuyenMaiIDChanging(value);
+                    ReportPropertyChanging("KhuyenMaiID");
+                    _KhuyenMaiID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("KhuyenMaiID");
+                    OnKhuyenMaiIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _KhuyenMaiID;
+        partial void OnKhuyenMaiIDChanging(global::System.Int32 value);
+        partial void OnKhuyenMaiIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KichThuocMonID
+        {
+            get
+            {
+                return _KichThuocMonID;
+            }
+            set
+            {
+                OnKichThuocMonIDChanging(value);
+                ReportPropertyChanging("KichThuocMonID");
+                _KichThuocMonID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KichThuocMonID");
+                OnKichThuocMonIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KichThuocMonID;
+        partial void OnKichThuocMonIDChanging(Nullable<global::System.Int32> value);
+        partial void OnKichThuocMonIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KichThuocMonTang
+        {
+            get
+            {
+                return _KichThuocMonTang;
+            }
+            set
+            {
+                OnKichThuocMonTangChanging(value);
+                ReportPropertyChanging("KichThuocMonTang");
+                _KichThuocMonTang = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KichThuocMonTang");
+                OnKichThuocMonTangChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KichThuocMonTang;
+        partial void OnKichThuocMonTangChanging(Nullable<global::System.Int32> value);
+        partial void OnKichThuocMonTangChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TenKhuyenMai
+        {
+            get
+            {
+                return _TenKhuyenMai;
+            }
+            set
+            {
+                OnTenKhuyenMaiChanging(value);
+                ReportPropertyChanging("TenKhuyenMai");
+                _TenKhuyenMai = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenKhuyenMai");
+                OnTenKhuyenMaiChanged();
+            }
+        }
+        private global::System.String _TenKhuyenMai;
+        partial void OnTenKhuyenMaiChanging(global::System.String value);
+        partial void OnTenKhuyenMaiChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
+        public MENUKICHTHUOCMON MENUKICHTHUOCMON
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON")]
+        public MENUKICHTHUOCMON MENUKICHTHUOCMON1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMON1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="MENUKICHTHUOCMON")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -15080,6 +16195,30 @@ namespace Data
         private Nullable<global::System.Int32> _LoaiBanID;
         partial void OnLoaiBanIDChanging(Nullable<global::System.Int32> value);
         partial void OnLoaiBanIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DonVi
+        {
+            get
+            {
+                return _DonVi;
+            }
+            set
+            {
+                OnDonViChanging(value);
+                ReportPropertyChanging("DonVi");
+                _DonVi = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DonVi");
+                OnDonViChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DonVi;
+        partial void OnDonViChanging(Nullable<global::System.Int32> value);
+        partial void OnDonViChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -15412,44 +16551,6 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_MENUMON", "MENUMON")]
-        public MENUMON MENUMON
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUMON> MENUMONReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKHUYENMAI")]
         public EntityCollection<MENUKHUYENMAI> MENUKHUYENMAIs
         {
@@ -15487,211 +16588,6 @@ namespace Data
                 }
             }
         }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="MENUKHUYENMAI")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class MENUKHUYENMAI : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new MENUKHUYENMAI object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        public static MENUKHUYENMAI CreateMENUKHUYENMAI(global::System.Int32 id)
-        {
-            MENUKHUYENMAI mENUKHUYENMAI = new MENUKHUYENMAI();
-            mENUKHUYENMAI.ID = id;
-            return mENUKHUYENMAI;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMonID
-        {
-            get
-            {
-                return _KichThuocMonID;
-            }
-            set
-            {
-                OnKichThuocMonIDChanging(value);
-                ReportPropertyChanging("KichThuocMonID");
-                _KichThuocMonID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMonID");
-                OnKichThuocMonIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMonID;
-        partial void OnKichThuocMonIDChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocMonTang
-        {
-            get
-            {
-                return _KichThuocMonTang;
-            }
-            set
-            {
-                OnKichThuocMonTangChanging(value);
-                ReportPropertyChanging("KichThuocMonTang");
-                _KichThuocMonTang = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocMonTang");
-                OnKichThuocMonTangChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocMonTang;
-        partial void OnKichThuocMonTangChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocMonTangChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TenKhuyenMai
-        {
-            get
-            {
-                return _TenKhuyenMai;
-            }
-            set
-            {
-                OnTenKhuyenMaiChanging(value);
-                ReportPropertyChanging("TenKhuyenMai");
-                _TenKhuyenMai = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TenKhuyenMai");
-                OnTenKhuyenMaiChanged();
-            }
-        }
-        private global::System.String _TenKhuyenMai;
-        partial void OnTenKhuyenMaiChanging(global::System.String value);
-        partial void OnTenKhuyenMaiChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Visual
-        {
-            get
-            {
-                return _Visual;
-            }
-            set
-            {
-                OnVisualChanging(value);
-                ReportPropertyChanging("Visual");
-                _Visual = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Visual");
-                OnVisualChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Visual;
-        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
-        partial void OnVisualChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Deleted;
-        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Edit
-        {
-            get
-            {
-                return _Edit;
-            }
-            set
-            {
-                OnEditChanging(value);
-                ReportPropertyChanging("Edit");
-                _Edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Edit");
-                OnEditChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Edit;
-        partial void OnEditChanging(Nullable<global::System.Boolean> value);
-        partial void OnEditChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -15699,16 +16595,16 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKICHTHUOCMON_MENUMON", "MENUMON")]
+        public MENUMON MENUMON
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON").Value = value;
             }
         }
         /// <summary>
@@ -15716,55 +16612,17 @@ namespace Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMONReference
+        public EntityReference<MENUMON> MENUMONReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON", "MENUKICHTHUOCMON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON")]
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MENUKICHTHUOCMON> MENUKICHTHUOCMON1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUKICHTHUOCMON>("KaraokeModel.FK_MENUKHUYENMAI_MENUKICHTHUOCMON1", "MENUKICHTHUOCMON", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUMON>("KaraokeModel.FK_MENUKICHTHUOCMON_MENUMON", "MENUMON", value);
                 }
             }
         }
@@ -16398,78 +17256,6 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Font
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_Font);
-            }
-            set
-            {
-                OnFontChanging(value);
-                ReportPropertyChanging("Font");
-                _Font = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Font");
-                OnFontChanged();
-            }
-        }
-        private global::System.Byte[] _Font;
-        partial void OnFontChanging(global::System.Byte[] value);
-        partial void OnFontChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] MauChu
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_MauChu);
-            }
-            set
-            {
-                OnMauChuChanging(value);
-                ReportPropertyChanging("MauChu");
-                _MauChu = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauChu");
-                OnMauChuChanged();
-            }
-        }
-        private global::System.Byte[] _MauChu;
-        partial void OnMauChuChanging(global::System.Byte[] value);
-        partial void OnMauChuChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] MauNen
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_MauNen);
-            }
-            set
-            {
-                OnMauNenChanging(value);
-                ReportPropertyChanging("MauNen");
-                _MauNen = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauNen");
-                OnMauNenChanged();
-            }
-        }
-        private global::System.Byte[] _MauNen;
-        partial void OnMauNenChanging(global::System.Byte[] value);
-        partial void OnMauNenChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.Byte[] Hinh
         {
             get
@@ -16560,33 +17346,35 @@ namespace Data
         private Nullable<global::System.Boolean> _Deleted;
         partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
         partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
 
         #endregion
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_MENUMON", "CHITIETNHAPKHO")]
-        public EntityCollection<CHITIETNHAPKHO> CHITIETNHAPKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "CHITIETNHAPKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_MENUMON", "CHITIETNHAPKHO", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -16688,6 +17476,50 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUNHOM>("KaraokeModel.fk_MENUITEM_MENUGROUP", "MENUNHOM", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_MENUMON", "TONKHO")]
+        public EntityCollection<TONKHO> TONKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_MENUMON", "TONKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_MENUMON", "TONKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_MENUMON", "TONKHOTONG")]
+        public EntityCollection<TONKHOTONG> TONKHOTONGs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHOTONG>("KaraokeModel.FK_TONKHOTONG_MENUMON", "TONKHOTONG");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHOTONG>("KaraokeModel.FK_TONKHOTONG_MENUMON", "TONKHOTONG", value);
                 }
             }
         }
@@ -16915,78 +17747,6 @@ namespace Data
         private global::System.Byte[] _Hinh;
         partial void OnHinhChanging(global::System.Byte[] value);
         partial void OnHinhChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] Font
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_Font);
-            }
-            set
-            {
-                OnFontChanging(value);
-                ReportPropertyChanging("Font");
-                _Font = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Font");
-                OnFontChanged();
-            }
-        }
-        private global::System.Byte[] _Font;
-        partial void OnFontChanging(global::System.Byte[] value);
-        partial void OnFontChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String MauChu
-        {
-            get
-            {
-                return _MauChu;
-            }
-            set
-            {
-                OnMauChuChanging(value);
-                ReportPropertyChanging("MauChu");
-                _MauChu = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauChu");
-                OnMauChuChanged();
-            }
-        }
-        private global::System.String _MauChu;
-        partial void OnMauChuChanging(global::System.String value);
-        partial void OnMauChuChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String MauNen
-        {
-            get
-            {
-                return _MauNen;
-            }
-            set
-            {
-                OnMauNenChanging(value);
-                ReportPropertyChanging("MauNen");
-                _MauNen = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MauNen");
-                OnMauNenChanged();
-            }
-        }
-        private global::System.String _MauNen;
-        partial void OnMauNenChanging(global::System.String value);
-        partial void OnMauNenChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -19124,6 +19884,163 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="TACHBAN")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -19416,1015 +20333,6 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<NHANVIEN>("KaraokeModel.FK_TACHBAN_NHANVIEN", "NHANVIEN", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="TONKHO")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class TONKHO : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new TONKHO object.
-        /// </summary>
-        /// <param name="tonKhoID">Initial value of the TonKhoID property.</param>
-        public static TONKHO CreateTONKHO(global::System.Int32 tonKhoID)
-        {
-            TONKHO tONKHO = new TONKHO();
-            tONKHO.TonKhoID = tonKhoID;
-            return tONKHO;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 TonKhoID
-        {
-            get
-            {
-                return _TonKhoID;
-            }
-            set
-            {
-                if (_TonKhoID != value)
-                {
-                    OnTonKhoIDChanging(value);
-                    ReportPropertyChanging("TonKhoID");
-                    _TonKhoID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("TonKhoID");
-                    OnTonKhoIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _TonKhoID;
-        partial void OnTonKhoIDChanging(global::System.Int32 value);
-        partial void OnTonKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KhoID
-        {
-            get
-            {
-                return _KhoID;
-            }
-            set
-            {
-                OnKhoIDChanging(value);
-                ReportPropertyChanging("KhoID");
-                _KhoID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KhoID");
-                OnKhoIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KhoID;
-        partial void OnKhoIDChanging(Nullable<global::System.Int32> value);
-        partial void OnKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MonID
-        {
-            get
-            {
-                return _MonID;
-            }
-            set
-            {
-                OnMonIDChanging(value);
-                ReportPropertyChanging("MonID");
-                _MonID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MonID");
-                OnMonIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _MonID;
-        partial void OnMonIDChanging(Nullable<global::System.Int32> value);
-        partial void OnMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> LoaiBanID
-        {
-            get
-            {
-                return _LoaiBanID;
-            }
-            set
-            {
-                OnLoaiBanIDChanging(value);
-                ReportPropertyChanging("LoaiBanID");
-                _LoaiBanID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LoaiBanID");
-                OnLoaiBanIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _LoaiBanID;
-        partial void OnLoaiBanIDChanging(Nullable<global::System.Int32> value);
-        partial void OnLoaiBanIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> KichThuocBan
-        {
-            get
-            {
-                return _KichThuocBan;
-            }
-            set
-            {
-                OnKichThuocBanChanging(value);
-                ReportPropertyChanging("KichThuocBan");
-                _KichThuocBan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("KichThuocBan");
-                OnKichThuocBanChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _KichThuocBan;
-        partial void OnKichThuocBanChanging(Nullable<global::System.Int32> value);
-        partial void OnKichThuocBanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> PhatSinhTuTonKhoID
-        {
-            get
-            {
-                return _PhatSinhTuTonKhoID;
-            }
-            set
-            {
-                OnPhatSinhTuTonKhoIDChanging(value);
-                ReportPropertyChanging("PhatSinhTuTonKhoID");
-                _PhatSinhTuTonKhoID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PhatSinhTuTonKhoID");
-                OnPhatSinhTuTonKhoIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _PhatSinhTuTonKhoID;
-        partial void OnPhatSinhTuTonKhoIDChanging(Nullable<global::System.Int32> value);
-        partial void OnPhatSinhTuTonKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongNhap
-        {
-            get
-            {
-                return _SoLuongNhap;
-            }
-            set
-            {
-                OnSoLuongNhapChanging(value);
-                ReportPropertyChanging("SoLuongNhap");
-                _SoLuongNhap = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongNhap");
-                OnSoLuongNhapChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongNhap;
-        partial void OnSoLuongNhapChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongNhapChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongTon
-        {
-            get
-            {
-                return _SoLuongTon;
-            }
-            set
-            {
-                OnSoLuongTonChanging(value);
-                ReportPropertyChanging("SoLuongTon");
-                _SoLuongTon = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongTon");
-                OnSoLuongTonChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongTon;
-        partial void OnSoLuongTonChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongTonChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> NgaySanXuat
-        {
-            get
-            {
-                return _NgaySanXuat;
-            }
-            set
-            {
-                OnNgaySanXuatChanging(value);
-                ReportPropertyChanging("NgaySanXuat");
-                _NgaySanXuat = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NgaySanXuat");
-                OnNgaySanXuatChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _NgaySanXuat;
-        partial void OnNgaySanXuatChanging(Nullable<global::System.DateTime> value);
-        partial void OnNgaySanXuatChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> NgayHetHan
-        {
-            get
-            {
-                return _NgayHetHan;
-            }
-            set
-            {
-                OnNgayHetHanChanging(value);
-                ReportPropertyChanging("NgayHetHan");
-                _NgayHetHan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NgayHetHan");
-                OnNgayHetHanChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _NgayHetHan;
-        partial void OnNgayHetHanChanging(Nullable<global::System.DateTime> value);
-        partial void OnNgayHetHanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> GiaNhap
-        {
-            get
-            {
-                return _GiaNhap;
-            }
-            set
-            {
-                OnGiaNhapChanging(value);
-                ReportPropertyChanging("GiaNhap");
-                _GiaNhap = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GiaNhap");
-                OnGiaNhapChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _GiaNhap;
-        partial void OnGiaNhapChanging(Nullable<global::System.Decimal> value);
-        partial void OnGiaNhapChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> LoaiPhatSinhID
-        {
-            get
-            {
-                return _LoaiPhatSinhID;
-            }
-            set
-            {
-                OnLoaiPhatSinhIDChanging(value);
-                ReportPropertyChanging("LoaiPhatSinhID");
-                _LoaiPhatSinhID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LoaiPhatSinhID");
-                OnLoaiPhatSinhIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _LoaiPhatSinhID;
-        partial void OnLoaiPhatSinhIDChanging(Nullable<global::System.Int32> value);
-        partial void OnLoaiPhatSinhIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongPhatSinh
-        {
-            get
-            {
-                return _SoLuongPhatSinh;
-            }
-            set
-            {
-                OnSoLuongPhatSinhChanging(value);
-                ReportPropertyChanging("SoLuongPhatSinh");
-                _SoLuongPhatSinh = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongPhatSinh");
-                OnSoLuongPhatSinhChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongPhatSinh;
-        partial void OnSoLuongPhatSinhChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongPhatSinhChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Visual
-        {
-            get
-            {
-                return _Visual;
-            }
-            set
-            {
-                OnVisualChanging(value);
-                ReportPropertyChanging("Visual");
-                _Visual = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Visual");
-                OnVisualChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Visual;
-        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
-        partial void OnVisualChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Deleted;
-        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Edit
-        {
-            get
-            {
-                return _Edit;
-            }
-            set
-            {
-                OnEditChanging(value);
-                ReportPropertyChanging("Edit");
-                _Edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Edit");
-                OnEditChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Edit;
-        partial void OnEditChanging(Nullable<global::System.Boolean> value);
-        partial void OnEditChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG")]
-        public EntityCollection<CHITIETBANHANG> CHITIETBANHANGs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETBANHANG>("KaraokeModel.FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETBANHANG>("KaraokeModel.FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO")]
-        public EntityCollection<CHITIETCHINHKHO> CHITIETCHINHKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG")]
-        public EntityCollection<CHITIETLICHSUBANHANG> CHITIETLICHSUBANHANGs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETLICHSUBANHANG>("KaraokeModel.FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETLICHSUBANHANG>("KaraokeModel.FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO")]
-        public EntityCollection<CHITIETMATKHO> CHITIETMATKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO")]
-        public EntityCollection<CHITIETNHAPKHO> CHITIETNHAPKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO")]
-        public EntityCollection<CHITIETHUKHO> CHITIETHUKHOes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_KHO", "KHO")]
-        public KHO KHO
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<KHO> KHOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH")]
-        public LOAIPHATSINH LOAIPHATSINH
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<LOAIPHATSINH> LOAIPHATSINHReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_TONKHO", "TONKHO1")]
-        public EntityCollection<TONKHO> TONKHO1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_TONKHO", "TONKHO")]
-        public TONKHO TONKHO2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<TONKHO> TONKHO2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO", "TONKHO", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="TONKHOTONG")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class TONKHOTONG : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new TONKHOTONG object.
-        /// </summary>
-        /// <param name="kichThucMonID">Initial value of the KichThucMonID property.</param>
-        /// <param name="khoID">Initial value of the KhoID property.</param>
-        public static TONKHOTONG CreateTONKHOTONG(global::System.Int32 kichThucMonID, global::System.Int32 khoID)
-        {
-            TONKHOTONG tONKHOTONG = new TONKHOTONG();
-            tONKHOTONG.KichThucMonID = kichThucMonID;
-            tONKHOTONG.KhoID = khoID;
-            return tONKHOTONG;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 KichThucMonID
-        {
-            get
-            {
-                return _KichThucMonID;
-            }
-            set
-            {
-                if (_KichThucMonID != value)
-                {
-                    OnKichThucMonIDChanging(value);
-                    ReportPropertyChanging("KichThucMonID");
-                    _KichThucMonID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("KichThucMonID");
-                    OnKichThucMonIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _KichThucMonID;
-        partial void OnKichThucMonIDChanging(global::System.Int32 value);
-        partial void OnKichThucMonIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 KhoID
-        {
-            get
-            {
-                return _KhoID;
-            }
-            set
-            {
-                if (_KhoID != value)
-                {
-                    OnKhoIDChanging(value);
-                    ReportPropertyChanging("KhoID");
-                    _KhoID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("KhoID");
-                    OnKhoIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _KhoID;
-        partial void OnKhoIDChanging(global::System.Int32 value);
-        partial void OnKhoIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongTon
-        {
-            get
-            {
-                return _SoLuongTon;
-            }
-            set
-            {
-                OnSoLuongTonChanging(value);
-                ReportPropertyChanging("SoLuongTon");
-                _SoLuongTon = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongTon");
-                OnSoLuongTonChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongTon;
-        partial void OnSoLuongTonChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongTonChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongBan
-        {
-            get
-            {
-                return _SoLuongBan;
-            }
-            set
-            {
-                OnSoLuongBanChanging(value);
-                ReportPropertyChanging("SoLuongBan");
-                _SoLuongBan = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongBan");
-                OnSoLuongBanChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongBan;
-        partial void OnSoLuongBanChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongBanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongNhap
-        {
-            get
-            {
-                return _SoLuongNhap;
-            }
-            set
-            {
-                OnSoLuongNhapChanging(value);
-                ReportPropertyChanging("SoLuongNhap");
-                _SoLuongNhap = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongNhap");
-                OnSoLuongNhapChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongNhap;
-        partial void OnSoLuongNhapChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongNhapChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongHu
-        {
-            get
-            {
-                return _SoLuongHu;
-            }
-            set
-            {
-                OnSoLuongHuChanging(value);
-                ReportPropertyChanging("SoLuongHu");
-                _SoLuongHu = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongHu");
-                OnSoLuongHuChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongHu;
-        partial void OnSoLuongHuChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongHuChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SoLuongChinh
-        {
-            get
-            {
-                return _SoLuongChinh;
-            }
-            set
-            {
-                OnSoLuongChinhChanging(value);
-                ReportPropertyChanging("SoLuongChinh");
-                _SoLuongChinh = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SoLuongChinh");
-                OnSoLuongChinhChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SoLuongChinh;
-        partial void OnSoLuongChinhChanging(Nullable<global::System.Int32> value);
-        partial void OnSoLuongChinhChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Visual
-        {
-            get
-            {
-                return _Visual;
-            }
-            set
-            {
-                OnVisualChanging(value);
-                ReportPropertyChanging("Visual");
-                _Visual = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Visual");
-                OnVisualChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Visual;
-        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
-        partial void OnVisualChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Deleted;
-        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> Edit
-        {
-            get
-            {
-                return _Edit;
-            }
-            set
-            {
-                OnEditChanging(value);
-                ReportPropertyChanging("Edit");
-                _Edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Edit");
-                OnEditChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _Edit;
-        partial void OnEditChanging(Nullable<global::System.Boolean> value);
-        partial void OnEditChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_KHO", "KHO")]
-        public KHO KHO
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<KHO> KHOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO", value);
                 }
             }
         }
@@ -21119,54 +21027,6 @@ namespace Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Font
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_Font);
-            }
-            set
-            {
-                OnFontChanging(value);
-                ReportPropertyChanging("Font");
-                _Font = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Font");
-                OnFontChanged();
-            }
-        }
-        private global::System.Byte[] _Font;
-        partial void OnFontChanging(global::System.Byte[] value);
-        partial void OnFontChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ForeColor
-        {
-            get
-            {
-                return _ForeColor;
-            }
-            set
-            {
-                OnForeColorChanging(value);
-                ReportPropertyChanging("ForeColor");
-                _ForeColor = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ForeColor");
-                OnForeColorChanged();
-            }
-        }
-        private global::System.String _ForeColor;
-        partial void OnForeColorChanging(global::System.String value);
-        partial void OnForeColorChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> SapXep
         {
             get
@@ -21321,6 +21181,1242 @@ namespace Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LOAITHONGTIN>("KaraokeModel.FK_THONGTIN_LOAITHONGTIN", "LOAITHONGTIN", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="TONKHO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TONKHO : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TONKHO object.
+        /// </summary>
+        /// <param name="tonKhoID">Initial value of the TonKhoID property.</param>
+        public static TONKHO CreateTONKHO(global::System.Int32 tonKhoID)
+        {
+            TONKHO tONKHO = new TONKHO();
+            tONKHO.TonKhoID = tonKhoID;
+            return tONKHO;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TonKhoID
+        {
+            get
+            {
+                return _TonKhoID;
+            }
+            set
+            {
+                if (_TonKhoID != value)
+                {
+                    OnTonKhoIDChanging(value);
+                    ReportPropertyChanging("TonKhoID");
+                    _TonKhoID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TonKhoID");
+                    OnTonKhoIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TonKhoID;
+        partial void OnTonKhoIDChanging(global::System.Int32 value);
+        partial void OnTonKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> KhoID
+        {
+            get
+            {
+                return _KhoID;
+            }
+            set
+            {
+                OnKhoIDChanging(value);
+                ReportPropertyChanging("KhoID");
+                _KhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("KhoID");
+                OnKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _KhoID;
+        partial void OnKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MonID
+        {
+            get
+            {
+                return _MonID;
+            }
+            set
+            {
+                OnMonIDChanging(value);
+                ReportPropertyChanging("MonID");
+                _MonID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MonID");
+                OnMonIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MonID;
+        partial void OnMonIDChanging(Nullable<global::System.Int32> value);
+        partial void OnMonIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LoaiBanID
+        {
+            get
+            {
+                return _LoaiBanID;
+            }
+            set
+            {
+                OnLoaiBanIDChanging(value);
+                ReportPropertyChanging("LoaiBanID");
+                _LoaiBanID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LoaiBanID");
+                OnLoaiBanIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _LoaiBanID;
+        partial void OnLoaiBanIDChanging(Nullable<global::System.Int32> value);
+        partial void OnLoaiBanIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DonViID
+        {
+            get
+            {
+                return _DonViID;
+            }
+            set
+            {
+                OnDonViIDChanging(value);
+                ReportPropertyChanging("DonViID");
+                _DonViID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DonViID");
+                OnDonViIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DonViID;
+        partial void OnDonViIDChanging(Nullable<global::System.Int32> value);
+        partial void OnDonViIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DonViTinh
+        {
+            get
+            {
+                return _DonViTinh;
+            }
+            set
+            {
+                OnDonViTinhChanging(value);
+                ReportPropertyChanging("DonViTinh");
+                _DonViTinh = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DonViTinh");
+                OnDonViTinhChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DonViTinh;
+        partial void OnDonViTinhChanging(Nullable<global::System.Int32> value);
+        partial void OnDonViTinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PhatSinhTuTonKhoID
+        {
+            get
+            {
+                return _PhatSinhTuTonKhoID;
+            }
+            set
+            {
+                OnPhatSinhTuTonKhoIDChanging(value);
+                ReportPropertyChanging("PhatSinhTuTonKhoID");
+                _PhatSinhTuTonKhoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PhatSinhTuTonKhoID");
+                OnPhatSinhTuTonKhoIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PhatSinhTuTonKhoID;
+        partial void OnPhatSinhTuTonKhoIDChanging(Nullable<global::System.Int32> value);
+        partial void OnPhatSinhTuTonKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongNhap
+        {
+            get
+            {
+                return _SoLuongNhap;
+            }
+            set
+            {
+                OnSoLuongNhapChanging(value);
+                ReportPropertyChanging("SoLuongNhap");
+                _SoLuongNhap = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongNhap");
+                OnSoLuongNhapChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongNhap;
+        partial void OnSoLuongNhapChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongNhapChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongTon
+        {
+            get
+            {
+                return _SoLuongTon;
+            }
+            set
+            {
+                OnSoLuongTonChanging(value);
+                ReportPropertyChanging("SoLuongTon");
+                _SoLuongTon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongTon");
+                OnSoLuongTonChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongTon;
+        partial void OnSoLuongTonChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongTonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NgaySanXuat
+        {
+            get
+            {
+                return _NgaySanXuat;
+            }
+            set
+            {
+                OnNgaySanXuatChanging(value);
+                ReportPropertyChanging("NgaySanXuat");
+                _NgaySanXuat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NgaySanXuat");
+                OnNgaySanXuatChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NgaySanXuat;
+        partial void OnNgaySanXuatChanging(Nullable<global::System.DateTime> value);
+        partial void OnNgaySanXuatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NgayHetHan
+        {
+            get
+            {
+                return _NgayHetHan;
+            }
+            set
+            {
+                OnNgayHetHanChanging(value);
+                ReportPropertyChanging("NgayHetHan");
+                _NgayHetHan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NgayHetHan");
+                OnNgayHetHanChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NgayHetHan;
+        partial void OnNgayHetHanChanging(Nullable<global::System.DateTime> value);
+        partial void OnNgayHetHanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> GiaBan
+        {
+            get
+            {
+                return _GiaBan;
+            }
+            set
+            {
+                OnGiaBanChanging(value);
+                ReportPropertyChanging("GiaBan");
+                _GiaBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GiaBan");
+                OnGiaBanChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _GiaBan;
+        partial void OnGiaBanChanging(Nullable<global::System.Decimal> value);
+        partial void OnGiaBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> GiaNhap
+        {
+            get
+            {
+                return _GiaNhap;
+            }
+            set
+            {
+                OnGiaNhapChanging(value);
+                ReportPropertyChanging("GiaNhap");
+                _GiaNhap = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GiaNhap");
+                OnGiaNhapChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _GiaNhap;
+        partial void OnGiaNhapChanging(Nullable<global::System.Decimal> value);
+        partial void OnGiaNhapChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LoaiPhatSinhID
+        {
+            get
+            {
+                return _LoaiPhatSinhID;
+            }
+            set
+            {
+                OnLoaiPhatSinhIDChanging(value);
+                ReportPropertyChanging("LoaiPhatSinhID");
+                _LoaiPhatSinhID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LoaiPhatSinhID");
+                OnLoaiPhatSinhIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _LoaiPhatSinhID;
+        partial void OnLoaiPhatSinhIDChanging(Nullable<global::System.Int32> value);
+        partial void OnLoaiPhatSinhIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongPhatSinh
+        {
+            get
+            {
+                return _SoLuongPhatSinh;
+            }
+            set
+            {
+                OnSoLuongPhatSinhChanging(value);
+                ReportPropertyChanging("SoLuongPhatSinh");
+                _SoLuongPhatSinh = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongPhatSinh");
+                OnSoLuongPhatSinhChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongPhatSinh;
+        partial void OnSoLuongPhatSinhChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongPhatSinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Visual
+        {
+            get
+            {
+                return _Visual;
+            }
+            set
+            {
+                OnVisualChanging(value);
+                ReportPropertyChanging("Visual");
+                _Visual = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visual");
+                OnVisualChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Visual;
+        partial void OnVisualChanging(Nullable<global::System.Boolean> value);
+        partial void OnVisualChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Deleted;
+        partial void OnDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Edit
+        {
+            get
+            {
+                return _Edit;
+            }
+            set
+            {
+                OnEditChanging(value);
+                ReportPropertyChanging("Edit");
+                _Edit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Edit");
+                OnEditChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Edit;
+        partial void OnEditChanging(Nullable<global::System.Boolean> value);
+        partial void OnEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG")]
+        public EntityCollection<CHITIETBANHANG> CHITIETBANHANGs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETBANHANG>("KaraokeModel.FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETBANHANG>("KaraokeModel.FK_CHITIETBANHANG_TONKHO", "CHITIETBANHANG", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO")]
+        public EntityCollection<CHITIETCHINHKHO> CHITIETCHINHKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETCHINHKHO>("KaraokeModel.FK_CHITIETCHINHKHO_TONKHO", "CHITIETCHINHKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETCHUYENKHO_TONKHO", "CHITIETCHUYENKHO")]
+        public EntityCollection<CHITIETCHUYENKHO> CHITIETCHUYENKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETCHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "CHITIETCHUYENKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETCHUYENKHO>("KaraokeModel.FK_CHITIETCHUYENKHO_TONKHO", "CHITIETCHUYENKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO")]
+        public EntityCollection<CHITIETHUKHO> CHITIETHUKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETHUKHO>("KaraokeModel.FK_CHITIETHUKHO_TONKHO", "CHITIETHUKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG")]
+        public EntityCollection<CHITIETLICHSUBANHANG> CHITIETLICHSUBANHANGs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETLICHSUBANHANG>("KaraokeModel.FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETLICHSUBANHANG>("KaraokeModel.FK_CHITIETLICHSUBANHANG_TONKHO", "CHITIETLICHSUBANHANG", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO")]
+        public EntityCollection<CHITIETMATKHO> CHITIETMATKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETMATKHO>("KaraokeModel.FK_CHITIETMATKHO_TONKHO", "CHITIETMATKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO")]
+        public EntityCollection<CHITIETNHAPKHO> CHITIETNHAPKHOes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHITIETNHAPKHO>("KaraokeModel.FK_CHITIETNHAPKHO_TONKHO", "CHITIETNHAPKHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_DONVI", "DONVI")]
+        public DONVI DONVI
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHO_DONVI", "DONVI").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHO_DONVI", "DONVI").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DONVI> DONVIReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHO_DONVI", "DONVI");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DONVI>("KaraokeModel.FK_TONKHO_DONVI", "DONVI", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_KHO", "KHO")]
+        public KHO KHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<KHO> KHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<KHO>("KaraokeModel.FK_TONKHO_KHO", "KHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH")]
+        public LOAIPHATSINH LOAIPHATSINH
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<LOAIPHATSINH> LOAIPHATSINHReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LOAIPHATSINH>("KaraokeModel.FK_TONKHO_LOAIPHATSINH", "LOAIPHATSINH", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_MENUMON", "MENUMON")]
+        public MENUMON MENUMON
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHO_MENUMON", "MENUMON").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHO_MENUMON", "MENUMON").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MENUMON> MENUMONReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHO_MENUMON", "MENUMON");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUMON>("KaraokeModel.FK_TONKHO_MENUMON", "MENUMON", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_TONKHO1", "TONKHO1")]
+        public EntityCollection<TONKHO> TONKHO1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHO_TONKHO1", "TONKHO")]
+        public TONKHO TONKHO2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TONKHO> TONKHO2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TONKHO>("KaraokeModel.FK_TONKHO_TONKHO1", "TONKHO", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="KaraokeModel", Name="TONKHOTONG")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TONKHOTONG : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TONKHOTONG object.
+        /// </summary>
+        /// <param name="monID">Initial value of the MonID property.</param>
+        /// <param name="khoID">Initial value of the KhoID property.</param>
+        /// <param name="donViID">Initial value of the DonViID property.</param>
+        public static TONKHOTONG CreateTONKHOTONG(global::System.Int32 monID, global::System.Int32 khoID, global::System.Int32 donViID)
+        {
+            TONKHOTONG tONKHOTONG = new TONKHOTONG();
+            tONKHOTONG.MonID = monID;
+            tONKHOTONG.KhoID = khoID;
+            tONKHOTONG.DonViID = donViID;
+            return tONKHOTONG;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 MonID
+        {
+            get
+            {
+                return _MonID;
+            }
+            set
+            {
+                if (_MonID != value)
+                {
+                    OnMonIDChanging(value);
+                    ReportPropertyChanging("MonID");
+                    _MonID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("MonID");
+                    OnMonIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _MonID;
+        partial void OnMonIDChanging(global::System.Int32 value);
+        partial void OnMonIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 KhoID
+        {
+            get
+            {
+                return _KhoID;
+            }
+            set
+            {
+                if (_KhoID != value)
+                {
+                    OnKhoIDChanging(value);
+                    ReportPropertyChanging("KhoID");
+                    _KhoID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("KhoID");
+                    OnKhoIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _KhoID;
+        partial void OnKhoIDChanging(global::System.Int32 value);
+        partial void OnKhoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DonViID
+        {
+            get
+            {
+                return _DonViID;
+            }
+            set
+            {
+                if (_DonViID != value)
+                {
+                    OnDonViIDChanging(value);
+                    ReportPropertyChanging("DonViID");
+                    _DonViID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("DonViID");
+                    OnDonViIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _DonViID;
+        partial void OnDonViIDChanging(global::System.Int32 value);
+        partial void OnDonViIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TenMonBaoCao
+        {
+            get
+            {
+                return _TenMonBaoCao;
+            }
+            set
+            {
+                OnTenMonBaoCaoChanging(value);
+                ReportPropertyChanging("TenMonBaoCao");
+                _TenMonBaoCao = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TenMonBaoCao");
+                OnTenMonBaoCaoChanged();
+            }
+        }
+        private global::System.String _TenMonBaoCao;
+        partial void OnTenMonBaoCaoChanging(global::System.String value);
+        partial void OnTenMonBaoCaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongTon
+        {
+            get
+            {
+                return _SoLuongTon;
+            }
+            set
+            {
+                OnSoLuongTonChanging(value);
+                ReportPropertyChanging("SoLuongTon");
+                _SoLuongTon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongTon");
+                OnSoLuongTonChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongTon;
+        partial void OnSoLuongTonChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongTonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongBan
+        {
+            get
+            {
+                return _SoLuongBan;
+            }
+            set
+            {
+                OnSoLuongBanChanging(value);
+                ReportPropertyChanging("SoLuongBan");
+                _SoLuongBan = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongBan");
+                OnSoLuongBanChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongBan;
+        partial void OnSoLuongBanChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongBanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongNhap
+        {
+            get
+            {
+                return _SoLuongNhap;
+            }
+            set
+            {
+                OnSoLuongNhapChanging(value);
+                ReportPropertyChanging("SoLuongNhap");
+                _SoLuongNhap = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongNhap");
+                OnSoLuongNhapChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongNhap;
+        partial void OnSoLuongNhapChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongNhapChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongHu
+        {
+            get
+            {
+                return _SoLuongHu;
+            }
+            set
+            {
+                OnSoLuongHuChanging(value);
+                ReportPropertyChanging("SoLuongHu");
+                _SoLuongHu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongHu");
+                OnSoLuongHuChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongHu;
+        partial void OnSoLuongHuChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongHuChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongDieuChinh
+        {
+            get
+            {
+                return _SoLuongDieuChinh;
+            }
+            set
+            {
+                OnSoLuongDieuChinhChanging(value);
+                ReportPropertyChanging("SoLuongDieuChinh");
+                _SoLuongDieuChinh = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongDieuChinh");
+                OnSoLuongDieuChinhChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongDieuChinh;
+        partial void OnSoLuongDieuChinhChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongDieuChinhChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SoLuongMat
+        {
+            get
+            {
+                return _SoLuongMat;
+            }
+            set
+            {
+                OnSoLuongMatChanging(value);
+                ReportPropertyChanging("SoLuongMat");
+                _SoLuongMat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SoLuongMat");
+                OnSoLuongMatChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SoLuongMat;
+        partial void OnSoLuongMatChanging(Nullable<global::System.Int32> value);
+        partial void OnSoLuongMatChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_DONVI", "DONVI")]
+        public DONVI DONVI
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHOTONG_DONVI", "DONVI").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHOTONG_DONVI", "DONVI").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DONVI> DONVIReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DONVI>("KaraokeModel.FK_TONKHOTONG_DONVI", "DONVI");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DONVI>("KaraokeModel.FK_TONKHOTONG_DONVI", "DONVI", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_KHO", "KHO")]
+        public KHO KHO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<KHO> KHOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<KHO>("KaraokeModel.FK_TONKHOTONG_KHO", "KHO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("KaraokeModel", "FK_TONKHOTONG_MENUMON", "MENUMON")]
+        public MENUMON MENUMON
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHOTONG_MENUMON", "MENUMON").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHOTONG_MENUMON", "MENUMON").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MENUMON> MENUMONReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MENUMON>("KaraokeModel.FK_TONKHOTONG_MENUMON", "MENUMON");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MENUMON>("KaraokeModel.FK_TONKHOTONG_MENUMON", "MENUMON", value);
                 }
             }
         }

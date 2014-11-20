@@ -35,7 +35,7 @@ namespace Data
                     join k in frmKho.Query() on nk.KhoID equals k.KhoID
                     join nv in frmNhanVien.Query() on nk.NhanVienID equals nv.NhanVienID
                     join ncc in frmNhaCungCap.Query() on nk.NhaCungCapID equals ncc.NhaCungCapID
-                    //where ((DateTime)nk.ThoiGian).Date == dt.Date && nk.Deleted == false
+                    //where DateTime.Compare(Convert.ToDateTime(nk.ThoiGian.Value).Date, dt.Date) == 0
                     select new BONhapKho
                     {
                         NhapKho = nk,
@@ -61,26 +61,21 @@ namespace Data
             {
                 foreach (BOChiTietNhapKho line in lsArray)
                 {
-                    line.ChiTietNhapKho.TONKHO = new TONKHO();
-                    line.ChiTietNhapKho.TONKHO.KhoID = item.NhapKho.KhoID;
-                    line.ChiTietNhapKho.TONKHO.PhatSinhTuTonKhoID = item.NhapKho.KhoID;
-                    line.ChiTietNhapKho.TONKHO.NgayHetHan = line.ChiTietNhapKho.NgayHetHan;
-                    line.ChiTietNhapKho.TONKHO.NgaySanXuat = line.ChiTietNhapKho.NgaySanXuat;
-                    line.ChiTietNhapKho.TONKHO.LoaiPhatSinhID = (int)Data.TypeLoaiPhatSinh.NhapKho;
-                    line.ChiTietNhapKho.TONKHO.MonID = line.ChiTietNhapKho.MonID;
-                    line.ChiTietNhapKho.TONKHO.LoaiBanID = line.ChiTietNhapKho.LoaiBanID;
-                    line.ChiTietNhapKho.TONKHO.KichThuocBan = line.ChiTietNhapKho.KichThuocBan;
-                    line.ChiTietNhapKho.TONKHO.SoLuongNhap = line.ChiTietNhapKho.SoLuong;
-                    line.ChiTietNhapKho.TONKHO.SoLuongTon = line.ChiTietNhapKho.TONKHO.SoLuongNhap;
-                    line.ChiTietNhapKho.TONKHO.Visual = true;
+                    line.ChiTietNhapKho.TONKHO.DonViTinh = line.ChiTietNhapKho.TONKHO.DonViTinh * line.LoaiBan.KichThuocBan;
                     line.ChiTietNhapKho.TONKHO.Deleted = false;
                     line.ChiTietNhapKho.TONKHO.Edit = false;
+                    line.ChiTietNhapKho.TONKHO.SoLuongTon = line.ChiTietNhapKho.TONKHO.SoLuongNhap;
+                    line.ChiTietNhapKho.TONKHO.Visual = true;
+                    line.ChiTietNhapKho.TONKHO.KhoID = item.NhapKho.KhoID;
                     line.ChiTietNhapKho.TONKHO.SoLuongPhatSinh = 0;
-                    line.ChiTietNhapKho.TONKHO.GiaNhap = line.ChiTietNhapKho.GiaMua;
+                    line.ChiTietNhapKho.TONKHO.PhatSinhTuTonKhoID = null;
+                    line.ChiTietNhapKho.TONKHO.LoaiPhatSinhID = (int)Data.EnumLoaiPhatSinh.NhapKho;
+                    line.NhapKho = new NHAPKHO();
+                    line.NhapKho.KhoID = item.NhapKho.KhoID;
                     item.NhapKho.CHITIETNHAPKHOes.Add(line.ChiTietNhapKho);
-                    line.NhapKho = item.NhapKho;
                 }
-                item.NhapKho.TongTien = lsArray.Sum(s => s.ChiTietNhapKho.SoLuong * s.ChiTietNhapKho.GiaMua);
+
+                item.NhapKho.TongTien = lsArray.Sum(s => s.ChiTietNhapKho.TONKHO.SoLuongNhap * s.ChiTietNhapKho.TONKHO.GiaNhap);
             }
             return item.NhapKho.NhapKhoID;
         }

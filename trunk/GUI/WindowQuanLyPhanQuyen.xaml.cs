@@ -16,6 +16,18 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            uCTile.SetTransit(mTransit);
+            uCTile.TenChucNang = "Quản Lý Phân quyền";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.Quyen.DanhSachQuyen)
+            {
+                btnQuyen.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void btnQuyen_Click(object sender, RoutedEventArgs e)
@@ -42,8 +54,6 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             btnQuyen_Click(sender, e);
-            uCTile.TenChucNang = "Quản Lý Phân quyền";
-            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
     }
 }

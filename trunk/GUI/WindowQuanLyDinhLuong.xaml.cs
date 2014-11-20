@@ -19,28 +19,52 @@ namespace GUI
     public partial class WindowQuanLyDinhLuong : Window
     {
         private Data.Transit mTransit = null;
+
+        private UserControlLibrary.UCDinhLuong ucDinhLuong = null;
+
         public WindowQuanLyDinhLuong(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;            
+            mTransit = transit;
+            uCTile.SetTransit(mTransit);
             uCTile.TenChucNang = "Quản lý định lượng";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
-            ucDinhLuong.Init(mTransit);
+            PhanQuyen();
         }
 
-        void uCTile_OnEventExit()
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.DinhLuong.DinhLuong)
+            {
+                btnDinhLuong.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void btnDinhLuong_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucDinhLuong == null)
+            {
+                ucDinhLuong = new UserControlLibrary.UCDinhLuong();
+                ucDinhLuong.Init(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucDinhLuong);
+        }
+
+        private void uCTile_OnEventExit()
         {
             this.Close();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            ucDinhLuong.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCDinhLuong)
+                ucDinhLuong.Window_KeyDown(sender, e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            btnDinhLuong_Click(sender, e);
         }
     }
 }

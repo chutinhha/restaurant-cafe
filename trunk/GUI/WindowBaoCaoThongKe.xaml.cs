@@ -23,6 +23,29 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            uCTile.TenChucNang = "Báo cáo thống kê";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            DialogResult = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tbnBaoCaoNgay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLichSuDangNhap_Click(object sender, RoutedEventArgs e)
+        {
+            BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
+            win.ShowDialog();
         }
     }
 }

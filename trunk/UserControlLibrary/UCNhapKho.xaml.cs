@@ -77,7 +77,7 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.BONhapKho)((ListViewItem)lvData.SelectedItems[0]).Tag;
+                mItem = (Data.BONhapKho)lvData.SelectedItems[0];
                 if (lsArrayDeleted == null)
                 {
                     lsArrayDeleted = new List<Data.BONhapKho>();

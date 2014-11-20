@@ -19,6 +19,8 @@ namespace UserControlLibrary
         public Data.BOMenuNhom BOMenuNhom = null;
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
+        public bool _IsDinhLuong { get; set; }
+        public bool _IsTonKho { get; set; }
         private double ImageHeightItems = 0;
         private double ImageWidthItems = 0;
         private bool IsRefershMenu = false;
@@ -31,6 +33,8 @@ namespace UserControlLibrary
             InitializeComponent();
             _IsBanHang = false;
             _IsDanhSachKhuyenMai = false;
+            _IsDinhLuong = true;
+            _IsTonKho = true;
         }
 
         public delegate void EventMenuGroup(Data.BOMenuNhom ob);
