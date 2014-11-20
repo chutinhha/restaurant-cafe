@@ -15,6 +15,19 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.MayIn.MayIn)
+            {
+                btnMayIn.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.MayIn.CaiDatThucDonMayIn)
+            {
+                btnMenuMayIn.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void btnMayIn_Click(object sender, RoutedEventArgs e)

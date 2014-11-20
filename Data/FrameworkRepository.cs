@@ -6,9 +6,9 @@ using System.Data.Objects.DataClasses;
 using System.Data.Objects;
 namespace Data
 {
-    
+
     public class FrameworkRepository<TEntityObject> where TEntityObject : EntityObject
-    {        
+    {
         private ObjectSet<TEntityObject> mObjectSet;
         private KaraokeEntities mKaraokeEntities;
         private List<MyEntityObject> mListEntityObject;
@@ -28,7 +28,7 @@ namespace Data
         {
             mListEntityObject = new List<MyEntityObject>();
             mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            mObjectSet.MergeOption = MergeOption.NoTracking;              
+            mObjectSet.MergeOption = MergeOption.NoTracking;
         }
         public static IQueryable<TEntityObject> QueryAppendOnly(ObjectSet<TEntityObject> objectSet, MergeOption mergeOption)
         {
@@ -46,13 +46,13 @@ namespace Data
         }
         public TEntityObject GetAttachEntityObject(TEntityObject obj)
         {
-            if (obj.EntityKey!=null)
+            if (obj.EntityKey != null)
             {
                 object rObj;
-                if (mKaraokeEntities.TryGetObjectByKey(obj.EntityKey,out rObj))
-                {                    
+                if (mKaraokeEntities.TryGetObjectByKey(obj.EntityKey, out rObj))
+                {
                     return (TEntityObject)rObj;
-                }                
+                }
             }
             return null;
         }
@@ -61,30 +61,30 @@ namespace Data
             switch (obj.Type)
             {
                 case FrameworkRepository<TEntityObject>.MyEntityObjectType.Added:
-                    mObjectSet.AddObject(obj.EntityObject);                    
+                    mObjectSet.AddObject(obj.EntityObject);
                     break;
                 case FrameworkRepository<TEntityObject>.MyEntityObjectType.Edit:
                     this.Attach(obj.EntityObject);
-                    mKaraokeEntities.ObjectStateManager.ChangeObjectState(obj.EntityObject, System.Data.EntityState.Modified);                    
+                    mKaraokeEntities.ObjectStateManager.ChangeObjectState(obj.EntityObject, System.Data.EntityState.Modified);
                     break;
                 case FrameworkRepository<TEntityObject>.MyEntityObjectType.Delete:
                     this.Attach(obj.EntityObject);
-                    mObjectSet.DeleteObject(obj.EntityObject);                    
+                    mObjectSet.DeleteObject(obj.EntityObject);
                     break;
                 default:
                     break;
             }
         }
         public void AddObject(TEntityObject obj)
-        {                                    
+        {
             this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Added, obj));
         }
         public void Update(TEntityObject obj)
-        {                        
+        {
             this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Edit, obj));
         }
         public void DeleteObject(TEntityObject obj)
-        {            
+        {
             this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Delete, obj));
         }
         private void AddMyEntityObject(MyEntityObject obj)
@@ -96,14 +96,14 @@ namespace Data
         }
         private void Attach(TEntityObject obj)
         {
-            if (obj.EntityState==System.Data.EntityState.Detached)
+            if (obj.EntityState == System.Data.EntityState.Detached)
             {
                 mObjectSet.Attach(obj);
             }
         }
         private void Detach(TEntityObject obj)
         {
-            if (obj.EntityState!=System.Data.EntityState.Detached)
+            if (obj.EntityState != System.Data.EntityState.Detached)
             {
                 mObjectSet.Detach(obj);
             }
@@ -124,7 +124,7 @@ namespace Data
         public void Refresh()
         {
             mListEntityObject.Clear();
-        }        
+        }
         private class MyEntityObject
         {
             public MyEntityObjectType Type { get; set; }

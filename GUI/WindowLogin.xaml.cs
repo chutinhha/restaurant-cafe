@@ -19,16 +19,18 @@ namespace GUI
     public partial class WindowLogin : Window
     {
         private Data.Transit mTransit = null;
+        Data.BONhanVien BONhanVien = null;
         public WindowLogin()
         {
             InitializeComponent();
             mTransit = new Data.Transit();
+            BONhanVien = new Data.BONhanVien(mTransit);
             ucTile.SetTransit(mTransit);
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), txtPassword.Text.Trim(), mTransit);
+            mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {
                 if (mTransit.Admin.TenDangNhap == txtUserID.Text.Trim() && mTransit.Admin.MatKhau == Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5))
@@ -39,12 +41,16 @@ namespace GUI
                     mTransit.NhanVien.TenNhanVien = mTransit.Admin.TenNhanVien;
                 }
             }
+            else
+            {
+                BONhanVien.ThemLichSuDangNhap(mTransit.NhanVien.NhanVienID);
+            }
             if (mTransit.NhanVien != null)
             {
 
                 MainWindow win = new MainWindow(mTransit);
                 this.Hide();
-                win.ShowDialog();                
+                win.ShowDialog();
             }
 
         }

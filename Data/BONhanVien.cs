@@ -9,6 +9,7 @@ namespace Data
     {
         public FrameworkRepository<NHANVIEN> frmNhanVien = null;
         public FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = null;
+        FrameworkRepository<Data.LICHSUDANGNHAP> frmLichSuDangNhap = null;
 
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
@@ -17,6 +18,7 @@ namespace Data
             transit.KaraokeEntities = new KaraokeEntities();
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
             frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAINHANVIENs);
+            frmLichSuDangNhap = new FrameworkRepository<LICHSUDANGNHAP>(transit.KaraokeEntities, transit.KaraokeEntities.LICHSUDANGNHAPs);
         }
 
         public BONhanVien()
@@ -92,6 +94,13 @@ namespace Data
                     return lsArray[0];
             }
             return null;
+        }
+
+        public void ThemLichSuDangNhap(int NhanVienID)
+        {
+            Data.LICHSUDANGNHAP item = new LICHSUDANGNHAP() { NhanVienID = NhanVienID, ThoiGian = DateTime.Now, Deleted = false, Edit = false, Visual = true };
+            frmLichSuDangNhap.AddObject(item);
+            frmLichSuDangNhap.Commit();
         }
     }
 }

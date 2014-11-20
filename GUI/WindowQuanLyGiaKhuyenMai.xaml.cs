@@ -24,6 +24,32 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LoaiGia)
+            {
+                btnLoaiGia.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LichBieuDinhKy)
+            {
+                btnLichBieuDinhKy.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LichBieuKhongDinKy)
+            {
+                btnLichBieuKhongDinhKy.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.DanhSachBan)
+            {
+                btnDanhSachBan.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.KhuyenMai)
+            {
+                btnKhuyenMai.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
         }
 
         private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)

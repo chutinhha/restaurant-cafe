@@ -5,50 +5,28 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-
-        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="100*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Name="btnKho" Margin="5" Click="btnKho_Click" Style="{StaticResource ButtonFuntion}" Background="#FF945054">
-                    <Button.Content>
-                        <TextBlock Text="Kho" TextWrapping="Wrap" TextAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="1" Name="btnNhaCungCap" Margin="5" Click="btnNhaCungCap_Click" Style="{StaticResource ButtonFuntion}" Background="#FF945054">
-                    <Button.Content>
-                        <TextBlock Text="Nhà cung cấp" TextWrapping="Wrap" TextAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="2" Name="btnNhapKho" Margin="5" Click="btnNhapKho_Click" Style="{StaticResource ButtonFuntion}" Background="#FF945054">
-                    <Button.Content>
-                        <TextBlock Text="Nhập kho" TextWrapping="Wrap" TextAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-            </Grid>
-            <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
-                <Rectangle.Stroke>
-                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Blue" Offset="0.1"/>
-                        <GradientStop Color="Red" Offset="0.9"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Rectangle.Stroke>
-            </Rectangle>
-            <StackPanel Grid.Column="2" Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCAD3E2" Offset="0" />
+                    <GradientStop Color="#FFAEB9CD" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
+                <MenuItem Header="Tồn Kho" Margin="5" Name="btnTonKho" Click="btnTonKho_Click"  />
+                <MenuItem Header="Nhà Kho" Margin="5" Name="btnNhaKho" Click="btnKho_Click"  />
+                <MenuItem Header="Nhập Kho" Margin="5" Name="btnNhapKho" Click="btnNhapKho_Click"  />
+                <MenuItem Header="Chỉnh Kho" Margin="5" Name="btnChinhKho" Click="btnChinhKho_Click"  />
+                <MenuItem Header="Hư kho" Margin="5" Name="btnHuKho" Click="btnHuKho_Click"  />
+                <MenuItem Header="Mất kho" Margin="5" Name="btnMatKho" Click="btnMatKho_Click"  />
+                <MenuItem Header="Chuyển kho" Margin="5" Name="btnChuyenKho" Click="btnChuyenKho_Click"  />
+                <MenuItem Header="Nhà cung cấp" Margin="5" Name="btnNhaCungCap" Click="btnNhaCungCap_Click"  />
+            </Menu>
         </Grid>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
     </Grid>
 </Window>

@@ -23,6 +23,19 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.KhachHang.LoaiKhachHang)
+            {
+                btnLoaiKhachHang.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.KhachHang.KhachHang)
+            {
+                btnLoaiKhachHang.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private UserControlLibrary.UCLoaiKhachHang ucLoaiKhachHang = null;

@@ -6,7 +6,7 @@ using System.Text;
 namespace Data
 {
     public class BOChiTietQuyen
-    {
+    {       
         public CHITIETQUYEN ChiTietQuyen { get; set; }
         public QUYEN Quyen { get; set; }
         public CHUCNANG ChucNang { get; set; }

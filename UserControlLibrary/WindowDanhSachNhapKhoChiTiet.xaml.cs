@@ -66,7 +66,19 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (lsArray.Count > 0)
+            {
+                foreach (var item in lsArray)
+                {
+                    item.LoaiBan = item.ListLoaiBan.Where(s => s.LoaiBanID == item.ChiTietNhapKho.TONKHO.LoaiBanID).FirstOrDefault();
+                }
+                DialogResult = true;
+            }
+            else
+            {
+                DialogResult = false;
+
+            }
         }
 
         private void btnThemMon_Click(object sender, RoutedEventArgs e)
@@ -75,21 +87,21 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 Data.BOChiTietNhapKho item = new Data.BOChiTietNhapKho();
+                item.ChiTietNhapKho.TONKHO = new Data.TONKHO();
+                item.ChiTietNhapKho.TONKHO.SoLuongNhap = 1;
+                item.ChiTietNhapKho.TONKHO.GiaNhap = 0;
+                item.ChiTietNhapKho.TONKHO.GiaBan = 0;
+                item.ChiTietNhapKho.TONKHO.NgaySanXuat = DateTime.Now;
+                item.ChiTietNhapKho.TONKHO.NgayHetHan = DateTime.Now;
+                item.ChiTietNhapKho.TONKHO.MonID = win._ItemMon.MenuMon.MonID;
                 item.MenuMon = win._ItemMon.MenuMon;
-
-                item.ChiTietNhapKho.KichThuocBan = 1;
-                item.ChiTietNhapKho.MonID = win._ItemMon.MenuMon.MonID;
-                item.ChiTietNhapKho.SoLuong = 1;
-                item.ChiTietNhapKho.GiaBan = 0;
-                item.ChiTietNhapKho.GiaMua = 0;
-                item.ChiTietNhapKho.NgayHetHan = DateTime.Now;
-                item.ChiTietNhapKho.NgaySanXuat = DateTime.Now;
-                item.ChiTietNhapKho.Deleted = false;
-                item.ChiTietNhapKho.Visual = true;
-                item.ChiTietNhapKho.Edit = false;
                 item.ListLoaiBan = lsLoaiBan;
                 if (item.ListLoaiBan.Count > 0)
-                    item.ChiTietNhapKho.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;
+                {
+                    item.ChiTietNhapKho.TONKHO.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;
+                    item.LoaiBan = item.ListLoaiBan[0];
+                    item.ChiTietNhapKho.TONKHO.DonViID = item.LoaiBan.DonViID;
+                }
                 if (lsArray == null)
                     lsArray = new List<Data.BOChiTietNhapKho>();
                 lsArray.Add(item);
@@ -116,7 +128,7 @@ namespace UserControlLibrary
             Data.BOChiTietNhapKho item = ((ComboBox)sender).DataContext as Data.BOChiTietNhapKho;
             if (item != null)
             {
-                switch (item.ChiTietNhapKho.LoaiBanID)
+                switch (item.ChiTietNhapKho.TONKHO.LoaiBanID)
                 {
                     case (int)Data.EnumLoaiBan.Cai:
                     case (int)Data.EnumLoaiBan.DinhLuong:
@@ -129,14 +141,15 @@ namespace UserControlLibrary
                     case (int)Data.EnumLoaiBan.Giay:
                         item.ChiTietNhapKho.Edit = true;
                         if (item.ChiTietNhapKho.ChiTietNhapKhoID == 0)
-                            item.ChiTietNhapKho.KichThuocBan = 1;
-                        else if (item.ChiTietNhapKho.LoaiBanID != item.LoaiBan.LoaiBanID)
-                            item.ChiTietNhapKho.KichThuocBan = 1;
+                            item.ChiTietNhapKho.TONKHO.DonViTinh = 1;
+                        else if (item.ChiTietNhapKho.TONKHO.LoaiBanID != item.LoaiBan.LoaiBanID)
+                            item.ChiTietNhapKho.TONKHO.DonViTinh = 1;
                         break;
                     default:
                         break;
                 }
-                item.LoaiBan = item.ListLoaiBan.Where(s => s.LoaiBanID == item.ChiTietNhapKho.LoaiBanID).FirstOrDefault();
+                item.LoaiBan = item.ListLoaiBan.Where(s => s.LoaiBanID == item.ChiTietNhapKho.TONKHO.LoaiBanID).FirstOrDefault();
+                item.ChiTietNhapKho.TONKHO.DonViID = item.LoaiBan.DonViID;
                 lvData.Items.Refresh();
             }
         }

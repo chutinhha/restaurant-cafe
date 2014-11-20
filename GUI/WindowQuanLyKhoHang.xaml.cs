@@ -23,6 +23,43 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.MenuGiaoDien.Kho.TonKho)
+            {
+                btnTonKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.NhaKho)
+            {
+                btnNhaKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.NhapKho)
+            {
+                btnNhapKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.ChinhKho)
+            {
+                btnChinhKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.HuKho)
+            {
+                btnHuKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.MatKho)
+            {
+                btnMatKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.ChuyenKho)
+            {
+                btnChuyenKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mTransit.MenuGiaoDien.Kho.NhaCungCap)
+            {
+                btnNhaCungCap.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -79,6 +116,31 @@ namespace GUI
             }
             spNoiDung.Children.Clear();
             spNoiDung.Children.Add(ucNhapKho);
+        }
+
+        private void btnTonKho_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnChinhKho_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnChuyenKho_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMatKho_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnHuKho_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

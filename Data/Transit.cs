@@ -14,6 +14,7 @@ namespace Data
         }
         public Data.NHANVIEN NhanVien { get; set; }
         public Data.NHANVIEN Admin { get; set; }
+        public Data.MenuGiaoDien MenuGiaoDien { get; set; }
         public BAN Ban { get; set; }
         public BOBanHang BanHang { get; set; }
         //=================
@@ -25,15 +26,18 @@ namespace Data
         public THAMSO ThamSo { get; set; }
         public ClassStringButton StringButton { get; set; }
         public List<DONVI> ListDonVi { get; set; }
+        public int KhoID { get; set; }
         public Transit()
         {
             StringButton = new ClassStringButton();
+            MenuGiaoDien = new Data.MenuGiaoDien();            
             HashMD5 = "KTr";
             Admin = new NHANVIEN();
             Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.QuanLy;
             Admin.TenNhanVien = "Admin";
             Admin.TenDangNhap = "0000";
             Admin.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash("0000", HashMD5);
+            KhoID = 1;
 
 
             KaraokeEntities = new KaraokeEntities();
@@ -45,6 +49,7 @@ namespace Data
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
             The = KaraokeEntities.THEs.FirstOrDefault();
             ListDonVi = BODonVi.GetAll(this);
+            //Data.BONhomChucNang BONhomChucNang = new BONhomChucNang(this);
         }
 
         public class ClassStringButton

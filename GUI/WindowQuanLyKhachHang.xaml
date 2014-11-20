@@ -5,44 +5,22 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="100*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Name="btnLoaiKhachHang" Margin="5" Click="btnLoaiKhachHang_Click" Style="{StaticResource ButtonFuntion}" Background="#FFC13A00">
-                    <Button.Content>
-                        <TextBlock Text="Loại khách hàng" TextWrapping="Wrap" TextAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="1" Name="btnKhachHang" Margin="5" Click="btnKhachHang_Click" Style="{StaticResource ButtonFuntion}" Background="#FFC13A00">
-                    <Button.Content>
-                        <TextBlock Text="Khách hàng" TextWrapping="Wrap" TextAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-            </Grid>
-            <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1" Margin="2">
-                <Rectangle.Stroke>
-                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Blue" Offset="0.1"/>
-                        <GradientStop Color="Red" Offset="0.9"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Rectangle.Stroke>
-            </Rectangle>
-            <StackPanel Grid.Column="2" Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCAD3E2" Offset="0" />
+                    <GradientStop Color="#FFAEB9CD" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
+                <MenuItem Header="Khách hàng" Margin="5" Name="btnKhachHang" Click="btnKhachHang_Click"  />
+                <MenuItem Header="Loại khách hàng" Margin="5" Name="btnLoaiKhachHang" Click="btnLoaiKhachHang_Click"  />
+            </Menu>
         </Grid>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
     </Grid>
 </Window>

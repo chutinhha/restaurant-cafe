@@ -45,4 +45,13 @@ namespace Data
         ThuKho = 2,
         NhanVien = 3
     }
+
+    public enum EnumLoaiPhatSinh
+    {
+        NhapKho = 1,
+        ChuyenKho = 2,
+        MatKho = 3,
+        HuKho = 4,
+        ChinhKho = 5
+    }
 }

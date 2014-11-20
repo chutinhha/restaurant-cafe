@@ -13,6 +13,11 @@
         <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,49,0,0" Name="txtTenBan" VerticalAlignment="Top" Width="120" TextChanged="txtTenBan_TextChanged" />
         <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,90,0,0" Name="textBlock3" Text="Hình Đại Diện" VerticalAlignment="Top" />
         <my:POSButtonImage  Content="Button" Grid.Column="1" Height="55" HorizontalAlignment="Left" Margin="100,90,0,0" Name="btnHinhDaiDien" VerticalAlignment="Top" Width="65" _OnBitmapImageChanged="btnHinhDaiDien__OnBitmapImageChanged" />
+        <!--<my:POSButtonFuntion  Grid.Column="1" Name="btnThemMoi" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMoi_Click" />
+        <my:POSButtonFuntion  Grid.Column="1" Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
+        <my:POSButtonFuntion  Grid.Column="1" Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
+        <my:POSButtonFuntion  Grid.Column="1" Name="btnHuyThayDoi" Content="Hủy Thay Đổi" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnHuyThayDoi_Click" />-->
+        
         <my:POSButtonFuntion Grid.Column="1" Name="btnThemMoi" Content="Thêm" Margin="30,260,20,432" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMoi_Click" Height="35" />
         <my:POSButtonFuntion Grid.Column="1" Name="btnXoa" Content="Xóa" Margin="30,317,20,376" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" Height="35" />        
         <my:POSButtonFuntion Grid.Column="1" Name="btnLuu" Content="Lưu" Margin="30,369,20,323" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" Height="35" />        

@@ -2,13 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="WindowQuanLyThe" Height="768" Width="1024" Loaded="Window_Loaded" KeyDown="Window_KeyDown" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid>        
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <my:UCTile Grid.Row="0"  Name="uCTile" />
-        <my1:UCThe Grid.Row="1" Name="uCThe"/>
-
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCAD3E2" Offset="0" />
+                    <GradientStop Color="#FFAEB9CD" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
+                <MenuItem Header="Thẻ ngân hàng" Margin="5" Name="btnThe" Click="btnThe_Click"  />
+            </Menu>
+        </Grid>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
     </Grid>
 </Window>

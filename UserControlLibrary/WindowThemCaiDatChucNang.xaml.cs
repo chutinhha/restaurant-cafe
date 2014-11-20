@@ -68,11 +68,19 @@ namespace UserControlLibrary
                     item.ChiTietQuyen.QuyenID = mQuyen.MaQuyen;
                     item.ChiTietQuyen.Deleted = false;
                     item.ChiTietQuyen.Edit = false;
-                }
-
+                    item.ChiTietQuyen.Visual = true;
+                    item.ChiTietQuyen.ChoPhep = false;
+                    item.ChiTietQuyen.DangNhap = false;
+                    item.ChiTietQuyen.Xem = false;
+                    item.ChiTietQuyen.Them = false;
+                    item.ChiTietQuyen.Xoa = false;
+                    item.ChiTietQuyen.Sua = false;
+                }                
                 lsShowData.Add(item);
             }
             lvData.ItemsSource = lsShowData;
+
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
