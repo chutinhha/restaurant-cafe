@@ -16,8 +16,10 @@ namespace UserControlLibrary
         public WindowThemNhanVien(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;
+            mTransit = transit;            
         }
+
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

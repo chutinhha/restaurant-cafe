@@ -5,28 +5,28 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="30*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFCAD3E2" Offset="0" />
-                    <GradientStop Color="#FFAEB9CD" Offset="1" />
+                    <GradientStop Color="#FFFE773F" Offset="0" />
+                    <GradientStop Color="#FFC23D04" Offset="1" />
                 </LinearGradientBrush>
             </Grid.Background>
-            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
-                <MenuItem Header="Tồn Kho" Margin="5" Name="btnTonKho" Click="btnTonKho_Click"  />
-                <MenuItem Header="Nhà Kho" Margin="5" Name="btnNhaKho" Click="btnKho_Click"  />
-                <MenuItem Header="Nhập Kho" Margin="5" Name="btnNhapKho" Click="btnNhapKho_Click"  />
-                <MenuItem Header="Chỉnh Kho" Margin="5" Name="btnChinhKho" Click="btnChinhKho_Click"  />
-                <MenuItem Header="Hư kho" Margin="5" Name="btnHuKho" Click="btnHuKho_Click"  />
-                <MenuItem Header="Mất kho" Margin="5" Name="btnMatKho" Click="btnMatKho_Click"  />
-                <MenuItem Header="Chuyển kho" Margin="5" Name="btnChuyenKho" Click="btnChuyenKho_Click"  />
-                <MenuItem Header="Nhà cung cấp" Margin="5" Name="btnNhaCungCap" Click="btnNhaCungCap_Click"  />
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <MenuItem Header="Tồn Kho" Padding="20,0" Name="btnTonKho" Click="btnTonKho_Click"  />
+                <MenuItem Header="Nhà Kho" Padding="20,0"  Name="btnNhaKho" Click="btnKho_Click"  />
+                <MenuItem Header="Nhập Kho" Padding="20,0"  Name="btnNhapKho" Click="btnNhapKho_Click"  />
+                <MenuItem Header="Chỉnh Kho" Padding="20,0"  Name="btnChinhKho" Click="btnChinhKho_Click"  />
+                <MenuItem Header="Hư kho" Padding="20,0"  Name="btnHuKho" Click="btnHuKho_Click"  />
+                <MenuItem Header="Mất kho" Padding="20,0"  Name="btnMatKho" Click="btnMatKho_Click"  />
+                <MenuItem Header="Chuyển kho" Padding="20,0"  Name="btnChuyenKho" Click="btnChuyenKho_Click"  />
+                <MenuItem Header="Nhà cung cấp" Padding="20,0"  Name="btnNhaCungCap" Click="btnNhaCungCap_Click"  />
             </Menu>
         </Grid>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
-        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />        
     </Grid>
 </Window>

@@ -6,25 +6,31 @@ using System.Text;
 namespace Data
 {
     public class BOChiTietQuyen
-    {       
+    {
         public CHITIETQUYEN ChiTietQuyen { get; set; }
         public QUYEN Quyen { get; set; }
         public CHUCNANG ChucNang { get; set; }
+        public QUYENNHANVIEN QuyenNhanVien { get; set; }
+        private Data.Transit mTransit = null;
+
         FrameworkRepository<CHITIETQUYEN> frmChiTietQuyen = null;
         FrameworkRepository<QUYEN> frmQuyen = null;
         FrameworkRepository<CHUCNANG> frmChucNang = null;
+        FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = null;
         public BOChiTietQuyen(Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
+            mTransit = transit;
             frmChiTietQuyen = new FrameworkRepository<CHITIETQUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.CHITIETQUYENs);
             frmQuyen = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
             frmChucNang = new FrameworkRepository<CHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.CHUCNANGs);
+            frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENNHANVIENs);
         }
         public BOChiTietQuyen()
         {
             ChiTietQuyen = new CHITIETQUYEN();
             Quyen = new QUYEN();
             ChucNang = new CHUCNANG();
+            QuyenNhanVien = new QUYENNHANVIEN();
         }
 
         public IQueryable<BOChiTietQuyen> GetAll(int MaQuyen, Transit mTransit)
@@ -70,6 +76,49 @@ namespace Data
                         Them(item, mTransit);
                 }
             frmChiTietQuyen.Commit();
+        }
+
+        public IQueryable<BOChiTietQuyen> LayDanhSachQuyen(Data.NHANVIEN NhanVien)
+        {
+            return from qnv in frmQuyenNhanVien.Query()
+                   join ctq in frmChiTietQuyen.Query() on qnv.QuyenID equals ctq.QuyenID
+                   where qnv.NhanVienID == NhanVien.NhanVienID
+                   select new BOChiTietQuyen
+                   {
+                       QuyenNhanVien = qnv,
+                       ChiTietQuyen = ctq
+                   };
+        }
+
+        public BOChiTietQuyen KiemTraQuyen(int MaChucNang)
+        {
+            BOChiTietQuyen item = new BOChiTietQuyen();
+            if (mTransit.DanhSachQuyen != null)
+            {
+                IQueryable<BOChiTietQuyen> list = mTransit.DanhSachQuyen.Where(s => s.ChiTietQuyen.ChucNangID == MaChucNang);
+                if (list.Count() > 0)
+                {
+                    foreach (BOChiTietQuyen line in list)
+                    {
+                        item.ChiTietQuyen.ChoPhep = ((bool)item.ChiTietQuyen.ChoPhep || (bool)line.ChiTietQuyen.ChoPhep) ? true : false;
+                        item.ChiTietQuyen.DangNhap = ((bool)item.ChiTietQuyen.DangNhap || (bool)line.ChiTietQuyen.DangNhap) ? true : false;
+                        item.ChiTietQuyen.Xem = ((bool)item.ChiTietQuyen.Xem || (bool)line.ChiTietQuyen.Xem) ? true : false;
+                        item.ChiTietQuyen.Them = ((bool)item.ChiTietQuyen.Them || (bool)line.ChiTietQuyen.Them) ? true : false;
+                        item.ChiTietQuyen.Sua = ((bool)item.ChiTietQuyen.Sua || (bool)line.ChiTietQuyen.Sua) ? true : false;
+                        item.ChiTietQuyen.Xoa = ((bool)item.ChiTietQuyen.Xoa || (bool)line.ChiTietQuyen.Xoa) ? true : false;
+                    }
+                }
+            }
+            else
+            {
+                item.ChiTietQuyen.ChoPhep = true;
+                item.ChiTietQuyen.DangNhap = false;
+                item.ChiTietQuyen.Xem = true;
+                item.ChiTietQuyen.Them = true;
+                item.ChiTietQuyen.Xoa = true;
+                item.ChiTietQuyen.Sua = true;
+            }
+            return item;
         }
     }
 }

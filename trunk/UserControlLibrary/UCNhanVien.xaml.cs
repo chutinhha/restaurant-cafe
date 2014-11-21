@@ -22,6 +22,24 @@ namespace UserControlLibrary
             InitializeComponent();
             mTransit = transit;
             BONhanVien = new Data.BONhanVien(transit);
+            PhanQuyen();
+        }
+        Data.BOChiTietQuyen mPhanQuyen = null;
+
+        private void PhanQuyen()
+        {
+            mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.QuanLyNhanVien.QuanLyNhanVien);
+            if (!mPhanQuyen.ChiTietQuyen.Xem)
+                btnDanhSach.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Them)
+                btnThem.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Sua)
+                btnSua.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Xoa)
+                btnXoa.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Xoa)
+                btnLuu.Visibility = System.Windows.Visibility.Collapsed;
+
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

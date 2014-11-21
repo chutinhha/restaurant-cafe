@@ -7,11 +7,6 @@ namespace Data
 {
     public class Transit
     {
-        public class BOTest
-        {
-            public NHANVIEN NV { get; set; }
-            public string Loai { get; set; }
-        }
         public Data.NHANVIEN NhanVien { get; set; }
         public Data.NHANVIEN Admin { get; set; }
         public Data.MenuGiaoDien MenuGiaoDien { get; set; }
@@ -26,30 +21,41 @@ namespace Data
         public THAMSO ThamSo { get; set; }
         public ClassStringButton StringButton { get; set; }
         public List<DONVI> ListDonVi { get; set; }
+        //================Quyền=============
+        public IQueryable<BOChiTietQuyen> DanhSachQuyen { get; set; }
+        public Data.BOChiTietQuyen BOChiTietQuyen = null;
         public int KhoID { get; set; }
         public Transit()
         {
             StringButton = new ClassStringButton();
-            MenuGiaoDien = new Data.MenuGiaoDien();            
+            MenuGiaoDien = new Data.MenuGiaoDien();
             HashMD5 = "KTr";
             Admin = new NHANVIEN();
+            Admin.NhanVienID = 0;
             Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.QuanLy;
             Admin.TenNhanVien = "Admin";
             Admin.TenDangNhap = "0000";
             Admin.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash("0000", HashMD5);
             KhoID = 1;
 
-
             KaraokeEntities = new KaraokeEntities();
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             KaraokeEntities.MENUKICHTHUOCMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             KaraokeEntities.MENUMONs.MergeOption = System.Data.Objects.MergeOption.NoTracking;
             ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
-            NhanVien = KaraokeEntities.NHANVIENs.Where(o => o.NhanVienID == 1).FirstOrDefault();
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
             The = KaraokeEntities.THEs.FirstOrDefault();
             ListDonVi = BODonVi.GetAll(this);
+            BOChiTietQuyen = new BOChiTietQuyen(this);
             //Data.BONhomChucNang BONhomChucNang = new BONhomChucNang(this);
+        }
+
+        public void LayDanhSachQuyen()
+        {
+            if (NhanVien.NhanVienID != 0)
+                DanhSachQuyen = BOChiTietQuyen.LayDanhSachQuyen(NhanVien);
+            else
+                DanhSachQuyen = null;
         }
 
         public class ClassStringButton
