@@ -8,13 +8,15 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
+        private ControlLibrary.POSButtonTable mPOSButtonTable;
         private bool IsThayDoiSoLuong = true;
         private Data.Transit mTransit = null;
         private ProcessOrder.ProcessOrder mProcessOrder;
-        public WindowBanHang(Data.Transit transit)
+        public WindowBanHang(Data.Transit transit,ControlLibrary.POSButtonTable table)
         {
-            InitializeComponent();
             mTransit = transit;
+            mPOSButtonTable = table;
+            InitializeComponent();            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -63,19 +65,36 @@ namespace GUI
         }
         private void GuiNhaBep()
         {
-            mProcessOrder.SendOrder();
+            if (mProcessOrder.KiemTraDanhSachMon()==0)
+            {
+                MessageBox.Show("Không thể gửi ra nhà bếp ! Vui lòng chọn món","Chú ý!");
+                return;
+            }
+            if (mProcessOrder.SendOrder()>0)
+            {
+                mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+            }
             this.Close();
         }
         private void TinhTien()
         {
-            WindowTinhTien win = new WindowTinhTien(mTransit, mProcessOrder.GetBanHang());
-            win.ShowDialog(); ;
-            //mProcessOrder.TinhTien();
-            //this.Close();
+            if (mProcessOrder.KiemTraDanhSachMon() > 0)
+            {
+                WindowTinhTien win = new WindowTinhTien(mTransit,mProcessOrder.GetBanHang());
+                if (win.ShowDialog()==true)
+                {
+                    mProcessOrder.TinhTien();
+                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể tính tiền hóa hơn ! Vui lòng chọn món", "Chú ý!");
+            }            
         }
         private void XoaMon()
-        {
-            //Khong duoc xoa het
+        {            
             if (lvData.SelectedItems.Count > 0)
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
@@ -87,13 +106,22 @@ namespace GUI
                     lvData.SelectedIndex = lvData.Items.Count - 1;
                 }
             }
+            XoaTextThongTinMon();
         }
 
         private void XoaToanBoMon()
         {
             lvData.Items.Clear();
+            XoaTextThongTinMon();
         }
-
+        private void XoaTextThongTinMon()
+        {
+            if (lvData.Items.Count==0)
+            {
+                txtTenMon.Text = "";
+                txtSoLuong.Text = "";
+            }
+        }
         private void LoadBanHang()
         {
             txtMaHoaDon.Text = "HĐ: " + mProcessOrder.BanHang.MaHoaDon.ToString();
@@ -114,13 +142,20 @@ namespace GUI
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
         {
             ListViewItem li = new ListViewItem();
-            li.Content = item;
-            lvData.Items.Add(item);
-            mProcessOrder.AddChiTietBanHang(item);
+            li.Content = item;            
+            if (mProcessOrder.AddChiTietBanHang(item)==0)
+            {
+                lvData.Items.Add(item);    
+            }
+            else
+            {
+                lvData.Items.Refresh();
+            }
             if (lvData.Items.Count > 0)
             {
                 lvData.SelectedIndex = lvData.Items.Count - 1;
             }
+            ReloadData();
         }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -161,7 +196,7 @@ namespace GUI
                 {
                     str = txtSoLuong.Text;
                 }
-                mProcessOrder.CurrentChiTietBanHang.ChangeQty(System.Convert.ToInt32(str));
+                mProcessOrder.CurrentChiTietBanHang.ChangeQtyChiTietBanHang(System.Convert.ToInt32(str));
                 ReloadData();
                 if (lvData.SelectedItems.Count > 0)
                 {
@@ -182,8 +217,7 @@ namespace GUI
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
         {
             Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);
-            AddChiTietBanHang(item);
-            ReloadData();
+            AddChiTietBanHang(item);            
         }
     }
 }

@@ -18,9 +18,9 @@ namespace GUI
     /// </summary>
     public partial class WindowSoDoBan : Window
     {
-        private Data.Transit mTransit;
+        private Data.Transit mTransit;        
         public WindowSoDoBan(Data.Transit tran)
-        {
+        {            
             mTransit = tran;
             InitializeComponent();
             ucTile.SetTransit(tran);
@@ -50,8 +50,9 @@ namespace GUI
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {
             mTransit.Ban = tbl._Ban;
-            WindowBanHang win = new WindowBanHang(mTransit);
+            WindowBanHang win = new WindowBanHang(mTransit,tbl);
             win.ShowDialog();
         }
+
     }
 }

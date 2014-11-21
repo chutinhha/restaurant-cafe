@@ -52,18 +52,66 @@ namespace ControlLibrary
             Edit,
             Delete
         }
-
+        public enum POSButtonTableStatusColor
+        {   
+            None,
+            Ordered=1,
+            Bill,
+            Taxinvoice,
+            Compledted
+        }
         public Data.BAN _Ban { get; set; }
         private bool mIsMoseDown;
         private Point mPointMoseDown;
         private Thickness mThicknessMouseDown;
         public bool _IsEdit { get; set; }
+        private POSButtonTableStatusColor mButtonTableStatusColor;
         public POSButtonTableStatus _ButtonTableStatus { get; set; }
+        public POSButtonTableStatusColor _ButtonTableStatusColor 
+        {
+            get { return mButtonTableStatusColor; }
+            set 
+            { 
+                mButtonTableStatusColor = value;
+                SetColor(value);
+            }
+        }        
         public UserControl _UserControlParent { get; set; }
-
+        public Color BackGroundColor 
+        {
+            set { Background = new SolidColorBrush(value); }
+        }
         static POSButtonTable()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonTable), new FrameworkPropertyMetadata(typeof(POSButtonTable)));            
+        }
+        private void SetColor(POSButtonTableStatusColor status)
+        {
+            switch (status)
+            {
+                case POSButtonTableStatusColor.None:
+                    Background = null;
+                    this.Foreground = Brushes.Black;
+                    break;
+                case POSButtonTableStatusColor.Ordered:
+                    Background = Brushes.Blue;
+                    this.Foreground = Brushes.White;
+                    break;
+                case POSButtonTableStatusColor.Bill:
+                    Background = Brushes.Green;
+                    this.Foreground = Brushes.Black;
+                    break;
+                case POSButtonTableStatusColor.Taxinvoice:
+                    Background = Brushes.Orange;
+                    this.Foreground = Brushes.Black;
+                    break;
+                case POSButtonTableStatusColor.Compledted:
+                    Background = null;
+                    this.Foreground = Brushes.Black;
+                    break;
+                default:
+                    break;
+            }
         }
         public ImageSource Image
         {
@@ -71,7 +119,7 @@ namespace ControlLibrary
             set { SetValue(ImageProperty, value); }
         }
         public void TableDraw()
-        {
+        {            
             double x = _UserControlParent.RenderSize.Width * (double)_Ban.LocationX;
             double y = _UserControlParent.RenderSize.Height * (double)_Ban.LocationY;
             this.Width = _UserControlParent.RenderSize.Width * (double)_Ban.Width;

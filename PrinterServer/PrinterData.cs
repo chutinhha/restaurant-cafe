@@ -91,7 +91,7 @@ namespace PrinterServer
             if (totalCount>0)
                 y=mPOSPrinter.POSDrawString(String.Format("THÊM :{0}", totalCount), e, fontFoot, mColorBlack, y, TextAlign.Right, 10);
             if (totalCountCancel>0)            
-                y=mPOSPrinter.POSDrawString(String.Format("HỦY :{0}", totalCount), e, fontFoot, mColorBlack, y, TextAlign.Right, 10);            
+                y=mPOSPrinter.POSDrawString(String.Format("HỦY :{0}", totalCountCancel), e, fontFoot, mColorBlack, y, TextAlign.Right, 10);            
         }
     }
 }

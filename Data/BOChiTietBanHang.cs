@@ -71,13 +71,17 @@ namespace Data
             this.CHITIETBANHANG.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;            
             this.MENUKICHTHUOCMON = ktm.MenuKichThuocMon;
             this.MENUMON = ktm.MenuMon;
-
             SoLuongBanTam = (int)this.CHITIETBANHANG.SoLuongBan;
         }
-        public void ChangeQty(int qty)
+        public void ChangeQtyChiTietBanHang(int qty)
         {
             this.CHITIETBANHANG.SoLuongBan = qty;
             this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+        }
+        public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
+        {
+            chitiet.SoLuong = qty;
+            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;            
         }
         public string TenMon
         {

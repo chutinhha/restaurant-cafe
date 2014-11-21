@@ -15,7 +15,7 @@ namespace ProcessOrder
         public Data.BANHANG BanHang
         {
             get { return mBanHang.BANHANG; }
-        }
+        }        
         public List<Data.BOChiTietBanHang> ListChiTietBanHang
         {
             get { return mBanHang._ListChiTietBanHang; }
@@ -30,13 +30,18 @@ namespace ProcessOrder
         {
             return mBanHang;
         }
-        public void SendOrder()
+        public int SendOrder()
         {
             int lichSuBanHangId= mBanHang.GuiNhaBep();
             if (lichSuBanHangId>0)
             {
                 mProcessPrinter.InHoaDon(lichSuBanHangId);
             }
+            return lichSuBanHangId;
+        }
+        public int KiemTraDanhSachMon()
+        {
+            return mBanHang._ListChiTietBanHang.Count;
         }
         public void TinhTien()
         {
@@ -46,7 +51,11 @@ namespace ProcessOrder
             }
             else
             {
-                mBanHang.GuiNhaBep();
+                int lichSuBanHangID= mBanHang.GuiNhaBep();
+                if (lichSuBanHangID>0)
+                {
+                    mProcessPrinter.InHoaDon(lichSuBanHangID);    
+                }
                 mBanHang.TinhTien();
             }
         }        
@@ -54,9 +63,9 @@ namespace ProcessOrder
         {
             chitiet.IsDeleted = true;
         }
-        public void AddChiTietBanHang(Data.BOChiTietBanHang chitiet)
+        public int AddChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
-            mBanHang.AddChiTietBanHang(chitiet);
+            return mBanHang.AddChiTietBanHang(chitiet);
         }        
     }
 }

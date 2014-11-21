@@ -35,8 +35,7 @@ namespace GUI
             {
                 if (mTransit.Admin.TenDangNhap == txtUserID.Text.Trim() && mTransit.Admin.MatKhau == Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5))
                 {
-                    mTransit.NhanVien = new Data.NHANVIEN();
-                    mTransit.NhanVien.NhanVienID = 0;
+                    mTransit.NhanVien = new Data.NHANVIEN();                                        
                     mTransit.NhanVien.LoaiNhanVienID = mTransit.Admin.LoaiNhanVienID;
                     mTransit.NhanVien.TenNhanVien = mTransit.Admin.TenNhanVien;
                 }

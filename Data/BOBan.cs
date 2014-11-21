@@ -6,44 +6,38 @@ using System.Text;
 namespace Data
 {
     public class BOBan
-    {        
-        public static List<BAN> GetTablePerArea(Transit transit, KHU khu)
-        {            
-            var list=transit.KaraokeEntities.BANs.Where(o => o.KhuID == khu.KhuID).ToList();            
-            return list;
-        }
-        public static List<BAN> GetAll(Transit mTransit)
+    {
+        private FrameworkRepository<BAN> frBan;
+        private Transit mTransit;        
+        public BOBan(Transit transit)
         {
-            return mTransit.KaraokeEntities.BANs.ToList();
-        }
-
-        public static int Them(BAN item, Transit mTransit)
+            mTransit = transit;
+            frBan = new FrameworkRepository<BAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.BANs);
+        }                
+        public IQueryable<BAN> GetAllTablePerArea(KHU khu)
         {
-            mTransit.KaraokeEntities.BANs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.BanID;
+            return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Deleted == false);
         }
-
-        public static int Xoa(int BanID, Transit mTransit)
+        public IQueryable<BAN> GetVisualTablePerArea(KHU khu)
         {
-            BAN item = (from x in mTransit.KaraokeEntities.BANs where x.BanID == BanID select x).First();
-            mTransit.KaraokeEntities.DeleteObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.BanID;
+            return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Visual==true && o.Deleted==false);
+        }        
+        public void Them(BAN ban)
+        {
+            frBan.AddObject(ban);
         }
-
-        public static int CapNhat(BAN item, Transit mTransit)
-        {            
-            BAN m = (from x in mTransit.KaraokeEntities.BANs where x.BanID == item.BanID select x).First();
-            m.TenBan = item.TenBan;
-            m.KhuID = item.KhuID;
-            m.Hinh = item.Hinh;
-            m.Height = item.Height;
-            m.Width = item.Width;
-            m.LocationX = item.LocationX;
-            m.LocationY = item.LocationY;
-            mTransit.KaraokeEntities.SaveChanges();            
-            return item.BanID;
+        public void Xoa(BAN ban)
+        {
+            ban.Deleted = true;
+            frBan.Update(ban);            
+        }
+        public void Sua(BAN ban)
+        {
+            frBan.Update(ban);
+        }
+        public void Commit()
+        {
+            frBan.Commit();
         }
     }
 }

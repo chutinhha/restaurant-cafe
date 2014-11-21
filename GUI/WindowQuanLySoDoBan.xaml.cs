@@ -12,12 +12,12 @@ namespace GUI
     public partial class WindowQuanLySoDoBan : Window
     {
         private Data.Transit mTransit = null;          
-        private ControlLibrary.POSButtonTable mTableButton;
-
+        private ControlLibrary.POSButtonTable mTableButton;        
         public WindowQuanLySoDoBan(Data.Transit transit)
-        {
+        {            
+            mTransit = transit;            
             InitializeComponent();
-            mTransit = transit;
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -31,15 +31,17 @@ namespace GUI
             cboKhuVuc.ItemsSource = Data.BOKhu.GetAll(mTransit);
             if (cboKhuVuc.Items.Count > 0)
             {
-                cboKhuVuc.SelectedItem = cboKhuVuc.Items[0];
-                LoadChiTietKhuVuc((Data.KHU)cboKhuVuc.Items[0]);                
+                cboKhuVuc.SelectedItem = cboKhuVuc.Items[0];                
             }
         }
 
         private void cboKhuVuc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;            
-            LoadChiTietKhuVuc(khu);
+            if (cboKhuVuc.SelectedItem!=null)
+            {
+                Data.KHU khu = (Data.KHU)cboKhuVuc.SelectedItem;            
+                LoadChiTietKhuVuc(khu);
+            }
         }
         private void LoadChiTietKhuVuc(Data.KHU khu)
         {            
@@ -85,15 +87,13 @@ namespace GUI
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            uCFloorPlan1.SaveChange();
-            Data.BOKhu.CapNhatHinh(uCFloorPlan1._Khu, mTransit);
+            uCFloorPlan1.SaveChange();            
         }
 
         private void txtTenBan_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (mTableButton != null)
-            {
-                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;
+            {                
                 mTableButton._Ban.TenBan = txtTenBan.Text;
                 mTableButton.TableDraw();
             }
@@ -112,8 +112,7 @@ namespace GUI
         private void btnHinhDaiDien__OnBitmapImageChanged(object sender)
         {
             if (mTableButton != null)
-            {
-                mTableButton._ButtonTableStatus = ControlLibrary.POSButtonTable.POSButtonTableStatus.Edit;
+            {                
                 mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
                 mTableButton.Image = btnHinhDaiDien.ImageBitmap;
                 //mTableButton.TableDraw();
@@ -126,7 +125,7 @@ namespace GUI
         }
         private void btnHuyThayDoi_Click(object sender, RoutedEventArgs e)
         {            
-            uCFloorPlan1.reloadTable();
+            uCFloorPlan1.LoadTable();
         }
         
     }

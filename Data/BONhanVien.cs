@@ -14,8 +14,7 @@ namespace Data
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
         public BONhanVien(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
             frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAINHANVIENs);
             frmLichSuDangNhap = new FrameworkRepository<LICHSUDANGNHAP>(transit.KaraokeEntities, transit.KaraokeEntities.LICHSUDANGNHAPs);

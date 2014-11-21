@@ -8,8 +8,7 @@ namespace Data
     public class BOBanHang
     {        
         public BANHANG BANHANG { get; set; }
-        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }
-        private KaraokeEntities mKaraokeEntities;
+        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }        
         private Transit mTransit;
 
         public FrameworkRepository<BANHANG> frBanHang;
@@ -21,17 +20,21 @@ namespace Data
         public BOBanHang(Transit tran)
         {                        
             mTransit = tran;
-            mKaraokeEntities = new KaraokeEntities();
-            frBanHang = new FrameworkRepository<Data.BANHANG>(mKaraokeEntities,mKaraokeEntities.BANHANGs);
-            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETBANHANGs);
-            frMenuKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mKaraokeEntities,mKaraokeEntities.MENUKICHTHUOCMONs);
-            frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities,mKaraokeEntities.MENUMONs);
-            frLichSu = new FrameworkRepository<LICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.LICHSUBANHANGs);
-            frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETLICHSUBANHANGs);
+            
+            frBanHang = new FrameworkRepository<Data.BANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.BANHANGs);
+            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.CHITIETBANHANGs);
+            frMenuKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.MENUKICHTHUOCMONs);
+            frMenuMon = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.MENUMONs);
+            frLichSu = new FrameworkRepository<LICHSUBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.LICHSUBANHANGs);
+            frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.CHITIETLICHSUBANHANGs);
             
             _ListChiTietBanHang = new List<BOChiTietBanHang>();            
             LoadBanHang();
-        }        
+        }
+        public static IQueryable<BANHANG> GetAllNotCompleted(Transit transit)
+        {
+            return FrameworkRepository<BANHANG>.QueryNoTracking(transit.KaraokeEntities.BANHANGs).Where(b=>b.TrangThaiID!=4);
+        }
         private void LoadBanHang()
         {
             var list = frBanHang.Query().Where(o => o.BanID == mTransit.Ban.BanID && o.TrangThaiID != 4);
@@ -48,7 +51,11 @@ namespace Data
             else
             {
                 BANHANG = new BANHANG();                
-                BANHANG.NhanVienID = mTransit.NhanVien.NhanVienID;                
+                BANHANG.NhanVienID = mTransit.NhanVien.NhanVienID;
+                if (BANHANG.NhanVienID==0)
+                {
+                    BANHANG.NhanVienID = null;
+                }
                 BANHANG.BanID = mTransit.Ban.BanID;                                
                 BANHANG.NgayBan = DateTime.Now;
                 BANHANG.MaHoaDon = 1;
@@ -71,17 +78,27 @@ namespace Data
         {            
             foreach (BOChiTietBanHang item in _ListChiTietBanHang)
             {
-                if (item.XoaMon||(item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan))
+                if (item.XoaMon|| item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan || item.CHITIETBANHANG.ChiTietBanHangID==0)
                 {
                     return true;
                 }
             }
             return false;
         }        
-        public void AddChiTietBanHang(BOChiTietBanHang chiTiet)
+        public int AddChiTietBanHang(BOChiTietBanHang chiTiet)
         {
+            if (_ListChiTietBanHang.Count>0)
+            {
+                BOChiTietBanHang chitietLast=_ListChiTietBanHang.Last();
+                if (chitietLast.CHITIETBANHANG.KichThuocMonID==chiTiet.CHITIETBANHANG.KichThuocMonID)
+                {
+                    chitietLast.ChangeQtyChiTietBanHang((int)(chitietLast.CHITIETBANHANG.SoLuongBan+chiTiet.CHITIETBANHANG.SoLuongBan));
+                    return (int)chitietLast.CHITIETBANHANG.KichThuocMonID;
+                }
+            }
             chiTiet.CHITIETBANHANG.NhanVienID = this.BANHANG.NhanVienID;
             _ListChiTietBanHang.Add(chiTiet);
+            return 0;
         }
         public int GuiNhaBep()
         {
@@ -120,15 +137,15 @@ namespace Data
                         if (item.CHITIETBANHANG.ChiTietBanHangID==0)
                         {
                             CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
-                            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
+                            item.ChangeQtyChiTietLichSuBanHang(chitiet, (int)chitiet.SoLuong);
+                            item.CHITIETBANHANG.BanHangID = this.BANHANG.BanHangID;
                             frChiTietBanHang.AddObject(item.CHITIETBANHANG);
                             frChiTietLichSuBanHang.AddObject(chitiet);
                         }
                         else if (item.XoaMon)
                         {
                             CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
-                            chitiet.SoLuong = 0 - chitiet.SoLuong;
-                            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
+                            item.ChangeQtyChiTietLichSuBanHang(chitiet, 0 - (int)chitiet.SoLuong);                            
                             frChiTietLichSuBanHang.AddObject(chitiet);
                             frChiTietBanHang.DeleteObject(item.CHITIETBANHANG);
                         }
@@ -154,14 +171,14 @@ namespace Data
             frBanHang.Commit();
             return this.BANHANG.BanHangID;
         }
-        public double TongTien()
+        public decimal TongTien()
         {
-            double tong = 0;
+            decimal tong = 0;
             foreach (var item in _ListChiTietBanHang)
             {
                 if (item.IsDeleted==false)
                 {
-                    tong += (double)item.CHITIETBANHANG.ThanhTien;
+                    tong += (decimal)item.CHITIETBANHANG.ThanhTien;
                 }
             }
             return tong;
@@ -171,6 +188,10 @@ namespace Data
             LICHSUBANHANG lichsu = new LICHSUBANHANG();
             lichsu.BanHangID = this.BANHANG.BanHangID;
             lichsu.NhanVienID = mTransit.NhanVien.NhanVienID;
+            if (lichsu.NhanVienID==0)
+            {
+                lichsu.NhanVienID = null;
+            }
             lichsu.NgayBan = DateTime.Now;
             lichsu.InNhaBep = false;
             return lichsu;
