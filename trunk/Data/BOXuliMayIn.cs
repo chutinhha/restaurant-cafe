@@ -31,7 +31,8 @@ namespace Data
             frLichSuBanHang = new FrameworkRepository<LICHSUBANHANG>(mKaraokeEntities, mKaraokeEntities.LICHSUBANHANGs);
             frNhanVien = new FrameworkRepository<NHANVIEN>(mKaraokeEntities, mKaraokeEntities.NHANVIENs);
             frBanHang = new FrameworkRepository<BANHANG>(mKaraokeEntities, mKaraokeEntities.BANHANGs);
-            frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);            
+            frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);     
+                               
         }
         public IQueryable<BOMayIn> AllPrinting(int lichSuBanHang)
         {
@@ -41,11 +42,12 @@ namespace Data
                                where z.LichSuBanHangID == lichSuBanHang
                                select x;
             var queryMenuMayIn = from x in queryMenuMon
-                                 join y in frMenuMayIn.Query() on x.MonID equals y.MonID                                 
+                                 join y in frMenuMayIn.Query() on x.MonID equals y.MonID
+                                 where y.Deleted==false && y.Visual==true
                                  select y;
             var resuilt = from x in frMayIn.Query()
                           join y in frMenuMayIn.Query() on x.MayInID equals y.MayInID
-                          where x.Visual == true && queryMenuMayIn.Contains(y)
+                          where x.Visual == true && x.Deleted==false && queryMenuMayIn.Contains(y)
                           select new BOMayIn
                           {                              
                               MayInID=x.MayInID,
@@ -59,9 +61,10 @@ namespace Data
         public IQueryable<BOPrintOrder> GetOrderFromLichSuBanHang(int lichSuBanHangID)
         {
             var query = from x in frLichSuBanHang.Query()
+                        where x.LichSuBanHangID == lichSuBanHangID
                         join y in frBanHang.Query() on x.BanHangID equals y.BanHangID
                         join z in frNhanVien.Query() on x.NhanVienID equals z.NhanVienID
-                        join a in frBan.Query() on y.BanID equals a.BanID                        
+                        join a in frBan.Query() on y.BanID equals a.BanID                                                
                         select new BOPrintOrder
                         {
                             TenNhanVien=z.TenNhanVien,
@@ -77,17 +80,27 @@ namespace Data
                              join b in frMenuMayIn.Query() on a.MonID equals b.MonID
                              where b.MayInID == printID
                              select a;
-            var query = 
+            var queryChiTiet=from ct in frChiTietLichSuBanHang.Query() 
+                             where ct.LichSuBanHangID==lichSuBanHangID select ct;
+            var query =
                         from a in frMenuMon.Query()
                         join b in frMenuKichThuocMon.Query() on a.MonID equals b.MonID
-                        join c in frChiTietLichSuBanHang.Query() on b.KichThuocMonID equals c.KichThuocMonID                        
-                        where queryCheck.Contains(a) && c.LichSuBanHangID==lichSuBanHangID
-                        select new BOPrintOrderItem
+                        join c in queryChiTiet on b.KichThuocMonID equals c.KichThuocMonID
+                        where queryCheck.Contains(a) && c.LichSuBanHangID == lichSuBanHangID
+                        select new
                         {
-                            TenMon = a.TenDai + "(" + b.TenLoaiBan + ")",
+                            TenMon = a.TenDai + "(" + b.TenLoaiBan + ")",                        
                             SoLuong = (int)c.SoLuong,
                             TrangThai = (int)c.TrangThai
-                        };
+                        } into x
+                        group x by new { x.TenMon,x.TrangThai } into y
+                        select new BOPrintOrderItem
+                        {
+                            TenMon = y.Key.TenMon,
+                            TrangThai=(int)y.Key.TrangThai,
+                            SoLuong=y.Sum(c=>c.SoLuong)
+                        }
+                        ;
             return query;
         }
     }

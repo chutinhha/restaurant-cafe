@@ -30,11 +30,11 @@ namespace ControlLibrary
             if (_TextBox!=null)
             {
                 POSButtonMoney btn = sender as POSButtonMoney;                
-                double value = 0;
-                value += Utilities.MoneyFormat.ConvertToDouble(_TextBox.Text);
+                decimal value = 0;
+                value += Utilities.MoneyFormat.ConvertToDecimal(_TextBox.Text);
                 value += btn._SoTien;
                 btn.Focus();
-                _TextBox.Text = Utilities.MoneyFormat.ConvertToString(value);
+                _TextBox.Text=Utilities.MoneyFormat.ConvertToString(value);
                 _TextBox.Focus();
             }
         }

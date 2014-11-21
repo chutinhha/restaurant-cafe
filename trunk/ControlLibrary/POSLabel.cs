@@ -40,24 +40,24 @@ namespace ControlLibrary
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:POSButtonMoney/>
+    ///     <MyNamespace:POSLabel/>
     ///
     /// </summary>
-    public class POSButtonMoney : Button
+    public class POSLabel : Label
     {
-        private decimal mSoTien;
-        public decimal _SoTien 
+        private decimal mDecimalValue;
+        public decimal _DecimalValue 
         {
-            get { return mSoTien; }
+            get { return mDecimalValue; }
             set 
-            {
-                mSoTien = value;
-                this.Content = Utilities.MoneyFormat.ConvertToStringFull(mSoTien);                
-            } 
+            { 
+                mDecimalValue = value;
+                this.Content = Utilities.MoneyFormat.ConvertToStringFull(value);
+            }
         }
-        static POSButtonMoney()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonMoney), new FrameworkPropertyMetadata(typeof(POSButtonMoney)));
-        }        
+        //static POSLabel()
+        //{
+        //    DefaultStyleKeyProperty.OverrideMetadata(typeof(POSLabel), new FrameworkPropertyMetadata(typeof(POSLabel)));
+        //}
     }
 }

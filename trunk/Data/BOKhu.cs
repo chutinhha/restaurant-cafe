@@ -6,68 +6,46 @@ using System.Text;
 namespace Data
 {
     public class BOKhu
-    {
-        public static List<KHU> GetAllVisual(Transit transit)
-        {
-            return transit.KaraokeEntities.KHUs.Where(k => k.Deleted == false && k.Visual == true).ToList();
-        }
-        public static List<KHU> GetAll(Transit transit)
-        {
-            return transit.KaraokeEntities.KHUs.Where(k => k.Deleted == false).ToList();
-        }
-
-        public static int CapNhatHinh(KHU khu, Transit mTransit)
-        {
-            KHU m = (from x in mTransit.KaraokeEntities.KHUs where x.KhuID == khu.KhuID select x).First();
-            m.Hinh = khu.Hinh;
-            mTransit.KaraokeEntities.SaveChanges();
-            return m.KhuID;
+    {        
+        private Transit mTransit;
+        private FrameworkRepository<KHU> frKhu;
+        public BOKhu(Transit tran)
+        {            
+            mTransit = tran;
+            frKhu = new FrameworkRepository<KHU>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.KHUs);
         }
 
-        public static int Them(KHU item, Transit mTransit)
+        public static IQueryable<KHU> GetAllVisual(Transit transit)
         {
-            mTransit.KaraokeEntities.KHUs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhuID;
+            var query = FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(o => o.Deleted == false && o.Visual == true);            
+            return query;
+        }        
+        public static IQueryable<KHU> GetAll(Transit transit)
+        {
+            return FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(k => k.Deleted == false);            
+        }        
+        public void Sua(KHU khu)
+        {
+            frKhu.Update(khu);
         }
 
-        public static int Xoa(int KhuID, Transit mTransit)
+        public void Them(KHU item)
         {
-            KHU item = (from x in mTransit.KaraokeEntities.KHUs where x.KhuID == KhuID select x).First();
-            item.Deleted = true;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhuID;
+            frKhu.AddObject(item);
         }
 
-        public static int Sua(KHU item, Transit mTransit)
+        public void Xoa(KHU khu)
         {
-            KHU m = (from x in mTransit.KaraokeEntities.KHUs where x.KhuID == item.KhuID select x).First();
-            m.TenKhu = item.TenKhu;
-            m.LoaiGiaID = item.LoaiGiaID;
-            m.Hinh = item.Hinh;
-            m.MacDinhSoDoBan = m.MacDinhSoDoBan;
-            m.Visual = item.Visual;
-            m.Deleted = item.Deleted;
-            m.Edit = false;
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.KhuID;
+            frKhu.DeleteObject(khu);
         }
 
-        public static void Luu(List<KHU> lsArray, List<KHU> lsArrayDeleted, Transit mTransit)
+        public void Commit()
         {
-            if (lsArray != null)
-                foreach (KHU item in lsArray)
-                {
-                    if (item.KhuID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
-                }
-            if (lsArrayDeleted != null)
-                foreach (KHU item in lsArrayDeleted)
-                {
-                    Xoa(item.KhuID, mTransit);
-                }
+            frKhu.Commit();
+        }
+        public void Refresh()
+        {
+            frKhu.Refresh();
         }
     }
 }

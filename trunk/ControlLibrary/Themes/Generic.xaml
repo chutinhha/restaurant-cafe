@@ -9,9 +9,8 @@
                 <ControlTemplate TargetType="{x:Type local:POSTextBox}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#FF56007C"                            
-                            BorderThickness="1">
-                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}" />
-                        
+                            BorderThickness="1">                        
+                        <TextBox Name="textBox"  Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,UpdateSourceTrigger=PropertyChanged}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -48,8 +47,8 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#FF56007C"
                             BorderThickness="1">
-                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ItemsSource}">
-                        </ComboBox>
+                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ItemsSource,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}">
+                         </ComboBox>                        
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
                         </Border.Effect>
@@ -186,10 +185,10 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50*" />
-                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20*" />
                                 </Grid.RowDefinitions>
-                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                                <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            <Label Grid.Row="1" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </Button>
                     <!--</Border>-->
@@ -301,19 +300,21 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSButtonTable}">
                     <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="{TemplateBinding VerticalAlignment}" VerticalAlignment="{TemplateBinding HorizontalAlignment}">
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50*"/>
-                                <RowDefinition Height="20" />
-                            </Grid.RowDefinitions>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                                <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
-                                </Border.Effect>
-                            </Border>
-                            <TextBlock Grid.Row="1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                    <!--<Border.Effect>
+                                        <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
+                                    </Border.Effect>-->
+                                </Border>
+                                <TextBlock Grid.Row="1" Foreground="{TemplateBinding Foreground}"  Text="{TemplateBinding Content}" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"/>
+                            </Grid>
+                        </Border>
                     </Button>
                 </ControlTemplate>
             </Setter.Value>
@@ -387,5 +388,19 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:POSLabel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:POSLabel}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>        
     </Style>
 </ResourceDictionary>

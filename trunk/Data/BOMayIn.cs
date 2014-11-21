@@ -12,13 +12,14 @@ namespace Data
         public string TieuDeIn { get; set; }        
         public bool HocDungTien { get; set; }
         public int SoLanIn { get; set; }
-        FrameworkRepository<MAYIN> frmMayIn=null;
+        FrameworkRepository<MAYIN> frmMayIn;
+        private Transit mTransit;
         public BOMayIn()
         { }
         public BOMayIn(Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
-            frmMayIn = new FrameworkRepository<MAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MAYINs);
+            mTransit = transit;
+            frmMayIn = new FrameworkRepository<MAYIN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MAYINs);
         }
 
         public IQueryable<MAYIN> GetAll(Transit mTransit)

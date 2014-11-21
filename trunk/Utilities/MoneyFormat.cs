@@ -7,26 +7,44 @@ namespace Utilities
 {
     public class MoneyFormat
     {
-        public static string ConvertToStringFull(double data)
+        //public static string ConvertToStringFull(double data)
+        //{
+        //    return String.Format("{0:0,0} đ",data);
+        //}
+        public static string ConvertToStringFull(decimal data)
         {
-            return String.Format("{0:0,0} đ",data);
+            return String.Format("{0:0,0} đ", data);
         }
         public static string ConvertToString(string data)
         {
-            return ConvertToString(ConvertToDouble(data));
+            return ConvertToString(ConvertToDecimal(data));
         }
-        public static string ConvertToString(double data)
+        public static string ConvertToString(decimal data)
         {
             return String.Format("{0:0,0}", data);
         }
-        public static double ConvertToDouble(string data)
+        public static decimal ConvertToDecimal(string data)
         {
-            try
-            {                
-                return Double.Parse(data);
+            if (CheckIsDigit(data))
+            {
+                return Convert.ToDecimal(data);
             }
-            catch (Exception){}
             return 0;
+        }
+        public static bool CheckIsDigit(string data)
+        {
+            if (data.Length==0)
+            {
+                return false;
+            }
+            foreach (var item in data)
+            {
+                if ((item<'0' || item>'9')&& item!='.' && item!=',')
+                {
+                    return false;
+                }                
+            }
+            return true;
         }
     }
 }

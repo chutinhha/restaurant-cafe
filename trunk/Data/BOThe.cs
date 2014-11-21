@@ -7,13 +7,16 @@ namespace Data
 {
     public class BOThe
     {
+        public int TheID { get; set; }
+        public string TenThe { get; set; }
+        public BOThe()
+        {
+        }
         FrameworkRepository<THE> frmLoaiKhachHang = null;
         public BOThe(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmLoaiKhachHang = new FrameworkRepository<THE>(transit.KaraokeEntities, transit.KaraokeEntities.THEs);
-        }
-
+        }        
         public IQueryable<THE> GetAll(Transit mTransit)
         {
             return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
@@ -22,7 +25,16 @@ namespace Data
         {
             return FrameworkRepository<THE>.QueryNoTracking(mTransit.KaraokeEntities.THEs).Where(s => s.Deleted == false);
         }
-
+        public static IQueryable<BOThe> GetAllVisual(Transit mTransit)
+        {
+            return from x in FrameworkRepository<THE>.QueryNoTracking(mTransit.KaraokeEntities.THEs)
+                   where x.Visual == true && x.Deleted == false
+                   select new BOThe
+                   {
+                       TheID=x.TheID,
+                       TenThe=x.TenThe
+                   };
+        }
         private int Them(THE item, Transit mTransit)
         {
             frmLoaiKhachHang.AddObject(item);

@@ -83,13 +83,12 @@
         </Grid>
         <Rectangle Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="1" Margin="2">
             <Rectangle.Stroke>
-                <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0 0" EndPoint="0 0.05">
-                    <!--<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox" SpreadMethod="Repeat">-->
-                    <GradientStop Color="White" Offset="0" />
-                    <GradientStop Color="Blue" Offset="0.1" />
-                    <GradientStop Color="Red" Offset="0.9" />
-                    <GradientStop Color="White" Offset="1" />
-                </LinearGradientBrush>
+                <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="0,1">                    
+                <GradientStop Color="White" Offset="0" />
+                <GradientStop Color="Blue" Offset="0.3" />
+                <GradientStop Color="Red" Offset="0.7" />
+                <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>                 
             </Rectangle.Stroke>
         </Rectangle>
         <Grid Name="gridGroup" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

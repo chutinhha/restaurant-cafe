@@ -20,24 +20,91 @@ namespace GUI
     {
         private Data.Transit mTransit;
         private Data.BOBanHang mBOBanHang;
-        private Data.BOBanHang mBOBanHangTam;
+        private Data.BOXuliTinhTien mBOXuliTinhTien;
         public WindowTinhTien(Data.Transit transit,Data.BOBanHang banhang)
         {
-            InitializeComponent();
             mTransit = transit;
             mBOBanHang = banhang;
-            mBOBanHangTam = new Data.BOBanHang(mTransit);
+            mBOXuliTinhTien = new Data.BOXuliTinhTien(mTransit, mBOBanHang);            
+            InitializeComponent();            
+        }        
+        private void InitData()
+        {
+            cboThe.ItemsSource = Data.BOThe.GetAllVisual(mTransit);
         }
         private void ReLoadData()
         {
-            txtTongTien.Text ="Tổng Tiền: "+ Utilities.MoneyFormat.ConvertToStringFull(mBOBanHang.TongTien());
+            if (txtTongTien!=null)
+            {
+                txtTongTien.Text ="Tổng Tiền: "+ Utilities.MoneyFormat.ConvertToStringFull(mBOXuliTinhTien.TongTien);
+            }
+            if (txtTongTienPhaiTra!=null)
+            {
+                txtTongTienPhaiTra.Text = Utilities.MoneyFormat.ConvertToStringFull(mBOXuliTinhTien.TongTienPhaiTra);    
+            }
+            if (lblTienThua!=null)
+            {
+                lblTienThua._DecimalValue = mBOXuliTinhTien.TienTraLai;
+            }
+            if (mBOXuliTinhTien.TienTraLai>0)
+            {
+                lblTienThua.Visibility = System.Windows.Visibility.Visible;
+                lblTienThuaLabel.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                lblTienThua.Visibility = System.Windows.Visibility.Hidden;
+                lblTienThuaLabel.Visibility = System.Windows.Visibility.Hidden;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             txtSoTien._UCMoneyKeyPad = uCMoneyKeyPad1;
             txtSoTien._UCKeyPad = uCKeyPad1;
+            txtGiamGia._UCKeyPad = uCKeyPad1;
+            //ReLoadData();
+            txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
+            InitData();
+        }
+
+        private void txtGiamGia_TextChanged(object sender, TextChangedEventArgs e)
+        {            
+
+            mBOXuliTinhTien.TienGiam = Utilities.MoneyFormat.ConvertToDecimal(txtGiamGia.Text)*mBOXuliTinhTien.TongTien/100;
             ReLoadData();
         }
+
+        private void txtSoTien_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (cboThe.SelectedValue!=null)
+            {
+                mBOXuliTinhTien.TienThe = Utilities.MoneyFormat.ConvertToDecimal(txtSoTien.Text);
+            }
+            else
+            {
+                mBOXuliTinhTien.TienKhachDua = Utilities.MoneyFormat.ConvertToDecimal(txtSoTien.Text);
+            }
+            ReLoadData();
+        }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
+
+        private void btnDongY_Click(object sender, RoutedEventArgs e)
+        {
+            mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
+            this.DialogResult = true;
+        }
+
+        private void cboThe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mBOBanHang.BANHANG.TheID =(int) cboThe.SelectedValue;
+            txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
+        }       
+        
     }
 }

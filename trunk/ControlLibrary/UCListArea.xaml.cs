@@ -21,7 +21,8 @@ namespace ControlLibrary
     {
         public UCFloorPlan _UCFloorPlan { get; set; }
         private POSButtonTableArea mPOSButtonTableArea;
-        private Data.Transit mTransit;
+        private Data.Transit mTransit;        
+        private Data.BOKhu mBOKhu;
         public UCListArea()
         {
             InitializeComponent();
@@ -29,12 +30,13 @@ namespace ControlLibrary
         public void Init(Data.Transit transit)        
         {
             mTransit=transit;
+            mBOKhu = new Data.BOKhu(mTransit);
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {            
             try
             {
-                var list = Data.BOKhu.GetAllVisual(mTransit);
+                var list = Data.BOKhu.GetAllVisual(mTransit);                
                 int count = 0;
                 foreach (var item in list)
                 {
