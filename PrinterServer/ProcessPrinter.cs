@@ -25,7 +25,7 @@ namespace PrinterServer
             var list = mXuliMayIn.AllPrinting(lichSuBanHang).ToList();
             foreach (var item in list)
             {
-                PrinterData mayInHoaDon = new PrinterData(lichSuBanHang, item, mXuliMayIn);
+                PrinterSendOrder mayInHoaDon = new PrinterSendOrder(lichSuBanHang, item, mXuliMayIn);
                 mayInHoaDon.Print();
             }
         }

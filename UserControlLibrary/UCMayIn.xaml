@@ -24,6 +24,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenMayIn}" Width="300" Header="Tên máy in" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=HopDungTien}" Width="150" Header="Hộp đựng tiền" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=SoLanIn}" Width="100" Header="Số lần in" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MayInHoaDon}" Width="150" Header="Máy in hóa đơn" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Cho phép in" />
                 </GridView>
             </ListView.View>
