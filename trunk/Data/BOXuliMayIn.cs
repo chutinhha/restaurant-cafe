@@ -17,6 +17,7 @@ namespace Data
         public FrameworkRepository<LICHSUBANHANG> frLichSuBanHang;
         public FrameworkRepository<NHANVIEN> frNhanVien;
         public FrameworkRepository<BANHANG> frBanHang;
+        public FrameworkRepository<CHITIETBANHANG> frChiTietBanHang;
         public FrameworkRepository<BAN> frBan;
 
         public BOXuliMayIn(Transit transit)
@@ -31,6 +32,7 @@ namespace Data
             frLichSuBanHang = new FrameworkRepository<LICHSUBANHANG>(mKaraokeEntities, mKaraokeEntities.LICHSUBANHANGs);
             frNhanVien = new FrameworkRepository<NHANVIEN>(mKaraokeEntities, mKaraokeEntities.NHANVIENs);
             frBanHang = new FrameworkRepository<BANHANG>(mKaraokeEntities, mKaraokeEntities.BANHANGs);
+            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities, mKaraokeEntities.CHITIETBANHANGs);
             frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);     
                                
         }
@@ -58,6 +60,20 @@ namespace Data
                           };            
             return resuilt.Distinct();
         }
+        public IQueryable<BOPrintOrder> GetOrderFromBanHangID(int banHangID)
+        {
+            var query = from a in frBanHang.Query()
+                        join b in frNhanVien.Query() on a.NhanVienID equals b.NhanVienID
+                        join c in frBan.Query() on a.BanID equals c.BanID
+                        select new BOPrintOrder
+                        {
+                            TenNhanVien = b.TenNhanVien,
+                            MaHoaDon = (int)a.MaHoaDon,
+                            TenBan = c.TenBan,
+                            NgayBan = (DateTime)a.NgayBan
+                        };
+            return query;
+        }
         public IQueryable<BOPrintOrder> GetOrderFromLichSuBanHang(int lichSuBanHangID)
         {
             var query = from x in frLichSuBanHang.Query()
@@ -71,6 +87,26 @@ namespace Data
                             MaHoaDon=(int)y.MaHoaDon,
                             TenBan=a.TenBan,
                             NgayBan=(DateTime)x.NgayBan
+                        };
+            return query;
+        }
+        public IQueryable<BOPrintOrderItem> GetPrintOrderItemFromBanHangID(int banHangID, int printID)
+        {
+            var query =
+                        from a in frChiTietBanHang.Query().Where(o => o.BanHangID == banHangID)
+                        join b in frMenuKichThuocMon.Query() on a.KichThuocMonID equals b.KichThuocMonID
+                        join c in frMenuMon.Query() on b.MonID equals c.MonID
+                        where a.BanHangID == banHangID
+                        select new
+                        {
+                            TenMon = c.TenDai + "(" + b.TenLoaiBan + ")",
+                            SoLuong = (int)a.SoLuongBan                            
+                        } into x
+                        group x by new { x.TenMon } into y
+                        select new BOPrintOrderItem
+                        {
+                            TenMon = y.Key.TenMon,                            
+                            SoLuong = y.Sum(c => c.SoLuong)
                         };
             return query;
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PrinterServer
 {
-    class PrinterData
+    class PrinterSendOrder
     {
         private int mLichSuBanHangID;        
         private Data.BOXuliMayIn mXuLiMayIn;
@@ -16,7 +16,7 @@ namespace PrinterServer
         private System.Drawing.Color mColorBlack;
         private Data.BOPrintOrder mBOPrintOrder;
         private List<Data.BOPrintOrderItem> mListPrintOrderItem;
-        public PrinterData(int lichsu,Data.BOMayIn mayin,Data.BOXuliMayIn xuli)
+        public PrinterSendOrder(int lichsu,Data.BOMayIn mayin,Data.BOXuliMayIn xuli)
         {            
             mBOMayIn = mayin;
             mLichSuBanHangID = lichsu;
@@ -26,8 +26,7 @@ namespace PrinterServer
             mColorBlack = System.Drawing.Color.Black;
             mPOSPrinter = new POSPrinter();
             mPOSPrinter.POSSetPrinterName(mBOMayIn.TenMayIn);            
-            mPOSPrinter.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrinterData_PrintPage);
-            
+            mPOSPrinter.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrinterData_PrintPage);            
         }
         private void LoadData()
         {

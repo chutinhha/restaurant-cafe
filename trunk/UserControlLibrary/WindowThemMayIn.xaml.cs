@@ -39,6 +39,7 @@ namespace UserControlLibrary
                     _Item.Visual = true;
                     _Item.Deleted = false;
                     _Item.Edit = false;
+                    _Item.MayInHoaDon = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -53,6 +54,7 @@ namespace UserControlLibrary
                 txtSoLanIn.Text = "1";
                 ckHopDungTien.IsChecked = false;
                 ckChoPhepIn.IsChecked = true;
+                ckMayInHoaDon.IsChecked = false;
                 if (cbbTenMayIn.Items.Count > 0)
                 {
                     cbbTenMayIn.SelectedIndex = 0;
@@ -67,6 +69,7 @@ namespace UserControlLibrary
                 ckHopDungTien.IsChecked = _Item.HopDungTien;
                 cbbTenMayIn.SelectedItem = _Item.TenMayIn;
                 ckChoPhepIn.IsChecked = _Item.Visual;
+                ckMayInHoaDon.IsChecked = _Item.MayInHoaDon;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Máy In";
             }
@@ -79,6 +82,7 @@ namespace UserControlLibrary
             _Item.HopDungTien = ckHopDungTien.IsChecked;
             _Item.TenMayIn = cbbTenMayIn.SelectedItem.ToString();
             _Item.Visual = ckChoPhepIn.IsChecked;
+            _Item.MayInHoaDon = ckMayInHoaDon.IsChecked;
         }
 
         private bool CheckValues()

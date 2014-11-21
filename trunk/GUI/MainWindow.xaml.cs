@@ -113,6 +113,8 @@ namespace GUI
         {
             WindowThongTinPhanMem win = new WindowThongTinPhanMem(mTransit);
             win.ShowDialog();
+            //WindowQuanLiKhu win = new WindowQuanLiKhu();
+            //win.ShowDialog();
         }
 
         private void btnThoatPhanMem_Click(object sender, RoutedEventArgs e)
