@@ -22,7 +22,6 @@ namespace Data
 
         public BOChiTietNhapKho(Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
             frmChiTietNhapKho = new FrameworkRepository<CHITIETNHAPKHO>(transit.KaraokeEntities, transit.KaraokeEntities.CHITIETNHAPKHOes);
             frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmLoaiBan = new FrameworkRepository<LOAIBAN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIBANs);

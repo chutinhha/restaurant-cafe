@@ -5,21 +5,21 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="30*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFCAD3E2" Offset="0" />
-                    <GradientStop Color="#FFAEB9CD" Offset="1" />
+                    <GradientStop Color="#FFFE773F" Offset="0" />
+                    <GradientStop Color="#FFC23D04" Offset="1" />
                 </LinearGradientBrush>
             </Grid.Background>
-            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
-                <MenuItem Header="Thẻ ngân hàng" Margin="5" Name="btnThe" Click="btnThe_Click"  />
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <MenuItem Header="Thẻ ngân hàng" Name="btnThe" Click="btnThe_Click"  />
             </Menu>
         </Grid>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
-        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />        
     </Grid>
 </Window>

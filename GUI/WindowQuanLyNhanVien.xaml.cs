@@ -25,7 +25,7 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.NhanVien.QuanLyNhanVien)
+            if (!mTransit.MenuGiaoDien.NhanVien.QuanLyNhanVien || !mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.QuanLyNhanVien.QuanLyNhanVien).ChiTietQuyen.ChoPhep == true)
             {
                 btnNhanVien.Visibility = System.Windows.Visibility.Collapsed;
             }
@@ -50,13 +50,14 @@ namespace GUI
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (spNoiDung.Children[0] is UserControlLibrary.UCQuyen)
+            if (spNoiDung.Children[0] is UserControlLibrary.UCNhanVien)
                 ucNhanVien.Window_KeyDown(sender, e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            btnNhanVien_Click(null, null);
+            if (btnNhanVien.Visibility == System.Windows.Visibility.Visible)
+                btnNhanVien_Click(null, null);
         }
     }
 }

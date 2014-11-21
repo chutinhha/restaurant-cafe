@@ -21,13 +21,18 @@ namespace Data
         public Data.NHOMCHUCNANG BaoCao { get; set; }
         public Data.NHOMCHUCNANG QuanLyThe { get; set; }
         public Data.NHOMCHUCNANG CaiDatChuongTrinh { get; set; }
-        public Data.NHOMCHUCNANG ThongTinPhanMem { get; set; }        
+        public Data.NHOMCHUCNANG ThongTinPhanMem { get; set; }
 
         public BONhomChucNang(Transit transit)
         {
             BanHang = new NHOMCHUCNANG() { NhomChucNangID = 1, TenNhomChucNang = "Bán hàng", Deleted = false, Visual = true, Edit = false };
             BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 1, TenChucNang = "Tính tiền", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
-            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 2, TenChucNang = "Xóa món", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 2, TenChucNang = "Lưu hóa đơn", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 3, TenChucNang = "Thay đổi giá", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 4, TenChucNang = "Chuyển bàn", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 5, TenChucNang = "Tách bàn", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 6, TenChucNang = "Xóa món", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = BanHang.NhomChucNangID * 100 + 7, TenChucNang = "Xóa toàn bộ món", NhomChucNangID = BanHang.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
 
             QuanLyNhanVien = new NHOMCHUCNANG() { NhomChucNangID = 2, TenNhomChucNang = "Quản lý nhân viến", Deleted = false, Visual = true, Edit = false };
             QuanLyNhanVien.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyNhanVien.NhomChucNangID * 100 + 1, TenChucNang = "Quản lý nhân viên", NhomChucNangID = QuanLyNhanVien.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
@@ -50,8 +55,9 @@ namespace Data
             QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 1, TenChucNang = "Loại giá", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
             QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 2, TenChucNang = "Lịch biểu định kỳ", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
             QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 3, TenChucNang = "Lịch biểu không định kỳ", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
-            QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 4, TenChucNang = "Danh sách giá", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
-            QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 5, TenChucNang = "Khuyễn mãi", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
+            QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 4, TenChucNang = "Danh sách bán", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
+            QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 5, TenChucNang = "Danh sách giá", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
+            QuanLyGia.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyGia.NhomChucNangID * 100 + 6, TenChucNang = "Khuyễn mãi", NhomChucNangID = QuanLyGia.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
 
             QuanLyPhanQuyen = new NHOMCHUCNANG() { NhomChucNangID = 8, TenNhomChucNang = "Quản lý phần quyền", Deleted = false, Visual = true, Edit = false };
             QuanLyPhanQuyen.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyPhanQuyen.NhomChucNangID * 100 + 1, TenChucNang = "Quyền", NhomChucNangID = QuanLyPhanQuyen.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
@@ -81,7 +87,7 @@ namespace Data
             QuanLyThe.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = QuanLyThe.NhomChucNangID * 100 + 1, TenChucNang = "Quản lý thẻ", NhomChucNangID = QuanLyThe.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
 
             CaiDatChuongTrinh = new NHOMCHUCNANG() { NhomChucNangID = 14, TenNhomChucNang = "Cài đặt chương trình", Deleted = false, Visual = true, Edit = false };
-            CaiDatChuongTrinh.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = CaiDatChuongTrinh.NhomChucNangID * 100 + 1, TenChucNang = "Nhân viên", NhomChucNangID = CaiDatChuongTrinh.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
+            CaiDatChuongTrinh.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = CaiDatChuongTrinh.NhomChucNangID * 100 + 1, TenChucNang = "Cài đặt chương trình", NhomChucNangID = CaiDatChuongTrinh.NhomChucNangID, ChoPhep = false, DangNhap = true, Xem = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
 
             ThongTinPhanMem = new NHOMCHUCNANG() { NhomChucNangID = 15, TenNhomChucNang = "Thông tin phần mềm", Deleted = false, Visual = true, Edit = false };
             ThongTinPhanMem.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = ThongTinPhanMem.NhomChucNangID * 100 + 1, TenChucNang = "Thông tin phần mềm", NhomChucNangID = ThongTinPhanMem.NhomChucNangID, ChoPhep = true, DangNhap = true, Xem = false, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
@@ -105,6 +111,5 @@ namespace Data
             frmNhomChucNang.AddObject(ThongTinPhanMem);
             frmNhomChucNang.Commit();
         }
-
     }
 }

@@ -75,7 +75,7 @@ namespace UserControlLibrary
                     item.ChiTietQuyen.Them = false;
                     item.ChiTietQuyen.Xoa = false;
                     item.ChiTietQuyen.Sua = false;
-                }                
+                }
                 lsShowData.Add(item);
             }
             lvData.ItemsSource = lsShowData;
