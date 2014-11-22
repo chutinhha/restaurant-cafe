@@ -11,6 +11,7 @@ namespace Data
         public int MaHoaDon { get; set; }
         public string TenBan { get; set; }
         public DateTime NgayBan { get; set; }
+        public BANHANG BanHang { get; set; }
         public BOPrintOrder()
         { }        
     }
