@@ -1,24 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.IO;
 using Microsoft.Reporting.WinForms;
+using System.Drawing.Printing;
 
-namespace GUI.BaoCao.LichSuDangNhap
+namespace GUI.BaoCao.LichSuBanHang
 {
     /// <summary>
-    /// Interaction logic for WindowLichSuDangNhap.xaml
+    /// Interaction logic for WindowLichSuBanHang.xaml
     /// </summary>
-    public partial class WindowLichSuDangNhap : Window
+    public partial class WindowLichSuBanHang : Window
     {
         private Data.Transit mTransit = null;
 
-        public WindowLichSuDangNhap(Data.Transit transit)
+        public WindowLichSuBanHang(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            uCTile.TenChucNang = "Lịch sử đăng nhập";
+            uCTile.TenChucNang = "Lịch sử bán hàng";
             uCTile.SetTransit(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
@@ -33,11 +42,11 @@ namespace GUI.BaoCao.LichSuDangNhap
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ReportViewerData.Reset();
-            ReportDataSource ds = new ReportDataSource("DataSetKaraoke", Data.BOLichSuDangNhap.GetNoTracking(mTransit));
+            ReportDataSource ds = new ReportDataSource("BaoCaoLichSuBanHang", Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit));
             ReportViewerData.LocalReport.DataSources.Add(ds);
             ReportDataSource ds1 = new ReportDataSource("CaiDatThongTinCongTy", Data.BOCaiDatThongTinCongTy.GetNoTracking(mTransit));
             ReportViewerData.LocalReport.DataSources.Add(ds1);
-            ReportViewerData.LocalReport.ReportEmbeddedResource = "GUI.BaoCao.LichSuDangNhap.Report.rdlc";
+            ReportViewerData.LocalReport.ReportEmbeddedResource = "GUI.BaoCao.LichSuBanHang.Report.rdlc";
 
             //ReportViewerData.PrinterSettings.PrinterName = mOrders.ReadConfig.PrinterTaxinvoiceA4;
             System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
@@ -47,7 +56,7 @@ namespace GUI.BaoCao.LichSuDangNhap
             pg.Margins.Right = 50;
             pg.PaperSize.RawKind = (int)PaperKind.A4;
             ReportViewerData.SetPageSettings(pg);
-            ReportViewerData.LocalReport.DisplayName = "LichSuDangNhap";
+            ReportViewerData.LocalReport.DisplayName = "LichSuBanHang";
             ReportViewerData.RenderingComplete += new RenderingCompleteEventHandler(ReportViewerData_RenderingComplete);
             ReportViewerData.RefreshReport();
         }
