@@ -85,7 +85,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            IQueryable<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAllNoTracking(mTransit);
+            IQueryable<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAllNoTracking(mTransit, false);
             IQueryable<Data.BOMenuItemMayIn> lsMonMayIn = BOMenuItemMayIn.GetAll(_Mon.MenuMon.MonID, mTransit);
             List<ShowData> lsShowData = new List<ShowData>();
             foreach (Data.MAYIN mi in lsMayIn)
