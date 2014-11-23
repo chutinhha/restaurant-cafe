@@ -23,9 +23,9 @@ namespace Data
             KhachHang = new KHACHHANG();
             LoaiKhachHang = new LOAIKHACHHANG();
         }
-        public IQueryable<BOKhachHang> TimKhachHang(string ten,string dienthoai)
+        public IQueryable<BOKhachHang> TimKhachHang(string ten, string dienthoai)
         {
-            if (ten!="" && dienthoai=="")
+            if (ten != "" && dienthoai == "")
             {
                 return from k in frmKhachHang.Query()
                        join l in frmLoaiKhachHang.Query() on k.LoaiKhachHangID equals l.LoaiKhachHangID
@@ -36,7 +36,7 @@ namespace Data
                            LoaiKhachHang = l
                        };
             }
-            if (ten=="" && dienthoai!="")
+            if (ten == "" && dienthoai != "")
             {
                 return from k in frmKhachHang.Query()
                        join l in frmLoaiKhachHang.Query() on k.LoaiKhachHangID equals l.LoaiKhachHangID
@@ -90,7 +90,7 @@ namespace Data
         {
             frmKhachHang.Update(item.KhachHang);
             return item.KhachHang.KhachHangID;
-        }        
+        }
         public int Them(BOKhachHang item)
         {
             frmKhachHang.AddObject(item.KhachHang);
@@ -99,7 +99,8 @@ namespace Data
 
         public int Xoa(BOKhachHang item)
         {
-            frmKhachHang.DeleteObject(item.KhachHang);
+            item.KhachHang.Deleted = true;
+            frmKhachHang.Update(item.KhachHang);
             return item.KhachHang.KhachHangID;
         }
         public void Commit()
