@@ -5,8 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="573" d:DesignWidth="648" xmlns:my="clr-namespace:ControlLibrary" Loaded="UserControl_Loaded">
-    <Grid>
+    <Grid>        
         <Image Name="imgBackground" Stretch="Fill"></Image>
-        <Grid Background="{x:Null}" Name="gridFloorPlan"></Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2"></ColumnDefinition>                
+            </Grid.ColumnDefinitions>
+            <Grid Background="{x:Null}" Name="gridFloorPlan" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"></Grid>
+            <Rectangle VerticalAlignment="Stretch" Width="1"  Margin="0" HorizontalAlignment="Left" Grid.Column="1">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Blue" Offset="0" />
+                        <GradientStop Color="Magenta" Offset="0.2" />
+                        <GradientStop Color="Green" Offset="0.4" />
+                        <GradientStop Color="Yellow" Offset="0.6" />                        
+                        <GradientStop Color="Red" Offset="0.8" />
+                        <GradientStop Color="White" Offset="1" />
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+            </Rectangle>
+        </Grid>
+        
     </Grid>
 </UserControl>

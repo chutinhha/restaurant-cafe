@@ -39,6 +39,10 @@ namespace GUI
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            if (btn.CommandParameter==null)
+            {
+                return;
+            }
             switch ((Data.EnumChucNang)btn.CommandParameter)
             {
                 case Data.EnumChucNang.XoaMon:
@@ -53,6 +57,9 @@ namespace GUI
                 case Data.EnumChucNang.LuuHoaDon:
                     GuiNhaBep();
                     break;
+                case Data.EnumChucNang.TamTinh:
+                    TamTinh();
+                    break;
                 case Data.EnumChucNang.ThayDoiGia:
                     break;
                 case Data.EnumChucNang.ChuyenBan:
@@ -61,6 +68,21 @@ namespace GUI
                     break;
                 default:
                     break;
+            }
+        }
+        public void TamTinh()
+        {
+            if (mProcessOrder.KiemTraDanhSachMon()>0)
+            {
+                WindowTamTinh win = new WindowTamTinh(mTransit, mProcessOrder.GetBanHang());
+                if (win.ShowDialog() == true)
+                {
+                    if (mProcessOrder.TamTinh()> 0)
+                    {
+                        mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;                        
+                    }
+                }
+                this.Close();                
             }
         }
         private void GuiNhaBep()
@@ -212,6 +234,7 @@ namespace GUI
             btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
             btnChucNang_0.CommandParameter = Data.EnumChucNang.TinhTien;
             btnChucNang_1.CommandParameter = Data.EnumChucNang.LuuHoaDon;
+            btnChucNang_2.CommandParameter = Data.EnumChucNang.TamTinh;
         }
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)

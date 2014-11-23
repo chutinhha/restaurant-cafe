@@ -63,7 +63,7 @@ namespace GUI
 
         private void btnQuanLyThuChi_Click(object sender, RoutedEventArgs e)
         {
-            WindowQuanLyKhachHang win = new WindowQuanLyKhachHang(mTransit);
+            WindowQuanLyThuChi win = new WindowQuanLyThuChi(mTransit);
             win.ShowDialog();
         }
 

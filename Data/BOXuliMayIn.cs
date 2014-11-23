@@ -83,7 +83,7 @@ namespace Data
                         select new BOPrintOrder
                         {
                             TenNhanVien = b.TenNhanVien,
-                            MaHoaDon = (int)a.MaHoaDon,
+                            MaHoaDon = a.MaHoaDon,
                             TenBan = c.TenBan,
                             NgayBan = (DateTime)a.NgayBan,
                             BanHang=a
@@ -100,7 +100,7 @@ namespace Data
                         select new BOPrintOrder
                         {
                             TenNhanVien=z.TenNhanVien,
-                            MaHoaDon=(int)y.MaHoaDon,
+                            MaHoaDon=y.MaHoaDon,
                             TenBan=a.TenBan,
                             NgayBan=(DateTime)x.NgayBan
                         };

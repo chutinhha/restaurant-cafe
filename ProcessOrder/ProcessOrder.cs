@@ -39,26 +39,58 @@ namespace ProcessOrder
             }
             return lichSuBanHangId;
         }
+        public int TamTinh()
+        {
+            if (BanHang.BanHangID>0)
+            {
+                int banHangID = mBanHang.TamTinh();
+                mProcessPrinter.InBill(true, mBanHang.BANHANG.BanHangID);
+                return banHangID;    
+            }
+            else
+            {
+                int lichSuBanHangID = mBanHang.GuiNhaBep();
+                if (lichSuBanHangID > 0)
+                {
+                    mProcessPrinter.InHoaDon(lichSuBanHangID);
+                }
+                int banHangID = mBanHang.TamTinh();
+                if (banHangID > 0)
+                {
+                    mProcessPrinter.InBill(true, banHangID);
+                }
+                return banHangID;
+            }
+        }
+        public void TinhTien()
+        {
+            if (BanHang.BanHangID > 0)
+            {
+                int banHangID = mBanHang.TinhTien();
+                if (banHangID > 0)
+                {
+                    mProcessPrinter.InBill(false, banHangID);
+                }
+            }
+            else
+            {
+                int lichSuBanHangID = mBanHang.GuiNhaBep();                
+                if (lichSuBanHangID > 0)
+                {
+                    mProcessPrinter.InHoaDon(lichSuBanHangID);
+                }
+                int banHangID = mBanHang.TinhTien();                
+                if (banHangID > 0)
+                {
+                    mProcessPrinter.InBill(false, banHangID);
+                }
+            }
+        }        
         public int KiemTraDanhSachMon()
         {
             return mBanHang._ListChiTietBanHang.Count;
         }
-        public void TinhTien()
-        {
-            if (BanHang.BanHangID>0)
-            {
-                mBanHang.TinhTien();    
-            }
-            else
-            {
-                int lichSuBanHangID= mBanHang.GuiNhaBep();
-                if (lichSuBanHangID>0)
-                {
-                    mProcessPrinter.InHoaDon(lichSuBanHangID);    
-                }
-                mBanHang.TinhTien();
-            }
-        }        
+        
         public void XoaChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
             chitiet.IsDeleted = true;

@@ -39,7 +39,7 @@
                 </Grid.RowDefinitions>
                 <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" Background="#FF022A3A" />
-                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Thay đổi giá" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Tạm tính" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="3" Name="btnChucNang_3" Content="Chuyển bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="4" Name="btnChucNang_4" Content="Tách bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="5" Name="btnChucNang_5" Content="Xóa món" Click="btnChucNang_Click" Background="#FF022A3A" />
@@ -102,7 +102,7 @@
                     <RowDefinition Height="127*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"  Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
-                <TextBox Grid.Row="1"  x:Name="txtTenMon" Text="Trần Minh Tiến" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"/>
+                <TextBox Grid.Row="1"  x:Name="txtTenMon" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"/>
                 <TextBlock Grid.Row="2"  Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
                 <TextBox Grid.Row="3"  x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" />
                 <TextBlock Grid.Row="4" Height="35" HorizontalAlignment="Stretch" Margin="3,15,3,0" Name="txtTongTien" Text="1000.000" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" FontStretch="Normal" FontWeight="Medium" Foreground="#FF009F3B" />

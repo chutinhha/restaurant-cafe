@@ -1,0 +1,33 @@
+﻿<Window x:Class="UserControlLibrary.WindowTimKhachHang"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowTinhTien" Height="434" Width="736" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock Background="#FF009F3B" FontSize="20" FontStretch="Normal" FontWeight="Medium" Foreground="White" Height="29" Name="textBlock3" Text="TÌM KHÁCH HÀNG" TextAlignment="Center" VerticalAlignment="Top"/>
+            <Label Content="Tên khách hàng:" Height="28" Margin="56,48,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <my:POSTextBox Height="32" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="158,93,0,0" Name="txtSoDienThoai" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="392" _TypeTextBox="Number" FontSize="20"/>
+            <Label Content="Số Điện thoại:" Height="28" HorizontalAlignment="Left" Margin="68,93,0,0" Name="label2" VerticalAlignment="Top"/>
+            <my:POSTextBox Height="32" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="158,47,0,0" Name="txtTenKhachHang" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="392" _TypeTextBox="Text" FontSize="20"/>
+            <my:POSButtonFuntion Name="btnThem" Content="Thêm mới" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,146,246,0" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Width="118" Height="37" Click="btnThem_Click" />
+            <my:POSButtonFuntion Name="btnChon" Content="Chọn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,146,0,0" FontSize="18" Image="/SystemImages;component/Images/Accep.png" Background="#FF009F3B" Width="118" Height="37" Click="btnChon_Click" />
+            <my:POSButtonFuntion Name="btnDong" Content="Đóng" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,146,111,0" FontSize="18" Image="/SystemImages;component/Images/ExtrasShutdown.png" Background="#FFDF0023" Width="118" Height="37" Click="btnDong_Click" />
+            <my:POSButtonFuntion Name="btnTim" Content="Tìm" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,146,0,0" FontSize="18" Image="/SystemImages;component/Images/Data_Find.png" Background="#FF97C023" Width="118" Height="37" Click="btnTim_Click" />
+        </Grid>
+        <ListView  Name="lvData" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Danh sách khách hàng">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.TenKhachHang}" Width="200" Header="Tên khách hàng" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiKhachHang.TenLoaiKhachHang}" Width="180" Header="Loại khách hàng" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Email}" Width="200" Header="Email" />                    
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Mobile}" Width="100" Header="ĐT Di động" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Phone}" Width="100" Header="ĐT bàn" />                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

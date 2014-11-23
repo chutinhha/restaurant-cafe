@@ -11,6 +11,7 @@ namespace Data
         XoaToanBoMon,
         TinhTien,
         LuuHoaDon,
+        TamTinh,
         ThayDoiGia,
         ChuyenBan,
         TachBan

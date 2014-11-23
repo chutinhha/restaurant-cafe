@@ -26,7 +26,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            IQueryable<Data.BOKhachHang> lsArray = BOKhachHang.GetAll(mTransit);
+            IQueryable<Data.BOKhachHang> lsArray = BOKhachHang.GetAll();
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
@@ -111,7 +111,7 @@ namespace UserControlLibrary
                     lsArray.Add(mItem);
                 }
             }
-            BOKhachHang.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOKhachHang.Luu(lsArray, lsArrayDeleted);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();

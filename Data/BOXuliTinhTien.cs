@@ -17,7 +17,8 @@ namespace Data
         {
             mTransit = transit;
             mBanHang = CreateBHFromBH(banhang.BANHANG);
-            mBanHang.TongTien = banhang.TongTien();            
+            mBanHang.TongTien = banhang.TongTien();
+
         }
         private BANHANG CreateBHFromBH(BANHANG banhang)
         {
@@ -30,7 +31,18 @@ namespace Data
             b.MaHoaDon = banhang.MaHoaDon;            
             b.TheID = banhang.TheID;
             b.KhachHangID = banhang.KhachHangID;
+            b.TienGiam = banhang.TienGiam;
             return b;
+        }
+        public int GiamGiaPhanTram 
+        {
+            get 
+            {
+                if (TongTien == 0)
+                    return 0;
+                else
+                    return (int)(TienGiam / TongTien*100);
+            }
         }
         public decimal TongTien 
         {
