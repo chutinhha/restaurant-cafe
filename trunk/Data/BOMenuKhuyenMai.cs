@@ -31,10 +31,10 @@ namespace Data
 
         public List<BOMenuKichThuocMon> GetDanhSachKichThuocMon(Data.Transit transit)
         {
-            var res = (from km in frmMenuKhuyenMai.Query().GroupBy(s => s.KichThuocMonID)
+            var res = (from km in frmMenuKhuyenMai.Query().Where(s => s.Deleted == false).GroupBy(s => s.KichThuocMonID)
                        join ktm in frmKichThuocMon.Query() on km.FirstOrDefault().KichThuocMonID equals ktm.KichThuocMonID
                        join mm in frmMenuMon.Query() on ktm.MonID equals mm.MonID
-                       where km.FirstOrDefault().Deleted == false
+                       //where km.FirstOrDefault().Deleted == false
                        select new BOMenuKichThuocMon
                        {
                            MenuMon = mm,

@@ -102,7 +102,7 @@ namespace Data
         /// <param name="IsThoiGian">Có cho load thời gian lên không</param>
         /// <param name="mTransit"></param>
         /// <returns></returns>
-        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, bool IsDinhLuong, bool IsThoiGian, Transit mTransit)
+        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, bool IsSoLuong, bool IsTrongLuong, bool IsTheTich, bool IsDinhLuong, bool IsThoiGian, Transit mTransit)
         {
             var res = (from k in frmKichThuocMon.Query()
                        join m in frmmenuMon.Query() on k.MonID equals m.MonID
@@ -114,10 +114,16 @@ namespace Data
                            MenuMon = m,
                            LoaiBan = l
                        });
-            if (!IsDinhLuong)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.DinhLuong);
+            if (!IsSoLuong)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.SoLuong);
+            if (!IsTrongLuong)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.TrongLuong);
+            if (!IsTheTich)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.TheTich);
             if (!IsThoiGian)
                 res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.ThoiGian);
+            if (!IsDinhLuong)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.DinhLuong);
             return res;
         }
 
@@ -154,17 +160,18 @@ namespace Data
                 {
                     Xoa(item, mTransit);
                 }
-            if (lsArray.Count > 0)
+            frmKichThuocMon.Commit();
+            if (lsArray != null && lsArray.Count > 0)
             {
                 UpdateSoLuongKichThuocMon((int)lsArray[0].MenuKichThuocMon.MonID, mTransit);
                 SapXep((int)lsArray[0].MenuKichThuocMon.MonID, mTransit);
             }
-            else if (lsArrayDeleted.Count > 0)
+            else if (lsArrayDeleted != null && lsArrayDeleted.Count > 0)
             {
                 UpdateSoLuongKichThuocMon((int)lsArrayDeleted[0].MenuKichThuocMon.MonID, mTransit);
                 SapXep((int)lsArrayDeleted[0].MenuKichThuocMon.MonID, mTransit);
             }
-            frmKichThuocMon.Commit();
+
         }
 
         public void UpdateSoLuongKichThuocMon(int MonID, Data.Transit mTransit)

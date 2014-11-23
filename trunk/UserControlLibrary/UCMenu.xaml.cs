@@ -19,8 +19,12 @@ namespace UserControlLibrary
         public Data.BOMenuNhom BOMenuNhom = null;
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
-        public bool _IsDinhLuong { get; set; }
+
+        public bool _IsTrongLuong { get; set; }
+        public bool _IsSoLuong { get; set; }
+        public bool _IsTheTich { get; set; }
         public bool _IsThoiGian { get; set; }
+        public bool _IsDinhLuong { get; set; }
         public bool _IsTonKho { get; set; }
         private double ImageHeightItems = 0;
         private double ImageWidthItems = 0;
@@ -34,6 +38,9 @@ namespace UserControlLibrary
             InitializeComponent();
             _IsBanHang = false;
             _IsDanhSachKhuyenMai = false;
+            _IsTrongLuong = true;
+            _IsTrongLuong = true;
+            _IsTheTich = true;
             _IsDinhLuong = true;
             _IsTonKho = true;
             _IsThoiGian = true;
@@ -469,7 +476,7 @@ namespace UserControlLibrary
 
         public void LoadKichThuocMon(Data.BOMenuMon mon)
         {
-            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, _IsDinhLuong, _IsThoiGian, mTransit).ToList();
+            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, _IsSoLuong, _IsTrongLuong, _IsTheTich, _IsDinhLuong, _IsThoiGian, mTransit).ToList();
             if (lsMenuKichThuocMon.Count == 1)
             {
                 OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);

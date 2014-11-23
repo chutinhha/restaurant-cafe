@@ -33,6 +33,7 @@ namespace Data
         }
         public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
         {
+            frmNhom.Refresh();
             var lsArray = from n in frmNhom.Query() select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
                 lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false).OrderBy(s => s.MenuNhom.SapXep);
@@ -48,24 +49,24 @@ namespace Data
         public int Them(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.AddObject(item.MenuNhom);
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             frmNhom.Commit();
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 
         public int Xoa(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.DeleteObject(item.MenuNhom);
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             frmNhom.Commit();
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 
         public int Sua(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.Update(item.MenuNhom);
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             frmNhom.Commit();
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 

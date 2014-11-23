@@ -56,7 +56,8 @@ namespace UserControlLibrary
                     cbbLoaiGia.SelectedIndex = 0;
                 }
                 ckHoatDong.IsChecked = true;
-                dtpNgay.SelectedDate = DateTime.Now;
+                dtpNgayBatDau.SelectedDate = DateTime.Now;
+                dtpNgayKetThuc.SelectedDate = DateTime.Now;
                 timeBatDau.TimeCurent = new TimeSpan(0, 0, 0);
                 timeKetThuc.TimeCurent = new TimeSpan(0, 0, 0);
 
@@ -68,7 +69,8 @@ namespace UserControlLibrary
                 txtTenLichBieu.Text = _Item.LichBieuKhongDinhKy.TenLichBieu;
                 cbbLoaiGia.SelectedValue = _Item.LichBieuKhongDinhKy.LoaiGiaID;
                 ckHoatDong.IsChecked = _Item.LichBieuKhongDinhKy.Visual;
-                dtpNgay.SelectedDate = _Item.LichBieuKhongDinhKy.Ngay;
+                dtpNgayBatDau.SelectedDate = _Item.LichBieuKhongDinhKy.NgayBatDau;
+                dtpNgayKetThuc.SelectedDate = _Item.LichBieuKhongDinhKy.NgayKetThuc;
                 timeBatDau.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioBatDau;
                 timeKetThuc.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioKetThuc;
                 btnLuu.Content = mTransit.StringButton.Luu;
@@ -80,10 +82,11 @@ namespace UserControlLibrary
         {
             _Item.LichBieuKhongDinhKy.TenLichBieu = txtTenLichBieu.Text;
             _Item.LichBieuKhongDinhKy.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
-            _Item.LichBieuKhongDinhKy.Ngay = dtpNgay.SelectedDate;
+            _Item.LichBieuKhongDinhKy.NgayBatDau = dtpNgayBatDau.SelectedDate;
+            _Item.LichBieuKhongDinhKy.NgayKetThuc = dtpNgayKetThuc.SelectedDate;
             _Item.LichBieuKhongDinhKy.GioBatDau = timeBatDau.TimeCurent;
             _Item.LichBieuKhongDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
-            _Item.LichBieuKhongDinhKy.Visual = (bool)ckHoatDong.IsChecked;            
+            _Item.LichBieuKhongDinhKy.Visual = (bool)ckHoatDong.IsChecked;
             _Item.LichBieuKhongDinhKy.Deleted = false;
         }
 

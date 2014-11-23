@@ -48,6 +48,8 @@ namespace GUI
                 ucDinhLuong.Init(mTransit);
             }
             spNoiDung.Children.Clear();
+            ucDinhLuong.Height = spNoiDung.ActualHeight;
+            ucDinhLuong.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucDinhLuong);
         }
 

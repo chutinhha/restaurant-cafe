@@ -51,8 +51,7 @@ namespace UserControlLibrary
                 txtTenNhaCungCap.Text = "";
                 txtEmail.Text = "";
                 txtFax.Text = "";
-                txtSoNha.Text = "";
-                txtTenDuong.Text = "";
+                txtDiaChi.Text = "";                
                 txtDienThoaiBan.Text = "";
                 txtDienThoaiDong.Text = "";
                 txtMaSoThue.Text = "";
@@ -64,8 +63,7 @@ namespace UserControlLibrary
                 txtTenNhaCungCap.Text = _Item.TenNhaCungCap;
                 txtEmail.Text = _Item.Email;
                 txtFax.Text = _Item.Fax;
-                txtSoNha.Text = _Item.SoNha;
-                txtTenDuong.Text = _Item.TenDuong;
+                txtDiaChi.Text = _Item.DiaChi;                
                 txtDienThoaiBan.Text = _Item.Phone;
                 txtDienThoaiDong.Text = _Item.Phone;
                 txtMaSoThue.Text = _Item.MaSoThue;
@@ -81,8 +79,7 @@ namespace UserControlLibrary
             _Item.TenNhaCungCap = txtTenNhaCungCap.Text;
             _Item.Email = txtEmail.Text;
             _Item.Fax = txtFax.Text;
-            _Item.SoNha = txtSoNha.Text;
-            _Item.TenDuong = txtTenDuong.Text;
+            _Item.DiaChi = txtDiaChi.Text;            
             _Item.Mobile = txtDienThoaiBan.Text;
             _Item.Phone = txtDienThoaiDong.Text;
             _Item.MaSoThue = txtMaSoThue.Text;

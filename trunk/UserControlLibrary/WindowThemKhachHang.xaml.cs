@@ -62,8 +62,7 @@ namespace UserControlLibrary
                 txtTenKhachHang.Text = _TenKhachHang;
                 txtEmail.Text = "";
                 txtFax.Text = "";
-                txtSoNha.Text = "";
-                txtTenDuong.Text = "";
+                txtDiaChi.Text = "";
                 txtDienThoaiBan.Text = "";
                 txtDienThoaiDong.Text = _SoDienThoai;
                 txtDuNo.Text = "";
@@ -78,8 +77,7 @@ namespace UserControlLibrary
                 txtTenKhachHang.Text = _Item.KhachHang.TenKhachHang;
                 txtEmail.Text = _Item.KhachHang.Email;
                 txtFax.Text = _Item.KhachHang.Fax;
-                txtSoNha.Text = _Item.KhachHang.SoNha;
-                txtTenDuong.Text = _Item.KhachHang.TenDuong;
+                txtDiaChi.Text = _Item.KhachHang.DiaChi;
                 txtDienThoaiBan.Text = _Item.KhachHang.Phone;
                 txtDienThoaiDong.Text = _Item.KhachHang.Mobile;
                 txtDuNo.Text = _Item.KhachHang.DuNo.ToString();
@@ -87,7 +85,7 @@ namespace UserControlLibrary
                 cbbLoaiKhachHang.SelectedValue = _Item.KhachHang.LoaiKhachHangID;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Khách Hàng";
-            }            
+            }
         }
 
         private void GetValues()
@@ -97,11 +95,10 @@ namespace UserControlLibrary
             _Item.KhachHang.TenKhachHang = txtTenKhachHang.Text;
             _Item.KhachHang.Email = txtEmail.Text;
             _Item.KhachHang.Fax = txtFax.Text;
-            _Item.KhachHang.SoNha = txtSoNha.Text;
-            _Item.KhachHang.TenDuong = txtTenDuong.Text;
+            _Item.KhachHang.DiaChi = txtDiaChi.Text;
             _Item.KhachHang.Mobile = txtDienThoaiDong.Text;
             _Item.KhachHang.Phone = txtDienThoaiBan.Text;
-            if (cbbLoaiKhachHang.SelectedValue!=null)
+            if (cbbLoaiKhachHang.SelectedValue != null)
             {
                 _Item.KhachHang.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
             }

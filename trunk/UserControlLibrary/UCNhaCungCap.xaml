@@ -22,9 +22,8 @@
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Danh sách khách hàng">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenNhaCungCap}" Width="200" Header="Tên nhà cung cấp" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MaSoThue}" Width="200" Header="Mã số thuế" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DiaChi}" Width="200" Header="Địa chỉ" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="200" Header="Email" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoNha}" Width="150" Header="Số nhà" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenDuong}" Width="200" Header="Tên đường" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Mobile}" Width="100" Header="ĐT Di động" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" Width="100" Header="ĐT bàn" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Fax}" Width="100" Header="Fax" />

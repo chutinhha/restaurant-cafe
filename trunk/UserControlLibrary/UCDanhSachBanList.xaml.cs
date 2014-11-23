@@ -39,7 +39,7 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
-            IQueryable<Data.BOMenuKichThuocMon> lsArray = BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, true, true, mTransit);
+            IQueryable<Data.BOMenuKichThuocMon> lsArray = BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, true, true, true, true, true, mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
