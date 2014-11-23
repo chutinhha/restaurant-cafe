@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System;
 
 namespace UserControlLibrary
 {
@@ -101,6 +102,7 @@ namespace UserControlLibrary
             if (cbbLoaiKhachHang.SelectedValue != null)
             {
                 _Item.KhachHang.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
+                _Item.LoaiKhachHang = (Data.LOAIKHACHHANG)cbbLoaiKhachHang.SelectedItem;
             }
             _Item.KhachHang.DuNo = System.Convert.ToDecimal(txtDuNo.Text);
             _Item.KhachHang.DuNoToiThieu = System.Convert.ToDecimal(txtDuNoToiThieu.Text);
@@ -135,6 +137,14 @@ namespace UserControlLibrary
                 btnHuy_Click(null, null);
                 return;
             }
+        }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

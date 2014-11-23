@@ -32,13 +32,13 @@ namespace Data
         }
         public IQueryable<BONhanVien> GetAll(Transit mTransit)
         {
-            return (from n in frmNhanVien.Query()
-                    join l in frmLoaiNhanVien.Query() on n.LoaiNhanVienID equals l.LoaiNhanVienID
-                    where n.Deleted == false
+            return (from nv in frmNhanVien.Query()
+                    join lnv in frmLoaiNhanVien.Query() on nv.LoaiNhanVienID equals lnv.LoaiNhanVienID
+                    where nv.Deleted == false && nv.CapDo > mTransit.NhanVien.CapDo || nv.NhanVienID == mTransit.NhanVien.NhanVienID
                     select new BONhanVien
                     {
-                        NhanVien = n,
-                        LoaiNhanVien = l
+                        NhanVien = nv,
+                        LoaiNhanVien = lnv
                     });
         }
 

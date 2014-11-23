@@ -58,13 +58,14 @@ namespace Data
         }
         public IQueryable<BOKhachHang> GetAll()
         {
-            return (from k in frmKhachHang.Query()
-                    join l in frmLoaiKhachHang.Query() on k.LoaiKhachHangID equals l.LoaiKhachHangID
-                    where k.Deleted == false
+            
+            return (from kh in frmKhachHang.Query()
+                    join lkh in frmLoaiKhachHang.Query() on kh.LoaiKhachHangID equals lkh.LoaiKhachHangID
+                    where kh.Deleted == false
                     select new BOKhachHang
                     {
-                        KhachHang = k,
-                        LoaiKhachHang = l
+                        KhachHang = kh,
+                        LoaiKhachHang = lkh
                     });
         }
 
@@ -88,6 +89,7 @@ namespace Data
 
         public int Sua(BOKhachHang item)
         {
+            item.KhachHang.Edit = false;
             frmKhachHang.Update(item.KhachHang);
             return item.KhachHang.KhachHangID;
         }

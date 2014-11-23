@@ -126,6 +126,6 @@ namespace UserControlLibrary
                 MenuItemMayIn = menuItemMayIn;
                 Values = value;
             }
-        }
+        }        
     }
 }

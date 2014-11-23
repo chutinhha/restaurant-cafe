@@ -37,14 +37,15 @@ namespace GUI
 
         }
 
-        private void tbnBaoCaoNgay_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnLichSuDangNhap_Click(object sender, RoutedEventArgs e)
         {
             BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoLichSuBanHang_Click(object sender, RoutedEventArgs e)
+        {
+            BaoCao.LichSuBanHang.WindowLichSuBanHang win = new BaoCao.LichSuBanHang.WindowLichSuBanHang(mTransit);
             win.ShowDialog();
         }
     }
