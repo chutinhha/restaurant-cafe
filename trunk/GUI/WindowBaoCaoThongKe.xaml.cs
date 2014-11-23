@@ -44,8 +44,8 @@ namespace GUI
 
         private void btnLichSuDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            //BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
-            //win.ShowDialog();
+            BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
+            win.ShowDialog();
         }
     }
 }

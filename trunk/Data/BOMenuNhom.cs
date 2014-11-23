@@ -13,7 +13,6 @@ namespace Data
         FrameworkRepository<MENULOAINHOM> frmLoaiNhom = null;
         public BOMenuNhom(Data.Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
             frmLoaiNhom = new FrameworkRepository<MENULOAINHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAINHOMs);
         }
@@ -33,7 +32,7 @@ namespace Data
             return GetAll(LoaiNhomID, IsBanHang, false, mTransit);
         }
         public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
-        {            
+        {
             var lsArray = from n in frmNhom.Query() select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
                 lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false).OrderBy(s => s.MenuNhom.SapXep);
@@ -49,6 +48,7 @@ namespace Data
         public int Them(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.AddObject(item.MenuNhom);
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             frmNhom.Commit();
             return item.MenuNhom.NhomID;
         }
@@ -56,6 +56,7 @@ namespace Data
         public int Xoa(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.DeleteObject(item.MenuNhom);
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
             frmNhom.Commit();
             return item.MenuNhom.NhomID;
         }
@@ -63,8 +64,16 @@ namespace Data
         public int Sua(BOMenuNhom item, Transit mTransit)
         {
             frmNhom.Update(item.MenuNhom);
-            frmNhom.Commit();            
+            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
+            frmNhom.Commit();
             return item.MenuNhom.NhomID;
+        }
+
+        public void SapXep(int LoaiNhomID, Data.Transit mTransit)
+        {
+            var Parameter_LoaiNhomID = new System.Data.SqlClient.SqlParameter("@LoaiNhomID", System.Data.SqlDbType.Int);
+            Parameter_LoaiNhomID.Value = LoaiNhomID;
+            mTransit.KaraokeEntities.ExecuteStoreCommand("SP_SAPXEP_NHOM @LoaiNhomID", Parameter_LoaiNhomID);
         }
     }
 }

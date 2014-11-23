@@ -6,46 +6,83 @@ using System.Text;
 namespace Data
 {
     public class BOKhu
-    {        
+    {
         private Transit mTransit;
-        private FrameworkRepository<KHU> frKhu;
-        public BOKhu(Transit tran)
-        {            
-            mTransit = tran;
-            frKhu = new FrameworkRepository<KHU>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.KHUs);
+        public Data.KHU Khu { get; set; }
+        public Data.MENULOAIGIA LoaiGia { get; set; }
+        private FrameworkRepository<KHU> frmKhu;
+        private FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
+
+        public BOKhu(Transit transit)
+        {
+            mTransit = transit;
+            frmKhu = new FrameworkRepository<KHU>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.KHUs);
+            frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENULOAIGIAs);
+        }
+        public BOKhu()
+        {
+            Khu = new KHU();
+            LoaiGia = new MENULOAIGIA();
         }
 
         public static IQueryable<KHU> GetAllVisual(Transit transit)
         {
-            var query = FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(o => o.Deleted == false && o.Visual == true);            
+            var query = FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(o => o.Deleted == false && o.Visual == true);
             return query;
-        }        
-        public static IQueryable<KHU> GetAll(Transit transit)
+        }
+        public static IQueryable<KHU> GetAllNoTracking(Transit transit)
         {
-            return FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(k => k.Deleted == false);            
-        }        
-        public void Sua(KHU khu)
-        {
-            frKhu.Update(khu);
+            return FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(k => k.Deleted == false);
         }
 
-        public void Them(KHU item)
+        public IQueryable<BOKhu> GetAll(Transit transit)
         {
-            frKhu.AddObject(item);
+            return from k in frmKhu.Query()
+                   join lg in frmLoaiGia.Query() on k.LoaiGiaID equals lg.LoaiGiaID
+                   where k.Deleted == false
+                   select new BOKhu
+                   {
+                       Khu = k,
+                       LoaiGia = lg
+                   };
+
         }
 
-        public void Xoa(KHU khu)
+        private int Them(BOKhu item, Transit mTransit)
         {
-            frKhu.DeleteObject(khu);
+            frmKhu.AddObject(item.Khu);
+            return item.Khu.KhuID;
         }
 
-        public void Commit()
+        private int Xoa(BOKhu item, Transit mTransit)
         {
-            frKhu.Commit();
+            item.Khu.Deleted = true;
+            frmKhu.Update(item.Khu);
+            return item.Khu.KhuID;
         }
-        public void Refresh()
+
+        private int Sua(BOKhu item, Transit mTransit)
         {
-            frKhu.Refresh();
+            frmKhu.Update(item.Khu);
+            return item.Khu.KhuID;
+        }
+
+        public void Luu(List<BOKhu> lsArray, List<BOKhu> lsArrayDeleted, Transit mTransit)
+        {
+            if (lsArray != null)
+                foreach (BOKhu item in lsArray)
+                {
+                    if (item.Khu.KhuID > 0)
+                        Sua(item, mTransit);
+                    else
+                        Them(item, mTransit);
+                }
+            if (lsArrayDeleted != null)
+                foreach (BOKhu item in lsArrayDeleted)
+                {
+                    Xoa(item, mTransit);
+                }
+            frmKhu.Commit();
         }
     }
 }

@@ -90,15 +90,15 @@ namespace UserControlLibrary
             _Item.MenuKichThuocMon.LoaiBanID = (int)cbbLoaiBan.SelectedValue;
             Data.LOAIBAN loaiBan = (Data.LOAIBAN)cbbLoaiBan.SelectedItem;
             _Item.LoaiBan = loaiBan;
+            _Item.MenuKichThuocMon.DonVi = _Item.LoaiBan.DonViID;
             _Item.MenuKichThuocMon.TenLoaiBan = txtTenLoaiBan.Text;
             _Item.MenuKichThuocMon.KichThuocLoaiBan = System.Convert.ToInt32(txtKichThuocLoaiBan.Text);
-            _Item.MenuKichThuocMon.KichThuocLoaiBan = _Item.MenuKichThuocMon.KichThuocLoaiBan * loaiBan.KichThuocBan;
+            _Item.MenuKichThuocMon.KichThuocLoaiBan = (int)_Item.MenuKichThuocMon.KichThuocLoaiBan * (int)loaiBan.KichThuocBan;
             _Item.MenuKichThuocMon.GiaBanMacDinh = System.Convert.ToDecimal(txtGiaMacDinh.Text);
             _Item.MenuKichThuocMon.TonKhoToiDa = System.Convert.ToInt32(txtTonKhoToiDa.Text);
             _Item.MenuKichThuocMon.TonKhoToiThieu = System.Convert.ToInt32(txtTonKhoToiThieu.Text);
             _Item.MenuKichThuocMon.SoLuongBanBan = System.Convert.ToInt32(txtSoLuongBan.Text);
-            _Item.MenuKichThuocMon.Visual = ckBan.IsChecked;
-
+            _Item.MenuKichThuocMon.Visual = (bool)ckBan.IsChecked;
             _Item.MenuKichThuocMon.ThoiGia = false;
             _Item.MenuKichThuocMon.Deleted = false;
         }

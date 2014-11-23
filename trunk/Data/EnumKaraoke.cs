@@ -33,11 +33,11 @@ namespace Data
 
     public enum EnumDonVi
     {
-        SoLuong,
-        TrongLuong,
-        TheTich,
-        ThoiGian,
-        DinhLuong
+        SoLuong = 1,
+        TrongLuong = 2,
+        TheTich = 3,
+        ThoiGian = 4,
+        DinhLuong = 5
     }
 
     public enum EnumLoaiNhanVien

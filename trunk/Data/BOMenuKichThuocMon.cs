@@ -84,7 +84,6 @@ namespace Data
 
         public BOMenuKichThuocMon(Data.Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
             frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
             frmmenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmLoaiBan = new FrameworkRepository<LOAIBAN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIBANs);
@@ -95,18 +94,31 @@ namespace Data
             MenuKichThuocMon = menuKichThuocMon;
             MenuMon = menuMon;
         }
-        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, Transit mTransit)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="MonID"></param>
+        /// <param name="IsDinhLuong">Có cho load định lượng lên không</param>
+        /// <param name="IsThoiGian">Có cho load thời gian lên không</param>
+        /// <param name="mTransit"></param>
+        /// <returns></returns>
+        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, bool IsDinhLuong, bool IsThoiGian, Transit mTransit)
         {
-            return (from k in frmKichThuocMon.Query()
-                    join m in frmmenuMon.Query() on k.MonID equals m.MonID
-                    join l in frmLoaiBan.Query() on k.LoaiBanID equals l.LoaiBanID
-                    where k.MonID == MonID && k.Deleted == false
-                    select new BOMenuKichThuocMon
-                    {
-                        MenuKichThuocMon = k,
-                        MenuMon = m,
-                        LoaiBan = l
-                    });
+            var res = (from k in frmKichThuocMon.Query()
+                       join m in frmmenuMon.Query() on k.MonID equals m.MonID
+                       join l in frmLoaiBan.Query() on k.LoaiBanID equals l.LoaiBanID
+                       where k.MonID == MonID && k.Deleted == false
+                       select new BOMenuKichThuocMon
+                       {
+                           MenuKichThuocMon = k,
+                           MenuMon = m,
+                           LoaiBan = l
+                       });
+            if (!IsDinhLuong)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.DinhLuong);
+            if (!IsThoiGian)
+                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.ThoiGian);
+            return res;
         }
 
         private int Them(BOMenuKichThuocMon item, Transit mTransit)
@@ -142,7 +154,31 @@ namespace Data
                 {
                     Xoa(item, mTransit);
                 }
+            if (lsArray.Count > 0)
+            {
+                UpdateSoLuongKichThuocMon((int)lsArray[0].MenuKichThuocMon.MonID, mTransit);
+                SapXep((int)lsArray[0].MenuKichThuocMon.MonID, mTransit);
+            }
+            else if (lsArrayDeleted.Count > 0)
+            {
+                UpdateSoLuongKichThuocMon((int)lsArrayDeleted[0].MenuKichThuocMon.MonID, mTransit);
+                SapXep((int)lsArrayDeleted[0].MenuKichThuocMon.MonID, mTransit);
+            }
             frmKichThuocMon.Commit();
+        }
+
+        public void UpdateSoLuongKichThuocMon(int MonID, Data.Transit mTransit)
+        {
+            var Parameter_MonID = new System.Data.SqlClient.SqlParameter("@MonID", System.Data.SqlDbType.Int);
+            Parameter_MonID.Value = MonID;
+            mTransit.KaraokeEntities.ExecuteStoreCommand("SP_UPDATE_SOLUONGKICHTHUOCMON @MonID", Parameter_MonID);
+        }
+
+        public void SapXep(int MonID, Data.Transit mTransit)
+        {
+            var Parameter_MonID = new System.Data.SqlClient.SqlParameter("@MonID", System.Data.SqlDbType.Int);
+            Parameter_MonID.Value = MonID;
+            mTransit.KaraokeEntities.ExecuteStoreCommand("SP_SAPXEP_KICHTHUOCMON @MonID", Parameter_MonID);
         }
 
     }

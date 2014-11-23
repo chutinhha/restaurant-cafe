@@ -10,7 +10,7 @@
         </Grid.RowDefinitions>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
         <WindowsFormsHost  Grid.Row="1" Name="ReportData" >
-            <rv:ReportViewer x:Name="ReportViewerData"/>
+            <rv:ReportViewer x:Name="ReportViewerData" ZoomMode="PageWidth" />
         </WindowsFormsHost>
     </Grid>
 </Window>

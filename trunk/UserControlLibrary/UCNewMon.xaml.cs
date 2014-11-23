@@ -12,13 +12,13 @@ namespace UserControlLibrary
     {
         private BitmapImage mBitmapImage = null;
         private Data.Transit mTransit = null;
-        private int NhomID = 0;
+        private Data.MENUNHOM mMenuNhom = null;
         public Data.BOMenuMon BOMenuMon = null;
 
-        public UCNewMon(int nhomID, Data.Transit transit, Data.BOMenuMon bOMenuMon)
+        public UCNewMon(Data.MENUNHOM menuNhom, Data.Transit transit, Data.BOMenuMon bOMenuMon)
         {
             InitializeComponent();
-            NhomID = nhomID;
+            mMenuNhom = menuNhom;
             mTransit = transit;
             BOMenuMon = bOMenuMon;
         }
@@ -71,7 +71,7 @@ namespace UserControlLibrary
             {
                 _Mon = new Data.BOMenuMon();
                 _Mon.MenuMon.Deleted = false;
-                _Mon.MenuMon.NhomID = NhomID;
+                _Mon.MenuMon.NhomID = mMenuNhom.NhomID;
             }
             _Mon.MenuMon.TenDai = txtTenDai.Text;
             _Mon.MenuMon.TenNgan = txtTenNgan.Text;
@@ -83,7 +83,7 @@ namespace UserControlLibrary
                 _Mon.MenuMon.SapXep = 0;
             else
                 _Mon.MenuMon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
-            _Mon.MenuMon.Visual = ckBan.IsChecked;
+            _Mon.MenuMon.Visual = (bool)ckBan.IsChecked;
         }
 
         private void SetValues()
@@ -105,7 +105,7 @@ namespace UserControlLibrary
             {
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
-                txtSapXep.Text = "1";
+                txtSapXep.Text = mMenuNhom.SapXepMon.ToString();
                 ckBan.IsChecked = true;
                 btnCaiDatMayIn.Visibility = System.Windows.Visibility.Hidden;
                 btnDanhSachBan.Visibility = System.Windows.Visibility.Hidden;

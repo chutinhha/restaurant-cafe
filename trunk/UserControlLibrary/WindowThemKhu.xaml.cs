@@ -13,7 +13,7 @@ namespace UserControlLibrary
         private BitmapImage mBitmapImage = null;
         private Data.Transit mTransit;
 
-        public Data.KHU _Item { get; set; }
+        public Data.BOKhu _Item { get; set; }
 
         public WindowThemKhu(Data.Transit transit)
         {
@@ -23,7 +23,17 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadLoaiGia();
             SetValues();
+        }
+
+        private void LoadLoaiGia()
+        {
+            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
+            if (cbbLoaiGia.Items.Count > 0)
+            {
+                cbbLoaiGia.SelectedIndex = 0;
+            }
         }
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
@@ -37,10 +47,9 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.KHU();
-                    _Item.Visual = true;
-                    _Item.Deleted = false;
-                    _Item.Edit = false;
+                    _Item = new Data.BOKhu();
+                    _Item.Khu.Deleted = false;
+                    _Item.Khu.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -53,6 +62,7 @@ namespace UserControlLibrary
             {
                 txtTenKhu.Text = "";
                 ckMacDinh.IsChecked = false;
+                ckChoPhepHienThi.IsChecked = true;
                 if (cbbLoaiGia.Items.Count > 0)
                 {
                     cbbLoaiGia.SelectedIndex = 0;
@@ -62,13 +72,14 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenKhu.Text = _Item.TenKhu;
-                ckMacDinh.IsChecked = _Item.MacDinhSoDoBan;
-                cbbLoaiGia.SelectedValue = _Item.LoaiGiaID;
-                if (_Item.Hinh != null && _Item.Hinh.Length > 0)
+                txtTenKhu.Text = _Item.Khu.TenKhu;
+                ckMacDinh.IsChecked = _Item.Khu.MacDinhSoDoBan;
+                cbbLoaiGia.SelectedValue = _Item.Khu.LoaiGiaID;
+                ckChoPhepHienThi.IsChecked = _Item.Khu.Visual;
+                if (_Item.Khu.Hinh != null && _Item.Khu.Hinh.Length > 0)
                 {
-                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Hinh);
-                }
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Khu.Hinh);
+                }             
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Khu";
             }
@@ -76,12 +87,14 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.TenKhu = txtTenKhu.Text;
-            _Item.MacDinhSoDoBan = ckMacDinh.IsChecked;
-            _Item.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
+            _Item.Khu.TenKhu = txtTenKhu.Text;
+            _Item.Khu.MacDinhSoDoBan = (bool)ckMacDinh.IsChecked;
+            _Item.Khu.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
+            _Item.LoaiGia = (Data.MENULOAIGIA)cbbLoaiGia.SelectedItem;
+            _Item.Khu.Visual = (bool)ckChoPhepHienThi.IsChecked;
             if (mBitmapImage != null)
             {
-                _Item.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                _Item.Khu.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
             }
         }
 

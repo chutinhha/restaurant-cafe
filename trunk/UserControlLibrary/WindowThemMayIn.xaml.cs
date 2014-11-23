@@ -79,10 +79,10 @@ namespace UserControlLibrary
         {
             _Item.TieuDeIn = txtTieuDeMayIn.Text;
             _Item.SoLanIn = System.Convert.ToInt32(txtSoLanIn.Text);
-            _Item.HopDungTien = ckHopDungTien.IsChecked;
+            _Item.HopDungTien = (bool)ckHopDungTien.IsChecked;
             _Item.TenMayIn = cbbTenMayIn.SelectedItem.ToString();
-            _Item.Visual = ckChoPhepIn.IsChecked;
-            _Item.MayInHoaDon = ckMayInHoaDon.IsChecked;
+            _Item.Visual = (bool)ckChoPhepIn.IsChecked;
+            _Item.MayInHoaDon = (bool)ckMayInHoaDon.IsChecked;
         }
 
         private bool CheckValues()

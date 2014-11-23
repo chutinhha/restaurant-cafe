@@ -31,9 +31,9 @@ namespace GUI
 
         void uCMenu__OnEventMenuNhom(Data.BOMenuNhom ob)
         {
-            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit, uCMenu.BOMenuNhom);
+            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(mTransit, uCMenu.BOMenuNhom);
             uc._Nhom = (Data.BOMenuNhom)ob;
-            NhomID = uc._Nhom.MenuNhom.NhomID;
+            mMenuNhom = uc._Nhom.MenuNhom;
             svChinhSuaMenu.Children.Clear();
             svChinhSuaMenu.Children.Add(uc);
             btnCapNhat.Content = "Cập nhật nhóm";
@@ -44,7 +44,7 @@ namespace GUI
 
         void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
         {
-            UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit, uCMenu.BOMenuMon);
+            UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(mMenuNhom, mTransit, uCMenu.BOMenuMon);
             uc._Mon = (Data.BOMenuMon)ob;
             svChinhSuaMenu.Children.Clear();
             svChinhSuaMenu.Children.Add(uc);
@@ -54,13 +54,12 @@ namespace GUI
             btnXoa.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private int LoaiNhomID = 0;
-        private int NhomID = 0;
+        private Data.MENUNHOM mMenuNhom = null;
 
         private void btnNhomMoi_Click(object sender, RoutedEventArgs e)
         {
             lbStatus.Text = "";
-            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(LoaiNhomID, mTransit, uCMenu.BOMenuNhom);
+            UserControlLibrary.UCNewNhom uc = new UserControlLibrary.UCNewNhom(mTransit, uCMenu.BOMenuNhom);
             svChinhSuaMenu.Children.Clear();
             svChinhSuaMenu.Children.Add(uc);
             btnCapNhat.Visibility = System.Windows.Visibility.Visible;
@@ -70,10 +69,10 @@ namespace GUI
 
         private void btnMonMoi_Click(object sender, RoutedEventArgs e)
         {
-            if (NhomID != 0)
+            if (mMenuNhom != null)
             {
                 lbStatus.Text = "";
-                UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(NhomID, mTransit, uCMenu.BOMenuMon);
+                UserControlLibrary.UCNewMon uc = new UserControlLibrary.UCNewMon(mMenuNhom, mTransit, uCMenu.BOMenuMon);
                 svChinhSuaMenu.Children.Clear();
                 svChinhSuaMenu.Children.Add(uc);
                 btnCapNhat.Visibility = System.Windows.Visibility.Visible;

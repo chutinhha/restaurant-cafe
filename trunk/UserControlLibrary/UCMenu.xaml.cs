@@ -20,6 +20,7 @@ namespace UserControlLibrary
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
         public bool _IsDinhLuong { get; set; }
+        public bool _IsThoiGian { get; set; }
         public bool _IsTonKho { get; set; }
         private double ImageHeightItems = 0;
         private double ImageWidthItems = 0;
@@ -35,6 +36,7 @@ namespace UserControlLibrary
             _IsDanhSachKhuyenMai = false;
             _IsDinhLuong = true;
             _IsTonKho = true;
+            _IsThoiGian = true;
         }
 
         public delegate void EventMenuGroup(Data.BOMenuNhom ob);
@@ -467,7 +469,7 @@ namespace UserControlLibrary
 
         public void LoadKichThuocMon(Data.BOMenuMon mon)
         {
-            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, mTransit).ToList();
+            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, _IsDinhLuong, _IsThoiGian, mTransit).ToList();
             if (lsMenuKichThuocMon.Count == 1)
             {
                 OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);

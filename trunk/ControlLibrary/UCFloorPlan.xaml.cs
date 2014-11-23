@@ -24,8 +24,7 @@ namespace ControlLibrary
         public bool _IsEdit { get; set; }
         private Data.Transit mTransit;        
         public Data.KHU _Khu { get; set; }
-        private Data.BOBan mBOBan;
-        private Data.BOKhu mBOKhu;
+        private Data.BOBan mBOBan;        
         public UCFloorPlan()
         {
             InitializeComponent();
@@ -34,8 +33,7 @@ namespace ControlLibrary
         public void Init(Data.Transit tran)
         {            
             mTransit = tran;
-            mBOBan = new Data.BOBan(mTransit);
-            mBOKhu = new Data.BOKhu(mTransit);
+            mBOBan = new Data.BOBan(mTransit);            
         }       
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -90,8 +88,6 @@ namespace ControlLibrary
                 }
             }
             mBOBan.Commit();
-            mBOKhu.Sua(_Khu);
-            mBOKhu.Commit();
         }
         public void LoadTable()
         {
