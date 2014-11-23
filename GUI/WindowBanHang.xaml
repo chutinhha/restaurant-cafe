@@ -38,12 +38,12 @@
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
                 <my:POSButtonChucNang Grid.Row="0" Name="btnChucNang_0" Content="Tính tiền" Click="btnChucNang_Click" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF022A3A" />
-                <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" Background="#FF022A3A" />
-                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Tạm tính" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="1" Name="btnChucNang_1" Content="Lưu hóa đơn" Click="btnChucNang_Click" Background="#FF022A3A" Image="/SystemImages;component/Images/kitchen.png" />
+                <my:POSButtonChucNang Grid.Row="2" Name="btnChucNang_2" Content="Tạm tính" Click="btnChucNang_Click" Background="#FF022A3A" Image="/SystemImages;component/Images/print_bill.png" />
                 <my:POSButtonChucNang Grid.Row="3" Name="btnChucNang_3" Content="Chuyển bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="4" Name="btnChucNang_4" Content="Tách bàn" Click="btnChucNang_Click" Background="#FF022A3A" />
-                <my:POSButtonChucNang Grid.Row="5" Name="btnChucNang_5" Content="Xóa món" Click="btnChucNang_Click" Background="#FF022A3A" />
-                <my:POSButtonChucNang Grid.Row="6" Name="btnChucNang_6" Content="Xóa toàn bộ món" Click="btnChucNang_Click" Background="#FF022A3A" />
+                <my:POSButtonChucNang Grid.Row="5" Name="btnChucNang_5" Content="Xóa món" Click="btnChucNang_Click" Background="#FF022A3A" Image="/SystemImages;component/Images/Delete.png" />
+                <my:POSButtonChucNang Grid.Row="6" Name="btnChucNang_6" Content="Xóa toàn bộ món" Click="btnChucNang_Click" Background="#FF022A3A" Image="/SystemImages;component/Images/delete_all.png" />
                 <my:POSButtonChucNang Grid.Row="7" Name="btnChucNang_7" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="8" Name="btnChucNang_8" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
                 <my:POSButtonChucNang Grid.Row="9" Name="btnChucNang_9" Content="" Click="btnChucNang_Click" Background="#FF022A3A" />
