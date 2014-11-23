@@ -27,7 +27,6 @@ namespace Data
 
         public BOMenuMon(Data.Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
             frmMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
         }
@@ -47,24 +46,29 @@ namespace Data
                                   MenuNhom = n
                               };
             if (GroupID > -1)
-                lsArray = lsArray.Where(s => s.MenuMon.NhomID == GroupID && s.MenuMon.Deleted == false).OrderBy(s => s.MenuMon.SapXep);
+                lsArray = lsArray.Where(s => s.MenuMon.NhomID == GroupID && s.MenuMon.Deleted == false);
             if (IsBanHang)
-                lsArray = lsArray.Where(s => s.MenuMon.SoLuongKichThuocMon > 0).OrderBy(s => s.MenuMon.SapXep);
+                lsArray = lsArray.Where(s => s.MenuMon.SoLuongKichThuocMon > 0);
             if (IsVisual)
-                lsArray = lsArray.Where(s => s.MenuMon.Visual == true).OrderBy(s => s.MenuMon.SapXep);
+                lsArray = lsArray.Where(s => s.MenuMon.Visual == true);
             return lsArray.OrderBy(s => s.MenuMon.SapXep);
         }
 
         public int Them(BOMenuMon item, Transit mTransit)
         {
             frmMon.AddObject(item.MenuMon);
+            SapXep((int)item.MenuMon.NhomID, mTransit);
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
             return item.MenuMon.MonID;
         }
 
         public int Xoa(BOMenuMon item, Transit mTransit)
         {
-            frmMon.DeleteObject(item.MenuMon);
+            item.MenuMon.Deleted = true;
+            frmMon.Update(item.MenuMon);
+            SapXep((int)item.MenuMon.NhomID, mTransit);
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
             return item.MenuMon.MonID;
         }
@@ -72,9 +76,25 @@ namespace Data
         public int Sua(BOMenuMon item, Transit mTransit)
         {
             frmMon.Update(item.MenuMon);
+            SapXep((int)item.MenuMon.NhomID, mTransit);
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
             return item.MenuMon.MonID;
 
+        }
+
+        public void SapXep(int NhomID, Data.Transit mTransit)
+        {
+            var Parameter_NhomID = new System.Data.SqlClient.SqlParameter("@NhomID", System.Data.SqlDbType.Int);
+            Parameter_NhomID.Value = NhomID;
+            mTransit.KaraokeEntities.ExecuteStoreCommand("SP_SAPXEP_MENUMON @NhomID", Parameter_NhomID);
+        }
+
+        public void UpdateSoLuongMon(int NhomID, Data.Transit mTransit)
+        {
+            var Parameter_NhomID = new System.Data.SqlClient.SqlParameter("@NhomID", System.Data.SqlDbType.Int);
+            Parameter_NhomID.Value = NhomID;
+            mTransit.KaraokeEntities.ExecuteStoreCommand("SP_UPDATE_SOLUONGMON @NhomID", Parameter_NhomID);
         }
     }
 }

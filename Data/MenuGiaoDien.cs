@@ -12,6 +12,7 @@
             NhanVien = new MenuNhanVien();
             DinhLuong = new MenuDinhLuong();
             MayIn = new MenuMayIn();
+            QuanLySoDoBan = new MenuQuanLySoDoBan();
         }
 
         public MenuKho Kho { get; set; }
@@ -22,6 +23,7 @@
         public MenuNhanVien NhanVien { get; set; }
         public MenuDinhLuong DinhLuong { get; set; }
         public MenuMayIn MayIn { get; set; }
+        public MenuQuanLySoDoBan QuanLySoDoBan { get; set; }
 
         public class MenuKho
         {
@@ -75,6 +77,13 @@
         {
             public bool MayIn = true;
             public bool CaiDatThucDonMayIn = true;
+        }
+
+        public class MenuQuanLySoDoBan
+        {
+            public bool SoDoBan = true;
+            public bool QuanLyKhu = true;
+
         }
     }
 }

@@ -11,15 +11,13 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCNewNhom : UserControl
     {
-        private int LoaiNhomID = 0;
         private Data.Transit mTransit = null;
         private BitmapImage mBitmapImage = null;
         private Data.BOMenuNhom BOMenuNhom = null;
 
-        public UCNewNhom(int loaiNhomID, Data.Transit transit, Data.BOMenuNhom bOMenuNhom)
+        public UCNewNhom(Data.Transit transit, Data.BOMenuNhom bOMenuNhom)
         {
             InitializeComponent();
-            LoaiNhomID = loaiNhomID;
             mTransit = transit;
             BOMenuNhom = bOMenuNhom;
             btnHinhAnh._OnBitmapImageChanged += new POSButtonImage.EventBitmapImage(btnHinhAnh__OnBitmapImageChanged);
@@ -54,7 +52,6 @@ namespace UserControlLibrary
                 _Nhom.MenuNhom.Deleted = false;
                 _Nhom.MenuNhom.MayIn = 0;
                 _Nhom.MenuNhom.GiamGia = 0;
-                _Nhom.MenuNhom.LoaiNhomID = LoaiNhomID;
             }
             if (mBitmapImage != null)
             {
@@ -62,7 +59,7 @@ namespace UserControlLibrary
             }
             _Nhom.MenuNhom.TenDai = txtTenDai.Text;
             _Nhom.MenuNhom.TenNgan = txtTenNgan.Text;
-            _Nhom.MenuNhom.Visual = ckBan.IsChecked;
+            _Nhom.MenuNhom.Visual = (bool)ckBan.IsChecked;
             _Nhom.MenuNhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
             if (txtSapXep.Text == "")
                 _Nhom.MenuNhom.SapXep = 0;
@@ -94,7 +91,8 @@ namespace UserControlLibrary
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
                 txtSapXep.Text = "";
-                cbbLoaiNhom.SelectedValue = LoaiNhomID;
+                if (cbbLoaiNhom.Items.Count > 0)
+                    cbbLoaiNhom.SelectedIndex = 0;
                 ckBan.IsChecked = true;
             }
         }
@@ -109,6 +107,14 @@ namespace UserControlLibrary
         private void LoadLoaiNhom()
         {
             cbbLoaiNhom.ItemsSource = Data.BOLoaiNhom.GetAll(mTransit);
+        }
+
+        private void cbbLoaiNhom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbbLoaiNhom.SelectedItem != null && _Nhom == null)
+            {
+                txtSapXep.Text = ((Data.MENULOAINHOM)cbbLoaiNhom.SelectedItem).SapXepNhom.ToString();
+            }
         }
     }
 }

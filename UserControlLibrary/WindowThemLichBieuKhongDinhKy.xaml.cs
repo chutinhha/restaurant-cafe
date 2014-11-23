@@ -83,7 +83,7 @@ namespace UserControlLibrary
             _Item.LichBieuKhongDinhKy.Ngay = dtpNgay.SelectedDate;
             _Item.LichBieuKhongDinhKy.GioBatDau = timeBatDau.TimeCurent;
             _Item.LichBieuKhongDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
-            _Item.LichBieuKhongDinhKy.Visual = ckHoatDong.IsChecked;            
+            _Item.LichBieuKhongDinhKy.Visual = (bool)ckHoatDong.IsChecked;            
             _Item.LichBieuKhongDinhKy.Deleted = false;
         }
 

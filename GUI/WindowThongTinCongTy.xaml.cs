@@ -23,6 +23,24 @@ namespace GUI
         {
             InitializeComponent();
             mTransit = transit;
+            uCTile.TenChucNang = "Cài đặt thông tin";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+        }
+
+        void uCTile_OnEventExit()
+        {
+            DialogResult = false;
+        }
+
+        private void btnCaiDatThongTinCongTy_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatThongTinDoanhNghiep win = new UserControlLibrary.WindowCaiDatThongTinDoanhNghiep(mTransit);
+            win.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
