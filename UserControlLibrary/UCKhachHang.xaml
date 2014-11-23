@@ -24,9 +24,8 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiKhachHang.TenLoaiKhachHang}" Width="180" Header="Loại khách hàng" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.DuNo}" Width="100" Header="Dư nợ" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.DuNoToiThieu}" Width="200" Header="Dư nợ tối thiểu" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.DiaChi}" Width="200" Header="Địa chỉ" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Email}" Width="200" Header="Email" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.SoNha}" Width="150" Header="Số nhà" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.TenDuong}" Width="200" Header="Tên đường" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Mobile}" Width="100" Header="ĐT Di động" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Phone}" Width="100" Header="ĐT bàn" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.Fax}" Width="100" Header="Fax" />

@@ -74,6 +74,7 @@ namespace UserControlLibrary
         private void btnThemMon_Click(object sender, RoutedEventArgs e)
         {
             WindowChonMon win = new WindowChonMon(mTransit, true);
+            win.SetLoadDonvi(true, true, true, false, false, true);
             if (win.ShowDialog() == true)
             {
                 Data.BODinhLuong item = new Data.BODinhLuong();
@@ -100,7 +101,7 @@ namespace UserControlLibrary
                     lsArrayDeleted = new List<Data.BODinhLuong>();
                 lsArrayDeleted.Add(item);
             }
-            lvData.Items.Remove(item);
+            lsArray.Remove(item);
             lvData.Items.Refresh();
         }
 

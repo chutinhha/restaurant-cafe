@@ -38,7 +38,7 @@ namespace Data
 
         private int Sua(NHACUNGCAP item, Transit mTransit)
         {
-            item.Deleted = true;
+            item.Edit = false;
             frmNhaCungCap.Update(item);
             return item.NhaCungCapID;
         }

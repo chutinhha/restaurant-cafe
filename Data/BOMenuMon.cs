@@ -37,7 +37,7 @@ namespace Data
         }
         public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsVisual, Transit mTransit)
         {
-
+            frmMon.Refresh();
             var lsArray = from m in frmMon.Query()
                           join n in frmNhom.Query() on (int)m.NhomID equals (int)n.NhomID
                           select new BOMenuMon
@@ -58,8 +58,8 @@ namespace Data
         {
             frmMon.AddObject(item.MenuMon);
             SapXep((int)item.MenuMon.NhomID, mTransit);
-            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             return item.MenuMon.MonID;
         }
 
@@ -68,8 +68,8 @@ namespace Data
             item.MenuMon.Deleted = true;
             frmMon.Update(item.MenuMon);
             SapXep((int)item.MenuMon.NhomID, mTransit);
-            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             return item.MenuMon.MonID;
         }
 
@@ -77,8 +77,8 @@ namespace Data
         {
             frmMon.Update(item.MenuMon);
             SapXep((int)item.MenuMon.NhomID, mTransit);
-            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
+            UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             return item.MenuMon.MonID;
 
         }

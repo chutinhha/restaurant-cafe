@@ -30,6 +30,11 @@ namespace UserControlLibrary
             mTransit = transit;
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu.Init(mTransit);
+            uCMenu._IsDinhLuong = true;
+            uCMenu._IsSoLuong = false;
+            uCMenu._IsTrongLuong = false;
+            uCMenu._IsTheTich = false;
+            uCMenu._IsThoiGian = false;
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
@@ -45,7 +50,7 @@ namespace UserControlLibrary
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            uCDanhSachDinhLuong.Window_KeyDown(sender, e);            
+            uCDanhSachDinhLuong.Window_KeyDown(sender, e);
         }
     }
 }

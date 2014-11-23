@@ -32,6 +32,18 @@ namespace UserControlLibrary
             uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu.Init(mTransit);
+            uCMenu._IsDanhSachKhuyenMai = false;
+
+        }
+
+        public void SetLoadDonvi(bool IsSoLuong, bool IsTrongLuong, bool IsTheTich, bool IsDinhLuong, bool IsThoiGian, bool IsTonKho)
+        {
+            uCMenu._IsSoLuong = IsSoLuong;
+            uCMenu._IsTrongLuong = IsTrongLuong;
+            uCMenu._IsTheTich = IsTheTich;
+            uCMenu._IsThoiGian = IsDinhLuong;
+            uCMenu._IsDinhLuong = IsThoiGian;
+            uCMenu._IsTonKho = IsTonKho;
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
@@ -55,6 +67,10 @@ namespace UserControlLibrary
         private void btnChonMon_Click(object sender, RoutedEventArgs e)
         {
             if (_ItemMon != null)
+            {
+                DialogResult = true;
+            }
+            else if (_ItemKichThuocMon != null)
             {
                 DialogResult = true;
             }
