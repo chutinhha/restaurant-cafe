@@ -18,9 +18,9 @@ namespace GUI
     /// </summary>
     public partial class WindowSoDoBan : Window
     {
-        private Data.Transit mTransit;        
+        private Data.Transit mTransit;
         public WindowSoDoBan(Data.Transit tran)
-        {            
+        {
             mTransit = tran;
             InitializeComponent();
             ucTile.SetTransit(tran);
@@ -33,7 +33,7 @@ namespace GUI
             uCListArea1.Init(mTransit);
             uCListArea1._UCFloorPlan = uCFloorPlan1;
 
-            if (mTransit.NhanVien.LoaiNhanVienID < 2)
+            if (mTransit.NhanVien.CapDo < 3)
                 btnThoat.Content = "Màn hình chính";
             else
                 btnThoat.Content = "Thoát";
@@ -41,7 +41,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-            if (mTransit.NhanVien.LoaiNhanVienID < 2)
+            if (mTransit.NhanVien.CapDo < 3)
                 DialogResult = false;
             else
                 DialogResult = true;
@@ -50,7 +50,7 @@ namespace GUI
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {
             mTransit.Ban = tbl._Ban;
-            WindowBanHang win = new WindowBanHang(mTransit,tbl);
+            WindowBanHang win = new WindowBanHang(mTransit, tbl);
             win.ShowDialog();
         }
 

@@ -16,10 +16,8 @@ namespace UserControlLibrary
         public WindowThemNhanVien(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;            
+            mTransit = transit;
         }
-
-        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -52,7 +50,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiNhanVien()
         {
-            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAllNoTracking(mTransit);
+            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAllNoTracking(mTransit, _Item == null ? mTransit.NhanVien.CapDo : _Item.NhanVien.NhanVienID == mTransit.NhanVien.NhanVienID ? mTransit.NhanVien.CapDo - 1 : mTransit.NhanVien.CapDo);
             if (cbbLoaiNhanVien.Items.Count > 0)
                 cbbLoaiNhanVien.SelectedIndex = 0;
         }
@@ -96,6 +94,7 @@ namespace UserControlLibrary
             }
             Data.LOAINHANVIEN lnv = (Data.LOAINHANVIEN)cbbLoaiNhanVien.SelectedItem;
             _Item.LoaiNhanVien.TenLoaiNhanVien = lnv.TenLoaiNhanVien;
+            _Item.NhanVien.CapDo = lnv.CapDo;
         }
 
         private bool CheckValues()

@@ -39,7 +39,7 @@ namespace Data
 
         private int Sua(LOAIKHACHHANG item, Transit mTransit)
         {
-            item.Deleted = true;
+            item.Edit = true;
             frmLoaiKhachHang.Update(item);
             return item.LoaiKhachHangID;
         }

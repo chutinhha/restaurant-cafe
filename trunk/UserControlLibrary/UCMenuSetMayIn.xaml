@@ -24,15 +24,12 @@
         <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
         <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
         <my:POSButtonFuntion Name="btnLuu" Grid.Row="1" Grid.Column="1" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-        <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
-            <ListView.ItemTemplate>
+        <ListBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height="30">
-                        <CheckBox Name="ckValues" IsChecked="{Binding Values}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                        <TextBlock Text="{Binding MenuItemMayIn.MayIn.TieuDeIn}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
-                    </StackPanel>
+                    <CheckBox Name="ckValues" IsChecked="{Binding Values}" Content="{Binding MenuItemMayIn.MayIn.TieuDeIn}" Margin="10,0,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DataContext="{Binding}" Height="40" FontSize="16" />
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
