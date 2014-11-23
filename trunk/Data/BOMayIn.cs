@@ -9,7 +9,7 @@ namespace Data
     {
         public int MayInID { get; set; }
         public string TenMayIn { get; set; }
-        public string TieuDeIn { get; set; }        
+        public string TieuDeIn { get; set; }
         public bool HocDungTien { get; set; }
         public int SoLanIn { get; set; }
         FrameworkRepository<MAYIN> frmMayIn;
@@ -26,9 +26,9 @@ namespace Data
         {
             return frmMayIn.Query().Where(s => s.Deleted == false);
         }
-        public static IQueryable<MAYIN> GetAllNoTracking(Transit mTransit)
+        public static IQueryable<MAYIN> GetAllNoTracking(Transit mTransit, bool IsMayInHoaDon)
         {
-            return FrameworkRepository<MAYIN>.QueryNoTracking(mTransit.KaraokeEntities.MAYINs).Where(s => s.Deleted == false);
+            return FrameworkRepository<MAYIN>.QueryNoTracking(mTransit.KaraokeEntities.MAYINs).Where(s => s.Deleted == false && s.MayInHoaDon == IsMayInHoaDon);
         }
 
         private int Them(MAYIN item, Transit mTransit)

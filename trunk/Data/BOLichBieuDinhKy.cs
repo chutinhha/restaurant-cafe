@@ -19,7 +19,8 @@ namespace Data
         }
         public BOLichBieuDinhKy()
         {
-
+            LichBieuDinhKy = new LICHBIEUDINHKY();
+            MenuLoaiGia = new MENULOAIGIA();
         }
 
         public IQueryable<BOLichBieuDinhKy> GetAll(Transit mTransit)
