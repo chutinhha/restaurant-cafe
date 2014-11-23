@@ -14,7 +14,7 @@ namespace Data
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
         public BONhanVien(Data.Transit transit)
-        {            
+        {
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
             frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAINHANVIENs);
             frmLichSuDangNhap = new FrameworkRepository<LICHSUDANGNHAP>(transit.KaraokeEntities, transit.KaraokeEntities.LICHSUDANGNHAPs);
@@ -28,7 +28,7 @@ namespace Data
 
         public static IQueryable<NHANVIEN> GetAllNoTracking(Transit mTransit)
         {
-            return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs);
+            return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs).Where(s => s.Deleted == false);
         }
         public IQueryable<BONhanVien> GetAll(Transit mTransit)
         {
