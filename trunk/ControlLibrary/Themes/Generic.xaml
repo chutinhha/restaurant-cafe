@@ -188,7 +188,7 @@
                                     <RowDefinition Height="20*" />
                                 </Grid.RowDefinitions>
                             <Image Grid.Row="0" Source="{TemplateBinding Image}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                            <Label Grid.Row="1" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Grid.Row="1" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
                             </Grid>
                         </Button>
                     <!--</Border>-->
@@ -288,6 +288,7 @@
                         VerticalAlignment="Stretch"
                         Content="{TemplateBinding Content}"
                         Background="{TemplateBinding Background}"
+                        Margin="5,5,5,5"
                      />
                 </ControlTemplate>
             </Setter.Value>

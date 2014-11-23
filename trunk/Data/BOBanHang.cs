@@ -58,7 +58,7 @@ namespace Data
                 }
                 BANHANG.BanID = mTransit.Ban.BanID;                                
                 BANHANG.NgayBan = DateTime.Now;
-                BANHANG.MaHoaDon = 1;
+                BANHANG.MaHoaDon = String.Format("HD{0:000000}",1);
                 BANHANG.TienMat = 0;                
                 BANHANG.TheID = mTransit.The.TheID;
                 BANHANG.TienThe = 0;
@@ -166,10 +166,25 @@ namespace Data
         }
         public int TinhTien()
         {
-            this.BANHANG.TrangThaiID = 4;
-            frBanHang.Update(this.BANHANG);
-            frBanHang.Commit();
-            return this.BANHANG.BanHangID;
+            if (this.BANHANG.TrangThaiID==1 || this.BANHANG.TrangThaiID==2)
+            {
+                this.BANHANG.TrangThaiID = 4;
+                frBanHang.Update(this.BANHANG);
+                frBanHang.Commit();
+                return this.BANHANG.BanHangID;
+            }
+            return 0;
+        }
+        public int TamTinh()
+        {
+            if (this.BANHANG.TrangThaiID == 1 || this.BANHANG.TrangThaiID == 2)
+            {
+                this.BANHANG.TrangThaiID = 2;
+                frBanHang.Update(this.BANHANG);
+                frBanHang.Commit();
+                return this.BANHANG.BanHangID;
+            }
+            return 0;
         }
         public decimal TongTien()
         {

@@ -46,9 +46,9 @@ namespace PrinterServer
         }
         void PrinterData_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            float y = mPOSPrinter.POSGetFloat(50);
+            float y = mPOSPrinter.POSGetFloat(30);
             y = mPOSPrinter.POSDrawString(mBOMayIn.TieuDeIn, e, mFontHeader, mColorBlack, y, TextAlign.Center, 3);
-            y += mPOSPrinter.POSGetFloat(50);
+            y += mPOSPrinter.POSGetFloat(30);
             mPOSPrinter.POSDrawString("Tên Bàn:" + mBOPrintOrder.TenBan, e, mFont, mColorBlack, y, TextAlign.Left, 3);
             y = mPOSPrinter.POSDrawString("Hóa Đơn:" + mBOPrintOrder.MaHoaDon, e, mFont, mColorBlack, y, TextAlign.Right, 3);
             y=mPOSPrinter.POSDrawString("Nhân Viên:" + mBOPrintOrder.TenNhanVien, e, mFont, mColorBlack, y, TextAlign.Left, 3);

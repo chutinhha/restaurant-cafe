@@ -8,7 +8,7 @@ namespace Data
     public class BOPrintOrder
     {
         public string TenNhanVien { get; set; }
-        public int MaHoaDon { get; set; }
+        public string MaHoaDon { get; set; }
         public string TenBan { get; set; }
         public DateTime NgayBan { get; set; }
         public BANHANG BanHang { get; set; }

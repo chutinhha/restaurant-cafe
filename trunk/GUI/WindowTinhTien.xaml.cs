@@ -30,7 +30,7 @@ namespace GUI
         }        
         private void InitData()
         {
-            cboThe.ItemsSource = Data.BOThe.GetAllVisual(mTransit);
+            cboThe.ItemsSource = Data.BOThe.GetAllVisual(mTransit);            
         }
         private void ReLoadData()
         {
@@ -66,12 +66,13 @@ namespace GUI
             txtGiamGia._UCKeyPad = uCKeyPad1;
             //ReLoadData();
             txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
+            if (mBOXuliTinhTien.GiamGiaPhanTram > 0)
+                txtGiamGia.Text = Utilities.NumberFormat.FormatToString(mBOXuliTinhTien.GiamGiaPhanTram);
             InitData();
         }
 
         private void txtGiamGia_TextChanged(object sender, TextChangedEventArgs e)
         {            
-
             mBOXuliTinhTien.TienGiam = Utilities.MoneyFormat.ConvertToDecimal(txtGiamGia.Text)*mBOXuliTinhTien.TongTien/100;
             ReLoadData();
         }
@@ -96,14 +97,28 @@ namespace GUI
 
         private void btnDongY_Click(object sender, RoutedEventArgs e)
         {
-            mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
-            this.DialogResult = true;
+            if (mBOXuliTinhTien.TienKhachDua >= mBOXuliTinhTien.TongTienPhaiTra || mBOXuliTinhTien.TienThe >= mBOXuliTinhTien.TongTienPhaiTra)
+            {
+                mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
+                this.DialogResult = true;
+            }
         }
 
         private void cboThe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mBOBanHang.BANHANG.TheID =(int) cboThe.SelectedValue;
+            mBOXuliTinhTien.BanHang.TheID = (int)cboThe.SelectedValue;
             txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
+        }
+
+        private void btnChonKhachHang_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowTimKhachHang win = new UserControlLibrary.WindowTimKhachHang(mTransit);
+            if (win.ShowDialog() == true)
+            {
+                mBOXuliTinhTien.BanHang.KhachHangID = win._KhachHang.KhachHangID;
+                //mBOXuliTinhTien.BanHang.KHACHHANG = win._KhachHang;
+                btnChonKhachHang.Content = win._KhachHang.TenKhachHang;
+            }
         }       
         
     }
