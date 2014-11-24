@@ -28,13 +28,18 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.KhachHang.LoaiKhachHang)
+            Data.BOChiTietQuyen quyenLoaiKhachHang = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.KhachHang.LoaiKhachHang);
+            btnLoaiKhachHang.Tag = quyenLoaiKhachHang;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.KhachHang.LoaiKhachHang) || !quyenLoaiKhachHang.ChiTietQuyen.ChoPhep)
             {
                 btnLoaiKhachHang.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.KhachHang.KhachHang)
+
+            Data.BOChiTietQuyen quyenKhacHang = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.KhachHang.KhachHang);
+            btnLoaiKhachHang.Tag = quyenKhacHang;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.KhachHang.KhachHang) || !quyenKhacHang.ChiTietQuyen.ChoPhep)
             {
-                btnLoaiKhachHang.Visibility = System.Windows.Visibility.Collapsed;
+                btnKhachHang.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -62,9 +67,14 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            btnKhachHang_Click(sender, e);
+            if (btnKhachHang.Visibility != System.Windows.Visibility.Collapsed)
+                btnKhachHang_Click(sender, e);
+            else if (btnLoaiKhachHang.Visibility != System.Windows.Visibility.Collapsed)
+                btnLoaiKhachHang_Click(sender, e);
+
             uCTile.TenChucNang = "Quản Lý Khách Hàng";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+
         }
 
         void uCTile_OnEventExit()

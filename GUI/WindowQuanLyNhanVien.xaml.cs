@@ -25,7 +25,9 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.NhanVien.QuanLyNhanVien || !mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.QuanLyNhanVien.QuanLyNhanVien).ChiTietQuyen.ChoPhep == true)
+            Data.BOChiTietQuyen quyenNhanVien = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.NhanVien.NhanVien);
+            btnNhanVien.Tag = quyenNhanVien;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.NhanVien.NhanVien) || !quyenNhanVien.ChiTietQuyen.ChoPhep)
             {
                 btnNhanVien.Visibility = System.Windows.Visibility.Collapsed;
             }

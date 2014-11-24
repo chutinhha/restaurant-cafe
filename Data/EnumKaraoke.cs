@@ -43,9 +43,10 @@ namespace Data
 
     public enum EnumLoaiNhanVien
     {
-        QuanLy = 1,
-        ThuKho = 2,
-        NhanVien = 3
+        Admin = 1,
+        QuanLy = 2,
+        GiamSat = 3,
+        NhanVien = 4
     }
 
     public enum EnumLoaiPhatSinh

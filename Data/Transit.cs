@@ -23,6 +23,7 @@ namespace Data
         public List<DONVI> ListDonVi { get; set; }
         //================Quyền=============
         public IQueryable<BOChiTietQuyen> DanhSachQuyen { get; set; }
+        public IQueryable<CHUCNANG> DanhSachChucNang { get; set; }
         public Data.BOChiTietQuyen BOChiTietQuyen = null;
         public int KhoID { get; set; }
         public Transit()
@@ -32,7 +33,8 @@ namespace Data
             HashMD5 = "KTr";
             Admin = new NHANVIEN();
             Admin.NhanVienID = 0;
-            Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.QuanLy;
+            Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.Admin;
+            Admin.CapDo = -1;
             Admin.TenNhanVien = "Admin";
             Admin.TenDangNhap = "0000";
             Admin.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash("0000", HashMD5);
@@ -54,9 +56,37 @@ namespace Data
         public void LayDanhSachQuyen()
         {
             if (NhanVien.NhanVienID != 0)
+            {
                 DanhSachQuyen = BOChiTietQuyen.LayDanhSachQuyen(NhanVien);
+                DanhSachChucNang = BOChucNang.GetAllNoTracking(this);
+            }
             else
                 DanhSachQuyen = null;
+        }
+
+        public bool KiemTraChucNang(int ChucNangID)
+        {
+            if (DanhSachChucNang != null)
+            {
+                return DanhSachChucNang.Where(s => s.ChucNangID == ChucNangID).FirstOrDefault().Visual;
+            }
+            return true;
+        }
+
+        public bool KiemTraNhomChucNang(int NhomChucNangID)
+        {
+            if (DanhSachChucNang != null)
+            {
+                var list = DanhSachChucNang.Where(s => s.NhomChucNangID == NhomChucNangID);
+                foreach (var item in list)
+                {
+                    if (item.Visual == true)
+                        return true;
+                    return false;
+                }
+
+            }
+            return true;
         }
 
         public class ClassStringButton

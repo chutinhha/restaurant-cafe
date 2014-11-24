@@ -33,7 +33,7 @@ namespace GUI
             uCListArea1.Init(mTransit);
             uCListArea1._UCFloorPlan = uCFloorPlan1;
 
-            if (mTransit.NhanVien.CapDo < 3)
+            if (mTransit.NhanVien.CapDo < (int)Data.EnumLoaiNhanVien.NhanVien)
                 btnThoat.Content = "Màn hình chính";
             else
                 btnThoat.Content = "Thoát";
@@ -41,7 +41,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-            if (mTransit.NhanVien.CapDo < 3)
+            if (mTransit.NhanVien.CapDo < (int)Data.EnumLoaiNhanVien.NhanVien)
                 DialogResult = false;
             else
                 DialogResult = true;

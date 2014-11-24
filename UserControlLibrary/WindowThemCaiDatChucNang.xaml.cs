@@ -46,6 +46,7 @@ namespace UserControlLibrary
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
+            DialogResult = true;
         }
 
         private void LoadDanhSach()
@@ -53,34 +54,50 @@ namespace UserControlLibrary
             IQueryable<Data.CHUCNANG> lsChucNang = Data.BOChucNang.GetAllNoTracking(mTransit);
             IQueryable<Data.BOChiTietQuyen> lsChiTietQuyen = BOChiTietQuyen.GetAll(mQuyen.MaQuyen, mTransit);
             List<Data.BOChiTietQuyen> lsShowData = new List<Data.BOChiTietQuyen>();
-            foreach (Data.CHUCNANG mi in lsChucNang)
+            foreach (Data.CHUCNANG cn in lsChucNang)
             {
                 Data.BOChiTietQuyen item = null;
-                if (lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == mi.ChucNangID).Count() > 0)
+                if (lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == cn.ChucNangID).Count() > 0)
                 {
-                    item = lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == mi.ChucNangID).FirstOrDefault();
+                    item = lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == cn.ChucNangID).FirstOrDefault();
+                    item.IsChoPhep = cn.ChoPhep ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsDangNhap = cn.DangNhap ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsThem = cn.Them ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsXoa = cn.Xoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsSua = cn.Sua ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
                 }
                 else
                 {
                     item = new Data.BOChiTietQuyen();
-                    item.ChucNang = mi;
-                    item.ChiTietQuyen.ChucNangID = mi.ChucNangID;
+                    item.ChiTietQuyen.NhomChucNangID = (int)cn.NhomChucNangID;
+                    item.ChucNang = cn;
+                    item.ChiTietQuyen.ChucNangID = cn.ChucNangID;
                     item.ChiTietQuyen.QuyenID = mQuyen.MaQuyen;
                     item.ChiTietQuyen.Deleted = false;
                     item.ChiTietQuyen.Edit = false;
                     item.ChiTietQuyen.Visual = true;
                     item.ChiTietQuyen.ChoPhep = false;
                     item.ChiTietQuyen.DangNhap = false;
-                    item.ChiTietQuyen.Xem = false;
                     item.ChiTietQuyen.Them = false;
                     item.ChiTietQuyen.Xoa = false;
                     item.ChiTietQuyen.Sua = false;
+                    item.IsChoPhep = cn.ChoPhep ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsDangNhap = cn.DangNhap ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsThem = cn.Them ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsXoa = cn.Xoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    item.IsSua = cn.Sua ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
                 }
                 lsShowData.Add(item);
             }
             lvData.ItemsSource = lsShowData;
+        }
 
-
+        public Visibility GetVisibility(bool value)
+        {
+            if (value)
+                return System.Windows.Visibility.Visible;
+            else
+                return System.Windows.Visibility.Collapsed;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

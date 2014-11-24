@@ -35,7 +35,9 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.The.QuanLyThe)
+            Data.BOChiTietQuyen quyenLoaiKhachHang = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.The.The);
+            btnThe.Tag = quyenLoaiKhachHang;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.The.The) || !quyenLoaiKhachHang.ChiTietQuyen.ChoPhep)
             {
                 btnThe.Visibility = System.Windows.Visibility.Collapsed;
             }
@@ -53,7 +55,8 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            btnThe_Click(null, null);
+            if (btnThe.Visibility != System.Windows.Visibility.Collapsed)
+                btnThe_Click(null, null);
         }
     }
 }

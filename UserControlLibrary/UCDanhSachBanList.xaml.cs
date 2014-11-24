@@ -27,14 +27,39 @@ namespace UserControlLibrary
             InitializeComponent();
         }
 
-        public void Init(Data.BOMenuMon mon, Data.Transit transit)
+        public void Init(Data.BOMenuMon mon)
         {
             if (OnEventExit == null)
                 btnHuy.Visibility = System.Windows.Visibility.Hidden;
-            mTransit = transit;
             BOMenuKichThuocMon = new Data.BOMenuKichThuocMon(mTransit);
             mMon = mon;
             btnDanhSachGia.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        public void SetTransit(Data.Transit transit)
+        {
+            mTransit = transit;
+            PhanQuyen();
+        }
+
+        Data.BOChiTietQuyen mPhanQuyen = null;
+
+        private void PhanQuyen()
+        {
+            mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachBan);
+            if (!mPhanQuyen.ChiTietQuyen.ChoPhep)
+                btnDanhSach.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Them)
+                btnThem.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Sua)
+                btnSua.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Xoa)
+                btnXoa.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
+                btnLuu.Visibility = System.Windows.Visibility.Collapsed;
+
+            if (!mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachGia).ChiTietQuyen.ChoPhep)
+                btnDanhSachGia.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public void LoadDanhSach()
@@ -136,27 +161,27 @@ namespace UserControlLibrary
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            if ((mPhanQuyen.ChiTietQuyen.Them || mPhanQuyen.ChiTietQuyen.Xoa || mPhanQuyen.ChiTietQuyen.Sua) && e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnLuu_Click(null, null);
                 return;
             }
-            if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            if (mPhanQuyen.ChiTietQuyen.Them && e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnThem_Click(null, null);
                 return;
             }
-            if (e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            if (mPhanQuyen.ChiTietQuyen.ChoPhep && e.Key == System.Windows.Input.Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 btnDanhSach_Click(null, null);
                 return;
             }
-            if (e.Key == System.Windows.Input.Key.F2)
+            if (mPhanQuyen.ChiTietQuyen.Sua && e.Key == System.Windows.Input.Key.F2)
             {
                 btnSua_Click(null, null);
                 return;
             }
-            if (e.Key == System.Windows.Input.Key.Delete)
+            if (mPhanQuyen.ChiTietQuyen.Xoa && e.Key == System.Windows.Input.Key.Delete)
             {
                 btnXoa_Click(null, null);
                 return;

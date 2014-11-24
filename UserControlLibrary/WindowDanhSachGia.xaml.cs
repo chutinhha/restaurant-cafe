@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace UserControlLibrary
 {
@@ -21,6 +22,16 @@ namespace UserControlLibrary
             mTransit = transit;
             BOMenuGia = new Data.BOMenuGia(transit);
             mKichThuocMon = kichthuocmon;
+            PhanQuyen();
+        }
+
+        Data.BOChiTietQuyen mPhanQuyen = null;
+
+        private void PhanQuyen()
+        {
+            mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachGia);
+            if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
+                btnLuu.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -67,6 +78,20 @@ namespace UserControlLibrary
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if ((mPhanQuyen.ChiTietQuyen.Them || mPhanQuyen.ChiTietQuyen.Xoa || mPhanQuyen.ChiTietQuyen.Sua) && e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
         }
     }
 }

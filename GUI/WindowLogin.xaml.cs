@@ -19,7 +19,7 @@ namespace GUI
     public partial class WindowLogin : Window
     {
         private Data.Transit mTransit = null;
-        Data.BONhanVien BONhanVien = null;        
+        Data.BONhanVien BONhanVien = null;
         public WindowLogin()
         {
             InitializeComponent();
@@ -43,7 +43,6 @@ namespace GUI
             }
             else
             {
-                
                 BONhanVien.ThemLichSuDangNhap(mTransit.NhanVien.NhanVienID);
                 mTransit.LayDanhSachQuyen();
             }

@@ -67,7 +67,7 @@ namespace UserControlLibrary
         }
 
         public bool _IsBanHang { get; set; }
-        public void Init(Data.Transit transit)
+        public void SetTransit(Data.Transit transit)
         {
             SetImageSizetItems();
             mTransit = transit;

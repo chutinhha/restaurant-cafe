@@ -8,7 +8,7 @@
                 <GradientStop Color="#FF457ECE" Offset="0" />
                 <GradientStop Color="#FF69A7EC" Offset="1" />
             </LinearGradientBrush>
-        </Border.Background>        
+        </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -18,7 +18,7 @@
             <Grid Grid.Row="1" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40*" />                    
+                    <RowDefinition Height="40*" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -35,16 +35,15 @@
                             <StackPanel Orientation="Horizontal" Height="30">
                                 <TextBlock Text="{Binding ChucNang.TenChucNang}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="300" />
                                 <CheckBox Name="ckChoPhep" IsChecked="{Binding ChiTietQuyen.ChoPhep}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Cho phép" Visibility="{Binding IsChoPhep}" />
-                                <CheckBox Name="ckDangNhap" IsChecked="{Binding ChiTietQuyen.DangNhap}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Đăng nhập" />
-                                <CheckBox Name="ckXem" IsChecked="{Binding ChiTietQuyen.Xem}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xem" Visibility="{Binding IsXemThemXoaSua}" />
-                                <CheckBox Name="ckThem" IsChecked="{Binding ChiTietQuyen.Them}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Thêm" Visibility="{Binding IsXemThemXoaSua}"/>
-                                <CheckBox Name="ckSua" IsChecked="{Binding ChiTietQuyen.Sua}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Sửa" Visibility="{Binding IsXemThemXoaSua}"/>
-                                <CheckBox Name="ckXoa" IsChecked="{Binding ChiTietQuyen.Xoa}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xóa" Visibility="{Binding IsXemThemXoaSua}" />                                
+                                <CheckBox Name="ckDangNhap" IsChecked="{Binding ChiTietQuyen.DangNhap}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Đăng nhập" Visibility="{Binding IsDangNhap}" />
+                                <CheckBox Name="ckThem" IsChecked="{Binding ChiTietQuyen.Them}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Thêm" Visibility="{Binding IsThem}"/>
+                                <CheckBox Name="ckSua" IsChecked="{Binding ChiTietQuyen.Sua}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Sửa" Visibility="{Binding IsSua}"/>
+                                <CheckBox Name="ckXoa" IsChecked="{Binding ChiTietQuyen.Xoa}" Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" Content="Xóa" Visibility="{Binding IsXoa}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Đóng" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                 <my:POSButtonFuntion Content="Lưu" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
             </Grid>
         </Grid>

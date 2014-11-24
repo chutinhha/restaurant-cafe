@@ -75,6 +75,7 @@ namespace UserControlLibrary
                 {
                     cbbLoaiNhanVien.SelectedValue = _Item.NhanVien.LoaiNhanVienID;
                 }
+                cbbLoaiNhanVien.IsEnabled = _Item.NhanVien.NhanVienID == mTransit.NhanVien.NhanVienID ? false : true;
                 txtTenNhanVien.Text = _Item.NhanVien.TenNhanVien;
                 txtTenDangNhap.Text = _Item.NhanVien.TenDangNhap;
                 btnLuu.Content = mTransit.StringButton.Luu;
