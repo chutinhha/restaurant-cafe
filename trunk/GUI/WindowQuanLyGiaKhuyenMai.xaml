@@ -15,7 +15,7 @@
                     <GradientStop Color="#FFC23D04" Offset="1" />
                 </LinearGradientBrush>
             </Grid.Background>
-            <Menu Name="ucMenuMenu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="Transparent">
+            <Menu Name="ucMenuMenu" HorizontalAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                 <MenuItem Header="Loại giá" Name="btnLoaiGia" Click="btnLoaiGia_Click"  />
                 <MenuItem Header="Danh sách bán"  Name="btnDanhSachBan" Click="btnDanhSachBan_Click"  />
                 <MenuItem Header="Khuyễn mãi" Name="btnKhuyenMai" Click="btnKhuyenMai_Click"  />

@@ -42,5 +42,11 @@ namespace GUI
         {
 
         }
+
+        private void btnCaiDatGiaoDienBanHang_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatGiaoDienBanHang win = new UserControlLibrary.WindowCaiDatGiaoDienBanHang(mTransit);
+            win.ShowDialog();
+        }
     }
 }

@@ -26,6 +26,68 @@ namespace GUI
             mTransit = transit;
             uCTile.SetTransit(mTransit);
             uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
+            SetTagButton();
+            PhanQuyen();
+        }
+
+        private void SetTagButton()
+        {
+            btnBanHang.Tag = Data.TypeChucNang.ChucNangChinh.BanHang;
+            btnQuanLyNhanVien.Tag = Data.TypeChucNang.ChucNangChinh.NhanVien;
+            btnQuanLyMayIn.Tag = Data.TypeChucNang.ChucNangChinh.MayIn;
+            btnQuanLyThucDon.Tag = Data.TypeChucNang.ChucNangChinh.ThucDon;
+            btnQuanLyKhachHang.Tag = Data.TypeChucNang.ChucNangChinh.KhachHang;
+            btnQuanLyThuChi.Tag = Data.TypeChucNang.ChucNangChinh.ThuChi;
+            btnQuanLyGiaKhuyenMai.Tag = Data.TypeChucNang.ChucNangChinh.Gia;
+            btnQuanLyPhanQuyen.Tag = Data.TypeChucNang.ChucNangChinh.PhanQuyen;
+            btnQuanLyKhoHang.Tag = Data.TypeChucNang.ChucNangChinh.Kho;
+            btnQuanLyDinhLuong.Tag = Data.TypeChucNang.ChucNangChinh.DingLuong;
+            btnQuanSoDoBan.Tag = Data.TypeChucNang.ChucNangChinh.SoDoBan;
+            btnBaoCaoThongKe.Tag = Data.TypeChucNang.ChucNangChinh.BaoCao;
+            btnQuanLyThe.Tag = Data.TypeChucNang.ChucNangChinh.The;
+            btnThongTinCongTy.Tag = Data.TypeChucNang.ChucNangChinh.CaiDat;
+            btnThongTinPhanMem.Tag = Data.TypeChucNang.ChucNangChinh.ThongTinPhanMem;
+            btnThoatPhanMem.Tag = Data.TypeChucNang.ChucNangChinh.None;
+        }
+
+        private void PhanQuyen()
+        {
+            foreach (var item in gridButtonMain.Children)
+            {
+                if (item is ControlLibrary.POSButtonMain)
+                {
+                    ControlLibrary.POSButtonMain btn = (ControlLibrary.POSButtonMain)item;
+                    if (btn.Tag != null && btn.Tag is Data.TypeChucNang.ChucNangChinh)
+                    {
+                        Data.TypeChucNang.ChucNangChinh type = (Data.TypeChucNang.ChucNangChinh)btn.Tag;
+                        if (type != Data.TypeChucNang.ChucNangChinh.None)
+                        {
+                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraNhomChucNang((int)type);
+                            btn.Tag = ctq;
+                            if (mTransit.KiemTraNhomChucNang((int)type) == true)
+                                LookButton(btn, ctq.ChiTietQuyen.ChoPhep);
+                            else
+                                LookButton(btn, false);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LookButton(ControlLibrary.POSButtonMain btn, bool value)
+        {
+            if (value == true)
+            {
+                btn.IsEnabled = true;
+            }
+            else
+            {
+                btn.IsEnabled = false;
+                btn.TextTo = "";
+                btn.TextNho = "";
+                btn.Image = null;
+
+            }
         }
 
         private void btnQuanLyThucDon_Click(object sender, RoutedEventArgs e)
@@ -113,8 +175,6 @@ namespace GUI
         {
             WindowThongTinPhanMem win = new WindowThongTinPhanMem(mTransit);
             win.ShowDialog();
-            //WindowQuanLiKhu win = new WindowQuanLiKhu();
-            //win.ShowDialog();
         }
 
         private void btnThoatPhanMem_Click(object sender, RoutedEventArgs e)
@@ -130,7 +190,8 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            btnBanHang_Click(null, null);
+            if (btnBanHang.IsEnabled)
+                btnBanHang_Click(null, null);
         }
     }
 }

@@ -15,6 +15,24 @@ namespace GUI
             mTransit = transit;
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Quản lý thực đơn";
+            PhanQuyen();
+        }
+
+        Data.BOChiTietQuyen mPhanQuyen = null;
+
+        private void PhanQuyen()
+        {
+            mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.ThucDon.ThucDon);
+            if (!mPhanQuyen.ChiTietQuyen.Them)
+            {
+                btnMonMoi.Visibility = System.Windows.Visibility.Collapsed;
+                btnNhomMoi.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (!mPhanQuyen.ChiTietQuyen.Xoa)
+                btnXoa.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
+                btnCapNhat.Visibility = System.Windows.Visibility.Collapsed;
+
         }
 
         private void uCTile_OnEventExit()
@@ -26,7 +44,7 @@ namespace GUI
         {
             uCMenu._OnEventMenuMon += new UserControlLibrary.UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
             uCMenu._OnEventMenuNhom += new UserControlLibrary.UCMenu.EventMenuGroup(uCMenu__OnEventMenuNhom);
-            uCMenu.Init(mTransit);
+            uCMenu.SetTransit(mTransit);
         }
 
         void uCMenu__OnEventMenuNhom(Data.BOMenuNhom ob)

@@ -29,27 +29,40 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LoaiGia)
+            Data.BOChiTietQuyen quyenLoaiGia = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.LoaiGia);
+            btnLoaiGia.Tag = quyenLoaiGia;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Gia.LoaiGia) || !quyenLoaiGia.ChiTietQuyen.ChoPhep)
             {
                 btnLoaiGia.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LichBieuDinhKy)
+
+            Data.BOChiTietQuyen quyenLichBieuDinhKy = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.LichBieuDinhKy);
+            btnLichBieuDinhKy.Tag = quyenLichBieuDinhKy;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Gia.LichBieuDinhKy) || !quyenLichBieuDinhKy.ChiTietQuyen.ChoPhep)
             {
                 btnLichBieuDinhKy.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.LichBieuKhongDinKy)
+
+            Data.BOChiTietQuyen quyenLichBieuKhongDinhKy = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.LichBieuKhongDinhKy);
+            btnLichBieuKhongDinhKy.Tag = quyenLichBieuKhongDinhKy;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Gia.LichBieuKhongDinhKy) || !quyenLichBieuKhongDinhKy.ChiTietQuyen.ChoPhep)
             {
                 btnLichBieuKhongDinhKy.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.DanhSachBan)
+
+            Data.BOChiTietQuyen quyenDanhSachBan = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachBan);
+            btnDanhSachBan.Tag = quyenDanhSachBan;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Gia.DanhSachBan) || !quyenDanhSachBan.ChiTietQuyen.ChoPhep)
             {
                 btnDanhSachBan.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.GiaKhuyenMai.KhuyenMai)
+
+            Data.BOChiTietQuyen quyenKhuyenMai = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.KhuyenMai);
+            btnKhuyenMai.Tag = quyenKhuyenMai;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Gia.KhuyenMai) || !quyenKhuyenMai.ChiTietQuyen.ChoPhep)
             {
                 btnKhuyenMai.Visibility = System.Windows.Visibility.Collapsed;
             }
-
         }
 
         private void btnDanhSachBan_Click(object sender, RoutedEventArgs e)
@@ -133,9 +146,18 @@ namespace GUI
         {
             spNoiDung.Height = spNoiDung.ActualHeight;
             spNoiDung.Width = spNoiDung.ActualWidth;
-            btnDanhSachBan_Click(sender, e);
             uCTile.TenChucNang = "Quản Lý Giá, Khuyễn Mãi";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+            if (btnLoaiGia.Visibility != System.Windows.Visibility.Collapsed)
+                btnLoaiGia_Click(sender, e);
+            else if (btnLichBieuDinhKy.Visibility != System.Windows.Visibility.Collapsed)
+                btnLichBieuDinhKy_Click(sender, e);
+            else if (btnLichBieuKhongDinhKy.Visibility != System.Windows.Visibility.Collapsed)
+                btnLichBieuKhongDinhKy_Click(sender, e);
+            else if (btnDanhSachBan.Visibility != System.Windows.Visibility.Collapsed)
+                btnDanhSachBan_Click(sender, e);
+            else if (btnKhuyenMai.Visibility != System.Windows.Visibility.Collapsed)
+                btnKhuyenMai_Click(sender, e);
         }
     }
 }

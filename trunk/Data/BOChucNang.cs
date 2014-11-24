@@ -27,62 +27,82 @@ namespace Data
 
     public class TypeChucNang
     {
+        public enum ChucNangChinh
+        {
+            None = 0,
+            BanHang = 1,
+            NhanVien = 2,
+            MayIn = 3,
+            ThucDon = 4,
+            KhachHang = 5,
+            ThuChi = 6,
+            Gia = 7,
+            PhanQuyen = 8,
+            Kho = 9,
+            DingLuong = 10,
+            SoDoBan = 11,
+            BaoCao = 12,
+            The = 13,
+            CaiDat = 14,
+            ThongTinPhanMem = 15
+        }
+
         public enum BanHang
         {
             TinhTien = 101,
             LuuHoaDon = 102,
             ThayDoiGia = 103,
             ChuyenBan = 104,
-            TachBan = 104,
+            TachBan = 105,
             XoaMon = 106,
             XoaToanBoMon = 107
         }
 
-        public enum QuanLyNhanVien
+        public enum NhanVien
         {
-            QuanLyNhanVien = 201
+            NhanVien = 201
         }
 
-        public enum QuanLyMayIn
+        public enum MayIn
         {
             CaiDatMayIn = 301,
             CaiDatThucDonMayIn = 302
         }
 
-        public enum QuanLyThucDon
+        public enum ThucDon
         {
-            QuanLyThucDon = 401
+            ThucDon = 401
         }
 
-        public enum QuanLyKhachHang
+        public enum KhachHang
         {
             KhachHang = 501,
             LoaiKhachHang = 502
         }
 
-        public enum QuanLyThuChi
+        public enum ThuChi
         {
-            QuanLyThuChi = 601
+            ThuChi = 601
         }
 
-        public enum QuanLyGia
+        public enum Gia
         {
             LoaiGia = 701,
             LichBieuDinhKy = 702,
             LichBieuKhongDinhKy = 703,
-            DanhSachBan = 705,
+            DanhSachBan = 704,
             DanhSachGia = 705,
             KhuyenMai = 706
         }
 
-        public enum QuanLyPhanQuyen
+        public enum PhanQuyen
         {
             Quyen = 801,
             CaiDatQuyenNhanVienThuocNhomQuyen = 802,
             CaiDatQuyenCuaNhomQuyen = 803
         }
 
-        public enum QuanLyKho
+        public enum Kho
         {
             TonKho = 901,
             NhaKho = 902,
@@ -95,13 +115,13 @@ namespace Data
 
         public enum DinhLuong
         {
-            DinhLuong = 1000
+            DinhLuong = 1001
         }
 
-        public enum QuanLySoDoBan
+        public enum SoDoBan
         {
-            QuanLyKhu = 1101,
-            QuanLyBan = 1102
+            Khu = 1101,
+            Ban = 1102
         }
 
         public enum Baocao
@@ -109,19 +129,19 @@ namespace Data
 
         }
 
-        public enum QuanLyThe
+        public enum The
         {
-            QuanLyThe = 1301
+            The = 1301
         }
 
-        public enum CaiDatChuongTrinh
+        public enum CaiDat
         {
-            CaiDatChuongTrinh = 1401
+            CaiDat = 1401
         }
 
-        public enum ThongTinChuongTrinh
+        public enum ThongTinPhanMem
         {
-            ThongTinChuongTrinh = 1501
+            ThongTinPhanMem = 1501
         }
     }
 }

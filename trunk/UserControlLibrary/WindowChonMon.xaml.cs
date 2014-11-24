@@ -31,7 +31,7 @@ namespace UserControlLibrary
             uCMenu._IsBanHang = !IsMon;
             uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
-            uCMenu.Init(mTransit);
+            uCMenu.SetTransit(mTransit);
             uCMenu._IsDanhSachKhuyenMai = false;
 
         }

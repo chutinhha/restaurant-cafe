@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Data
 {
@@ -11,6 +12,12 @@ namespace Data
         public QUYEN Quyen { get; set; }
         public CHUCNANG ChucNang { get; set; }
         public QUYENNHANVIEN QuyenNhanVien { get; set; }
+
+        public Visibility IsChoPhep { get; set; }
+        public Visibility IsDangNhap { get; set; }
+        public Visibility IsThem { get; set; }
+        public Visibility IsXoa { get; set; }
+        public Visibility IsSua { get; set; }
         private Data.Transit mTransit = null;
 
         FrameworkRepository<CHITIETQUYEN> frmChiTietQuyen = null;
@@ -90,19 +97,18 @@ namespace Data
                    };
         }
 
-        public BOChiTietQuyen KiemTraQuyen(int MaChucNang)
+        public BOChiTietQuyen KiemTraNhomChucNang(int NhomChucNangID)
         {
             BOChiTietQuyen item = new BOChiTietQuyen();
-            if (mTransit.DanhSachQuyen != null)
+            if (mTransit.DanhSachQuyen != null && mTransit.NhanVien.LoaiNhanVienID > (int)Data.EnumLoaiNhanVien.Admin)
             {
-                IQueryable<BOChiTietQuyen> list = mTransit.DanhSachQuyen.Where(s => s.ChiTietQuyen.ChucNangID == MaChucNang);
+                IQueryable<BOChiTietQuyen> list = mTransit.DanhSachQuyen.Where(s => s.ChiTietQuyen.NhomChucNangID == NhomChucNangID);
                 if (list.Count() > 0)
                 {
                     foreach (BOChiTietQuyen line in list)
                     {
                         item.ChiTietQuyen.ChoPhep = ((bool)item.ChiTietQuyen.ChoPhep || (bool)line.ChiTietQuyen.ChoPhep) ? true : false;
                         item.ChiTietQuyen.DangNhap = ((bool)item.ChiTietQuyen.DangNhap || (bool)line.ChiTietQuyen.DangNhap) ? true : false;
-                        item.ChiTietQuyen.Xem = ((bool)item.ChiTietQuyen.Xem || (bool)line.ChiTietQuyen.Xem) ? true : false;
                         item.ChiTietQuyen.Them = ((bool)item.ChiTietQuyen.Them || (bool)line.ChiTietQuyen.Them) ? true : false;
                         item.ChiTietQuyen.Sua = ((bool)item.ChiTietQuyen.Sua || (bool)line.ChiTietQuyen.Sua) ? true : false;
                         item.ChiTietQuyen.Xoa = ((bool)item.ChiTietQuyen.Xoa || (bool)line.ChiTietQuyen.Xoa) ? true : false;
@@ -113,7 +119,35 @@ namespace Data
             {
                 item.ChiTietQuyen.ChoPhep = true;
                 item.ChiTietQuyen.DangNhap = false;
-                item.ChiTietQuyen.Xem = true;
+                item.ChiTietQuyen.Them = true;
+                item.ChiTietQuyen.Xoa = true;
+                item.ChiTietQuyen.Sua = true;
+            }
+            return item;
+        }
+
+        public BOChiTietQuyen KiemTraQuyen(int MaChucNang)
+        {
+            BOChiTietQuyen item = new BOChiTietQuyen();
+            if (mTransit.DanhSachQuyen != null && mTransit.NhanVien.LoaiNhanVienID > (int)Data.EnumLoaiNhanVien.Admin)
+            {
+                IQueryable<BOChiTietQuyen> list = mTransit.DanhSachQuyen.Where(s => s.ChiTietQuyen.ChucNangID == MaChucNang);
+                if (list.Count() > 0)
+                {
+                    foreach (BOChiTietQuyen line in list)
+                    {
+                        item.ChiTietQuyen.ChoPhep = ((bool)item.ChiTietQuyen.ChoPhep || (bool)line.ChiTietQuyen.ChoPhep) ? true : false;
+                        item.ChiTietQuyen.DangNhap = ((bool)item.ChiTietQuyen.DangNhap || (bool)line.ChiTietQuyen.DangNhap) ? true : false;
+                        item.ChiTietQuyen.Them = ((bool)item.ChiTietQuyen.Them || (bool)line.ChiTietQuyen.Them) ? true : false;
+                        item.ChiTietQuyen.Sua = ((bool)item.ChiTietQuyen.Sua || (bool)line.ChiTietQuyen.Sua) ? true : false;
+                        item.ChiTietQuyen.Xoa = ((bool)item.ChiTietQuyen.Xoa || (bool)line.ChiTietQuyen.Xoa) ? true : false;
+                    }
+                }
+            }
+            else
+            {
+                item.ChiTietQuyen.ChoPhep = true;
+                item.ChiTietQuyen.DangNhap = false;
                 item.ChiTietQuyen.Them = true;
                 item.ChiTietQuyen.Xoa = true;
                 item.ChiTietQuyen.Sua = true;

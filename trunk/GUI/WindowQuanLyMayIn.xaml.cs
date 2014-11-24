@@ -20,11 +20,16 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.MayIn.MayIn)
+            Data.BOChiTietQuyen quyenCaiDatMayIn = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.MayIn.CaiDatMayIn);
+            btnMayIn.Tag = quyenCaiDatMayIn;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.MayIn.CaiDatMayIn) || !quyenCaiDatMayIn.ChiTietQuyen.ChoPhep)
             {
                 btnMayIn.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (!mTransit.MenuGiaoDien.MayIn.CaiDatThucDonMayIn)
+
+            Data.BOChiTietQuyen quyenCaiDatThucDonMayIn = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.MayIn.CaiDatThucDonMayIn);
+            btnMenuMayIn.Tag = quyenCaiDatThucDonMayIn;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.MayIn.CaiDatThucDonMayIn) || !quyenCaiDatThucDonMayIn.ChiTietQuyen.ChoPhep)
             {
                 btnMenuMayIn.Visibility = System.Windows.Visibility.Collapsed;
             }
@@ -61,6 +66,10 @@ namespace GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (btnMayIn.Visibility != System.Windows.Visibility.Collapsed)
+                btnMayIn_Click(sender, e);
+            else if (btnMenuMayIn.Visibility != System.Windows.Visibility.Collapsed)
+                btnMenuMayIn_Click(sender, e);
             btnMayIn_Click(sender, e);
             uCTile.TenChucNang = "Quản Lý Máy In";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);

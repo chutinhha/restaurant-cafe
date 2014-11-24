@@ -1,5 +1,8 @@
 ﻿USE [Karaoke]
 GO
+DELETE FROM TRANGTHAI
+DBCC CHECKIDENT (TRANGTHAI, RESEED, 0)
+GO
 DELETE FROM THE
 DBCC CHECKIDENT (THE, RESEED, 0)
 GO
@@ -39,7 +42,9 @@ GO
 DELETE FROM LOAIPHATSINH
 DBCC CHECKIDENT (LOAIPHATSINH, RESEED, 0)
 GO
-INSERT INTO LOAIPHATSINH(Ten) Values(N'Nhập kho'), (N'Xuất kho'), (N'Chuyển kho'),(N'Mất kho'),(N'Chỉnh kho');
+SET IDENTITY_INSERT [dbo].TRANGTHAI ON
+Insert Into LoaiPhatSinh(Ten) values(N'Nhập Kho'),(N'Chuyển kho'),(N'Mất kho'),(N'Hư kho'),(N'Chuyển kho');
+SET IDENTITY_INSERT [dbo].TRANGTHAI OFF
 INSERT INTO DONVI(TenDonVi) Values(N'Số lượng'), (N'Trọng lượng'), (N'Thể tích'),(N'Thời gian'),(N'Định lượng');
 
 INSERT INTO LOAIBAN(TenLoaiBan,KichThuocBan,DonViID) Values
@@ -132,3 +137,23 @@ INSERT INTO THE(TenThe,ChietKhau) Values
 (N'Techcombank',0),
 (N'HDBank',0),
 (N'Agribank',0);
+
+SET IDENTITY_INSERT [dbo].TRANGTHAI ON
+INSERT INTO TRANGTHAI(TrangThaiID,TenTrangThai) values
+(1,'Bàn đang lấy món'),
+(2,'Bàn đang ra hóa đơn'),
+(3,'Bàn đã tính tiền'),
+(4,'Bàn đã hoàn thành');
+
+Insert Into GIAODIENCHUCNANGBANHANG(ID, ChucNangID) Values
+(1,0),
+(2,0),
+(3,0),
+(4,0),
+(5,0),
+(6,0),
+(7,0),
+(8,0),
+(9,0),
+(10,0);
+

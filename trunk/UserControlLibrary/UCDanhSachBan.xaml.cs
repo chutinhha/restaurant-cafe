@@ -16,17 +16,19 @@ namespace UserControlLibrary
             InitializeComponent();
             mTransit = transit;
             uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
+            uCMenu.SetTransit(mTransit);
+            uCDanhSachBanList.SetTransit(mTransit);
         }
 
         void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
         {
-            uCDanhSachBanList.Init(ob, mTransit);
+            uCDanhSachBanList.Init(ob);
             uCDanhSachBanList.LoadDanhSach();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            uCMenu.Init(mTransit);
+            
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

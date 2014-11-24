@@ -17,7 +17,8 @@ namespace UserControlLibrary
             mTransit = transit;
             mMon = mon;
             uCDanhSachBanList.OnEventExit += new UCDanhSachBanList.OnExit(uCDanhSachBanList_OnEventExit);
-            uCDanhSachBanList.Init(mMon, mTransit);
+            uCDanhSachBanList.SetTransit(mTransit);
+            uCDanhSachBanList.Init(mMon);
         }
 
         private void uCDanhSachBanList_OnEventExit()

@@ -20,7 +20,7 @@ namespace UserControlLibrary
         {
             uCMenuSetMayIn.Init(mTransit);
             UCMenu._OnEventMenuMon += new UserControlLibrary.UCMenu.EventMenuMon(UCMenu__OnEventMenuMon);            
-            UCMenu.Init(mTransit);
+            UCMenu.SetTransit(mTransit);
         }
 
         void UCMenu__OnEventMenuMon(Data.BOMenuMon ob)

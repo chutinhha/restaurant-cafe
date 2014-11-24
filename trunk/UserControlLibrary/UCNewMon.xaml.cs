@@ -21,7 +21,17 @@ namespace UserControlLibrary
             mMenuNhom = menuNhom;
             mTransit = transit;
             BOMenuMon = bOMenuMon;
+            PhanQuyen();
         }
+
+        private void PhanQuyen()
+        {
+            if (!mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachBan).ChiTietQuyen.ChoPhep)
+                btnDanhSachBan.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.MayIn.CaiDatThucDonMayIn).ChiTietQuyen.ChoPhep)
+                btnCaiDatMayIn.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
 
         public Data.BOMenuMon _Mon { get; set; }
 
@@ -98,8 +108,10 @@ namespace UserControlLibrary
                 {
                     btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.MenuMon.Hinh);
                 }
-                btnCaiDatMayIn.Visibility = System.Windows.Visibility.Visible;
-                btnDanhSachBan.Visibility = System.Windows.Visibility.Visible;
+                if (mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.MayIn.CaiDatThucDonMayIn).ChiTietQuyen.ChoPhep)
+                    btnCaiDatMayIn.Visibility = System.Windows.Visibility.Visible;
+                if (mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.DanhSachBan).ChiTietQuyen.ChoPhep)
+                    btnDanhSachBan.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
@@ -107,8 +119,8 @@ namespace UserControlLibrary
                 txtTenNgan.Text = "";
                 txtSapXep.Text = mMenuNhom.SapXepMon.ToString();
                 ckBan.IsChecked = true;
-                btnCaiDatMayIn.Visibility = System.Windows.Visibility.Hidden;
-                btnDanhSachBan.Visibility = System.Windows.Visibility.Hidden;
+                btnCaiDatMayIn.Visibility = System.Windows.Visibility.Collapsed;
+                btnDanhSachBan.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
