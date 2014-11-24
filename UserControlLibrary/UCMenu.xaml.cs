@@ -272,7 +272,7 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
+                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);                
                 btn.Image = new BitmapImage(uriSource);
             }
         }

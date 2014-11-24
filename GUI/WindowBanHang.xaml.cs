@@ -66,9 +66,23 @@ namespace GUI
                     break;
                 case Data.EnumChucNang.TachBan:
                     break;
+                case Data.EnumChucNang.DongBan:
+                    DongBan();
+                    break;
                 default:
                     break;
             }
+        }
+        private void DongBan()
+        {
+            if (mProcessOrder.BanHang.TrangThaiID==3)
+            {
+                if (mProcessOrder.DongBan()>0)
+                {
+                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;                                            
+                }
+            }
+            this.Close();
         }
         public void TamTinh()
         {
@@ -116,7 +130,12 @@ namespace GUI
             }            
         }
         private void XoaMon()
-        {            
+        {
+            if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
+            {
+                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi","Lưu ý!");
+                return;
+            }
             if (lvData.SelectedItems.Count > 0)
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
@@ -126,13 +145,22 @@ namespace GUI
                 if (lvData.Items.Count > 0)
                 {
                     lvData.SelectedIndex = lvData.Items.Count - 1;
-                }
+                }                
             }
             XoaTextThongTinMon();
         }
 
         private void XoaToanBoMon()
         {
+            if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
+            {
+                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi", "Lưu ý!");
+                return;
+            }
+            foreach (Data.BOChiTietBanHang item in lvData.Items)
+            {                
+                mProcessOrder.XoaChiTietBanHang(item);
+            }
             lvData.Items.Clear();
             XoaTextThongTinMon();
         }
@@ -230,11 +258,12 @@ namespace GUI
 
         private void GanChucNang()
         {
-            btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
-            btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
             btnChucNang_0.CommandParameter = Data.EnumChucNang.TinhTien;
             btnChucNang_1.CommandParameter = Data.EnumChucNang.LuuHoaDon;
             btnChucNang_2.CommandParameter = Data.EnumChucNang.TamTinh;
+            btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
+            btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
+            btnChucNang_9.CommandParameter = Data.EnumChucNang.DongBan;            
         }
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)

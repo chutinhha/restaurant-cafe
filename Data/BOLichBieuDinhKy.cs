@@ -11,18 +11,77 @@ namespace Data
         public MENULOAIGIA MenuLoaiGia { get; set; }
         FrameworkRepository<LICHBIEUDINHKY> frmLichBieuDinhKy = null;
         FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
+        FrameworkRepository<LOAILICHBIEU> frmLoaiLichBieu;
         public BOLichBieuDinhKy(Transit transit)
         {
             transit.KaraokeEntities = new KaraokeEntities();
             frmLichBieuDinhKy = new FrameworkRepository<LICHBIEUDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUDINHKies);
             frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
+            frmLoaiLichBieu = new FrameworkRepository<LOAILICHBIEU>(transit.KaraokeEntities, transit.KaraokeEntities.LOAILICHBIEUx);
         }
         public BOLichBieuDinhKy()
         {
             LichBieuDinhKy = new LICHBIEUDINHKY();
             MenuLoaiGia = new MENULOAIGIA();
         }
+        public IQueryable<BOLichBieuDinhKy> GetMenuLoaiGia()
+        {
+            //tim theo ngay trong tuan
+            DateTime dt=DateTime.Now;
+            int dayOfWeek = (int)dt.DayOfWeek;
+            //int dayOfYear = dt.DayOfYear;
+            TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+            var querya=from a in frmMenuLoaiGia.Query()
+                       where
+                            a.Visual==true &&
+                            a.Deleted==false
+                        select a;
+            var queryb= from b in frmLichBieuDinhKy.Query() 
+                        where 
+                            ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
+                            b.Deleted==false && 
+                            b.Visual==true                           
+                        select b;
 
+
+            var query1 = from a in querya
+                         join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
+                         where
+                            b.TheLoaiID == 1 &&
+                            (
+                                (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= b.GiaTriKetThuc && b.GiaTriBatDau < b.GiaTriKetThuc) ||
+                                (
+                                    (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= 6) || (dayOfWeek <= b.GiaTriKetThuc && dayOfWeek >= 0) && b.GiaTriBatDau > b.GiaTriKetThuc
+                                )
+                            )
+                         select new BOLichBieuDinhKy
+                         {
+                             MenuLoaiGia=a,
+                             LichBieuDinhKy=b
+                         };
+            var query2 = from a in querya
+                         join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
+                         where
+                             b.TheLoaiID == 2 &&
+                             dt.Day >= b.GiaTriBatDau && dt.Day <= b.GiaTriKetThuc
+                         select new BOLichBieuDinhKy
+                          {
+                              MenuLoaiGia = a,
+                              LichBieuDinhKy = b
+                          };
+            var query3 = from a in querya
+                         join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
+                         where
+                             b.TheLoaiID == 3 &&
+                             b.GiaTriBatDau==dt.Day && b.GiaTriKetThuc==dt.Month
+                         select new BOLichBieuDinhKy
+                         {
+                             MenuLoaiGia = a,
+                             LichBieuDinhKy = b
+                         };
+            return 
+                    from a in query1.Union(query2).Union(query3).Distinct() select a;
+        }
         public IQueryable<BOLichBieuDinhKy> GetAll(Transit mTransit)
         {
             var res = (from lb in frmLichBieuDinhKy.Query()
