@@ -46,7 +46,8 @@ namespace Data
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
             The = KaraokeEntities.THEs.FirstOrDefault();
             ListDonVi = BODonVi.GetAll(this);
-            BOChiTietQuyen = new BOChiTietQuyen(this);
+            BOChiTietQuyen = new BOChiTietQuyen(this);            
+            
             //Data.BONhomChucNang BONhomChucNang = new BONhomChucNang(this);
         }
 

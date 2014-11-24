@@ -30,6 +30,10 @@ namespace ProcessOrder
         {
             return mBanHang;
         }
+        public int DongBan()
+        {
+            return mBanHang.DongBan();
+        }
         public int SendOrder()
         {
             int lichSuBanHangId= mBanHang.GuiNhaBep();
@@ -85,10 +89,26 @@ namespace ProcessOrder
                     mProcessPrinter.InBill(false, banHangID);
                 }
             }
-        }        
+        }
+        public bool KiemTraHoaDonDaHoanThanh()
+        {
+            if (mBanHang.BANHANG.TrangThaiID==4||mBanHang.BANHANG.TrangThaiID==0)
+            {
+                return true;
+            }
+            return false;
+        }
         public int KiemTraDanhSachMon()
         {
-            return mBanHang._ListChiTietBanHang.Count;
+            int count = 0;
+            foreach (var item in mBanHang._ListChiTietBanHang)
+            {
+                if (item.IsDeleted==false)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
         
         public void XoaChiTietBanHang(Data.BOChiTietBanHang chitiet)

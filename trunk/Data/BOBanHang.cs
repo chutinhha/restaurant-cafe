@@ -60,7 +60,7 @@ namespace Data
                 BANHANG.NgayBan = DateTime.Now;
                 BANHANG.MaHoaDon = String.Format("HD{0:000000}",1);
                 BANHANG.TienMat = 0;                
-                BANHANG.TheID = mTransit.The.TheID;
+                //BANHANG.TheID = mTransit.The.TheID;
                 BANHANG.TienThe = 0;
                 BANHANG.TienTraLai = 0;
                 BANHANG.TienGiam = 0;
@@ -98,6 +98,17 @@ namespace Data
             }
             chiTiet.CHITIETBANHANG.NhanVienID = this.BANHANG.NhanVienID;
             _ListChiTietBanHang.Add(chiTiet);
+            return 0;
+        }
+        public int DongBan()
+        {            
+            if (this.BANHANG.TrangThaiID==3)
+            {
+                this.BANHANG.TrangThaiID = 4;
+                frBanHang.Update(this.BANHANG);
+                frBanHang.Commit();
+                return this.BANHANG.BanHangID;
+            }
             return 0;
         }
         public int GuiNhaBep()

@@ -47,9 +47,10 @@ namespace GUI
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {            
-            txtGiamGia._UCKeyPad = uCKeyPad1;
+            txtGiamGia._UCKeyPad = uCKeyPad1;            
             if (mBOXuliTinhTien.GiamGiaPhanTram>0)
                 txtGiamGia.Text = Utilities.NumberFormat.FormatToString(mBOXuliTinhTien.GiamGiaPhanTram);
+            ReLoadData();
         }
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {

@@ -47,7 +47,7 @@ namespace GUI
         }
 
         private void btnBanHang_Click(object sender, RoutedEventArgs e)
-        {
+        {  
             WindowSoDoBan win = new WindowSoDoBan(mTransit);
             if (win.ShowDialog() == true)
             {
