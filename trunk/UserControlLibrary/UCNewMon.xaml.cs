@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace UserControlLibrary
 {
@@ -14,6 +16,7 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private Data.MENUNHOM mMenuNhom = null;
         public Data.BOMenuMon BOMenuMon = null;
+        public Data.BOMenuItemMayIn BOMenuItemMayIn = null;
 
         public UCNewMon(Data.MENUNHOM menuNhom, Data.Transit transit, Data.BOMenuMon bOMenuMon)
         {
@@ -21,6 +24,7 @@ namespace UserControlLibrary
             mMenuNhom = menuNhom;
             mTransit = transit;
             BOMenuMon = bOMenuMon;
+            BOMenuItemMayIn = new Data.BOMenuItemMayIn();
             PhanQuyen();
         }
 
@@ -45,7 +49,28 @@ namespace UserControlLibrary
             else
             {
                 GetValues();
+                ThemMayIn();
+                ThemDanhSachBan();
                 BOMenuMon.Them(_Mon, mTransit);
+            }
+        }
+
+        private void ThemMayIn()
+        {
+            IQueryable<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAllNoTracking(mTransit, false);
+            if (lsMayIn.Count() > 0)
+                _Mon.MenuMon.MENUITEMMAYINs.Add(new Data.MENUITEMMAYIN() { MayInID = lsMayIn.FirstOrDefault().MayInID });
+        }
+
+        private void ThemDanhSachBan()
+        {
+            IQueryable<Data.LOAIBAN> lsLoaiBan = Data.BOLoaiBan.GetAllNoTracking(mTransit, (int)_Mon.MenuMon.DonViID);
+            if (lsLoaiBan.Count() > 0)
+            {
+                _Mon.MenuMon.SapXepKichThuocMon = 2;
+                _Mon.MenuMon.SoLuongKichThuocMon = 1;
+                Data.LOAIBAN item = lsLoaiBan.FirstOrDefault();
+                _Mon.MenuMon.MENUKICHTHUOCMONs.Add(new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = 0, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false });
             }
         }
 
@@ -71,8 +96,9 @@ namespace UserControlLibrary
             mBitmapImage = btnHinhAnh.ImageBitmap;
         }
 
-        private void btnMauNen_Click(object sender, RoutedEventArgs e)
+        private void LoadDonVi()
         {
+            cbbKieuBan.ItemsSource = mTransit.ListDonVi;
         }
 
         private void GetValues()
@@ -85,14 +111,24 @@ namespace UserControlLibrary
             }
             _Mon.MenuMon.TenDai = txtTenDai.Text;
             _Mon.MenuMon.TenNgan = txtTenNgan.Text;
+            _Mon.MenuMon.DonViID = (int)cbbKieuBan.SelectedValue;
             if (mBitmapImage != null)
             {
-                _Mon.MenuMon.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(mBitmapImage, 120, 90, 0);
+                _Mon.MenuMon.Hinh = Utilities.ImageHandler.ImageToByte(img);
             }
             if (txtSapXep.Text == "")
                 _Mon.MenuMon.SapXep = 0;
             else
                 _Mon.MenuMon.SapXep = Convert.ToInt32(txtSapXep.Text.Trim());
+            if (txtTonKhoToiDa.Text == "")
+                _Mon.MenuMon.SapXep = 0;
+            else
+                _Mon.MenuMon.TonKhoToiDa = Convert.ToInt32(txtTonKhoToiDa.Text.Trim());
+            if (txtTonKhoToiThieu.Text == "")
+                _Mon.MenuMon.SapXep = 0;
+            else
+                _Mon.MenuMon.TonKhoToiThieu = Convert.ToInt32(txtTonKhoToiThieu.Text.Trim());
             _Mon.MenuMon.Visual = (bool)ckBan.IsChecked;
         }
 
@@ -103,6 +139,9 @@ namespace UserControlLibrary
                 txtTenDai.Text = _Mon.MenuMon.TenDai;
                 txtTenNgan.Text = _Mon.MenuMon.TenNgan;
                 txtSapXep.Text = _Mon.MenuMon.SapXep.ToString();
+                txtTonKhoToiDa.Text = _Mon.MenuMon.TonKhoToiDa.ToString();
+                txtTonKhoToiThieu.Text = _Mon.MenuMon.TonKhoToiThieu.ToString();
+                cbbKieuBan.SelectedValue = _Mon.MenuMon.DonViID;
                 ckBan.IsChecked = _Mon.MenuMon.Visual;
                 if (_Mon.MenuMon.Hinh != null && _Mon.MenuMon.Hinh.Length > 0)
                 {
@@ -117,6 +156,10 @@ namespace UserControlLibrary
             {
                 txtTenDai.Text = "";
                 txtTenNgan.Text = "";
+                txtTonKhoToiDa.Text = "0";
+                txtTonKhoToiThieu.Text = "0";
+                if (cbbKieuBan.Items.Count > 0)
+                    cbbKieuBan.SelectedIndex = 0;
                 txtSapXep.Text = mMenuNhom.SapXepMon.ToString();
                 ckBan.IsChecked = true;
                 btnCaiDatMayIn.Visibility = System.Windows.Visibility.Collapsed;
@@ -126,7 +169,14 @@ namespace UserControlLibrary
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadDonVi();
             SetValues();
         }
+        
+        private void txtTenNgan_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTenDai.Text == "")
+                txtTenDai.Text = txtTenNgan.Text;
+        }        
     }
 }

@@ -21,6 +21,6 @@ namespace UserControlLibrary
         private void uCMenuSetMayIn_OnEventExit()
         {
             this.Close();
-        }
+        }        
     }
 }

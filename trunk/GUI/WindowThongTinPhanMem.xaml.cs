@@ -24,5 +24,15 @@ namespace GUI
             InitializeComponent();
             mTransit = transit;
         }
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

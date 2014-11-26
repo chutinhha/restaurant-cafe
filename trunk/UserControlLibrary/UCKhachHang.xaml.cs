@@ -114,9 +114,9 @@ namespace UserControlLibrary
                     lvData.SelectedIndex = 0;
                 }
             }
-        }
+        }       
 
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        private void Luu()
         {
             List<Data.BOKhachHang> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
@@ -133,6 +133,19 @@ namespace UserControlLibrary
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
+        }
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            if (mPhanQuyen.ChiTietQuyen.DangNhap)
+            {
+                UserControlLibrary.WindowLoginDialog loginWindow = new UserControlLibrary.WindowLoginDialog(mTransit);
+                if (loginWindow.ShowDialog() == true)
+                {
+                    Luu();
+                }
+            }
+            else
+                Luu();
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

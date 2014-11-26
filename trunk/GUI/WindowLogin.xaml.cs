@@ -61,7 +61,8 @@ namespace GUI
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-
+            txtPassword.Text = "";
+            txtUserID.Text = "";
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

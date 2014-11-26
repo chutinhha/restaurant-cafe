@@ -19,5 +19,6 @@
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
         <my:POSButtonMain Name="btnCaiDatThongTinCongTy" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnCaiDatThongTinCongTy_Click" Background="#FFFF3535" TextNho="Cài đặt" TextTo="Cài đặt thông tin doanh nghiệp, công ty"  />
         <my:POSButtonMain Name="btnCaiDatGiaoDienBanHang" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnCaiDatGiaoDienBanHang_Click" Background="#FFFF3535" TextNho="Cài đặt" TextTo="Cài đặt giao diện chức năng bán hàng"  />
+        <my:POSButtonMain Name="btnCaiDatChucNangHienThi" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnCaiDatChucNangHienThi_Click" Background="#FFFF3535" TextNho="Cài đặt" TextTo="Cài đặt chức năng hiển thị"  />
     </Grid>
 </Window>

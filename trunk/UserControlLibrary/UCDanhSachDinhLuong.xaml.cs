@@ -36,6 +36,26 @@ namespace UserControlLibrary
                 btnThemMon.Visibility = System.Windows.Visibility.Visible;
                 btnDanhSach.Visibility = System.Windows.Visibility.Visible;
             }
+            PhanQuyen();
+        }
+
+        Data.BOChiTietQuyen mPhanQuyen = null;
+
+        private bool IsSua = true, IsXoa = true;
+
+        private void PhanQuyen()
+        {
+            mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Gia.KhuyenMai);
+            if (!mPhanQuyen.ChiTietQuyen.ChoPhep)
+                btnDanhSach.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Them)
+                btnThemMon.Visibility = System.Windows.Visibility.Collapsed;
+            if (!mPhanQuyen.ChiTietQuyen.Sua)
+                IsSua = false;
+            if (!mPhanQuyen.ChiTietQuyen.Xoa)
+                IsXoa = false;
+            if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
+                btnLuu.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public void LoadDanhSach()
@@ -46,6 +66,8 @@ namespace UserControlLibrary
             {
                 item.DinhLuong.KichThuocBan = (int)item.DinhLuong.KichThuocBan / item.LoaiBan.KichThuocBan;
                 item.ListLoaiBan = lsLoaiBan;
+                item.IsSua = IsSua;
+                item.IsXoa = IsXoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             }
             lvData.ItemsSource = lsArray;
         }
@@ -84,6 +106,8 @@ namespace UserControlLibrary
                 item.DinhLuong.Visual = true;
                 item.DinhLuong.Deleted = false;
                 item.DinhLuong.SoLuong = 0;
+                item.IsSua = true;
+                item.IsXoa = System.Windows.Visibility.Visible;
                 item.DinhLuong.KichThuocMonChinhID = mKichThuocMon.MenuKichThuocMon.KichThuocMonID;
                 if (item.ListLoaiBan.Count > 0)
                     item.DinhLuong.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;

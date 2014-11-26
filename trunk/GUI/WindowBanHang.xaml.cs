@@ -1,5 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Linq;
+using ControlLibrary;
+using System;
 
 namespace GUI
 {
@@ -12,20 +16,31 @@ namespace GUI
         private bool IsThayDoiSoLuong = true;
         private Data.Transit mTransit = null;
         private ProcessOrder.ProcessOrder mProcessOrder;
-        public WindowBanHang(Data.Transit transit,ControlLibrary.POSButtonTable table)
+        public WindowBanHang(Data.Transit transit, ControlLibrary.POSButtonTable table)
         {
             mTransit = transit;
             mPOSButtonTable = table;
-            InitializeComponent();            
+            InitializeComponent();
+            PhanQuyen();
+        }
+
+        private void PhanQuyen()
+        {
+            Data.BOChiTietQuyen quyenSoLuong = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.BanHang.ThayDoiSoLuong);
+            txtSoLuong.Tag = quyenSoLuong;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.BanHang.ThayDoiSoLuong) || !quyenSoLuong.ChiTietQuyen.ChoPhep)
+            {
+                txtSoLuong.IsEnabled = false;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
             uCMenuBanHang.SetTransit(mTransit);
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
             uCTile.SetTransit(mTransit);
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
             GanChucNang();
             LoadBanHang();
         }
@@ -38,48 +53,64 @@ namespace GUI
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn.CommandParameter==null)
+            if (btn.CommandParameter == null)
             {
                 return;
             }
-            switch ((Data.EnumChucNang)btn.CommandParameter)
+            Data.BOChiTietQuyen mPhanQuyen = (Data.BOChiTietQuyen)btn.Tag;
+            if (mPhanQuyen.ChiTietQuyen.DangNhap)
             {
-                case Data.EnumChucNang.XoaMon:
-                    XoaMon();
-                    break;
-                case Data.EnumChucNang.XoaToanBoMon:
-                    XoaToanBoMon();
-                    break;
-                case Data.EnumChucNang.TinhTien:
+                UserControlLibrary.WindowLoginDialog loginWindow = new UserControlLibrary.WindowLoginDialog(mTransit);
+                if (loginWindow.ShowDialog() == true)
+                {
+                    XuLyButonChucNang(btn);
+                }
+            }
+            else
+            {
+                XuLyButonChucNang(btn);
+            }
+
+        }
+
+        private void XuLyButonChucNang(Button btn)
+        {
+            switch ((int)btn.CommandParameter)
+            {
+                case (int)Data.TypeChucNang.BanHang.TinhTien:
                     TinhTien();
                     break;
-                case Data.EnumChucNang.LuuHoaDon:
+                case (int)Data.TypeChucNang.BanHang.LuuHoaDon:
                     GuiNhaBep();
                     break;
-                case Data.EnumChucNang.TamTinh:
+                case (int)Data.TypeChucNang.BanHang.TamTinh:
                     TamTinh();
                     break;
-                case Data.EnumChucNang.ThayDoiGia:
+                case (int)Data.TypeChucNang.BanHang.ThayDoiGia:
                     break;
-                case Data.EnumChucNang.ChuyenBan:
+                case (int)Data.TypeChucNang.BanHang.XoaMon:
+                    XoaMon();
+                    break;
+                case (int)Data.TypeChucNang.BanHang.XoaToanBoMon:
+                    XoaToanBoMon();
+                    break;
+                case (int)Data.TypeChucNang.BanHang.ChuyenBan:
                     ChuyenBan();
                     break;
-                case Data.EnumChucNang.TachBan:
+                case (int)Data.TypeChucNang.BanHang.TachBan:
                     break;
-                case Data.EnumChucNang.GopBan:
-                    GopBan();
-                    break;
-                case Data.EnumChucNang.DongBan:
+                case (int)Data.TypeChucNang.BanHang.DongBan:
                     DongBan();
                     break;
-                case Data.EnumChucNang.ChonGia:
+                case (int)Data.TypeChucNang.BanHang.ChonGia:
                     ChonGia();
                     break;
                 default:
                     break;
             }
         }
-        private void ChonGia(){
+        private void ChonGia()
+        {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
                 UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
@@ -89,7 +120,7 @@ namespace GUI
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
                 UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MENUKICHTHUOCMON);
-                if (win.ShowDialog()==true)
+                if (win.ShowDialog() == true)
                 {
                     chitiet.ChangePriceChiTietBanHang(win._MenuGia.Gia);
                     lvData.Items.Refresh();
@@ -99,43 +130,43 @@ namespace GUI
         }
         private void DongBan()
         {
-            if (mProcessOrder.BanHang.TrangThaiID==3)
+            if (mProcessOrder.BanHang.TrangThaiID == 3)
             {
-                if (mProcessOrder.DongBan()>0)
+                if (mProcessOrder.DongBan() > 0)
                 {
-                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;                                            
+                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
                 }
             }
             this.Close();
         }
         public void TamTinh()
         {
-            if (mProcessOrder.KiemTraDanhSachMon()>0)
+            if (mProcessOrder.KiemTraDanhSachMon() > 0)
             {
                 WindowTamTinh win = new WindowTamTinh(mTransit, mProcessOrder.GetBanHang());
                 if (win.ShowDialog() == true)
                 {
-                    if (mProcessOrder.TamTinh()> 0)
+                    if (mProcessOrder.TamTinh() > 0)
                     {
                         mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
                         this.Close();
-                        
+
                     }
-                }                
+                }
             }
             else
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");                
-            }   
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");
+            }
         }
         private void GuiNhaBep()
         {
-            if (mProcessOrder.KiemTraDanhSachMon()==0)
+            if (mProcessOrder.KiemTraDanhSachMon() == 0)
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể gửi ra nhà bếp ! Vui lòng chọn món");                
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể gửi ra nhà bếp ! Vui lòng chọn món");
                 return;
             }
-            if (mProcessOrder.SendOrder()>0)
+            if (mProcessOrder.SendOrder() > 0)
             {
                 mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
             }
@@ -145,8 +176,8 @@ namespace GUI
         {
             if (mProcessOrder.KiemTraDanhSachMon() > 0)
             {
-                WindowTinhTien win = new WindowTinhTien(mTransit,mProcessOrder.GetBanHang());
-                if (win.ShowDialog()==true)
+                WindowTinhTien win = new WindowTinhTien(mTransit, mProcessOrder.GetBanHang());
+                if (win.ShowDialog() == true)
                 {
                     mProcessOrder.TinhTien();
                     mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
@@ -155,14 +186,14 @@ namespace GUI
             }
             else
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");                
-            }            
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");
+            }
         }
         private void XoaMon()
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");                
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
                 return;
             }
             if (lvData.SelectedItems.Count > 0)
@@ -174,7 +205,7 @@ namespace GUI
                 if (lvData.Items.Count > 0)
                 {
                     lvData.SelectedIndex = lvData.Items.Count - 1;
-                }                
+                }
             }
             XoaTextThongTinMon();
         }
@@ -186,24 +217,24 @@ namespace GUI
             {
                 UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mTransit, win1._GopBan);
                 win2.ShowDialog();
-            }            
+            }
         }
         private void ChuyenBan()
         {
             this.DialogResult = false;
             UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit);
             win1.ShowDialog();
-            
+
         }
         private void XoaToanBoMon()
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");                
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
                 return;
             }
             foreach (Data.BOChiTietBanHang item in lvData.Items)
-            {                
+            {
                 mProcessOrder.XoaChiTietBanHang(item);
             }
             lvData.Items.Clear();
@@ -211,7 +242,7 @@ namespace GUI
         }
         private void XoaTextThongTinMon()
         {
-            if (lvData.Items.Count==0)
+            if (lvData.Items.Count == 0)
             {
                 txtTenMon.Text = "";
                 txtSoLuong.Text = "";
@@ -235,12 +266,12 @@ namespace GUI
             txtTongTien.Text = Utilities.MoneyFormat.ConvertToStringFull(mProcessOrder.GetBanHang().TongTien());
         }
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
-        {            
+        {
             ListViewItem li = new ListViewItem();
-            li.Content = item;            
-            if (mProcessOrder.AddChiTietBanHang(item)==0)
+            li.Content = item;
+            if (mProcessOrder.AddChiTietBanHang(item) == 0)
             {
-                lvData.Items.Add(item);    
+                lvData.Items.Add(item);
             }
             else
             {
@@ -301,23 +332,45 @@ namespace GUI
             }
         }
 
+
         private void GanChucNang()
         {
-            btnChucNang_0.CommandParameter = Data.EnumChucNang.TinhTien;
-            btnChucNang_1.CommandParameter = Data.EnumChucNang.LuuHoaDon;
-            btnChucNang_2.CommandParameter = Data.EnumChucNang.TamTinh;
-            btnChucNang_3.CommandParameter = Data.EnumChucNang.ChuyenBan;
-            btnChucNang_4.CommandParameter = Data.EnumChucNang.GopBan;
-            btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
-            btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
-            btnChucNang_7.CommandParameter = Data.EnumChucNang.ChonGia;
-            btnChucNang_9.CommandParameter = Data.EnumChucNang.DongBan;            
+            IQueryable<Data.GIAODIENCHUCNANGBANHANG> lsArray = Data.BOGiaoDienChucNangBanHang.GetNoTracking(mTransit).OrderBy(s => s.ID);
+            foreach (var item in lsArray)
+            {
+                Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraQuyen((int)item.ChucNangID);
+                var myButton = (POSButtonChucNang)this.FindName("btnChucNang_" + item.ID);
+                myButton.Tag = ctq;
+                myButton.CommandParameter = item.ChucNangID;
+                if (!ctq.ChiTietQuyen.ChoPhep || item.ChucNangID == 0 || !mTransit.KiemTraChucNang((int)item.ChucNangID))
+                {
+                    myButton.IsEnabled = false;
+                    myButton.Content = "";
+                    myButton.Image = null;
+                }
+                else
+                {
+                    myButton.Content = item.HienThi;
+                    if (item.Hinh != null && item.Hinh.Length > 0)
+                        myButton.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
+                    else
+                        myButton.Image = null;
+                }
+            }
         }
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
         {
             Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);
-            AddChiTietBanHang(item);            
+            AddChiTietBanHang(item);
+        }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

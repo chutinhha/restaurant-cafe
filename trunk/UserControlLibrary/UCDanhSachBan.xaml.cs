@@ -35,5 +35,7 @@ namespace UserControlLibrary
         {
             uCDanhSachBanList.Window_KeyDown(sender, e);
         }
+
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace GUI
 {
@@ -58,6 +59,9 @@ namespace GUI
             btnXoa.Content = "Xóa nhóm";
             btnCapNhat.Visibility = System.Windows.Visibility.Visible;
             btnXoa.Visibility = System.Windows.Visibility.Visible;
+            if (lbStatus.Tag != null)
+                lbStatus.Text = lbStatus.Tag.ToString();
+            lbStatus.Tag = "";
         }
 
         void uCMenu__OnEventMenuMon(Data.BOMenuMon ob)
@@ -70,6 +74,9 @@ namespace GUI
             btnXoa.Content = "Xóa món";
             btnCapNhat.Visibility = System.Windows.Visibility.Visible;
             btnXoa.Visibility = System.Windows.Visibility.Visible;
+            if (lbStatus.Tag != null)
+                lbStatus.Text = lbStatus.Tag.ToString();
+            lbStatus.Tag = "";
         }
 
         private Data.MENUNHOM mMenuNhom = null;
@@ -109,14 +116,14 @@ namespace GUI
             {
                 UserControlLibrary.UCNewNhom uc = (UserControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
                 uc.CapNhat();
-                lbStatus.Text = "Cập nhật nhóm thành công";
+                lbStatus.Tag = "Cập nhật nhóm thành công";
                 uCMenu.RefershMenu(true);
             }
             else if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewMon)
             {
                 UserControlLibrary.UCNewMon uc = (UserControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
                 uc.CapNhat();
-                lbStatus.Text = "Cập nhật món thành công";
+                lbStatus.Tag = "Cập nhật món thành công";
                 uCMenu.RefershMenu(false);
             }
         }
@@ -127,15 +134,29 @@ namespace GUI
             {
                 UserControlLibrary.UCNewNhom uc = (UserControlLibrary.UCNewNhom)svChinhSuaMenu.Children[0];
                 uc.Xoa();
-                lbStatus.Text = "Xóa nhóm thành công";
+                lbStatus.Tag = "Xóa nhóm thành công";
                 uCMenu.RefershMenu(true);
             }
             else if (svChinhSuaMenu.Children[0] is UserControlLibrary.UCNewMon)
             {
                 UserControlLibrary.UCNewMon uc = (UserControlLibrary.UCNewMon)svChinhSuaMenu.Children[0];
                 uc.Xoa();
-                lbStatus.Text = "Xóa món thành công";
+                lbStatus.Tag = "Xóa món thành công";
                 uCMenu.RefershMenu(false);
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if ((mPhanQuyen.ChiTietQuyen.Them || mPhanQuyen.ChiTietQuyen.Xoa || mPhanQuyen.ChiTietQuyen.Sua) && e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                btnCapNhat_Click(null, null);
+                return;
+            }
+            if (mPhanQuyen.ChiTietQuyen.Xoa && e.Key == System.Windows.Input.Key.Delete)
+            {
+                btnXoa_Click(null, null);
+                return;
             }
         }
     }

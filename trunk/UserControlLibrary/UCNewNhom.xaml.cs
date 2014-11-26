@@ -50,12 +50,12 @@ namespace UserControlLibrary
             {
                 _Nhom = new Data.BOMenuNhom();
                 _Nhom.MenuNhom.Deleted = false;
-                _Nhom.MenuNhom.MayIn = 0;
                 _Nhom.MenuNhom.GiamGia = 0;
             }
             if (mBitmapImage != null)
             {
-                _Nhom.MenuNhom.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(mBitmapImage, 120, 90, 0);
+                _Nhom.MenuNhom.Hinh = Utilities.ImageHandler.ImageToByte(img);
             }
             _Nhom.MenuNhom.TenDai = txtTenDai.Text;
             _Nhom.MenuNhom.TenNgan = txtTenNgan.Text;
@@ -115,6 +115,12 @@ namespace UserControlLibrary
             {
                 txtSapXep.Text = ((Data.MENULOAINHOM)cbbLoaiNhom.SelectedItem).SapXepNhom.ToString();
             }
+        }
+
+        private void txtTenNgan_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTenDai.Text == "")
+                txtTenDai.Text = txtTenNgan.Text;
         }
     }
 }
