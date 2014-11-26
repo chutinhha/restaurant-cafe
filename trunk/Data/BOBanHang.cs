@@ -6,7 +6,8 @@ using System.Text;
 namespace Data
 {
     public class BOBanHang
-    {        
+    {
+        private BAN mBan;
         public BANHANG BANHANG { get; set; }
         public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }        
         private Transit mTransit;
@@ -17,6 +18,14 @@ namespace Data
         public FrameworkRepository<MENUMON> frMenuMon;
         public FrameworkRepository<LICHSUBANHANG> frLichSu;
         public FrameworkRepository<CHITIETLICHSUBANHANG> frChiTietLichSuBanHang;
+        public string TenBan 
+        {
+            get { return mBan.TenBan; }
+        }
+        public string MaHoaDon 
+        {
+            get { return BANHANG.MaHoaDon; }
+        }
         public BOBanHang(Transit tran)
         {                        
             mTransit = tran;
@@ -37,6 +46,7 @@ namespace Data
         }
         public void LoadBanHang(BAN ban)
         {
+            mBan = ban;
             var list = frBanHang.Query().Where(o => o.BanID == ban.BanID && o.TrangThaiID < 3).ToList();
             if (list.Count() > 0)
             {
@@ -56,7 +66,7 @@ namespace Data
                 {
                     BANHANG.NhanVienID = null;
                 }
-                BANHANG.BanID = mTransit.Ban.BanID;
+                BANHANG.BanID = ban.BanID;
                 BANHANG.NgayBan = DateTime.Now;
                 BANHANG.MaHoaDon = String.Format("HD{0:000000}", 1);
                 BANHANG.TienMat = 0;
@@ -69,7 +79,10 @@ namespace Data
                 BANHANG.PhiDichVu = 0;
                 BANHANG.TongTien = 0;
                 BANHANG.TrangThaiID = 1;
-                BANHANG.KhachHangID = mTransit.KhachHang.KhachHangID;
+                if (mTransit.KhachHang!=null)
+                {
+                    BANHANG.KhachHangID = mTransit.KhachHang.KhachHangID;
+                }
                 BANHANG.TienKhacHang = 0;
             }
 
@@ -219,6 +232,29 @@ namespace Data
             }
             GuiNhaBep();
 
+        }
+        public void GopBan(BOGopBan gopban)
+        {
+            if (this.BANHANG.BanHangID>0)
+            {
+                Nullable<int> trangthaiID=this.BANHANG.TrangThaiID;
+                this.BANHANG.TrangThaiID = 6;
+                frBanHang.Update(this.BANHANG);
+                frBanHang.Commit();
+                this.BANHANG.TrangThaiID = trangthaiID;
+            }
+            this.BANHANG.BanHangID = 0;
+            foreach (var banhang in gopban._ListBanGop)
+            {
+                banhang.BANHANG.TrangThaiID = 6;
+                frBanHang.Update(banhang.BANHANG);
+                foreach (var item in banhang._ListChiTietBanHang)
+                {
+                    item.CHITIETBANHANG.ChiTietBanHangID = 0;
+                    this.AddChiTietBanHang(item);
+                }
+            }
+            GuiNhaBep();
         }
         public decimal TongTien()
         {

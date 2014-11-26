@@ -23,7 +23,11 @@ namespace UserControlLibrary
             InitializeComponent();
             lbData.Content = messgage;
         }
-
+        public static void ShowDialog(string message)
+        {
+            WindowMessageBox win = new WindowMessageBox(message);
+            win.ShowDialog();
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)

@@ -27,7 +27,14 @@ namespace Data
 
         public IQueryable<BAN> GetVisualTablePerArea(KHU khu)
         {
-            return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Visual==true && o.Deleted==false);
+            //return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Visual==true && o.Deleted==false);
+            return GetVisualTablePerArea(khu, mTransit);
+        }
+        public static IQueryable<BAN> GetVisualTablePerArea(KHU khu, Transit transit)
+        {
+            return from a in GetVisual(transit)                   
+                   where a.KhuID == khu.KhuID
+                   select a;
         }
         public static IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu,Transit transit)
         {                        

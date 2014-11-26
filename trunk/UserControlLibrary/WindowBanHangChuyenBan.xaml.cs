@@ -16,13 +16,14 @@ namespace UserControlLibrary
     /// <summary>
     /// Interaction logic for WindowChuyenBan.xaml
     /// </summary>
-    public partial class WindowChuyenBan : Window
-    {
-        private Data.BOBanHang mBanhang;
+    public partial class WindowBanHangChuyenBan : Window
+    {        
         private Data.Transit mTransit;
-        public WindowChuyenBan(Data.Transit tran)
+        private Data.BOChuyenBan mBOChuyenBan;
+        public WindowBanHangChuyenBan(Data.Transit tran)
         {
             mTransit = tran;
+            mBOChuyenBan = new Data.BOChuyenBan(mTransit);
             InitializeComponent();
         }
 
@@ -32,7 +33,7 @@ namespace UserControlLibrary
         }
         private void LoadKhu()
         {
-            cboKhu1.ItemsSource = cboKhu2.ItemsSource = Data.BOKhu.GetAllVisual(mTransit);
+            cboKhu1.ItemsSource = cboKhu2.ItemsSource = mBOChuyenBan.GetAllVisual();
             cboBan1.ItemsSource = null;
         }
 
@@ -43,11 +44,22 @@ namespace UserControlLibrary
 
         private void btnDongY_Click(object sender, RoutedEventArgs e)
         {
+            if (cboBan1.SelectedItem==null)
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn bàn cần chuyển");
+                return;
+            }
+            if (cboBan2.SelectedItem==null)
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn bàn chuyển đến");
+                return;
+            }
             if (cboBan1.SelectedItem!=null && cboBan2.SelectedItem!=null)
             {
                 Data.BAN ban=(Data.BAN)cboBan2.SelectedItem;
-                mBanhang.ChuyenBan(ban);
+                mBOChuyenBan.ChuyenBan(ban);
                 LoadKhu();
+                UserControlLibrary.WindowMessageBox.ShowDialog("Đã chuyển thành công !");
             }
         }
 
@@ -56,7 +68,7 @@ namespace UserControlLibrary
             if (cboKhu1.SelectedItem!=null)
             {
                 cboKhu2.SelectedItem = cboKhu1.SelectedItem;
-                cboBan1.ItemsSource = Data.BOBan.GetAllTableInOrderPerArea((Data.KHU)cboKhu1.SelectedItem, mTransit);
+                cboBan1.ItemsSource = mBOChuyenBan.GetAllTableInOrderPerArea((Data.KHU)cboKhu1.SelectedItem);
             }
         }
 
@@ -64,18 +76,17 @@ namespace UserControlLibrary
         {
             if (cboKhu2.SelectedItem!=null)
             {
-                cboBan2.ItemsSource=Data.BOBan.GetAllTableNotInOrderPerArea((Data.KHU)cboKhu2.SelectedItem, mTransit);
+                cboBan2.ItemsSource=mBOChuyenBan.GetAllTableNotInOrderPerArea((Data.KHU)cboKhu2.SelectedItem);
             }
         }
 
         private void cboBan1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboBan1.SelectedItem!=null)
-            {
-                mBanhang = new Data.BOBanHang(mTransit);
+            {                
                 Data.BAN ban = (Data.BAN)cboBan1.SelectedItem;
-                mBanhang.LoadBanHang(ban);
-                lvData.ItemsSource = mBanhang._ListChiTietBanHang;                
+                mBOChuyenBan.LoadBanHang(ban);
+                lvData.ItemsSource = mBOChuyenBan._BanHang._ListChiTietBanHang;                
             }
             else
             {
