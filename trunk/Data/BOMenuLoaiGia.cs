@@ -8,11 +8,16 @@ namespace Data
     public class BOMenuLoaiGia
     {
         FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
+        private Data.BOLichBieuDinhKy mBOLichBieuDinhKy;
+        private Data.BOLichBieuKhongDinhKy mBOLichBieuKhongDinhKy;
+        private Transit mTransit;
         public BOMenuLoaiGia(Data.Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
+            mTransit = transit;            
+            mBOLichBieuDinhKy = new Data.BOLichBieuDinhKy(mTransit);
+            mBOLichBieuKhongDinhKy = new Data.BOLichBieuKhongDinhKy(mTransit);
             frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
-        }
+        }    
         public IQueryable<MENULOAIGIA> GetAll(Transit mTransit)
         {
             return frmLoaiGia.Query().Where(s => s.Deleted == false);

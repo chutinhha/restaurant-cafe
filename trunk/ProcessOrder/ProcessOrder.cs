@@ -9,9 +9,11 @@ namespace ProcessOrder
     public class ProcessOrder
     {
         private Data.BOBanHang mBanHang;
+        private Data.BOMenuLoaiGia mBOMenuLoaiGia;
+        private Data.BOMenuGia mBOMenuGia;
         private Data.Transit mTransit;        
         private PrinterServer.ProcessPrinter mProcessPrinter;
-        public Data.BOChiTietBanHang CurrentChiTietBanHang { get; set; }
+        public Data.BOChiTietBanHang CurrentChiTietBanHang { get; set; }        
         public Data.BANHANG BanHang
         {
             get { return mBanHang.BANHANG; }
@@ -23,7 +25,9 @@ namespace ProcessOrder
         public ProcessOrder(Data.Transit transit)
         {            
             mTransit = transit;
+            mBOMenuGia = new Data.BOMenuGia(mTransit);                        
             mBanHang = new Data.BOBanHang(mTransit);
+            mBanHang.LoadBanHang();
             mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
         }
         public Data.BOBanHang GetBanHang()
@@ -109,8 +113,7 @@ namespace ProcessOrder
                 }
             }
             return count;
-        }
-        
+        }    
         public void XoaChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
             chitiet.IsDeleted = true;
@@ -118,6 +121,6 @@ namespace ProcessOrder
         public int AddChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
             return mBanHang.AddChiTietBanHang(chitiet);
-        }        
+        }             
     }
 }

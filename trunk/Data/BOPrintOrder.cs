@@ -10,6 +10,7 @@ namespace Data
         public string TenNhanVien { get; set; }
         public string MaHoaDon { get; set; }
         public string TenBan { get; set; }
+        public string TenThe { get; set; }
         public DateTime NgayBan { get; set; }
         public BANHANG BanHang { get; set; }
         public BOPrintOrder()

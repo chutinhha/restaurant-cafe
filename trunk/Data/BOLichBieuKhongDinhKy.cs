@@ -23,7 +23,32 @@ namespace Data
             LichBieuKhongDinhKy = new LICHBIEUKHONGDINHKY();
             MenuLoaiGia = new MENULOAIGIA();
         }
-
+        public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
+        {
+            DateTime dt = DateTime.Now;            
+            TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+            var querya = from a in frmMenuLoaiGia.Query()
+                         where
+                              a.Visual == true &&
+                              a.Deleted == false
+                         select a;
+            var queryb = from b in frmLichBieuKhongDinhKy.Query()
+                         where                             
+                             b.Deleted == false &&
+                             b.Visual == true &&
+                             ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
+                             dt.CompareTo(b.NgayBatDau.Value)>=0 && dt.CompareTo(b.NgayKetThuc.Value)<=0
+                         select b;
+            var query = from a in querya
+                        join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
+                        //select new BOLichBieuKhongDinhKy
+                        //{
+                        //    MenuLoaiGia = a,
+                        //    LichBieuKhongDinhKy = b
+                        //};
+                        select a;
+            return query.Distinct();
+        }
         public IQueryable<BOLichBieuKhongDinhKy> GetAll(Transit mTransit)
         {
             var res = (from lb in frmLichBieuKhongDinhKy.Query()

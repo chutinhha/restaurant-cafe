@@ -14,14 +14,18 @@
         <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,12,0,0" Name="cboKhuVuc" VerticalAlignment="Top" Width="120" SelectionChanged="cboKhuVuc_SelectionChanged" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu"/>
         <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,50,0,0" Name="textBlock2" Text="Tên Bàn" VerticalAlignment="Top" />
         <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,49,0,0" Name="txtTenBan" VerticalAlignment="Top" Width="120" TextChanged="txtTenBan_TextChanged" />
-        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,90,0,0" Name="textBlock3" Text="Hình Đại Diện" VerticalAlignment="Top" />
-        <my:POSButtonImage  Content="Button" Grid.Column="1" Height="55" HorizontalAlignment="Left" Margin="100,90,0,0" Name="btnHinhDaiDien" VerticalAlignment="Top" Width="65" _OnBitmapImageChanged="btnHinhDaiDien__OnBitmapImageChanged" />
-        <my:POSButtonFuntion Grid.Column="1" Name="btnThemMoi" Content="Thêm" Margin="30,260,20,432" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMoi_Click" Height="35" />
-        <my:POSButtonFuntion Grid.Column="1" Name="btnXoa" Content="Xóa" Margin="30,317,20,376" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" Height="35" />
-        <my:POSButtonFuntion Grid.Column="1" Name="btnLuu" Content="Lưu" Margin="30,369,20,323" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" Height="35" />
-        <my:POSButtonFuntion Grid.Column="1" Name="btnHuyThayDoi" Content="Hủy Thay Đổi" Width="150" Margin="30,426,20,265" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF4EB89B" Click="btnHuyThayDoi_Click" Height="35" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="65,158,0,0" Name="textBlock4" Text="Hình sơ đồ bàn" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,148,0,0" Name="textBlock3" Text="Hình Đại Diện" VerticalAlignment="Top" />
+        <my:POSButtonImage  Content="Button" Grid.Column="1" Height="55" HorizontalAlignment="Left" Margin="95,175,0,0" Name="btnHinhDaiDien" VerticalAlignment="Top" Width="65" _OnBitmapImageChanged="btnHinhDaiDien__OnBitmapImageChanged" />
+        <my:POSButtonFuntion Grid.Column="1" Name="btnThemMoi" Content="Thêm" Margin="30,345,20,388" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMoi_Click" Height="35" />
+        <my:POSButtonFuntion Grid.Column="1" Name="btnXoa" Content="Xóa" Margin="30,401,20,332" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" Height="35" />
+        <my:POSButtonFuntion Grid.Column="1" Name="btnLuu" Content="Lưu" Margin="30,454,20,279" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" Height="35" />
+        <my:POSButtonFuntion Grid.Column="1" Name="btnHuyThayDoi" Content="Hủy Thay Đổi" Width="150" Margin="30,511,20,222" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF4EB89B" Click="btnHuyThayDoi_Click" Height="35" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="7,242,0,0" Name="textBlock4" Text="Hình sơ đồ bàn" VerticalAlignment="Top" Grid.Column="1" />
         <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,12,0,0" Name="textBlock1" Text="Khu Vực" VerticalAlignment="Top" Width="50" />
-        <my:POSButtonImage Content="Button" Grid.Column="1" Height="62" HorizontalAlignment="Left" Margin="68,182,0,0" Name="btnHinhSoDoBan" VerticalAlignment="Top" Width="75" _OnBitmapImageChanged="btnHinhSoDoBan__OnBitmapImageChanged" />
+        <my:POSButtonImage Content="Button" Grid.Column="1" Height="62" HorizontalAlignment="Left" Margin="90,270,0,0" Name="btnHinhSoDoBan" VerticalAlignment="Top" Width="75" _OnBitmapImageChanged="btnHinhSoDoBan__OnBitmapImageChanged" />
+        <Slider Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="68,85,0,0" Name="sliderNgang" VerticalAlignment="Top" Width="120" Maximum="200" Value="100" ValueChanged="sliderNgang_ValueChanged" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="3,86,0,0" Name="textBlock5" Text="Ngang:" VerticalAlignment="Top" Grid.Column="1" />
+        <Slider Height="23" HorizontalAlignment="Left" Margin="68,118,0,0" Name="sliderCao" VerticalAlignment="Top" Width="120" Grid.Column="1" Maximum="200" Value="100" ValueChanged="sliderCao_ValueChanged" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="3,119,0,0" Name="textBlock6" Text="Cao:" VerticalAlignment="Top" Grid.Column="1" />
     </Grid>
 </UserControl>

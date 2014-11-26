@@ -15,7 +15,8 @@ namespace Data
         ThayDoiGia,
         ChuyenBan,
         TachBan,
-        DongBan
+        DongBan,
+        ChonGia
     }
 
     public enum EnumLoaiBan

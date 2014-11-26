@@ -21,6 +21,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit = null;
         private ControlLibrary.POSButtonTable mTableButton;
+        private bool mIsLockText;
         public UCSoDoBan(Data.Transit transit)
         {
             mTransit = transit;
@@ -53,18 +54,30 @@ namespace UserControlLibrary
                 btnHinhSoDoBan.Image = Utilities.ImageHandler.BitmapImageFromByteArray(khu.Hinh);
             }
         }
+        
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {
             mTableButton = tbl;
             txtTenBan.Text = tbl._Ban.TenBan;
+            mIsLockText = true;
+            sliderNgang.Value = (int)(uCFloorPlan1._CAIDATBAN.TableWidth>0? tbl._Ban.Width/uCFloorPlan1._CAIDATBAN.TableWidth*100:0);
+            sliderCao.Value = (int)(uCFloorPlan1._CAIDATBAN.TableHeight > 0 ? tbl._Ban.Height / uCFloorPlan1._CAIDATBAN.TableHeight * 100 : 0);
+            mIsLockText = false;
             if (tbl._Ban.Hinh != null && tbl._Ban.Hinh.Length > 0)
             {
                 btnHinhDaiDien.Image = Utilities.ImageHandler.BitmapImageFromByteArray(tbl._Ban.Hinh);
             }
             else
             {
-                var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
-                btnHinhDaiDien.Image = new BitmapImage(uriSource);
+                if (uCFloorPlan1._CAIDATBAN.TableImage!=null && uCFloorPlan1._CAIDATBAN.TableImage.Length>0)
+                {
+                    btnHinhDaiDien.Image = Utilities.ImageHandler.BitmapImageFromByteArray(uCFloorPlan1._CAIDATBAN.TableImage);    
+                }
+                else
+                {
+                    var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                    btnHinhDaiDien.Image = new BitmapImage(uriSource);
+                }
             }
         }
 
@@ -97,7 +110,7 @@ namespace UserControlLibrary
             if (mTableButton != null)
             {
                 mTableButton._Ban.TenBan = txtTenBan.Text;
-                mTableButton.TableDraw();
+                uCFloorPlan1.DrawTable(mTableButton);                
             }
         }
 
@@ -114,10 +127,10 @@ namespace UserControlLibrary
         private void btnHinhDaiDien__OnBitmapImageChanged(object sender)
         {
             if (mTableButton != null)
-            {
-                mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
-                mTableButton.Image = btnHinhDaiDien.ImageBitmap;
-                //mTableButton.TableDraw();
+            {                                
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhDaiDien.ImageBitmap, 100, 100, 0);
+                mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(img);
+                mTableButton.Image = img;                              
             }
         }
         private void btnHinhSoDoBan__OnBitmapImageChanged(object sender)
@@ -135,5 +148,23 @@ namespace UserControlLibrary
             uCFloorPlan1.Init(mTransit);
             LoadKhuVuc();
         }
+
+        private void sliderNgang_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (mTableButton!=null)
+            {
+                mTableButton._Ban.Width = (decimal)sliderNgang.Value * uCFloorPlan1._CAIDATBAN.TableWidth / 100;
+                uCFloorPlan1.DrawTable(mTableButton);
+            }
+        }
+
+        private void sliderCao_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (mTableButton!=null)
+            {
+                mTableButton._Ban.Height = (decimal)sliderCao.Value * uCFloorPlan1._CAIDATBAN.TableHeight / 100;
+                uCFloorPlan1.DrawTable(mTableButton);
+            }
+        }        
     }
 }

@@ -11,8 +11,7 @@ namespace Data
         public CHITIETQUYEN ChiTietQuyen { get; set; }
         public QUYEN Quyen { get; set; }
         public CHUCNANG ChucNang { get; set; }
-        public QUYENNHANVIEN QuyenNhanVien { get; set; }
-
+        public QUYENNHANVIEN QuyenNhanVien { get; set; }        
         public Visibility IsChoPhep { get; set; }
         public Visibility IsDangNhap { get; set; }
         public Visibility IsThem { get; set; }

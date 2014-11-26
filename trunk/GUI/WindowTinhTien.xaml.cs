@@ -108,6 +108,9 @@ namespace GUI
         {
             mBOXuliTinhTien.BanHang.TheID = (int)cboThe.SelectedValue;
             txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
+            mBOXuliTinhTien.TienThe = mBOXuliTinhTien.TongTienPhaiTra;
+            txtGiamGia.IsEnabled = false;
+            txtSoTien.IsEnabled = false;
         }
 
         private void btnChonKhachHang_Click(object sender, RoutedEventArgs e)

@@ -11,18 +11,26 @@ namespace PrinterServer
         private Data.BOXuliMayIn mXuLiMayIn;
         private POSPrinter mPOSPrinter;
         private Data.BOMayIn mBOMayIn;
-        private System.Drawing.Font mFont;
-        private System.Drawing.Font mFontHeader;
+        private static float WIDTH_SO_LUONG = 25;
+        private System.Drawing.Font mFontTitle;
+        private System.Drawing.Font mFontInfo;
+        private System.Drawing.Font mFontItem;
+        private System.Drawing.Font mFontFoot;
+        
         private System.Drawing.Color mColorBlack;
+        private static string FONT_NAME = "Times New Roman";
         private Data.BOPrintOrder mBOPrintOrder;
         private List<Data.BOPrintOrderItem> mListPrintOrderItem;
         public PrinterSendOrder(int lichsu,Data.BOMayIn mayin,Data.BOXuliMayIn xuli)
         {            
             mBOMayIn = mayin;
             mLichSuBanHangID = lichsu;
-            mXuLiMayIn = xuli;
-            mFont = new System.Drawing.Font("Arial", 12);
-            mFontHeader = new System.Drawing.Font("Arial",18,System.Drawing.FontStyle.Bold);
+            mXuLiMayIn = xuli;            
+            mFontTitle = new System.Drawing.Font(FONT_NAME, (float)mXuLiMayIn._CAIDATMAYINBEP.TitleTextFontSize, (System.Drawing.FontStyle)mXuLiMayIn._CAIDATMAYINBEP.TitleTextFontStyle);
+            mFontInfo = new System.Drawing.Font(FONT_NAME, (float)mXuLiMayIn._CAIDATMAYINBEP.InfoTextFontSize, (System.Drawing.FontStyle)mXuLiMayIn._CAIDATMAYINBEP.InfoTextFontStyle);
+            mFontItem = new System.Drawing.Font(FONT_NAME, (float)mXuLiMayIn._CAIDATMAYINBEP.ItemTextFontSize, (System.Drawing.FontStyle)mXuLiMayIn._CAIDATMAYINBEP.ItemTextFontStyle);
+            mFontFoot = new System.Drawing.Font(FONT_NAME, (float)mXuLiMayIn._CAIDATMAYINBEP.SumTextFontSize, (System.Drawing.FontStyle)mXuLiMayIn._CAIDATMAYINBEP.SumTextFontStyle);
+
             mColorBlack = System.Drawing.Color.Black;
             mPOSPrinter = new POSPrinter();
             mPOSPrinter.POSSetPrinterName(mBOMayIn.TenMayIn);            
@@ -47,28 +55,39 @@ namespace PrinterServer
         void PrinterData_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             float y = mPOSPrinter.POSGetFloat(30);
-            y = mPOSPrinter.POSDrawString(mBOMayIn.TieuDeIn, e, mFontHeader, mColorBlack, y, TextAlign.Center, 3);
+            y = mPOSPrinter.POSDrawString(mBOMayIn.TieuDeIn, e, mFontTitle, mColorBlack, y, TextAlign.Center, 0);
             y += mPOSPrinter.POSGetFloat(30);
-            mPOSPrinter.POSDrawString("Tên Bàn:" + mBOPrintOrder.TenBan, e, mFont, mColorBlack, y, TextAlign.Left, 3);
-            y = mPOSPrinter.POSDrawString("Hóa Đơn:" + mBOPrintOrder.MaHoaDon, e, mFont, mColorBlack, y, TextAlign.Right, 3);
-            y=mPOSPrinter.POSDrawString("Nhân Viên:" + mBOPrintOrder.TenNhanVien, e, mFont, mColorBlack, y, TextAlign.Left, 3);
-            y = mPOSPrinter.POSDrawString("Ngày Bán:" + Utilities.DateTimeConverter.ConvertDateTimeToStringDMYH(mBOPrintOrder.NgayBan), e, mFont, mColorBlack, y, TextAlign.Left, 3);
-            y += mPOSPrinter.POSGetFloat(10);
-            mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Solid, y, 1, TextAlign.Center,3);
-            y += mPOSPrinter.POSGetFloat(5);
+            y = mPOSPrinter.POSDrawString("Mã HĐ:" + mBOPrintOrder.MaHoaDon, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+            y = mPOSPrinter.POSDrawString("Bàn:" + mBOPrintOrder.TenBan, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);            
+            y = mPOSPrinter.POSDrawString("Nhân Viên:" + mBOPrintOrder.TenNhanVien, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+            y = mPOSPrinter.POSDrawString("Ngày: " + Utilities.DateTimeConverter.ConvertDateTimeToStringDMYH(mBOPrintOrder.NgayBan), e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+            y += mPOSPrinter.POSGetFloat(15);            
             int totalCount = 0;
             int totalCountCancel = 0;
             float yTmp=0;
+            float widthName=mPOSPrinter.POSGetWidthPrinter(e)-WIDTH_SO_LUONG;
+
+            mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Solid, y, 1, TextAlign.Center, 0);
+            y += mPOSPrinter.POSGetFloat(5);
+
+            mPOSPrinter.POSDrawString("S.lượng", e, mFontItem, mColorBlack, widthName, y, WIDTH_SO_LUONG, TextAlign.Right);
+            y = mPOSPrinter.POSDrawString("Tên món", e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Left);
+           
+
+            mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Solid, y, 1, TextAlign.Center, 0);
+            y += mPOSPrinter.POSGetFloat(5);
+
             foreach (var item in mListPrintOrderItem)
-            {
+            {                
                 if (yTmp>0)
                 {
                     y += mPOSPrinter.POSGetFloat(5);
-                    mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.DashDot, y,1, TextAlign.Center,10);
+                    mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Dot, y,1, TextAlign.Center,0);
                     y += mPOSPrinter.POSGetFloat(5);
                 }
                 yTmp=y;
-                y = mPOSPrinter.POSDrawString(String.Format("{0,3:###}  {1}", item.SoLuong, item.TenMon), e, mFont, mColorBlack, y, TextAlign.Left, 10);
+                mPOSPrinter.POSDrawString(String.Format("{0}",item.SoLuong), e, mFontItem, mColorBlack, widthName, y, WIDTH_SO_LUONG, TextAlign.Right);
+                y=mPOSPrinter.POSDrawString(item.TenMon, e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Left);                
                 if (item.SoLuong<0)
                 {
                     mPOSPrinter.POSDrawCancelLine(e, yTmp, y,10);
@@ -84,13 +103,18 @@ namespace PrinterServer
             }
 
             y += mPOSPrinter.POSGetFloat(5);
-            mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Solid, y, 1, TextAlign.Center,3);
+            mPOSPrinter.POSDrawLine(e, mColorBlack, System.Drawing.Drawing2D.DashStyle.Solid, y, 1, TextAlign.Center,0);
             y += mPOSPrinter.POSGetFloat(10);
-            System.Drawing.Font fontFoot=new System.Drawing.Font("Arial",14,System.Drawing.FontStyle.Bold);
-            if (totalCount>0)
-                y=mPOSPrinter.POSDrawString(String.Format("THÊM :{0}", totalCount), e, fontFoot, mColorBlack, y, TextAlign.Right, 10);
-            if (totalCountCancel>0)            
-                y=mPOSPrinter.POSDrawString(String.Format("HỦY :{0}", totalCountCancel), e, fontFoot, mColorBlack, y, TextAlign.Right, 10);            
+            if (totalCount > 0)
+            {
+                mPOSPrinter.POSDrawString(String.Format("{0}", totalCount), e, mFontFoot, mColorBlack, widthName, y, WIDTH_SO_LUONG, TextAlign.Right);
+                y = mPOSPrinter.POSDrawString("THÊM: ", e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Right);                
+            }
+            if (totalCountCancel > 0)
+            {                
+                mPOSPrinter.POSDrawString(String.Format("{0}", totalCountCancel), e, mFontFoot, mColorBlack, widthName, y, WIDTH_SO_LUONG, TextAlign.Right);
+                y = mPOSPrinter.POSDrawString("HỦY: ", e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Right);                
+            }
         }
     }
 }

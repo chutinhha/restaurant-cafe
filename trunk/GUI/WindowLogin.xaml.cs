@@ -25,11 +25,16 @@ namespace GUI
             InitializeComponent();
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
-            ucTile.SetTransit(mTransit);
+            ucTile.SetTransit(mTransit);                        
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
+            //mTransit.NhanVien = new Data.NHANVIEN();
+            //mTransit.NhanVien.NhanVienID = 1;
+            //UserControlLibrary.WindowChuyenBan win1 = new UserControlLibrary.WindowChuyenBan(mTransit);
+            //win1.ShowDialog();
+            //return;
             mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {

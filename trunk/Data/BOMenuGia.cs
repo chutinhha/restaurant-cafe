@@ -9,6 +9,9 @@ namespace Data
     {
         public MENUGIA MenuGia { get; set; }
         public MENULOAIGIA LoaiGia { get; set; }
+        private Transit mTransit;
+        FrameworkRepository<MENUGIA> frmMenuGia;
+        FrameworkRepository<MENULOAIGIA> frmLoaiGia;
         public BOMenuGia()
         {
             MenuGia = new MENUGIA();
@@ -17,13 +20,31 @@ namespace Data
 
         public BOMenuGia(Data.Transit transit)
         {
-            transit.KaraokeEntities = new KaraokeEntities();
+            mTransit = transit;
             frmMenuGia = new FrameworkRepository<MENUGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENUGIAs);
             frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
         }
-        FrameworkRepository<MENUGIA> frmMenuGia = null;
-        FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
-
+        public IQueryable<BOMenuGia> GetAllByKichThuocMon(MENUKICHTHUOCMON ktm)
+        {
+            return from a in frmLoaiGia.Query()
+                   join b in frmMenuGia.Query() on a.LoaiGiaID equals b.LoaiGiaID
+                   where b.KichThuocMonID == ktm.KichThuocMonID
+                   select new BOMenuGia{
+                       LoaiGia=a,
+                       MenuGia=b
+                   };
+        }
+        //public IQueryable<BOMenuGia> GetAllKichThuocMonVaLoaiGia(IQueryable<MENULOAIGIA> query, MENUKICHTHUOCMON ktm)
+        //{
+        //    return from a in frmMenuGia.Query()
+        //           join b in frmLoaiGia.Query() on a.LoaiGiaID equals b.LoaiGiaID
+        //           where query.Contains(b) && a.KichThuocMonID==ktm.KichThuocMonID
+        //           select new BOMenuGia
+        //           {
+        //               MenuGia = a,
+        //               LoaiGia = b
+        //           };
+        //}
         public List<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
         {
             var res = (from g in frmMenuGia.Query()
@@ -50,6 +71,15 @@ namespace Data
                 Sua(item, mTransit);
             }
             frmMenuGia.Commit();
+        }
+
+        public string TenGia 
+        {
+            get { return String.Format("{0}({1})", LoaiGia.Ten, Utilities.MoneyFormat.ConvertToStringFull(MenuGia.Gia)); }
+        }
+        public decimal Gia 
+        {
+            get { return MenuGia.Gia; }
         }
     }
 }

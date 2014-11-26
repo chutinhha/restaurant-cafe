@@ -11,8 +11,7 @@ namespace Data
         public CHITIETBANHANG CHITIETBANHANG { get; set; }
         public MENUKICHTHUOCMON MENUKICHTHUOCMON { get; set; }
         public MENUMON MENUMON { get; set; }
-        public int SoLuongBanTam { get; set; }
-        public bool XoaMon { get; set; }
+        public int SoLuongBanTam { get; set; }        
         private Transit mTransit;
         public static IQueryable<BOChiTietBanHang> Query(int banHangId, BOBanHang banhang)
         {            
@@ -78,6 +77,11 @@ namespace Data
             this.CHITIETBANHANG.SoLuongBan = qty;
             this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
         }
+        public void ChangePriceChiTietBanHang(decimal gia)
+        {
+            this.CHITIETBANHANG.GiaBan = gia;
+            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+        }
         public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
         {
             chitiet.SoLuong = qty;
@@ -96,7 +100,7 @@ namespace Data
 
             get
             {
-                return (CHITIETBANHANG.GiaBan * CHITIETBANHANG.SoLuongBan).ToString();
+                return Utilities.MoneyFormat.ConvertToString(CHITIETBANHANG.GiaBan * CHITIETBANHANG.SoLuongBan);
             }
         }
         public string SoLuongBan 
