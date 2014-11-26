@@ -34,8 +34,11 @@ namespace UserControlLibrary
             {
                 var myComboBox = (ComboBox)this.FindName("cbbChucNang" + item.ID);
                 var myImages = (ControlLibrary.POSButtonImage)this.FindName("btnHinh" + item.ID);
+                var myTextBox = (TextBox)this.FindName("txtHienThi" + item.ID);
                 myComboBox.Tag = item;
                 myImages.Tag = item;
+                myTextBox.Tag = item;
+                myTextBox.Text = item.HienThi;
                 myComboBox.SelectedValue = item.ChucNangID;
                 if (item.Hinh != null && item.Hinh.Length > 0)
                     myImages.Image = Utilities.ImageHandler.BitmapImageFromByteArray(item.Hinh);
@@ -73,6 +76,12 @@ namespace UserControlLibrary
                     ComboBox cbb = (ComboBox)ctrl;
                     Data.GIAODIENCHUCNANGBANHANG cn = (Data.GIAODIENCHUCNANGBANHANG)cbb.Tag;
                     cn.ChucNangID = (int)cbb.SelectedValue;
+                }
+                if (ctrl is TextBox)
+                {
+                    TextBox txt = (TextBox)ctrl;
+                    Data.GIAODIENCHUCNANGBANHANG cn = (Data.GIAODIENCHUCNANGBANHANG)txt.Tag;
+                    cn.HienThi = txt.Text;
                 }
                 if (ctrl is ControlLibrary.POSButtonImage)
                 {

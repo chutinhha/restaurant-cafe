@@ -30,7 +30,7 @@
         <TextBlock Grid.Row="4" Text="Bán" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
         <TextBlock Grid.Row="5" Text="Hình nền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenNgan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenNgan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" LostFocus="txtTenNgan_LostFocus" />
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenDai" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtSapXep" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
         <ComboBox Grid.Row="3" Grid.Column="1" x:Name="cbbLoaiNhom" DisplayMemberPath="TenLoaiNhom" SelectedValuePath="LoaiNhomID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" SelectionChanged="cbbLoaiNhom_SelectionChanged" />

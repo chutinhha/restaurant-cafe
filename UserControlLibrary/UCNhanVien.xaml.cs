@@ -85,8 +85,7 @@ namespace UserControlLibrary
             lsArrayDeleted = null;
             LoadDanhSach();
         }
-
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        private void Luu()
         {
             List<Data.BONhanVien> lsArray = null;
             foreach (ListViewItem li in lvData.Items)
@@ -105,8 +104,22 @@ namespace UserControlLibrary
             messageBox.ShowDialog();
         }
 
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            if (mPhanQuyen.ChiTietQuyen.DangNhap)
+            {
+                UserControlLibrary.WindowLoginDialog loginWindow = new UserControlLibrary.WindowLoginDialog(mTransit);
+                if (loginWindow.ShowDialog() == false)
+                {
+                    Luu();
+                }
+            }
+            else Luu();
+        }
+
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
+
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
@@ -122,19 +135,23 @@ namespace UserControlLibrary
                     lvData.Items.Refresh();
                 }
             }
+
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
+
             UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
             if (win.ShowDialog() == true)
             {
                 AddList(win._Item);
             }
+
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
+
             if (lvData.SelectedItems.Count > 0)
             {
                 mItem = (Data.BONhanVien)((ListViewItem)lvData.SelectedItems[0]).Tag;
@@ -150,6 +167,8 @@ namespace UserControlLibrary
                     lvData.SelectedIndex = 0;
                 }
             }
+
+
         }
 
         private void LoadDanhSach()

@@ -186,6 +186,12 @@ namespace UserControlLibrary
                 btnXoa_Click(null, null);
                 return;
             }
+
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
         }
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)

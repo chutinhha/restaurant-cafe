@@ -4,10 +4,11 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="BorderBrush" Value="#FF56007C"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="BorderBrush" Value="#FF56007C"/>
         <Setter Property="BorderThickness" Value="1"/>
-
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>

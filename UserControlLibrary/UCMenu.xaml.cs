@@ -19,7 +19,6 @@ namespace UserControlLibrary
         public Data.BOMenuNhom BOMenuNhom = null;
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
-
         public bool _IsTrongLuong { get; set; }
         public bool _IsSoLuong { get; set; }
         public bool _IsTheTich { get; set; }
@@ -39,7 +38,7 @@ namespace UserControlLibrary
             _IsBanHang = false;
             _IsDanhSachKhuyenMai = false;
             _IsTrongLuong = true;
-            _IsTrongLuong = true;
+            _IsSoLuong = true;
             _IsTheTich = true;
             _IsDinhLuong = true;
             _IsTonKho = true;
@@ -272,7 +271,7 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);                
+                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
                 btn.Image = new BitmapImage(uriSource);
             }
         }

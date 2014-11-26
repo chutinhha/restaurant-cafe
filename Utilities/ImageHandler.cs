@@ -17,7 +17,7 @@ namespace Utilities
             return CreateResizedImage(img, 64, 64, 0);
         }
         public static BitmapFrame CreateResizedImage(ImageSource source, int width, int height, int margin)
-        {            
+        {
             var rect = new Rect(margin, margin, width - margin * 2, height - margin * 2);
             var group = new DrawingGroup();
             RenderOptions.SetBitmapScalingMode(group, BitmapScalingMode.HighQuality);
@@ -46,8 +46,8 @@ namespace Utilities
                 pbdDecoder.Frames.Add(bfResize);
                 pbdDecoder.Save(msStream);
                 return msStream.ToArray();
-            }            
-        }       
+            }
+        }
         //public static BitmapImage GetBitmap(string url)
         //{
         //    Uri uri = new Uri(url);
@@ -61,7 +61,7 @@ namespace Utilities
         //}
         public static BitmapImage BitmapImageFromByteArray(Byte[] bytes)
         {
-            if (bytes!=null && bytes.Length>0)
+            if (bytes != null && bytes.Length > 0)
             {
                 MemoryStream stream = new MemoryStream(bytes);
                 stream.Seek(0, SeekOrigin.Begin);
@@ -79,7 +79,7 @@ namespace Utilities
             BitmapImage imgNew = new BitmapImage();
             BitmapEncoder encode = new PngBitmapEncoder();
             encode.Frames.Add(BitmapFrame.Create(img));
-            using (var stream=new MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 encode.Save(stream);
                 stream.Seek(0, SeekOrigin.Begin);

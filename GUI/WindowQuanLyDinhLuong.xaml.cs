@@ -34,10 +34,12 @@ namespace GUI
 
         private void PhanQuyen()
         {
-            if (!mTransit.MenuGiaoDien.DinhLuong.DinhLuong)
+            Data.BOChiTietQuyen quyenLoaiKhachHang = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.DinhLuong.DinhLuong);
+            btnDinhLuong.Tag = quyenLoaiKhachHang;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.DinhLuong.DinhLuong) || !quyenLoaiKhachHang.ChiTietQuyen.ChoPhep)
             {
                 btnDinhLuong.Visibility = System.Windows.Visibility.Collapsed;
-            }
+            }            
         }
 
         private void btnDinhLuong_Click(object sender, RoutedEventArgs e)
