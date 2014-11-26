@@ -44,7 +44,7 @@ namespace ControlLibrary
     ///
     /// </summary>
     public class POSButtonTable : Button
-    {
+    {      
         public enum POSButtonTableStatus
         {
             None,
@@ -118,18 +118,23 @@ namespace ControlLibrary
             get { return (ImageSource)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
-        public void TableDraw()
+        public void TableDraw(Data.CAIDATBAN caidat)
         {            
             double x = _UserControlParent.RenderSize.Width * (double)_Ban.LocationX;
             double y = _UserControlParent.RenderSize.Height * (double)_Ban.LocationY;
-            this.Width = _UserControlParent.RenderSize.Width * (double)_Ban.Width;
-            this.Height = _UserControlParent.RenderSize.Height * (double)_Ban.Height;
+            double width = _UserControlParent.RenderSize.Width * (double)_Ban.Width;
+            double height = _UserControlParent.RenderSize.Height * (double)_Ban.Height;
+
+            this.FontSize = caidat.TableFontSize;            
+            this.FontStyle = Utilities.FontConverter.ConvertToFont(caidat.TableFontStyle);
+            this.Width = width>2? width - 2:0;
+            this.Height =height>2? height-2:0;
             this.Margin = new Thickness(
                 x,
                 y,
-                _UserControlParent.RenderSize.Width - this.Width - x,
-                _UserControlParent.RenderSize.Height - this.Height - y
-            );
+                _UserControlParent.RenderSize.Width - width - x,
+                _UserControlParent.RenderSize.Height - height - y
+            );                                   
             this.Content = _Ban.TenBan;
             if (_Ban.Hinh != null && _Ban.Hinh.Length > 0)
             {
@@ -137,8 +142,17 @@ namespace ControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
-                this.Image = new BitmapImage(uriSource);
+                if (caidat.TableImage != null && caidat.TableImage.Length > 0)
+                {
+                    this.Image = Utilities.ImageHandler.BitmapImageFromByteArray(caidat.TableImage);
+                }
+                else
+                {
+                    var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                    this.Image = new BitmapImage(uriSource);
+                }   
+                //var uriSource = new Uri(@"/ControlLibrary;component/Images/NoImages.jpg", UriKind.Relative);
+                //this.Image = new BitmapImage(uriSource);
             }
         }
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)

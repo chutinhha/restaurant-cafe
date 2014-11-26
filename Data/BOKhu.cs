@@ -10,6 +10,14 @@ namespace Data
         private Transit mTransit;
         public Data.KHU Khu { get; set; }
         public Data.MENULOAIGIA LoaiGia { get; set; }
+        public string TenKhu 
+        {
+            get { return Khu.TenKhu; }
+        }
+        public int KhuID
+        {
+            get { return Khu.KhuID; }
+        }
         private FrameworkRepository<KHU> frmKhu;
         private FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
 
@@ -84,5 +92,6 @@ namespace Data
                 }
             frmKhu.Commit();
         }
+
     }
 }

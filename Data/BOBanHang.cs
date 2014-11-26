@@ -29,37 +29,37 @@ namespace Data
             frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.CHITIETLICHSUBANHANGs);
             
             _ListChiTietBanHang = new List<BOChiTietBanHang>();            
-            LoadBanHang();
+            //LoadBanHang();
         }
         public static IQueryable<BANHANG> GetAllNotCompleted(Transit transit)
         {
-            return FrameworkRepository<BANHANG>.QueryNoTracking(transit.KaraokeEntities.BANHANGs).Where(b=>b.TrangThaiID!=4);
+            return FrameworkRepository<BANHANG>.QueryNoTracking(transit.KaraokeEntities.BANHANGs).Where(b=>b.TrangThaiID<3);
         }
-        private void LoadBanHang()
+        public void LoadBanHang(BAN ban)
         {
-            var list = frBanHang.Query().Where(o => o.BanID == mTransit.Ban.BanID && o.TrangThaiID != 4);
-            if (list.Count()>0)
+            var list = frBanHang.Query().Where(o => o.BanID == ban.BanID && o.TrangThaiID < 3).ToList();
+            if (list.Count() > 0)
             {
-                BANHANG = list.FirstOrDefault();                
-                var listItem = BOChiTietBanHang.Query(BANHANG.BanHangID,this);
+                BANHANG = list.FirstOrDefault();
+                var listItem = BOChiTietBanHang.Query(BANHANG.BanHangID, this);
                 foreach (BOChiTietBanHang item in listItem)
-                {                    
+                {
                     item.SoLuongBanTam = (int)item.CHITIETBANHANG.SoLuongBan;
                     this.AddChiTietBanHang(item);
                 }
             }
             else
             {
-                BANHANG = new BANHANG();                
+                BANHANG = new BANHANG();
                 BANHANG.NhanVienID = mTransit.NhanVien.NhanVienID;
-                if (BANHANG.NhanVienID==0)
+                if (BANHANG.NhanVienID == 0)
                 {
                     BANHANG.NhanVienID = null;
                 }
-                BANHANG.BanID = mTransit.Ban.BanID;                                
+                BANHANG.BanID = mTransit.Ban.BanID;
                 BANHANG.NgayBan = DateTime.Now;
-                BANHANG.MaHoaDon = String.Format("HD{0:000000}",1);
-                BANHANG.TienMat = 0;                
+                BANHANG.MaHoaDon = String.Format("HD{0:000000}", 1);
+                BANHANG.TienMat = 0;
                 //BANHANG.TheID = mTransit.The.TheID;
                 BANHANG.TienThe = 0;
                 BANHANG.TienTraLai = 0;
@@ -74,11 +74,15 @@ namespace Data
             }
 
         }
+        public void LoadBanHang()
+        {
+            LoadBanHang(mTransit.Ban);
+        }
         private bool KiemTraThayDoi()
         {            
             foreach (BOChiTietBanHang item in _ListChiTietBanHang)
             {
-                if (item.XoaMon|| item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan || item.CHITIETBANHANG.ChiTietBanHangID==0)
+                if (item.IsDeleted|| item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan || item.CHITIETBANHANG.ChiTietBanHangID==0)
                 {
                     return true;
                 }
@@ -153,7 +157,7 @@ namespace Data
                             frChiTietBanHang.AddObject(item.CHITIETBANHANG);
                             frChiTietLichSuBanHang.AddObject(chitiet);
                         }
-                        else if (item.XoaMon)
+                        else if (item.IsDeleted)
                         {
                             CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
                             item.ChangeQtyChiTietLichSuBanHang(chitiet, 0 - (int)chitiet.SoLuong);                            
@@ -196,6 +200,25 @@ namespace Data
                 return this.BANHANG.BanHangID;
             }
             return 0;
+        }
+        public void ChuyenBan(BAN ban)
+        {            
+            Nullable<int> trangThai = this.BANHANG.TrangThaiID;
+            //chuyen ban
+            this.BANHANG.TrangThaiID = 5;
+            frBanHang.Update(this.BANHANG);
+            frBanHang.Commit();
+
+            //ban moi
+            this.BANHANG.TrangThaiID = trangThai;
+            this.BANHANG.BanID = ban.BanID;
+            this.BANHANG.BanHangID = 0;            
+            foreach (var item in _ListChiTietBanHang)
+            {
+                item.CHITIETBANHANG.ChiTietBanHangID = 0;                
+            }
+            GuiNhaBep();
+
         }
         public decimal TongTien()
         {

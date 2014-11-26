@@ -25,7 +25,7 @@ namespace GUI
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
             uCTile.SetTransit(mTransit);
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
             GanChucNang();
             LoadBanHang();
         }
@@ -68,8 +68,29 @@ namespace GUI
                 case Data.EnumChucNang.DongBan:
                     DongBan();
                     break;
+                case Data.EnumChucNang.ChonGia:
+                    ChonGia();
+                    break;
                 default:
                     break;
+            }
+        }
+        private void ChonGia(){
+            if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
+            {
+                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi", "Lưu ý!");
+                return;
+            }
+            if (lvData.SelectedItems.Count > 0)
+            {
+                Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
+                UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MENUKICHTHUOCMON);
+                if (win.ShowDialog()==true)
+                {
+                    chitiet.ChangePriceChiTietBanHang(win._MenuGia.Gia);
+                    lvData.Items.Refresh();
+                    ReloadData();
+                }
             }
         }
         private void DongBan()
@@ -92,11 +113,16 @@ namespace GUI
                 {
                     if (mProcessOrder.TamTinh()> 0)
                     {
-                        mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;                        
+                        mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                        this.Close();
+                        
                     }
-                }
-                this.Close();                
+                }                
             }
+            else
+            {
+                MessageBox.Show("Không thể tính tiền hóa hơn ! Vui lòng chọn món", "Chú ý!");
+            }   
         }
         private void GuiNhaBep()
         {
@@ -189,7 +215,7 @@ namespace GUI
             txtTongTien.Text = Utilities.MoneyFormat.ConvertToStringFull(mProcessOrder.GetBanHang().TongTien());
         }
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
-        {
+        {            
             ListViewItem li = new ListViewItem();
             li.Content = item;            
             if (mProcessOrder.AddChiTietBanHang(item)==0)
@@ -262,6 +288,7 @@ namespace GUI
             btnChucNang_2.CommandParameter = Data.EnumChucNang.TamTinh;
             btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
             btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
+            btnChucNang_7.CommandParameter = Data.EnumChucNang.ChonGia;
             btnChucNang_9.CommandParameter = Data.EnumChucNang.DongBan;            
         }
 

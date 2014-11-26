@@ -24,7 +24,12 @@ namespace ControlLibrary
         public bool _IsEdit { get; set; }
         private Data.Transit mTransit;        
         public Data.KHU _Khu { get; set; }
-        private Data.BOBan mBOBan;        
+        public Data.CAIDATBAN _CAIDATBAN 
+        {
+            get { return mBOBan._CAIDATBAN; }
+        }        
+        private Data.BOBan mBOBan;      
+  
         public UCFloorPlan()
         {
             InitializeComponent();
@@ -114,7 +119,10 @@ namespace ControlLibrary
                 imgBackground.Source = Utilities.ImageHandler.BitmapImageFromByteArray(_Khu.Hinh);
             }
         }
-        
+        public void DrawTable(POSButtonTable tbl)
+        {
+            tbl.TableDraw(mBOBan._CAIDATBAN);
+        }
         public void LoadBackgroundImage(BitmapImage img)
         {
             imgBackground.Source = img;
@@ -131,7 +139,7 @@ namespace ControlLibrary
             tbl._UserControlParent = this;
             tbl._Ban = ban;
             tbl._IsEdit = this._IsEdit;
-            tbl.TableDraw();
+            tbl.TableDraw(mBOBan._CAIDATBAN);
             tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
             tbl.Click += new RoutedEventHandler(tbl_Click);
             gridFloorPlan.Children.Add(tbl);
@@ -155,6 +163,6 @@ namespace ControlLibrary
             {
                 _OnEventFloorPlan(tbl);
             }
-        }
+        }        
     }
 }

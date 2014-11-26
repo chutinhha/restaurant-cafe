@@ -11,6 +11,11 @@ namespace Utilities
 {
     public static class ImageHandler
     {
+        public static BitmapFrame CreateBitMap(string url)
+        {
+            BitmapImage img = new BitmapImage(new Uri(url));
+            return CreateResizedImage(img, 64, 64, 0);
+        }
         public static BitmapFrame CreateResizedImage(ImageSource source, int width, int height, int margin)
         {            
             var rect = new Rect(margin, margin, width - margin * 2, height - margin * 2);
@@ -33,21 +38,27 @@ namespace Utilities
             img.StreamSource.Read(imageData, 0, imageData.Length);
             return imageData;
         }
-        //public static Byte[] ImageToByte(BitmapImage imageSource)
+        public static byte[] ImageToByte(BitmapFrame bfResize)
+        {
+            using (MemoryStream msStream = new MemoryStream())
+            {
+                PngBitmapEncoder pbdDecoder = new PngBitmapEncoder();
+                pbdDecoder.Frames.Add(bfResize);
+                pbdDecoder.Save(msStream);
+                return msStream.ToArray();
+            }            
+        }       
+        //public static BitmapImage GetBitmap(string url)
         //{
-        //    Stream stream = imageSource.StreamSource;
-        //    Byte[] buffer = null;
-        //    if (stream != null && stream.Length > 0)
-        //    {
-        //        using (BinaryReader br = new BinaryReader(stream))
-        //        {
-        //            buffer = br.ReadBytes((Int32)stream.Length);
-        //        }
-        //    }
-        //    return buffer;
+        //    Uri uri = new Uri(url);
+        //    BitmapImage source = new BitmapImage();
+        //    source.BeginInit();
+        //    source.UriSource = uri;
+        //    source.DecodePixelHeight = 10;
+        //    source.DecodePixelWidth = 10;
+        //    source.EndInit();
+        //    return source;
         //}
-
-
         public static BitmapImage BitmapImageFromByteArray(Byte[] bytes)
         {
             if (bytes!=null && bytes.Length>0)

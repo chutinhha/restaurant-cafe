@@ -7,6 +7,8 @@ namespace Data
 {
     public class BOXuliMayIn
     {
+        public CAIDATMAYINBEP _CAIDATMAYINBEP { get; set; }
+        public CAIDATMAYINHOADON _CAIDATMAYINHOADON { get; set; }
         private KaraokeEntities mKaraokeEntities;
         private Transit mTransit;
         public FrameworkRepository<MAYIN> frMayIn;
@@ -19,11 +21,13 @@ namespace Data
         public FrameworkRepository<BANHANG> frBanHang;
         public FrameworkRepository<CHITIETBANHANG> frChiTietBanHang;
         public FrameworkRepository<BAN> frBan;
+        public FrameworkRepository<THE> frThe;
 
         public BOXuliMayIn(Transit transit)
         {
             mTransit = transit;
-            mKaraokeEntities = transit.KaraokeEntities;
+            mKaraokeEntities = new KaraokeEntities();
+            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             frMayIn = new FrameworkRepository<MAYIN>(mKaraokeEntities, mKaraokeEntities.MAYINs);
             frMenuMayIn = new FrameworkRepository<MENUITEMMAYIN>(mKaraokeEntities, mKaraokeEntities.MENUITEMMAYINs);
             frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities, mKaraokeEntities.MENUMONs);
@@ -33,8 +37,11 @@ namespace Data
             frNhanVien = new FrameworkRepository<NHANVIEN>(mKaraokeEntities, mKaraokeEntities.NHANVIENs);
             frBanHang = new FrameworkRepository<BANHANG>(mKaraokeEntities, mKaraokeEntities.BANHANGs);
             frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities, mKaraokeEntities.CHITIETBANHANGs);
-            frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);     
-                               
+            frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);
+            frThe = new FrameworkRepository<THE>(mKaraokeEntities, mKaraokeEntities.THEs);
+
+            _CAIDATMAYINBEP = BOCaiDatMayInBep.GetCaiDat(mTransit);            
+            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetCaiDat(mTransit);         
         }
         public IQueryable<BOMayIn> AllPrinting(int lichSuBanHang)
         {
@@ -76,17 +83,20 @@ namespace Data
         }
         public IQueryable<BOPrintOrder> GetOrderFromBanHangID(int banHangID)
         {
-            var query = from a in frBanHang.Query().Where(o=>o.BanHangID==banHangID)
+            var query = from a in frBanHang.Query().Where(o => o.BanHangID == banHangID)
                         join b in frNhanVien.Query() on a.NhanVienID equals b.NhanVienID
                         join c in frBan.Query() on a.BanID equals c.BanID
-                        where a.BanHangID==banHangID
+                        join d in frThe.Query() on a.TheID equals d.TheID into list
+                        from e in list.DefaultIfEmpty()
+                        where a.BanHangID == banHangID
                         select new BOPrintOrder
                         {
+                            TenThe=e.TenThe,
                             TenNhanVien = b.TenNhanVien,
                             MaHoaDon = a.MaHoaDon,
                             TenBan = c.TenBan,
                             NgayBan = (DateTime)a.NgayBan,
-                            BanHang=a
+                            BanHang = a
                         };
             return query;
         }

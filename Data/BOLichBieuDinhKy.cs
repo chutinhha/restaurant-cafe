@@ -24,12 +24,50 @@ namespace Data
             LichBieuDinhKy = new LICHBIEUDINHKY();
             MenuLoaiGia = new MENULOAIGIA();
         }
+        public IQueryable<LICHBIEUDINHKY> GetAllVisual()
+        {
+            DateTime dt = DateTime.Now;
+            int dayOfWeek = (int)dt.DayOfWeek;
+            TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+            //tim theo ngay trong tuan
+            var query1 = from b in frmLichBieuDinhKy.Query()
+                         where
+                            b.Deleted == false &&
+                            b.Visual == true &&
+                            b.TheLoaiID == 1 &&
+                            (
+                                (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= b.GiaTriKetThuc && b.GiaTriBatDau < b.GiaTriKetThuc) ||
+                                (
+                                    (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= 6) || (dayOfWeek <= b.GiaTriKetThuc && dayOfWeek >= 0) && b.GiaTriBatDau > b.GiaTriKetThuc
+                                )
+                            )
+                         select b;
+            //select a;
+            //tim theo ngay trong thang
+            var query2 = from b in frmLichBieuDinhKy.Query()
+                         where
+                            b.Deleted == false &&
+                            b.Visual == true &&
+                             b.TheLoaiID == 2 &&
+                             dt.Day >= b.GiaTriBatDau && dt.Day <= b.GiaTriKetThuc
+                         select b;
+            //select a;
+            //tim theo ngay trong nam
+            var query3 = from b in frmLichBieuDinhKy.Query()
+                         where
+                            b.Deleted == false &&
+                            b.Visual == true &&
+                             b.TheLoaiID == 3 &&
+                             b.GiaTriBatDau == dt.Day && b.GiaTriKetThuc == dt.Month
+                         select b;
+            return query1.Union(query2).Union(query3).Distinct();
+            //select a;
+        }
         public IQueryable<BOLichBieuDinhKy> GetMenuLoaiGia()
         {
-            //tim theo ngay trong tuan
+            
             DateTime dt=DateTime.Now;
-            int dayOfWeek = (int)dt.DayOfWeek;
-            //int dayOfYear = dt.DayOfYear;
+            int dayOfWeek = (int)dt.DayOfWeek;            
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
             var querya=from a in frmMenuLoaiGia.Query()
                        where
@@ -43,7 +81,7 @@ namespace Data
                             b.Visual==true                           
                         select b;
 
-
+            //tim theo ngay trong tuan
             var query1 = from a in querya
                          join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
                          where
@@ -56,9 +94,11 @@ namespace Data
                             )
                          select new BOLichBieuDinhKy
                          {
-                             MenuLoaiGia=a,
-                             LichBieuDinhKy=b
+                             MenuLoaiGia = a,
+                             LichBieuDinhKy = b
                          };
+                         //select a;
+            //tim theo ngay trong thang
             var query2 = from a in querya
                          join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
                          where
@@ -69,16 +109,19 @@ namespace Data
                               MenuLoaiGia = a,
                               LichBieuDinhKy = b
                           };
+                         //select a;
+            //tim theo ngay trong nam
             var query3 = from a in querya
                          join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
                          where
                              b.TheLoaiID == 3 &&
-                             b.GiaTriBatDau==dt.Day && b.GiaTriKetThuc==dt.Month
+                             b.GiaTriBatDau == dt.Day && b.GiaTriKetThuc == dt.Month
                          select new BOLichBieuDinhKy
                          {
                              MenuLoaiGia = a,
                              LichBieuDinhKy = b
                          };
+                         //select a;
             return 
                     from a in query1.Union(query2).Union(query3).Distinct() select a;
         }

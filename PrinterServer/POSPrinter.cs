@@ -70,7 +70,28 @@ namespace PrinterServer
                 return 10;
             }
         }
+        public float POSDrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, Color color, float x,float y,float width, TextAlign textAlign)
+        {            
+            List<string> list = POSSplitStringLine(s,width,e, font);
+            foreach (string item in list)
+            {
+                switch (textAlign)
+                {                    
+                    case TextAlign.Center:
+                        x += (float)Math.Abs((width - e.Graphics.MeasureString(item, font).Width) / 2);
+                        break;
+                    case TextAlign.Right:
+                        x += width - e.Graphics.MeasureString(item, font).Width;
+                        break;
+                    default:
+                        break;
+                }
+                e.Graphics.DrawString(item, font, new SolidBrush(color), x, y);
+                y += e.Graphics.MeasureString(item, font).Height;
+            }
 
+            return y;
+        }
         public float POSDrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, Color color, float y, TextAlign textAlign, float margin)
         {
             float x = 0;
@@ -117,8 +138,8 @@ namespace PrinterServer
             }
             float x = POSGetXWithAlign(e, textAlign, width,margin);
             System.Drawing.Pen pen = new System.Drawing.Pen(color);
-            pen.DashStyle = dashStyle;            
-            e.Graphics.DrawLine(pen, x, y, x + width, y);
+            pen.DashStyle = dashStyle;                     
+            e.Graphics.DrawLine(pen, x, y, x + width, y);            
         }
         public float POSGetWidthPrinter(System.Drawing.Printing.PrintPageEventArgs e)
         {            
@@ -184,8 +205,7 @@ namespace PrinterServer
         {
             List<string> list = new List<string>();
             string[] s = str.Split(' ');
-            string resuilt = "";
-            //float width = e.Graphics.MeasureString("ADD",font).Width;
+            string resuilt = "";            
             for (int i = 0; i < s.Length; i++)
             {
                 if (s[i].Length > 0)
@@ -197,6 +217,38 @@ namespace PrinterServer
                         resuilt = "";
                     }
                     else if (e.Graphics.MeasureString(s[i], font).Width > POSGetWidthPrinter(e))
+                    {
+                        list.Add(s[i]);
+                        resuilt = "";
+                    }
+                    else
+                    {
+                        resuilt += s[i] + " ";
+                    }
+                }
+            }
+            if (resuilt.Length > 0)
+            {
+                list.Add(resuilt);
+            }
+            return list;
+        }
+        private List<string> POSSplitStringLine(string str,float width ,System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font)
+        {
+            List<string> list = new List<string>();
+            string[] s = str.Split(' ');
+            string resuilt = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i].Length > 0)
+                {
+                    if (e.Graphics.MeasureString(resuilt + s[i], font).Width > width && resuilt.Length > 0)
+                    {
+                        list.Add(resuilt);
+                        i--;
+                        resuilt = "";
+                    }
+                    else if (e.Graphics.MeasureString(s[i], font).Width > width)
                     {
                         list.Add(s[i]);
                         resuilt = "";
