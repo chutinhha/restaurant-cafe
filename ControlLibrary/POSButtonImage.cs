@@ -59,8 +59,8 @@ namespace ControlLibrary
         }
         public BitmapImage ImageBitmap { get; set; }
         public void DefaultImage()
-        {            
-            var uriSource = new Uri(@"/ControlLibrary;component/Images/AddNewImage.png", UriKind.Relative);
+        {
+            var uriSource = new Uri(@"/SystemImages;component/Images/camera.png", UriKind.Relative);
             this.Image = new BitmapImage(uriSource);
             this.ImageBitmap = null;
         }
@@ -69,7 +69,7 @@ namespace ControlLibrary
             base.OnApplyTemplate();
             if (this.Image == null)
             {
-                var uriSource = new Uri(@"/ControlLibrary;component/Images/AddNewImage.png", UriKind.Relative);
+                var uriSource = new Uri(@"/SystemImages;component/Images/camera.png", UriKind.Relative);
                 this.Image = new BitmapImage(uriSource);
             }
         }                

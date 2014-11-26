@@ -77,8 +77,8 @@ namespace UserControlLibrary
                     GetValues();
                     BONhapKho.Them(_Item, lsChiTietNhapKho, mTransit);
                     BOQuanLyKho.NhapKho(lsChiTietNhapKho, mTransit);
-                    MessageBox.Show(lbTieuDe.Text + " thành công");
-                    DialogResult = true;
+                    UserControlLibrary.WindowMessageBox.ShowDialog(lbTieuDe.Text + " thành công");                    
+                    DialogResult = true;                    
                 }
             }
             else

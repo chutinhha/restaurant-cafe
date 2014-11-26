@@ -62,8 +62,12 @@ namespace GUI
                 case Data.EnumChucNang.ThayDoiGia:
                     break;
                 case Data.EnumChucNang.ChuyenBan:
+                    ChuyenBan();
                     break;
                 case Data.EnumChucNang.TachBan:
+                    break;
+                case Data.EnumChucNang.GopBan:
+                    GopBan();
                     break;
                 case Data.EnumChucNang.DongBan:
                     DongBan();
@@ -78,7 +82,7 @@ namespace GUI
         private void ChonGia(){
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi", "Lưu ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
                 return;
             }
             if (lvData.SelectedItems.Count > 0)
@@ -121,14 +125,14 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Không thể tính tiền hóa hơn ! Vui lòng chọn món", "Chú ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");                
             }   
         }
         private void GuiNhaBep()
         {
             if (mProcessOrder.KiemTraDanhSachMon()==0)
             {
-                MessageBox.Show("Không thể gửi ra nhà bếp ! Vui lòng chọn món","Chú ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể gửi ra nhà bếp ! Vui lòng chọn món");                
                 return;
             }
             if (mProcessOrder.SendOrder()>0)
@@ -151,14 +155,14 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Không thể tính tiền hóa hơn ! Vui lòng chọn món", "Chú ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");                
             }            
         }
         private void XoaMon()
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi","Lưu ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");                
                 return;
             }
             if (lvData.SelectedItems.Count > 0)
@@ -174,12 +178,28 @@ namespace GUI
             }
             XoaTextThongTinMon();
         }
-
+        private void GopBan()
+        {
+            this.DialogResult = false;
+            UserControlLibrary.WindowBanHangChonBanGop win1 = new UserControlLibrary.WindowBanHangChonBanGop(mTransit);
+            if (win1.ShowDialog() == true)
+            {
+                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mTransit, win1._GopBan);
+                win2.ShowDialog();
+            }            
+        }
+        private void ChuyenBan()
+        {
+            this.DialogResult = false;
+            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit);
+            win1.ShowDialog();
+            
+        }
         private void XoaToanBoMon()
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                MessageBox.Show("Hóa đơn đã thanh toán, không thể thay đổi", "Lưu ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");                
                 return;
             }
             foreach (Data.BOChiTietBanHang item in lvData.Items)
@@ -286,6 +306,8 @@ namespace GUI
             btnChucNang_0.CommandParameter = Data.EnumChucNang.TinhTien;
             btnChucNang_1.CommandParameter = Data.EnumChucNang.LuuHoaDon;
             btnChucNang_2.CommandParameter = Data.EnumChucNang.TamTinh;
+            btnChucNang_3.CommandParameter = Data.EnumChucNang.ChuyenBan;
+            btnChucNang_4.CommandParameter = Data.EnumChucNang.GopBan;
             btnChucNang_5.CommandParameter = Data.EnumChucNang.XoaMon;
             btnChucNang_6.CommandParameter = Data.EnumChucNang.XoaToanBoMon;
             btnChucNang_7.CommandParameter = Data.EnumChucNang.ChonGia;

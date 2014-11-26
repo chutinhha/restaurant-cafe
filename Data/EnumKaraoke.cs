@@ -15,6 +15,7 @@ namespace Data
         ThayDoiGia,
         ChuyenBan,
         TachBan,
+        GopBan,
         DongBan,
         ChonGia
     }

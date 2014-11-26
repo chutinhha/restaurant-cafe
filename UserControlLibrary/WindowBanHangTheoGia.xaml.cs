@@ -52,7 +52,7 @@ namespace UserControlLibrary
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn giá bán","Chú ý!");
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn giá bán");                                
             }
         }
     }

@@ -1,0 +1,71 @@
+﻿<Window x:Class="UserControlLibrary.WindowBanHangChuyenBan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chuyen Ban" Height="600" Width="791" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF457ECE" Offset="0" />
+                <GradientStop Color="#FF69A7EC" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />                
+            </Grid.RowDefinitions>
+            <TextBlock Name="lbTieuDe" Text="Chuyển Bàn" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <Grid Grid.Row="1" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Row="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="219,0,208,0" Width="330">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="230" Header="Tên món"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBan}" Width="70" Header="SL"/>                            
+                        </GridView>
+                    </ListView.View>                   
+                </ListView>                
+                <Label Content="Chọn bàn muốn chuyển" Height="28" HorizontalAlignment="Center" Name="label1" VerticalAlignment="Top" Width="332" HorizontalContentAlignment="Center" FontSize="14" />
+                <Rectangle VerticalAlignment="Top" Width="332"  Height="1"  HorizontalAlignment="Center" Margin="0,37,0,0">
+                    <Rectangle.Stroke>
+                        <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="Red" Offset="0.4" />
+                            <GradientStop Color="Red" Offset="0.6" />
+                            <GradientStop Color="White" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Stroke>
+                </Rectangle>
+                <ComboBox Height="33" HorizontalAlignment="Left" Margin="249,55,0,0" Name="cboBan1" VerticalAlignment="Top" Width="122" FontSize="18" VerticalContentAlignment="Center" SelectedValuePath="BanID" DisplayMemberPath="TenBan" SelectionChanged="cboBan1_SelectionChanged" />
+                <Label Content="Chọn bàn chuyển tới" FontSize="14" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Name="label2" VerticalAlignment="Top" Width="332" Grid.Column="1" />
+                <Rectangle VerticalAlignment="Top" Width="332"  Height="1"  HorizontalAlignment="Center" Margin="3,37,0,0" Grid.Column="1">
+                    <Rectangle.Stroke>
+                        <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="Red" Offset="0.4" />
+                            <GradientStop Color="Red" Offset="0.6" />
+                            <GradientStop Color="White" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Stroke>
+                </Rectangle>
+                <ComboBox Height="33" HorizontalAlignment="Left" Margin="249,55,0,0" Name="cboBan2" VerticalAlignment="Top" Width="122" Grid.Column="1" FontSize="18" VerticalContentAlignment="Center" DisplayMemberPath="TenBan" SelectedValuePath="BanID" />
+                <my:POSButtonIcon Content="Đồng ý" Grid.Row="2" Height="70" HorizontalAlignment="Right" Margin="254,0,24,0" Name="btnDongY" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/Accep.png" Click="btnDongY_Click" />
+                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="24,0,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="2" Click="btnDong_Click" />
+                <ComboBox FontSize="18" Height="33" HorizontalAlignment="Left" Margin="39,55,0,0" Name="cboKhu1" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="163" SelectionChanged="cboKhu1_SelectionChanged" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu" />
+                <ComboBox FontSize="18" Height="33" HorizontalAlignment="Left" Margin="39,55,0,0" Name="cboKhu2" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="163" Grid.Column="1" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu" SelectionChanged="cboKhu2_SelectionChanged" />
+                <Label Content="Khu" Height="28" HorizontalAlignment="Left" Margin="6,57,0,0" Name="label3" VerticalAlignment="Top" />
+                <Label Content="Bàn:" Height="28" HorizontalAlignment="Left" Margin="212,57,0,0" Name="label4" VerticalAlignment="Top" />
+                <Label Content="Khu" Height="28" HorizontalAlignment="Left" Margin="6,57,0,0" Name="label5" VerticalAlignment="Top" Grid.Column="1" />
+                <Label Content="Bàn:" Height="28" HorizontalAlignment="Left" Margin="212,57,0,0" Name="label6" VerticalAlignment="Top" Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
