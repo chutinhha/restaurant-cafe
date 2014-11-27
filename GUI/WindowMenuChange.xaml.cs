@@ -16,6 +16,7 @@ namespace GUI
             mTransit = transit;
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Quản lý thực đơn";
+            uCMenu._IsBanHang = false;
             PhanQuyen();
         }
 

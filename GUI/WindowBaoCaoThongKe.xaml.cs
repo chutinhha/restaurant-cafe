@@ -45,8 +45,10 @@ namespace GUI
 
         private void btnBaoCaoLichSuBanHang_Click(object sender, RoutedEventArgs e)
         {
-            BaoCao.LichSuBanHang.WindowLichSuBanHang win = new BaoCao.LichSuBanHang.WindowLichSuBanHang(mTransit);
+            UserControlLibrary.WindowBaoCaoLichSuBanHang win = new UserControlLibrary.WindowBaoCaoLichSuBanHang(mTransit);
             win.ShowDialog();
+            //BaoCao.LichSuBanHang.WindowLichSuBanHang win = new BaoCao.LichSuBanHang.WindowLichSuBanHang(mTransit);
+            //win.ShowDialog();
         }
     }
 }

@@ -39,7 +39,7 @@ namespace GUI
             if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.DinhLuong.DinhLuong) || !quyenLoaiKhachHang.ChiTietQuyen.ChoPhep)
             {
                 btnDinhLuong.Visibility = System.Windows.Visibility.Collapsed;
-            }            
+            }
         }
 
         private void btnDinhLuong_Click(object sender, RoutedEventArgs e)

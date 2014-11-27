@@ -68,7 +68,8 @@ namespace UserControlLibrary
             if (lsLoaiBan.Count() > 0)
             {
                 _Mon.MenuMon.SapXepKichThuocMon = 2;
-                _Mon.MenuMon.SoLuongKichThuocMon = 1;
+                _Mon.MenuMon.SLMonChoPhepTonKho = 1;
+                _Mon.MenuMon.SLMonKhongChoPhepTonKho = 0;
                 Data.LOAIBAN item = lsLoaiBan.FirstOrDefault();
                 _Mon.MenuMon.MENUKICHTHUOCMONs.Add(new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = 0, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false });
             }
@@ -172,11 +173,11 @@ namespace UserControlLibrary
             LoadDonVi();
             SetValues();
         }
-        
+
         private void txtTenNgan_LostFocus(object sender, RoutedEventArgs e)
         {
             if (txtTenDai.Text == "")
                 txtTenDai.Text = txtTenNgan.Text;
-        }        
+        }
     }
 }

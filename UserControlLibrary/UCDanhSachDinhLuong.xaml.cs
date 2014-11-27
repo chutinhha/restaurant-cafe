@@ -96,7 +96,7 @@ namespace UserControlLibrary
         private void btnThemMon_Click(object sender, RoutedEventArgs e)
         {
             WindowChonMon win = new WindowChonMon(mTransit, true);
-            win.SetLoadDonvi(true, true, true, false, false, true);
+            win.SetLoadDonvi(true, false, true);
             if (win.ShowDialog() == true)
             {
                 Data.BODinhLuong item = new Data.BODinhLuong();

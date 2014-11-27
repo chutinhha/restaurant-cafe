@@ -7,21 +7,30 @@ namespace Data
 {
     public class BOChucNang
     {
+
+        FrameworkRepository<CHUCNANG> frmChucNang = null;
+        public BOChucNang(Data.Transit transit)
+        {
+            frmChucNang = new FrameworkRepository<CHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.CHUCNANGs);
+        }
+
+        public IQueryable<CHUCNANG> GetAll(Transit transit)
+        {
+            return frmChucNang.Query().Where(s => s.Deleted == false);
+        }
+
+        public void LuuChucNangHienThi(List<CHUCNANG> lsArray)
+        {
+            foreach (var item in lsArray)
+            {
+                frmChucNang.Update(item);
+            }
+            frmChucNang.Commit();
+        }
+
         public static IQueryable<CHUCNANG> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<CHUCNANG>.QueryNoTracking(mTransit.KaraokeEntities.CHUCNANGs).Where(s => s.Deleted == false);
-        }
-
-        public static List<CHUCNANG> GetAll(Transit mTransit)
-        {
-            return mTransit.KaraokeEntities.CHUCNANGs.Where(s => s.Deleted == false).ToList();
-        }
-
-        public static int Them(CHUCNANG item, Transit mTransit)
-        {
-            mTransit.KaraokeEntities.CHUCNANGs.AddObject(item);
-            mTransit.KaraokeEntities.SaveChanges();
-            return item.ChucNangID;
         }
     }
 
@@ -51,11 +60,15 @@ namespace Data
         {
             TinhTien = 101,
             LuuHoaDon = 102,
-            ThayDoiGia = 103,
-            ChuyenBan = 104,
-            TachBan = 105,
-            XoaMon = 106,
-            XoaToanBoMon = 107
+            TamTinh = 103,
+            ThayDoiGia = 104,
+            XoaMon = 105,
+            XoaToanBoMon = 106,
+            ChuyenBan = 107,
+            TachBan = 108,
+            DongBan = 109,
+            ThayDoiSoLuong = 110,
+            ChonGia = 111
         }
 
         public enum NhanVien
@@ -110,7 +123,8 @@ namespace Data
             HuKho = 904,
             MatKho = 905,
             ChuyenKho = 906,
-            ChinhKho = 907
+            ChinhKho = 907,
+            NhaCungCap = 908
         }
 
         public enum DinhLuong

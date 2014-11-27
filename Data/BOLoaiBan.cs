@@ -14,7 +14,10 @@ namespace Data
         {
             return FrameworkRepository<LOAIBAN>.QueryNoTracking(mTransit.KaraokeEntities.LOAIBANs);
         }
-
+        public static IQueryable<LOAIBAN> GetAllNoTracking(Transit mTransit, int DonViID)
+        {
+            return FrameworkRepository<LOAIBAN>.QueryNoTracking(mTransit.KaraokeEntities.LOAIBANs).Where(s => s.DonViID == DonViID);
+        }
 
     }
 }

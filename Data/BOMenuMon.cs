@@ -31,11 +31,11 @@ namespace Data
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
         }
 
-        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, Transit mTransit)
+        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
-            return GetAll(GroupID, IsBanHang, false, mTransit);
+            return GetAll(GroupID, IsBanHang, IsSoLuongChoPhepTonKho, IsSoLuongKhongChoPhepTonKho, false, mTransit);
         }
-        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsVisual, Transit mTransit)
         {
             frmMon.Refresh();
             var lsArray = from m in frmMon.Query()
@@ -48,7 +48,14 @@ namespace Data
             if (GroupID > -1)
                 lsArray = lsArray.Where(s => s.MenuMon.NhomID == GroupID && s.MenuMon.Deleted == false);
             if (IsBanHang)
-                lsArray = lsArray.Where(s => s.MenuMon.SoLuongKichThuocMon > 0);
+                lsArray = lsArray.Where(s => s.MenuMon.SapXepKichThuocMon > 0 || s.MenuMon.SLMonChoPhepTonKho > 0);
+            else
+            {
+                if (!IsSoLuongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuMon.SLMonChoPhepTonKho < 0);
+                if (!IsSoLuongKhongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuMon.SLMonKhongChoPhepTonKho < 0);
+            }
             if (IsVisual)
                 lsArray = lsArray.Where(s => s.MenuMon.Visual == true);
             return lsArray.OrderBy(s => s.MenuMon.SapXep);

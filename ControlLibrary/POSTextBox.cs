@@ -35,13 +35,9 @@ namespace ControlLibrary
     /// </summary>
     public class POSTextBox : TextBox
     {
-        private TextBox mTextBox;        
-        
         private TypeKeyPad typeTextBox = TypeKeyPad.None;
-
         private WindowKeyPad _WindowKeyPad { get; set; }
-
-        private WindowKeyboard _WindowKeyboard { get; set; }                
+        private WindowKeyboard _WindowKeyboard { get; set; }
         static POSTextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(POSTextBox), new FrameworkPropertyMetadata(typeof(POSTextBox)));
@@ -58,7 +54,7 @@ namespace ControlLibrary
 
         private void IniForcus()
         {
-            if (_UCMoneyKeyPad!=null)
+            if (_UCMoneyKeyPad != null)
             {
                 _UCMoneyKeyPad._TextBox = this;
             }
@@ -88,11 +84,7 @@ namespace ControlLibrary
                     break;
             }
         }
-        //protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        //{
-        //    Console.WriteLine(this.Text);
-        //    base.OnPropertyChanged(e);
-        //}
+
         protected override void OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs e)
         {
             IniForcus();
@@ -120,11 +112,9 @@ namespace ControlLibrary
                     break;
                 case TypeKeyPad.Text:
                     break;
-                default:                                        
+                default:
                     break;
             }
-        }     
-        //public static readonly DependencyProperty TextProperty =
-            //DependencyProperty.Register("Text", typeof(string), typeof(POSTextBox), new PropertyMetadata(null));        
+        }
     }
 }

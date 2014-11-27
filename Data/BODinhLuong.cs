@@ -14,6 +14,9 @@ namespace Data
         private FrameworkRepository<DINHLUONG> frmDinhLuong = null;
         private FrameworkRepository<MENUMON> frmMenuMon = null;
         private FrameworkRepository<LOAIBAN> frmLoaiBan = null;
+        public bool IsSua { get; set; }        
+        public System.Windows.Visibility IsXoa { get; set; }
+
 
         public BODinhLuong(Data.Transit transit)
         {

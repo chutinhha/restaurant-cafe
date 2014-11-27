@@ -97,6 +97,7 @@ namespace Data
             public string XoaThanhCong = "Xóa thành công";
             public string SuaThanhCong = "Sửa thành công";
             public string ThemThanhCong = "Thêm thành công";
+            public string DangNhapKhongDung = "Đăng nhập không đúng";
         }
     }
 }

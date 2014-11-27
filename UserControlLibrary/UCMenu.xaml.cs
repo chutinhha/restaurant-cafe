@@ -19,11 +19,9 @@ namespace UserControlLibrary
         public Data.BOMenuNhom BOMenuNhom = null;
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
-        public bool _IsTrongLuong { get; set; }
-        public bool _IsSoLuong { get; set; }
-        public bool _IsTheTich { get; set; }
-        public bool _IsThoiGian { get; set; }
-        public bool _IsDinhLuong { get; set; }
+        public bool _IsSoLuongChoPhepTonKho { get; set; }
+        public bool _IsSoLuongKhongChoPhepTonKho { get; set; }
+
         public bool _IsTonKho { get; set; }
         private double ImageHeightItems = 0;
         private double ImageWidthItems = 0;
@@ -37,12 +35,10 @@ namespace UserControlLibrary
             InitializeComponent();
             _IsBanHang = false;
             _IsDanhSachKhuyenMai = false;
-            _IsTrongLuong = true;
-            _IsSoLuong = true;
-            _IsTheTich = true;
-            _IsDinhLuong = true;
+
+            _IsSoLuongChoPhepTonKho = true;
+            _IsSoLuongKhongChoPhepTonKho = true;
             _IsTonKho = true;
-            _IsThoiGian = true;
         }
 
         public delegate void EventMenuGroup(Data.BOMenuNhom ob);
@@ -96,7 +92,7 @@ namespace UserControlLibrary
 
         public void LoadMon(int NhomID)
         {
-            lsMenuMon = BOMenuMon.GetAll(NhomID, _IsBanHang, mTransit).ToList();
+            lsMenuMon = BOMenuMon.GetAll(NhomID, _IsBanHang, _IsSoLuongChoPhepTonKho, _IsSoLuongKhongChoPhepTonKho, mTransit).ToList();
             if (lsMenuMon.Count > gridItems.Children.Count)
             {
                 int CountItems = gridItems.Children.Count - 2;
@@ -314,7 +310,7 @@ namespace UserControlLibrary
 
         public void LoadGroup()
         {
-            lsMenuNhom = BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, mTransit).ToList();
+            lsMenuNhom = BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, _IsSoLuongChoPhepTonKho, _IsSoLuongKhongChoPhepTonKho, mTransit).ToList();
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
                 int CountGroup = gridGroup.Children.Count - 2;
@@ -475,7 +471,7 @@ namespace UserControlLibrary
 
         public void LoadKichThuocMon(Data.BOMenuMon mon)
         {
-            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, _IsSoLuong, _IsTrongLuong, _IsTheTich, _IsDinhLuong, _IsThoiGian, mTransit).ToList();
+            lsMenuKichThuocMon = BOMenuKichThuocMon.GetAll(mon.MenuMon.MonID, _IsSoLuongChoPhepTonKho, _IsSoLuongKhongChoPhepTonKho, mTransit).ToList();
             if (lsMenuKichThuocMon.Count == 1)
             {
                 OnEventMenuKichThuocMon(lsMenuKichThuocMon[0]);
