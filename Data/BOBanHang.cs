@@ -233,7 +233,7 @@ namespace Data
             GuiNhaBep();
 
         }
-        public void GopBan(BOGopBan gopban)
+        public void GopBan(BOTachGopBan gopban)
         {
             if (this.BANHANG.BanHangID>0)
             {
@@ -244,7 +244,7 @@ namespace Data
                 this.BANHANG.TrangThaiID = trangthaiID;
             }
             this.BANHANG.BanHangID = 0;
-            foreach (var banhang in gopban._ListBanGop)
+            foreach (var banhang in gopban._ListBan)
             {
                 banhang.BANHANG.TrangThaiID = 6;
                 frBanHang.Update(banhang.BANHANG);

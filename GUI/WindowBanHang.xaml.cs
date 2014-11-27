@@ -98,6 +98,7 @@ namespace GUI
                     ChuyenBan();
                     break;
                 case (int)Data.TypeChucNang.BanHang.TachBan:
+                    TachBan();
                     break;
                 case (int)Data.TypeChucNang.BanHang.DongBan:
                     DongBan();
@@ -209,13 +210,23 @@ namespace GUI
             }
             XoaTextThongTinMon();
         }
+        private void TachBan()
+        {
+            this.DialogResult = false;
+            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,true);
+            if (win1.ShowDialog() == true)
+            {
+                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mTransit, win1._TachGopBan);
+                win2.ShowDialog();
+            }
+        }
         private void GopBan()
         {
             this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChonBanGop win1 = new UserControlLibrary.WindowBanHangChonBanGop(mTransit);
+            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,false);
             if (win1.ShowDialog() == true)
             {
-                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mTransit, win1._GopBan);
+                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mTransit, win1._TachGopBan);
                 win2.ShowDialog();
             }
         }

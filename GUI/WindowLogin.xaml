@@ -36,7 +36,6 @@
                 <my:POSButtonIcon Grid.Column="0" Click="btnExit_Click" Content="Thoát" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="5" />
                 <my:POSButtonIcon Grid.Column="1" Click="btnClear_Click" Content="Xóa trắng" Image="/SystemImages;component/Images/Clear.png" Margin="5"/>
                 <my:POSButtonIcon Grid.Column="2" Click="btnEnter_Click" Content="Đăng nhập" Image="/SystemImages;component/Images/Login.png" Margin="5"/>
-
             </Grid>
 
         </Grid>

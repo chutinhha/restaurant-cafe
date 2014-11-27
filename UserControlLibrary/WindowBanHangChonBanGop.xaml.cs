@@ -18,8 +18,8 @@ namespace UserControlLibrary
     /// </summary>
     public partial class WindowBanHangChonBanGop : Window
     {
-        private Data.BOGopBan mBOGopBan;
-        public Data.BOGopBan _GopBan 
+        private Data.BOTachGopBan mBOGopBan;
+        public Data.BOTachGopBan _GopBan 
         {
             get { return mBOGopBan; }
         }
@@ -27,7 +27,7 @@ namespace UserControlLibrary
         public WindowBanHangChonBanGop(Data.Transit transit)
         {
             mTransit = transit;
-            mBOGopBan = new Data.BOGopBan(mTransit);
+            mBOGopBan = new Data.BOTachGopBan(mTransit);
             InitializeComponent();
         }
         private void LoadKhu()
