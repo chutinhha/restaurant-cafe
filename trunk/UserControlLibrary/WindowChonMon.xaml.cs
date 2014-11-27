@@ -36,13 +36,10 @@ namespace UserControlLibrary
 
         }
 
-        public void SetLoadDonvi(bool IsSoLuong, bool IsTrongLuong, bool IsTheTich, bool IsDinhLuong, bool IsThoiGian, bool IsTonKho)
+        public void SetLoadDonvi(bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsTonKho)
         {
-            uCMenu._IsSoLuong = IsSoLuong;
-            uCMenu._IsTrongLuong = IsTrongLuong;
-            uCMenu._IsTheTich = IsTheTich;
-            uCMenu._IsThoiGian = IsDinhLuong;
-            uCMenu._IsDinhLuong = IsThoiGian;
+            uCMenu._IsSoLuongChoPhepTonKho = IsSoLuongChoPhepTonKho;
+            uCMenu._IsSoLuongKhongChoPhepTonKho = IsSoLuongKhongChoPhepTonKho;
             uCMenu._IsTonKho = IsTonKho;
         }
 

@@ -27,7 +27,10 @@ namespace Data
             get
             {
                 if (MenuMon != null && MenuKichThuocMon != null)
-                    return MenuMon.TenDai + " (" + MenuKichThuocMon.TenLoaiBan + ")";
+                    if (MenuKichThuocMon.TenLoaiBan != "")
+                        return MenuMon.TenDai + " (" + MenuKichThuocMon.TenLoaiBan + ")";
+                    else
+                        return MenuMon.TenDai;
                 else
                     return "";
             }
@@ -102,7 +105,7 @@ namespace Data
         /// <param name="IsThoiGian">Có cho load thời gian lên không</param>
         /// <param name="mTransit"></param>
         /// <returns></returns>
-        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, bool IsSoLuong, bool IsTrongLuong, bool IsTheTich, bool IsDinhLuong, bool IsThoiGian, Transit mTransit)
+        public IQueryable<BOMenuKichThuocMon> GetAll(int MonID, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
             var res = (from k in frmKichThuocMon.Query()
                        join m in frmmenuMon.Query() on k.MonID equals m.MonID
@@ -114,16 +117,10 @@ namespace Data
                            MenuMon = m,
                            LoaiBan = l
                        });
-            if (!IsSoLuong)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.SoLuong);
-            if (!IsTrongLuong)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.TrongLuong);
-            if (!IsTheTich)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.TheTich);
-            if (!IsThoiGian)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.ThoiGian);
-            if (!IsDinhLuong)
-                res = res.Where(s => s.MenuKichThuocMon.DonVi != (int)EnumDonVi.DinhLuong);
+            if (!IsSoLuongChoPhepTonKho)
+                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho != IsSoLuongChoPhepTonKho);
+            if (!IsSoLuongKhongChoPhepTonKho)
+                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho != IsSoLuongKhongChoPhepTonKho);
             return res;
         }
 

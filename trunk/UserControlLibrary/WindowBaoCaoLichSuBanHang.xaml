@@ -1,0 +1,86 @@
+﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="UserControlLibrary.WindowBaoCaoLichSuBanHang"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowBaoCaoLichSuBanHang" Height="768" Width="1024" Loaded="Window_Loaded" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
+        <Grid Grid.Row="1" Style="{StaticResource ReportHeader}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="STT" />
+            <TextBlock Grid.Column="1" Text="Hóa đơn" />
+            <TextBlock Grid.Column="2" Text="Nhân viên" />
+            <TextBlock Grid.Column="3" Grid.ColumnSpan="4" Text="Thanh toán" />
+            <TextBlock Grid.Column="7" Text="Tổng tiền" />
+        </Grid>
+        <ListBox Grid.Row="2" x:Name="lbData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid DataContext="{Binding}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Style="{StaticResource ReportDataItemsLine}"  Content="1"  Margin="10,0" />
+
+                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding MaHoaDon, StringFormat=Window width: {0}}" Margin="10,0"/>
+                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="2" Grid.Column="1" Content="{Binding TenBan}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding TenNhanVien}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="3" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="1" Grid.Column="3" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="2" Grid.Column="3" Content="{Binding NgayBan}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="4" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="1" Grid.Column="4" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="2" Grid.Column="4" Content="{Binding NgayBan}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="5" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="1" Grid.Column="5" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="2" Grid.Column="5" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="3" Grid.Column="5" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="4" Grid.Column="5" Content="{Binding NgayBan}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="6" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="1" Grid.Column="6" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="2" Grid.Column="6" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="3" Grid.Column="6" Content="{Binding NgayBan}" Margin="10,0"/>
+                        <Label Grid.Row="4" Grid.Column="6" Content="{Binding NgayBan}" Margin="10,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="7" Grid.RowSpan="5" Content="{Binding NgayBan}" Margin="10,0"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

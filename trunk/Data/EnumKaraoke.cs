@@ -5,20 +5,7 @@ using System.Text;
 
 namespace Data
 {
-    public enum EnumChucNang
-    {
-        XoaMon = 1,
-        XoaToanBoMon,
-        TinhTien,
-        LuuHoaDon,
-        TamTinh,
-        ThayDoiGia,
-        ChuyenBan,
-        TachBan,
-        GopBan,
-        DongBan,
-        ChonGia
-    }
+    
 
     public enum EnumLoaiBan
     {

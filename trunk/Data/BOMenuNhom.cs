@@ -27,22 +27,27 @@ namespace Data
             MenuNhom = menuNhom;
             MenuLoaiNhom = menuLoaiNhom;
         }
-        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, Transit mTransit)
+        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
-            return GetAll(LoaiNhomID, IsBanHang, false, mTransit);
+            return GetAll(LoaiNhomID, IsBanHang, IsSoLuongChoPhepTonKho, IsSoLuongKhongChoPhepTonKho, false, mTransit);
         }
-        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsVisual, Transit mTransit)
+        public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsVisual, Transit mTransit)
         {
-            frmNhom.Refresh();
             var lsArray = from n in frmNhom.Query() select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
-                lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false).OrderBy(s => s.MenuNhom.SapXep);
+                lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false);
             if (IsBanHang)
-                lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SoLuongMon > 0).OrderBy(s => s.MenuNhom.SapXep);
+                lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SLMonChoPhepTonKho > 0 || s.MenuNhom.SLMonKhongChoPhepTonKho > 0);
+            else
+            {
+                if (!IsSoLuongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonChoPhepTonKho < 0);
+                if (!IsSoLuongKhongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonKhongChoPhepTonKho < 0);
+            }
             if (IsVisual)
-                lsArray = lsArray.Where(s => s.MenuNhom.Visual == true).OrderBy(s => s.MenuNhom.SapXep);
-
-            return lsArray;
+                lsArray = lsArray.Where(s => s.MenuNhom.Visual == true);
+            return lsArray.OrderBy(s => s.MenuNhom.SapXep);
 
         }
 
@@ -50,7 +55,7 @@ namespace Data
         {
             frmNhom.AddObject(item.MenuNhom);
             frmNhom.Commit();
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
+            SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 
@@ -58,7 +63,7 @@ namespace Data
         {
             frmNhom.DeleteObject(item.MenuNhom);
             frmNhom.Commit();
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
+            SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 
@@ -66,7 +71,7 @@ namespace Data
         {
             frmNhom.Update(item.MenuNhom);
             frmNhom.Commit();
-            SapXep(item.MenuLoaiNhom.LoaiNhomID, mTransit);
+            SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;
         }
 

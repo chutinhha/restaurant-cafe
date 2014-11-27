@@ -30,11 +30,7 @@ namespace UserControlLibrary
             mTransit = transit;
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu.SetTransit(mTransit);
-            uCMenu._IsDinhLuong = true;
-            uCMenu._IsSoLuong = false;
-            uCMenu._IsTrongLuong = false;
-            uCMenu._IsTheTich = false;
-            uCMenu._IsThoiGian = false;
+            uCMenu._IsSoLuongChoPhepTonKho = false;
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)

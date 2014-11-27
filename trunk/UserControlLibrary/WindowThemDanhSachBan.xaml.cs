@@ -72,7 +72,7 @@ namespace UserControlLibrary
                 txtGiaMacDinh.Text = "0";
                 txtSoLuongBan.Text = "1";
                 ckBan.IsChecked = true;
-                ckChoPhepTonKho.IsChecked = false;
+                ckChoPhepTonKho.IsChecked = true;
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Danh Sách Bán";
             }

@@ -28,7 +28,7 @@ namespace Data
             foreach (BOChiTietBanHang item in lsArray)
             {
                 frmTonKho.Refresh();
-                IQueryable<Data.TONKHO> lsTonKho = frmTonKho.Query().Where(s => s.DonViID == item.MENUKICHTHUOCMON.DonVi && s.MonID == item.MENUKICHTHUOCMON.MonID && s.KhoID == transit.KhoID).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
+                IQueryable<Data.TONKHO> lsTonKho = frmTonKho.Query().Where(s => s.DonViID == item.MENUKICHTHUOCMON.DonViID && s.MonID == item.MENUKICHTHUOCMON.MonID && s.KhoID == transit.KhoID).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
                 int SL = (int)(item.CHITIETBANHANG.SoLuongBan * item.MENUKICHTHUOCMON.KichThuocLoaiBan);
                 if (SL < lsTonKho.Sum(s => s.SoLuongTon))
                 {
@@ -54,7 +54,7 @@ namespace Data
                             break;
                         }
                     }
-                    Data.TONKHOTONG tonKhoTong = KiemTraTonKhoTong(transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonVi);
+                    Data.TONKHOTONG tonKhoTong = KiemTraTonKhoTong(transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID);
                     tonKhoTong.SoLuongBan += SL;
                     tonKhoTong.SoLuongTon -= SL;
                     frmTonKhoTong.Update(tonKhoTong);

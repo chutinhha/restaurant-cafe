@@ -30,8 +30,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KichThuocLoaiBan}" Width="150" Header="Đơn vị tính" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.GiaBanMacDinh}" Width="150" Header="Giá mặc định" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.SoLuongBanBan}" Width="150" Header="Số lượng bán" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.TonKhoToiDa}" Width="150" Header="Tồn kho tối đa" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.TonKhoToiThieu}" Width="150" Header="Tồn kho tối thiểu" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.ChoPhepTonKho}" Width="150" Header="Tồn kho tối đa" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.Visual}" Width="150" Header="Bán" />
                 </GridView>
             </ListView.View>
