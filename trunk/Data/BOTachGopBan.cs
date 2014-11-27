@@ -5,33 +5,41 @@ using System.Text;
 
 namespace Data
 {
-    public class BOGopBan
+    public class BOTachGopBan
     {
         private Transit mTransit;
-        private List<Data.BOBanHang> mListBanGop;
+        private List<Data.BOBanHang> mListBan;
         private FrameworkRepository<GOPBAN> frGopBan;
         private FrameworkRepository<CHITIETGOPBAN> frChiTietGopBan;
+        private FrameworkRepository<TACHBAN> frTachBan;
+        private FrameworkRepository<CHITIETTACHBAN> frChiTietTachBan;
         public Data.BOBanHang BanHang { get; set; }
-        public List<Data.BOBanHang> _ListBanGop 
+        public List<Data.BOBanHang> _ListBan 
         {
-            get { return mListBanGop; }
+            get { return mListBan; }
         }
-        public BOGopBan(Transit transit)
+        public BOTachGopBan(Transit transit)
         {
             mTransit = transit;
-            mListBanGop = new List<BOBanHang>();
+            mListBan = new List<BOBanHang>();
             frGopBan = new FrameworkRepository<GOPBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.GOPBANs);
             frChiTietGopBan = new FrameworkRepository<CHITIETGOPBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.CHITIETGOPBANs);
+            frTachBan = new FrameworkRepository<TACHBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.TACHBANs);
+            frChiTietTachBan = new FrameworkRepository<CHITIETTACHBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.CHITIETTACHBANs);
         }
 
         public IQueryable<KHU> GetAllKhuVisual()
         {
             return Data.BOKhu.GetAllVisual(mTransit);
         }
-        public IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu)
+        public IQueryable<BAN> GetAllTableNotInOrderPerArea(KHU khu)
+        {
+            return Data.BOBan.GetAllTableNotInOrderPerArea(khu, mTransit);
+        }
+        public IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu,int banID)
         {
             return from a in Data.BOBan.GetAllTableInOrderPerArea(khu,mTransit)
-                   where a.BanID!=BanHang.BANHANG.BanID
+                   where a.BanID!=banID || banID==0
                    select a;
         }
         public IQueryable<BAN> GetVisualTablePerArea(KHU khu)
@@ -48,7 +56,7 @@ namespace Data
             gopban.ThoiGian = DateTime.Now;            
             frGopBan.AddObject(gopban);
             frGopBan.Commit();
-            foreach (var item in _ListBanGop)
+            foreach (var item in _ListBan)
             {
                 CHITIETGOPBAN chitiet = new CHITIETGOPBAN();
                 chitiet.GopBanID = gopban.GopBanID;
@@ -64,9 +72,13 @@ namespace Data
             }
             frChiTietGopBan.Commit();
         }
-        public bool KiemTraGopBan()
+        public void XuliTachBan()
         {
-            if (mListBanGop.Count>0)
+ 
+        }
+        public bool KiemTra()
+        {
+            if (mListBan.Count>0)
             {
                 return true;
             }
@@ -80,7 +92,7 @@ namespace Data
         }
         private bool KiemTraBanHang(Data.BOBanHang bh)
         {
-            foreach (var item in _ListBanGop)
+            foreach (var item in _ListBan)
             {
                 if (item.BANHANG.BanHangID==bh.BANHANG.BanHangID)
                 {
@@ -93,12 +105,12 @@ namespace Data
         {
             if (!KiemTraBanHang(bh))
             {
-                mListBanGop.Add(bh);
+                mListBan.Add(bh);
             }
         }
         public void XoaBanHang(Data.BOBanHang bh)
         {
-            mListBanGop.Remove(bh);
+            mListBan.Remove(bh);
         }
     }
 }
