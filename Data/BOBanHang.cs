@@ -117,6 +117,10 @@ namespace Data
             _ListChiTietBanHang.Add(chiTiet);
             return 0;
         }
+        public void DeleteChiTietBanHang(BOChiTietBanHang chiTiet)
+        {
+            _ListChiTietBanHang.Remove(chiTiet);
+        }
         public int DongBan()
         {            
             if (this.BANHANG.TrangThaiID==3)
@@ -133,7 +137,7 @@ namespace Data
             int lichSuBanHangId = 0;
             if (this.BANHANG.BanHangID==0)
             {                
-                frBanHang.AddObject(this.BANHANG);
+                frBanHang.AddObject(this.BANHANG);                
                 frBanHang.Commit();
                 LICHSUBANHANG lichsu = GetLichSuBanHang();
                 frLichSu.AddObject(lichsu);
@@ -233,6 +237,31 @@ namespace Data
             GuiNhaBep();
 
         }
+        public void TachBan(BOTachGopBan tachban)
+        {
+            Nullable<int> trangThai = this.BANHANG.TrangThaiID;
+            this.BANHANG.TrangThaiID = 7;
+            frBanHang.Update(this.BANHANG);
+            frBanHang.Commit();
+            this.BANHANG.TrangThaiID = trangThai;
+            this.BANHANG.BanHangID = 0;
+            foreach (var bahang in tachban._ListBan)
+            {
+                bahang.BANHANG.BanHangID = 0;                
+                foreach (var item in bahang._ListChiTietBanHang)
+                {
+                    item.CHITIETBANHANG.ChiTietBanHangID = 0;                    
+                }
+                if (bahang._ListChiTietBanHang.Count>0)
+                {
+                    bahang.GuiNhaBep();
+                }
+            }
+            if (this._ListChiTietBanHang.Count>0)
+            {
+                this.GuiNhaBep();
+            }
+        }
         public void GopBan(BOTachGopBan gopban)
         {
             if (this.BANHANG.BanHangID>0)
@@ -243,7 +272,7 @@ namespace Data
                 frBanHang.Commit();
                 this.BANHANG.TrangThaiID = trangthaiID;
             }
-            this.BANHANG.BanHangID = 0;
+            this.BANHANG.BanHangID = 0;            
             foreach (var banhang in gopban._ListBan)
             {
                 banhang.BANHANG.TrangThaiID = 6;

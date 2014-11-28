@@ -16,8 +16,7 @@ namespace Data
         public MENUMON MenuMon { get; set; }
 
         public BOMenuItemMayIn(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmMenuItemMayIn = new FrameworkRepository<MENUITEMMAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MENUITEMMAYINs);
             frmMayIn = new FrameworkRepository<MAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MAYINs);
             frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);

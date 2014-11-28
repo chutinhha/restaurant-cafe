@@ -19,8 +19,7 @@ namespace Data
 
 
         public BODinhLuong(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmDinhLuong = new FrameworkRepository<DINHLUONG>(transit.KaraokeEntities, transit.KaraokeEntities.DINHLUONGs);
             frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmLoaiBan = new FrameworkRepository<LOAIBAN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIBANs);

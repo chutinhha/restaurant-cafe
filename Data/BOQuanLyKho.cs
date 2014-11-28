@@ -10,8 +10,7 @@ namespace Data
         FrameworkRepository<TONKHOTONG> frmTonKhoTong = null;
         FrameworkRepository<TONKHO> frmTonKho = null;
         public BOQuanLyKho(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmTonKhoTong = new FrameworkRepository<TONKHOTONG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGs);
             frmTonKho = new FrameworkRepository<TONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOes);
         }

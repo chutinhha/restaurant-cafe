@@ -17,8 +17,7 @@ namespace Data
         FrameworkRepository<Data.CHINHKHO> frmChinhKho = null;
 
         public BoChinhKho(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
             frmChinhKho = new FrameworkRepository<CHINHKHO>(transit.KaraokeEntities, transit.KaraokeEntities.CHINHKHOes);

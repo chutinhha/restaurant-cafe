@@ -13,8 +13,7 @@ namespace Data
         FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
         FrameworkRepository<LOAILICHBIEU> frmLoaiLichBieu;
         public BOLichBieuDinhKy(Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmLichBieuDinhKy = new FrameworkRepository<LICHBIEUDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUDINHKies);
             frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
             frmLoaiLichBieu = new FrameworkRepository<LOAILICHBIEU>(transit.KaraokeEntities, transit.KaraokeEntities.LOAILICHBIEUx);

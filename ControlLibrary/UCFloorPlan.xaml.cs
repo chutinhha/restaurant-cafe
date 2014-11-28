@@ -44,22 +44,32 @@ namespace ControlLibrary
         {
 
         }
-        private void LoadAlllStatus()
+        public void LoadAlllStatus()
         {
-            var list = Data.BOTableStatus.GetAll(mTransit).ToList();
-            foreach (POSButtonTable item in gridFloorPlan.Children)
+            if (!_IsEdit)
             {
-                if (list.Count==0)
+                var list = Data.BOTableStatus.GetAll(mTransit).ToList();
+                foreach (POSButtonTable item in gridFloorPlan.Children)
                 {
-                    break;
-                }
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (item._Ban.BanID==list[i].TableID)
+                    //if (list.Count==0)
+                    //{
+                    //    break;
+                    //}
+                    bool check = true;
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        item._ButtonTableStatusColor = (POSButtonTable.POSButtonTableStatusColor)list[i].Status;
-                        i--;
-                        break;
+                        if (item._Ban.BanID==list[i].TableID)
+                        {
+                            item._ButtonTableStatusColor = (POSButtonTable.POSButtonTableStatusColor)list[i].Status;
+                            list.RemoveAt(i);
+                            check = false;
+                            //i--;
+                            break;
+                        }
+                    }
+                    if (check)
+                    {
+                        item._ButtonTableStatusColor = POSButtonTable.POSButtonTableStatusColor.None;
                     }
                 }
             }
@@ -112,10 +122,7 @@ namespace ControlLibrary
                 {
                     addTable(ban);
                 }
-                if (!_IsEdit)
-                {
-                    LoadAlllStatus();
-                }
+                LoadAlllStatus();
                 imgBackground.Source = Utilities.ImageHandler.BitmapImageFromByteArray(_Khu.Hinh);
             }
         }

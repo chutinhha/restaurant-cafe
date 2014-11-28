@@ -9,8 +9,7 @@ namespace Data
     {
         FrameworkRepository<KHO> frmKho = null;
         public BOKho(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
         }
 

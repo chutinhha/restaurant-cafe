@@ -10,8 +10,7 @@ namespace Data
 
         FrameworkRepository<LOAIKHACHHANG> frmLoaiKhachHang = null;
         public BOLoaiKhachHang(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIKHACHHANGs);
         }
 

@@ -9,8 +9,7 @@ namespace Data
     {
         FrameworkRepository<NHACUNGCAP> frmNhaCungCap = null;
         public BONhaCungCap(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmNhaCungCap = new FrameworkRepository<NHACUNGCAP>(transit.KaraokeEntities, transit.KaraokeEntities.NHACUNGCAPs);
         }
 

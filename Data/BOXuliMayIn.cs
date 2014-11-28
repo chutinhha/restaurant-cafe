@@ -28,6 +28,7 @@ namespace Data
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
             mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
+            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             frMayIn = new FrameworkRepository<MAYIN>(mKaraokeEntities, mKaraokeEntities.MAYINs);
             frMenuMayIn = new FrameworkRepository<MENUITEMMAYIN>(mKaraokeEntities, mKaraokeEntities.MENUITEMMAYINs);
             frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities, mKaraokeEntities.MENUMONs);

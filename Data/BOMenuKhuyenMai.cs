@@ -22,8 +22,7 @@ namespace Data
         }
 
         public BOMenuKhuyenMai(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmMenuKhuyenMai = new FrameworkRepository<MENUKHUYENMAI>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKHUYENMAIs);
             frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
             frmMenuMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);

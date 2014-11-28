@@ -15,8 +15,7 @@ namespace Data
         FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = null;
 
         public BOQuyenNhanVien(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
             frmQuyen = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
             frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENNHANVIENs);
