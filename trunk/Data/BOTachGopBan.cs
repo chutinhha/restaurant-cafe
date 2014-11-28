@@ -9,6 +9,7 @@ namespace Data
     {
         private Transit mTransit;
         private List<Data.BOBanHang> mListBan;
+        public BOBanHang _CurrentBanHang{set;get;}
         private FrameworkRepository<GOPBAN> frGopBan;
         private FrameworkRepository<CHITIETGOPBAN> frChiTietGopBan;
         private FrameworkRepository<TACHBAN> frTachBan;
@@ -50,31 +51,47 @@ namespace Data
         {
             int banHang = this.BanHang.BANHANG.BanHangID;
             this.BanHang.GopBan(this);
-            GOPBAN gopban = new GOPBAN();
+            GOPBAN gopban = new GOPBAN();            
             gopban.BanHangID = this.BanHang.BANHANG.BanHangID;
             gopban.NhanVienID = mTransit.NhanVien.NhanVienID;
-            gopban.ThoiGian = DateTime.Now;            
-            frGopBan.AddObject(gopban);
-            frGopBan.Commit();
+            gopban.ThoiGian = DateTime.Now;                                    
             foreach (var item in _ListBan)
             {
-                CHITIETGOPBAN chitiet = new CHITIETGOPBAN();
-                chitiet.GopBanID = gopban.GopBanID;
+                CHITIETGOPBAN chitiet = new CHITIETGOPBAN();                                
                 chitiet.BanHangID = item.BANHANG.BanHangID;
-                frChiTietGopBan.AddObject(chitiet);
+                gopban.CHITIETGOPBANs.Add(chitiet);                
             }
             if (banHang>0)
             {
-                CHITIETGOPBAN chitiet = new CHITIETGOPBAN();
-                chitiet.GopBanID = gopban.GopBanID;
-                chitiet.BanHangID = banHang;
-                frChiTietGopBan.AddObject(chitiet);
-            }
-            frChiTietGopBan.Commit();
+                CHITIETGOPBAN chitiet = new CHITIETGOPBAN();                
+                chitiet.BanHangID = banHang;                
+                gopban.CHITIETGOPBANs.Add(chitiet);                
+            }            
+            frGopBan.AddObject(gopban);
+            frGopBan.Commit();
         }
         public void XuliTachBan()
         {
- 
+            int banHang = this.BanHang.BANHANG.BanHangID;
+            this.BanHang.TachBan(this);
+            TACHBAN tachBan = new TACHBAN();
+            tachBan.NhanVienID = mTransit.NhanVien.NhanVienID;
+            tachBan.BanHangID = banHang;
+            tachBan.ThoiGian = DateTime.Now;            
+            foreach (var item in _ListBan)
+            {
+                CHITIETTACHBAN chitiet = new CHITIETTACHBAN();                
+                chitiet.BanHangID = item.BANHANG.BanHangID;
+                tachBan.CHITIETTACHBANs.Add(chitiet);      
+            }
+            if (this.BanHang._ListChiTietBanHang.Count>0)
+            {
+                CHITIETTACHBAN chitiet = new CHITIETTACHBAN();                
+                chitiet.BanHangID = this.BanHang.BANHANG.BanHangID;
+                tachBan.CHITIETTACHBANs.Add(chitiet);
+            }
+            frTachBan.AddObject(tachBan);
+            frTachBan.Commit();
         }
         public bool KiemTra()
         {
@@ -84,6 +101,19 @@ namespace Data
             }
             return false;
         }
+        public Data.BOBanHang GetTachBan(BAN ban)
+        {
+            foreach (var item in _ListBan)
+            {
+                if (item.BANHANG.BanID==ban.BanID)
+                {
+                    _CurrentBanHang = item;
+                    return _CurrentBanHang;
+                }
+            }
+            return _CurrentBanHang= null;
+        }
+        
         public Data.BOBanHang GetBanHang(BAN ban)
         {
             Data.BOBanHang banhang = new Data.BOBanHang(mTransit);            
@@ -94,7 +124,7 @@ namespace Data
         {
             foreach (var item in _ListBan)
             {
-                if (item.BANHANG.BanHangID==bh.BANHANG.BanHangID)
+                if (item.BANHANG.BanHangID==bh.BANHANG.BanHangID && item.BANHANG.BanID==bh.BANHANG.BanID)
                 {
                     return true;
                 }
@@ -111,6 +141,33 @@ namespace Data
         public void XoaBanHang(Data.BOBanHang bh)
         {
             mListBan.Remove(bh);
+        }
+        /// <summary>
+        /// neu ko co item thi tra ve false
+        /// </summary>
+        /// <param name="chitiet"></param>
+        /// <param name="ban"></param>
+        /// <returns></returns>
+        public bool ThemTachBan(BOChiTietBanHang chitiet,BAN ban)
+        {
+            if(_CurrentBanHang==null)
+	        {
+		        BOBanHang banhang=GetBanHang(ban);
+                banhang.AddChiTietBanHang(chitiet);
+                this.AddBanHang(banhang);
+                _CurrentBanHang = banhang;
+                return false;
+	        }
+            _CurrentBanHang.AddChiTietBanHang(chitiet);
+                return true;
+        }
+        public void XoaTachBan(BOChiTietBanHang chitiet)
+        {
+            _CurrentBanHang.DeleteChiTietBanHang(chitiet);
+            if (_CurrentBanHang._ListChiTietBanHang.Count==0)
+            {
+                this.XoaBanHang(_CurrentBanHang);
+            }
         }
     }
 }

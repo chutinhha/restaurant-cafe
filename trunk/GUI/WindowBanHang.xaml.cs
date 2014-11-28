@@ -12,14 +12,14 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
-        private ControlLibrary.POSButtonTable mPOSButtonTable;
+        private ControlLibrary.UCFloorPlan mUCFloorPlan;
         private bool IsThayDoiSoLuong = true;
         private Data.Transit mTransit = null;
         private ProcessOrder.ProcessOrder mProcessOrder;
-        public WindowBanHang(Data.Transit transit, ControlLibrary.POSButtonTable table)
+        public WindowBanHang(Data.Transit transit, ControlLibrary.UCFloorPlan sodoban)
         {
             mTransit = transit;
-            mPOSButtonTable = table;
+            mUCFloorPlan = sodoban;
             InitializeComponent();
             PhanQuyen();
         }
@@ -100,6 +100,9 @@ namespace GUI
                 case (int)Data.TypeChucNang.BanHang.TachBan:
                     TachBan();
                     break;
+                case (int)Data.TypeChucNang.BanHang.GopBan:
+                    GopBan();
+                    break;
                 case (int)Data.TypeChucNang.BanHang.DongBan:
                     DongBan();
                     break;
@@ -135,7 +138,8 @@ namespace GUI
             {
                 if (mProcessOrder.DongBan() > 0)
                 {
-                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    mUCFloorPlan.LoadAlllStatus();
                 }
             }
             this.Close();
@@ -149,7 +153,8 @@ namespace GUI
                 {
                     if (mProcessOrder.TamTinh() > 0)
                     {
-                        mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                        //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                        mUCFloorPlan.LoadAlllStatus();
                         this.Close();
 
                     }
@@ -169,7 +174,8 @@ namespace GUI
             }
             if (mProcessOrder.SendOrder() > 0)
             {
-                mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                mUCFloorPlan.LoadAlllStatus();
             }
             this.Close();
         }
@@ -181,7 +187,8 @@ namespace GUI
                 if (win.ShowDialog() == true)
                 {
                     mProcessOrder.TinhTien();
-                    mPOSButtonTable._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    mUCFloorPlan.LoadAlllStatus();
                     this.Close();
                 }
             }
@@ -216,7 +223,7 @@ namespace GUI
             UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,true);
             if (win1.ShowDialog() == true)
             {
-                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mTransit, win1._TachGopBan);
+                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mUCFloorPlan,mTransit, win1._TachGopBan);
                 win2.ShowDialog();
             }
         }
@@ -226,14 +233,14 @@ namespace GUI
             UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,false);
             if (win1.ShowDialog() == true)
             {
-                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mTransit, win1._TachGopBan);
+                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mUCFloorPlan,mTransit, win1._TachGopBan);
                 win2.ShowDialog();
             }
         }
         private void ChuyenBan()
         {
             this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit);
+            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit,mUCFloorPlan);
             win1.ShowDialog();
 
         }

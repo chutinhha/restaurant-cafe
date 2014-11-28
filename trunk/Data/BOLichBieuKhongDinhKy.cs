@@ -12,8 +12,7 @@ namespace Data
         FrameworkRepository<LICHBIEUKHONGDINHKY> frmLichBieuKhongDinhKy = null;
         FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
         public BOLichBieuKhongDinhKy(Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmLichBieuKhongDinhKy = new FrameworkRepository<LICHBIEUKHONGDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUKHONGDINHKies);
             frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
         }

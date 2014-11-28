@@ -20,9 +20,11 @@ namespace UserControlLibrary
     {
         private Data.BOTachGopBan mBOGopBan;
         private Data.Transit mTransit;
-        public WindowBanHangGopBan(Data.Transit transit,Data.BOTachGopBan gopban)
+        private ControlLibrary.UCFloorPlan mUCFloorPlan;
+        public WindowBanHangGopBan(ControlLibrary.UCFloorPlan uc,Data.Transit transit,Data.BOTachGopBan gopban)
         {            
             mTransit = transit;
+            mUCFloorPlan = uc;
             mBOGopBan = gopban;
             InitializeComponent();
         }
@@ -72,6 +74,7 @@ namespace UserControlLibrary
             {
                 mBOGopBan.XuliGopBan();
                 this.DialogResult = true;
+                mUCFloorPlan.LoadAlllStatus();
                 UserControlLibrary.WindowMessageBox.ShowDialog("Gộp bàn thành công !");                
             }
             else

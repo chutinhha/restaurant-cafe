@@ -20,9 +20,11 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
         private Data.BOTachGopBan mBOTachGopBan;
-        public WindowBanHangTachBan(Data.Transit transit, Data.BOTachGopBan tachban)
+        private ControlLibrary.UCFloorPlan mUCFloorPlan;
+        public WindowBanHangTachBan(ControlLibrary.UCFloorPlan uc,Data.Transit transit, Data.BOTachGopBan tachban)
         {
             mTransit = transit;
+            mUCFloorPlan = uc;
             mBOTachGopBan = tachban;            
             InitializeComponent();
         }
@@ -36,6 +38,7 @@ namespace UserControlLibrary
         {
             lblBanTach.Content = mBOTachGopBan.BanHang.TenBan;
             lvData1.ItemsSource = mBOTachGopBan.BanHang._ListChiTietBanHang;
+            lvData3.ItemsSource = mBOTachGopBan._ListBan;
             LoadKhu();
         }
         private void cboKhu1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,13 +54,20 @@ namespace UserControlLibrary
             if (cboBan1.SelectedItem != null)
             {
                 Data.BAN ban = (Data.BAN)cboBan1.SelectedItem;
-                Data.BOBanHang banhang = mBOTachGopBan.GetBanHang(ban);
-                lvData1.ItemsSource = banhang._ListChiTietBanHang;
-                lvData1.Tag = banhang;
+                Data.BOBanHang banhang = mBOTachGopBan.GetTachBan(ban);
+                if (banhang!=null)
+                {
+                    lvData2.ItemsSource = banhang._ListChiTietBanHang;
+                }
+                else
+                {
+                    lvData2.ItemsSource = null;
+                }
+                //lvData1.Tag = banhang;
             }
             else
             {
-                lvData1.ItemsSource = null;
+                lvData2.ItemsSource = null;
             }
         }
         private void btnDong_Click(object sender, RoutedEventArgs e)
@@ -69,37 +79,59 @@ namespace UserControlLibrary
         {
             if (mBOTachGopBan.KiemTra())
             {
-                mBOTachGopBan.XuliGopBan();
+                mBOTachGopBan.XuliTachBan();
                 this.DialogResult = true;
-                UserControlLibrary.WindowMessageBox.ShowDialog("Gộp bàn thành công !");
+                mUCFloorPlan.LoadAlllStatus();
+                UserControlLibrary.WindowMessageBox.ShowDialog("Tách bàn thành công !");
             }
             else
             {
                 UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn bàn gộp !");
             }
-        }
+        }       
 
-        private void btnThem_Click(object sender, RoutedEventArgs e)
+        private void btnThemMon_Click(object sender, RoutedEventArgs e)
         {
-            if (cboBan1.SelectedItem != null)
+            if (cboBan1.SelectedItem==null)
             {
-                if (lvData1.Tag != null)
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn bàn cần tách");
+                return;
+            }
+            if (lvData1.SelectedItems.Count>0)
+            {
+                Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData1.SelectedItems[0];
+                mBOTachGopBan.BanHang.DeleteChiTietBanHang(chitiet);
+                lvData1.Items.Refresh();
+                if (mBOTachGopBan.ThemTachBan(chitiet, (Data.BAN)cboBan1.SelectedItem)==false)
                 {
-                    Data.BOBanHang bh = (Data.BOBanHang)lvData1.Tag;
-                    mBOTachGopBan.AddBanHang(bh);
-                    lvData2.ItemsSource = mBOTachGopBan._ListBan;
+                    lvData2.ItemsSource = mBOTachGopBan._CurrentBanHang._ListChiTietBanHang;
+                }
+                else
+                {
                     lvData2.Items.Refresh();
                 }
+                if (lvData1.Items.Count>0)
+                {
+                    lvData1.SelectedItem = lvData1.Items.Count - 1;
+                }
+                lvData3.Items.Refresh();
             }
         }
-        private void btnXoa_Click(object sender, RoutedEventArgs e)
+
+        private void btnHuyMon_Click(object sender, RoutedEventArgs e)
         {
-            if (lvData2.SelectedItem != null)
+            if (lvData2.SelectedItem==null)
             {
-                Data.BOBanHang bh = (Data.BOBanHang)lvData2.SelectedItem;
-                mBOTachGopBan.XoaBanHang(bh);
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn món !");
+            }
+            else
+            {
+                Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData2.SelectedItem;
+                mBOTachGopBan.XoaTachBan(chitiet);                
+                mBOTachGopBan.BanHang.AddChiTietBanHang(chitiet);
+                lvData1.Items.Refresh();
                 lvData2.Items.Refresh();
-                //lvData2.Items.Remove(li);
+                lvData3.Items.Refresh();
             }
         }
     }

@@ -370,10 +370,10 @@ namespace UserControlLibrary
         public void SetGroupPage()
         {
             btnGroupBack.Content = "Trờ Về";
-            var uriSource = new Uri(@"/SystemImages;component/Images/Back.png", UriKind.Relative);
+            var uriSource = new Uri(@"/SystemImages;component/Images/Up.png", UriKind.Relative);
             btnGroupBack.Image = new BitmapImage(uriSource);
             btnGroupNext.Content = "Tiếp Theo";
-            uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
+            uriSource = new Uri(@"/SystemImages;component/Images/Down.png", UriKind.Relative);
             btnGroupNext.Image = new BitmapImage(uriSource);
         }
 

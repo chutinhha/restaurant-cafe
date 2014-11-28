@@ -1,7 +1,7 @@
 ﻿<Window x:Class="UserControlLibrary.WindowBanHangTachBan"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Gộp bàn" Height="700" Width="791" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+        Title="Gộp bàn" Height="700" Width="911" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
     <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -24,6 +24,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>                    
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <ListView Grid.Row="1" Grid.Column="0" Name="lvData1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2">
@@ -34,7 +35,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView Grid.Row="1" Grid.Column="1" Name="lvData2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView Grid.Row="1" Grid.Column="2" Name="lvData2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="230" Header="Tên món"/>
@@ -42,7 +43,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView Grid.Row="2" Grid.Column="1" Name="lvData3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView Grid.Row="2" Grid.Column="2" Name="lvData3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=MaHoaDon}" Width="230" Header="Mã Hóa đơn"/>
@@ -61,9 +62,9 @@
                         </LinearGradientBrush>
                     </Rectangle.Stroke>
                 </Rectangle>
-                <ComboBox Grid.Column="1" Height="33" HorizontalAlignment="Left" Margin="249,55,0,0" Name="cboBan1" VerticalAlignment="Top" Width="122" FontSize="18" VerticalContentAlignment="Center" SelectedValuePath="BanID" DisplayMemberPath="TenBan" SelectionChanged="cboBan1_SelectionChanged" />
-                <Label Content="Bàn muốn tách" FontSize="14" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Name="label2" VerticalAlignment="Top" Width="332" Grid.Column="1" />
-                <Rectangle VerticalAlignment="Top" Width="332"  Height="1"  HorizontalAlignment="Center" Margin="3,37,0,0" Grid.Column="1">
+                <ComboBox Grid.Column="2" Height="33" HorizontalAlignment="Left" Margin="249,55,0,0" Name="cboBan1" VerticalAlignment="Top" Width="122" FontSize="18" VerticalContentAlignment="Center" SelectedValuePath="BanID" DisplayMemberPath="TenBan" SelectionChanged="cboBan1_SelectionChanged" />
+                <Label Content="Bàn muốn tách" FontSize="14" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Name="label2" VerticalAlignment="Top" Width="332" Grid.Column="2" />
+                <Rectangle VerticalAlignment="Top" Width="332"  Height="1"  HorizontalAlignment="Center" Margin="3,37,0,0" Grid.Column="2">
                     <Rectangle.Stroke>
                         <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="1,0">
                             <GradientStop Color="White" Offset="0" />
@@ -73,14 +74,14 @@
                         </LinearGradientBrush>
                     </Rectangle.Stroke>
                 </Rectangle>
-                <my:POSButtonIcon Content="Đồng ý" Grid.Row="3" Height="70" HorizontalAlignment="Left"  Name="btnDongY" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/Accep.png" Click="btnDongY_Click" Margin="204,0,0,0" />
-                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="302,0,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Grid.Row="3" Click="btnDong_Click" />
-                <ComboBox Grid.Column="1" FontSize="18" Height="33" HorizontalAlignment="Left" Margin="39,55,0,0" Name="cboKhu1" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="163" SelectionChanged="cboKhu1_SelectionChanged" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu" />
-                <Label Grid.Column="1" Content="Khu" Height="28" HorizontalAlignment="Left" Margin="6,57,0,0" Name="label3" VerticalAlignment="Top" />
-                <Label Grid.Column="1" Content="Bàn:" Height="28" HorizontalAlignment="Left" Margin="212,57,0,0" Name="label4" VerticalAlignment="Top" />
-                <my:POSButtonIcon Content="Thêm" Height="70" HorizontalAlignment="Right" Image="/SystemImages;component/Images/Add.png" Margin="0,0,199,0" Name="btnThem" VerticalAlignment="Top" Width="75" Grid.Row="3" Click="btnThem_Click" Grid.Column="1" />
-                <my:POSButtonIcon Content="Xóa" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/Delete.png" Margin="202,0,0,0" Name="btnXoa" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="3" Click="btnXoa_Click" />
+                <my:POSButtonIcon Content="Đồng ý" Grid.Row="3" Height="70" HorizontalAlignment="Left"  Name="btnDongY" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/Accep.png" Click="btnDongY_Click" Margin="222,0,0,0" Grid.Column="2" />
+                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="322,0,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Grid.Row="3" Click="btnDong_Click" Grid.Column="2" />
+                <ComboBox Grid.Column="2" FontSize="18" Height="33" HorizontalAlignment="Left" Margin="39,55,0,0" Name="cboKhu1" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="163" SelectionChanged="cboKhu1_SelectionChanged" SelectedValuePath="KhuID" DisplayMemberPath="TenKhu" />
+                <Label Grid.Column="2" Content="Khu" Height="28" HorizontalAlignment="Left" Margin="6,57,0,0" Name="label3" VerticalAlignment="Top" />
+                <Label Grid.Column="2" Content="Bàn:" Height="28" HorizontalAlignment="Left" Margin="212,57,0,0" Name="label4" VerticalAlignment="Top" />
                 <Label Content="Label" Grid.Column="0" Height="33" HorizontalAlignment="Center" Margin="0,47,0,0" Name="lblBanTach" VerticalAlignment="Top" Width="378" VerticalContentAlignment="Center" FontSize="18" Padding="5,0,0,0" Foreground="Red" FontWeight="Medium" HorizontalContentAlignment="Center" />
+                <my:POSButtonIcon Content="Thêm món" Grid.Column="1" Grid.Row="1" Height="73" HorizontalAlignment="Center" Margin="0,38,0,0" Name="btnThemMon" VerticalAlignment="Top" Width="70" Image="/SystemImages;component/Images/Forward.png" Click="btnThemMon_Click" />
+                <my:POSButtonIcon Content="Hủy món" Height="73" HorizontalAlignment="Center" Image="/SystemImages;component/Images/Back.png" Margin="403,140,0,0" Name="btnHuyMon" VerticalAlignment="Top" Width="70" Grid.Row="1" Grid.ColumnSpan="2" Click="btnHuyMon_Click" />
             </Grid>
         </Grid>
     </Border>

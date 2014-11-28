@@ -20,9 +20,11 @@ namespace UserControlLibrary
     {        
         private Data.Transit mTransit;
         private Data.BOChuyenBan mBOChuyenBan;
-        public WindowBanHangChuyenBan(Data.Transit tran)
+        private ControlLibrary.UCFloorPlan mUCFloorPlan;
+        public WindowBanHangChuyenBan(Data.Transit tran,ControlLibrary.UCFloorPlan uc)
         {
             mTransit = tran;
+            mUCFloorPlan = uc;
             mBOChuyenBan = new Data.BOChuyenBan(mTransit);
             InitializeComponent();
         }
@@ -59,6 +61,7 @@ namespace UserControlLibrary
                 Data.BAN ban=(Data.BAN)cboBan2.SelectedItem;
                 mBOChuyenBan.ChuyenBan(ban);
                 LoadKhu();
+                mUCFloorPlan.LoadAlllStatus();
                 UserControlLibrary.WindowMessageBox.ShowDialog("Đã chuyển thành công !");
             }
         }

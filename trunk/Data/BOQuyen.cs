@@ -9,8 +9,7 @@ namespace Data
     {
         FrameworkRepository<QUYEN> frmLoaiKhachHang = null;
         public BOQuyen(Data.Transit transit)
-        {
-            transit.KaraokeEntities = new KaraokeEntities();
+        {            
             frmLoaiKhachHang = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
         }
 
