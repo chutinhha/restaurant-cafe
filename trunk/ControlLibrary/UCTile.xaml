@@ -17,7 +17,7 @@
         <TextBlock Grid.Column="0" Name="lbTenNhaHang" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
         <TextBlock Grid.Column="1" Name="lbPhienBan"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
         <TextBlock Grid.Column="2" Name="lbTenChucNang" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
-        <TextBlock Grid.Column="3" Name="lbNhanVien" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14"  />
+        <Button Grid.Column="3" Name="btnNhanVien" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14" BorderThickness="0" Click="btnNhanVien_Click" />
         <TextBlock Grid.Column="4" Name="lbTime" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="White" FontSize="14" />
         <Grid Grid.Column="5">
             <Grid.ColumnDefinitions>

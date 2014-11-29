@@ -28,13 +28,6 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            bool IsUpdate = true;
-            if (_Item == null)
-            {
-                _Item = new Data.CAIDATTHONGTINCONGTY();
-                IsUpdate = false;
-            }
-
             _Item.TenCongTy = txtTenDoanhNghiep.Text;
             _Item.TenVietTat = txtTenVietTat.Text;
             _Item.MaSoThue = txtMaSoThue.Text;
@@ -57,7 +50,7 @@ namespace UserControlLibrary
                 _Item.Logo = Utilities.ImageHandler.ImageToByte(btnLogo.ImageBitmap);
             }
 
-            BOCaiDatThongTinCongTy.CapNhat(_Item, IsUpdate, mTransit);
+            BOCaiDatThongTinCongTy.CapNhat(_Item, mTransit);
             DialogResult = true;
         }
 
@@ -66,7 +59,7 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _Item = BOCaiDatThongTinCongTy.GetAll(mTransit).FirstOrDefault();
+            _Item = BOCaiDatThongTinCongTy.GetAll(mTransit);
             if (_Item != null)
             {
                 txtTenDoanhNghiep.Text = _Item.TenCongTy;
@@ -91,6 +84,25 @@ namespace UserControlLibrary
                     btnLogo.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Logo);
                 }
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
+        }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

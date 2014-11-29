@@ -18,21 +18,27 @@ namespace ControlLibrary
         {
             get
             {
+                if (txtHours.Text == "")
+                    txtHours.Text = "0";
+                if (txtMinutes.Text == "")
+                    txtMinutes.Text = "0";
+                if (txtSeconds.Text == "")
+                    txtSeconds.Text = "0";
                 return new TimeSpan(Convert.ToInt32(txtHours.Text), Convert.ToInt32(txtMinutes.Text), Convert.ToInt32(txtSeconds.Text));
             }
             set
             {
                 if (value != null)
                 {
-                    txtHours.Text = value.Hours.ToString("00");
-                    txtMinutes.Text = value.Minutes.ToString("00");
-                    txtSeconds.Text = value.Seconds.ToString("00");
+                    txtHours.Text = value.Hours.ToString();
+                    txtMinutes.Text = value.Minutes.ToString();
+                    txtSeconds.Text = value.Seconds.ToString();
                 }
                 else
                 {
-                    txtHours.Text = "00";
-                    txtMinutes.Text = "00";
-                    txtSeconds.Text = "00";
+                    txtHours.Text = "0";
+                    txtMinutes.Text = "0";
+                    txtSeconds.Text = "0";
                 }
             }
         }
@@ -46,7 +52,14 @@ namespace ControlLibrary
         private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             if (Char.IsNumber(e.Text, e.Text.Length - 1))
-                e.Handled = false;
+            {
+                TextBox txt = (TextBox)sender;
+                int max = Convert.ToInt32(txt.Tag);
+                if (max < Convert.ToInt32(txt.Text + e.Text))
+                    e.Handled = true;
+                else
+                    e.Handled = false;
+            }
             else
                 e.Handled = true;
         }

@@ -7,10 +7,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
-        <WindowsFormsHost  Grid.Row="1" Name="ReportData">
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Ngày" Width="100" Margin="10,0" />
+            <DatePicker  Name="dtpNgay" Width="300" />
+
+        </StackPanel>
+        <WindowsFormsHost  Grid.Row="2" Name="ReportData">
             <rv:ReportViewer x:Name="ReportViewerData" ZoomMode="PageWidth" />
         </WindowsFormsHost>
     </Grid>

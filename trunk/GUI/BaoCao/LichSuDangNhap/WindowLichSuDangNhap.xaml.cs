@@ -35,7 +35,7 @@ namespace GUI.BaoCao.LichSuDangNhap
             ReportViewerData.Reset();
             ReportDataSource ds = new ReportDataSource("DataSetKaraoke", Data.BOLichSuDangNhap.GetNoTracking(mTransit));
             ReportViewerData.LocalReport.DataSources.Add(ds);
-            ReportDataSource ds1 = new ReportDataSource("CaiDatThongTinCongTy", Data.BOCaiDatThongTinCongTy.GetNoTracking(mTransit));
+            ReportDataSource ds1 = new ReportDataSource("CaiDatThongTinCongTy", Data.BOCaiDatThongTinCongTy.GetQueryNoTracking(mTransit));
             ReportViewerData.LocalReport.DataSources.Add(ds1);
             ReportViewerData.LocalReport.ReportEmbeddedResource = "GUI.BaoCao.LichSuDangNhap.Report.rdlc";
 

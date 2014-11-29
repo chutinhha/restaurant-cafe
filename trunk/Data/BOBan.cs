@@ -9,12 +9,12 @@ namespace Data
     {
         private FrameworkRepository<BAN> frBan;
         private Transit mTransit;
-        public CAIDATBAN _CAIDATBAN { get; set; }        
+        public CAIDATBAN _CAIDATBAN { get; set; }
         public BOBan(Transit transit)
         {
-            mTransit = transit;            
+            mTransit = transit;
             frBan = new FrameworkRepository<BAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.BANs);
-            _CAIDATBAN = BOCaiDatBan.GetCaiDatBan(mTransit);
+            _CAIDATBAN = BOCaiDatBan.GetQueryNoTracking(mTransit);
         }
         public static IQueryable<BAN> GetVisual(Transit transit)
         {
@@ -32,22 +32,22 @@ namespace Data
         }
         public static IQueryable<BAN> GetVisualTablePerArea(KHU khu, Transit transit)
         {
-            return from a in GetVisual(transit)                   
+            return from a in GetVisual(transit)
                    where a.KhuID == khu.KhuID
                    select a;
         }
-        public static IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu,Transit transit)
-        {                        
-              return from a in GetVisual(transit)
-                     join b in BOBanHang.GetAllNotCompleted(transit) on a.BanID equals b.BanID
-                     where a.KhuID==khu.KhuID
-                     select a;                      
+        public static IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu, Transit transit)
+        {
+            return from a in GetVisual(transit)
+                   join b in BOBanHang.GetAllNotCompleted(transit) on a.BanID equals b.BanID
+                   where a.KhuID == khu.KhuID
+                   select a;
         }
         public static IQueryable<BAN> GetAllTableNotInOrderPerArea(KHU khu, Transit transit)
         {
             var listIn = GetAllTableInOrderPerArea(khu, transit);
-            return from a in GetVisual(transit)                   
-                   where !listIn.Contains(a) && a.KhuID==khu.KhuID
+            return from a in GetVisual(transit)
+                   where !listIn.Contains(a) && a.KhuID == khu.KhuID
                    select a;
         }
         public void Them(BAN ban)
@@ -57,7 +57,7 @@ namespace Data
         public void Xoa(BAN ban)
         {
             ban.Deleted = true;
-            frBan.Update(ban);            
+            frBan.Update(ban);
         }
         public void Sua(BAN ban)
         {

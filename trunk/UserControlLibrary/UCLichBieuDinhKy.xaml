@@ -21,7 +21,8 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="LichBieuDinhKy.Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuDinhKy.TenLichBieu}" Width="200" Header="Tên lịch biểu" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiGia.Ten}" Width="150" Header="Loại giá" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TenKhu}" Width="150" Header="Khu" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuLoaiGia.Ten}" Width="150" Header="Loại giá" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuDinhKy.TenHienThi}" Width="200" Header="Thời gian" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuDinhKy.UuTien}" Width="120" Header="Ưu tiên" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LichBieuDinhKy.GioBatDau}" Width="120" Header="Giờ bắt đầu" />

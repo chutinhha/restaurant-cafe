@@ -41,8 +41,8 @@ namespace Data
             frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);
             frThe = new FrameworkRepository<THE>(mKaraokeEntities, mKaraokeEntities.THEs);
 
-            _CAIDATMAYINBEP = BOCaiDatMayInBep.GetCaiDat(mTransit);            
-            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetCaiDat(mTransit);         
+            _CAIDATMAYINBEP = BOCaiDatMayInBep.GetQueryNoTracking(mTransit);            
+            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetQueryNoTracking(mTransit);         
         }
         public IQueryable<BOMayIn> AllPrinting(int lichSuBanHang)
         {

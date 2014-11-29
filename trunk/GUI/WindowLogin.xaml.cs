@@ -25,15 +25,11 @@ namespace GUI
             InitializeComponent();
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
-            ucTile.SetTransit(mTransit);                        
+            ucTile.SetTransit(mTransit);
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            //test           
-            //mTransit.NhanVien = new Data.NHANVIEN();
-            //mTransit.NhanVien.NhanVienID = 1;            
-
             mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {
@@ -43,6 +39,10 @@ namespace GUI
                     mTransit.NhanVien.LoaiNhanVienID = mTransit.Admin.LoaiNhanVienID;
                     mTransit.NhanVien.TenNhanVien = mTransit.Admin.TenNhanVien;
                     mTransit.NhanVien.NhanVienID = 0;
+                }
+                else
+                {
+                    lbStatus.Text = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
             }
             else

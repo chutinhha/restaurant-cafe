@@ -1,36 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace Data
 {
     public class BOCaiDatThongTinCongTy
     {
-        FrameworkRepository<CAIDATTHONGTINCONGTY> frmCaiDatThongTinCongTy = null;
+        private FrameworkRepository<CAIDATTHONGTINCONGTY> fr = null;
+
         public BOCaiDatThongTinCongTy(Data.Transit transit)
         {
-            frmCaiDatThongTinCongTy = new FrameworkRepository<CAIDATTHONGTINCONGTY>(transit.KaraokeEntities, transit.KaraokeEntities.CAIDATTHONGTINCONGTies);
+            fr = new FrameworkRepository<CAIDATTHONGTINCONGTY>(transit.KaraokeEntities, transit.KaraokeEntities.CAIDATTHONGTINCONGTies);
         }
 
-        public IQueryable<CAIDATTHONGTINCONGTY> GetAll(Data.Transit transit)
+        public static CAIDATTHONGTINCONGTY GetQueryNoTracking(Transit transit)
         {
-            return frmCaiDatThongTinCongTy.Query();
+            CAIDATTHONGTINCONGTY item = FrameworkRepository<CAIDATTHONGTINCONGTY>.QueryNoTracking(transit.KaraokeEntities.CAIDATTHONGTINCONGTies).FirstOrDefault();
+            if (item == null)
+            {
+                item = new CAIDATTHONGTINCONGTY();
+                item.TenCongTy = "";
+                item.TenVietTat = "";
+                item.MaSoThue = "";
+                item.NguoiDaiDien = "";
+                item.DiaChi = "";
+                item.DienThoaiBan = "";
+                item.DienThoaiDiDong = "";
+                item.Email = "";
+                item.Fax = "";
+            }
+            return item;
         }
 
-        public void CapNhat(Data.CAIDATTHONGTINCONGTY item, bool IsUpdate, Data.Transit transit)
+        public void CapNhat(Data.CAIDATTHONGTINCONGTY item, Data.Transit transit)
         {
-            if (IsUpdate)
-                frmCaiDatThongTinCongTy.Update(item);
-            else
-                frmCaiDatThongTinCongTy.AddObject(item);
-            frmCaiDatThongTinCongTy.Commit();
+            fr.Update(item);
+            fr.Commit();
         }
 
-        public static IQueryable<CAIDATTHONGTINCONGTY> GetNoTracking(Transit transit)
+        public CAIDATTHONGTINCONGTY GetAll(Data.Transit transit)
         {
-            return FrameworkRepository<CAIDATTHONGTINCONGTY>.QueryNoTracking(transit.KaraokeEntities.CAIDATTHONGTINCONGTies);
-        }
+            CAIDATTHONGTINCONGTY item = fr.Query().FirstOrDefault();
+            if (item == null)
+            {
+                item = new CAIDATTHONGTINCONGTY();
+                item.TenCongTy = "";
+                item.TenVietTat = "";
+                item.MaSoThue = "";
+                item.NguoiDaiDien = "";
+                item.DiaChi = "";
+                item.DienThoaiBan = "";
+                item.DienThoaiDiDong = "";
+                item.Email = "";
+                item.Fax = "";
+                fr.AddObject(item);
+                fr.Commit();
+            }
 
+            return item;
+        }
     }
 }

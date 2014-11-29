@@ -9,18 +9,22 @@ namespace Data
     {
         public LICHBIEUKHONGDINHKY LichBieuKhongDinhKy { get; set; }
         public MENULOAIGIA MenuLoaiGia { get; set; }
+        public string TenKhu { get; set; }
         FrameworkRepository<LICHBIEUKHONGDINHKY> frmLichBieuKhongDinhKy = null;
         FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
+        FrameworkRepository<KHU> frmKhu = null;
         public BOLichBieuKhongDinhKy(Transit transit)
         {            
             frmLichBieuKhongDinhKy = new FrameworkRepository<LICHBIEUKHONGDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUKHONGDINHKies);
             frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
+            frmKhu = new FrameworkRepository<KHU>(transit.KaraokeEntities, transit.KaraokeEntities.KHUs);
         }
 
         public BOLichBieuKhongDinhKy()
         {
             LichBieuKhongDinhKy = new LICHBIEUKHONGDINHKY();
             MenuLoaiGia = new MENULOAIGIA();
+            TenKhu = "";
         }
         public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
         {
@@ -51,13 +55,16 @@ namespace Data
         public IQueryable<BOLichBieuKhongDinhKy> GetAll(Transit mTransit)
         {
             var res = (from lb in frmLichBieuKhongDinhKy.Query()
+                       join k in frmKhu.Query() on lb.KhuID equals k.KhuID into k1
+                       from khu in k1.DefaultIfEmpty()
                        join l in frmMenuLoaiGia.Query() on lb.LoaiGiaID equals l.LoaiGiaID
                        where lb.LoaiGiaID == l.LoaiGiaID
                        orderby l.Ten ascending, lb.TenLichBieu ascending
                        select new BOLichBieuKhongDinhKy
                        {
                            LichBieuKhongDinhKy = lb,
-                           MenuLoaiGia = l
+                           MenuLoaiGia = l,
+                           TenKhu = (khu.TenKhu == null ? "Tất cả khu" : khu.TenKhu)
                        });
             return res;
         }

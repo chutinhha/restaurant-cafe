@@ -75,6 +75,7 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 AddList(win._Item);
+                lvData.Items.Refresh();
             }
         }
 

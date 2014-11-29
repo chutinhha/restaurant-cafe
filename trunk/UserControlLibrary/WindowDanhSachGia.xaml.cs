@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -68,7 +69,28 @@ namespace UserControlLibrary
         {
             if (mKichThuocMon != null)
             {
-                lvData.ItemsSource = BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
+                IQueryable<Data.MENULOAIGIA> lsLoaiGia = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
+                IQueryable<Data.BOMenuGia> lsGia = BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
+                List<Data.BOMenuGia> lsArray = new List<Data.BOMenuGia>();
+
+                foreach (Data.MENULOAIGIA item in lsLoaiGia)
+                {
+                    Data.BOMenuGia g = lsGia.Where(s => s.LoaiGia.LoaiGiaID == item.LoaiGiaID).FirstOrDefault();
+                    if (g != null)
+                    {
+                        lsArray.Add(g);
+                    }
+                    else
+                    {
+                        g = new Data.BOMenuGia();
+                        g.LoaiGia = item;
+                        g.MenuGia.LoaiGiaID = item.LoaiGiaID;
+                        g.MenuGia.KichThuocMonID = mKichThuocMon.MenuKichThuocMon.KichThuocMonID;
+                        g.MenuGia.Gia = 0;
+                        lsArray.Add(g);
+                    }
+                }
+                lvData.ItemsSource = lsArray;
             }
         }
 

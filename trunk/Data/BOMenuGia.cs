@@ -29,9 +29,10 @@ namespace Data
             return from a in frmLoaiGia.Query()
                    join b in frmMenuGia.Query() on a.LoaiGiaID equals b.LoaiGiaID
                    where b.KichThuocMonID == ktm.KichThuocMonID
-                   select new BOMenuGia{
-                       LoaiGia=a,
-                       MenuGia=b
+                   select new BOMenuGia
+                   {
+                       LoaiGia = a,
+                       MenuGia = b
                    };
         }
         //public IQueryable<BOMenuGia> GetAllKichThuocMonVaLoaiGia(IQueryable<MENULOAIGIA> query, MENUKICHTHUOCMON ktm)
@@ -45,7 +46,7 @@ namespace Data
         //               LoaiGia = b
         //           };
         //}
-        public List<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
+        public IQueryable<BOMenuGia> GetAll(int KichThuocMonID, Transit mTransit)
         {
             var res = (from g in frmMenuGia.Query()
                        join l in frmLoaiGia.Query() on g.LoaiGiaID equals l.LoaiGiaID
@@ -54,30 +55,47 @@ namespace Data
                        {
                            MenuGia = g,
                            LoaiGia = l
-                       }).ToList();
+                       });
             return res;
         }
 
         private int Sua(BOMenuGia item, Transit mTransit)
         {
-            frmMenuGia.Update(item.MenuGia);            
+            frmMenuGia.Update(item.MenuGia);
             return item.MenuGia.GiaID;
         }
+        private int Xoa(BOMenuGia item, Transit mTransit)
+        {
+            frmMenuGia.DeleteObject(item.MenuGia);
+            return item.MenuGia.GiaID;
+        }
+        private int Them(BOMenuGia item, Transit mTransit)
+        {
+            frmMenuGia.AddObject(item.MenuGia);
+            return item.MenuGia.GiaID;
+        }
+
+
 
         public void Luu(List<BOMenuGia> lsArray, Transit mTransit)
         {
             foreach (BOMenuGia item in lsArray)
             {
-                Sua(item, mTransit);
+                if (item.MenuGia.Gia == 0 && item.MenuGia.GiaID > 0)
+                    Xoa(item, mTransit);
+                else if (item.MenuGia.Gia != 0 && item.MenuGia.GiaID == 0)
+                    Them(item, mTransit);
+                else if (item.MenuGia.Gia != 0 && item.MenuGia.GiaID > 0)
+                    Sua(item, mTransit);
             }
             frmMenuGia.Commit();
         }
 
-        public string TenGia 
+        public string TenGia
         {
             get { return String.Format("{0}({1})", LoaiGia.Ten, Utilities.MoneyFormat.ConvertToStringFull(MenuGia.Gia)); }
         }
-        public decimal Gia 
+        public decimal Gia
         {
             get { return MenuGia.Gia; }
         }
