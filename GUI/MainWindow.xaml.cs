@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace GUI
 {
@@ -20,14 +8,31 @@ namespace GUI
     public partial class MainWindow : Window
     {
         private Data.Transit mTransit = null;
+        Data.BONhanVien BONhanVien = null;
+
         public MainWindow(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            uCTile.OnChangeLogin += new ControlLibrary.UCTile.ChangeLogin(uCTile_OnChangeLogin);
             uCTile.SetTransit(mTransit);
             uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
+            BONhanVien = new Data.BONhanVien(mTransit);
             SetTagButton();
             PhanQuyen();
+        }
+
+        private void uCTile_OnChangeLogin()
+        {
+            UserControlLibrary.WindowLoginDialog loginWindow = new UserControlLibrary.WindowLoginDialog(mTransit, true);
+            if (loginWindow.ShowDialog() == true)
+            {
+                BONhanVien.ThemLichSuDangNhap(mTransit.NhanVien.NhanVienID);
+                mTransit.LayDanhSachQuyen();
+                uCTile.SetTransit(mTransit);
+                SetTagButton();
+                PhanQuyen();
+            }
         }
 
         private void SetTagButton()
@@ -78,15 +83,16 @@ namespace GUI
         {
             if (value == true)
             {
-                btn.IsEnabled = true;
+                btn.IsEnabled = true;                
+                btn.VisibilityMain = System.Windows.Visibility.Visible;
             }
             else
             {
                 btn.IsEnabled = false;
-                btn.TextTo = "";
-                btn.TextNho = "";
-                btn.Image = null;
-
+                btn.VisibilityMain = System.Windows.Visibility.Hidden;
+                //btn.TextTo = "";
+                //btn.TextNho = "";
+                //btn.Image = null;
             }
         }
 
@@ -109,7 +115,7 @@ namespace GUI
         }
 
         private void btnBanHang_Click(object sender, RoutedEventArgs e)
-        {  
+        {
             WindowSoDoBan win = new WindowSoDoBan(mTransit);
             if (win.ShowDialog() == true)
             {

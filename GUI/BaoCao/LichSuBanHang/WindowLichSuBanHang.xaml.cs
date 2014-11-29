@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Reporting.WinForms;
 using System.Drawing.Printing;
+using System.Globalization;
 
 namespace GUI.BaoCao.LichSuBanHang
 {
@@ -41,22 +42,37 @@ namespace GUI.BaoCao.LichSuBanHang
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Load();
+        }
+
+        public void Load()
+        {
             ReportViewerData.Reset();
             ReportDataSource ds = new ReportDataSource("BaoCaoLichSuBanHang", Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit));
             ReportViewerData.LocalReport.DataSources.Add(ds);
-            ReportDataSource ds1 = new ReportDataSource("CaiDatThongTinCongTy", Data.BOCaiDatThongTinCongTy.GetNoTracking(mTransit));
+            List<Data.CAIDATTHONGTINCONGTY> lsCaiDatThongTinCongTy = new List<Data.CAIDATTHONGTINCONGTY>();
+            lsCaiDatThongTinCongTy.Add(Data.BOCaiDatThongTinCongTy.GetQueryNoTracking(mTransit));
+            ReportDataSource ds1 = new ReportDataSource("CaiDatThongTinCongTy", lsCaiDatThongTinCongTy);
             ReportViewerData.LocalReport.DataSources.Add(ds1);
             ReportViewerData.LocalReport.ReportEmbeddedResource = "GUI.BaoCao.LichSuBanHang.Report.rdlc";
 
             //ReportViewerData.PrinterSettings.PrinterName = mOrders.ReadConfig.PrinterTaxinvoiceA4;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.Margins.Left = 50;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.Margins.Right = 50;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.Margins.Top = 50;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.Margins.Bottom = 50;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.Landscape = true;
+            ReportViewerData.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = (int)PaperKind.A4;
+
             System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
             pg.Margins.Top = 50;
             pg.Margins.Bottom = 50;
             pg.Margins.Left = 50;
             pg.Margins.Right = 50;
             pg.PaperSize.RawKind = (int)PaperKind.A4;
+            pg.Landscape = true;
             ReportViewerData.SetPageSettings(pg);
-            ReportViewerData.LocalReport.DisplayName = "LichSuBanHang";
+            ReportViewerData.LocalReport.DisplayName = "Lich_Su_Ban_Hang_" + DateTime.Now.ToString("dd-MM-yyyy HHmmss");
             ReportViewerData.RenderingComplete += new RenderingCompleteEventHandler(ReportViewerData_RenderingComplete);
             ReportViewerData.RefreshReport();
         }

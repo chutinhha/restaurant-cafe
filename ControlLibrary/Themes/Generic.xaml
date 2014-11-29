@@ -382,9 +382,9 @@
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Column="0" Grid.Row="0"  Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" />
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{TemplateBinding TextTo}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="16" Foreground="White" Margin="5, 10, 5, 10" />
-                            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{TemplateBinding TextNho}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="14" Foreground="White" Margin="10, 0, 10, 0"  />
+                            <Image Grid.Column="0" Grid.Row="0"  Source="{TemplateBinding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Visibility="{TemplateBinding VisibilityMain}" />
+                            <TextBlock  Grid.Column="1" Grid.Row="0" Text="{TemplateBinding TextTo}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="16" Foreground="White" Margin="5, 10, 5, 10"  Visibility="{TemplateBinding VisibilityMain}" />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{TemplateBinding TextNho}" HorizontalAlignment="Left" VerticalAlignment="Top"  TextWrapping="Wrap" FontSize="14" Foreground="White" Margin="10, 0, 10, 0"  Visibility="{TemplateBinding VisibilityMain}" />
                         </Grid>
 
                     </Border>

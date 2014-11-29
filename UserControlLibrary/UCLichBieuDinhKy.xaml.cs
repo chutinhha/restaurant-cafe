@@ -74,6 +74,7 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 AddList(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -82,7 +83,7 @@ namespace UserControlLibrary
             if (lvData.SelectedItems.Count > 0)
             {
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOLichBieuDinhKy)li.Tag;
+                mItem = (Data.BOLichBieuDinhKy)li.Tag;               
 
                 UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
                 win._Item = mItem;

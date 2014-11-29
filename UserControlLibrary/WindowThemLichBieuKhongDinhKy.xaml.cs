@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace UserControlLibrary
 {
@@ -21,6 +22,7 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadKhu();
             LoadLoaiGia();
             SetValues();
         }
@@ -74,6 +76,10 @@ namespace UserControlLibrary
                 timeBatDau.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioBatDau;
                 timeKetThuc.TimeCurent = (TimeSpan)_Item.LichBieuKhongDinhKy.GioKetThuc;
                 btnLuu.Content = mTransit.StringButton.Luu;
+                if (_Item.LichBieuKhongDinhKy.KhuID == null)
+                    cbbKhu.SelectedValue = 0;
+                else
+                    cbbKhu.SelectedValue = _Item.LichBieuKhongDinhKy.KhuID;
                 lbTieuDe.Text = "Sửa Lịch Biểu Không Định Kỳ";
             }
         }
@@ -88,6 +94,12 @@ namespace UserControlLibrary
             _Item.LichBieuKhongDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
             _Item.LichBieuKhongDinhKy.Visual = (bool)ckHoatDong.IsChecked;
             _Item.LichBieuKhongDinhKy.Deleted = false;
+            if ((int)cbbKhu.SelectedValue == 0)
+                _Item.LichBieuKhongDinhKy.KhuID = null;
+            else
+                _Item.LichBieuKhongDinhKy.KhuID = (int)cbbKhu.SelectedValue;
+            _Item.TenKhu = cbbKhu.Text;
+            _Item.MenuLoaiGia.Ten = cbbLoaiGia.Text;
         }
 
         private bool CheckValues()
@@ -123,6 +135,16 @@ namespace UserControlLibrary
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
+            }
+        }
+        private void LoadKhu()
+        {
+            List<Data.KHU> lsArray = Data.BOKhu.GetAllNoTrackingToList(mTransit);
+            lsArray.Insert(0, new Data.KHU() { TenKhu = "Tất cả khu", KhuID = 0 });
+            cbbKhu.ItemsSource = lsArray;
+            if (cbbKhu.Items.Count > 0)
+            {
+                cbbKhu.SelectedIndex = 0;
             }
         }
     }

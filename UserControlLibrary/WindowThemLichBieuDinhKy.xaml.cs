@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace UserControlLibrary
 {
@@ -23,6 +24,7 @@ namespace UserControlLibrary
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTheLoai();
+            LoadKhu();
             LoadLoaiGia();
             SetValues();
         }
@@ -54,19 +56,16 @@ namespace UserControlLibrary
             {
                 txtTenLichBieu.Text = "";
                 if (cbbLoaiGia.Items.Count > 0)
-                {
                     cbbLoaiGia.SelectedIndex = 0;
-                }
                 if (cbbTheLoai.Items.Count > 0)
-                {
                     cbbTheLoai.SelectedIndex = 0;
-                }
+                if (cbbKhu.Items.Count > 0)
+                    cbbKhu.SelectedIndex = 0;
                 txtUuTien.Text = "1";
                 timeBatDau.TimeCurent = new TimeSpan(0, 0, 0);
                 timeKetThuc.TimeCurent = new TimeSpan(0, 0, 0);
-
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Thêm Lịch Biểu Định Kỳ";
+                lbTieuDe.Text = "Sửa Lịch Biểu Định Kỳ";
             }
             else
             {
@@ -80,6 +79,10 @@ namespace UserControlLibrary
                 timeBatDau.TimeCurent = (TimeSpan)_Item.LichBieuDinhKy.GioBatDau;
                 timeKetThuc.TimeCurent = (TimeSpan)_Item.LichBieuDinhKy.GioKetThuc;
                 btnLuu.Content = mTransit.StringButton.Luu;
+                if (_Item.LichBieuDinhKy.KhuID == null)
+                    cbbKhu.SelectedValue = 0;
+                else
+                    cbbKhu.SelectedValue = _Item.LichBieuDinhKy.KhuID;
                 lbTieuDe.Text = "Thêm Lịch Biểu Định Kỳ";
             }
         }
@@ -96,6 +99,12 @@ namespace UserControlLibrary
             _Item.LichBieuDinhKy.Deleted = false;
             _Item.LichBieuDinhKy.GioBatDau = timeBatDau.TimeCurent;
             _Item.LichBieuDinhKy.GioKetThuc = timeKetThuc.TimeCurent;
+            if ((int)cbbKhu.SelectedValue == 0)
+                _Item.LichBieuDinhKy.KhuID = null;
+            else
+                _Item.LichBieuDinhKy.KhuID = (int)cbbKhu.SelectedValue;
+            _Item.TenKhu = cbbKhu.Text;
+            _Item.MenuLoaiGia.Ten = cbbLoaiGia.Text;
 
             switch (_Item.LichBieuDinhKy.TheLoaiID)
             {
@@ -188,6 +197,17 @@ namespace UserControlLibrary
             if (cbbTheLoai.Items.Count > 0)
             {
                 cbbTheLoai.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadKhu()
+        {
+            List<Data.KHU> lsArray = Data.BOKhu.GetAllNoTrackingToList(mTransit);
+            lsArray.Insert(0, new Data.KHU() { TenKhu = "Tất cả khu", KhuID = 0 });
+            cbbKhu.ItemsSource = lsArray;
+            if (cbbKhu.Items.Count > 0)
+            {
+                cbbKhu.SelectedIndex = 0;
             }
         }
 

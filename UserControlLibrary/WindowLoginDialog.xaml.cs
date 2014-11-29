@@ -25,9 +25,18 @@ namespace UserControlLibrary
             mTransit = transit;
         }
 
+        bool ThayDoiNhanVien = false;
+
+        public WindowLoginDialog(Data.Transit transit, bool thayDoiNhanVien)
+        {
+            InitializeComponent();
+            mTransit = transit;
+            ThayDoiNhanVien = thayDoiNhanVien;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (mTransit.NhanVien != null)
+            if (mTransit.NhanVien != null && !ThayDoiNhanVien)
             {
                 txtUserID.Text = mTransit.NhanVien.TenDangNhap;
                 txtUserID.IsEnabled = false;
@@ -44,7 +53,13 @@ namespace UserControlLibrary
             lbStatus.Text = "";
             Data.NHANVIEN NV = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (NV != null)
+            {
+                if (ThayDoiNhanVien)
+                    mTransit.NhanVien = NV;
+                //else
+                //    mTransit.NhanVien = NV;
                 DialogResult = true;
+            }
             else
                 lbStatus.Text = mTransit.StringButton.DangNhapKhongDung;
         }

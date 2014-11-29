@@ -18,6 +18,7 @@ namespace UserControlLibrary
         public Data.BOMenuMon BOMenuMon = null;
         public Data.BOMenuNhom BOMenuNhom = null;
         public Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
+        private Data.CAIDATTHUCDON mCaiDatThucDon = null;
         public bool _IsDanhSachKhuyenMai { get; set; }
         public bool _IsSoLuongChoPhepTonKho { get; set; }
         public bool _IsSoLuongKhongChoPhepTonKho { get; set; }
@@ -70,6 +71,10 @@ namespace UserControlLibrary
             BOMenuNhom = new Data.BOMenuNhom(transit);
             BOMenuKichThuocMon = new Data.BOMenuKichThuocMon(transit);
             BOMenuKhuyenMai = new Data.BOMenuKhuyenMai();
+            mCaiDatThucDon = Data.BOCaiDatThucDon.GetQueryNoTracking(mTransit);
+            SetButtonLoaiNhom();
+            SetFontItem();
+            SetFontGroup();
             LoadData();
         }
 
@@ -267,8 +272,13 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
-                btn.Image = new BitmapImage(uriSource);
+                if (mCaiDatThucDon.MonImages != null && mCaiDatThucDon.MonImages.Length > 0)
+                    btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.MonImages);
+                else
+                {
+                    var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
+                    btn.Image = new BitmapImage(uriSource);
+                }
             }
         }
 
@@ -301,6 +311,17 @@ namespace UserControlLibrary
                     break;
             }
         }
+
+        private void SetFontItem()
+        {
+            foreach (var item in gridItems.Children)
+            {
+                POSButtonMenu btn = (POSButtonMenu)item;
+                btn.FontSize = mCaiDatThucDon.MonTextFontSize;
+                btn.FontStyle = Data.SomeEnum.GetFontStyle(mCaiDatThucDon.MonTextFontStyle);
+                btn.FontWeight = Data.SomeEnum.GetFontWeight(mCaiDatThucDon.MonTextFontWeights);
+            }
+        }
         #endregion Items
 
         #region Nhóm
@@ -308,6 +329,16 @@ namespace UserControlLibrary
         private Data.BOMenuNhom MenuNhomIndex = null;
         private int PageGroup = 0;
 
+        private void SetFontGroup()
+        {
+            foreach (var item in gridGroup.Children)
+            {
+                POSButtonMenu btn = (POSButtonMenu)item;
+                btn.FontSize = mCaiDatThucDon.NhomTextFontSize;
+                btn.FontStyle = Data.SomeEnum.GetFontStyle(mCaiDatThucDon.NhomTextFontStyle);
+                btn.FontWeight = Data.SomeEnum.GetFontWeight(mCaiDatThucDon.NhomTextFontWeights);
+            }
+        }
         public void LoadGroup()
         {
             lsMenuNhom = BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, _IsSoLuongChoPhepTonKho, _IsSoLuongKhongChoPhepTonKho, mTransit).ToList();
@@ -362,8 +393,13 @@ namespace UserControlLibrary
             }
             else
             {
-                var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
-                btn.Image = new BitmapImage(uriSource);
+                if (mCaiDatThucDon.NhomImages != null && mCaiDatThucDon.NhomImages.Length > 0)
+                    btn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.NhomImages);
+                else
+                {
+                    var uriSource = new Uri(@"/SystemImages;component/Images/NoImages.jpg", UriKind.Relative);
+                    btn.Image = new BitmapImage(uriSource);
+                }
             }
         }
 
@@ -433,6 +469,39 @@ namespace UserControlLibrary
 
         private int LoaiNhomID = 0;
 
+        private void SetButtonLoaiNhom()
+        {
+            if (mCaiDatThucDon.LoaiNhomThucTatCaImages != null && mCaiDatThucDon.LoaiNhomThucTatCaImages.Length > 0)
+                btnTatCa.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.LoaiNhomThucTatCaImages);
+            else
+            {
+                var uriSource = new Uri(@"/SystemImages;component/Images/All.jpg", UriKind.Relative);
+                btnTatCa.Image = new BitmapImage(uriSource);
+            }
+
+            if (mCaiDatThucDon.LoaiNhomThucAnImages != null && mCaiDatThucDon.LoaiNhomThucAnImages.Length > 0)
+                btnThucAn.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.LoaiNhomThucAnImages);
+            else
+            {
+                var uriSource = new Uri(@"/SystemImages;component/Images/Food.jpg", UriKind.Relative);
+                btnThucAn.Image = new BitmapImage(uriSource);
+            }
+
+            if (mCaiDatThucDon.LoaiNhomNuocImages != null && mCaiDatThucDon.LoaiNhomNuocImages.Length > 0)
+                btnNuoc.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.LoaiNhomNuocImages);
+            else
+            {
+                var uriSource = new Uri(@"/SystemImages;component/Images/Drink.jpg", UriKind.Relative);
+                btnNuoc.Image = new BitmapImage(uriSource);
+            }
+            foreach (var item in gridLoaiGroup.Children)
+            {
+                POSButtonMenu btn = (POSButtonMenu)item;
+                btn.FontSize = mCaiDatThucDon.LoaiNhomTextFontSize;
+                btn.FontStyle = Data.SomeEnum.GetFontStyle(mCaiDatThucDon.LoaiNhomTextFontStyle);
+                btn.FontWeight = Data.SomeEnum.GetFontWeight(mCaiDatThucDon.LoaiNhomTextFontWeights);
+            }
+        }
         private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 1;

@@ -54,5 +54,29 @@ namespace GUI
             UserControlLibrary.WindowCaiDatChucNangHienThi win = new UserControlLibrary.WindowCaiDatChucNangHienThi(mTransit);
             win.ShowDialog();
         }
+
+        private void btnCaiDatBan_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatBan win = new UserControlLibrary.WindowCaiDatBan(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnCaiDatMayInNhaBep_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatMayInNhaBep win = new UserControlLibrary.WindowCaiDatMayInNhaBep(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnCaiDatMayInHoaDon_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatMayInHoaDon win = new UserControlLibrary.WindowCaiDatMayInHoaDon(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnCaiDatThucDon_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatThucDon win = new UserControlLibrary.WindowCaiDatThucDon(mTransit);
+            win.ShowDialog();
+        }
     }
 }

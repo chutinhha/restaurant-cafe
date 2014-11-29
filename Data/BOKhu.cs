@@ -10,7 +10,7 @@ namespace Data
         private Transit mTransit;
         public Data.KHU Khu { get; set; }
         public Data.MENULOAIGIA LoaiGia { get; set; }
-        public string TenKhu 
+        public string TenKhu
         {
             get { return Khu.TenKhu; }
         }
@@ -42,6 +42,11 @@ namespace Data
         {
             return FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(k => k.Deleted == false);
         }
+        public static List<KHU> GetAllNoTrackingToList(Transit transit)
+        {
+            return FrameworkRepository<KHU>.QueryNoTracking(transit.KaraokeEntities.KHUs).Where(k => k.Deleted == false).ToList();
+        }
+
 
         public IQueryable<BOKhu> GetAll(Transit transit)
         {

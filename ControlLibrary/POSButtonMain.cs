@@ -79,6 +79,15 @@ namespace ControlLibrary
         public static readonly DependencyProperty TextToProperty =
             DependencyProperty.Register("TextTo", typeof(string), typeof(POSButtonMain), new PropertyMetadata(null));
 
+        public Visibility VisibilityMain
+        {
+            get { return (Visibility)GetValue(VisibilityMainProperty); }
+            set { SetValue(VisibilityMainProperty, value); }
+        }
+
+        public static readonly DependencyProperty VisibilityMainProperty =
+            DependencyProperty.Register("VisibilityMain", typeof(Visibility), typeof(POSButtonMain), new PropertyMetadata(null));
+
         #endregion Properties
     }
 }
