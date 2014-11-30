@@ -31,17 +31,18 @@ namespace Data
             b.MaHoaDon = banhang.MaHoaDon;            
             b.TheID = banhang.TheID;
             b.KhachHangID = banhang.KhachHangID;
-            b.TienGiam = banhang.TienGiam;
+            b.GiamGia = banhang.GiamGia;
             return b;
         }
         public int GiamGiaPhanTram 
         {
             get 
             {
-                if (TongTien == 0)
-                    return 0;
-                else
-                    return (int)(TienGiam / TongTien*100);
+                return mBanHang.GiamGia;
+            }
+            set
+            {
+                mBanHang.GiamGia = value;
             }
         }
         public decimal TongTien 
@@ -55,19 +56,14 @@ namespace Data
         {
             get 
             {                
-                return (decimal)mBanHang.TienGiam; 
-            }
-            set 
-            { 
-                mBanHang.TienGiam = value;
-                TinhTienTraLai();
-            }
+                return mBanHang.GiamGia*mBanHang.TongTien/100; 
+            }           
         }
         public decimal TongTienPhaiTra 
         {
             get 
             {                
-                return (decimal)(mBanHang.TongTien - mBanHang.TienGiam); 
+                return (decimal)(mBanHang.TongTien - TienGiam); 
             }
         }
         public decimal TienKhachDua 

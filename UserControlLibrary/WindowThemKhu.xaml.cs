@@ -10,7 +10,7 @@ namespace UserControlLibrary
     /// </summary>
     public partial class WindowThemKhu : Window
     {
-        private BitmapImage mBitmapImage = null;
+        private byte[] mHinh = null;
         private Data.Transit mTransit;
 
         public Data.BOKhu _Item { get; set; }
@@ -29,7 +29,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
+            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
@@ -92,15 +92,13 @@ namespace UserControlLibrary
             _Item.Khu.LoaiGiaID = (int)cbbLoaiGia.SelectedValue;
             _Item.LoaiGia = (Data.MENULOAIGIA)cbbLoaiGia.SelectedItem;
             _Item.Khu.Visual = (bool)ckChoPhepHienThi.IsChecked;
-            if (mBitmapImage != null)
-            {
-                _Item.Khu.Hinh = Utilities.ImageHandler.ImageToByte(mBitmapImage);
-            }
+            _Item.Khu.Hinh = mHinh;
         }
 
         private void btnHinhAnh__OnBitmapImageChanged(object sender)
         {
-            mBitmapImage = btnHinhAnh.ImageBitmap;
+            BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhAnh.ImageBitmap, 1024, 768, 0);
+            mHinh = Utilities.ImageHandler.ImageToByte(img);            
         }
 
         private bool CheckValues()

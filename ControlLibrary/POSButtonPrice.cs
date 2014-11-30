@@ -40,46 +40,42 @@ namespace ControlLibrary
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:POSButtonTableArea/>
+    ///     <MyNamespace:POSButtonPrice/>
     ///
     /// </summary>
-    public class POSButtonTableArea : Button
+    public class POSButtonPrice : Button
     {
-        public Data.KHU _Khu { get; set; }
-
-        public ImageSource ImageCheck
+        public Data.BOMenuGia _MenuGia { get; set; }
+        static POSButtonPrice()
         {
-            get { return (ImageSource)GetValue(ImageCheckProperty); }
-            set { SetValue(ImageCheckProperty, value);}
-        }
-        public static readonly DependencyProperty ImageCheckProperty =
-            DependencyProperty.Register("ImageCheck", typeof(ImageSource), typeof(POSButtonTableArea), new PropertyMetadata(null));
-
-        public ImageSource Image
-        {
-            get { return (ImageSource)GetValue(ImageProperty);}
-            set { SetValue(ImageProperty, value); }
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonPrice), new FrameworkPropertyMetadata(typeof(POSButtonPrice)));
         }
 
-        public static readonly DependencyProperty ImageProperty =
-            DependencyProperty.Register("Image", typeof(ImageSource), typeof(POSButtonTableArea), new PropertyMetadata(null));
+        public double FontSizePrice
+        {
+            get { return (double)GetValue(FontSizePriceProperty);}
+            set { SetValue(FontSizePriceProperty, value); }
+        }
 
-        static POSButtonTableArea()
+        public static readonly DependencyProperty FontSizePriceProperty =
+            DependencyProperty.Register("FontSizePrice", typeof(double), typeof(POSButtonPrice), new PropertyMetadata(null));
+
+        public string Text
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonTableArea), new FrameworkPropertyMetadata(typeof(POSButtonTableArea)));
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
-        public void SetTableClicked(bool isClick)
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(POSButtonPrice), new PropertyMetadata(null));
+
+        public string TextPrice
         {
-            if (isClick)
-            {
-                this.ImageCheck = new BitmapImage(new Uri(@"/SystemImages;component/Images/Accep.png", UriKind.Relative));
-                this.Foreground = Brushes.Red;
-            }
-            else
-            {
-                this.ImageCheck = null;
-                this.Foreground = Brushes.Black;
-            }
+            get { return (string)GetValue(TextPriceProperty); }
+            set { SetValue(TextPriceProperty, value); }
         }
+
+        public static readonly DependencyProperty TextPriceProperty =
+            DependencyProperty.Register("TextPrice", typeof(string), typeof(POSButtonPrice), new PropertyMetadata(null));
     }
 }

@@ -22,12 +22,13 @@ namespace Data
         }
         public IQueryable<BAN> GetAllTablePerArea(KHU khu)
         {
+            frBan.Refresh();
             return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Deleted == false);
         }
 
         public IQueryable<BAN> GetVisualTablePerArea(KHU khu)
         {
-            //return frBan.Query().Where(o => o.KhuID == khu.KhuID && o.Visual==true && o.Deleted==false);
+            frBan.Refresh();
             return GetVisualTablePerArea(khu, mTransit);
         }
         public static IQueryable<BAN> GetVisualTablePerArea(KHU khu, Transit transit)
@@ -52,16 +53,25 @@ namespace Data
         }
         public void Them(BAN ban)
         {
-            frBan.AddObject(ban);
+            if (ban.BanID==0)
+            {
+                frBan.AddObject(ban);
+            }
         }
         public void Xoa(BAN ban)
         {
-            ban.Deleted = true;
-            frBan.Update(ban);
+            if (ban.BanID>0)
+            {
+                ban.Deleted = true;
+                frBan.Update(ban);
+            }
         }
         public void Sua(BAN ban)
         {
-            frBan.Update(ban);
+            if (ban.BanID>0)
+            {
+                frBan.Update(ban);
+            }
         }
         public void Commit()
         {

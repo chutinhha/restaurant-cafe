@@ -60,7 +60,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5" Name="txtTenNhanVien" TextAlignment="Center" FontSize="14" />
             </Grid>
 
-            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
+            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged" FontSize="16">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                         <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBan}" Width="45" Header="SL"/>

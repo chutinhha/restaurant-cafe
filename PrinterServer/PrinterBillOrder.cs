@@ -150,14 +150,15 @@ namespace PrinterServer
             mPOSPrinter.POSDrawString("T.CỘNG: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
             y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.BanHang.TongTien), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
 
-            if (mBOPrintOrder.BanHang.TienGiam > 0)
+            if (mBOPrintOrder.TienGiam > 0)
             {
+                double tienGiam=
                 mPOSPrinter.POSDrawString("GIẢM GIÁ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.BanHang.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
                 if (mTamTinh)
                 {
                     mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                    y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.BanHang.TongTien - mBOPrintOrder.BanHang.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+                    y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
                 }
             }
             if (mBOPrintOrder.BanHang.TienThe > 0)

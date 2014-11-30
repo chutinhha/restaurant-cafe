@@ -69,8 +69,8 @@ namespace UserControlLibrary
         {
             if (mKichThuocMon != null)
             {
-                IQueryable<Data.MENULOAIGIA> lsLoaiGia = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
-                IQueryable<Data.BOMenuGia> lsGia = BOMenuGia.GetAll(mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit);
+                IQueryable<Data.MENULOAIGIA> lsLoaiGia = Data.BOMenuLoaiGia.GetAllVisual(mTransit);
+                IQueryable<Data.BOMenuGia> lsGia = BOMenuGia.GetAllByKichThuocMon(mKichThuocMon.MenuKichThuocMon);
                 List<Data.BOMenuGia> lsArray = new List<Data.BOMenuGia>();
 
                 foreach (Data.MENULOAIGIA item in lsLoaiGia)

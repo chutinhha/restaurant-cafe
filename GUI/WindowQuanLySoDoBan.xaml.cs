@@ -46,6 +46,8 @@ namespace GUI
             if (ucSoDoBan == null)
             {
                 ucSoDoBan = new UserControlLibrary.UCSoDoBan(mTransit);
+                ucSoDoBan.Width = spNoiDung.RenderSize.Width;
+                ucSoDoBan.Height = spNoiDung.RenderSize.Height;                
             }
             spNoiDung.Children.Clear();
             spNoiDung.Children.Add(ucSoDoBan);

@@ -43,7 +43,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            IQueryable<Data.MENULOAIGIA> lsArray = BOMenuLoaiGia.GetAll(mTransit);
+            IQueryable<Data.MENULOAIGIA> lsArray = BOMenuLoaiGia.GetAllMenuLoaiGia();
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {

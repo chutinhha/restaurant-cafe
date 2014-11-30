@@ -57,11 +57,16 @@ namespace UserControlLibrary
         
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {
+            if (mTableButton!=null)
+            {
+                mTableButton._ButtonTableStatusColor = ControlLibrary.POSButtonTable.POSButtonTableStatusColor.None;
+            }
+            tbl._ButtonTableStatusColor = ControlLibrary.POSButtonTable.POSButtonTableStatusColor.Ordered;
             mTableButton = tbl;
             txtTenBan.Text = tbl._Ban.TenBan;
             mIsLockText = true;
             sliderNgang.Value = (int)(uCFloorPlan1._CAIDATBAN.TableWidth>0? tbl._Ban.Width/uCFloorPlan1._CAIDATBAN.TableWidth*100:0);
-            sliderCao.Value = (int)(uCFloorPlan1._CAIDATBAN.TableHeight > 0 ? tbl._Ban.Height / uCFloorPlan1._CAIDATBAN.TableHeight * 100 : 0);
+            sliderCao.Value = (int)(uCFloorPlan1._CAIDATBAN.TableHeight > 0 ? tbl._Ban.Height / uCFloorPlan1._CAIDATBAN.TableHeight * 100 : 0);            
             mIsLockText = false;
             if (tbl._Ban.Hinh != null && tbl._Ban.Hinh.Length > 0)
             {
@@ -93,8 +98,10 @@ namespace UserControlLibrary
                 ban.LocationY = 0;
                 ban.Width = mTransit.ThamSo.BanChieuNgang;
                 ban.Height = mTransit.ThamSo.BanChieuCao;
+                ban.Visual = true;
+                ban.Deleted = false;
                 ban.Hinh = null;
-                uCFloorPlan1.addTable(ban);
+                uCFloorPlan1.AddTable(ban);
             }
         }
 
@@ -113,16 +120,23 @@ namespace UserControlLibrary
                 uCFloorPlan1.DrawTable(mTableButton);                
             }
         }
-
+        
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             if (mTableButton != null)
             {
                 txtTenBan.Text = "";
                 btnHinhDaiDien.DefaultImage();
-                uCFloorPlan1.removeTable(mTableButton);
+                uCFloorPlan1.RemoveTable(mTableButton);
             }
         }
+
+        private void btnXoaTatCa_Click(object sender, RoutedEventArgs e)
+        {
+            txtTenBan.Text = "";
+            btnHinhDaiDien.DefaultImage();
+            uCFloorPlan1.RemoveAllTable();
+        }   
 
         private void btnHinhDaiDien__OnBitmapImageChanged(object sender)
         {
@@ -165,6 +179,6 @@ namespace UserControlLibrary
                 mTableButton._Ban.Height = (decimal)sliderCao.Value * uCFloorPlan1._CAIDATBAN.TableHeight / 100;
                 uCFloorPlan1.DrawTable(mTableButton);
             }
-        }        
+        }             
     }
 }

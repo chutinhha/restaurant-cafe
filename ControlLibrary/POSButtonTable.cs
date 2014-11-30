@@ -45,42 +45,45 @@ namespace ControlLibrary
     /// </summary>
     public class POSButtonTable : Button
     {      
-        public enum POSButtonTableStatus
+        //public enum POSButtonTableStatus
+        //{
+        //    None,
+        //    Add,
+        //    Edit,
+        //    Delete
+        //}        
+        private Data.BOBan mBOBan;
+        private Data.BAN mBan;
+        private POSButtonTableStatusColor mButtonTableStatusColor;
+        private Grid mGrid;
+        public Data.BAN _Ban
         {
-            None,
-            Add,
-            Edit,
-            Delete
+            get { return mBan; }
         }
-        public enum POSButtonTableStatusColor
-        {   
-            None,
-            Ordered=1,
-            Bill,
-            Taxinvoice,
-            Compledted
-        }
-        public Data.BAN _Ban { get; set; }
         private bool mIsMoseDown;
         private Point mPointMoseDown;
         private Thickness mThicknessMouseDown;
-        public bool _IsEdit { get; set; }
-        private POSButtonTableStatusColor mButtonTableStatusColor;
-        public POSButtonTableStatus _ButtonTableStatus { get; set; }
-        public POSButtonTableStatusColor _ButtonTableStatusColor 
+        public bool _IsEdit { get; set; }             
+        public POSButtonTableStatusColor _ButtonTableStatusColor
         {
             get { return mButtonTableStatusColor; }
-            set 
-            { 
+            set
+            {
                 mButtonTableStatusColor = value;
                 SetColor(value);
             }
-        }        
-        public UserControl _UserControlParent { get; set; }
-        public Color BackGroundColor 
+        }
+        public Color BackGroundColor
         {
             set { Background = new SolidColorBrush(value); }
+        }        
+        public POSButtonTable(Data.BOBan boBan,Data.BAN ban,Grid parent)
+        {
+            mBOBan = boBan;
+            mBan = ban;
+            mGrid = parent;
         }
+       
         static POSButtonTable()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(POSButtonTable), new FrameworkPropertyMetadata(typeof(POSButtonTable)));            
@@ -119,11 +122,16 @@ namespace ControlLibrary
             set { SetValue(ImageProperty, value); }
         }
         public void TableDraw(Data.CAIDATBAN caidat)
-        {            
-            double x = _UserControlParent.RenderSize.Width * (double)_Ban.LocationX;
-            double y = _UserControlParent.RenderSize.Height * (double)_Ban.LocationY;
-            double width = _UserControlParent.RenderSize.Width * (double)_Ban.Width;
-            double height = _UserControlParent.RenderSize.Height * (double)_Ban.Height;
+        {
+            double x = mGrid.RenderSize.Width * (double)_Ban.LocationX;
+            double y = mGrid.RenderSize.Height * (double)_Ban.LocationY;
+            double width = mGrid.RenderSize.Width * (double)_Ban.Width;
+            double height = mGrid.RenderSize.Height * (double)_Ban.Height;
+
+            //double x = _WidthFrame * (double)_Ban.LocationX;
+            //double y = _HeightFrame * (double)_Ban.LocationY;
+            //double width = _WidthFrame * (double)_Ban.Width;
+            //double height = _HeightFrame * (double)_Ban.Height;
 
             this.FontSize = caidat.TableFontSize;            
             this.FontStyle = Utilities.FontConverter.ConvertToFont(caidat.TableFontStyle);
@@ -132,8 +140,8 @@ namespace ControlLibrary
             this.Margin = new Thickness(
                 x,
                 y,
-                _UserControlParent.RenderSize.Width - width - x,
-                _UserControlParent.RenderSize.Height - height - y
+                mGrid.RenderSize.Width - width - x,
+                mGrid.RenderSize.Height - height - y
             );                                   
             this.Content = _Ban.TenBan;
             if (_Ban.Hinh != null && _Ban.Hinh.Length > 0)
@@ -160,11 +168,15 @@ namespace ControlLibrary
             if (_IsEdit)
             {
                 mIsMoseDown = true;
-                if (_UserControlParent!=null)
+                if (mGrid!=null)
                 {
-                    mPointMoseDown = e.GetPosition(_UserControlParent);
+                    mPointMoseDown = e.GetPosition(mGrid);
                     mThicknessMouseDown = this.Margin;
-                    _ButtonTableStatus = POSButtonTableStatus.Edit;
+                    //_ButtonTableStatus = POSButtonTableStatus.Edit;
+                    if (mBOBan!=null)
+                    {
+                        mBOBan.Sua(_Ban);
+                    }
                 }
             }
             base.OnPreviewMouseDown(e);
@@ -183,23 +195,23 @@ namespace ControlLibrary
             {
                 if (mIsMoseDown)
                 {
-                    if (mPointMoseDown!=null && _UserControlParent!=null)
+                    if (mPointMoseDown!=null && mGrid!=null)
                     {
-                        Point newPoint = e.GetPosition(_UserControlParent);
+                        Point newPoint = e.GetPosition(mGrid);
                         double dx = newPoint.X - mPointMoseDown.X;
                         double dy = newPoint.Y - mPointMoseDown.Y;
                         if (
-                            (mThicknessMouseDown.Left + dx)>=_UserControlParent.Margin.Left&&
-                            (mThicknessMouseDown.Top + dy)>=_UserControlParent.Margin.Top&&
-                            (mThicknessMouseDown.Right - dx)>=_UserControlParent.Margin.Right&&
-                            (mThicknessMouseDown.Bottom - dy)>=_UserControlParent.Margin.Bottom
+                            (mThicknessMouseDown.Left + dx)>=mGrid.Margin.Left&&
+                            (mThicknessMouseDown.Top + dy)>=mGrid.Margin.Top&&
+                            (mThicknessMouseDown.Right - dx)>=mGrid.Margin.Right&&
+                            (mThicknessMouseDown.Bottom - dy)>=mGrid.Margin.Bottom
                         )
                         {                            
                             this.Margin = new Thickness(mThicknessMouseDown.Left + dx, mThicknessMouseDown.Top + dy, mThicknessMouseDown.Right - dx, mThicknessMouseDown.Bottom - dy);                                                                
                             if (_Ban!=null)
                             {
-                                _Ban.LocationX =(decimal) ((this.Margin.Left - _UserControlParent.Margin.Left) / _UserControlParent.RenderSize.Width);
-                                _Ban.LocationY = (decimal)((this.Margin.Top - _UserControlParent.Margin.Top) / _UserControlParent.RenderSize.Height);
+                                _Ban.LocationX =(decimal) ((this.Margin.Left - mGrid.Margin.Left) / mGrid.RenderSize.Width);
+                                _Ban.LocationY = (decimal)((this.Margin.Top - mGrid.Margin.Top) / mGrid.RenderSize.Height);
                             }
                         }                    
                     }
@@ -212,5 +224,13 @@ namespace ControlLibrary
         }
         public static readonly DependencyProperty ImageProperty =
             DependencyProperty.Register("Image", typeof(ImageSource), typeof(POSButtonTable), new PropertyMetadata(null));
+        public enum POSButtonTableStatusColor
+        {
+            None,
+            Ordered = 1,
+            Bill,
+            Taxinvoice,
+            Compledted
+        }
     }
 }

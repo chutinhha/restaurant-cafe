@@ -43,7 +43,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            IQueryable<Data.BOLichBieuDinhKy> lsArray = BOLichBieuDinhKy.GetAll(mTransit);
+            IQueryable<Data.BOLichBieuDinhKy> lsArray = BOLichBieuDinhKy.GetAllOrderBy(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
             {
