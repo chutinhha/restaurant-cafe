@@ -11,6 +11,7 @@ namespace Data
         public Data.NHANVIEN Admin { get; set; }
         public Data.MenuGiaoDien MenuGiaoDien { get; set; }        
         public BAN Ban { get; set; }
+        public KHU Khu { get; set; }
         public BOBanHang BanHang { get; set; }
         //=================
         public KHACHHANG KhachHang { get; set; }
@@ -46,8 +47,18 @@ namespace Data
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
             The = KaraokeEntities.THEs.FirstOrDefault();
             ListDonVi = BODonVi.GetAll(this);            
-            BOChiTietQuyen = new BOChiTietQuyen(this);                   
-            //Data.BONhomChucNang BONhomChucNang = new BONhomChucNang(this);            
+            BOChiTietQuyen = new BOChiTietQuyen(this);
+            
+            //var list = Data.BOLichBieuDinhKy.GetAllVisualRun(this);
+            //var aaa = list.ToList();
+            //var list1 = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(this);
+            //var bbb = list1.ToList();
+            //var list3 = (from a in list select a.MenuLoaiGia).Union(from b in list1 select b.MenuLoaiGia).Distinct();
+            //var list4 = BOMenuGia.GetAll(this);
+
+            //var list5 = (from a in list3
+            //            join b in list4 on a.LoaiGiaID equals b.LoaiGiaID
+            //             select b).ToList(); ;            
         }
 
         public void LayDanhSachQuyen()

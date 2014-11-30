@@ -44,7 +44,12 @@ namespace Data
             var querya = BOMenuLoaiGia.GetAllVisual(transit);
             var queryb = from b in GetAllVisual(transit)
                          where
-                             ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0                             
+                             ts.CompareTo(b.GioBatDau.Value) >= 0 && 
+                             ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
+                             (                                
+                                b.KhuID==null||
+                                b.KhuID==transit.Ban.KhuID
+                             )
                          select b;
 
             //tim theo ngay trong tuan

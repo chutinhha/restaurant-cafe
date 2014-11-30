@@ -128,6 +128,7 @@ namespace ControlLibrary
             }
             POSButtonTableArea btn = (POSButtonTableArea)sender;
             mPOSButtonTableArea = btn;
+            mTransit.Khu = mPOSButtonTableArea._Khu;
             btn.SetTableClicked(true);
             if (_UCFloorPlan!=null)
             {

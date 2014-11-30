@@ -17,7 +17,7 @@ namespace ProcessOrder
         public PriceManager(Data.Transit transit)
         {
             mTransit = transit;
-            mQueryMenuLoaiGia = Data.BOMenuLoaiGia.GetAllLoaiGiaRun(mTransit);
+            mQueryMenuLoaiGia = Data.BOMenuLoaiGia.GetAllLoaiGiaRun(mTransit);            
             mListMenuGia = new List<Data.BOMenuGia>();
         }
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
