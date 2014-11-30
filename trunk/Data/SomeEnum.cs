@@ -150,5 +150,43 @@ namespace Data
         }
 
         #endregion FontStyle
+
+        #region FontStylePrinter
+        public static List<SomeEnum> GetFontStylesPrinter()
+        {
+            List<SomeEnum> lsArray = new List<SomeEnum>();
+            var ls = Enum.GetValues(typeof(System.Drawing.FontStyle)).Cast<System.Drawing.FontStyle>().ToList();
+            foreach (var item in ls)
+            {
+                lsArray.Add(new SomeEnum() { Value = (int)item, Name = item.ToString() });
+            }
+            return lsArray;
+        }
+        public static System.Drawing.FontStyle GetFontStylesPrinter(int n)
+        {
+            System.Drawing.FontStyle f = System.Drawing.FontStyle.Regular;
+            switch (f)
+            {
+                case System.Drawing.FontStyle.Bold:
+                    f = System.Drawing.FontStyle.Bold;
+                    break;
+                case System.Drawing.FontStyle.Italic:
+                    f = System.Drawing.FontStyle.Italic;
+                    break;
+                case System.Drawing.FontStyle.Regular:
+                    f = System.Drawing.FontStyle.Regular;
+                    break;
+                case System.Drawing.FontStyle.Strikeout:
+                    f = System.Drawing.FontStyle.Strikeout;
+                    break;
+                case System.Drawing.FontStyle.Underline:
+                    f = System.Drawing.FontStyle.Underline;
+                    break;
+                default:
+                    break;
+            }
+            return f;
+        }
+        #endregion
     }
 }

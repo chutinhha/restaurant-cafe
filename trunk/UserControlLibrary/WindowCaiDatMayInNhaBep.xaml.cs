@@ -63,10 +63,10 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadCombobox(cbbTitleTextFontStyle, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbInfoTextFontStyle, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbItemTextFontStyle, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbSumTextFontStyle, Data.SomeEnum.GetFontStyles());
+            LoadCombobox(cbbTitleTextFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbInfoTextFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbItemTextFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbSumTextFontStyle, Data.SomeEnum.GetFontStylesPrinter());
 
             LoadCombobox(cbbTitleTextFontWeights, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbInfoTextFontWeights, Data.SomeEnum.GetFontWeights());

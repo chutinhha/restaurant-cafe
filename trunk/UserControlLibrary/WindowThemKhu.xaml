@@ -20,7 +20,6 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
                     <RowDefinition Height="100" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
@@ -31,22 +30,20 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Khu mặc định" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Cho phép hiển thị" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Hình" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Khu mặc định" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Cho phép hiển thị" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Hình" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
                 <TextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenKhu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiGia" DisplayMemberPath="Ten" SelectedValuePath="LoaiGiaID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
-                <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ckMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
-                <CheckBox Grid.Row="3" Grid.Column="1" x:Name="ckChoPhepHienThi" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
-                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                <CheckBox Grid.Row="1" Grid.Column="1" x:Name="ckMacDinh" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
+                <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ckChoPhepHienThi" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" />
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                     <my:POSButtonImage Width="80" Height="80" Margin="10,10,10,10" x:Name="btnHinhAnh" _OnBitmapImageChanged="btnHinhAnh__OnBitmapImageChanged" />
                 </StackPanel>
 
-                <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
-                <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
-                <my:POSButtonFuntion Content="Thêm" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
+                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
+                <my:POSButtonFuntion Content="Đóng" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
+                <my:POSButtonFuntion Content="Thêm" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
             </Grid>
         </Grid>
     </Border>
