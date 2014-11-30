@@ -42,7 +42,11 @@ namespace Data
             var queryb = from b in GetAllVisual(transit)
                          where                             
                              ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
-                             dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0
+                             dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0 &&
+                             (                                
+                                b.KhuID==null ||
+                                b.KhuID==transit.Ban.KhuID
+                             )
                          select b;
             var query = from a in querya
                         join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
