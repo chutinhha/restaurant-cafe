@@ -7,26 +7,31 @@ namespace Data
 {
     public class BOMenuLoaiGia
     {
-        FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
-        private Data.BOLichBieuDinhKy mBOLichBieuDinhKy;
-        private Data.BOLichBieuKhongDinhKy mBOLichBieuKhongDinhKy;
+        FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;      
         private Transit mTransit;
         public BOMenuLoaiGia(Data.Transit transit)
         {
-            mTransit = transit;            
-            mBOLichBieuDinhKy = new Data.BOLichBieuDinhKy(mTransit);
-            mBOLichBieuKhongDinhKy = new Data.BOLichBieuKhongDinhKy(mTransit);
+            mTransit = transit;                        
             frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
-        }    
-        public IQueryable<MENULOAIGIA> GetAll(Transit mTransit)
-        {
-            return frmLoaiGia.Query().Where(s => s.Deleted == false);
         }
-        public static IQueryable<MENULOAIGIA> GetAllNoTracking(Transit mTransit)
+        public static IQueryable<MENULOAIGIA> GetAllLoaiGiaRun(Transit transit)
         {
-            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(mTransit.KaraokeEntities.MENULOAIGIAs);
+            var lichBieuDinhKy = Data.BOLichBieuDinhKy.GetAllVisualRun(transit);
+            var lichBieuKhongDinhKy = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(transit);                        
+            return (from a in lichBieuDinhKy select a.MenuLoaiGia).Union(from b in lichBieuKhongDinhKy select b.MenuLoaiGia).Distinct();            
         }
-
+        public IQueryable<MENULOAIGIA> GetAllMenuLoaiGia()
+        {
+            return GetAll(mTransit);
+        }
+        public static IQueryable<MENULOAIGIA> GetAll(Transit transit)
+        {
+            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(transit.KaraokeEntities.MENULOAIGIAs).Where(o => o.Deleted==false);
+        }
+        public static IQueryable<MENULOAIGIA> GetAllVisual(Transit transit)
+        {
+            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(transit.KaraokeEntities.MENULOAIGIAs).Where(o => o.Deleted == false && o.Visual==true);
+        }
         private int Them(MENULOAIGIA item, Transit mTransit)
         {
             frmLoaiGia.AddObject(item);

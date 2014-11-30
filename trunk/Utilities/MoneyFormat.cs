@@ -23,6 +23,14 @@ namespace Utilities
         {
             return String.Format("{0:0,0}", data);
         }
+        public static int ConvertToInt(string data)
+        {
+            if (CheckIsDigit(data))
+            {
+                return Convert.ToInt32(data);
+            }
+            return 0;
+        }
         public static decimal ConvertToDecimal(string data)
         {
             if (CheckIsDigit(data))

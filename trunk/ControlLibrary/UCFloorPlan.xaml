@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="573" d:DesignWidth="648" xmlns:my="clr-namespace:ControlLibrary" Loaded="UserControl_Loaded">
-    <Grid>        
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">        
         <Image Name="imgBackground" Stretch="Fill"></Image>
-        <Grid>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="2"></ColumnDefinition>                

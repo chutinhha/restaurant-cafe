@@ -131,7 +131,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAllNoTracking(mTransit);
+            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;

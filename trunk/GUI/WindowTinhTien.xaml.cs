@@ -72,8 +72,8 @@ namespace GUI
         }
 
         private void txtGiamGia_TextChanged(object sender, TextChangedEventArgs e)
-        {            
-            mBOXuliTinhTien.TienGiam = Utilities.MoneyFormat.ConvertToDecimal(txtGiamGia.Text)*mBOXuliTinhTien.TongTien/100;
+        {
+            mBOXuliTinhTien.GiamGiaPhanTram = Utilities.MoneyFormat.ConvertToInt(txtGiamGia.Text);
             ReLoadData();
         }
 

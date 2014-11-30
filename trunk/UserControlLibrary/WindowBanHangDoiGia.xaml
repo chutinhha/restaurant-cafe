@@ -1,0 +1,27 @@
+﻿<Window x:Class="UserControlLibrary.WindowBanHangDoiGia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gộp bàn" Height="414" Width="567" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF457ECE" Offset="0" />
+                <GradientStop Color="#FF69A7EC" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
+            </Grid.RowDefinitions>
+            <TextBlock Name="lbTieuDe" Text="Tạo giá" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <Grid Grid.Row="1" Background="White">
+                <my:POSButtonIcon Content="Đồng ý" Height="70" HorizontalAlignment="Left" Margin="44,202,0,0" Name="btnDongY" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/Accep.png" Click="btnDongY_Click" />
+                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="159,202,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Click="btnDong_Click" />
+                <my:POSTextBox Height="34" HorizontalAlignment="Left" Margin="6,74,0,0" Name="txtGia" VerticalAlignment="Top" Width="272" HorizontalContentAlignment="Center" FontSize="20" VerticalContentAlignment="Center" />
+                <my:POSLabel Content="Giá" Height="39" HorizontalAlignment="Left" Margin="6,29,0,0" Name="pOSLabel1" VerticalAlignment="Top" Width="272" HorizontalContentAlignment="Center" FontSize="20" Padding="0" VerticalContentAlignment="Center" />
+                <my:UCKeyPad HorizontalAlignment="Right" Margin="274,0,0,0" Name="uCKeyPad1" VerticalAlignment="Top" Width="249" Height="272" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

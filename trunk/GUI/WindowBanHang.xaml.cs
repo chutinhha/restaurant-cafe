@@ -87,6 +87,7 @@ namespace GUI
                     TamTinh();
                     break;
                 case (int)Data.TypeChucNang.BanHang.ThayDoiGia:
+                    ThayDoiGia();
                     break;
                 case (int)Data.TypeChucNang.BanHang.XoaMon:
                     XoaMon();
@@ -113,14 +114,39 @@ namespace GUI
                     break;
             }
         }
-        private void ChonGia()
+        private bool KiemTra(bool kiemTraMon,bool kiemTraDanhSachMon)
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
-                return;
+                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thực hiện chức năng nầy!");
+                return false;
             }
-            if (lvData.SelectedItems.Count > 0)
+            if (kiemTraDanhSachMon && mProcessOrder.KiemTraDanhSachMon()==0 )
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Danh sách rỗng. Không thể thực hiện chức năng nầy!");
+                return false;
+            }
+            if ( kiemTraMon&& lvData.SelectedItem==null)
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn món cần thay đổi");
+                return false;
+            }
+            return true;
+        }
+        private void ThayDoiGia()
+        {
+            if (KiemTra(true,false))
+	        {
+                UserControlLibrary.WindowBanHangDoiGia win = new UserControlLibrary.WindowBanHangDoiGia(mTransit, (Data.BOChiTietBanHang)lvData.SelectedItem);
+                if (win.ShowDialog()==true)
+                {
+                    lvData.Items.Refresh();
+                }
+	        }
+        }
+        private void ChonGia()
+        {            
+            if (KiemTra(true,false))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
                 UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MENUKICHTHUOCMON);
@@ -130,7 +156,7 @@ namespace GUI
                     lvData.Items.Refresh();
                     ReloadData();
                 }
-            }
+            }            
         }
         private void DongBan()
         {
@@ -146,42 +172,34 @@ namespace GUI
         }
         public void TamTinh()
         {
-            if (mProcessOrder.KiemTraDanhSachMon() > 0)
+            if (KiemTra(false,true))
             {
                 WindowTamTinh win = new WindowTamTinh(mTransit, mProcessOrder.GetBanHang());
                 if (win.ShowDialog() == true)
                 {
                     if (mProcessOrder.TamTinh() > 0)
-                    {
-                        //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
+                    {                        
                         mUCFloorPlan.LoadAlllStatus();
                         this.Close();
 
                     }
                 }
             }
-            else
-            {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");
-            }
         }
         private void GuiNhaBep()
         {
-            if (mProcessOrder.KiemTraDanhSachMon() == 0)
+            if (KiemTra(false,true))
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể gửi ra nhà bếp ! Vui lòng chọn món");
-                return;
+                if (mProcessOrder.SendOrder() > 0)
+                {                    
+                    mUCFloorPlan.LoadAlllStatus();
+                }
+                this.Close();
             }
-            if (mProcessOrder.SendOrder() > 0)
-            {
-                //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
-                mUCFloorPlan.LoadAlllStatus();
-            }
-            this.Close();
         }
         private void TinhTien()
         {
-            if (mProcessOrder.KiemTraDanhSachMon() > 0)
+            if (KiemTra(false,true))
             {
                 WindowTinhTien win = new WindowTinhTien(mTransit, mProcessOrder.GetBanHang());
                 if (win.ShowDialog() == true)
@@ -192,30 +210,22 @@ namespace GUI
                     this.Close();
                 }
             }
-            else
-            {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Không thể tính tiền hóa hơn ! Vui lòng chọn món");
-            }
         }
         private void XoaMon()
         {
-            if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
-            {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
-                return;
-            }
-            if (lvData.SelectedItems.Count > 0)
+            if (KiemTra(true,true))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
                 mProcessOrder.XoaChiTietBanHang(chitiet);
-                lvData.Items.Remove(chitiet);
+                lvData.Items.Refresh();
+                //lvData.Items.Remove(chitiet);
                 ReloadData();
                 if (lvData.Items.Count > 0)
                 {
                     lvData.SelectedIndex = lvData.Items.Count - 1;
                 }
-            }
-            XoaTextThongTinMon();
+                XoaTextThongTinMon();
+            }            
         }
         private void TachBan()
         {
@@ -246,17 +256,13 @@ namespace GUI
         }
         private void XoaToanBoMon()
         {
-            if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
+            if (KiemTra(false,true))
             {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thay đổi");
-                return;
+                mProcessOrder.XoaAllXoaChiTietBanHang();
+                lvData.Items.Refresh();
+                //lvData.Items.Clear();
+                XoaTextThongTinMon();
             }
-            foreach (Data.BOChiTietBanHang item in lvData.Items)
-            {
-                mProcessOrder.XoaChiTietBanHang(item);
-            }
-            lvData.Items.Clear();
-            XoaTextThongTinMon();
         }
         private void XoaTextThongTinMon()
         {
@@ -272,11 +278,12 @@ namespace GUI
             txtTenNhanVien.Text = "NV: " + mTransit.NhanVien.TenNhanVien;
             txtTenBan.Text = mTransit.Ban.TenBan;
             ReloadData();
-            lvData.Items.Clear();
-            foreach (var item in mProcessOrder.ListChiTietBanHang)
-            {
-                lvData.Items.Add(item);
-            }
+            //lvData.Items.Clear();
+            //foreach (var item in mProcessOrder.ListChiTietBanHang)
+            //{
+            //    lvData.Items.Add(item);
+            //}
+            lvData.ItemsSource = mProcessOrder.ListChiTietBanHang;
 
         }
         private void ReloadData()
@@ -285,16 +292,29 @@ namespace GUI
         }
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
         {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            if (mProcessOrder.AddChiTietBanHang(item) == 0)
+            //ListViewItem li = new ListViewItem();
+            //li.Content = item;
+            //if (mProcessOrder.AddChiTietBanHang(item) == 0)
+            //{
+            //    lvData.Items.Add(item);
+            //}
+            //else
+            //{
+            //    lvData.Items.Refresh();
+            //}
+            if (mProcessOrder.AddChiTietBanHang(item)==0)
             {
-                lvData.Items.Add(item);
-            }
-            else
-            {
-                lvData.Items.Refresh();
-            }
+                if (mProcessOrder.CheckMutiablePrice(item))
+                {
+                    UserControlLibrary.WindowBanHangNhieuGia win = new UserControlLibrary.WindowBanHangNhieuGia(mProcessOrder._ListMenuGia);
+                    if (win.ShowDialog() == true)
+                    {
+                        item.ChangePriceChiTietBanHang(win._MenuGia.Gia);
+                    }
+                }    
+            }            
+            
+            lvData.Items.Refresh();
             if (lvData.Items.Count > 0)
             {
                 lvData.SelectedIndex = lvData.Items.Count - 1;

@@ -10,6 +10,6 @@ namespace Utilities
         public static string FormatToString(decimal data)
         {
             return String.Format("{0}", data);
-        }
+        }        
     }
 }

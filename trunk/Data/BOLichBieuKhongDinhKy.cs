@@ -26,33 +26,60 @@ namespace Data
             MenuLoaiGia = new MENULOAIGIA();
             TenKhu = "";
         }
-        public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
+        public static IQueryable<LICHBIEUKHONGDINHKY> GetAll(Transit transit)
         {
-            DateTime dt = DateTime.Now;            
+            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false);
+        }
+        public static IQueryable<LICHBIEUKHONGDINHKY> GetAllVisual(Transit transit)
+        {
+            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false&& o.Visual==true);
+        }
+        public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(Transit transit)
+        {
+            DateTime dt = DateTime.Now;
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            var querya = from a in frmMenuLoaiGia.Query()
-                         where
-                              a.Visual == true &&
-                              a.Deleted == false
-                         select a;
-            var queryb = from b in frmLichBieuKhongDinhKy.Query()
+            var querya = BOMenuLoaiGia.GetAllVisual(transit);                         
+            var queryb = from b in GetAllVisual(transit)
                          where                             
-                             b.Deleted == false &&
-                             b.Visual == true &&
                              ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
-                             dt.CompareTo(b.NgayBatDau.Value)>=0 && dt.CompareTo(b.NgayKetThuc.Value)<=0
+                             dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0
                          select b;
             var query = from a in querya
                         join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
-                        //select new BOLichBieuKhongDinhKy
-                        //{
-                        //    MenuLoaiGia = a,
-                        //    LichBieuKhongDinhKy = b
-                        //};
-                        select a;
+                        select new BOLichBieuKhongDinhKy
+                        {
+                            MenuLoaiGia = a,
+                            LichBieuKhongDinhKy = b
+                        };                        
             return query.Distinct();
         }
-        public IQueryable<BOLichBieuKhongDinhKy> GetAll(Transit mTransit)
+        //public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
+        //{
+        //    DateTime dt = DateTime.Now;            
+        //    TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+        //    var querya = from a in frmMenuLoaiGia.Query()
+        //                 where
+        //                      a.Visual == true &&
+        //                      a.Deleted == false
+        //                 select a;
+        //    var queryb = from b in frmLichBieuKhongDinhKy.Query()
+        //                 where                             
+        //                     b.Deleted == false &&
+        //                     b.Visual == true &&
+        //                     ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
+        //                     dt.CompareTo(b.NgayBatDau.Value)>=0 && dt.CompareTo(b.NgayKetThuc.Value)<=0
+        //                 select b;
+        //    var query = from a in querya
+        //                join b in queryb on a.LoaiGiaID equals b.LoaiGiaID
+        //                //select new BOLichBieuKhongDinhKy
+        //                //{
+        //                //    MenuLoaiGia = a,
+        //                //    LichBieuKhongDinhKy = b
+        //                //};
+        //                select a;
+        //    return query.Distinct();
+        //}
+        public IQueryable<BOLichBieuKhongDinhKy> GetAllWithShort(Transit mTransit)
         {
             var res = (from lb in frmLichBieuKhongDinhKy.Query()
                        join k in frmKhu.Query() on lb.KhuID equals k.KhuID into k1

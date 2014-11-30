@@ -41,7 +41,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-            if (mTransit.NhanVien.CapDo < (int)Data.EnumLoaiNhanVien.NhanVien)
+           if (mTransit.NhanVien.CapDo < (int)Data.EnumLoaiNhanVien.NhanVien)
                 DialogResult = false;
             else
                 DialogResult = true;
@@ -56,6 +56,12 @@ namespace GUI
         public void LoadAlllStatus()
         {
             uCFloorPlan1.LoadAlllStatus();
+        }
+
+        private void btnChucNang_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowChucNangSoDoBan win = new UserControlLibrary.WindowChucNangSoDoBan(uCFloorPlan1, mTransit);
+            win.ShowDialog();
         }
     }
 }

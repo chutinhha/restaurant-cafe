@@ -14,6 +14,14 @@ namespace Data
         public DateTime NgayBan { get; set; }
         public BANHANG BanHang { get; set; }
         public BOPrintOrder()
-        { }        
+        { }
+        public decimal TienGiam 
+        {
+            get { return BanHang.GiamGia * BanHang.TongTien / 100; }
+        }
+        public decimal TienPhaiTra 
+        {
+            get { return BanHang.TongTien - TienGiam; }
+        }
     }
 }

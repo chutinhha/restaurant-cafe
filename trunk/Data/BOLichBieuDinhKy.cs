@@ -21,67 +21,30 @@ namespace Data
             frmLoaiLichBieu = new FrameworkRepository<LOAILICHBIEU>(transit.KaraokeEntities, transit.KaraokeEntities.LOAILICHBIEUx);
             frmKhu = new FrameworkRepository<KHU>(transit.KaraokeEntities, transit.KaraokeEntities.KHUs);
         }
+        public static IQueryable<LICHBIEUDINHKY> GetAll(Transit transit)
+        {
+            return FrameworkRepository<LICHBIEUDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUDINHKies).Where(o=>o.Deleted==false);
+        }
+        public static IQueryable<LICHBIEUDINHKY> GetAllVisual(Transit transit)
+        {
+            return FrameworkRepository<LICHBIEUDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUDINHKies).Where(o => o.Deleted == false && o.Visual==true);
+        }
         public BOLichBieuDinhKy()
         {
             LichBieuDinhKy = new LICHBIEUDINHKY();
             MenuLoaiGia = new MENULOAIGIA();
             TenKhu = "";
         }
-        public IQueryable<LICHBIEUDINHKY> GetAllVisual()
-        {
-            DateTime dt = DateTime.Now;
-            int dayOfWeek = (int)dt.DayOfWeek;
-            TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            //tim theo ngay trong tuan
-            var query1 = from b in frmLichBieuDinhKy.Query()
-                         where
-                            b.Deleted == false &&
-                            b.Visual == true &&
-                            b.TheLoaiID == 1 &&
-                            (
-                                (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= b.GiaTriKetThuc && b.GiaTriBatDau < b.GiaTriKetThuc) ||
-                                (
-                                    (dayOfWeek >= b.GiaTriBatDau && dayOfWeek <= 6) || (dayOfWeek <= b.GiaTriKetThuc && dayOfWeek >= 0) && b.GiaTriBatDau > b.GiaTriKetThuc
-                                )
-                            )
-                         select b;
-            //select a;
-            //tim theo ngay trong thang
-            var query2 = from b in frmLichBieuDinhKy.Query()
-                         where
-                            b.Deleted == false &&
-                            b.Visual == true &&
-                             b.TheLoaiID == 2 &&
-                             dt.Day >= b.GiaTriBatDau && dt.Day <= b.GiaTriKetThuc
-                         select b;
-            //select a;
-            //tim theo ngay trong nam
-            var query3 = from b in frmLichBieuDinhKy.Query()
-                         where
-                            b.Deleted == false &&
-                            b.Visual == true &&
-                             b.TheLoaiID == 3 &&
-                             b.GiaTriBatDau == dt.Day && b.GiaTriKetThuc == dt.Month
-                         select b;
-            return query1.Union(query2).Union(query3).Distinct();
-            //select a;
-        }
-        public IQueryable<BOLichBieuDinhKy> GetMenuLoaiGia()
+        public static IQueryable<BOLichBieuDinhKy> GetAllVisualRun(Transit transit)
         {
 
             DateTime dt = DateTime.Now;
             int dayOfWeek = (int)dt.DayOfWeek;
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            var querya = from a in frmMenuLoaiGia.Query()
+            var querya = BOMenuLoaiGia.GetAllVisual(transit);
+            var queryb = from b in GetAllVisual(transit)
                          where
-                              a.Visual == true &&
-                              a.Deleted == false
-                         select a;
-            var queryb = from b in frmLichBieuDinhKy.Query()
-                         where
-                             ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
-                             b.Deleted == false &&
-                             b.Visual == true
+                             ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0                             
                          select b;
 
             //tim theo ngay trong tuan
@@ -128,7 +91,7 @@ namespace Data
             return
                     from a in query1.Union(query2).Union(query3).Distinct() select a;
         }
-        public IQueryable<BOLichBieuDinhKy> GetAll(Transit mTransit)
+        public IQueryable<BOLichBieuDinhKy> GetAllOrderBy(Transit mTransit)
         {
             var res = (from lb in frmLichBieuDinhKy.Query()
                        join k in frmKhu.Query() on lb.KhuID equals k.KhuID into k1
