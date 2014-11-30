@@ -21,16 +21,16 @@ namespace Data
             {
                 item = new CAIDATMAYINBEP();
                 item.TitleTextFontSize = 12;
-                item.TitleTextFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.TitleTextFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.TitleTextFontWeights = (int)SomeEnum.FontWeights.Normal;
                 item.InfoTextFontSize = 12;
-                item.InfoTextFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.InfoTextFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.InfoTextFontWeights = (int)SomeEnum.FontWeights.Normal;
                 item.ItemTextFontSize = 12;
-                item.ItemTextFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.ItemTextFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.ItemTextFontWeights = (int)SomeEnum.FontWeights.Normal;
                 item.SumTextFontSize = 12;
-                item.SumTextFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.SumTextFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.SumTextFontWeights = (int)SomeEnum.FontWeights.Normal;
             }
             return item;

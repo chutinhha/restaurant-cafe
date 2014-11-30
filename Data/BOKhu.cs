@@ -9,7 +9,6 @@ namespace Data
     {
         private Transit mTransit;
         public Data.KHU Khu { get; set; }
-        public Data.MENULOAIGIA LoaiGia { get; set; }
         public string TenKhu
         {
             get { return Khu.TenKhu; }
@@ -19,18 +18,14 @@ namespace Data
             get { return Khu.KhuID; }
         }
         private FrameworkRepository<KHU> frmKhu;
-        private FrameworkRepository<MENULOAIGIA> frmLoaiGia = null;
-
         public BOKhu(Transit transit)
         {
             mTransit = transit;
             frmKhu = new FrameworkRepository<KHU>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.KHUs);
-            frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.MENULOAIGIAs);
         }
         public BOKhu()
         {
             Khu = new KHU();
-            LoaiGia = new MENULOAIGIA();
         }
 
         public static IQueryable<KHU> GetAllVisual(Transit transit)
@@ -50,13 +45,11 @@ namespace Data
 
         public IQueryable<BOKhu> GetAll(Transit transit)
         {
-            return from k in frmKhu.Query()
-                   join lg in frmLoaiGia.Query() on k.LoaiGiaID equals lg.LoaiGiaID
+            return from k in frmKhu.Query()                   
                    where k.Deleted == false
                    select new BOKhu
                    {
-                       Khu = k,
-                       LoaiGia = lg
+                       Khu = k
                    };
 
         }

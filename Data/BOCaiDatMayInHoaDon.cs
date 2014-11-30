@@ -28,10 +28,10 @@ namespace Data
                 item.HeaderTextFontSize2 = 12;
                 item.HeaderTextFontSize3 = 12;
                 item.HeaderTextFontSize4 = 12;
-                item.HeaderTextFontStyle1 = (int)SomeEnum.FontStyles.Normal;
-                item.HeaderTextFontStyle2 = (int)SomeEnum.FontStyles.Normal;
-                item.HeaderTextFontStyle3 = (int)SomeEnum.FontStyles.Normal;
-                item.HeaderTextFontStyle4 = (int)SomeEnum.FontStyles.Normal;
+                item.HeaderTextFontStyle1 = (int)System.Drawing.FontStyle.Regular;
+                item.HeaderTextFontStyle2 = (int)System.Drawing.FontStyle.Regular;
+                item.HeaderTextFontStyle3 = (int)System.Drawing.FontStyle.Regular;
+                item.HeaderTextFontStyle4 = (int)System.Drawing.FontStyle.Regular;
                 item.HeaderTextFontWeights1 = (int)SomeEnum.FontWeights.Normal;
                 item.HeaderTextFontWeights2 = (int)SomeEnum.FontWeights.Normal;
                 item.HeaderTextFontWeights3 = (int)SomeEnum.FontWeights.Normal;
@@ -45,23 +45,23 @@ namespace Data
                 item.FooterTextFontSize2 = 12;
                 item.FooterTextFontSize3 = 12;
                 item.FooterTextFontSize4 = 12;
-                item.FooterTextFontStyle1 = (int)SomeEnum.FontStyles.Normal;
-                item.FooterTextFontStyle2 = (int)SomeEnum.FontStyles.Normal;
-                item.FooterTextFontStyle3 = (int)SomeEnum.FontStyles.Normal;
-                item.FooterTextFontStyle4 = (int)SomeEnum.FontStyles.Normal;
+                item.FooterTextFontStyle1 = (int)System.Drawing.FontStyle.Regular;
+                item.FooterTextFontStyle2 = (int)System.Drawing.FontStyle.Regular;
+                item.FooterTextFontStyle3 = (int)System.Drawing.FontStyle.Regular;
+                item.FooterTextFontStyle4 = (int)System.Drawing.FontStyle.Regular;
                 item.FooterTextFontWeights1 = (int)SomeEnum.FontWeights.Normal;
                 item.FooterTextFontWeights2 = (int)SomeEnum.FontWeights.Normal;
                 item.FooterTextFontWeights3 = (int)SomeEnum.FontWeights.Normal;
                 item.FooterTextFontWeights4 = (int)SomeEnum.FontWeights.Normal;
 
                 item.SumanyFontSize = 12;
-                item.SumanyFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.SumanyFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.SumanyFontWeights = (int)SomeEnum.FontWeights.Normal;
                 item.SumanyFontSizeBig = 12;
-                item.SumanyFontStyleBig = (int)SomeEnum.FontStyles.Normal;
+                item.SumanyFontStyleBig = (int)System.Drawing.FontStyle.Regular;
                 item.SumanyFontWeightsBig = (int)SomeEnum.FontWeights.Normal;
                 item.TitleTextFontSize = 12;
-                item.TitleTextFontStyle = (int)SomeEnum.FontStyles.Normal;
+                item.TitleTextFontStyle = (int)System.Drawing.FontStyle.Regular;
                 item.TitleTextFontWeights = (int)SomeEnum.FontWeights.Normal;
 
             }
