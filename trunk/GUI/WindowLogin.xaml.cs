@@ -25,7 +25,7 @@ namespace GUI
             InitializeComponent();
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
-            ucTile.SetTransit(mTransit);
+            ucTile.SetTransit(mTransit);           
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
@@ -83,7 +83,7 @@ namespace GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtUserID._UCKeyPad = uCKeyPad;
-            txtPassword._UCKeyPad = uCKeyPad;
+            txtPassword._UCKeyPad = uCKeyPad;            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -44,16 +44,16 @@ namespace ControlLibrary
     ///
     /// </summary>
     public class POSButtonTable : Button
-    {      
-        //public enum POSButtonTableStatus
-        //{
-        //    None,
-        //    Add,
-        //    Edit,
-        //    Delete
-        //}        
-        private Data.BOBan mBOBan;
+    {
+        public enum POSButtonTableStatus
+        {
+            None,
+            Add,
+            Edit,
+            Delete
+        }                
         private Data.BAN mBan;
+        public POSButtonTableStatus _ButtonTableStatus { get; set; }
         private POSButtonTableStatusColor mButtonTableStatusColor;
         private Grid mGrid;
         public Data.BAN _Ban
@@ -77,9 +77,9 @@ namespace ControlLibrary
         {
             set { Background = new SolidColorBrush(value); }
         }        
-        public POSButtonTable(Data.BOBan boBan,Data.BAN ban,Grid parent)
+        public POSButtonTable(Data.BAN ban,Grid parent)
         {
-            mBOBan = boBan;
+            _ButtonTableStatus = POSButtonTableStatus.None;
             mBan = ban;
             mGrid = parent;
         }
@@ -172,11 +172,7 @@ namespace ControlLibrary
                 {
                     mPointMoseDown = e.GetPosition(mGrid);
                     mThicknessMouseDown = this.Margin;
-                    //_ButtonTableStatus = POSButtonTableStatus.Edit;
-                    if (mBOBan!=null)
-                    {
-                        mBOBan.Sua(_Ban);
-                    }
+                    _ButtonTableStatus = POSButtonTableStatus.Edit;                
                 }
             }
             base.OnPreviewMouseDown(e);

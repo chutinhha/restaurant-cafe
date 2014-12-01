@@ -93,10 +93,7 @@ namespace ProcessOrder
             int count = 0;
             foreach (var item in mBanHang._ListChiTietBanHang)
             {
-                if (item.IsDeleted==false)
-                {
-                    count++;
-                }
+                count++;
             }
             return count;
         }    

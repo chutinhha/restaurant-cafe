@@ -60,7 +60,7 @@ namespace Data
 
             //var list5 = (from a in list3
             //            join b in list4 on a.LoaiGiaID equals b.LoaiGiaID
-            //             select b).ToList(); ;            
+            //             select b).ToList(); ;                          
         }
 
         public void LayDanhSachQuyen()

@@ -7,7 +7,8 @@ namespace Data
 {
     public class BOChiTietBanHang
     {
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }    
+        public bool IsChanged { get; set; }
         public CHITIETBANHANG CHITIETBANHANG { get; set; }
         public MENUKICHTHUOCMON MENUKICHTHUOCMON { get; set; }
         public MENUMON MENUMON { get; set; }
@@ -75,18 +76,30 @@ namespace Data
         public void ChangeQtyChiTietBanHang(int qty)
         {
             this.CHITIETBANHANG.SoLuongBan = qty;
-            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+            this.ChangeThanhTien();
         }
         public void ChangePriceChiTietBanHang(decimal gia)
         {
             this.CHITIETBANHANG.GiaBan = gia;
-            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+            this.ChangeThanhTien();
         }
-        public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet, int qty)
+        public void ChangeDiscountChiTietBanHang(int discount)
+        {
+            this.IsChanged = true;
+            this.CHITIETBANHANG.GiamGia = discount;
+            this.ChangeThanhTien();
+        }
+        private void ChangeThanhTien()
+        {
+            decimal thanhtien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+            this.CHITIETBANHANG.ThanhTien = thanhtien - thanhtien * this.CHITIETBANHANG.GiamGia / 100;            
+        }
+        public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
         {
             chitiet.SoLuong = qty;
             chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
         }
+        
         public string TenMon
         {
             get
@@ -100,7 +113,7 @@ namespace Data
 
             get
             {
-                return Utilities.MoneyFormat.ConvertToString(CHITIETBANHANG.GiaBan * CHITIETBANHANG.SoLuongBan);
+                return Utilities.MoneyFormat.ConvertToString(CHITIETBANHANG.ThanhTien);
             }
         }
         public string SoLuongBan
@@ -115,7 +128,12 @@ namespace Data
         {
             get
             {
-                return "Giảm giá 5%, Tặng món A, khuyến mãi B, giá của khu A, phòng VIP";
+                if (this.CHITIETBANHANG.GiamGia>0)
+                {
+                    return String.Format("Giảm giá {0}%", this.CHITIETBANHANG.GiamGia);
+                }
+                return "";
+                //return "Giảm giá 5%, Tặng món A, khuyến mãi B, giá của khu A, phòng VIP";
             }
         }
 

@@ -93,11 +93,27 @@ namespace Data
         {
             LoadBanHang(mTransit.Ban);
         }
-        private bool KiemTraThayDoi()
+        private bool KiemTraThayDoiLichSu()
         {            
             foreach (BOChiTietBanHang item in _ListChiTietBanHang)
             {
-                if (item.IsDeleted|| item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan || item.CHITIETBANHANG.ChiTietBanHangID==0)
+                if (
+                    item.SoLuongBanTam!=item.CHITIETBANHANG.SoLuongBan || 
+                    item.CHITIETBANHANG.ChiTietBanHangID==0                     
+                    )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool KiemTraThayDoi()
+        {
+            foreach (BOChiTietBanHang item in _ListChiTietBanHang)
+            {
+                if (
+                    item.IsChanged
+                    )
                 {
                     return true;
                 }
@@ -183,16 +199,16 @@ namespace Data
                     item.CHITIETBANHANG.BanHangID = BANHANG.BanHangID;
                     CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
                     frChiTietBanHang.AddObject(item.CHITIETBANHANG);
-                    frChiTietLichSuBanHang.AddObject(chitiet);
+                    frChiTietLichSuBanHang.AddObject(chitiet);                                        
                 }
                 frChiTietBanHang.Commit();
-                frChiTietLichSuBanHang.Commit();
+                frChiTietLichSuBanHang.Commit();                
             }
             else
             {
                 frBanHang.Update(this.BANHANG);
                 frBanHang.Commit();
-                if (KiemTraThayDoi())
+                if (KiemTraThayDoiLichSu())
                 {
                     LICHSUBANHANG lichsu = GetLichSuBanHang();
                     frLichSu.AddObject(lichsu);
@@ -206,14 +222,7 @@ namespace Data
                             item.ChangeQtyChiTietLichSuBanHang(chitiet, (int)chitiet.SoLuong);
                             item.CHITIETBANHANG.BanHangID = this.BANHANG.BanHangID;
                             frChiTietBanHang.AddObject(item.CHITIETBANHANG);
-                            frChiTietLichSuBanHang.AddObject(chitiet);                            
-                        }
-                        else if (item.IsDeleted)
-                        {
-                            CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
-                            item.ChangeQtyChiTietLichSuBanHang(chitiet, 0 - (int)chitiet.SoLuong);
                             frChiTietLichSuBanHang.AddObject(chitiet);
-                            frChiTietBanHang.DeleteObject(item.CHITIETBANHANG);
                         }
                         else if (item.SoLuongBanTam != item.CHITIETBANHANG.SoLuongBan)
                         {
@@ -238,6 +247,16 @@ namespace Data
                     frChiTietBanHang.Commit();
                     frChiTietLichSuBanHang.Commit();
                 }
+                //========================== 
+                //thay doi
+                foreach (BOChiTietBanHang item in _ListChiTietBanHang)
+                {
+                    if (item.IsChanged)
+                    {
+                        frChiTietBanHang.Update(item.CHITIETBANHANG);
+                    }
+                }
+                frChiTietBanHang.Commit();                              
             }
             return lichSuBanHangId;
         }        
@@ -330,15 +349,18 @@ namespace Data
             }
             GuiNhaBep();
         }
+        public decimal SoTienPhaiTra()
+        {
+            decimal tong = this.TongTien();
+            decimal tienGiam = tong * this.BANHANG.GiamGia / 100;
+            return tong - tienGiam;
+        }
         public decimal TongTien()
         {
             decimal tong = 0;
             foreach (var item in _ListChiTietBanHang)
             {
-                if (item.IsDeleted==false)
-                {
-                    tong += (decimal)item.CHITIETBANHANG.ThanhTien;
-                }
+                tong += item.CHITIETBANHANG.ThanhTien;
             }
             return tong;
         }
@@ -364,6 +386,7 @@ namespace Data
             chitiet.SoLuong = item.CHITIETBANHANG.SoLuongBan;
             chitiet.ThanhTien = item.CHITIETBANHANG.ThanhTien;
             chitiet.GiaBan = item.CHITIETBANHANG.GiaBan;
+            chitiet.GiamGia = item.CHITIETBANHANG.GiamGia;
             chitiet.TrangThai = 0;
             return chitiet;
         }        

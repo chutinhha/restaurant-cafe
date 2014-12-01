@@ -9,6 +9,7 @@ namespace Data
     {
         public CAIDATMAYINBEP _CAIDATMAYINBEP { get; set; }
         public CAIDATMAYINHOADON _CAIDATMAYINHOADON { get; set; }
+        public System.Drawing.Image _ImageLogo { get; set; }
         private KaraokeEntities mKaraokeEntities;
         private Transit mTransit;
         public FrameworkRepository<MAYIN> frMayIn;
@@ -27,8 +28,7 @@ namespace Data
         {
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
-            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
+            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            
             frMayIn = new FrameworkRepository<MAYIN>(mKaraokeEntities, mKaraokeEntities.MAYINs);
             frMenuMayIn = new FrameworkRepository<MENUITEMMAYIN>(mKaraokeEntities, mKaraokeEntities.MENUITEMMAYINs);
             frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities, mKaraokeEntities.MENUMONs);
@@ -42,7 +42,8 @@ namespace Data
             frThe = new FrameworkRepository<THE>(mKaraokeEntities, mKaraokeEntities.THEs);
 
             _CAIDATMAYINBEP = BOCaiDatMayInBep.GetQueryNoTracking(mTransit);            
-            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetQueryNoTracking(mTransit);         
+            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetQueryNoTracking(mTransit);
+            _ImageLogo = Utilities.ImageHandler.BitmapImage2Bitmap(this._CAIDATMAYINHOADON.Logo);
         }
         public IQueryable<BOMayIn> AllPrinting(int lichSuBanHang)
         {
@@ -129,14 +130,18 @@ namespace Data
                             KichThuoc=b.KichThuocMonID,
                             TenDai = c.TenDai,
                             TenLoaiBan=b.TenLoaiBan,
+                            GiamGia=a.GiamGia,
+                            GiaBan=a.GiaBan,
                             SoLuong = (int)a.SoLuongBan,
                             ThanhTien=(decimal)a.ThanhTien
                         } into x
-                        group x by new { x.KichThuoc,x.TenDai,x.TenLoaiBan } into y
+                        group x by new { x.KichThuoc,x.TenDai,x.TenLoaiBan,x.GiaBan,x.GiamGia } into y
                         select new BOPrintOrderItem
                         {
                             TenMon = y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
                             SoLuong = y.Sum(c => c.SoLuong),
+                            GiaBan=y.Key.GiaBan,
+                            GiamGia=y.Key.GiamGia,
                             ThanhTien=y.Sum(c=>c.ThanhTien)
                         };
             return query;

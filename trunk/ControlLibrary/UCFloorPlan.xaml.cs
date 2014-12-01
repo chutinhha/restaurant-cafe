@@ -76,32 +76,17 @@ namespace ControlLibrary
         }
         public void SaveChange()
         {
-            //for (int i = 0; i < this.gridFloorPlan.Children.Count; i++)                        
-            //{
-            //    POSButtonTable tbl = (POSButtonTable)this.gridFloorPlan.Children[i];
-            //    if (tbl._Ban.BanID == 0)
-            //    {                    
-            //        mBOBan.Them(tbl._Ban);
-            //        tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
-            //    }
-            //    else
-            //    {
-            //        switch (tbl._ButtonTableStatus)
-            //        {
-            //            case POSButtonTable.POSButtonTableStatus.Edit:                            
-            //                mBOBan.Sua(tbl._Ban);
-            //                tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;
-            //                break;
-            //            case POSButtonTable.POSButtonTableStatus.Delete:                            
-            //                mBOBan.Xoa(tbl._Ban);
-            //                gridFloorPlan.Children.RemoveAt(i);
-            //                i--;
-            //                break;
-            //            default:
-            //                break;
-            //        }
-            //    }
-            //}
+            foreach (POSButtonTable item in gridFloorPlan.Children)
+            {
+                if (item._Ban.BanID==0)
+                {
+                    mBOBan.Them(item._Ban);
+                }
+                else if(item._ButtonTableStatus==POSButtonTable.POSButtonTableStatus.Edit)
+                {
+                    mBOBan.Sua(item._Ban);
+                }
+            }
             mBOBan.Commit();
         }
         public void LoadTable()
@@ -141,24 +126,72 @@ namespace ControlLibrary
         }
         public void AddTable(Data.BAN ban)
         {
-            POSButtonTable tbl = new POSButtonTable(mBOBan, ban,gridFloorPlan); ;
+            POSButtonTable tbl = new POSButtonTable(ban,gridFloorPlan); ;
             tbl.IsEnabled = true;                 
             tbl._IsEdit = this._IsEdit;
-            tbl.TableDraw(mBOBan._CAIDATBAN);
-            //tbl._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.None;            
-            tbl.Click += new RoutedEventHandler(tbl_Click);
-            mBOBan.Them(ban);
+            tbl.TableDraw(mBOBan._CAIDATBAN);                     
+            tbl.Click += new RoutedEventHandler(tbl_Click);            
             gridFloorPlan.Children.Add(tbl);
+        }
+        public void AddTable(int numOfTable)
+        {
+            double width = this.RenderSize.Width;
+            double height = this.RenderSize.Height;
+            double pading = 10;
+            double padingTop = height > 0 ? pading / height : 0;
+            double padingLeft = width > 0 ? pading / width : 0;
+            
+            double x = padingLeft;
+            double y = padingTop;
+            double dCol = Math.Sqrt(numOfTable);
+            int column = (int)dCol;
+            if (dCol > column)
+                column++;
+            double dRow = (double)numOfTable / column;
+            int row = (int)dRow;
+            if (dRow > row)
+                row++;
+            int total = 0;
+            int itemRow = 0;
+            double itemWidth = column > 0 ? (1 - (column + 1) * padingLeft) / column : 0;
+            double itemHeight = row > 0 ? (1 - (row + 1) * padingTop) / row : 0;
+            for (int i = 0; i < row; i++)
+            {
+                itemRow = numOfTable - total;
+                if (itemRow>column)                
+                    itemRow = column;
+                total += itemRow;
+                x = (1-itemWidth * itemRow - padingLeft * (itemRow + 1))/2;
+                x += padingLeft;
+                for (int j = 0; j < itemRow; j++)
+                {
+                    Data.BAN ban = new Data.BAN();
+                    ban.BanID = 0;
+                    ban.TenBan = String.Format("{0}",i*column+j+1);
+                    ban.KhuID = _Khu.KhuID;
+                    ban.LocationX = (decimal)x;
+                    ban.LocationY = (decimal)y;
+                    ban.Width = (decimal)itemWidth;
+                    ban.Height = (decimal)itemHeight;
+                    ban.Visual = true;
+                    ban.Deleted = false;
+                    ban.Hinh = null;
+                    this.AddTable(ban);
+
+                    x += itemWidth + padingLeft;
+                }
+                y += itemHeight + padingTop;
+            }
         }
         public void RemoveAllTable()
         {
 
             foreach (POSButtonTable ban in gridFloorPlan.Children)
-            {                
-                if (ban._Ban.BanID > 0)
+            {
+                if (ban._Ban.BanID>0)
                 {
                     mBOBan.Xoa(ban._Ban);
-                }                 
+                }              
             }
             gridFloorPlan.Children.Clear();
         }
@@ -167,12 +200,12 @@ namespace ControlLibrary
             if (ban._Ban.BanID > 0)
             {
                 mBOBan.Xoa(ban._Ban);
-            }
+            }   
             gridFloorPlan.Children.Remove(ban);            
         }
         public void Edit(POSButtonTable ban)
         {
-            mBOBan.Sua(ban._Ban);
+            ban._ButtonTableStatus = POSButtonTable.POSButtonTableStatus.Edit;
         }
         void tbl_Click(object sender, RoutedEventArgs e)
         {
