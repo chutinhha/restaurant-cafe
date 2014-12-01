@@ -24,11 +24,10 @@ namespace UserControlLibrary
         private bool mIsLockText;
         public UCSoDoBan(Data.Transit transit)
         {
-            mTransit = transit;
+            mTransit = transit;            
+            InitializeComponent();
             btnHinhDaiDien.SetTransit(transit);
             btnHinhSoDoBan.SetTransit(transit);
-            InitializeComponent();
-
         }
 
         private void LoadKhuVuc()
@@ -181,6 +180,12 @@ namespace UserControlLibrary
                 mTableButton._Ban.Height = (decimal)sliderCao.Value * uCFloorPlan1._CAIDATBAN.TableHeight / 100;
                 uCFloorPlan1.DrawTable(mTableButton);
             }
+        }
+
+        private void btnThemSoNhieu_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowSoDoBanThemSoNhieu win = new WindowSoDoBanThemSoNhieu(uCFloorPlan1);
+            win.ShowDialog();
         }
     }
 }

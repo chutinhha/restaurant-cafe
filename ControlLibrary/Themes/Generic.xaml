@@ -21,7 +21,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:POSPassword}">
                     <Border BorderBrush="#FF56007C" BorderThickness="1">
-                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center"/>
+                        <!--<TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center"/>-->
+                        <TextBox>
+                            <PasswordBox/>
+                        </TextBox>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -187,13 +190,13 @@
                         <Border Background="{TemplateBinding Background}"  CornerRadius="5" BorderBrush="#FF56007C" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                             <TextBlock Grid.Row="0" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" Text="{TemplateBinding Text}"  HorizontalAlignment="Center" VerticalAlignment="Center"  TextWrapping="Wrap"/>
                         </Border>
-                        <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                        <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Width="{TemplateBinding FontSizePrice}" Height="{TemplateBinding FontSizePrice}" Source="/SystemImages;component/Images/us_dollar.png" VerticalAlignment="Center" HorizontalAlignment="Right" Stretch="Fill"/>
-                            <Label Grid.Column="1" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding TextPrice}" FontSize="{TemplateBinding FontSizePrice}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+                            <Image Grid.Column="0" Width="{TemplateBinding FontSizePrice}" Height="{TemplateBinding FontSizePrice}" Source="/SystemImages;component/Images/us_dollar.png" VerticalAlignment="Stretch" HorizontalAlignment="Right" Stretch="Fill"/>
+                            <Label Grid.Column="1" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding TextPrice}" FontSize="{TemplateBinding FontSizePrice}" VerticalAlignment="Stretch" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Padding="0"/>
                         </Grid>
                     </Grid>                    
                 </ControlTemplate>

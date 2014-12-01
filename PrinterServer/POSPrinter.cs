@@ -70,6 +70,11 @@ namespace PrinterServer
                 return 10;
             }
         }
+        public float POSDrawImage(Image img, System.Drawing.Printing.PrintPageEventArgs e, float x, float y, float width,float height)
+        {
+            e.Graphics.DrawImage(img, x, y,width,height);
+            return y += height;
+        }
         public float POSDrawString(string s, System.Drawing.Printing.PrintPageEventArgs e, System.Drawing.Font font, Color color, float x,float y,float width, TextAlign textAlign)
         {            
             List<string> list = POSSplitStringLine(s,width,e, font);

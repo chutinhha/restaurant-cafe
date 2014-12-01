@@ -48,7 +48,13 @@ namespace PrinterServer
             {
                 for (int i = 0; i < mBOMayIn.SoLanIn; i++)
                 {
-                    mPOSPrinter.Print();
+                    try
+                    {
+                        mPOSPrinter.Print();
+                    }
+                    catch (Exception)
+                    {                        
+                    }
                 }
             }
         }

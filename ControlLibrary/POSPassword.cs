@@ -51,10 +51,10 @@ namespace ControlLibrary
 
         private WindowKeyboard _WindowKeyboard { get; set; }
 
-        //static POSPassword()
-        //{
-        //    DefaultStyleKeyProperty.OverrideMetadata(typeof(POSPassword), new FrameworkPropertyMetadata(typeof(POSPassword)));
-        //}
+        static POSPassword()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSPassword), new FrameworkPropertyMetadata(typeof(POSPassword)));
+        }
 
         public TypeKeyPad _TypeTextBox
         {

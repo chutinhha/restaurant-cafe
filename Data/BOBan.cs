@@ -65,6 +65,10 @@ namespace Data
                 ban.Deleted = true;
                 frBan.Update(ban);
             }
+            else
+            {
+                frBan.DeleteObject(ban);
+            }
         }
         public void Sua(BAN ban)
         {

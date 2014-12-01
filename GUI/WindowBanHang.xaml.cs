@@ -110,6 +110,9 @@ namespace GUI
                 case (int)Data.TypeChucNang.BanHang.ChonGia:
                     ChonGia();
                     break;
+                case (int)Data.TypeChucNang.BanHang.GiamGiaMon:
+                    GiamGiaMon();
+                    break;
                 default:
                     break;
             }
@@ -133,6 +136,17 @@ namespace GUI
             }
             return true;
         }
+        private void GiamGiaMon()
+        {
+            if (KiemTra(true,false))
+            {
+                UserControlLibrary.WindowBanHangGiamGiaMon win = new UserControlLibrary.WindowBanHangGiamGiaMon(mTransit, (Data.BOChiTietBanHang)lvData.SelectedItem);
+                if (win.ShowDialog() == true)
+                {
+                    ReloadData();
+                }
+            }
+        }
         private void ThayDoiGia()
         {
             if (KiemTra(true,false))
@@ -140,7 +154,7 @@ namespace GUI
                 UserControlLibrary.WindowBanHangDoiGia win = new UserControlLibrary.WindowBanHangDoiGia(mTransit, (Data.BOChiTietBanHang)lvData.SelectedItem);
                 if (win.ShowDialog()==true)
                 {
-                    lvData.Items.Refresh();
+                    ReloadData();
                 }
 	        }
         }
@@ -153,7 +167,6 @@ namespace GUI
                 if (win.ShowDialog() == true)
                 {
                     chitiet.ChangePriceChiTietBanHang(win._MenuGia.Gia);
-                    lvData.Items.Refresh();
                     ReloadData();
                 }
             }            
@@ -216,9 +229,7 @@ namespace GUI
             if (KiemTra(true,true))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
-                mProcessOrder.XoaChiTietBanHang(chitiet);
-                lvData.Items.Refresh();
-                //lvData.Items.Remove(chitiet);
+                mProcessOrder.XoaChiTietBanHang(chitiet);                                
                 ReloadData();
                 if (lvData.Items.Count > 0)
                 {
@@ -258,10 +269,9 @@ namespace GUI
         {
             if (KiemTra(false,true))
             {
-                mProcessOrder.XoaAllXoaChiTietBanHang();
-                lvData.Items.Refresh();
-                //lvData.Items.Clear();
+                mProcessOrder.XoaAllXoaChiTietBanHang();                
                 XoaTextThongTinMon();
+                ReloadData();
             }
         }
         private void XoaTextThongTinMon()
@@ -288,6 +298,7 @@ namespace GUI
         }
         private void ReloadData()
         {
+            lvData.Items.Refresh();
             txtTongTien.Text = Utilities.MoneyFormat.ConvertToStringFull(mProcessOrder.GetBanHang().TongTien());
         }
         private void AddChiTietBanHang(Data.BOChiTietBanHang item)
@@ -313,8 +324,7 @@ namespace GUI
                     }
                 }    
             }            
-            
-            lvData.Items.Refresh();
+                        
             if (lvData.Items.Count > 0)
             {
                 lvData.SelectedIndex = lvData.Items.Count - 1;

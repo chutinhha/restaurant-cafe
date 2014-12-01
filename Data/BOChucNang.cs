@@ -69,7 +69,8 @@ namespace Data
             DongBan = 109,
             ThayDoiSoLuong = 110,
             ChonGia = 111,
-            GopBan = 112
+            GopBan = 112,
+            GiamGiaMon=113
         }
 
         public enum NhanVien
