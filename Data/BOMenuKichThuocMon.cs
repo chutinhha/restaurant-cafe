@@ -118,9 +118,9 @@ namespace Data
                            LoaiBan = l
                        });
             if (!IsSoLuongChoPhepTonKho)
-                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho != IsSoLuongChoPhepTonKho);
-            if (!IsSoLuongKhongChoPhepTonKho)
-                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho != IsSoLuongKhongChoPhepTonKho);
+                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho == false);
+            else if (!IsSoLuongKhongChoPhepTonKho)
+                res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho == true);
             return res;
         }
 

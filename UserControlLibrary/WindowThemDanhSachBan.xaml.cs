@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace UserControlLibrary
 {
@@ -160,6 +161,14 @@ namespace UserControlLibrary
         private void LoadLoaiBan()
         {
             cbbLoaiBan.ItemsSource = Data.BOLoaiBan.GetAllNoTracking(mTransit, (int)mMon.MenuMon.DonViID);
+        }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

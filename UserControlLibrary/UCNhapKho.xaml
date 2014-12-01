@@ -20,7 +20,7 @@
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Nhập kho">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhapKho.ThoiGian}" Width="200" Header="Ngày nhập" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhanVien.TenNhanVien}" Width="180" Header="Nhân viên" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Kho.TenKho}" Width="100" Header="Kho" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Kho.TenKho}" Width="150" Header="Kho" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhaCungCap.TenNhaCungCap}" Width="200" Header="Nhà cung cấp" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhapKho.TongTien}" Width="200" Header="Tổng tiền" />
                 </GridView>

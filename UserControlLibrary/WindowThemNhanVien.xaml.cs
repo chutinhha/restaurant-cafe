@@ -126,6 +126,11 @@ namespace UserControlLibrary
                 lbStatus.Text = "Mật khẩu không được nhỏ hơn 4 ký tự";
                 return false;
             }
+            if (txtMatKhau.Password != "" && !txtMatKhauXacNhan.Password.Contains(txtMatKhau.Password))
+            {
+                lbStatus.Text = "Mật khẩu xác nhận không đúng";
+                return false;
+            }
 
             return true;
         }

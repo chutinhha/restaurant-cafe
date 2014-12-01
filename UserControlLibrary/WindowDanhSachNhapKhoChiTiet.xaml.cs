@@ -83,7 +83,7 @@ namespace UserControlLibrary
 
         private void btnThemMon_Click(object sender, RoutedEventArgs e)
         {
-            WindowChonMon win = new WindowChonMon(mTransit, true);
+            WindowChonMon win = new WindowChonMon(mTransit, true, true, false, true);            
             if (win.ShowDialog() == true)
             {
                 Data.BOChiTietNhapKho item = new Data.BOChiTietNhapKho();
@@ -95,7 +95,7 @@ namespace UserControlLibrary
                 item.ChiTietNhapKho.TONKHO.NgayHetHan = DateTime.Now;
                 item.ChiTietNhapKho.TONKHO.MonID = win._ItemMon.MenuMon.MonID;
                 item.MenuMon = win._ItemMon.MenuMon;
-                item.ListLoaiBan = lsLoaiBan;
+                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemMon.MenuMon.DonViID).ToList();
                 if (item.ListLoaiBan.Count > 0)
                 {
                     item.ChiTietNhapKho.TONKHO.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;

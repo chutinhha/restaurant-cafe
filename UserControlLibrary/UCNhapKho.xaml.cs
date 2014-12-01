@@ -115,7 +115,7 @@ namespace UserControlLibrary
         {
             if (e.Key == System.Windows.Input.Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                btnLuu_Click(null, null);
+                //btnLuu_Click(null, null);
                 return;
             }
             if (e.Key == System.Windows.Input.Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
@@ -130,12 +130,12 @@ namespace UserControlLibrary
             }
             if (e.Key == System.Windows.Input.Key.F2)
             {
-                btnSua_Click(null, null);
+                //btnSua_Click(null, null);
                 return;
             }
             if (e.Key == System.Windows.Input.Key.Delete)
             {
-                btnXoa_Click(null, null);
+                //btnXoa_Click(null, null);
                 return;
             }
         }

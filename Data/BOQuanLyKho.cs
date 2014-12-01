@@ -10,7 +10,7 @@ namespace Data
         FrameworkRepository<TONKHOTONG> frmTonKhoTong = null;
         FrameworkRepository<TONKHO> frmTonKho = null;
         public BOQuanLyKho(Data.Transit transit)
-        {            
+        {
             frmTonKhoTong = new FrameworkRepository<TONKHOTONG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGs);
             frmTonKho = new FrameworkRepository<TONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOes);
         }
@@ -70,8 +70,23 @@ namespace Data
             foreach (BOChiTietNhapKho item in lsArray)
             {
                 Data.TONKHOTONG tonKhoTong = KiemTraTonKhoTong((int)item.NhapKho.KhoID, (int)item.MenuMon.MonID, (int)item.LoaiBan.DonViID);
-                tonKhoTong.SoLuongNhap += (item.ChiTietNhapKho.TONKHO.SoLuongNhap * item.ChiTietNhapKho.TONKHO.DonViTinh * item.LoaiBan.KichThuocBan);
+                tonKhoTong.SoLuongNhap += (item.ChiTietNhapKho.TONKHO.SoLuongNhap);
                 frmTonKhoTong.Update(tonKhoTong);
+            }
+            frmTonKhoTong.Commit();
+        }
+
+        public void ChuyenKho(List<BOChiTietChuyenKho> lsArray, Data.Transit transit)
+        {
+            foreach (BOChiTietChuyenKho item in lsArray)
+            {
+                Data.TONKHOTONG tonKhoTongDi = KiemTraTonKhoTong((int)item.ChuyenKho.KhoDiID, (int)item.MenuMon.MonID, (int)item.LoaiBan.DonViID);
+                tonKhoTongDi.SoLuongNhap -= (item.ChiTietChuyenKho.TONKHO.SoLuongNhap);
+                frmTonKhoTong.Update(tonKhoTongDi);
+                Data.TONKHOTONG tonKhoTongDen = KiemTraTonKhoTong((int)item.ChuyenKho.KhoDenID, (int)item.MenuMon.MonID, (int)item.LoaiBan.DonViID);
+                tonKhoTongDen.SoLuongNhap -= (item.ChiTietChuyenKho.TONKHO.SoLuongNhap);
+                frmTonKhoTong.Update(tonKhoTongDen);
+
             }
             frmTonKhoTong.Commit();
         }

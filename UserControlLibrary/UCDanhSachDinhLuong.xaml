@@ -22,7 +22,7 @@
         </StackPanel>
         <TextBlock Grid.Row="1" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-        <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+        <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="40" HorizontalAlignment="Stretch">
@@ -31,8 +31,9 @@
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="20"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding MenuMon.TenDai}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" />
+                        <TextBlock Grid.Column="0" Text="{Binding MenuMon.TenDai}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" />
                         <ComboBox Grid.Column="1" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" ItemsSource="{Binding ListLoaiBan}" IsEnabled="{Binding IsSua}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding DinhLuong.LoaiBanID}" />
                         <TextBox Grid.Column="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Text="{Binding DinhLuong.KichThuocBan}" IsEnabled="{Binding IsSua}" PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                         <my:POSButtonFuntion Grid.Column="3" Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" Visibility="{Binding IsXoa}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />

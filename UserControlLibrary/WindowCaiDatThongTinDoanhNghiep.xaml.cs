@@ -24,6 +24,8 @@ namespace UserControlLibrary
             InitializeComponent();
             BOCaiDatThongTinCongTy = new Data.BOCaiDatThongTinCongTy(transit);
             mTransit = transit;
+            btnHinhDaiDien.SetTransit(mTransit);
+            btnLogo.SetTransit(mTransit);
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)

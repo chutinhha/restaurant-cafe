@@ -65,20 +65,30 @@ namespace ControlLibrary
             this.ImageBitmap = null;
         }
         public override void OnApplyTemplate()
-        {            
+        {
             base.OnApplyTemplate();
             if (this.Image == null)
             {
                 var uriSource = new Uri(@"/SystemImages;component/Images/camera.png", UriKind.Relative);
                 this.Image = new BitmapImage(uriSource);
             }
-        }                
+        }
+
+        public Data.Transit mTransit = null;
+        public void SetTransit(Data.Transit transit)
+        {
+            mTransit = transit;
+        }
         protected override void OnClick()
         {
             Stream checkStream = null;
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Multiselect = false;
-            openFileDialog.InitialDirectory = "c:\\";
+            if (mTransit != null)
+                openFileDialog.InitialDirectory = mTransit.DuongDanHinh;
+            else
+                openFileDialog.InitialDirectory = "c:\\";
+
             openFileDialog.Filter = "All Image Files | *.*";
             if ((bool)openFileDialog.ShowDialog())
             {
@@ -93,9 +103,13 @@ namespace ControlLibrary
                     mBitmapImage.EndInit();
                     //this.ImageBitmap = Utilities.ImageHandler.BitmapImageCopy(mBitmapImage);                    
                     //this.ImageBitmap = Utilities.ImageHandler.ImageToByte(mBitmapImage);
+                    System.IO.FileInfo file = new FileInfo(openFileDialog.FileName);
+                    if (mTransit != null)
+                        mTransit.DuongDanHinh = file.Directory.FullName; ;
                     this.Image = mBitmapImage;
-                    this.ImageBitmap = mBitmapImage;                    
-                    if (_OnBitmapImageChanged!=null)
+                    this.ImageBitmap = mBitmapImage;
+
+                    if (_OnBitmapImageChanged != null)
                     {
                         _OnBitmapImageChanged(this);
                     }

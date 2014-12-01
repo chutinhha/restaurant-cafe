@@ -21,7 +21,7 @@ namespace GUI
             mTransit = transit;
             mUCFloorPlan = sodoban;
             InitializeComponent();
-            PhanQuyen();
+            PhanQuyen();            
         }
 
         private void PhanQuyen()
@@ -40,7 +40,7 @@ namespace GUI
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
             uCTile.SetTransit(mTransit);
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
             GanChucNang();
             LoadBanHang();
         }

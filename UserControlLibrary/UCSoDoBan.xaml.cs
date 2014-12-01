@@ -25,9 +25,11 @@ namespace UserControlLibrary
         public UCSoDoBan(Data.Transit transit)
         {
             mTransit = transit;
+            btnHinhDaiDien.SetTransit(transit);
+            btnHinhSoDoBan.SetTransit(transit);
             InitializeComponent();
 
-        }       
+        }
 
         private void LoadKhuVuc()
         {
@@ -54,10 +56,10 @@ namespace UserControlLibrary
                 btnHinhSoDoBan.Image = Utilities.ImageHandler.BitmapImageFromByteArray(khu.Hinh);
             }
         }
-        
+
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {
-            if (mTableButton!=null)
+            if (mTableButton != null)
             {
                 mTableButton._ButtonTableStatusColor = ControlLibrary.POSButtonTable.POSButtonTableStatusColor.None;
             }
@@ -65,8 +67,8 @@ namespace UserControlLibrary
             mTableButton = tbl;
             txtTenBan.Text = tbl._Ban.TenBan;
             mIsLockText = true;
-            sliderNgang.Value = (int)(uCFloorPlan1._CAIDATBAN.TableWidth>0? tbl._Ban.Width/uCFloorPlan1._CAIDATBAN.TableWidth*100:0);
-            sliderCao.Value = (int)(uCFloorPlan1._CAIDATBAN.TableHeight > 0 ? tbl._Ban.Height / uCFloorPlan1._CAIDATBAN.TableHeight * 100 : 0);            
+            sliderNgang.Value = (int)(uCFloorPlan1._CAIDATBAN.TableWidth > 0 ? tbl._Ban.Width / uCFloorPlan1._CAIDATBAN.TableWidth * 100 : 0);
+            sliderCao.Value = (int)(uCFloorPlan1._CAIDATBAN.TableHeight > 0 ? tbl._Ban.Height / uCFloorPlan1._CAIDATBAN.TableHeight * 100 : 0);
             mIsLockText = false;
             if (tbl._Ban.Hinh != null && tbl._Ban.Hinh.Length > 0)
             {
@@ -74,9 +76,9 @@ namespace UserControlLibrary
             }
             else
             {
-                if (uCFloorPlan1._CAIDATBAN.TableImage!=null && uCFloorPlan1._CAIDATBAN.TableImage.Length>0)
+                if (uCFloorPlan1._CAIDATBAN.TableImage != null && uCFloorPlan1._CAIDATBAN.TableImage.Length > 0)
                 {
-                    btnHinhDaiDien.Image = Utilities.ImageHandler.BitmapImageFromByteArray(uCFloorPlan1._CAIDATBAN.TableImage);    
+                    btnHinhDaiDien.Image = Utilities.ImageHandler.BitmapImageFromByteArray(uCFloorPlan1._CAIDATBAN.TableImage);
                 }
                 else
                 {
@@ -117,10 +119,10 @@ namespace UserControlLibrary
             if (mTableButton != null)
             {
                 mTableButton._Ban.TenBan = txtTenBan.Text;
-                uCFloorPlan1.DrawTable(mTableButton);                
+                uCFloorPlan1.DrawTable(mTableButton);
             }
         }
-        
+
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             if (mTableButton != null)
@@ -136,15 +138,15 @@ namespace UserControlLibrary
             txtTenBan.Text = "";
             btnHinhDaiDien.DefaultImage();
             uCFloorPlan1.RemoveAllTable();
-        }   
+        }
 
         private void btnHinhDaiDien__OnBitmapImageChanged(object sender)
         {
             if (mTableButton != null)
-            {                                
+            {
                 BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhDaiDien.ImageBitmap, 100, 100, 0);
                 mTableButton._Ban.Hinh = Utilities.ImageHandler.ImageToByte(img);
-                mTableButton.Image = img;                              
+                mTableButton.Image = img;
             }
         }
         private void btnHinhSoDoBan__OnBitmapImageChanged(object sender)
@@ -165,7 +167,7 @@ namespace UserControlLibrary
 
         private void sliderNgang_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (mTableButton!=null)
+            if (mTableButton != null)
             {
                 mTableButton._Ban.Width = (decimal)sliderNgang.Value * uCFloorPlan1._CAIDATBAN.TableWidth / 100;
                 uCFloorPlan1.DrawTable(mTableButton);
@@ -174,11 +176,11 @@ namespace UserControlLibrary
 
         private void sliderCao_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (mTableButton!=null)
+            if (mTableButton != null)
             {
                 mTableButton._Ban.Height = (decimal)sliderCao.Value * uCFloorPlan1._CAIDATBAN.TableHeight / 100;
                 uCFloorPlan1.DrawTable(mTableButton);
             }
-        }             
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System;
 
 namespace UserControlLibrary
 {
@@ -125,5 +126,14 @@ namespace UserControlLibrary
                 cbbTenMayIn.SelectedIndex = 0;
             }
         }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
     }
 }

@@ -28,6 +28,13 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
+
+
+            _Item.HeaderTextString1 = txtHeaderString1.Text;
+            _Item.HeaderTextString2 = txtHeaderString2.Text;
+            _Item.HeaderTextString3 = txtHeaderString3.Text;
+            _Item.HeaderTextString4 = txtHeaderString4.Text;
+
             if (txtHeaderTextFontSize1.Text != "")
                 _Item.HeaderTextFontSize1 = Convert.ToDouble(txtHeaderTextFontSize3.Text);
             if (txtHeaderTextFontSize2.Text != "")
@@ -46,6 +53,11 @@ namespace UserControlLibrary
             _Item.HeaderTextFontWeights2 = (int)cbbHeaderTextFontWeights2.SelectedValue;
             _Item.HeaderTextFontWeights3 = (int)cbbHeaderTextFontWeights3.SelectedValue;
             _Item.HeaderTextFontWeights4 = (int)cbbHeaderTextFontWeights4.SelectedValue;
+
+            _Item.FooterTextString1 = txtFooterString1.Text;
+            _Item.FooterTextString2 = txtFooterString2.Text;
+            _Item.FooterTextString3 = txtFooterString3.Text;
+            _Item.FooterTextString4 = txtFooterString4.Text;
 
             if (txtFooterTextFontSize1.Text != "")
                 _Item.FooterTextFontSize1 = Convert.ToDouble(txtFooterTextFontSize3.Text);
@@ -92,6 +104,16 @@ namespace UserControlLibrary
             _Item.ItemTextFontStyle = (int)cbbItemFontStyle.SelectedValue;
             _Item.ItemTextFontWeights = (int)cbbItemFontWeights.SelectedValue;
 
+            if (txtLogoChieuCao.Text != "")
+                _Item.LogoHeight = Convert.ToInt32(txtLogoChieuCao.Text);
+            if (txtLogoChieuRong.Text != "")
+                _Item.LogoWidth = Convert.ToInt32(txtLogoChieuRong.Text);
+
+            if (btnLogo.ImageBitmap != null)
+            {
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnLogo.ImageBitmap, _Item.LogoWidth, _Item.LogoHeight, 0);
+                _Item.Logo = Utilities.ImageHandler.ImageToByte(img);
+            }
 
             BOCaiDatMayInHoaDon.CapNhat(_Item, mTransit);
             DialogResult = true;
@@ -109,31 +131,31 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadCombobox(cbbHeaderTextFontStyle1, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbHeaderTextFontStyle2, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbHeaderTextFontStyle3, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbHeaderTextFontStyle4, Data.SomeEnum.GetFontStyles());
+            LoadCombobox(cbbHeaderTextFontStyle1, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbHeaderTextFontStyle2, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbHeaderTextFontStyle3, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbHeaderTextFontStyle4, Data.SomeEnum.GetFontStylesPrinter());
 
             LoadCombobox(cbbHeaderTextFontWeights1, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbHeaderTextFontWeights2, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbHeaderTextFontWeights3, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbHeaderTextFontWeights4, Data.SomeEnum.GetFontWeights());
 
-            LoadCombobox(cbbFooterTextFontStyle1, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbFooterTextFontStyle2, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbFooterTextFontStyle3, Data.SomeEnum.GetFontStyles());
-            LoadCombobox(cbbFooterTextFontStyle4, Data.SomeEnum.GetFontStyles());
+            LoadCombobox(cbbFooterTextFontStyle1, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbFooterTextFontStyle2, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbFooterTextFontStyle3, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbFooterTextFontStyle4, Data.SomeEnum.GetFontStylesPrinter());
 
             LoadCombobox(cbbFooterTextFontWeights1, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbFooterTextFontWeights2, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbFooterTextFontWeights3, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbFooterTextFontWeights4, Data.SomeEnum.GetFontWeights());
 
-            LoadCombobox(cbbSumanyFontStyle, Data.SomeEnum.GetFontWeights());
-            LoadCombobox(cbbSumanyBigFontStyle, Data.SomeEnum.GetFontWeights());
-            LoadCombobox(cbbTitleFontStyle, Data.SomeEnum.GetFontWeights());
-            LoadCombobox(cbbInfoFontStyle, Data.SomeEnum.GetFontWeights());
-            LoadCombobox(cbbItemFontStyle, Data.SomeEnum.GetFontWeights());
+            LoadCombobox(cbbSumanyFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbSumanyBigFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbTitleFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbInfoFontStyle, Data.SomeEnum.GetFontStylesPrinter());
+            LoadCombobox(cbbItemFontStyle, Data.SomeEnum.GetFontStylesPrinter());
 
             LoadCombobox(cbbSumanyFontWeights, Data.SomeEnum.GetFontWeights());
             LoadCombobox(cbbSumanyBigFontWeights, Data.SomeEnum.GetFontWeights());
@@ -144,6 +166,11 @@ namespace UserControlLibrary
             _Item = BOCaiDatMayInHoaDon.GetAll(mTransit);
             if (_Item != null)
             {
+                txtHeaderString1.Text = _Item.HeaderTextString1;
+                txtHeaderString2.Text = _Item.HeaderTextString2;
+                txtHeaderString3.Text = _Item.HeaderTextString3;
+                txtHeaderString4.Text = _Item.HeaderTextString4;
+
                 txtHeaderTextFontSize1.Text = _Item.HeaderTextFontSize1.ToString();
                 txtHeaderTextFontSize2.Text = _Item.HeaderTextFontSize2.ToString();
                 txtHeaderTextFontSize3.Text = _Item.HeaderTextFontSize3.ToString();
@@ -158,6 +185,11 @@ namespace UserControlLibrary
                 cbbHeaderTextFontWeights2.SelectedValue = _Item.HeaderTextFontWeights2;
                 cbbHeaderTextFontWeights3.SelectedValue = _Item.HeaderTextFontWeights3;
                 cbbHeaderTextFontWeights4.SelectedValue = _Item.HeaderTextFontWeights4;
+
+                txtFooterString1.Text = _Item.FooterTextString1;
+                txtFooterString2.Text = _Item.FooterTextString2;
+                txtFooterString3.Text = _Item.FooterTextString3;
+                txtFooterString4.Text = _Item.FooterTextString4;
 
                 txtFooterTextFontSize1.Text = _Item.FooterTextFontSize1.ToString();
                 txtFooterTextFontSize2.Text = _Item.FooterTextFontSize2.ToString();
@@ -193,6 +225,13 @@ namespace UserControlLibrary
                 txtItemFontSize.Text = _Item.ItemFontSize.ToString();
                 cbbItemFontStyle.SelectedValue = _Item.ItemTextFontStyle;
                 cbbItemFontWeights.SelectedValue = _Item.ItemTextFontWeights;
+
+                txtLogoChieuCao.Text = _Item.LogoHeight.ToString();
+                txtLogoChieuRong.Text = _Item.LogoWidth.ToString();
+                if (_Item.Logo != null && _Item.Logo.Length > 0)
+                {
+                    btnLogo.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Logo);
+                }
             }
         }
 

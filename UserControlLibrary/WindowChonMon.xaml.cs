@@ -35,12 +35,20 @@ namespace UserControlLibrary
             uCMenu._IsDanhSachKhuyenMai = false;
 
         }
-
-        public void SetLoadDonvi(bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsTonKho)
+        public WindowChonMon(Data.Transit transit, bool isMon, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsTonKho)
         {
+            InitializeComponent();
+            mTransit = transit;
+            IsMon = isMon;
+            uCMenu._IsBanHang = !IsMon;
+            uCMenu._OnEventMenuMon += new UCMenu.EventMenuMon(uCMenu__OnEventMenuMon);
+            uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu._IsSoLuongChoPhepTonKho = IsSoLuongChoPhepTonKho;
             uCMenu._IsSoLuongKhongChoPhepTonKho = IsSoLuongKhongChoPhepTonKho;
             uCMenu._IsTonKho = IsTonKho;
+            uCMenu.SetTransit(mTransit);
+            uCMenu._IsDanhSachKhuyenMai = false;
+
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
