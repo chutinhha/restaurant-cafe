@@ -24,15 +24,11 @@ namespace UserControlLibrary
             InitializeComponent();
             BOCaiDatBan = new Data.BOCaiDatBan(transit);
             mTransit = transit;
+            btnHinh.SetTransit(transit);
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            if (txtChieuRong.Text != "")
-                _Item.TableHeight = Convert.ToDecimal(txtChieuRong.Text);
-
-            if (txtChieuRong.Text != "")
-                _Item.TableHeight = Convert.ToDecimal(txtChieuCao.Text);
             if (txtFontSize.Text != "")
                 _Item.TableFontSize = Convert.ToDouble(txtFontSize.Text);
             _Item.TableFontStyle = (int)cbbFontStyles.SelectedValue;
@@ -40,7 +36,8 @@ namespace UserControlLibrary
 
             if (btnHinh.ImageBitmap != null)
             {
-                _Item.TableImage = Utilities.ImageHandler.ImageToByte(btnHinh.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinh.ImageBitmap, 100, 100, 0);
+                _Item.TableImage = Utilities.ImageHandler.ImageToByte(img);
             }
 
             BOCaiDatBan.CapNhat(_Item, mTransit);
@@ -63,8 +60,6 @@ namespace UserControlLibrary
             _Item = BOCaiDatBan.GetAll(mTransit);
             if (_Item != null)
             {
-                txtChieuRong.Text = _Item.TableWidth.ToString();
-                txtChieuCao.Text = _Item.TableHeight.ToString();
                 txtFontSize.Text = _Item.TableFontSize.ToString();
                 cbbFontStyles.SelectedValue = _Item.TableFontStyle;
                 cbbFontWeight.SelectedValue = _Item.TableFontWeights;

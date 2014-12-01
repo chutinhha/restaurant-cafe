@@ -9,7 +9,7 @@ namespace Data
     {
         public Data.NHANVIEN NhanVien { get; set; }
         public Data.NHANVIEN Admin { get; set; }
-        public Data.MenuGiaoDien MenuGiaoDien { get; set; }        
+        public Data.MenuGiaoDien MenuGiaoDien { get; set; }
         public BAN Ban { get; set; }
         public KHU Khu { get; set; }
         public BOBanHang BanHang { get; set; }
@@ -26,12 +26,14 @@ namespace Data
         public IQueryable<BOChiTietQuyen> DanhSachQuyen { get; set; }
         public IQueryable<CHUCNANG> DanhSachChucNang { get; set; }
         public Data.BOChiTietQuyen BOChiTietQuyen = null;
+        public string DuongDanHinh { get; set; }
         public int KhoID { get; set; }
         public Transit()
         {
             StringButton = new ClassStringButton();
             MenuGiaoDien = new Data.MenuGiaoDien();
             HashMD5 = "KTr";
+            DuongDanHinh = "c:\\";
             Admin = new NHANVIEN();
             Admin.NhanVienID = 0;
             Admin.LoaiNhanVienID = (int)Data.EnumLoaiNhanVien.Admin;
@@ -41,14 +43,14 @@ namespace Data
             Admin.MatKhau = Utilities.SecurityKaraoke.GetMd5Hash("0000", HashMD5);
             KhoID = 1;
 
-            KaraokeEntities = new KaraokeEntities();            
-            KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            
+            KaraokeEntities = new KaraokeEntities();
+            KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
             KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
             The = KaraokeEntities.THEs.FirstOrDefault();
-            ListDonVi = BODonVi.GetAll(this);            
+            ListDonVi = BODonVi.GetAll(this);
             BOChiTietQuyen = new BOChiTietQuyen(this);
-            
+
             //var list = Data.BOLichBieuDinhKy.GetAllVisualRun(this);
             //var aaa = list.ToList();
             //var list1 = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(this);

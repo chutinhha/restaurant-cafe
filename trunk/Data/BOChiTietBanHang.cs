@@ -7,30 +7,30 @@ namespace Data
 {
     public class BOChiTietBanHang
     {
-        public bool IsDeleted { get; set; }        
+        public bool IsDeleted { get; set; }
         public CHITIETBANHANG CHITIETBANHANG { get; set; }
         public MENUKICHTHUOCMON MENUKICHTHUOCMON { get; set; }
         public MENUMON MENUMON { get; set; }
-        public int SoLuongBanTam { get; set; }        
+        public int SoLuongBanTam { get; set; }
         private Transit mTransit;
         public static IQueryable<BOChiTietBanHang> Query(int banHangId, BOBanHang banhang)
-        {            
+        {
             var iQuery =
                 from chitiet in banhang.frChiTietBanHang.Query()
                 join kichthuoc in banhang.frMenuKichThuocMon.Query() on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
                 join menu in banhang.frMenuMon.Query() on kichthuoc.MonID equals menu.MonID
                 where chitiet.BanHangID == banHangId
                 select new BOChiTietBanHang
-                {                    
-                    MENUKICHTHUOCMON=kichthuoc,
-                    CHITIETBANHANG=chitiet,
-                    MENUMON=menu                    
+                {
+                    MENUKICHTHUOCMON = kichthuoc,
+                    CHITIETBANHANG = chitiet,
+                    MENUMON = menu
                 };
             return iQuery;
         }
         public static int Xoa(int chiTietBanHangId, Transit mTransit)
         {
-            CHITIETBANHANG item = (from x in mTransit.KaraokeEntities.CHITIETBANHANGs where x.ChiTietBanHangID == chiTietBanHangId select x).First();            
+            CHITIETBANHANG item = (from x in mTransit.KaraokeEntities.CHITIETBANHANGs where x.ChiTietBanHangID == chiTietBanHangId select x).First();
             mTransit.KaraokeEntities.DeleteObject(item);
             mTransit.KaraokeEntities.SaveChanges();
             return item.ChiTietBanHangID;
@@ -49,25 +49,25 @@ namespace Data
             return item.ChiTietBanHangID;
         }
         public BOChiTietBanHang()
-        {            
+        {
         }
-        public BOChiTietBanHang(CHITIETBANHANG chiTiet,Transit transit)
+        public BOChiTietBanHang(CHITIETBANHANG chiTiet, Transit transit)
         {
             CHITIETBANHANG = chiTiet;
             MENUKICHTHUOCMON = CHITIETBANHANG.MENUKICHTHUOCMON;
             MENUMON = CHITIETBANHANG.MENUKICHTHUOCMON.MENUMON;
             mTransit = transit;
-            SoLuongBanTam = (int)CHITIETBANHANG.SoLuongBan;            
+            SoLuongBanTam = (int)CHITIETBANHANG.SoLuongBan;
         }
-        public BOChiTietBanHang(Data.BOMenuKichThuocMon ktm,Transit transit)
+        public BOChiTietBanHang(Data.BOMenuKichThuocMon ktm, Transit transit)
         {
             mTransit = transit;
-            
+
             this.CHITIETBANHANG = new CHITIETBANHANG();
             this.CHITIETBANHANG.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
             this.CHITIETBANHANG.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
-            this.CHITIETBANHANG.ThanhTien=this.CHITIETBANHANG.SoLuongBan*this.CHITIETBANHANG.GiaBan;            
-            this.CHITIETBANHANG.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;            
+            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
+            this.CHITIETBANHANG.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;
             this.MENUKICHTHUOCMON = ktm.MenuKichThuocMon;
             this.MENUMON = ktm.MenuMon;
             SoLuongBanTam = (int)this.CHITIETBANHANG.SoLuongBan;
@@ -82,10 +82,10 @@ namespace Data
             this.CHITIETBANHANG.GiaBan = gia;
             this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
         }
-        public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
+        public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet, int qty)
         {
             chitiet.SoLuong = qty;
-            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;            
+            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
         }
         public string TenMon
         {
@@ -103,12 +103,34 @@ namespace Data
                 return Utilities.MoneyFormat.ConvertToString(CHITIETBANHANG.GiaBan * CHITIETBANHANG.SoLuongBan);
             }
         }
-        public string SoLuongBan 
+        public string SoLuongBan
         {
             get
             {
                 return CHITIETBANHANG.SoLuongBan.ToString();
             }
         }
+
+        public string TenMonPhu
+        {
+            get
+            {
+                return "Giảm giá 5%, Tặng món A, khuyến mãi B, giá của khu A, phòng VIP";
+            }
+        }
+
+        public int HienTenMonPhu
+        {
+            get
+            {
+                if (TenMonPhu != "")
+                    return 1;
+                else
+                    return 2;
+
+            }
+        }
+
+
     }
 }

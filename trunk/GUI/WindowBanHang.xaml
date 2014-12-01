@@ -60,38 +60,36 @@
                 <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Nhân viên: 1" Margin="5" Name="txtTenNhanVien" TextAlignment="Center" FontSize="14" />
             </Grid>
 
-            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged" FontSize="16">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongBan}" Width="45" Header="SL"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="200" Header="Tên món"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ThanhTien}" Width="120" Header="Thành tiền"/>
-                    </GridView>
-                </ListView.View>
-                <!--<ListView.ItemTemplate>
- <DataTemplate>
- <ListViewItem>
- <Border CornerRadius="0" BorderBrush="#FF56007C" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
- <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Height="30" >
-  <Grid.ColumnDefinitions>
-  <ColumnDefinition Width="30"/>
-  <ColumnDefinition Width="200"/>
-  <ColumnDefinition Width="120"/>
-  </Grid.ColumnDefinitions>
-  <TextBlock Grid.Column="0" Text="{Binding SoLuongBan}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-  <StackPanel Grid.Column="1" Orientation="Vertical">
-  <TextBlock Text="{Binding TenMon}"/>
-  </StackPanel>
-  <TextBlock Grid.Column="2" Text="{Binding ThanhTien}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,10,0"/>
- </Grid>
- <Border.Effect>
-  <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5" />
- </Border.Effect>
- </Border>
- </ListViewItem>
- </DataTemplate>
- </ListView.ItemTemplate>-->
-            </ListView>
+            <ListBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged" FontSize="16" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MinHeight="35" x:Name="rowBanHang">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="50*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.RowSpan="2" Text="{Binding SoLuongBan}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0"/>
+                            <TextBlock Grid.Column="1" Grid.RowSpan="{Binding HienTenMonPhu}" Text="{Binding TenMon}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0"/>
+                            <TextBlock Grid.Column="2" Grid.RowSpan="2" Text="{Binding ThanhTien}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding TenMonPhu}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,10,0" FontSize="12" FontStyle="Italic" TextWrapping="Wrap" />
+                        </Grid>
+                        <!--<DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter  Value="LightGreen"></Setter>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter TargetName="{StaticResource ResourceKey=rowBanHang}" Value="LightYellow"></Setter>
+                            </Trigger>
+                        </DataTemplate.Triggers>-->
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <my:UCKeyPad Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" Name="uCKeyPad" VerticalAlignment="Stretch" _Decimal="False" />
             <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Name="grid1" VerticalAlignment="Stretch" >
                 <Grid.RowDefinitions>

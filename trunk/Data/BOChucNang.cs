@@ -151,7 +151,14 @@ namespace Data
 
         public enum CaiDat
         {
-            CaiDat = 1401
+            None,
+            CaiDatThongTinCongTy = 1401,
+            CaiDatGiaoDienBanHang,
+            btnCaiDatChucNangHienThi,
+            CaiDatBan,
+            CaiDatMayInNhaBep,
+            CaiDatMayInHoaDon,
+            CaiDatThucDon
         }
 
         public enum ThongTinPhanMem

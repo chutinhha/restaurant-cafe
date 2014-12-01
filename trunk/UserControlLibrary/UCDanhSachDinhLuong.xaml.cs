@@ -65,7 +65,7 @@ namespace UserControlLibrary
             foreach (Data.BODinhLuong item in lsArray)
             {
                 item.DinhLuong.KichThuocBan = (int)item.DinhLuong.KichThuocBan / item.LoaiBan.KichThuocBan;
-                item.ListLoaiBan = lsLoaiBan;
+                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == mKichThuocMon.MenuMon.DonViID).ToList();
                 item.IsSua = IsSua;
                 item.IsXoa = IsXoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             }
@@ -95,13 +95,12 @@ namespace UserControlLibrary
 
         private void btnThemMon_Click(object sender, RoutedEventArgs e)
         {
-            WindowChonMon win = new WindowChonMon(mTransit, true);
-            win.SetLoadDonvi(true, false, true);
+            WindowChonMon win = new WindowChonMon(mTransit, true, true, false, true);
             if (win.ShowDialog() == true)
             {
                 Data.BODinhLuong item = new Data.BODinhLuong();
                 item.MenuMon = win._ItemMon.MenuMon;
-                item.ListLoaiBan = lsLoaiBan;
+                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemMon.MenuMon.DonViID).ToList();
                 item.DinhLuong.MonID = item.MenuMon.MonID;
                 item.DinhLuong.Visual = true;
                 item.DinhLuong.Deleted = false;

@@ -94,7 +94,7 @@ namespace Data
             The.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.The.The, TenChucNang = "Quản lý thẻ", NhomChucNangID = The.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
 
             CaiDat = new NHOMCHUCNANG() { NhomChucNangID = (int)TypeChucNang.ChucNangChinh.CaiDat, TenNhomChucNang = "Cài đặt chương trình", Deleted = false, Visual = true, Edit = false };
-            CaiDat.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.CaiDat.CaiDat, TenChucNang = "Cài đặt chương trình", NhomChucNangID = CaiDat.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
+
 
             ThongTinPhanMem = new NHOMCHUCNANG() { NhomChucNangID = (int)TypeChucNang.ChucNangChinh.ThongTinPhanMem, TenNhomChucNang = "Thông tin phần mềm", Deleted = false, Visual = true, Edit = false };
             ThongTinPhanMem.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.ThongTinPhanMem.ThongTinPhanMem, TenChucNang = "Thông tin phần mềm", NhomChucNangID = ThongTinPhanMem.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });

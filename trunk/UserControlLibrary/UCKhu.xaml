@@ -21,8 +21,7 @@
         <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Khu.TenKhu}" Width="200" Header="Tên khu" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiGia.Ten}" Width="150" Header="Loại giá" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Khu.TenKhu}" Width="300" Header="Tên khu" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Khu.MacDinhSoDoBan}" Width="150" Header="Khu mặc định" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Khu.Visual}" Width="150" Header="Cho phép hiển thị" />
                 </GridView>

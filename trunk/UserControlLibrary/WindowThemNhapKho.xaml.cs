@@ -60,7 +60,6 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-
             List<Data.BOChiTietNhapKho> lsChiTietNhapKho = (List<Data.BOChiTietNhapKho>)btnDanhSachChiTiet.Tag;
             if (lsChiTietNhapKho != null && lsChiTietNhapKho.Count > 0)
             {

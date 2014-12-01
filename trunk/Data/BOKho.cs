@@ -9,7 +9,7 @@ namespace Data
     {
         FrameworkRepository<KHO> frmKho = null;
         public BOKho(Data.Transit transit)
-        {            
+        {
             frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
         }
 
@@ -37,7 +37,7 @@ namespace Data
 
         private int Sua(KHO item, Transit mTransit)
         {
-            item.Deleted = true;
+            item.Edit = true;
             frmKho.Update(item);
             return item.KhoID;
         }

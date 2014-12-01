@@ -244,5 +244,13 @@ namespace UserControlLibrary
                 }
             }
         }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
     }
 }

@@ -681,5 +681,10 @@ namespace UserControlLibrary
                 item.ImageHeight = ImageHeightItems;
             }
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

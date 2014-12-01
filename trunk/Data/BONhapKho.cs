@@ -16,7 +16,7 @@ namespace Data
         FrameworkRepository<NHACUNGCAP> frmNhaCungCap = null;
         FrameworkRepository<NHANVIEN> frmNhanVien = null;
         public BONhapKho(Data.Transit transit)
-        {            
+        {
             frmNhapKho = new FrameworkRepository<NHAPKHO>(transit.KaraokeEntities, transit.KaraokeEntities.NHAPKHOes);
             frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
             frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
@@ -63,6 +63,7 @@ namespace Data
                     line.ChiTietNhapKho.TONKHO.DonViTinh = line.ChiTietNhapKho.TONKHO.DonViTinh * line.LoaiBan.KichThuocBan;
                     line.ChiTietNhapKho.TONKHO.Deleted = false;
                     line.ChiTietNhapKho.TONKHO.Edit = false;
+                    line.ChiTietNhapKho.TONKHO.SoLuongNhap = line.ChiTietNhapKho.TONKHO.SoLuongNhap * line.ChiTietNhapKho.TONKHO.DonViTinh;
                     line.ChiTietNhapKho.TONKHO.SoLuongTon = line.ChiTietNhapKho.TONKHO.SoLuongNhap;
                     line.ChiTietNhapKho.TONKHO.Visual = true;
                     line.ChiTietNhapKho.TONKHO.KhoID = item.NhapKho.KhoID;

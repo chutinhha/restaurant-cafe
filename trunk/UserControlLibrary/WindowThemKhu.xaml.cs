@@ -17,6 +17,7 @@ namespace UserControlLibrary
         {
             InitializeComponent();
             mTransit = transit;
+            btnHinhAnh.SetTransit(mTransit);
         }
 
         public Data.BOKhu _Item { get; set; }

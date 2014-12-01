@@ -23,6 +23,7 @@ namespace UserControlLibrary
             InitializeComponent();
             mMenuNhom = menuNhom;
             mTransit = transit;
+            btnHinhAnh.SetTransit(transit);
             BOMenuMon = bOMenuMon;
             BOMenuItemMayIn = new Data.BOMenuItemMayIn();
             PhanQuyen();
@@ -71,7 +72,7 @@ namespace UserControlLibrary
                 _Mon.MenuMon.SLMonChoPhepTonKho = 1;
                 _Mon.MenuMon.SLMonKhongChoPhepTonKho = 0;
                 Data.LOAIBAN item = lsLoaiBan.FirstOrDefault();
-                _Mon.MenuMon.MENUKICHTHUOCMONs.Add(new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = 0, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false });
+                _Mon.MenuMon.MENUKICHTHUOCMONs.Add(new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = _Mon.MenuMon.Gia, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false });
             }
         }
 
@@ -113,11 +114,16 @@ namespace UserControlLibrary
             _Mon.MenuMon.TenDai = txtTenDai.Text;
             _Mon.MenuMon.TenNgan = txtTenNgan.Text;
             _Mon.MenuMon.DonViID = (int)cbbKieuBan.SelectedValue;
+
             if (mBitmapImage != null)
             {
                 BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(mBitmapImage, 120, 90, 0);
                 _Mon.MenuMon.Hinh = Utilities.ImageHandler.ImageToByte(img);
             }
+            if (txtGiaMacDinh.Text == "")
+                _Mon.MenuMon.Gia = 0;
+            else
+                _Mon.MenuMon.Gia = Convert.ToDecimal(txtGiaMacDinh.Text.Trim());
             if (txtSapXep.Text == "")
                 _Mon.MenuMon.SapXep = 0;
             else
@@ -140,10 +146,12 @@ namespace UserControlLibrary
                 txtTenDai.Text = _Mon.MenuMon.TenDai;
                 txtTenNgan.Text = _Mon.MenuMon.TenNgan;
                 txtSapXep.Text = _Mon.MenuMon.SapXep.ToString();
+                txtGiaMacDinh.Text = _Mon.MenuMon.Gia.ToString();
                 txtTonKhoToiDa.Text = _Mon.MenuMon.TonKhoToiDa.ToString();
                 txtTonKhoToiThieu.Text = _Mon.MenuMon.TonKhoToiThieu.ToString();
                 cbbKieuBan.SelectedValue = _Mon.MenuMon.DonViID;
                 ckBan.IsChecked = _Mon.MenuMon.Visual;
+                cbbKieuBan.IsEnabled = false;
                 if (_Mon.MenuMon.Hinh != null && _Mon.MenuMon.Hinh.Length > 0)
                 {
                     btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Mon.MenuMon.Hinh);
@@ -159,6 +167,8 @@ namespace UserControlLibrary
                 txtTenNgan.Text = "";
                 txtTonKhoToiDa.Text = "0";
                 txtTonKhoToiThieu.Text = "0";
+                txtGiaMacDinh.Text = "0";
+                cbbKieuBan.IsEnabled = true;
                 if (cbbKieuBan.Items.Count > 0)
                     cbbKieuBan.SelectedIndex = 0;
                 txtSapXep.Text = mMenuNhom.SapXepMon.ToString();
@@ -178,6 +188,14 @@ namespace UserControlLibrary
         {
             if (txtTenDai.Text == "")
                 txtTenDai.Text = txtTenNgan.Text;
+        }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

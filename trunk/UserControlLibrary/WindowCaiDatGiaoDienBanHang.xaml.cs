@@ -35,6 +35,7 @@ namespace UserControlLibrary
                 var myComboBox = (ComboBox)this.FindName("cbbChucNang" + item.ID);
                 var myImages = (ControlLibrary.POSButtonImage)this.FindName("btnHinh" + item.ID);
                 var myTextBox = (TextBox)this.FindName("txtHienThi" + item.ID);
+                myImages.SetTransit(mTransit);
                 myComboBox.Tag = item;
                 myImages.Tag = item;
                 myTextBox.Tag = item;
@@ -89,7 +90,8 @@ namespace UserControlLibrary
                     Data.GIAODIENCHUCNANGBANHANG cn = (Data.GIAODIENCHUCNANGBANHANG)img.Tag;
                     if (img.ImageBitmap != null)
                     {
-                        cn.Hinh = Utilities.ImageHandler.ImageToByte(img.ImageBitmap);
+                        BitmapFrame image = Utilities.ImageHandler.CreateResizedImage(img.ImageBitmap, 100, 100, 0);
+                        cn.Hinh = Utilities.ImageHandler.ImageToByte(image);
                     }
                 }
                 BOGiaoDienChucNangBanHang.CapNhat(lsArray, mTransit);

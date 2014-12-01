@@ -37,13 +37,22 @@ namespace Data
             if (LoaiNhomID > 0)
                 lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false);
             if (IsBanHang)
-                lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SLMonChoPhepTonKho > 0 || s.MenuNhom.SLMonKhongChoPhepTonKho > 0);
+            {
+                if (IsSoLuongChoPhepTonKho && IsSoLuongKhongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SLMonChoPhepTonKho > 0 || s.MenuNhom.SLMonKhongChoPhepTonKho > 0);
+                else if (IsSoLuongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SLMonChoPhepTonKho > 0);
+                else if (IsSoLuongKhongChoPhepTonKho)
+                    lsArray = lsArray.Where(s => s.MenuNhom.Visual == true && s.MenuNhom.SLMonKhongChoPhepTonKho > 0);
+
+
+            }
             else
             {
                 if (!IsSoLuongChoPhepTonKho)
-                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonChoPhepTonKho < 0);
+                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonKhongChoPhepTonKho > 0);
                 if (!IsSoLuongKhongChoPhepTonKho)
-                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonKhongChoPhepTonKho < 0);
+                    lsArray = lsArray.Where(s => s.MenuNhom.SLMonChoPhepTonKho > 0);
             }
             if (IsVisual)
                 lsArray = lsArray.Where(s => s.MenuNhom.Visual == true);

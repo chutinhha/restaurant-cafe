@@ -19,6 +19,7 @@ namespace UserControlLibrary
         {
             InitializeComponent();
             mTransit = transit;
+            btnHinhAnh.SetTransit(transit);
             BOMenuNhom = bOMenuNhom;
             btnHinhAnh._OnBitmapImageChanged += new POSButtonImage.EventBitmapImage(btnHinhAnh__OnBitmapImageChanged);
         }
@@ -122,5 +123,14 @@ namespace UserControlLibrary
             if (txtTenDai.Text == "")
                 txtTenDai.Text = txtTenNgan.Text;
         }
+
+        private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
     }
 }

@@ -25,6 +25,11 @@ namespace GUI
             mTransit = transit;
             uCTile.TenChucNang = "Cài đặt thông tin";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
+            if (mTransit.NhanVien.NhanVienID != 0)
+            {
+                SetTagButton();
+                PhanQuyen();
+            }
         }
 
         void uCTile_OnEventExit()
@@ -78,5 +83,69 @@ namespace GUI
             UserControlLibrary.WindowCaiDatThucDon win = new UserControlLibrary.WindowCaiDatThucDon(mTransit);
             win.ShowDialog();
         }
+        private void SetTagButton()
+        {
+            btnCaiDatThongTinCongTy.Tag = Data.TypeChucNang.CaiDat.CaiDatThongTinCongTy;
+            btnCaiDatGiaoDienBanHang.Tag = Data.TypeChucNang.CaiDat.CaiDatGiaoDienBanHang;
+            btnCaiDatChucNangHienThi.Tag = Data.TypeChucNang.CaiDat.btnCaiDatChucNangHienThi;
+            btnCaiDatBan.Tag = Data.TypeChucNang.CaiDat.CaiDatBan;
+            btnCaiDatMayInNhaBep.Tag = Data.TypeChucNang.CaiDat.CaiDatMayInNhaBep;
+            btnCaiDatMayInHoaDon.Tag = Data.TypeChucNang.CaiDat.CaiDatMayInHoaDon;
+            btnCaiDatThucDon.Tag = Data.TypeChucNang.CaiDat.CaiDatThucDon;
+        }
+
+        private void PhanQuyen()
+        {
+            int i = 1, j = 0;
+            foreach (var item in gridButtonMain.Children)
+            {
+                if (item is ControlLibrary.POSButtonMain)
+                {
+                    ControlLibrary.POSButtonMain btn = (ControlLibrary.POSButtonMain)item;
+                    if (btn.Tag != null && btn.Tag is Data.TypeChucNang.CaiDat)
+                    {
+                        Data.TypeChucNang.CaiDat type = (Data.TypeChucNang.CaiDat)btn.Tag;
+                        if (type != Data.TypeChucNang.CaiDat.None)
+                        {
+                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraNhomChucNang((int)type);
+                            btn.Tag = ctq;
+                            if (mTransit.KiemTraNhomChucNang((int)type) == true)
+                            {
+                                if (j > gridButtonMain.ColumnDefinitions.Count - 1)
+                                {
+                                    i++;
+                                    j = 0;
+                                }
+                                if (type != Data.TypeChucNang.CaiDat.btnCaiDatChucNangHienThi)
+                                    LookButton(btn, ctq.ChiTietQuyen.ChoPhep, i, j);
+                                else
+                                {
+                                    j--;
+                                    LookButton(btn, false, i, j);
+                                }
+                                j++;
+                            }
+                            else
+                                LookButton(btn, false, i, j);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LookButton(ControlLibrary.POSButtonMain btn, bool value, int row, int col)
+        {
+            if (value == true)
+            {
+                btn.Visibility = System.Windows.Visibility.Visible;
+                Grid.SetRow(btn, row);
+                Grid.SetColumn(btn, col);
+            }
+            else
+            {
+                btn.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
     }
 }

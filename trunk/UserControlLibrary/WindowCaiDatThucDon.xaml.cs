@@ -24,6 +24,11 @@ namespace UserControlLibrary
             InitializeComponent();
             BOCaiDatThucDon = new Data.BOCaiDatThucDon(transit);
             mTransit = transit;
+            btnHinhLoaiNhomNuocUong.SetTransit(mTransit);
+            btnHinhLoaiNhomTatCa.SetTransit(mTransit);
+            btnHinhLoaiNhomThucAn.SetTransit(mTransit);
+            btnHinhMon.SetTransit(mTransit);
+            btnHinhNhom.SetTransit(mTransit);
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
@@ -45,23 +50,28 @@ namespace UserControlLibrary
 
             if (btnHinhNhom.ImageBitmap != null)
             {
-                _Item.NhomImages = Utilities.ImageHandler.ImageToByte(btnHinhNhom.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhNhom.ImageBitmap, 120, 90, 0);
+                _Item.NhomImages = Utilities.ImageHandler.ImageToByte(img);
             }
             if (btnHinhMon.ImageBitmap != null)
             {
-                _Item.MonImages = Utilities.ImageHandler.ImageToByte(btnHinhMon.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhMon.ImageBitmap, 120, 90, 0);
+                _Item.MonImages = Utilities.ImageHandler.ImageToByte(img);
             }
             if (btnHinhLoaiNhomTatCa.ImageBitmap != null)
             {
-                _Item.LoaiNhomThucTatCaImages = Utilities.ImageHandler.ImageToByte(btnHinhLoaiNhomTatCa.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhLoaiNhomTatCa.ImageBitmap, 120, 90, 0);
+                _Item.LoaiNhomThucTatCaImages = Utilities.ImageHandler.ImageToByte(img);
             }
             if (btnHinhLoaiNhomThucAn.ImageBitmap != null)
             {
-                _Item.LoaiNhomThucAnImages = Utilities.ImageHandler.ImageToByte(btnHinhLoaiNhomThucAn.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhLoaiNhomThucAn.ImageBitmap, 120, 90, 0);
+                _Item.LoaiNhomThucAnImages = Utilities.ImageHandler.ImageToByte(img);
             }
             if (btnHinhLoaiNhomNuocUong.ImageBitmap != null)
             {
-                _Item.LoaiNhomNuocImages = Utilities.ImageHandler.ImageToByte(btnHinhLoaiNhomNuocUong.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhLoaiNhomNuocUong.ImageBitmap, 120, 90, 0);
+                _Item.LoaiNhomNuocImages = Utilities.ImageHandler.ImageToByte(img);
             }
 
             BOCaiDatThucDon.CapNhat(_Item, mTransit);

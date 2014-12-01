@@ -18,8 +18,11 @@ namespace GUI
             uCTile.SetTransit(mTransit);
             uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
             BONhanVien = new Data.BONhanVien(mTransit);
-            SetTagButton();
-            PhanQuyen();
+            if (mTransit.NhanVien.NhanVienID != 0)
+            {
+                SetTagButton();
+                PhanQuyen();
+            }
         }
 
         private void uCTile_OnChangeLogin()
@@ -83,16 +86,13 @@ namespace GUI
         {
             if (value == true)
             {
-                btn.IsEnabled = true;                
+                btn.IsEnabled = true;
                 btn.VisibilityMain = System.Windows.Visibility.Visible;
             }
             else
             {
                 btn.IsEnabled = false;
                 btn.VisibilityMain = System.Windows.Visibility.Hidden;
-                //btn.TextTo = "";
-                //btn.TextNho = "";
-                //btn.Image = null;
             }
         }
 
