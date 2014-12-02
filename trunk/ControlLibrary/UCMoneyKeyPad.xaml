@@ -6,19 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="148" d:DesignWidth="278" xmlns:my="clr-namespace:ControlLibrary">    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <my:POSButtonMoney Margin="3" Grid.Row="0" Grid.Column="0" Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" HorizontalAlignment="Stretch" x:Name="pOSButtonMoney1" VerticalAlignment="Stretch" _SoTien="10000" Click="pOSButtonMoney5_Click" />
-        <my:POSButtonMoney Margin="3" Grid.Row="0" Grid.Column="1" Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" HorizontalAlignment="Stretch" x:Name="pOSButtonMoney2" VerticalAlignment="Stretch" _SoTien="20000" Click="pOSButtonMoney5_Click" />
-        <my:POSButtonMoney Margin="3" Grid.Row="1" Grid.Column="0" Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" HorizontalAlignment="Stretch" x:Name="pOSButtonMoney3" VerticalAlignment="Stretch" _SoTien="50000" Click="pOSButtonMoney5_Click" />
-        <my:POSButtonMoney Margin="3" Grid.Row="1" Grid.Column="1" Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" HorizontalAlignment="Stretch" x:Name="pOSButtonMoney4" VerticalAlignment="Stretch" _SoTien="100000" Click="pOSButtonMoney5_Click" />
-        <my:POSButtonMoney Margin="3" Grid.Row="2" Grid.Column="0" Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" HorizontalAlignment="Stretch" x:Name="pOSButtonMoney5" VerticalAlignment="Stretch" _SoTien="500000" Click="pOSButtonMoney5_Click" Grid.ColumnSpan="2"/>
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="pOSButtonMoney1" VerticalAlignment="Top" Width="135" _SoTien="10000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="141,0,0,0" x:Name="pOSButtonMoney2" VerticalAlignment="Top" Width="135" _SoTien="20000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,51,0,0" x:Name="pOSButtonMoney3" VerticalAlignment="Top" Width="135" _SoTien="50000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="141,51,0,0" x:Name="pOSButtonMoney4" VerticalAlignment="Top" Width="135" _SoTien="100000" Click="pOSButtonMoney5_Click" />
+        <my:POSButtonMoney Background="#FF009F3B" Content="Button" FontSize="22" FontWeight="Medium" Foreground="White" Height="45" HorizontalAlignment="Left" Margin="0,102,0,0" x:Name="pOSButtonMoney5" VerticalAlignment="Top" Width="276" _SoTien="500000" Click="pOSButtonMoney5_Click" />
     </Grid>
 </UserControl>

@@ -21,7 +21,7 @@ namespace GUI
             mTransit = transit;
             mUCFloorPlan = sodoban;
             InitializeComponent();
-            PhanQuyen();            
+            PhanQuyen();
         }
 
         private void PhanQuyen()
@@ -40,7 +40,7 @@ namespace GUI
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
             uCTile.SetTransit(mTransit);
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
             GanChucNang();
             LoadBanHang();
         }
@@ -117,19 +117,19 @@ namespace GUI
                     break;
             }
         }
-        private bool KiemTra(bool kiemTraMon,bool kiemTraDanhSachMon)
+        private bool KiemTra(bool kiemTraMon, bool kiemTraDanhSachMon)
         {
             if (mProcessOrder.KiemTraHoaDonDaHoanThanh())
             {
                 UserControlLibrary.WindowMessageBox.ShowDialog("Hóa đơn đã thanh toán, không thể thực hiện chức năng nầy!");
                 return false;
             }
-            if (kiemTraDanhSachMon && mProcessOrder.KiemTraDanhSachMon()==0 )
+            if (kiemTraDanhSachMon && mProcessOrder.KiemTraDanhSachMon() == 0)
             {
                 UserControlLibrary.WindowMessageBox.ShowDialog("Danh sách rỗng. Không thể thực hiện chức năng nầy!");
                 return false;
             }
-            if ( kiemTraMon&& lvData.SelectedItem==null)
+            if (kiemTraMon && lvData.SelectedItem == null)
             {
                 UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn món cần thay đổi");
                 return false;
@@ -138,7 +138,7 @@ namespace GUI
         }
         private void GiamGiaMon()
         {
-            if (KiemTra(true,false))
+            if (KiemTra(true, false))
             {
                 UserControlLibrary.WindowBanHangGiamGiaMon win = new UserControlLibrary.WindowBanHangGiamGiaMon(mTransit, (Data.BOChiTietBanHang)lvData.SelectedItem);
                 if (win.ShowDialog() == true)
@@ -149,18 +149,18 @@ namespace GUI
         }
         private void ThayDoiGia()
         {
-            if (KiemTra(true,false))
-	        {
+            if (KiemTra(true, false))
+            {
                 UserControlLibrary.WindowBanHangDoiGia win = new UserControlLibrary.WindowBanHangDoiGia(mTransit, (Data.BOChiTietBanHang)lvData.SelectedItem);
-                if (win.ShowDialog()==true)
+                if (win.ShowDialog() == true)
                 {
                     ReloadData();
                 }
-	        }
+            }
         }
         private void ChonGia()
-        {            
-            if (KiemTra(true,false))
+        {
+            if (KiemTra(true, false))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
                 UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MENUKICHTHUOCMON);
@@ -169,7 +169,7 @@ namespace GUI
                     chitiet.ChangePriceChiTietBanHang(win._MenuGia.Gia);
                     ReloadData();
                 }
-            }            
+            }
         }
         private void DongBan()
         {
@@ -185,13 +185,13 @@ namespace GUI
         }
         public void TamTinh()
         {
-            if (KiemTra(false,true))
+            if (KiemTra(false, true))
             {
                 WindowTamTinh win = new WindowTamTinh(mTransit, mProcessOrder.GetBanHang());
                 if (win.ShowDialog() == true)
                 {
                     if (mProcessOrder.TamTinh() > 0)
-                    {                        
+                    {
                         mUCFloorPlan.LoadAlllStatus();
                         this.Close();
 
@@ -201,10 +201,10 @@ namespace GUI
         }
         private void GuiNhaBep()
         {
-            if (KiemTra(false,true))
+            if (KiemTra(false, true))
             {
                 if (mProcessOrder.SendOrder() > 0)
-                {                    
+                {
                     mUCFloorPlan.LoadAlllStatus();
                 }
                 this.Close();
@@ -212,7 +212,7 @@ namespace GUI
         }
         private void TinhTien()
         {
-            if (KiemTra(false,true))
+            if (KiemTra(false, true))
             {
                 WindowTinhTien win = new WindowTinhTien(mTransit, mProcessOrder.GetBanHang());
                 if (win.ShowDialog() == true)
@@ -226,50 +226,50 @@ namespace GUI
         }
         private void XoaMon()
         {
-            if (KiemTra(true,true))
+            if (KiemTra(true, true))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
-                mProcessOrder.XoaChiTietBanHang(chitiet);                                
+                mProcessOrder.XoaChiTietBanHang(chitiet);
                 ReloadData();
                 if (lvData.Items.Count > 0)
                 {
                     lvData.SelectedIndex = lvData.Items.Count - 1;
                 }
                 XoaTextThongTinMon();
-            }            
+            }
         }
         private void TachBan()
         {
             this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,true);
+            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit, true);
             if (win1.ShowDialog() == true)
             {
-                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mUCFloorPlan,mTransit, win1._TachGopBan);
+                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mUCFloorPlan, mTransit, win1._TachGopBan);
                 win2.ShowDialog();
             }
         }
         private void GopBan()
         {
             this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,false);
+            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit, false);
             if (win1.ShowDialog() == true)
             {
-                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mUCFloorPlan,mTransit, win1._TachGopBan);
+                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mUCFloorPlan, mTransit, win1._TachGopBan);
                 win2.ShowDialog();
             }
         }
         private void ChuyenBan()
         {
             this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit,mUCFloorPlan);
+            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit, mUCFloorPlan);
             win1.ShowDialog();
 
         }
         private void XoaToanBoMon()
         {
-            if (KiemTra(false,true))
+            if (KiemTra(false, true))
             {
-                mProcessOrder.XoaAllXoaChiTietBanHang();                
+                mProcessOrder.XoaAllXoaChiTietBanHang();
                 XoaTextThongTinMon();
                 ReloadData();
             }
@@ -313,7 +313,7 @@ namespace GUI
             //{
             //    lvData.Items.Refresh();
             //}
-            if (mProcessOrder.AddChiTietBanHang(item)==0)
+            if (mProcessOrder.AddChiTietBanHang(item) == 0)
             {
                 if (mProcessOrder.CheckMutiablePrice(item))
                 {
@@ -322,9 +322,9 @@ namespace GUI
                     {
                         item.ChangePriceChiTietBanHang(win._MenuGia.Gia);
                     }
-                }    
-            }            
-                        
+                }
+            }
+
             if (lvData.Items.Count > 0)
             {
                 lvData.SelectedIndex = lvData.Items.Count - 1;
@@ -356,7 +356,7 @@ namespace GUI
 
         private void TextBox_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            POSTextBox txt =sender as POSTextBox;
+            TextBox txt = (TextBox)sender;
             txt.SelectAll();
             uCKeyPad._TextBox = txt;
         }
@@ -374,7 +374,7 @@ namespace GUI
                 ReloadData();
                 if (lvData.SelectedItems.Count > 0)
                 {
-                    lvData.SelectedItems[0] = mProcessOrder.CurrentChiTietBanHang;
+                    //lvData.SelectedItems[0] = mProcessOrder.CurrentChiTietBanHang;
                     lvData.Items.Refresh();
                 }
             }

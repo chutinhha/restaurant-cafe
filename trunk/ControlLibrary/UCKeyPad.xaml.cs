@@ -26,7 +26,7 @@ namespace ControlLibrary
             InitializeComponent();
             _TypeKeyPad = TypeKeyPad.None;
         }
-        public POSTextBox _TextBox { get; set; }
+        public TextBox _TextBox { get; set; }
         public TypeKeyPad _TypeKeyPad { get; set; }
         public bool _Decimal { get; set; }
 
@@ -51,14 +51,6 @@ namespace ControlLibrary
                         _TextBox.Text += button.Content.ToString();
                         break;
                     default:
-                        if (_TextBox._TypeTextBox==TypeKeyPad.Number)
-                        {
-                            int data = Utilities.MoneyFormat.ConvertToInt(_TextBox.Text + button.Content.ToString());
-                            if ((data < 0 || data > _TextBox._MaxValue) && _TextBox._MaxValue > 0)
-                            {
-                                return;
-                            }
-                        }
                         _TextBox.Text += button.Content.ToString();
                         break;
                 }

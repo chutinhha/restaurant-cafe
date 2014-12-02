@@ -133,9 +133,8 @@ namespace ControlLibrary
             //double width = _WidthFrame * (double)_Ban.Width;
             //double height = _HeightFrame * (double)_Ban.Height;
 
-            this.FontSize = caidat.TableFontSize;
-            this.FontStyle = Data.SomeEnum.GetFontStyle(caidat.TableFontStyle);
-            this.FontWeight = Data.SomeEnum.GetFontWeight(caidat.TableFontWeights);
+            this.FontSize = caidat.TableFontSize;            
+            this.FontStyle = Utilities.FontConverter.ConvertToFont(caidat.TableFontStyle);
             this.Width = width>2? width - 2:0;
             this.Height =height>2? height-2:0;
             this.Margin = new Thickness(

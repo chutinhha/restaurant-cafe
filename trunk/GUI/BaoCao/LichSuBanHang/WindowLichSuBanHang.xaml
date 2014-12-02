@@ -16,7 +16,7 @@
             <DatePicker  Name="dtpNgay" Width="300" />
 
         </StackPanel>
-        <WindowsFormsHost  Grid.Row="1" Name="ReportData" Margin="10,0,-10,30" Grid.RowSpan="2">
+        <WindowsFormsHost  Grid.Row="2" Name="ReportData">
             <rv:ReportViewer x:Name="ReportViewerData" ZoomMode="PageWidth" />
         </WindowsFormsHost>
     </Grid>

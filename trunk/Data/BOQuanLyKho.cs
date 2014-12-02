@@ -9,59 +9,272 @@ namespace Data
     {
         FrameworkRepository<TONKHOTONG> frmTonKhoTong = null;
         FrameworkRepository<TONKHO> frmTonKho = null;
+        FrameworkRepository<TONKHOTONGLOG> frmTonKhoTongLog = null;
+        FrameworkRepository<TONKHOCHITIETBANHANG> frmTonKhoChiTietBanHang = null;
+
+        BODinhLuong BODinhLuong = null;
+
         public BOQuanLyKho(Data.Transit transit)
         {
             frmTonKhoTong = new FrameworkRepository<TONKHOTONG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGs);
             frmTonKho = new FrameworkRepository<TONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOes);
+            frmTonKhoTongLog = new FrameworkRepository<TONKHOTONGLOG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGLOGs);
+            frmTonKhoChiTietBanHang = new FrameworkRepository<TONKHOCHITIETBANHANG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOCHITIETBANHANGs);
+            frmTonKhoTong.Refresh();
+            frmTonKho.Refresh();
+            frmTonKhoTongLog.Refresh();
+            frmTonKhoChiTietBanHang.Refresh();
+            BODinhLuong = new BODinhLuong(transit);
         }
 
+        ///// <summary>
+        ///// Sẽ trả về một danh danh chi tiết bán hàng gồm những món không đủ trong kho
+        ///// </summary>
+        ///// <param name="lsArray"></param>
+        ///// <param name="transit"></param>
+        ///// <returns></returns>
+        //public void TruTonKho(List<BOChiTietBanHang> lsArray, Data.Transit transit)
+        //{
+        //    List<BOChiTietBanHang> result = new List<BOChiTietBanHang>();
+        //    foreach (BOChiTietBanHang item in lsArray)
+        //    {
+        //        IQueryable<Data.TONKHO> lsTonKho = frmTonKho.Query().Where(s => s.DonViID == item.MENUKICHTHUOCMON.DonViID && s.MonID == item.MENUKICHTHUOCMON.MonID && s.KhoID == transit.KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
+        //        int SL = (int)(item.CHITIETBANHANG.SoLuongBan * item.MENUKICHTHUOCMON.KichThuocLoaiBan);
+        //        if (SL < lsTonKho.Sum(s => s.SoLuongTon))
+        //        {
+        //            foreach (var l in lsTonKho)
+        //            {
+        //                if (SL != 0)
+        //                {
+        //                    if (SL > l.SoLuongTon)
+        //                    {
+        //                        SL = SL - (int)l.SoLuongTon;
+        //                        l.SoLuongTon = 0;
+        //                    }
+        //                    else
+        //                    {
+        //                        l.SoLuongTon = l.SoLuongTon - SL;
+        //                        SL = 0;
+        //                    }
+
+        //                    //item.CHITIETBANHANG.TONKHOCHITIETBANHANGs.Add(new ).TONKHOes.Add(l);
+        //                    frmTonKho.Update(l);
+        //                }
+        //                else
+        //                    break;
+        //            }
+        //        }
+
+        //    }
+        //    frmTonKho.Commit();
+        //}
+
         /// <summary>
-        /// Sẽ trả về một danh danh chi tiết bán hàng gồm những món không đủ trong kho
+        /// Return false là không đủ, True là đã tính trừ kho xong rồi
         /// </summary>
-        /// <param name="lsArray"></param>
-        /// <param name="transit"></param>
+        /// <param name="lsTonKho"></param>
+        /// <param name="frmTK"></param>
+        /// <param name="frmTKCT"></param>
+        /// <param name="ChiTietBanHangID"></param>
+        /// <param name="SL"></param>
+        /// <param name="KhoID"></param>
+        /// <param name="MonID"></param>
+        /// <param name="DonViID"></param>
+        /// <param name="mTransit"></param>
         /// <returns></returns>
-        public List<BOChiTietBanHang> TruKho(List<BOChiTietBanHang> lsArray, Data.Transit transit)
+        private bool ThemTruTonKho(List<TONKHO> lsTonKho, List<TONKHOTONG> lsTonKhoTong, FrameworkRepository<TONKHO> frmTK, FrameworkRepository<TONKHOCHITIETBANHANG> frmTKCT, FrameworkRepository<TONKHOTONG> frmTKT, int ChiTietBanHangID, int SL, int KhoID, int MonID, int DonViID, Transit mTransit)
         {
-            List<BOChiTietBanHang> result = new List<BOChiTietBanHang>();
-            foreach (BOChiTietBanHang item in lsArray)
+            IQueryable<Data.TONKHO> lsArray = frmTK.Query().Where(s => s.DonViID == DonViID && s.MonID == MonID && s.KhoID == KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
+            if (lsArray.Count() > 0 && SL < lsArray.Sum(s => s.SoLuongTon))
             {
-                IQueryable<Data.TONKHO> lsTonKho = frmTonKho.Query().Where(s => s.DonViID == item.MENUKICHTHUOCMON.DonViID && s.MonID == item.MENUKICHTHUOCMON.MonID && s.KhoID == transit.KhoID).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
-                int SL = (int)(item.CHITIETBANHANG.SoLuongBan * item.MENUKICHTHUOCMON.KichThuocLoaiBan);
-                if (SL < lsTonKho.Sum(s => s.SoLuongTon))
+
+
+                foreach (var l in lsArray)
                 {
-                    foreach (var line in lsTonKho)
+                    //-----------------------------------------------------------
+                    Data.TONKHOTONG tonkhotong = null;
+                    if (lsTonKhoTong.Exists(s => s.KhoID == KhoID && s.MonID == MonID && s.DonViID == DonViID))
                     {
-                        if (SL != 0)
+                        tonkhotong = lsTonKhoTong.Find(s => s.KhoID == KhoID && s.MonID == MonID && s.DonViID == DonViID);
+                    }
+                    else
+                    {
+                        lsTonKhoTong.Add(KiemTraTonKhoTong(frmTKT, KhoID, MonID, DonViID));
+                    }
+                    tonkhotong.SoLuongTon -= SL;
+                    tonkhotong.SoLuongBan += SL;
+                    //-----------------------------------------------------------
+                    Data.TONKHO tonkho = null;
+                    if (lsTonKho.Exists(s => s.TonKhoID == l.TonKhoID))
+                    {
+                        tonkho = lsTonKho.Find(s => s.TonKhoID == l.TonKhoID);
+                    }
+                    else
+                    {
+                        tonkho = l;
+                        lsTonKho.Add(tonkho);
+                    }
+                    //-----------------------------------------------------------
+
+                    if (SL != 0)
+                    {
+                        if (SL > l.SoLuongTon)
                         {
-                            if (SL > line.SoLuongTon)
-                            {
-                                SL = SL - (int)line.SoLuongTon;
-                                line.SoLuongTon = 0;
-                            }
-                            else
-                            {
-                                SL = 0;
-                                line.SoLuongTon = line.SoLuongTon - SL;
-                            }
-                            frmTonKho.Update(line);
+                            SL = SL - (int)l.SoLuongTon;
+                            frmTKCT.AddObject(new TONKHOCHITIETBANHANG()
+                                {
+                                    KhoID = KhoID,
+                                    ChiTietBanHangID = ChiTietBanHangID,
+                                    TonKhoID = l.TonKhoID,
+                                    MonID = MonID,
+                                    DonViID = DonViID,
+                                    SoLuong = l.SoLuongTon
+                                });
+                            l.SoLuongTon = 0;
                         }
                         else
                         {
-                            result.Add(item);
-                            break;
+                            l.SoLuongTon = l.SoLuongTon - SL;
+                            frmTKCT.AddObject(new TONKHOCHITIETBANHANG()
+                            {
+                                KhoID = KhoID,
+                                ChiTietBanHangID = ChiTietBanHangID,
+                                TonKhoID = l.TonKhoID,
+                                MonID = MonID,
+                                DonViID = DonViID,
+                                SoLuong = SL
+                            });
+                            SL = 0;
                         }
                     }
-                    Data.TONKHOTONG tonKhoTong = KiemTraTonKhoTong(transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID);
-                    tonKhoTong.SoLuongBan += SL;
-                    tonKhoTong.SoLuongTon -= SL;
-                    frmTonKhoTong.Update(tonKhoTong);
+                    else
+                        break;
                 }
-
             }
-            frmTonKho.Commit();
+            else
+                return false;
+            return true;
+        }
+
+        //private void SuaTruTonKho(List<TONKHO> lsTonKho, FrameworkRepository<TONKHO> frm, FrameworkRepository<TONKHOCHITIETBANHANG> frmChiTiet, int ChiTietBanHangID, int SL, int KhoID, int MonID, int DonViID, int TonKhoID, Transit mTransit)
+        //{
+
+        //    Data.TONKHO tonkho = null;
+        //    if (lsTonKho.Exists(s => s.TonKhoID == TonKhoID))
+        //    {
+        //        tonkho = lsTonKho.Find(s => s.TonKhoID == TonKhoID);
+        //    }
+        //    else
+        //    {
+        //        tonkho = frm.Query().Where(s => s.TonKhoID == TonKhoID).FirstOrDefault();
+        //        lsTonKho.Add(tonkho);
+        //    }
+
+        //    if (SL > tonkho.SoLuongTon)
+        //    {
+        //        ThemTruTonKho(lsTonKho, frm, frmChiTiet, ChiTietBanHangID, SL - tonkho.SoLuongTon, KhoID, MonID, DonViID, mTransit);
+        //        tonkho.SoLuongTon = 0;
+        //    }
+        //    else
+        //    {
+        //        tonkho.SoLuongTon -= SL;
+        //    }
+        //}
+
+        private void XoaTonKho(FrameworkRepository<TONKHO> frmTK, FrameworkRepository<TONKHOCHITIETBANHANG> frmTKCT, FrameworkRepository<TONKHOTONG> frmTKT, IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang)
+        {
+            List<TONKHO> lsTonKho = new List<TONKHO>();
+            List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
+            Data.TONKHO tonkho = null;
+            foreach (TONKHOCHITIETBANHANG item in lsTonKhoChiTietBanHang)
+            {
+                if (lsTonKho.Exists(s => s.TonKhoID == item.TonKhoID))
+                {
+                    tonkho = lsTonKho.Find(s => s.TonKhoID == item.TonKhoID);
+                }
+                else
+                {
+                    tonkho = frmTK.Query().Where(s => s.TonKhoID == item.TonKhoID).FirstOrDefault();
+                    lsTonKho.Add(tonkho);
+                }
+                tonkho.SoLuongTon += (int)item.SoLuong;
+                frmTKCT.DeleteObject(item);
+            }
+            foreach (TONKHO item in lsTonKho)
+            {
+                frmTK.Update(item);
+            }
+            frmTKCT.Commit();
+            frmTK.Commit();
+        }
+
+        /// <summary>
+        /// Lưu kho xuống
+        /// </summary>
+        /// <param name="lsArray">Truyền toàn bộ BOChiTietBanHang xuống</param>
+        /// <param name="transit">Biến trung chuyển</param>
+        public void LuuTonKho(List<BOChiTietBanHang> lsArray, Data.Transit transit)
+        {
+            List<TONKHO> lsTonKho = new List<TONKHO>();
+            List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
+            //Duyệt toàn bộ danh sách
+            foreach (BOChiTietBanHang item in lsArray)
+            {
+                //Kiểm tra món đó có trong tồn kho hay không, nếu tồn kho thì bắt đầu trừ, còn lại nếu là định lượng phải lấy danh sách món định lượng rồi mới trừ
+                if (item.MENUKICHTHUOCMON.ChoPhepTonKho == true)
+                {
+                    IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.CHITIETBANHANG.ChiTietBanHangID);
+                    if (lsTonKhoChiTietBanHang.Count() == 0)
+                    {
+                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID, transit);
+                    }
+                    else
+                    {
+                        if (item.CHITIETBANHANG.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
+                        {
+                            XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID, transit);
+                        }
+                    }
+                }
+                else
+                {
+                    IQueryable<BODinhLuong> lsDinhLuong = BODinhLuong.GetAll(item.MENUKICHTHUOCMON.KichThuocMonID, transit);
+                    foreach (BODinhLuong line in lsDinhLuong)
+                    {
+                        IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.CHITIETBANHANG.ChiTietBanHangID && s.MonID == line.MenuMon.MonID);
+                        if (lsTonKhoChiTietBanHang.Count() == 0)
+                        {
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, transit);
+                        }
+                        else
+                        {
+                            if (item.CHITIETBANHANG.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
+                            {
+                                XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
+                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, transit);
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (TONKHO item in lsTonKho)
+            {
+                frmTonKho.Update(item);
+            }
+            foreach (TONKHOTONG item in lsTonKhoTong)
+            {
+                frmTonKhoTong.Update(item);
+            }
             frmTonKhoTong.Commit();
-            return result;
+            frmTonKhoChiTietBanHang.Commit();
+            frmTonKho.Commit();
+
+        }
+
+        public int KiemTraTonKhoTong(Data.Transit mTransit, BOChiTietChuyenKho item)
+        {
+            return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MenuMon.MonID, (int)item.MenuMon.DonViID).SoLuongTon;
         }
 
         public int ChuyenKho(BOChuyenKho item, List<BOChiTietChuyenKho> lsArray, Transit mTransit)
@@ -140,9 +353,10 @@ namespace Data
                                 }
                                 tonKhoTong.SoLuongChuyen += chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
                                 tonKhoTong.SoLuongTon += chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
-                                if (SL == 0)
-                                    break;
                             }
+                            else
+                                break;
+
                         }
 
                     }
@@ -236,17 +450,72 @@ namespace Data
             return frm.Query().Where(s => s.KhoID == KhoID && s.MonID == MonID && s.DonViID == DonViID).FirstOrDefault();
         }
 
-        public void HuKho()
+        private void ThemLog(FrameworkRepository<TONKHOTONGLOG> frm, Data.Transit mTransit, int MonID, int DonViID, int SL)
         {
+            TONKHOTONG tonKhoTong = KiemTraTonKhoTong(mTransit.KhoID, MonID, DonViID);
+            tonKhoTong.SoLuongBan += SL;
+            tonKhoTong.SoLuongTon -= SL;
+
+            frm.AddObject(new TONKHOTONGLOG()
+                {
+                    MayID = mTransit.MayID,
+                    KhoID = mTransit.KhoID,
+                    MonID = MonID,
+                    DonViID = DonViID,
+                    SoLuong = SL
+                });
+
+            frmTonKhoTong.Update(tonKhoTong);
+            frmTonKhoTong.Commit();
+        }
+
+        private void TruLog(FrameworkRepository<TONKHOTONGLOG> frm, Data.Transit mTransit, int MonID, int DonViID, int SL)
+        {
+            TONKHOTONG tonKhoTong = KiemTraTonKhoTong(mTransit.KhoID, MonID, DonViID);
+            tonKhoTong.SoLuongBan += SL;
+            tonKhoTong.SoLuongTon -= SL;
+
+            frm.AddObject(new TONKHOTONGLOG()
+            {
+                MayID = mTransit.MayID,
+                KhoID = mTransit.KhoID,
+                MonID = MonID,
+                DonViID = DonViID,
+                SoLuong = SL
+            });
+            frmTonKhoTong.Update(tonKhoTong);
+            frmTonKhoTong.Commit();
 
         }
 
-        public void ChinhKho()
+        public void ThayDoiLog(Data.Transit mTransit, int MonID, int DonViID, int SLThem, int SLXoa)
         {
-
+            if (SLThem != SLXoa)
+            {
+                if (SLThem > 0 && SLXoa > 0)
+                {
+                    if (SLThem > SLXoa)
+                    {
+                        ThemLog(frmTonKhoTongLog, mTransit, MonID, DonViID, SLThem - SLXoa);
+                    }
+                    else
+                    {
+                        TruLog(frmTonKhoTongLog, mTransit, MonID, DonViID, SLXoa - SLThem);
+                    }
+                }
+                else if (SLThem > 0)
+                {
+                    ThemLog(frmTonKhoTongLog, mTransit, MonID, DonViID, SLThem);
+                }
+                else
+                {
+                    TruLog(frmTonKhoTongLog, mTransit, MonID, DonViID, SLXoa);
+                }
+                frmTonKhoTong.Commit();
+            }
         }
 
-        public void MatKho()
+        public void XoaLog()
         {
 
         }
