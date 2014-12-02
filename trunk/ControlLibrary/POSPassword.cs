@@ -45,60 +45,60 @@ namespace ControlLibrary
     /// </summary>
     public class POSPassword : TextBox
     {
-        private TypeKeyPad typeTextBox = TypeKeyPad.None;
+        //private TypeKeyPad typeTextBox = TypeKeyPad.None;
 
-        private WindowKeyPad _WindowKeyPad { get; set; }
+        //private WindowKeyPad _WindowKeyPad { get; set; }
 
-        private WindowKeyboard _WindowKeyboard { get; set; }
+        //private WindowKeyboard _WindowKeyboard { get; set; }
 
-        static POSPassword()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(POSPassword), new FrameworkPropertyMetadata(typeof(POSPassword)));
-        }
+        //static POSPassword()
+        //{
+        //    DefaultStyleKeyProperty.OverrideMetadata(typeof(POSPassword), new FrameworkPropertyMetadata(typeof(POSPassword)));
+        //}
 
-        public TypeKeyPad _TypeTextBox
-        {
-            get { return typeTextBox; }
-            set { typeTextBox = value; }
-        }
+        //public TypeKeyPad _TypeTextBox
+        //{
+        //    get { return typeTextBox; }
+        //    set { typeTextBox = value; }
+        //}
 
-        public UCKeyPad _UCKeyPad { get; set; }
+        //public UCKeyPad _UCKeyPad { get; set; }
 
-        private void IniForcus()
-        {
-            switch (_TypeTextBox)
-            {
-                case TypeKeyPad.None:
-                    break;
+        //private void IniForcus()
+        //{
+        //    switch (_TypeTextBox)
+        //    {
+        //        case TypeKeyPad.None:
+        //            break;
 
-                case TypeKeyPad.Number:
-                case TypeKeyPad.Decimal:
-                    if (_UCKeyPad != null)
-                    {
-                        _UCKeyPad._TextBox = this;
-                        _UCKeyPad._TypeKeyPad = _TypeTextBox;
-                    }
-                    else
-                    {
-                        //Load Keypad len
-                    }
-                    break;
+        //        case TypeKeyPad.Number:
+        //        case TypeKeyPad.Decimal:
+        //            if (_UCKeyPad != null)
+        //            {
+        //                _UCKeyPad._TextBox = this;
+        //                _UCKeyPad._TypeKeyPad = _TypeTextBox;
+        //            }
+        //            else
+        //            {
+        //                //Load Keypad len
+        //            }
+        //            break;
 
-                case TypeKeyPad.Text:
-                    //Load keyboard len
-                    break;
+        //        case TypeKeyPad.Text:
+        //            //Load keyboard len
+        //            break;
 
-                default:
-                    break;
-            }
-        }
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        protected override void OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs e)
-        {
-            IniForcus();
-            this.SelectAll();
-            base.OnPreviewMouseDown(e);
-        }
+        //protected override void OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs e)
+        //{
+        //    IniForcus();
+        //    this.SelectAll();
+        //    base.OnPreviewMouseDown(e);
+        //}
 
 
     }

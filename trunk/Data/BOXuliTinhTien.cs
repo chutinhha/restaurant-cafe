@@ -31,7 +31,7 @@ namespace Data
             b.MaHoaDon = banhang.MaHoaDon;            
             b.TheID = banhang.TheID;
             b.KhachHangID = banhang.KhachHangID;
-            b.GiamGia = banhang.GiamGia;
+            b.GiamGia = banhang.GiamGia;            
             return b;
         }
         public int GiamGiaPhanTram 
@@ -43,6 +43,7 @@ namespace Data
             set
             {
                 mBanHang.GiamGia = value;
+                TinhTienTraLai();
             }
         }
         public decimal TongTien 
@@ -71,8 +72,7 @@ namespace Data
             get { return (decimal)mBanHang.TienKhacHang; }
             set 
             {
-                mBanHang.TienKhacHang = value;
-                mBanHang.TienThe = 0;
+                mBanHang.TienKhacHang = value;                
                 TinhTienTraLai();   
             }
         }
@@ -81,8 +81,7 @@ namespace Data
             get { return (decimal)mBanHang.TienThe; }
             set
             {
-                mBanHang.TienThe = value;
-                mBanHang.TienKhacHang = 0;                
+                mBanHang.TienThe = value;                            
                 TinhTienTraLai();   
             }
         }
@@ -92,10 +91,10 @@ namespace Data
         }
         private void TinhTienTraLai()
         {
-            if (mBanHang.TienKhacHang > TongTienPhaiTra)
+            if (mBanHang.TienThe<=TongTienPhaiTra && (mBanHang.TienThe+mBanHang.TienKhacHang)>TongTienPhaiTra)
             {
-                mBanHang.TienTraLai = mBanHang.TienKhacHang - TongTienPhaiTra;
-            }
+                mBanHang.TienTraLai = mBanHang.TienKhacHang+mBanHang.TienThe - TongTienPhaiTra;                    
+            }            
             else
             {
                 mBanHang.TienTraLai = 0;

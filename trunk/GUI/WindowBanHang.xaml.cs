@@ -356,7 +356,7 @@ namespace GUI
 
         private void TextBox_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            TextBox txt = (TextBox)sender;
+            POSTextBox txt =sender as POSTextBox;
             txt.SelectAll();
             uCKeyPad._TextBox = txt;
         }
