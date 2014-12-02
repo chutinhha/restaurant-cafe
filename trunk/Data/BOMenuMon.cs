@@ -69,7 +69,7 @@ namespace Data
         }
 
         public int Them(BOMenuMon item, Transit mTransit)
-        {
+        {            
             frmMon.AddObject(item.MenuMon);
             SapXep((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();

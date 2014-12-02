@@ -122,11 +122,9 @@ namespace Data
             TonKho = 901,
             NhaKho = 902,
             NhapKho = 903,
-            HuKho = 904,
-            MatKho = 905,
-            ChuyenKho = 906,
-            ChinhKho = 907,
-            NhaCungCap = 908
+            ChuyenKho = 904,
+            XuLyKho = 905,
+            NhaCungCap = 906
         }
 
         public enum DinhLuong

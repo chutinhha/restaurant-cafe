@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI
 {
@@ -19,6 +9,14 @@ namespace GUI
     public partial class WindowQuanLyKhoHang : Window
     {
         private Data.Transit mTransit = null;
+
+        private UserControlLibrary.UCKho ucKho = null;
+
+        private UserControlLibrary.UCNhaCungCap ucNhaCungCap = null;
+
+        private UserControlLibrary.UCNhapKho ucNhapKho = null;
+        private UserControlLibrary.UCChuyenKho ucChuyenKho = null;
+
         public WindowQuanLyKhoHang(Data.Transit transit)
         {
             InitializeComponent();
@@ -26,57 +24,15 @@ namespace GUI
             PhanQuyen();
         }
 
-        private void PhanQuyen()
+        private void btnChuyenKho_Click(object sender, RoutedEventArgs e)
         {
-            if (!mTransit.MenuGiaoDien.Kho.TonKho)
+            if (ucChuyenKho == null)
             {
-                btnTonKho.Visibility = System.Windows.Visibility.Collapsed;
+                ucChuyenKho = new UserControlLibrary.UCChuyenKho(mTransit);
             }
-            if (!mTransit.MenuGiaoDien.Kho.NhaKho)
-            {
-                btnNhaKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.NhapKho)
-            {
-                btnNhapKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.ChinhKho)
-            {
-                btnChinhKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.HuKho)
-            {
-                btnHuKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.MatKho)
-            {
-                btnMatKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.ChuyenKho)
-            {
-                btnChuyenKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            if (!mTransit.MenuGiaoDien.Kho.NhaCungCap)
-            {
-                btnNhaCungCap.Visibility = System.Windows.Visibility.Collapsed;
-            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucChuyenKho);
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            btnKho_Click(sender, e);
-            uCTile.TenChucNang = "Quản Lý kho hàng";
-            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
-        }
-
-        void uCTile_OnEventExit()
-        {
-            this.Close();
-        }
-
-        private UserControlLibrary.UCKho ucKho = null;
-        private UserControlLibrary.UCNhaCungCap ucNhaCungCap = null;
-        private UserControlLibrary.UCNhapKho ucNhapKho = null;
 
         private void btnKho_Click(object sender, RoutedEventArgs e)
         {
@@ -98,16 +54,6 @@ namespace GUI
             spNoiDung.Children.Add(ucNhaCungCap);
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (spNoiDung.Children[0] is UserControlLibrary.UCKho)
-                ucKho.Window_KeyDown(sender, e);
-            if (spNoiDung.Children[0] is UserControlLibrary.UCNhaCungCap)
-                ucNhaCungCap.Window_KeyDown(sender, e);
-            if (spNoiDung.Children[0] is UserControlLibrary.UCNhapKho)
-                ucNhapKho.Window_KeyDown(sender, e);
-        }
-
         private void btnNhapKho_Click(object sender, RoutedEventArgs e)
         {
             if (ucNhapKho == null)
@@ -123,24 +69,74 @@ namespace GUI
 
         }
 
-        private void btnChinhKho_Click(object sender, RoutedEventArgs e)
+        private void btnXuLyKho_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
-        private void btnChuyenKho_Click(object sender, RoutedEventArgs e)
+        private void PhanQuyen()
         {
+            Data.BOChiTietQuyen quyenLoaiKhachHang = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.TonKho);
+            btnTonKho.Tag = quyenLoaiKhachHang;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.TonKho) || !quyenLoaiKhachHang.ChiTietQuyen.ChoPhep)
+            {
+                btnTonKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
 
+            Data.BOChiTietQuyen quyenNhaKho = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.NhaKho);
+            btnTonKho.Tag = quyenNhaKho;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.NhaKho) || !quyenNhaKho.ChiTietQuyen.ChoPhep)
+            {
+                btnNhaKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            Data.BOChiTietQuyen quyenNhapKho = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.NhapKho);
+            btnTonKho.Tag = quyenNhapKho;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.NhapKho) || !quyenNhapKho.ChiTietQuyen.ChoPhep)
+            {
+                btnNhapKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+            Data.BOChiTietQuyen quyenChuyenKho = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.ChuyenKho);
+            btnTonKho.Tag = quyenChuyenKho;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.ChuyenKho) || !quyenChuyenKho.ChiTietQuyen.ChoPhep)
+            {
+                btnChuyenKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+            Data.BOChiTietQuyen quyenXuLyKho = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.XuLyKho);
+            btnTonKho.Tag = quyenXuLyKho;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.XuLyKho) || !quyenXuLyKho.ChiTietQuyen.ChoPhep)
+            {
+                btnXuLyKho.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+            Data.BOChiTietQuyen quyenNhaCungCap = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.NhaCungCap);
+            btnTonKho.Tag = quyenNhaCungCap;
+            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.NhaCungCap) || !quyenNhaCungCap.ChiTietQuyen.ChoPhep)
+            {
+                btnNhaCungCap.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
-        private void btnMatKho_Click(object sender, RoutedEventArgs e)
+        private void uCTile_OnEventExit()
         {
-
+            this.Close();
         }
 
-        private void btnHuKho_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (spNoiDung.Children[0] is UserControlLibrary.UCKho)
+                ucKho.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCNhaCungCap)
+                ucNhaCungCap.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCNhapKho)
+                ucNhapKho.Window_KeyDown(sender, e);
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnKho_Click(sender, e);
+            uCTile.TenChucNang = "Quản Lý kho hàng";
+            uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
         }
     }
 }

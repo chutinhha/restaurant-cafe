@@ -114,7 +114,7 @@ namespace Data
             {
                 this.MakeChangeEntityObject(item);
             }
-            mKaraokeEntities.SaveChanges();                        
+            mKaraokeEntities.SaveChanges();
             foreach (var item in mListEntityObject)
             {
                 this.Detach(item.EntityObject);

@@ -19,14 +19,12 @@
                 <MenuItem Header="Tồn Kho" Padding="20,0" Name="btnTonKho" Click="btnTonKho_Click"  />
                 <MenuItem Header="Nhà Kho" Padding="20,0"  Name="btnNhaKho" Click="btnKho_Click"  />
                 <MenuItem Header="Nhập Kho" Padding="20,0"  Name="btnNhapKho" Click="btnNhapKho_Click"  />
-                <MenuItem Header="Chỉnh Kho" Padding="20,0"  Name="btnChinhKho" Click="btnChinhKho_Click"  />
-                <MenuItem Header="Hư kho" Padding="20,0"  Name="btnHuKho" Click="btnHuKho_Click"  />
-                <MenuItem Header="Mất kho" Padding="20,0"  Name="btnMatKho" Click="btnMatKho_Click"  />
                 <MenuItem Header="Chuyển kho" Padding="20,0"  Name="btnChuyenKho" Click="btnChuyenKho_Click"  />
+                <MenuItem Header="Xử lý Kho" Padding="20,0"  Name="btnXuLyKho" Click="btnXuLyKho_Click"  />                
                 <MenuItem Header="Nhà cung cấp" Padding="20,0"  Name="btnNhaCungCap" Click="btnNhaCungCap_Click"  />
             </Menu>
         </Grid>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" />
-        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />        
+        <StackPanel Name="spNoiDung" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />
     </Grid>
 </Window>
