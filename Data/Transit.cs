@@ -13,8 +13,7 @@ namespace Data
         public BAN Ban { get; set; }
         public KHU Khu { get; set; }
         public BOBanHang BanHang { get; set; }
-        //=================
-        public KHACHHANG KhachHang { get; set; }
+        //=================        
         public THE The { get; set; }
         //================
         public string HashMD5 { get; set; }
@@ -45,8 +44,7 @@ namespace Data
 
             KaraokeEntities = new KaraokeEntities();
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
-            KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
+            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();            
             The = KaraokeEntities.THEs.FirstOrDefault();
             ListDonVi = BODonVi.GetAll(this);
             BOChiTietQuyen = new BOChiTietQuyen(this);
@@ -60,7 +58,7 @@ namespace Data
 
             //var list5 = (from a in list3
             //            join b in list4 on a.LoaiGiaID equals b.LoaiGiaID
-            //             select b).ToList(); ;                          
+            //             select b).ToList(); ;             
         }
 
         public void LayDanhSachQuyen()

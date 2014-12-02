@@ -17,6 +17,8 @@ namespace Utilities
         }
         public static string ConvertToString(string data)
         {
+            if (data.Length<=3)            
+                return data;            
             return ConvertToString(ConvertToDecimal(data));
         }
         public static string ConvertToString(decimal data)
@@ -33,6 +35,7 @@ namespace Utilities
         }
         public static decimal ConvertToDecimal(string data)
         {
+            
             if (CheckIsDigit(data))
             {
                 return Convert.ToDecimal(data);

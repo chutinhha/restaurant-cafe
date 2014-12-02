@@ -64,11 +64,15 @@ namespace GUI
             txtSoTien._UCMoneyKeyPad = uCMoneyKeyPad1;
             txtSoTien._UCKeyPad = uCKeyPad1;
             txtGiamGia._UCKeyPad = uCKeyPad1;
+            txtGiamGia._MaxValue = 100;
+            txtThe._UCKeyPad = uCKeyPad1;
+            txtThe._UCMoneyKeyPad = uCMoneyKeyPad1;
             //ReLoadData();
             txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
             if (mBOXuliTinhTien.GiamGiaPhanTram > 0)
                 txtGiamGia.Text = Utilities.NumberFormat.FormatToString(mBOXuliTinhTien.GiamGiaPhanTram);
             InitData();
+            LoadKhachHang();
         }
 
         private void txtGiamGia_TextChanged(object sender, TextChangedEventArgs e)
@@ -79,16 +83,15 @@ namespace GUI
 
         private void txtSoTien_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (cboThe.SelectedValue!=null)
-            {
-                mBOXuliTinhTien.TienThe = Utilities.MoneyFormat.ConvertToDecimal(txtSoTien.Text);
-            }
-            else
-            {
-                mBOXuliTinhTien.TienKhachDua = Utilities.MoneyFormat.ConvertToDecimal(txtSoTien.Text);
-            }
+            mBOXuliTinhTien.TienKhachDua = Utilities.MoneyFormat.ConvertToDecimal(txtSoTien.Text);
             ReLoadData();
         }
+
+        private void txtThe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mBOXuliTinhTien.TienThe = Utilities.MoneyFormat.ConvertToDecimal(txtThe.Text);
+            ReLoadData();
+        }   
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
@@ -97,7 +100,7 @@ namespace GUI
 
         private void btnDongY_Click(object sender, RoutedEventArgs e)
         {
-            if (mBOXuliTinhTien.TienKhachDua >= mBOXuliTinhTien.TongTienPhaiTra || mBOXuliTinhTien.TienThe >= mBOXuliTinhTien.TongTienPhaiTra)
+            if ((mBOXuliTinhTien.TienKhachDua+mBOXuliTinhTien.TienThe) >= mBOXuliTinhTien.TongTienPhaiTra && mBOXuliTinhTien.TienThe<=mBOXuliTinhTien.TongTienPhaiTra)
             {
                 mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
                 this.DialogResult = true;
@@ -106,23 +109,30 @@ namespace GUI
 
         private void cboThe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mBOXuliTinhTien.BanHang.TheID = (int)cboThe.SelectedValue;
-            txtSoTien.Text = Utilities.MoneyFormat.ConvertToString(mBOXuliTinhTien.TongTienPhaiTra);
-            mBOXuliTinhTien.TienThe = mBOXuliTinhTien.TongTienPhaiTra;
-            txtGiamGia.IsEnabled = false;
-            txtSoTien.IsEnabled = false;
+            if (cboThe.SelectedItem!=null)
+            {
+                mBOXuliTinhTien.BanHang.TheID = (int)cboThe.SelectedValue;
+                txtThe.IsEnabled = true;                                
+            }
         }
-
+        private void LoadKhachHang()
+        {
+            if (mBOBanHang.KHACHHANG != null)
+            {
+                btnChonKhachHang.Content = mBOBanHang.KHACHHANG.TenKhachHang;
+            }
+        }
         private void btnChonKhachHang_Click(object sender, RoutedEventArgs e)
         {
             UserControlLibrary.WindowTimKhachHang win = new UserControlLibrary.WindowTimKhachHang(mTransit);
             if (win.ShowDialog() == true)
             {
                 mBOXuliTinhTien.BanHang.KhachHangID = win._KhachHang.KhachHangID;
-                //mBOXuliTinhTien.BanHang.KHACHHANG = win._KhachHang;
-                btnChonKhachHang.Content = win._KhachHang.TenKhachHang;
+                mBOBanHang.KHACHHANG = win._KhachHang;
+                LoadKhachHang();
             }
-        }       
+        }        
+            
         
     }
 }
