@@ -11,7 +11,7 @@ namespace Data
         public Data.KHO KhoDen { get; set; }
         public Data.KHO KhoDi { get; set; }
         public Data.NHANVIEN NhanVien { get; set; }
-        public List<Data.CHITIETHUKHO> ListChiTietHuKho { get; set; }
+        public List<BOChiTietChuyenKho> ListChiTietHuKho { get; set; }
 
         FrameworkRepository<Data.KHO> frmKho = null;
         FrameworkRepository<Data.NHANVIEN> frmNhanVien = null;
@@ -30,19 +30,20 @@ namespace Data
             KhoDi = new KHO();
             ChuyenKho = new CHUYENKHO();
             NhanVien = new NHANVIEN();
-            ListChiTietHuKho = new List<CHITIETHUKHO>();
+            ListChiTietHuKho = new List<BOChiTietChuyenKho>();
         }
 
         public IQueryable<BOChuyenKho> GetAll(Transit mTransit, DateTime dt)
         {
             frmChuyenKho.Refresh();
-            return (from hk in frmChuyenKho.Query()
-                    join ke in frmKho.Query() on hk.KhoDenID equals ke.KhoID
-                    join ki in frmKho.Query() on hk.KhoDiID equals ki.KhoID
-                    join nv in frmNhanVien.Query() on hk.NhanVienID equals nv.NhanVienID
+            return (from ck in frmChuyenKho.Query()
+                    join ke in frmKho.Query() on ck.KhoDenID equals ke.KhoID
+                    join ki in frmKho.Query() on ck.KhoDiID equals ki.KhoID
+                    join nv in frmNhanVien.Query() on ck.NhanVienID equals nv.NhanVienID
+                    where ck.NgayChuyen.Value.Year == dt.Year && ck.NgayChuyen.Value.Month == dt.Month && ck.NgayChuyen.Value.Day == dt.Day
                     select new BOChuyenKho
                     {
-                        ChuyenKho = hk,
+                        ChuyenKho = ck,
                         KhoDen = ke,
                         KhoDi = ki,
                         NhanVien = nv
@@ -52,11 +53,13 @@ namespace Data
         }
 
         public int Them(BOChuyenKho item, List<BOChiTietChuyenKho> lsArray, Transit mTransit)
-        {
+        {            
             frmChuyenKho.AddObject(item.ChuyenKho);
             frmChuyenKho.Commit();
             return item.ChuyenKho.ChuyenKhoID;
         }
+
+        
 
         private int Them(BOChuyenKho item, Transit mTransit)
         {

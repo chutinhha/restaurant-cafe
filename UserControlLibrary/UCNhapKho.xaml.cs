@@ -47,7 +47,7 @@ namespace UserControlLibrary
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit, BONhapKho);
+            UserControlLibrary.WindowNhapKho win = new UserControlLibrary.WindowNhapKho(mTransit, BONhapKho);
             if (win.ShowDialog() == true)
             {
                 LoadDanhSach();
@@ -61,7 +61,7 @@ namespace UserControlLibrary
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
                 mItem = (Data.BONhapKho)li.Tag;
 
-                UserControlLibrary.WindowThemNhapKho win = new UserControlLibrary.WindowThemNhapKho(mTransit, BONhapKho);
+                UserControlLibrary.WindowNhapKho win = new UserControlLibrary.WindowNhapKho(mTransit, BONhapKho);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
@@ -150,6 +150,12 @@ namespace UserControlLibrary
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDanhSach();
+        }
+
+        private void dtpThoiGian_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvData.ItemsSource != null)
+                LoadDanhSach();
         }
     }
 }

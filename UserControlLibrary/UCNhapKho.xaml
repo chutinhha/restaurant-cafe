@@ -13,7 +13,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThem_Click" />
             <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
-            <DatePicker Name="dtpThoiGian" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5" HorizontalContentAlignment="Center" SelectedDateFormat="Short" Width="200"/>
+            <DatePicker Name="dtpThoiGian" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5" HorizontalContentAlignment="Left" SelectedDateFormat="Short" Padding="20,0" FontSize="14" SelectedDateChanged="dtpThoiGian_SelectedDateChanged" />
         </StackPanel>
         <ListView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" Name="lvData" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
