@@ -24,7 +24,7 @@ namespace UserControlLibrary
         private bool mIsLockText;
         public UCSoDoBan(Data.Transit transit)
         {
-            mTransit = transit;            
+            mTransit = transit;
             InitializeComponent();
             btnHinhDaiDien.SetTransit(transit);
             btnHinhSoDoBan.SetTransit(transit);

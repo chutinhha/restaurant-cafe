@@ -102,8 +102,8 @@
                 <TextBlock Grid.Row="0" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
                 <TextBox Grid.Row="1" x:Name="txtTenMon" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                 <TextBlock Grid.Row="2" Text="Số lượng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap"/>
-                <my:POSTextBox Grid.Row="3" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" VerticalContentAlignment="Center" PreviewTextInput="txt_PreviewTextInput" _TypeTextBox="Number" />
-                <TextBlock Grid.Row="4" Height="35" HorizontalAlignment="Stretch" Margin="3,9,3,0" Name="txtTongTien" Text="1000.000" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" FontStretch="Normal" FontWeight="Medium" Foreground="#FF009F3B" />                
+                <TextBox Grid.Row="3" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" PreviewMouseDown="TextBox_PreviewMouseDown" TextChanged="txtSoLuong_TextChanged" VerticalContentAlignment="Center" PreviewTextInput="txt_PreviewTextInput" />
+                <TextBlock Grid.Row="4" Height="35" HorizontalAlignment="Stretch" Margin="3,9,3,0" Name="txtTongTien" Text="1000.000" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" FontStretch="Normal" FontWeight="Medium" Foreground="#FF009F3B" />
             </Grid>
         </Grid>
         <my1:UCMenu Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="uCMenuBanHang" VerticalAlignment="Stretch" _IsBanHang="True" _OnEventMenuKichThuocMon="uCMenuBanHang__OnEventMenuKichThuocMon" />

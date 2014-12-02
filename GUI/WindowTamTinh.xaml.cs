@@ -47,12 +47,10 @@ namespace GUI
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {            
-            txtGiamGia._UCKeyPad = uCKeyPad1;
-            txtGiamGia._MaxValue = 100;
+            txtGiamGia._UCKeyPad = uCKeyPad1;            
             if (mBOXuliTinhTien.GiamGiaPhanTram>0)
                 txtGiamGia.Text = Utilities.NumberFormat.FormatToString(mBOXuliTinhTien.GiamGiaPhanTram);
             ReLoadData();
-            LoadKhachHang();
         }
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
@@ -64,23 +62,16 @@ namespace GUI
             mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
             this.DialogResult = true;
         }
-        private void LoadKhachHang()
-        {
-            if (mBOBanHang.KHACHHANG != null)
-            {
-                btnChonKhachHang.Content = mBOBanHang.KHACHHANG.TenKhachHang;
-            }
-        }
+
         private void btnChonKhachHang_Click(object sender, RoutedEventArgs e)
         {
             UserControlLibrary.WindowTimKhachHang win = new UserControlLibrary.WindowTimKhachHang(mTransit);
             if (win.ShowDialog() == true)
             {
                 mBOXuliTinhTien.BanHang.KhachHangID = win._KhachHang.KhachHangID;
-                mBOBanHang.KHACHHANG = win._KhachHang;
-                LoadKhachHang();                
+                //mBOXuliTinhTien.BanHang.KHACHHANG = win._KhachHang;
+                btnChonKhachHang.Content = mBOXuliTinhTien.BanHang.KHACHHANG.TenKhachHang;
             }
         }
-
     }
 }

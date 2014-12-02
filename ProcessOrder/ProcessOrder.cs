@@ -11,28 +11,30 @@ namespace ProcessOrder
         private Data.BOBanHang mBanHang;
         private Data.BOMenuLoaiGia mBOMenuLoaiGia;
         private Data.BOMenuGia mBOMenuGia;
-        private Data.Transit mTransit;            
+        private Data.BOQuanLyKho BOQuanLyKho = null;
+        private Data.Transit mTransit;
         private PrinterServer.ProcessPrinter mProcessPrinter;
         private PriceManager mPriceManager;
-        public Data.BOChiTietBanHang CurrentChiTietBanHang { get; set; }        
+        public Data.BOChiTietBanHang CurrentChiTietBanHang { get; set; }
         public Data.BANHANG BanHang
         {
             get { return mBanHang.BANHANG; }
-        }        
+        }
         public List<Data.BOChiTietBanHang> ListChiTietBanHang
         {
             get { return mBanHang._ListChiTietBanHang; }
         }
-        public List<Data.BOMenuGia> _ListMenuGia 
+        public List<Data.BOMenuGia> _ListMenuGia
         {
             get { return mPriceManager._ListMenuGia; }
         }
         public ProcessOrder(Data.Transit transit)
-        {            
+        {
             mTransit = transit;
             mPriceManager = new PriceManager(mTransit);
-            mBOMenuGia = new Data.BOMenuGia(mTransit);                        
+            mBOMenuGia = new Data.BOMenuGia(mTransit);
             mBanHang = new Data.BOBanHang(mTransit);
+            BOQuanLyKho = new Data.BOQuanLyKho(mTransit);
             mBanHang.LoadBanHang();
             mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
         }
@@ -46,8 +48,9 @@ namespace ProcessOrder
         }
         public int SendOrder()
         {
-            int lichSuBanHangId= mBanHang.GuiNhaBep();
-            if (lichSuBanHangId>0)
+            int lichSuBanHangId = mBanHang.GuiNhaBep();
+            BOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang, mTransit);
+            if (lichSuBanHangId > 0)
             {
                 mProcessPrinter.InHoaDon(lichSuBanHangId);
             }
@@ -82,7 +85,7 @@ namespace ProcessOrder
         }
         public bool KiemTraHoaDonDaHoanThanh()
         {
-            if (mBanHang.BANHANG.TrangThaiID==4||mBanHang.BANHANG.TrangThaiID==0)
+            if (mBanHang.BANHANG.TrangThaiID == 4 || mBanHang.BANHANG.TrangThaiID == 0)
             {
                 return true;
             }
@@ -96,7 +99,7 @@ namespace ProcessOrder
                 count++;
             }
             return count;
-        }    
+        }
         public void XoaChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
             mBanHang.DeleteChiTietBanHang(chitiet);

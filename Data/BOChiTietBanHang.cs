@@ -39,8 +39,7 @@ namespace Data
         public static int CapNhat(CHITIETBANHANG item, Transit mTransit)
         {
             CHITIETBANHANG m = (from x in mTransit.KaraokeEntities.CHITIETBANHANGs where x.ChiTietBanHangID == item.ChiTietBanHangID select x).First();
-            m.BanHangID = item.BanHangID;
-            m.TonKhoID = item.TonKhoID;
+            m.BanHangID = item.BanHangID;            
             m.SoLuongBan = item.SoLuongBan;
             m.GiaBan = item.GiaBan;
             m.ThanhTien = item.ThanhTien;

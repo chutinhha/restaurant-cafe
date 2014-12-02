@@ -30,8 +30,7 @@ namespace UserControlLibrary
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtGia._UCKeyPad = uCKeyPad1;
-            txtGia._TypeTextBox = ControlLibrary.TypeKeyPad.Number;
-            txtGia._MaxValue = 100;
+            txtGia._TypeTextBox = ControlLibrary.TypeKeyPad.Decimal;
             LoadData();
         }
         private void LoadData()
@@ -62,7 +61,5 @@ namespace UserControlLibrary
                 this.DialogResult = true;
             }
         }
-        
-        
     }
 }
