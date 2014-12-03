@@ -278,9 +278,9 @@ namespace Data
 
         }
 
-        public int KiemTraTonKhoTong(BOChiTietBanHang item)
-        {            
-            return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MenuMon.MonID, (int)item.MenuMon.DonViID).SoLuongTon;
+        public int KiemTraTonKhoTong(Data.Transit mTransit, BOChiTietBanHang item)
+        {
+            return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MENUMON.MonID, (int)item.MENUMON.DonViID).SoLuongTon;
         }
 
         public int ChuyenKho(BOChuyenKho item, List<BOChiTietChuyenKho> lsArray, Transit mTransit)
