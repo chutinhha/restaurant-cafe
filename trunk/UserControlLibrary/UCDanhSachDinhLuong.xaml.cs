@@ -60,12 +60,13 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             txtTenMon.Text = mKichThuocMon.MenuMon.TenDai + " (" + mKichThuocMon.MenuKichThuocMon.TenLoaiBan + ")";
             lsArray = BODinhLuong.GetAll((int)mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit).ToList();
             foreach (Data.BODinhLuong item in lsArray)
             {
                 item.DinhLuong.KichThuocBan = (int)item.DinhLuong.KichThuocBan / item.LoaiBan.KichThuocBan;
-                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == mKichThuocMon.MenuMon.DonViID).ToList();
+                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == item.DinhLuong.DonViID).ToList();
                 item.IsSua = IsSua;
                 item.IsXoa = IsXoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             }
@@ -74,7 +75,6 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            lsArrayDeleted = null;
             LoadDanhSach();
         }
 
@@ -84,7 +84,7 @@ namespace UserControlLibrary
             List<Data.BODinhLuong> ls = new List<Data.BODinhLuong>();
             foreach (Data.BODinhLuong s in lvData.Items)
             {
-                s.DinhLuong.KichThuocBan = s.DinhLuong.KichThuocBan * s.LoaiBan.KichThuocBan;
+                s.DinhLuong.KichThuocBan = s.DinhLuong.KichThuocBan;
                 ls.Add(s);
             }
             BODinhLuong.Luu(ls, lsArrayDeleted, mTransit);
@@ -101,6 +101,7 @@ namespace UserControlLibrary
                 Data.BODinhLuong item = new Data.BODinhLuong();
                 item.MenuMon = win._ItemMon.MenuMon;
                 item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemMon.MenuMon.DonViID).ToList();
+                item.DinhLuong.DonViID = win._ItemMon.MenuMon.DonViID;
                 item.DinhLuong.MonID = item.MenuMon.MonID;
                 item.DinhLuong.Visual = true;
                 item.DinhLuong.Deleted = false;
@@ -139,16 +140,20 @@ namespace UserControlLibrary
                     case (int)Data.EnumLoaiBan.DinhLuong:
                     case (int)Data.EnumLoaiBan.Gram:
                     case (int)Data.EnumLoaiBan.Millilit:
+                        item.DinhLuong.KichThuocBan = 1;
+                        break;
                     case (int)Data.EnumLoaiBan.Kg:
                     case (int)Data.EnumLoaiBan.Lit:
+                        item.DinhLuong.KichThuocBan = 1000;
+                        break;
                     case (int)Data.EnumLoaiBan.Gio:
+                        item.DinhLuong.KichThuocBan = 3600;
+                        break;
                     case (int)Data.EnumLoaiBan.Phut:
+                        item.DinhLuong.KichThuocBan = 60;
+                        break;
                     case (int)Data.EnumLoaiBan.Giay:
-                        item.DinhLuong.Edit = true;
-                        if (item.DinhLuong.ID == 0)
-                            item.DinhLuong.KichThuocBan = 1;
-                        else if (item.DinhLuong.LoaiBanID != item.LoaiBan.LoaiBanID)
-                            item.DinhLuong.KichThuocBan = 1;
+                        item.DinhLuong.KichThuocBan = 1;
                         break;
                     default:
                         break;

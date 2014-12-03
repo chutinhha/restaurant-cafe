@@ -58,6 +58,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             lvData.ItemsSource = _Item.DanhSachKhuyenMai;
         }
 

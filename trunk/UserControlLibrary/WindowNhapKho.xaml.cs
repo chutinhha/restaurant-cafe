@@ -34,6 +34,7 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             if (_Item != null)
             {
                 lvData.ItemsSource = lsArray = BOChiTietNhapKho.GetAll((int)_Item.NhapKho.NhapKhoID, mTransit).ToList();
@@ -93,8 +94,8 @@ namespace UserControlLibrary
                 item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemKichThuocMon.MenuMon.DonViID).ToList();
                 if (item.ListLoaiBan.Count > 0)
                 {
-                    item.ChiTietNhapKho.TONKHO.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;
-                    item.LoaiBan = item.ListLoaiBan[0];
+                    item.LoaiBan = item.ListLoaiBan.Where(s => s.LoaiBanID == win._ItemKichThuocMon.MenuKichThuocMon.LoaiBanID).FirstOrDefault();
+                    item.ChiTietNhapKho.TONKHO.LoaiBanID = item.LoaiBan.LoaiBanID;
                     item.ChiTietNhapKho.TONKHO.DonViID = item.LoaiBan.DonViID;
                 }
                 if (lsArray == null)

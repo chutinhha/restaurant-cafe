@@ -34,6 +34,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             lvData.ItemsSource = BONhapKho.GetAll(mTransit, (DateTime)dtpThoiGian.SelectedDate);
         }
 
