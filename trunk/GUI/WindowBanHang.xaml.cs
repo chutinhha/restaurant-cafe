@@ -163,7 +163,7 @@ namespace GUI
             if (KiemTra(true,false))
             {
                 Data.BOChiTietBanHang chitiet = (Data.BOChiTietBanHang)lvData.SelectedItems[0];
-                UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MENUKICHTHUOCMON);
+                UserControlLibrary.WindowBanHangTheoGia win = new UserControlLibrary.WindowBanHangTheoGia(mTransit, chitiet.MenuKichThuocMon);
                 if (win.ShowDialog() == true)
                 {
                     chitiet.ChangePriceChiTietBanHang(win._MenuGia.Gia);
@@ -313,6 +313,11 @@ namespace GUI
             //{
             //    lvData.Items.Refresh();
             //}
+            if (!mProcessOrder.KiemTraKho(item) && mTransit.ThamSo.BanHangKhongKho==false)
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Món không đủ trong kho");
+                return;
+            }
             if (mProcessOrder.AddChiTietBanHang(item)==0)
             {
                 if (mProcessOrder.CheckMutiablePrice(item))
@@ -346,7 +351,7 @@ namespace GUI
             if (mProcessOrder.CurrentChiTietBanHang != null)
             {
                 IsThayDoiSoLuong = false;
-                txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.CHITIETBANHANG.SoLuongBan.ToString();
+                txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.ChiTietBanHang.SoLuongBan.ToString();
                 txtTenMon.Text = mProcessOrder.CurrentChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
                 TextBox_PreviewMouseDown(txtSoLuong, null);

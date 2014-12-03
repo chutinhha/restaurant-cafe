@@ -8,9 +8,9 @@ namespace ProcessOrder
 {
     public class ProcessOrder
     {
-        private Data.BOBanHang mBanHang;
-        private Data.BOMenuLoaiGia mBOMenuLoaiGia;
+        private Data.BOBanHang mBanHang;        
         private Data.BOMenuGia mBOMenuGia;
+        private Data.BOQuanLyKho mBOQuanLyKho;
         private Data.Transit mTransit;            
         private PrinterServer.ProcessPrinter mProcessPrinter;
         private PriceManager mPriceManager;
@@ -33,6 +33,7 @@ namespace ProcessOrder
             mPriceManager = new PriceManager(mTransit);
             mBOMenuGia = new Data.BOMenuGia(mTransit);                        
             mBanHang = new Data.BOBanHang(mTransit);
+            mBOQuanLyKho = new Data.BOQuanLyKho(mTransit);             
             mBanHang.LoadBanHang();
             mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
         }
@@ -47,6 +48,7 @@ namespace ProcessOrder
         public int SendOrder()
         {
             int lichSuBanHangId= mBanHang.GuiNhaBep();
+            mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);
             if (lichSuBanHangId>0)
             {
                 mProcessPrinter.InHoaDon(lichSuBanHangId);
@@ -109,6 +111,10 @@ namespace ProcessOrder
         {
             //mPriceManager.LoadPrice(chitiet);
             return mBanHang.AddChiTietBanHang(chitiet);
+        }
+        public bool KiemTraKho(Data.BOChiTietBanHang chitiet)
+        {
+            return mBOQuanLyKho.KiemTraTonKhoTong(chitiet)>=chitiet.ChiTietBanHang.SoLuongBan?true:false;
         }
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
         {

@@ -29,7 +29,7 @@ namespace GUI
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {

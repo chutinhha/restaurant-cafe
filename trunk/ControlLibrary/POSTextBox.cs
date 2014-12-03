@@ -88,8 +88,7 @@ namespace ControlLibrary
         }
         protected override void OnPreviewMouseUp(System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.SelectAll();
-            this.Focus();
+            this.SelectAll();            
             base.OnPreviewMouseUp(e);
         }
         protected override void OnTextChanged(TextChangedEventArgs e)

@@ -9,9 +9,9 @@ namespace Data
     {
         //public bool IsDeleted { get; set; }    
         public bool IsChanged { get; set; }
-        public CHITIETBANHANG CHITIETBANHANG { get; set; }
-        public MENUKICHTHUOCMON MENUKICHTHUOCMON { get; set; }
-        public MENUMON MENUMON { get; set; }
+        public CHITIETBANHANG ChiTietBanHang { get; set; }
+        public MENUKICHTHUOCMON MenuKichThuocMon { get; set; }
+        public MENUMON MenuMon { get; set; }
         public int SoLuongBanTam { get; set; }
         private Transit mTransit;
         public static IQueryable<BOChiTietBanHang> Query(int banHangId, BOBanHang banhang)
@@ -23,9 +23,9 @@ namespace Data
                 where chitiet.BanHangID == banHangId
                 select new BOChiTietBanHang
                 {
-                    MENUKICHTHUOCMON = kichthuoc,
-                    CHITIETBANHANG = chitiet,
-                    MENUMON = menu
+                    MenuKichThuocMon = kichthuoc,
+                    ChiTietBanHang = chitiet,
+                    MenuMon = menu
                 };
             return iQuery;
         }
@@ -53,45 +53,45 @@ namespace Data
         }
         public BOChiTietBanHang(CHITIETBANHANG chiTiet, Transit transit)
         {
-            CHITIETBANHANG = chiTiet;
-            MENUKICHTHUOCMON = CHITIETBANHANG.MENUKICHTHUOCMON;
-            MENUMON = CHITIETBANHANG.MENUKICHTHUOCMON.MENUMON;
+            ChiTietBanHang = chiTiet;
+            MenuKichThuocMon = ChiTietBanHang.MENUKICHTHUOCMON;
+            MenuMon = ChiTietBanHang.MENUKICHTHUOCMON.MENUMON;
             mTransit = transit;
-            SoLuongBanTam = (int)CHITIETBANHANG.SoLuongBan;
+            SoLuongBanTam = (int)ChiTietBanHang.SoLuongBan;
         }
         public BOChiTietBanHang(Data.BOMenuKichThuocMon ktm, Transit transit)
         {
             mTransit = transit;
 
-            this.CHITIETBANHANG = new CHITIETBANHANG();
-            this.CHITIETBANHANG.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
-            this.CHITIETBANHANG.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
-            this.CHITIETBANHANG.ThanhTien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
-            this.CHITIETBANHANG.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;
-            this.MENUKICHTHUOCMON = ktm.MenuKichThuocMon;
-            this.MENUMON = ktm.MenuMon;
-            SoLuongBanTam = (int)this.CHITIETBANHANG.SoLuongBan;
+            this.ChiTietBanHang = new CHITIETBANHANG();
+            this.ChiTietBanHang.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
+            this.ChiTietBanHang.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
+            this.ChiTietBanHang.ThanhTien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan;
+            this.ChiTietBanHang.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;
+            this.MenuKichThuocMon = ktm.MenuKichThuocMon;
+            this.MenuMon = ktm.MenuMon;
+            SoLuongBanTam = (int)this.ChiTietBanHang.SoLuongBan;
         }
         public void ChangeQtyChiTietBanHang(int qty)
         {
-            this.CHITIETBANHANG.SoLuongBan = qty;
+            this.ChiTietBanHang.SoLuongBan = qty;
             this.ChangeThanhTien();
         }
         public void ChangePriceChiTietBanHang(decimal gia)
         {
-            this.CHITIETBANHANG.GiaBan = gia;
+            this.ChiTietBanHang.GiaBan = gia;
             this.ChangeThanhTien();
         }
         public void ChangeDiscountChiTietBanHang(int discount)
         {
             this.IsChanged = true;
-            this.CHITIETBANHANG.GiamGia = discount;
+            this.ChiTietBanHang.GiamGia = discount;
             this.ChangeThanhTien();
         }
         private void ChangeThanhTien()
         {
-            decimal thanhtien = this.CHITIETBANHANG.SoLuongBan * this.CHITIETBANHANG.GiaBan;
-            this.CHITIETBANHANG.ThanhTien = thanhtien - thanhtien * this.CHITIETBANHANG.GiamGia / 100;            
+            decimal thanhtien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan;
+            this.ChiTietBanHang.ThanhTien = thanhtien - thanhtien * this.ChiTietBanHang.GiamGia / 100;            
         }
         public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
         {
@@ -103,7 +103,7 @@ namespace Data
         {
             get
             {
-                return this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                return this.MenuMon.TenDai + " (" + this.MenuKichThuocMon.TenLoaiBan + ")";
                 //return this.MENUMON==null?"Mon": this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
             }
         }
@@ -112,14 +112,14 @@ namespace Data
 
             get
             {
-                return Utilities.MoneyFormat.ConvertToString(CHITIETBANHANG.ThanhTien);
+                return Utilities.MoneyFormat.ConvertToString(ChiTietBanHang.ThanhTien);
             }
         }
         public string SoLuongBan
         {
             get
             {
-                return CHITIETBANHANG.SoLuongBan.ToString();
+                return ChiTietBanHang.SoLuongBan.ToString();
             }
         }
 
@@ -127,9 +127,9 @@ namespace Data
         {
             get
             {
-                if (this.CHITIETBANHANG.GiamGia>0)
+                if (this.ChiTietBanHang.GiamGia>0)
                 {
-                    return String.Format("Giảm giá {0}%", this.CHITIETBANHANG.GiamGia);
+                    return String.Format("Giảm giá {0}%", this.ChiTietBanHang.GiamGia);
                 }
                 return "";
                 //return "Giảm giá 5%, Tặng món A, khuyến mãi B, giá của khu A, phòng VIP";
