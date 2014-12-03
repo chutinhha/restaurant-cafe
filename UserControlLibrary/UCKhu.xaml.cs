@@ -43,6 +43,7 @@ namespace UserControlLibrary
         List<Data.BOKhu> lsArray = null;
         private void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             lsArray = mBOKhu.GetAll(mTransit).ToList();
             lvData.Items.Clear();
             foreach (var item in lsArray)
@@ -179,7 +180,6 @@ namespace UserControlLibrary
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
             mItem = null;
-            lsArrayDeleted = null;
             LoadDanhSach();
         }
 

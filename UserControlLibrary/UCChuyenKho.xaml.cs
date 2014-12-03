@@ -34,6 +34,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             lvData.ItemsSource = BOChuyenKho.GetAll(mTransit, (DateTime)dtpThoiGian.SelectedDate);
         }
 
@@ -144,8 +145,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;
-            lsArrayDeleted = null;
+            mItem = null;            
             LoadDanhSach();
         }
 

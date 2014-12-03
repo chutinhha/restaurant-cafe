@@ -49,6 +49,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             IQueryable<Data.THE> lsArray = BOThe.GetAll(mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
@@ -171,8 +172,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;
-            lsArrayDeleted = null;
+            mItem = null;            
             LoadDanhSach();
         }
 

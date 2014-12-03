@@ -84,11 +84,11 @@ namespace Data
             this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Edit, obj));
         }
         public void DeleteObject(TEntityObject obj)
-        {            
+        {
             this.AddMyEntityObject(new MyEntityObject(MyEntityObjectType.Delete, obj));
         }
         private void AddMyEntityObject(MyEntityObject obj)
-        {            
+        {
             if (!mListEntityObject.Contains(obj))
             {
                 mListEntityObject.Add(obj);

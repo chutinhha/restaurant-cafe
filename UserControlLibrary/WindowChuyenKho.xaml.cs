@@ -40,6 +40,7 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             if (_Item != null)
             {
                 lvData.ItemsSource = lsArray = BOChiTietNhapKho.GetAll((int)_Item.ChuyenKho.ChuyenKhoID, mTransit).ToList();

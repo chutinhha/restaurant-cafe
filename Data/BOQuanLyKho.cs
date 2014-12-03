@@ -83,7 +83,7 @@ namespace Data
         /// <param name="DonViID"></param>
         /// <param name="mTransit"></param>
         /// <returns></returns>
-        private bool ThemTruTonKho(List<TONKHO> lsTonKho, List<TONKHOTONG> lsTonKhoTong, FrameworkRepository<TONKHO> frmTK, FrameworkRepository<TONKHOCHITIETBANHANG> frmTKCT, FrameworkRepository<TONKHOTONG> frmTKT, int ChiTietBanHangID, int SL, int KhoID, int MonID, int DonViID, Transit mTransit)
+        private bool ThemTruTonKho(List<TONKHO> lsTonKho, List<TONKHOTONG> lsTonKhoTong, FrameworkRepository<TONKHO> frmTK, FrameworkRepository<TONKHOCHITIETBANHANG> frmTKCT, FrameworkRepository<TONKHOTONG> frmTKT, int BanHangID, int ChiTietBanHangID, int SL, int KhoID, int MonID, int DonViID, Transit mTransit)
         {
             IQueryable<Data.TONKHO> lsArray = frmTK.Query().Where(s => s.DonViID == DonViID && s.MonID == MonID && s.KhoID == KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
             if (lsArray.Count() > 0 && SL < lsArray.Sum(s => s.SoLuongTon))
@@ -100,7 +100,8 @@ namespace Data
                     }
                     else
                     {
-                        lsTonKhoTong.Add(KiemTraTonKhoTong(frmTKT, KhoID, MonID, DonViID));
+                        tonkhotong = KiemTraTonKhoTong(frmTKT, KhoID, MonID, DonViID);
+                        lsTonKhoTong.Add(tonkhotong);
                     }
                     tonkhotong.SoLuongTon -= SL;
                     tonkhotong.SoLuongBan += SL;
@@ -129,7 +130,8 @@ namespace Data
                                     TonKhoID = l.TonKhoID,
                                     MonID = MonID,
                                     DonViID = DonViID,
-                                    SoLuong = l.SoLuongTon
+                                    SoLuong = l.SoLuongTon,
+                                    BanHangID = BanHangID
                                 });
                             l.SoLuongTon = 0;
                         }
@@ -143,7 +145,8 @@ namespace Data
                                 TonKhoID = l.TonKhoID,
                                 MonID = MonID,
                                 DonViID = DonViID,
-                                SoLuong = SL
+                                SoLuong = SL,
+                                BanHangID = BanHangID
                             });
                             SL = 0;
                         }
@@ -220,23 +223,24 @@ namespace Data
             List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
             //Duyệt toàn bộ danh sách
             List<int> ListChiTietBanHangIDs = new List<int>();
+            int BanHangID = 0;
             foreach (BOChiTietBanHang item in lsArray)
             {
-                ListChiTietBanHangIDs.Add(item.ChiTietBanHang.ChiTietBanHangID);
+                BanHangID = (int)item.ChiTietBanHang.BanHangID;
                 //Kiểm tra món đó có trong tồn kho hay không, nếu tồn kho thì bắt đầu trừ, còn lại nếu là định lượng phải lấy danh sách món định lượng rồi mới trừ
                 if (item.MenuKichThuocMon.ChoPhepTonKho == true)
                 {
                     IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID);
                     if (lsTonKhoChiTietBanHang.Count() == 0)
                     {
-                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
+                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                     }
                     else
                     {
                         if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                         {
                             XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                         }
                     }
                 }
@@ -248,21 +252,21 @@ namespace Data
                         IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID && s.MonID == line.MenuMon.MonID);
                         if (lsTonKhoChiTietBanHang.Count() == 0)
                         {
-                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * line.DinhLuong.KichThuocBan * line.DinhLuong.SoLuong, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
                         }
                         else
                         {
                             if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                             {
                                 XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
+                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * line.DinhLuong.KichThuocBan * line.DinhLuong.SoLuong, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
                             }
                         }
                     }
                 }
             }
             ///Xóa những món không có trong ChiTietBanHangID
-            IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHangDelete = frmTonKhoChiTietBanHang.Query().Where(s => !ListChiTietBanHangIDs.Contains((int)s.ChiTietBanHangID));
+            IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHangDelete = frmTonKhoChiTietBanHang.Query().Where(s => !ListChiTietBanHangIDs.Contains((int)s.ChiTietBanHangID) && s.BanHangID == BanHangID);
             XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHangDelete);
             foreach (TONKHO item in lsTonKho)
             {
@@ -280,7 +284,24 @@ namespace Data
 
         public int KiemTraTonKhoTong(Data.Transit mTransit, BOChiTietBanHang item)
         {
-            return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MENUMON.MonID, (int)item.MENUMON.DonViID).SoLuongTon;
+            if (item.MenuKichThuocMon.ChoPhepTonKho == true)
+                return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MenuMon.MonID, (int)item.MenuMon.DonViID).SoLuongTon;
+            else
+            {
+                int result = -1;
+                IQueryable<BODinhLuong> lsDinhLuong = BODinhLuong.GetAll(item.MenuKichThuocMon.KichThuocMonID, mTransit);
+                foreach (var line in lsDinhLuong)
+                {
+                    int SL = KiemTraTonKhoTong((int)mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID).SoLuongTon;
+                    if (SL == 0)
+                        return SL;
+                    if (result == -1 || SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan < result)
+                    {
+                        result = SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan;
+                    }
+                }
+                return result;
+            }
         }
 
         public int ChuyenKho(BOChuyenKho item, List<BOChiTietChuyenKho> lsArray, Transit mTransit)

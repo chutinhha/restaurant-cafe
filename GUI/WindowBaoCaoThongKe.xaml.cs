@@ -47,7 +47,7 @@ namespace GUI
         {
             //UserControlLibrary.WindowBaoCaoLichSuBanHang win = new UserControlLibrary.WindowBaoCaoLichSuBanHang(mTransit);
             //win.ShowDialog();
-            BaoCao.LichSuBanHang.WindowLichSuBanHang win = new BaoCao.LichSuBanHang.WindowLichSuBanHang(mTransit);
+            Report.BaoCaoNgay.WindowBaoCaoNgay win = new Report.BaoCaoNgay.WindowBaoCaoNgay(mTransit);
             win.ShowDialog();
         }
     }

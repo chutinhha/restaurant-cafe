@@ -18,10 +18,11 @@
             <Grid Grid.Row="1" Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="600*"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
                 <my:UCMenu HorizontalAlignment="Stretch"  x:Name="uCMenu" VerticalAlignment="Stretch" />
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
@@ -33,12 +34,22 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>                    
                     <TextBlock Grid.Row="0" Text="Tên đơn vị" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                     <TextBox Grid.Row="1" x:Name="txtTenLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                     <my1:POSButtonFuntion Name="btnChonMon" Grid.Row="2" Content="Chọn Món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnChonMon_Click" />
                     <my1:POSButtonFuntion Name="btnDong" Content="Đóng" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnDong_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                 </Grid>
+                <Rectangle Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="1" Margin="2">
+                    <Rectangle.Stroke>
+                        <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="Blue" Offset="0.3" />
+                            <GradientStop Color="Red" Offset="0.7" />
+                            <GradientStop Color="White" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Stroke>
+                </Rectangle>
             </Grid>
         </Grid>
     </Border>

@@ -64,6 +64,7 @@ namespace UserControlLibrary
 
         public void LoadDanhSach()
         {
+            lsArrayDeleted = null;
             IQueryable<Data.BOMenuKichThuocMon> lsArray = BOMenuKichThuocMon.GetAll(mMon.MenuMon.MonID, true, true, mTransit);
             lvData.Items.Clear();
             foreach (var item in lsArray)
@@ -197,7 +198,6 @@ namespace UserControlLibrary
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
             mItem = null;
-            lsArrayDeleted = null;
             LoadDanhSach();
         }
 
