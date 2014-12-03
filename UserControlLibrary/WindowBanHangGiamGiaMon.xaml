@@ -18,7 +18,7 @@
             <Grid Grid.Row="1" Background="White">
                 <my:POSButtonIcon Content="Đồng ý" Height="70" HorizontalAlignment="Left" Margin="44,202,0,0" Name="btnDongY" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/Accep.png" Click="btnDongY_Click" />
                 <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="159,202,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Click="btnDong_Click" />
-                <my:POSTextBox Height="34" HorizontalAlignment="Left" Margin="6,74,0,0" Name="txtGia" VerticalAlignment="Top" Width="272" HorizontalContentAlignment="Center" FontSize="20" VerticalContentAlignment="Center" />
+                <my:POSTextBox Height="34" HorizontalAlignment="Left" Margin="6,74,0,0" Name="txtGia" VerticalAlignment="Top" Width="272" HorizontalContentAlignment="Center" FontSize="20" VerticalContentAlignment="Center" _TypeTextBox="Number" />
                 <my:POSLabel Content="Giảm giá %" Height="39" HorizontalAlignment="Left" Margin="6,29,0,0" Name="pOSLabel1" VerticalAlignment="Top" Width="272" HorizontalContentAlignment="Center" FontSize="20" Padding="0" VerticalContentAlignment="Center" />
                 <my:UCKeyPad HorizontalAlignment="Right" Margin="274,0,0,0" Name="uCKeyPad1" VerticalAlignment="Top" Width="249" Height="272" />
             </Grid>
