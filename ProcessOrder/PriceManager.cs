@@ -22,7 +22,7 @@ namespace ProcessOrder
         }
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
         {
-            var list = Data.BOMenuGia.GetAllByKichThuocMonVaLoaiGia(mTransit, chitiet.MENUKICHTHUOCMON, mQueryMenuLoaiGia);
+            var list = Data.BOMenuGia.GetAllByKichThuocMonVaLoaiGia(mTransit, chitiet.MenuKichThuocMon, mQueryMenuLoaiGia);
             mListMenuGia.Clear();
             foreach (var item in list)
             {

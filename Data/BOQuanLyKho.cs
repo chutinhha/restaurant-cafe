@@ -11,11 +11,12 @@ namespace Data
         FrameworkRepository<TONKHO> frmTonKho = null;
         FrameworkRepository<TONKHOTONGLOG> frmTonKhoTongLog = null;
         FrameworkRepository<TONKHOCHITIETBANHANG> frmTonKhoChiTietBanHang = null;
-
+        private Transit mTransit;
         BODinhLuong BODinhLuong = null;
 
         public BOQuanLyKho(Data.Transit transit)
         {
+            mTransit = transit;
             frmTonKhoTong = new FrameworkRepository<TONKHOTONG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGs);
             frmTonKho = new FrameworkRepository<TONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOes);
             frmTonKhoTongLog = new FrameworkRepository<TONKHOTONGLOG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGLOGs);
@@ -213,7 +214,7 @@ namespace Data
         /// </summary>
         /// <param name="lsArray">Truyền toàn bộ BOChiTietBanHang xuống</param>
         /// <param name="transit">Biến trung chuyển</param>
-        public void LuuTonKho(List<BOChiTietBanHang> lsArray, Data.Transit transit)
+        public void LuuTonKho(List<BOChiTietBanHang> lsArray)
         {
             List<TONKHO> lsTonKho = new List<TONKHO>();
             List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
@@ -221,40 +222,40 @@ namespace Data
             List<int> ListChiTietBanHangIDs = new List<int>();
             foreach (BOChiTietBanHang item in lsArray)
             {
-                ListChiTietBanHangIDs.Add(item.CHITIETBANHANG.ChiTietBanHangID);
+                ListChiTietBanHangIDs.Add(item.ChiTietBanHang.ChiTietBanHangID);
                 //Kiểm tra món đó có trong tồn kho hay không, nếu tồn kho thì bắt đầu trừ, còn lại nếu là định lượng phải lấy danh sách món định lượng rồi mới trừ
-                if (item.MENUKICHTHUOCMON.ChoPhepTonKho == true)
+                if (item.MenuKichThuocMon.ChoPhepTonKho == true)
                 {
-                    IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.CHITIETBANHANG.ChiTietBanHangID);
+                    IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID);
                     if (lsTonKhoChiTietBanHang.Count() == 0)
                     {
-                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID, transit);
+                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                     }
                     else
                     {
-                        if (item.CHITIETBANHANG.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
+                        if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                         {
                             XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)item.MENUKICHTHUOCMON.MonID, (int)item.MENUKICHTHUOCMON.DonViID, transit);
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                         }
                     }
                 }
                 else
                 {
-                    IQueryable<BODinhLuong> lsDinhLuong = BODinhLuong.GetAll(item.MENUKICHTHUOCMON.KichThuocMonID, transit);
+                    IQueryable<BODinhLuong> lsDinhLuong = BODinhLuong.GetAll(item.MenuKichThuocMon.KichThuocMonID, mTransit);
                     foreach (BODinhLuong line in lsDinhLuong)
                     {
-                        IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.CHITIETBANHANG.ChiTietBanHangID && s.MonID == line.MenuMon.MonID);
+                        IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID && s.MonID == line.MenuMon.MonID);
                         if (lsTonKhoChiTietBanHang.Count() == 0)
                         {
-                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, transit);
+                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
                         }
                         else
                         {
-                            if (item.CHITIETBANHANG.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
+                            if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                             {
                                 XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.CHITIETBANHANG.ChiTietBanHangID, item.CHITIETBANHANG.SoLuongBan, transit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, transit);
+                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
                             }
                         }
                     }
@@ -277,8 +278,8 @@ namespace Data
 
         }
 
-        public int KiemTraTonKhoTong(Data.Transit mTransit, BOChiTietChuyenKho item)
-        {
+        public int KiemTraTonKhoTong(BOChiTietBanHang item)
+        {            
             return KiemTraTonKhoTong((int)mTransit.KhoID, (int)item.MenuMon.MonID, (int)item.MenuMon.DonViID).SoLuongTon;
         }
 
