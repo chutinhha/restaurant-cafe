@@ -35,7 +35,9 @@ namespace ControlLibrary
     /// </summary>
     public class POSTextBox : TextBox
     {
+        private bool mIsLockText;
         private TypeKeyPad typeTextBox = TypeKeyPad.None;
+        public int _MaxValue { get; set; }
         private WindowKeyPad _WindowKeyPad { get; set; }
         private WindowKeyboard _WindowKeyboard { get; set; }
         static POSTextBox()
@@ -84,6 +86,25 @@ namespace ControlLibrary
                     break;
             }
         }
+        protected override void OnPreviewMouseUp(System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.SelectAll();
+            this.Focus();
+            base.OnPreviewMouseUp(e);
+        }
+        protected override void OnTextChanged(TextChangedEventArgs e)
+        {
+            if (!mIsLockText)
+            {
+                if (typeTextBox==TypeKeyPad.Decimal)
+                {
+                    mIsLockText = true;
+                    this.Text = Utilities.MoneyFormat.ConvertToString(this.Text);
+                    mIsLockText = false;
+                }
+                base.OnTextChanged(e);
+            }
+        }
 
         protected override void OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -103,6 +124,11 @@ namespace ControlLibrary
                         e.Handled = false;
                     else
                         e.Handled = true;
+                    int data = Utilities.MoneyFormat.ConvertToInt(this.Text + e.Text);
+                    if ((data < 0 || data > _MaxValue)&&_MaxValue>0)
+                    {
+                        e.Handled = true;
+                    }
                     break;
                 case TypeKeyPad.Decimal:
                     if (Char.IsDigit(e.Text, e.Text.Length - 1))

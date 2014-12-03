@@ -26,7 +26,7 @@ namespace PrinterServer
             thread.Start();
         }
         private void InBillThread(bool tamtinh,int banHangID)
-        {
+        {            
             var list = mXuliMayIn.AllPrintingBill().ToList();
             foreach (var item in list)
             {
