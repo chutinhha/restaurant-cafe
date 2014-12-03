@@ -74,11 +74,15 @@ namespace Utilities
             return null;
         }
         public static System.Drawing.Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
-        {            
+        {
+            if (bitmapImage==null)
+            {
+                return null;
+            }
             using (MemoryStream outStream = new MemoryStream())
             {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
+                BitmapEncoder enc = new BmpBitmapEncoder();                
+                enc.Frames.Add(BitmapFrame.Create(bitmapImage));                
                 enc.Save(outStream);
                 System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(outStream);
 
