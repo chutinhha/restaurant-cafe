@@ -218,8 +218,10 @@ namespace Data
             List<TONKHO> lsTonKho = new List<TONKHO>();
             List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
             //Duyệt toàn bộ danh sách
+            List<int> ListChiTietBanHangIDs = new List<int>();
             foreach (BOChiTietBanHang item in lsArray)
             {
+                ListChiTietBanHangIDs.Add(item.CHITIETBANHANG.ChiTietBanHangID);
                 //Kiểm tra món đó có trong tồn kho hay không, nếu tồn kho thì bắt đầu trừ, còn lại nếu là định lượng phải lấy danh sách món định lượng rồi mới trừ
                 if (item.MENUKICHTHUOCMON.ChoPhepTonKho == true)
                 {
@@ -258,6 +260,9 @@ namespace Data
                     }
                 }
             }
+            ///Xóa những món không có trong ChiTietBanHangID
+            IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHangDelete = frmTonKhoChiTietBanHang.Query().Where(s => !ListChiTietBanHangIDs.Contains((int)s.ChiTietBanHangID));
+            XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHangDelete);
             foreach (TONKHO item in lsTonKho)
             {
                 frmTonKho.Update(item);
