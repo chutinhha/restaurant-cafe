@@ -18,16 +18,23 @@ namespace GUI
     /// </summary>
     public partial class WindowThongTinPhanMem : Window
     {
-        private Data.Transit mTransit = null;
         public WindowThongTinPhanMem(Data.Transit transit)
         {
             InitializeComponent();
-            mTransit = transit;
         }
 
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnOK_Click(null, null);
+                return;
+            }
+        }
 
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

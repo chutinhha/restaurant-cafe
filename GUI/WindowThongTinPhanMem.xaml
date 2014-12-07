@@ -2,28 +2,67 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"
-        Title="WindowThongTinPhanMem" Height="600" Width="500" Loaded="Window_Loaded" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        Title="WindowThongTinPhanMem" Height="500" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" Loaded="Window_Loaded">
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5">
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF457ECE" Offset="0" />
-                <GradientStop Color="#FF69A7EC" Offset="1" />
+                <GradientStop Color="#FF5CB53B" Offset="0" />
+                <GradientStop Color="#FF8ECC78" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Grid>
+        <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="60*" />
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Cài đặt chức năng hiển thị" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
-            <Grid Name="gridContent" Grid.Row="1" Background="White">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40*" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <my:POSButtonFuntion Content="OK" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  HorizontalAlignment="Center" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
+                <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Tên phần mềm:"/>
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Bản quyền: "/>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+
+                <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Phần mềm tính tiền Karaoke"/>
+                <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="© Copyright 2014"/>
+                <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
             </Grid>
+
+            <Button Grid.Row="1" Name="btnOK" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="10,5,10,25" Content="OK" Padding="40,0,40,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200"  FontSize="16" BorderThickness="1" Foreground="White" Click="btnOK_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5CB53B" Offset="0" />
+                        <GradientStop Color="#FF23932F" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </Grid>
     </Border>
 </Window>

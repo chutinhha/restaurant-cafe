@@ -66,7 +66,8 @@ namespace GUI
 
         private void btnTonKho_Click(object sender, RoutedEventArgs e)
         {
-
+            Report.BaoCaoTonKho.WindowBaoCaoTonKho win = new Report.BaoCaoTonKho.WindowBaoCaoTonKho(mTransit);
+            win.ShowDialog();
         }
 
         private void btnXuLyKho_Click(object sender, RoutedEventArgs e)

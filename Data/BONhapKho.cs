@@ -68,7 +68,7 @@ namespace Data
                 {
                     Xoa(item, mTransit);
                 }
-            mTransit.KaraokeEntities.SaveChanges();
+            frmNhapKho.Commit();
         }
 
         public int Them(BONhapKho item, List<BOChiTietNhapKho> lsArray, Transit mTransit)
