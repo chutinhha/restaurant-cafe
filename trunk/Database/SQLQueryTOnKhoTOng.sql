@@ -1,4 +1,9 @@
-﻿SELECT  
+﻿DROP VIEW BAOCAOTONKHO
+GO
+CREATE VIEW BAOCAOTONKHO
+AS
+SELECT  
+	
 	CASE
 		WHEN T.DonViID = 1 THEN  M.TenDai + ' (Cái, Lon, ...)' 
 		WHEN T.DonViID = 2 THEN  M.TenDai + ' (Kg)' 
@@ -62,8 +67,11 @@
 		WHEN T.DonViID = 4 THEN CAST(ISNULL(T.SoLuongMat, 0) / 3600.000 AS DECIMAL(10,3)) 					
 		ELSE CAST(ISNULL(T.SoLuongMat, 0) AS DECIMAL(10,0)) 
 	END
-	AS SoLuongMat
+	AS SoLuongMat,
+	M.MonID
 	FROM	dbo.MENUMON AS M LEFT OUTER JOIN
 			dbo.TONKHOTONG AS T ON M.MonID = T.MonID
-	Order By SoLuongTon
+	Where SLMonChoPhepTonKho > 0
+GO
+Select  * from BAOCAOTONKHO Order by SoLuongTon
 
