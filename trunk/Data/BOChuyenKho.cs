@@ -96,7 +96,7 @@ namespace Data
                 {
                     Xoa(item, mTransit);
                 }
-            mTransit.KaraokeEntities.SaveChanges();
+            frmChuyenKho.Commit();            
         }
     }
 }

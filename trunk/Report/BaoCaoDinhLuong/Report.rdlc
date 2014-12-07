@@ -82,16 +82,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.65365in</Width>
+              <Width>0.6224in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5in</Width>
+              <Width>2.46875in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5in</Width>
+              <Width>2.46875in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.54917in</Width>
+              <Width>1.41376in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -164,7 +164,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>STT</Value>
+                              <Value>Tên món chính</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -221,7 +221,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>STT</Value>
+                              <Value>Tên món phụ</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -278,7 +278,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>STT</Value>
+                              <Value>Đinh lượng</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -479,8 +479,9 @@
         </TablixRowHierarchy>
         <DataSetName>BAOCAODINHLUONG</DataSetName>
         <Top>0.75709in</Top>
+        <Left>0.125in</Left>
         <Height>0.5in</Height>
-        <Width>7.20282in</Width>
+        <Width>6.97366in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -557,7 +558,7 @@
           <Top>0.12604in</Top>
           <Left>5.0674in</Left>
           <Height>0.3in</Height>
-          <Width>2.13542in</Width>
+          <Width>2.03125in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
