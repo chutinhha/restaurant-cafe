@@ -1,34 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-namespace Report.BaoCaoNgay
+namespace Report.BaoCaoDinhLuong
 {
     /// <summary>
-    /// Interaction logic for WindowBaoCaoNgay.xaml
+    /// Interaction logic for WindowBaoCaoDinhLuong.xaml
     /// </summary>
-    public partial class WindowBaoCaoNgay : Window
+    public partial class WindowBaoCaoDinhLuong : Window
     {
         private bool _isReportViewerLoaded;
         private Data.Transit mTransit = null;
 
-        public WindowBaoCaoNgay(Data.Transit transit)
+        public WindowBaoCaoDinhLuong(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
             uCTileReport.Landscape = true;
-            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true);
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoDinhLuong", false);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
-            uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);            
+            uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
             _reportViewer.Load += ReportViewer_Load;
         }
 
         private void Reload()
         {
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            reportDataSource1.Name = "BAOCAOLICHSUBANHANG";
-            reportDataSource1.Value = Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit, uCTileReport.GetDate);
+            reportDataSource1.Name = "BAOCAODINHLUONG";
+            reportDataSource1.Value = Data.BOBaoCaoDinhLuong.GetQueryNoTracking(mTransit);
             this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoNgay.Report.rdlc";
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoDinhLuong.Report.rdlc";
             _reportViewer.RefreshReport();
         }
 

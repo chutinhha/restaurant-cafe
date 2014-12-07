@@ -37,7 +37,7 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lbData.ItemsSource = Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit);
+            //lbData.ItemsSource = Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit);
         }
     }
 }

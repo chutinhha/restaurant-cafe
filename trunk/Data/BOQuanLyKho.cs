@@ -295,10 +295,11 @@ namespace Data
                     int SL = KiemTraTonKhoTong((int)mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID).SoLuongTon;
                     if (SL == 0)
                         return SL;
-                    if (result == -1 || SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan < result)
-                    {
-                        result = SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan;
-                    }
+                    if (line.DinhLuong.SoLuong != 0)
+                        if (result == -1 || SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan < result)
+                        {
+                            result = SL / line.DinhLuong.SoLuong * line.DinhLuong.KichThuocBan;
+                        }
                 }
                 return result;
             }
