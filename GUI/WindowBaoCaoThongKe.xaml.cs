@@ -39,15 +39,25 @@ namespace GUI
 
         private void btnLichSuDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
-            win.ShowDialog();
+            //BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
+            //win.ShowDialog();
         }
 
         private void btnBaoCaoLichSuBanHang_Click(object sender, RoutedEventArgs e)
         {
-            //UserControlLibrary.WindowBaoCaoLichSuBanHang win = new UserControlLibrary.WindowBaoCaoLichSuBanHang(mTransit);
-            //win.ShowDialog();
             Report.BaoCaoNgay.WindowBaoCaoNgay win = new Report.BaoCaoNgay.WindowBaoCaoNgay(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoTonKho_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoTonKho.WindowBaoCaoTonKho win = new Report.BaoCaoTonKho.WindowBaoCaoTonKho(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoDinhLuong_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoDinhLuong.WindowBaoCaoDinhLuong win = new Report.BaoCaoDinhLuong.WindowBaoCaoDinhLuong(mTransit);
             win.ShowDialog();
         }
     }
