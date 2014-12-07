@@ -87,7 +87,9 @@ namespace Data
             SoDoBan.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.SoDoBan.Ban, TenChucNang = "Quản lý bàn", NhomChucNangID = SoDoBan.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });
 
             BaoCao = new NHOMCHUCNANG() { NhomChucNangID = (int)TypeChucNang.ChucNangChinh.BaoCao, TenNhomChucNang = "Báo cáo", Deleted = false, Visual = true, Edit = false };
-
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.Baocao.BaoCaoNgay, TenChucNang = "Báo cáo ngày", NhomChucNangID = BaoCao.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.Baocao.BaoCaoTonKho, TenChucNang = "Báo cáo tồn kho", NhomChucNangID = BaoCao.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
+            BanHang.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.Baocao.BaoCaoDinhLuong, TenChucNang = "Báo cáo định lượng", NhomChucNangID = BaoCao.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = false, Xoa = false, Sua = false, Visual = true, Deleted = false, Edit = false });
 
             The = new NHOMCHUCNANG() { NhomChucNangID = (int)TypeChucNang.ChucNangChinh.The, TenNhomChucNang = "Quản lý thẻ", Deleted = false, Visual = true, Edit = false };
             The.CHUCNANGs.Add(new CHUCNANG() { ChucNangID = (int)TypeChucNang.The.The, TenChucNang = "Quản lý thẻ", NhomChucNangID = The.NhomChucNangID, ChoPhep = true, DangNhap = true, Them = true, Xoa = true, Sua = true, Visual = true, Deleted = false, Edit = false });

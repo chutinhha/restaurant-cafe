@@ -70,7 +70,7 @@ namespace Data
             ThayDoiSoLuong = 110,
             ChonGia = 111,
             GopBan = 112,
-            GiamGiaMon=113
+            GiamGiaMon = 113
         }
 
         public enum NhanVien
@@ -140,7 +140,10 @@ namespace Data
 
         public enum Baocao
         {
-
+            None,
+            BaoCaoNgay = 1201,
+            BaoCaoTonKho = 1202,
+            BaoCaoDinhLuong = 1203
         }
 
         public enum The
