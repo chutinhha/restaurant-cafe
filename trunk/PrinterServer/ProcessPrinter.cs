@@ -26,21 +26,27 @@ namespace PrinterServer
             thread.Start();
         }
         private void InBillThread(bool tamtinh,int banHangID)
-        {            
-            var list = mXuliMayIn.AllPrintingBill().ToList();
-            foreach (var item in list)
+        {
+            lock (mXuliMayIn)
             {
-                PrinterBillOrder mayInHoaDon = new PrinterBillOrder(tamtinh,banHangID, item, mXuliMayIn);
-                mayInHoaDon.Print();
+                var list = mXuliMayIn.AllPrintingBill().ToList();
+                foreach (var item in list)
+                {
+                    PrinterBillOrder mayInHoaDon = new PrinterBillOrder(tamtinh,banHangID, item, mXuliMayIn);
+                    mayInHoaDon.Print();
+                }
             }
         }
         private void InHoaDonThread(int lichSuBanHang)
         {
-            var list = mXuliMayIn.AllPrinting(lichSuBanHang).ToList();
-            foreach (var item in list)
+            lock (mXuliMayIn)
             {
-                PrinterSendOrder mayInHoaDon = new PrinterSendOrder(lichSuBanHang, item, mXuliMayIn);
-                mayInHoaDon.Print();
+                var list = mXuliMayIn.AllPrinting(lichSuBanHang).ToList();
+                foreach (var item in list)
+                {
+                    PrinterSendOrder mayInHoaDon = new PrinterSendOrder(lichSuBanHang, item, mXuliMayIn);
+                    mayInHoaDon.Print();
+                }
             }
         }
 

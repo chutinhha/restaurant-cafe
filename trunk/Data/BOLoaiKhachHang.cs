@@ -13,7 +13,10 @@ namespace Data
         {            
             frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIKHACHHANGs);
         }
-
+        public static IQueryable<LOAIKHACHHANG> GetAll(KaraokeEntities kara)
+        {
+            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(kara.LOAIKHACHHANGs);
+        }
         public IQueryable<LOAIKHACHHANG> GetAll(Transit mTransit)
         {
             return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);

@@ -7,6 +7,5 @@ namespace Data
 {
     public class BOThongTin
     {
-
     }
 }

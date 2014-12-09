@@ -30,7 +30,10 @@ namespace Data
             frmMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
         }
-
+        public static IQueryable<MENUMON> GetAll(Transit tran)
+        {
+            return FrameworkRepository<MENUMON>.QueryNoTracking(tran.KaraokeEntities.MENUMONs);
+        }
         public IQueryable<BOMenuMon> GetAll(int GroupID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
             return GetAll(GroupID, IsBanHang, IsSoLuongChoPhepTonKho, IsSoLuongKhongChoPhepTonKho, false, mTransit);

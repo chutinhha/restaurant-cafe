@@ -37,7 +37,7 @@ namespace Utilities
             img.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
             img.StreamSource.Read(imageData, 0, imageData.Length);
             return imageData;
-        }
+        }     
         public static byte[] ImageToByte(BitmapFrame bfResize)
         {
             using (MemoryStream msStream = new MemoryStream())
@@ -111,6 +111,21 @@ namespace Utilities
             }
             return imgNew;
         }
-
+        public static byte[] GetByteFromUrl(string url)
+        {            
+            System.IO.FileStream fs = new System.IO.FileStream(url, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            byte[] buff = new byte[fs.Length];
+            fs.Read(buff, 0, buff.Length);
+            return buff;
+        }
+        public static System.Drawing.Icon GetIcon(string url)
+        {
+            Stream iconStream = Application.GetResourceStream(new Uri(url,UriKind.Relative)).Stream;
+            if (iconStream!=null)
+            {
+                return new System.Drawing.Icon(iconStream);
+            }
+            return null;
+        }
     }
 }

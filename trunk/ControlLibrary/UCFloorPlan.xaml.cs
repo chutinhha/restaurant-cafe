@@ -209,9 +209,11 @@ namespace ControlLibrary
         }
         void tbl_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("OK0");
             POSButtonTable tbl = (POSButtonTable)sender;
             if (_OnEventFloorPlan != null)
             {
+                MessageBox.Show("OK3");
                 _OnEventFloorPlan(tbl);
             }
         }        
