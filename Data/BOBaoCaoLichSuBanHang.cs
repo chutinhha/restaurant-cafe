@@ -12,6 +12,6 @@ namespace Data
             return from x in FrameworkRepository<BAOCAOLICHSUBANHANG>.QueryNoTracking(transit.KaraokeEntities.BAOCAOLICHSUBANHANGs)
                    where x.NgayBan.Value.Year == dt.Year && x.NgayBan.Value.Month == dt.Month && x.NgayBan.Value.Day == dt.Day
                    select x;
-        }
+        }        
     }
 }

@@ -1,0 +1,26 @@
+﻿<Window x:Class="WebServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Web server" Height="276" Width="440" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+    <Border BorderBrush="#FF3D87DE" BorderThickness="1" CornerRadius="5" Padding="5,0,5,20">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF457ECE" Offset="0" />
+                <GradientStop Color="#FF69A7EC" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60*" />
+            </Grid.RowDefinitions>
+            <TextBlock Name="lbTieuDe" Text="Web server" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <Grid Grid.Row="1" Background="White">
+                <my:POSButtonIcon Content="Start Server" Height="91" HorizontalAlignment="Left" Name="btnStart" VerticalAlignment="Top" Width="109" Image="/SystemImages;component/Images/Continue.png" FontSize="12" Foreground="#FF009F3B" FontStretch="Normal" FontWeight="Medium" Margin="82,42,0,0" Click="btnStart_Click" />
+                <my:POSButtonIcon Content="Stop Server" FontSize="12" FontStretch="Normal" FontWeight="Medium" Foreground="#FF009F3B" Height="91" HorizontalAlignment="Left" Image="/SystemImages;component/Images/Cancel.png" Name="btnStop" VerticalAlignment="Top" Width="109" Margin="212,42,0,0" Click="btnStop_Click" />
+                <Label Content="Label" Height="36" HorizontalAlignment="Left" Name="lblIp" VerticalAlignment="Top" Width="211" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                <my:POSTextBox Height="36" HorizontalAlignment="Left" Margin="212,0,0,0" Name="txtPort" VerticalAlignment="Top" Width="194" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="8080" _TypeTextBox="Number" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

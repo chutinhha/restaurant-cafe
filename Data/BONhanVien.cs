@@ -9,8 +9,7 @@ namespace Data
     {
         public FrameworkRepository<NHANVIEN> frmNhanVien = null;
         public FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = null;
-        FrameworkRepository<Data.LICHSUDANGNHAP> frmLichSuDangNhap = null;
-
+        FrameworkRepository<Data.LICHSUDANGNHAP> frmLichSuDangNhap = null;        
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
         public BONhanVien(Data.Transit transit)
@@ -24,8 +23,7 @@ namespace Data
         {
             NhanVien = new NHANVIEN();
             LoaiNhanVien = new LOAINHANVIEN();
-        }
-
+        }        
         public static IQueryable<NHANVIEN> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs).Where(s => s.Deleted == false);
