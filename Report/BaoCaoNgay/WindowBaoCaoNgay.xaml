@@ -5,11 +5,11 @@
         Title="WindowBaoCaoNgay" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" xmlns:my="clr-namespace:Report" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />            
+            <RowDefinition Height="60" />
             <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
         <WindowsFormsHost Grid.Row="1" Name="ReportData" DataContext="{Binding}">
-            <rv:ReportViewer x:Name="_reportViewer" ZoomMode="PageWidth" ShowContextMenu="False" ShowCredentialPrompts="False" ShowParameterPrompts="False" ShowProgress="False" ShowToolBar="False" ShowDocumentMapButton="False" ShowPromptAreaButton="False" />
+            <rv:ReportViewer x:Name="_reportViewer" ZoomMode="PageWidth" Margin="50,50,50,50" ShowContextMenu="False" ShowCredentialPrompts="False" ShowParameterPrompts="False" ShowProgress="False" ShowToolBar="False" ShowDocumentMapButton="False" ShowPromptAreaButton="False" />
         </WindowsFormsHost>
         <my:UCTileReport x:Name="uCTileReport"  />
     </Grid>

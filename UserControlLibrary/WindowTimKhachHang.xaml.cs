@@ -32,8 +32,8 @@ namespace UserControlLibrary
         {
             var list = mBOKhachHang.TimKhachHang(txtTenKhachHang.Text, txtSoDienThoai.Text).ToList();
             lvData.Items.Clear();
-            if (list.Count>0)
-            {                
+            if (list.Count > 0)
+            {
                 foreach (var item in list)
                 {
                     AddList(item);
@@ -53,13 +53,13 @@ namespace UserControlLibrary
         }
         private void ThemMoi()
         {
-            UserControlLibrary.WindowThemKhachHang win = new UserControlLibrary.WindowThemKhachHang(mTranSit);
+            UserControlLibrary.WindowThemKhachHang win = new UserControlLibrary.WindowThemKhachHang(mTranSit, null);
             win._TenKhachHang = txtTenKhachHang.Text;
             win._SoDienThoai = txtSoDienThoai.Text;
             if (win.ShowDialog() == true)
             {
                 //AddList(win._Item);
-                mBOKhachHang.Them(win._Item);
+                //mBOKhachHang.Them(win._Item);
                 mBOKhachHang.Commit();
                 _KhachHang = win._Item.KhachHang;
                 this.DialogResult = true;
@@ -72,7 +72,7 @@ namespace UserControlLibrary
 
         private void btnChon_Click(object sender, RoutedEventArgs e)
         {
-            if (lvData.SelectedItem!=null)
+            if (lvData.SelectedItem != null)
             {
                 ListViewItem lv = (ListViewItem)lvData.SelectedItem;
                 Data.BOKhachHang kh = (Data.BOKhachHang)lv.Tag;
