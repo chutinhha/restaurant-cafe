@@ -64,12 +64,9 @@ namespace Report
 
         private void btnPDF_Click(object sender, RoutedEventArgs e)
         {
-            mReportViewer.LocalReport.DisplayName = Title + " " + DateTime.Now.ToString("yyyy-MM-dd HHmmss");
-            System.Drawing.Printing.PageSettings pg = mReportViewer.GetPageSettings();
-            pg.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
-            pg.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
-            pg.Landscape = Landscape;            
+            mReportViewer.LocalReport.DisplayName = Title + " " + DateTime.Now.ToString("yyyy-MM-dd HHmmss");                        
             //0: EXCEL, 1:IMAGE, 2:PDF, 3: WORD
+            
             mReportViewer.ExportDialog(mReportViewer.LocalReport.ListRenderingExtensions()[2]);
 
         }

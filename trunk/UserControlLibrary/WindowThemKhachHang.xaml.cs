@@ -13,10 +13,12 @@ namespace UserControlLibrary
         public string _TenKhachHang { get; set; }
         public string _SoDienThoai { get; set; }
         public Data.BOKhachHang _Item { get; set; }
+        public Data.BOKhachHang BOKhachHang = null;
 
-        public WindowThemKhachHang(Data.Transit transit)
+        public WindowThemKhachHang(Data.Transit transit, Data.BOKhachHang bOKhachHang)
         {
             InitializeComponent();
+            BOKhachHang = bOKhachHang;
             mTransit = transit;
             _TenKhachHang = "";
             _SoDienThoai = "";
@@ -24,7 +26,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiKhachHang()
         {
-            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAllNoTracking(mTransit);
+            cbbLoaiKhachHang.ItemsSource = BOKhachHang.GetLoaiKhachHang();
             if (cbbLoaiKhachHang.Items.Count > 0)
                 cbbLoaiKhachHang.SelectedIndex = 0;
         }

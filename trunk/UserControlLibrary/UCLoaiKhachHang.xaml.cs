@@ -13,9 +13,8 @@ namespace UserControlLibrary
     public partial class UCLoaiKhachHang : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.LOAIKHACHHANG mItem = null;
-        private List<Data.LOAIKHACHHANG> lsArrayDeleted = null;
         private Data.BOLoaiKhachHang BOLoaiKhachHang = null;
+        private List<Data.LOAIKHACHHANG> lsArray = null;
 
         public UCLoaiKhachHang(Data.Transit transit)
         {
@@ -44,30 +43,8 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.LOAIKHACHHANG> lsArray = BOLoaiKhachHang.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.LOAIKHACHHANG item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.LOAIKHACHHANG)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOLoaiKhachHang.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -75,7 +52,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemLoaiKhachHang win = new UserControlLibrary.WindowThemLoaiKhachHang(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -83,16 +61,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.LOAIKHACHHANG)li.Tag;
-
                 UserControlLibrary.WindowThemLoaiKhachHang win = new UserControlLibrary.WindowThemLoaiKhachHang(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.LOAIKHACHHANG)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -102,35 +74,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.LOAIKHACHHANG)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.LOAIKHACHHANG>();
-                }
-                if (mItem.LoaiKhachHangID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.LOAIKHACHHANG item = (Data.LOAIKHACHHANG)lvData.SelectedItems[0];
+                    if (item.LoaiKhachHangID > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void Luu()
         {
-            List<Data.LOAIKHACHHANG> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.LOAIKHACHHANG)li.Tag;
-                if (mItem.LoaiKhachHangID == 0 || mItem.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.LOAIKHACHHANG>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOLoaiKhachHang.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOLoaiKhachHang.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -180,7 +139,6 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
             LoadDanhSach();
         }
 

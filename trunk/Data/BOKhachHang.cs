@@ -10,10 +10,12 @@ namespace Data
         private FrameworkRepository<KHACHHANG> frmKhachHang = null;
         private Transit mTransit;
         private FrameworkRepository<LOAIKHACHHANG> frmLoaiKhachHang = null;
+        KaraokeEntities mKaraokeEntities = null;
 
         public BOKhachHang(Data.Transit transit)
         {
             mTransit = transit;
+            mKaraokeEntities = new KaraokeEntities();
             frmKhachHang = new FrameworkRepository<KHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.KHACHHANGs);
             frmLoaiKhachHang = new FrameworkRepository<LOAIKHACHHANG>(transit.KaraokeEntities, transit.KaraokeEntities.LOAIKHACHHANGs);
         }
@@ -56,58 +58,45 @@ namespace Data
                         LoaiKhachHang = l
                     };
         }
+
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.KHACHHANGs);
+        }
+
         public IQueryable<BOKhachHang> GetAll()
         {
-            
-            return (from kh in frmKhachHang.Query()
-                    join lkh in frmLoaiKhachHang.Query() on kh.LoaiKhachHangID equals lkh.LoaiKhachHangID
-                    where kh.Deleted == false
-                    select new BOKhachHang
-                    {
-                        KhachHang = kh,
-                        LoaiKhachHang = lkh
-                    });
+            return from kh in mKaraokeEntities.KHACHHANGs
+                   join lkh in mKaraokeEntities.LOAIKHACHHANGs on kh.LoaiKhachHangID equals lkh.LoaiKhachHangID
+                   where kh.Deleted == false
+                   select new BOKhachHang
+                   {
+                       KhachHang = kh,
+                       LoaiKhachHang = lkh
+                   };
         }
 
-        public void Luu(List<BOKhachHang> lsArray, List<BOKhachHang> lsArrayDeleted)
+        public void Luu(List<BOKhachHang> lsArray)
         {
-            if (lsArray != null)
-                foreach (BOKhachHang item in lsArray)
+            foreach (BOKhachHang item in lsArray)
+            {
+                if (item.KhachHang.KhachHangID == 0)
                 {
-                    if (item.KhachHang.KhachHangID > 0)
-                        Sua(item);
-                    else
-                        Them(item);
+                    mKaraokeEntities.KHACHHANGs.AddObject(item.KhachHang);
                 }
-            if (lsArrayDeleted != null)
-                foreach (BOKhachHang item in lsArrayDeleted)
-                {
-                    Xoa(item);
-                }
-            frmKhachHang.Commit();
+
+            }
+            mKaraokeEntities.SaveChanges();
         }
 
-        public int Sua(BOKhachHang item)
-        {
-            item.KhachHang.Edit = false;
-            frmKhachHang.Update(item.KhachHang);
-            return item.KhachHang.KhachHangID;
-        }
-        public int Them(BOKhachHang item)
-        {
-            frmKhachHang.AddObject(item.KhachHang);
-            return item.KhachHang.KhachHangID;
-        }
-
-        public int Xoa(BOKhachHang item)
-        {
-            item.KhachHang.Deleted = true;
-            frmKhachHang.Update(item.KhachHang);
-            return item.KhachHang.KhachHangID;
-        }
         public void Commit()
         {
             frmKhachHang.Commit();
+        }
+
+        public IQueryable<LOAIKHACHHANG> GetLoaiKhachHang()
+        {
+            return BOLoaiKhachHang.GetQueryNoTracking(mKaraokeEntities);
         }
     }
 }
