@@ -13,8 +13,7 @@ namespace UserControlLibrary
     public partial class UCKho : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.KHO mItem = null;
-        private List<Data.KHO> lsArrayDeleted = null;
+        private List<Data.KHO> lsArray = null;
         private Data.BOKho BOKho = null;
 
         public UCKho(Data.Transit transit)
@@ -44,30 +43,8 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.KHO> lsArray = BOKho.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.KHO item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.KHO)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOKho.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -75,7 +52,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemKho win = new UserControlLibrary.WindowThemKho(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -83,16 +61,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.KHO)li.Tag;
-
                 UserControlLibrary.WindowThemKho win = new UserControlLibrary.WindowThemKho(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.KHO)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -102,35 +74,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.KHO)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.KHO>();
-                }
-                if (mItem.KhoID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.KHO item = (Data.KHO)lvData.SelectedItems[0];
+                    if (item.KhoID > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void Luu()
         {
-            List<Data.KHO> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.KHO)li.Tag;
-                if (mItem.KhoID == 0 || mItem.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.KHO>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOKho.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOKho.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -181,7 +140,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
+            BOKho.Refresh();
             LoadDanhSach();
         }
 

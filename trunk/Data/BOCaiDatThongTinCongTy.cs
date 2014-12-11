@@ -4,11 +4,10 @@ namespace Data
 {
     public class BOCaiDatThongTinCongTy
     {
-        private FrameworkRepository<CAIDATTHONGTINCONGTY> fr = null;
-
+        KaraokeEntities mKaraokeEntities = null;
         public BOCaiDatThongTinCongTy(Data.Transit transit)
         {
-            fr = new FrameworkRepository<CAIDATTHONGTINCONGTY>(transit.KaraokeEntities, transit.KaraokeEntities.CAIDATTHONGTINCONGTies);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
         public static CAIDATTHONGTINCONGTY GetQueryNoTracking(Transit transit)
@@ -30,15 +29,14 @@ namespace Data
             return item;
         }
 
-        public void CapNhat(Data.CAIDATTHONGTINCONGTY item, Data.Transit transit)
+        public void Luu()
         {
-            fr.Update(item);
-            fr.Commit();
+            mKaraokeEntities.SaveChanges();
         }
 
-        public CAIDATTHONGTINCONGTY GetAll(Data.Transit transit)
+        public CAIDATTHONGTINCONGTY GetAll()
         {
-            CAIDATTHONGTINCONGTY item = fr.Query().FirstOrDefault();
+            CAIDATTHONGTINCONGTY item = mKaraokeEntities.CAIDATTHONGTINCONGTies.FirstOrDefault();
             if (item == null)
             {
                 item = new CAIDATTHONGTINCONGTY();
@@ -51,8 +49,8 @@ namespace Data
                 item.DienThoaiDiDong = "";
                 item.Email = "";
                 item.Fax = "";
-                fr.AddObject(item);
-                fr.Commit();
+                mKaraokeEntities.CAIDATTHONGTINCONGTies.AddObject(item);
+                mKaraokeEntities.SaveChanges();
             }
 
             return item;

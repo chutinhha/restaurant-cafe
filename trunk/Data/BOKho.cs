@@ -7,57 +7,36 @@ namespace Data
 {
     public class BOKho
     {
-        FrameworkRepository<KHO> frmKho = null;
+        KaraokeEntities mKaraokeEntities = null;
         public BOKho(Data.Transit transit)
         {
-            frmKho = new FrameworkRepository<KHO>(transit.KaraokeEntities, transit.KaraokeEntities.KHOes);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
-        public IQueryable<KHO> GetAll(Transit mTransit)
+        public IQueryable<KHO> GetAll()
         {
-            return frmKho.Query().Where(s => s.Deleted == false);
+            return mKaraokeEntities.KHOes.Where(s => s.Deleted == false);
         }
         public static IQueryable<KHO> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<KHO>.QueryNoTracking(mTransit.KaraokeEntities.KHOes).Where(s => s.Deleted == false);
         }
 
-        private int Them(KHO item, Transit mTransit)
+        public void Luu(List<KHO> lsArray)
         {
-            frmKho.AddObject(item);
-            return item.KhoID;
-        }
-
-        private int Xoa(KHO item, Transit mTransit)
-        {
-            item.Deleted = true;
-            frmKho.Update(item);
-            return item.KhoID;
-        }
-
-        private int Sua(KHO item, Transit mTransit)
-        {
-            item.Edit = true;
-            frmKho.Update(item);
-            return item.KhoID;
-        }
-
-        public void Luu(List<KHO> lsArray, List<KHO> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (KHO item in lsArray)
+            foreach (KHO item in lsArray)
+            {
+                if (item.KhoID == 0)
                 {
-                    if (item.KhoID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
+                    mKaraokeEntities.KHOes.AddObject(item);
                 }
-            if (lsArrayDeleted != null)
-                foreach (KHO item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
-                }
-            frmKho.Commit();
+
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.KHOes);
         }
     }
 }

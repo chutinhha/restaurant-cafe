@@ -74,7 +74,7 @@ namespace UserControlLibrary
                 _Item.LoaiNhomNuocImages = Utilities.ImageHandler.ImageToByte(img);
             }
 
-            BOCaiDatThucDon.CapNhat(_Item, mTransit);
+            BOCaiDatThucDon.Luu();
             DialogResult = true;
         }
 

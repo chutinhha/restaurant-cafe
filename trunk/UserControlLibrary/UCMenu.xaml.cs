@@ -532,7 +532,7 @@ namespace UserControlLibrary
             {
                 if (_IsDanhSachKhuyenMai)
                 {
-                    BOMenuKhuyenMai.GetAll(item, mTransit);
+                    BOMenuKhuyenMai.GetAll(item);
                 }
                 _OnEventMenuKichThuocMon(item);
             }

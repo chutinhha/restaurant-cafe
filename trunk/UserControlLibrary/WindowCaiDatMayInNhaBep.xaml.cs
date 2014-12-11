@@ -47,7 +47,7 @@ namespace UserControlLibrary
             _Item.ItemTextFontWeights = (int)cbbItemTextFontWeights.SelectedValue;
             _Item.SumTextFontWeights = (int)cbbSumTextFontWeights.SelectedValue;
 
-            BOCaiDatMayInBep.CapNhat(_Item, mTransit);
+            BOCaiDatMayInBep.Luu();
             DialogResult = true;
         }
 

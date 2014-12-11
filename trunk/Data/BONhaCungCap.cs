@@ -7,57 +7,36 @@ namespace Data
 {
     public class BONhaCungCap
     {
-        FrameworkRepository<NHACUNGCAP> frmNhaCungCap = null;
+        KaraokeEntities mKaraokeEntities = null;
         public BONhaCungCap(Data.Transit transit)
-        {            
-            frmNhaCungCap = new FrameworkRepository<NHACUNGCAP>(transit.KaraokeEntities, transit.KaraokeEntities.NHACUNGCAPs);
+        {
+            mKaraokeEntities = new KaraokeEntities();
         }
 
-        public IQueryable<NHACUNGCAP> GetAll(Transit mTransit)
+        public IQueryable<NHACUNGCAP> GetAll()
         {
-            return frmNhaCungCap.Query().Where(s => s.Deleted == false);
+            return mKaraokeEntities.NHACUNGCAPs.Where(s => s.Deleted == false);
         }
         public static IQueryable<NHACUNGCAP> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<NHACUNGCAP>.QueryNoTracking(mTransit.KaraokeEntities.NHACUNGCAPs).Where(s => s.Deleted == false);
         }
 
-        private int Them(NHACUNGCAP item, Transit mTransit)
+        public void Luu(List<NHACUNGCAP> lsArray)
         {
-            frmNhaCungCap.AddObject(item);
-            return item.NhaCungCapID;
-        }
-
-        private int Xoa(NHACUNGCAP item, Transit mTransit)
-        {
-            item.Deleted = true;
-            frmNhaCungCap.Update(item);
-            return item.NhaCungCapID;
-        }
-
-        private int Sua(NHACUNGCAP item, Transit mTransit)
-        {
-            item.Edit = false;
-            frmNhaCungCap.Update(item);
-            return item.NhaCungCapID;
-        }
-
-        public void Luu(List<NHACUNGCAP> lsArray, List<NHACUNGCAP> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (NHACUNGCAP item in lsArray)
+            foreach (NHACUNGCAP item in lsArray)
+            {
+                if (item.NhaCungCapID == 0)
                 {
-                    if (item.NhaCungCapID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
+                    mKaraokeEntities.NHACUNGCAPs.AddObject(item);
                 }
-            if (lsArrayDeleted != null)
-                foreach (NHACUNGCAP item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
-                }
-            frmNhaCungCap.Commit();
+
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.NHACUNGCAPs);
         }
     }
 }

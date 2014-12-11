@@ -58,7 +58,6 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
             lvData.ItemsSource = _Item.DanhSachKhuyenMai;
         }
 
@@ -106,7 +105,7 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            BOMenuKhuyenMai.Luu(_Item.DanhSachKhuyenMai, lsArrayDeleted, mTransit);
+            BOMenuKhuyenMai.Luu(_Item.DanhSachKhuyenMai);
             UserControlLibrary.WindowMessageBox win = new WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             win.ShowDialog();
             DialogResult = true;

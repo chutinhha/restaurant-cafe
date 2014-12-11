@@ -20,7 +20,7 @@ namespace UserControlLibrary
             btnHinhAnh.SetTransit(mTransit);
         }
 
-        public Data.BOKhu _Item { get; set; }
+        public Data.KHU _Item { get; set; }
         private void btnHinhAnh__OnBitmapImageChanged(object sender)
         {
             BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnHinhAnh.ImageBitmap, 1024, 768, 0);
@@ -38,9 +38,9 @@ namespace UserControlLibrary
             {
                 if (_Item == null)
                 {
-                    _Item = new Data.BOKhu();
-                    _Item.Khu.Deleted = false;
-                    _Item.Khu.Edit = false;
+                    _Item = new Data.KHU();
+                    _Item.Deleted = false;
+                    _Item.Edit = false;
                 }
                 GetValues();
                 DialogResult = true;
@@ -60,10 +60,10 @@ namespace UserControlLibrary
 
         private void GetValues()
         {
-            _Item.Khu.TenKhu = txtTenKhu.Text;
-            _Item.Khu.MacDinhSoDoBan = (bool)ckMacDinh.IsChecked;
-            _Item.Khu.Visual = (bool)ckChoPhepHienThi.IsChecked;
-            _Item.Khu.Hinh = mHinh;
+            _Item.TenKhu = txtTenKhu.Text;
+            _Item.MacDinhSoDoBan = (bool)ckMacDinh.IsChecked;
+            _Item.Visual = (bool)ckChoPhepHienThi.IsChecked;
+            _Item.Hinh = mHinh;
         }
 
         private void SetValues()
@@ -78,12 +78,12 @@ namespace UserControlLibrary
             }
             else
             {
-                txtTenKhu.Text = _Item.Khu.TenKhu;
-                ckMacDinh.IsChecked = _Item.Khu.MacDinhSoDoBan;
-                ckChoPhepHienThi.IsChecked = _Item.Khu.Visual;
-                if (_Item.Khu.Hinh != null && _Item.Khu.Hinh.Length > 0)
+                txtTenKhu.Text = _Item.TenKhu;
+                ckMacDinh.IsChecked = _Item.MacDinhSoDoBan;
+                ckChoPhepHienThi.IsChecked = _Item.Visual;
+                if (_Item.Hinh != null && _Item.Hinh.Length > 0)
                 {
-                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Khu.Hinh);
+                    btnHinhAnh.Image = Utilities.ImageHandler.BitmapImageFromByteArray(_Item.Hinh);
                 }
                 btnLuu.Content = mTransit.StringButton.Luu;
                 lbTieuDe.Text = "Sửa Khu";
