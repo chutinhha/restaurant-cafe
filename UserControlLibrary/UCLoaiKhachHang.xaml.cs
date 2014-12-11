@@ -139,6 +139,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
+            BOLoaiKhachHang.Refresh();
             LoadDanhSach();
         }
 

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -15,10 +16,13 @@ namespace UserControlLibrary
 
         public Data.BOLichBieuDinhKy _Item { get; set; }
 
-        public WindowThemLichBieuDinhKy(Data.Transit transit)
+        private Data.BOLichBieuDinhKy BOLichBieuDinhKy = null;
+
+        public WindowThemLichBieuDinhKy(Data.Transit transit, Data.BOLichBieuDinhKy bOLichBieuDinhKy)
         {
             InitializeComponent();
             mTransit = transit;
+            BOLichBieuDinhKy = bOLichBieuDinhKy;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -170,7 +174,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
+            cbbLoaiGia.ItemsSource = BOLichBieuDinhKy.GetMenuLoaiGia();
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
@@ -179,21 +183,21 @@ namespace UserControlLibrary
 
         private void LoadLoaiLichBieuBatDau(int TheLoaiID)
         {
-            cbbGiaTriBatDau.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
+            cbbGiaTriBatDau.ItemsSource = BOLichBieuDinhKy.GetLoaiLichBieu(TheLoaiID);
             if (cbbGiaTriBatDau.Items.Count > 0)
                 cbbGiaTriBatDau.SelectedIndex = 0;
         }
 
         private void LoadLoaiLichBieuKetThuc(int TheLoaiID)
         {
-            cbbGiaTriKetThuc.ItemsSource = Data.BOLoaiLichBieu.GetAll(TheLoaiID, mTransit);
+            cbbGiaTriKetThuc.ItemsSource = BOLichBieuDinhKy.GetLoaiLichBieu(TheLoaiID);
             if (cbbGiaTriKetThuc.Items.Count > 0)
                 cbbGiaTriKetThuc.SelectedIndex = 0;
         }
 
         private void LoadTheLoai()
         {
-            cbbTheLoai.ItemsSource = Data.BOTheLoaiLichBieu.GetAllNoTracking(mTransit);
+            cbbTheLoai.ItemsSource = BOLichBieuDinhKy.GetTheLoaiLichBieu();
             if (cbbTheLoai.Items.Count > 0)
             {
                 cbbTheLoai.SelectedIndex = 0;
@@ -202,7 +206,7 @@ namespace UserControlLibrary
 
         private void LoadKhu()
         {
-            List<Data.KHU> lsArray = Data.BOKhu.GetAllNoTrackingToList(mTransit);
+            List<Data.KHU> lsArray = BOLichBieuDinhKy.GetKhu().ToList();
             lsArray.Insert(0, new Data.KHU() { TenKhu = "Tất cả khu", KhuID = 0 });
             cbbKhu.ItemsSource = lsArray;
             if (cbbKhu.Items.Count > 0)

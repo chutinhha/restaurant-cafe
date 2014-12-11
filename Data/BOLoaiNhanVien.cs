@@ -7,9 +7,9 @@ namespace Data
 {
     public class BOLoaiNhanVien
     {
-        public static IQueryable<LOAINHANVIEN> GetAllNoTracking(Transit mTransit, int CapDo)
+        public static IQueryable<LOAINHANVIEN> GetAllNoTracking(KaraokeEntities karaokeEntities, int CapDo)
         {
-            return FrameworkRepository<LOAINHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.LOAINHANVIENs).Where(s => s.CapDo > CapDo).OrderBy(s => s.CapDo);
+            return karaokeEntities.LOAINHANVIENs.Where(s => s.Deleted == false && s.CapDo > CapDo).OrderBy(s => s.CapDo);
         }
     }
 }

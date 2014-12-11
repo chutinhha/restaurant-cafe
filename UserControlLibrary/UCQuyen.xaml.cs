@@ -13,8 +13,7 @@ namespace UserControlLibrary
     public partial class UCQuyen : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.QUYEN mItem = null;
-        private List<Data.QUYEN> lsArrayDeleted = null;
+        private List<Data.QUYEN> lsArray = null;
         private Data.BOQuyen BOQuyen = null;
 
         public UCQuyen(Data.Transit transit)
@@ -28,30 +27,17 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.QUYEN> lsArray = BOQuyen.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
+            lvData.ItemsSource = lsArray = BOQuyen.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
-        private void AddList(Data.QUYEN item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.QUYEN)li.Tag;
-                if (mItem.MaQuyen > 0)
+                Data.QUYEN item = (Data.QUYEN)lvData.SelectedItems[0];
+                if (item.MaQuyen > 0)
                 {
                     btnQuyenNhanVien.Visibility = System.Windows.Visibility.Visible;
                     btnCaiDatChucNang.Visibility = System.Windows.Visibility.Visible;
@@ -69,7 +55,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemQuyen win = new UserControlLibrary.WindowThemQuyen(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -77,16 +64,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.QUYEN)li.Tag;
-
                 UserControlLibrary.WindowThemQuyen win = new UserControlLibrary.WindowThemQuyen(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.QUYEN)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -96,35 +77,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.QUYEN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.QUYEN>();
-                }
-                if (mItem.MaQuyen > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.QUYEN item = (Data.QUYEN)lvData.SelectedItems[0];
+                    if (item.MaQuyen > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            List<Data.QUYEN> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.QUYEN)li.Tag;
-                if (mItem.MaQuyen == 0 || mItem.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.QUYEN>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOQuyen.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOQuyen.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -161,7 +129,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
+            BOQuyen.Refresh();
             LoadDanhSach();
         }
 
@@ -174,9 +142,8 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.QUYEN)li.Tag;
-                WindowThemQuyenNhanVien win = new WindowThemQuyenNhanVien(mItem, mTransit);
+                Data.QUYEN item = (Data.QUYEN)lvData.SelectedItems[0];
+                WindowThemQuyenNhanVien win = new WindowThemQuyenNhanVien(item, mTransit);
                 win.ShowDialog();
             }
         }
@@ -185,9 +152,8 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.QUYEN)li.Tag;
-                WindowThemCaiDatChucNang win = new WindowThemCaiDatChucNang(mItem, mTransit);
+                Data.QUYEN item = (Data.QUYEN)lvData.SelectedItems[0];
+                WindowThemCaiDatChucNang win = new WindowThemCaiDatChucNang(item, mTransit);
                 win.ShowDialog();
             }
         }

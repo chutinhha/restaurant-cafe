@@ -7,23 +7,15 @@ namespace Data
 {
     public class BOLoaiKhachHang
     {
-
         KaraokeEntities mKaraokeEntities = new KaraokeEntities();
         public BOLoaiKhachHang(Data.Transit transit)
         {
             mKaraokeEntities = new KaraokeEntities();
         }
-        public static IQueryable<LOAIKHACHHANG> GetAll(KaraokeEntities kara)
-        {
-            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(kara.LOAIKHACHHANGs);
-        }
+
         public IQueryable<LOAIKHACHHANG> GetAll()
         {
             return mKaraokeEntities.LOAIKHACHHANGs.Where(s => s.Deleted == false);
-        }
-        public static IQueryable<LOAIKHACHHANG> GetAllNoTracking(Transit mTransit)
-        {
-            return FrameworkRepository<LOAIKHACHHANG>.QueryNoTracking(mTransit.KaraokeEntities.LOAIKHACHHANGs).Where(s => s.Deleted == false);
         }
 
         public static IQueryable<LOAIKHACHHANG> GetQueryNoTracking(KaraokeEntities karaokeEntities)
@@ -43,5 +35,10 @@ namespace Data
             }
             mKaraokeEntities.SaveChanges();
         }
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.LOAIKHACHHANGs);
+        }
+
     }
 }

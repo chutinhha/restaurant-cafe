@@ -44,15 +44,17 @@ namespace UserControlLibrary
 
             if (btnHinhDaiDien.ImageBitmap != null)
             {
-                _Item.Hinh = Utilities.ImageHandler.ImageToByte(btnHinhDaiDien.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnLogo.ImageBitmap, 100, 100, 0);
+                _Item.Hinh = Utilities.ImageHandler.ImageToByte(img);                
             }
 
             if (btnLogo.ImageBitmap != null)
             {
-                _Item.Logo = Utilities.ImageHandler.ImageToByte(btnLogo.ImageBitmap);
+                BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(btnLogo.ImageBitmap, 100, 100, 0);
+                _Item.Logo = Utilities.ImageHandler.ImageToByte(img);                
             }
 
-            BOCaiDatThongTinCongTy.CapNhat(_Item, mTransit);
+            BOCaiDatThongTinCongTy.Luu();
             DialogResult = true;
         }
 
@@ -61,7 +63,7 @@ namespace UserControlLibrary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _Item = BOCaiDatThongTinCongTy.GetAll(mTransit);
+            _Item = BOCaiDatThongTinCongTy.GetAll();
             if (_Item != null)
             {
                 txtTenDoanhNghiep.Text = _Item.TenCongTy;

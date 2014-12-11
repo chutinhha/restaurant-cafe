@@ -13,14 +13,13 @@ namespace UserControlLibrary
     public partial class UCKhu : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.BOKhu mItem = null;
-        private List<Data.BOKhu> lsArrayDeleted = null;
-        private Data.BOKhu mBOKhu;
+        private List<Data.KHU> lsArray = null;
+        private Data.BOKhu BOKhu;
         public UCKhu(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            mBOKhu = new Data.BOKhu(mTransit);
+            BOKhu = new Data.BOKhu(mTransit);
             PhanQuyen();
         }
         Data.BOChiTietQuyen mPhanQuyen = null;
@@ -40,33 +39,10 @@ namespace UserControlLibrary
                 btnLuu.Visibility = System.Windows.Visibility.Collapsed;
 
         }
-        List<Data.BOKhu> lsArray = null;
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            lsArray = mBOKhu.GetAll(mTransit).ToList();
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.BOKhu item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOKhu)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOKhu.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -74,7 +50,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemKhu win = new UserControlLibrary.WindowThemKhu(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -82,16 +59,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOKhu)li.Tag;
-
                 UserControlLibrary.WindowThemKhu win = new UserControlLibrary.WindowThemKhu(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.KHU)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Khu.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -101,35 +72,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.BOKhu)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.BOKhu>();
-                }
-                if (mItem.Khu.KhuID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.KHU item = (Data.KHU)lvData.SelectedItems[0];
+                    if (item.KhuID > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void Luu()
         {
-            List<Data.BOKhu> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.BOKhu)li.Tag;
-                if (mItem.Khu.KhuID == 0 || mItem.Khu.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.BOKhu>();
-                    lsArray.Add(mItem);
-                }
-            }
-            mBOKhu.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOKhu.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -179,7 +137,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;
+            BOKhu.Refresh();
             LoadDanhSach();
         }
 

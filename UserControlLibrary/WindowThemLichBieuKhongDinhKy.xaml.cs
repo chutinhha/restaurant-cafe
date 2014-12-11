@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UserControlLibrary
 {
@@ -11,13 +12,15 @@ namespace UserControlLibrary
     public partial class WindowThemLichBieuKhongDinhKy : Window
     {
         private Data.Transit mTransit;
+        private Data.BOLichBieuKhongDinhKy BOLichBieuKhongDinhKy = null;
 
         public Data.BOLichBieuKhongDinhKy _Item { get; set; }
 
-        public WindowThemLichBieuKhongDinhKy(Data.Transit transit)
+        public WindowThemLichBieuKhongDinhKy(Data.Transit transit, Data.BOLichBieuKhongDinhKy bOLichBieuKhongDinhKy)
         {
             InitializeComponent();
             mTransit = transit;
+            BOLichBieuKhongDinhKy = bOLichBieuKhongDinhKy;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -131,7 +134,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiGia()
         {
-            cbbLoaiGia.ItemsSource = Data.BOMenuLoaiGia.GetAll(mTransit);
+            cbbLoaiGia.ItemsSource = BOLichBieuKhongDinhKy.GetMenuLoaiGia();
             if (cbbLoaiGia.Items.Count > 0)
             {
                 cbbLoaiGia.SelectedIndex = 0;
@@ -139,7 +142,7 @@ namespace UserControlLibrary
         }
         private void LoadKhu()
         {
-            List<Data.KHU> lsArray = Data.BOKhu.GetAllNoTrackingToList(mTransit);
+            List<Data.KHU> lsArray = BOLichBieuKhongDinhKy.GetKhu().ToList();
             lsArray.Insert(0, new Data.KHU() { TenKhu = "Tất cả khu", KhuID = 0 });
             cbbKhu.ItemsSource = lsArray;
             if (cbbKhu.Items.Count > 0)

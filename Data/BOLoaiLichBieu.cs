@@ -6,10 +6,11 @@ using System.Text;
 namespace Data
 {
     public class BOLoaiLichBieu
-    {
-        public static IQueryable<LOAILICHBIEU> GetAll(int TheLoaiID, Transit mTransit)
+    {        
+
+        public static IQueryable<LOAILICHBIEU> GetQueryNoTracking(int TheLoaiID, KaraokeEntities karaokeEntities)
         {
-            return FrameworkRepository<LOAILICHBIEU>.QueryNoTracking(mTransit.KaraokeEntities.LOAILICHBIEUx).Where(s => s.TheLoaiID == TheLoaiID);
+            return karaokeEntities.LOAILICHBIEUx.Where(s => s.TheLoaiID == TheLoaiID);
         }
     }
 }

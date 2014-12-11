@@ -13,8 +13,7 @@ namespace UserControlLibrary
     public partial class UCNhanVien : UserControl
     {
         private Data.BONhanVien BONhanVien = null;
-        private List<Data.BONhanVien> lsArrayDeleted = null;
-        private Data.BONhanVien mItem = null;
+        private List<Data.BONhanVien> lsArray = null;
         private Data.Transit mTransit = null;
 
         public UCNhanVien(Data.Transit transit)
@@ -71,33 +70,14 @@ namespace UserControlLibrary
             }
         }
 
-        private void AddList(Data.BONhanVien item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
+            BONhanVien.Refresh();
             LoadDanhSach();
         }
         private void Luu()
         {
-            List<Data.BONhanVien> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.BONhanVien)li.Tag;
-                if (mItem.NhanVien.NhanVienID == 0 || mItem.NhanVien.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.BONhanVien>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BONhanVien.Luu(lsArray, lsArrayDeleted, mTransit);
+            BONhanVien.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -121,16 +101,10 @@ namespace UserControlLibrary
 
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BONhanVien)li.Tag;
-
-                UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
-                win._Item = mItem;
+                UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit, BONhanVien);
+                win._Item = (Data.BONhanVien)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.NhanVien.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -140,54 +114,37 @@ namespace UserControlLibrary
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
 
-            UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit);
+            UserControlLibrary.WindowThemNhanVien win = new UserControlLibrary.WindowThemNhanVien(mTransit, BONhanVien);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
 
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.BONhanVien)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.BONhanVien>();
-                }
-                if (mItem.NhanVien.NhanVienID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.BONhanVien item = (Data.BONhanVien)lvData.SelectedItems[0];
+                    if (item.NhanVien.NhanVienID > 0)
+                    {
+                        item.NhanVien.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
-
 
         }
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.BONhanVien> lsArray = BONhanVien.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void lvNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BONhanVien)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BONhanVien.GetAll(mTransit).ToList();
+            lvData.Items.Refresh();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

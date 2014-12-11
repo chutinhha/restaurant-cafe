@@ -28,8 +28,6 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-
-
             _Item.HeaderTextString1 = txtHeaderString1.Text;
             _Item.HeaderTextString2 = txtHeaderString2.Text;
             _Item.HeaderTextString3 = txtHeaderString3.Text;
@@ -115,7 +113,7 @@ namespace UserControlLibrary
                 _Item.Logo = Utilities.ImageHandler.ImageToByte(img);
             }
 
-            BOCaiDatMayInHoaDon.CapNhat(_Item, mTransit);
+            BOCaiDatMayInHoaDon.Luu();
             DialogResult = true;
         }
 

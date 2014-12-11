@@ -12,8 +12,7 @@ namespace UserControlLibrary
     public partial class UCLichBieuDinhKy : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.BOLichBieuDinhKy mItem = null;
-        private List<Data.BOLichBieuDinhKy> lsArrayDeleted = null;
+        private List<Data.BOLichBieuDinhKy> lsArray = null;
         private Data.BOLichBieuDinhKy BOLichBieuDinhKy = null;
 
         public UCLichBieuDinhKy(Data.Transit transit)
@@ -43,38 +42,16 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.BOLichBieuDinhKy> lsArray = BOLichBieuDinhKy.GetAllOrderBy(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.BOLichBieuDinhKy item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOLichBieuDinhKy)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOLichBieuDinhKy.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
+            UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit, BOLichBieuDinhKy);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
                 lvData.Items.Refresh();
             }
         }
@@ -83,16 +60,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOLichBieuDinhKy)li.Tag;               
-
-                UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit);
-                win._Item = mItem;
+                UserControlLibrary.WindowThemLichBieuDinhKy win = new UserControlLibrary.WindowThemLichBieuDinhKy(mTransit, BOLichBieuDinhKy);
+                win._Item = (Data.BOLichBieuDinhKy)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.LichBieuDinhKy.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -102,35 +73,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.BOLichBieuDinhKy)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.BOLichBieuDinhKy>();
-                }
-                if (mItem.LichBieuDinhKy.LichBieuDinhKyID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.BOLichBieuDinhKy item = (Data.BOLichBieuDinhKy)lvData.SelectedItems[0];
+                    if (item.LichBieuDinhKy.LichBieuDinhKyID > 0)
+                    {
+                        item.LichBieuDinhKy.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void Luu()
         {
-            List<Data.BOLichBieuDinhKy> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.BOLichBieuDinhKy)li.Tag;
-                if (mItem.LichBieuDinhKy.LichBieuDinhKyID == 0 || mItem.LichBieuDinhKy.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.BOLichBieuDinhKy>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOLichBieuDinhKy.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOLichBieuDinhKy.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -180,7 +138,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
+            BOLichBieuDinhKy.Refresh();
             LoadDanhSach();
         }
 

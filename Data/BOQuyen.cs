@@ -7,57 +7,42 @@ namespace Data
 {
     public class BOQuyen
     {
-        FrameworkRepository<QUYEN> frmLoaiKhachHang = null;
+        KaraokeEntities mKaraokeEntities = null;
         public BOQuyen(Data.Transit transit)
-        {            
-            frmLoaiKhachHang = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
+        {
+            mKaraokeEntities = new KaraokeEntities();
         }
 
-        public IQueryable<QUYEN> GetAll(Transit mTransit)
-        {
-            return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
-        }
         public static IQueryable<QUYEN> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<QUYEN>.QueryNoTracking(mTransit.KaraokeEntities.QUYENs).Where(s => s.Deleted == false);
         }
 
-        private int Them(QUYEN item, Transit mTransit)
+        public IQueryable<QUYEN> GetAll()
         {
-            frmLoaiKhachHang.AddObject(item);
-            return item.MaQuyen;
+            return mKaraokeEntities.QUYENs.Where(s => s.Deleted == false);
         }
 
-        private int Xoa(QUYEN item, Transit mTransit)
+        public static IQueryable<QUYEN> GetQueryNoTracking(KaraokeEntities karaokeEntities)
         {
-            item.Deleted = true;
-            frmLoaiKhachHang.Update(item);
-            return item.MaQuyen;
+            return karaokeEntities.QUYENs.Where(s => s.Deleted == false);
         }
 
-        private int Sua(QUYEN item, Transit mTransit)
+        public void Luu(List<QUYEN> lsArray)
         {
-            item.Deleted = true;
-            frmLoaiKhachHang.Update(item);
-            return item.MaQuyen;
-        }
-
-        public void Luu(List<QUYEN> lsArray, List<QUYEN> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (QUYEN item in lsArray)
+            foreach (QUYEN item in lsArray)
+            {
+                if (item.MaQuyen == 0)
                 {
-                    if (item.MaQuyen > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
+                    mKaraokeEntities.QUYENs.AddObject(item);
                 }
-            if (lsArrayDeleted != null)
-                foreach (QUYEN item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
-                }
-            frmLoaiKhachHang.Commit();
+
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.QUYENs);
         }
     }
 }

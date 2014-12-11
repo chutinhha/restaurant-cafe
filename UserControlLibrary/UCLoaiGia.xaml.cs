@@ -13,8 +13,7 @@ namespace UserControlLibrary
     public partial class UCLoaiGia : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.MENULOAIGIA mItem = null;
-        private List<Data.MENULOAIGIA> lsArrayDeleted = null;
+        private List<Data.MENULOAIGIA> lsArray = null;
         private Data.BOMenuLoaiGia BOMenuLoaiGia = null;
         public UCLoaiGia(Data.Transit transit)
         {
@@ -43,30 +42,8 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.MENULOAIGIA> lsArray = BOMenuLoaiGia.GetAllMenuLoaiGia();
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.MENULOAIGIA item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MENULOAIGIA)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOMenuLoaiGia.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -74,7 +51,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemLoaiGia win = new UserControlLibrary.WindowThemLoaiGia(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -82,16 +60,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MENULOAIGIA)li.Tag;
-
                 UserControlLibrary.WindowThemLoaiGia win = new UserControlLibrary.WindowThemLoaiGia(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.MENULOAIGIA)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -101,38 +73,38 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.MENULOAIGIA)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.MENULOAIGIA>();
-                }
-                if (mItem.LoaiGiaID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.MENULOAIGIA item = (Data.MENULOAIGIA)lvData.SelectedItems[0];
+                    if (item.LoaiGiaID > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        private void Luu()
         {
-            List<Data.MENULOAIGIA> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.MENULOAIGIA)li.Tag;
-                if (mItem.LoaiGiaID == 0 || mItem.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.MENULOAIGIA>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOMenuLoaiGia.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOMenuLoaiGia.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
+        }
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+            if (mPhanQuyen.ChiTietQuyen.DangNhap)
+            {
+                UserControlLibrary.WindowLoginDialog loginWindow = new UserControlLibrary.WindowLoginDialog(mTransit);
+                if (loginWindow.ShowDialog() == false)
+                {
+                    Luu();
+                }
+            }
+            else Luu();
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -166,8 +138,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;
-            
+            BOMenuLoaiGia.Refresh();
             LoadDanhSach();
         }
 

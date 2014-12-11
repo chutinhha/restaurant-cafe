@@ -1,76 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Data
 {
     public class BOThe
     {
-        public int TheID { get; set; }
-        public string TenThe { get; set; }
+        private KaraokeEntities mKaraokeEntities = null;
+
         public BOThe()
         {
         }
-        FrameworkRepository<THE> frmLoaiKhachHang = null;
+
         public BOThe(Data.Transit transit)
-        {            
-            frmLoaiKhachHang = new FrameworkRepository<THE>(transit.KaraokeEntities, transit.KaraokeEntities.THEs);
-        }        
-        public IQueryable<THE> GetAll(Transit mTransit)
         {
-            return frmLoaiKhachHang.Query().Where(s => s.Deleted == false);
+            mKaraokeEntities = new KaraokeEntities();
         }
+
+        public string TenThe { get; set; }
+
+        public int TheID { get; set; }
+
         public static IQueryable<THE> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<THE>.QueryNoTracking(mTransit.KaraokeEntities.THEs).Where(s => s.Deleted == false);
         }
+
         public static IQueryable<BOThe> GetAllVisual(Transit mTransit)
         {
             return from x in FrameworkRepository<THE>.QueryNoTracking(mTransit.KaraokeEntities.THEs)
                    where x.Visual == true && x.Deleted == false
                    select new BOThe
                    {
-                       TheID=x.TheID,
-                       TenThe=x.TenThe
+                       TheID = x.TheID,
+                       TenThe = x.TenThe
                    };
         }
-        private int Them(THE item, Transit mTransit)
+
+        public static IQueryable<THE> GetQueryNoTracking(KaraokeEntities karaokeEntities)
         {
-            frmLoaiKhachHang.AddObject(item);
-            return item.TheID;
+            return karaokeEntities.THEs.Where(s => s.Deleted == false);
         }
 
-        private int Xoa(THE item, Transit mTransit)
+        public IQueryable<THE> GetAll()
         {
-            item.Deleted = true;
-            frmLoaiKhachHang.Update(item);
-            return item.TheID;
+            return mKaraokeEntities.THEs.Where(s => s.Deleted == false);
         }
-
-        private int Sua(THE item, Transit mTransit)
+        public void Luu(List<THE> lsArray)
         {
-            item.Deleted = true;
-            frmLoaiKhachHang.Update(item);
-            return item.TheID;
-        }
-
-        public void Luu(List<THE> lsArray, List<THE> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (THE item in lsArray)
+            foreach (THE item in lsArray)
+            {
+                if (item.TheID == 0)
                 {
-                    if (item.TheID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
+                    mKaraokeEntities.THEs.AddObject(item);
                 }
-            if (lsArrayDeleted != null)
-                foreach (THE item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
-                }
-            frmLoaiKhachHang.Commit();
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.THEs);
         }
     }
 }

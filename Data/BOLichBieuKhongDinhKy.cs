@@ -10,14 +10,10 @@ namespace Data
         public LICHBIEUKHONGDINHKY LichBieuKhongDinhKy { get; set; }
         public MENULOAIGIA MenuLoaiGia { get; set; }
         public string TenKhu { get; set; }
-        FrameworkRepository<LICHBIEUKHONGDINHKY> frmLichBieuKhongDinhKy = null;
-        FrameworkRepository<MENULOAIGIA> frmMenuLoaiGia = null;
-        FrameworkRepository<KHU> frmKhu = null;
+        KaraokeEntities mKaraokeEntities = null;
         public BOLichBieuKhongDinhKy(Transit transit)
-        {            
-            frmLichBieuKhongDinhKy = new FrameworkRepository<LICHBIEUKHONGDINHKY>(transit.KaraokeEntities, transit.KaraokeEntities.LICHBIEUKHONGDINHKies);
-            frmMenuLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
-            frmKhu = new FrameworkRepository<KHU>(transit.KaraokeEntities, transit.KaraokeEntities.KHUs);
+        {
+            mKaraokeEntities = new KaraokeEntities();
         }
 
         public BOLichBieuKhongDinhKy()
@@ -26,26 +22,24 @@ namespace Data
             MenuLoaiGia = new MENULOAIGIA();
             TenKhu = "";
         }
-        public static IQueryable<LICHBIEUKHONGDINHKY> GetAll(Transit transit)
-        {
-            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false);
-        }
+
         public static IQueryable<LICHBIEUKHONGDINHKY> GetAllVisual(Transit transit)
         {
-            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false&& o.Visual==true);
+            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false && o.Visual == true);
         }
+
         public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(Transit transit)
         {
             DateTime dt = DateTime.Now;
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            var querya = BOMenuLoaiGia.GetAllVisual(transit);                         
+            var querya = BOMenuLoaiGia.GetAllVisual(transit);
             var queryb = from b in GetAllVisual(transit)
-                         where                             
+                         where
                              ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
                              dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0 &&
-                             (                                
-                                b.KhuID==null ||
-                                b.KhuID==transit.Ban.KhuID
+                             (
+                                b.KhuID == null ||
+                                b.KhuID == transit.Ban.KhuID
                              )
                          select b;
             var query = from a in querya
@@ -54,7 +48,7 @@ namespace Data
                         {
                             MenuLoaiGia = a,
                             LichBieuKhongDinhKy = b
-                        };                        
+                        };
             return query.Distinct();
         }
         //public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
@@ -83,12 +77,13 @@ namespace Data
         //                select a;
         //    return query.Distinct();
         //}
-        public IQueryable<BOLichBieuKhongDinhKy> GetAllWithShort(Transit mTransit)
+
+        public IQueryable<BOLichBieuKhongDinhKy> GetAll()
         {
-            var res = (from lb in frmLichBieuKhongDinhKy.Query()
-                       join k in frmKhu.Query() on lb.KhuID equals k.KhuID into k1
+            var res = (from lb in mKaraokeEntities.LICHBIEUKHONGDINHKies
+                       join k in mKaraokeEntities.KHUs on lb.KhuID equals k.KhuID into k1
                        from khu in k1.DefaultIfEmpty()
-                       join l in frmMenuLoaiGia.Query() on lb.LoaiGiaID equals l.LoaiGiaID
+                       join l in mKaraokeEntities.MENULOAIGIAs on lb.LoaiGiaID equals l.LoaiGiaID
                        where lb.LoaiGiaID == l.LoaiGiaID
                        orderby l.Ten ascending, lb.TenLichBieu ascending
                        select new BOLichBieuKhongDinhKy
@@ -99,46 +94,32 @@ namespace Data
                        });
             return res;
         }
-
-        public int Them(BOLichBieuKhongDinhKy item, Transit mTransit)
+        public void Luu(List<BOLichBieuKhongDinhKy> lsArray)
         {
-            frmLichBieuKhongDinhKy.AddObject(item.LichBieuKhongDinhKy);
-            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
-        }
-
-        public int Xoa(BOLichBieuKhongDinhKy item, Transit mTransit)
-        {
-            item.LichBieuKhongDinhKy.Deleted = true;
-            frmLichBieuKhongDinhKy.Update(item.LichBieuKhongDinhKy);
-            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
-        }
-
-        public int Sua(BOLichBieuKhongDinhKy item, Transit mTransit)
-        {
-            item.LichBieuKhongDinhKy.Edit = false;
-            frmLichBieuKhongDinhKy.Update(item.LichBieuKhongDinhKy);
-            return item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID;
-        }
-
-        public void Luu(List<BOLichBieuKhongDinhKy> lsArray, List<BOLichBieuKhongDinhKy> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (BOLichBieuKhongDinhKy item in lsArray)
+            foreach (BOLichBieuKhongDinhKy item in lsArray)
+            {
+                if (item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID == 0)
                 {
-                    if (item.LichBieuKhongDinhKy.LichBieuKhongDinhKyID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
-                }
-            if (lsArrayDeleted != null)
-                foreach (BOLichBieuKhongDinhKy item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
+                    mKaraokeEntities.LICHBIEUKHONGDINHKies.AddObject(item.LichBieuKhongDinhKy);
                 }
 
-            frmLichBieuKhongDinhKy.Commit();
+            }
+            mKaraokeEntities.SaveChanges();
         }
 
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.LICHBIEUKHONGDINHKies);
+        }
 
+        public IQueryable<KHU> GetKhu()
+        {
+            return BOKhu.GetQueryNoTracking(mKaraokeEntities);
+        }
+
+        public IQueryable<MENULOAIGIA> GetMenuLoaiGia()
+        {
+            return BOMenuLoaiGia.GetQueryNoTracking(mKaraokeEntities);
+        }        
     }
 }

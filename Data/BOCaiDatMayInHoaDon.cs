@@ -7,11 +7,10 @@ namespace Data
 {
     public class BOCaiDatMayInHoaDon
     {
-        private FrameworkRepository<CAIDATMAYINHOADON> fr = null;
-
+        KaraokeEntities mKaraokeEntities = null;
         public BOCaiDatMayInHoaDon(Data.Transit transit)
         {
-            fr = new FrameworkRepository<CAIDATMAYINHOADON>(transit.KaraokeEntities, transit.KaraokeEntities.CAIDATMAYINHOADONs);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
         public static CAIDATMAYINHOADON GetQueryNoTracking(Transit transit)
@@ -68,15 +67,14 @@ namespace Data
             return item;
         }
 
-        public void CapNhat(Data.CAIDATMAYINHOADON item, Data.Transit transit)
+        public void Luu()
         {
-            fr.Update(item);
-            fr.Commit();
+            mKaraokeEntities.SaveChanges();
         }
 
         public CAIDATMAYINHOADON GetAll(Data.Transit transit)
         {
-            CAIDATMAYINHOADON item = fr.Query().FirstOrDefault();
+            CAIDATMAYINHOADON item = mKaraokeEntities.CAIDATMAYINHOADONs.FirstOrDefault();
             if (item == null)
             {
                 item = new CAIDATMAYINHOADON();
@@ -123,8 +121,8 @@ namespace Data
                 item.TitleTextFontSize = 12;
                 item.TitleTextFontStyle = (int)SomeEnum.FontStyles.Normal;
                 item.TitleTextFontWeights = (int)SomeEnum.FontWeights.Normal;
-                fr.AddObject(item);
-                fr.Commit();
+                mKaraokeEntities.CAIDATMAYINHOADONs.AddObject(item);
+                mKaraokeEntities.SaveChanges();
             }
 
             return item;

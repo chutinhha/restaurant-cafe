@@ -9,14 +9,16 @@ namespace UserControlLibrary
     public partial class WindowThemNhanVien : Window
     {
         private Data.Transit mTransit;
+        private Data.BONhanVien BONhanVien = null;
 
 
         public Data.BONhanVien _Item { get; set; }
 
-        public WindowThemNhanVien(Data.Transit transit)
+        public WindowThemNhanVien(Data.Transit transit, Data.BONhanVien bONhanVien)
         {
             InitializeComponent();
             mTransit = transit;
+            BONhanVien = bONhanVien;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,7 +52,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiNhanVien()
         {
-            cbbLoaiNhanVien.ItemsSource = Data.BOLoaiNhanVien.GetAllNoTracking(mTransit, _Item == null ? mTransit.NhanVien.CapDo : _Item.NhanVien.NhanVienID == mTransit.NhanVien.NhanVienID ? mTransit.NhanVien.CapDo - 1 : mTransit.NhanVien.CapDo);
+            cbbLoaiNhanVien.ItemsSource = BONhanVien.GetLoaiNhanVien(_Item == null ? mTransit.NhanVien.CapDo : _Item.NhanVien.NhanVienID == mTransit.NhanVien.NhanVienID ? mTransit.NhanVien.CapDo - 1 : mTransit.NhanVien.CapDo);
             if (cbbLoaiNhanVien.Items.Count > 0)
                 cbbLoaiNhanVien.SelectedIndex = 0;
         }

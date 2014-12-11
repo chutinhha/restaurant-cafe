@@ -7,31 +7,28 @@ namespace Data
 {
     public class BONhanVien
     {
-        public FrameworkRepository<NHANVIEN> frmNhanVien = null;
-        public FrameworkRepository<LOAINHANVIEN> frmLoaiNhanVien = null;
-        FrameworkRepository<Data.LICHSUDANGNHAP> frmLichSuDangNhap = null;        
         public NHANVIEN NhanVien { get; set; }
         public LOAINHANVIEN LoaiNhanVien { get; set; }
+        KaraokeEntities mKaraokeEntities = null;
+
         public BONhanVien(Data.Transit transit)
         {
-            frmNhanVien = new FrameworkRepository<NHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.NHANVIENs);
-            frmLoaiNhanVien = new FrameworkRepository<LOAINHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.LOAINHANVIENs);
-            frmLichSuDangNhap = new FrameworkRepository<LICHSUDANGNHAP>(transit.KaraokeEntities, transit.KaraokeEntities.LICHSUDANGNHAPs);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
         public BONhanVien()
         {
             NhanVien = new NHANVIEN();
             LoaiNhanVien = new LOAINHANVIEN();
-        }        
+        }
         public static IQueryable<NHANVIEN> GetAllNoTracking(Transit mTransit)
         {
             return FrameworkRepository<NHANVIEN>.QueryNoTracking(mTransit.KaraokeEntities.NHANVIENs).Where(s => s.Deleted == false);
         }
         public IQueryable<BONhanVien> GetAll(Transit mTransit)
         {
-            return (from nv in frmNhanVien.Query()
-                    join lnv in frmLoaiNhanVien.Query() on nv.LoaiNhanVienID equals lnv.LoaiNhanVienID
+            return (from nv in mKaraokeEntities.NHANVIENs
+                    join lnv in mKaraokeEntities.LOAINHANVIENs on nv.LoaiNhanVienID equals lnv.LoaiNhanVienID
                     where nv.Deleted == false && nv.CapDo > mTransit.NhanVien.CapDo || nv.NhanVienID == mTransit.NhanVien.NhanVienID
                     select new BONhanVien
                     {
@@ -40,42 +37,21 @@ namespace Data
                     });
         }
 
-        private int Them(BONhanVien item, Transit mTransit)
+        public void Luu(List<BONhanVien> lsArray)
         {
-            frmNhanVien.AddObject(item.NhanVien);
-            return item.NhanVien.NhanVienID;
-        }
-
-        private int Xoa(BONhanVien item, Transit mTransit)
-        {
-            item.NhanVien.Deleted = true;
-            frmNhanVien.Update(item.NhanVien);
-            return item.NhanVien.NhanVienID;
-        }
-
-        private int Sua(BONhanVien item, Transit mTransit)
-        {
-            item.NhanVien.Edit = false;
-            frmNhanVien.Update(item.NhanVien);
-            return item.NhanVien.NhanVienID;
-        }
-
-        public void Luu(List<BONhanVien> lsArray, List<BONhanVien> lsArrayDeleted, Transit mTransit)
-        {
-            if (lsArray != null)
-                foreach (BONhanVien item in lsArray)
+            foreach (BONhanVien item in lsArray)
+            {
+                if (item.NhanVien.NhanVienID == 0)
                 {
-                    if (item.NhanVien.NhanVienID > 0)
-                        Sua(item, mTransit);
-                    else
-                        Them(item, mTransit);
+                    mKaraokeEntities.NHANVIENs.AddObject(item.NhanVien);
                 }
-            if (lsArrayDeleted != null)
-                foreach (BONhanVien item in lsArrayDeleted)
-                {
-                    Xoa(item, mTransit);
-                }
-            frmNhanVien.Commit();
+
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+        public void Refresh()
+        {
+            mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.NHANVIENs);
         }
 
         public static NHANVIEN Login(string TenDangNhap, string MatKhau, Data.Transit mTransit)
@@ -95,9 +71,12 @@ namespace Data
 
         public void ThemLichSuDangNhap(int NhanVienID)
         {
-            Data.LICHSUDANGNHAP item = new LICHSUDANGNHAP() { NhanVienID = NhanVienID, ThoiGian = DateTime.Now, Deleted = false, Edit = false, Visual = true };
-            frmLichSuDangNhap.AddObject(item);
-            frmLichSuDangNhap.Commit();
+            mKaraokeEntities.LICHSUDANGNHAPs.AddObject(new LICHSUDANGNHAP() { NhanVienID = NhanVienID, ThoiGian = DateTime.Now, Deleted = false, Edit = false, Visual = true });
+        }
+
+        public IQueryable<LOAINHANVIEN> GetLoaiNhanVien(int CapDo)
+        {
+            return BOLoaiNhanVien.GetAllNoTracking(mKaraokeEntities, CapDo);
         }
     }
 }

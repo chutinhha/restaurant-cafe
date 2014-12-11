@@ -12,8 +12,7 @@ namespace UserControlLibrary
     public partial class UCMayIn : UserControl
     {
         private Data.Transit mTransit = null;
-        private Data.MAYIN mItem = null;
-        private List<Data.MAYIN> lsArrayDeleted = null;
+        private List<Data.MAYIN> lsArray = null;
         private Data.BOMayIn BOMayIn = null;
 
         public UCMayIn(Data.Transit transit)
@@ -43,30 +42,8 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            IQueryable<Data.MAYIN> lsArray = BOMayIn.GetAll(mTransit);
-            lvData.Items.Clear();
-            foreach (var item in lsArray)
-            {
-                AddList(item);
-            }
-        }
-
-        private void AddList(Data.MAYIN item)
-        {
-            ListViewItem li = new ListViewItem();
-            li.Content = item;
-            li.Tag = item;
-            lvData.Items.Add(li);
-        }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MAYIN)li.Tag;
-            }
+            lvData.ItemsSource = lsArray = BOMayIn.GetAll().ToList();
+            lvData.Items.Refresh();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -74,7 +51,8 @@ namespace UserControlLibrary
             UserControlLibrary.WindowThemMayIn win = new UserControlLibrary.WindowThemMayIn(mTransit);
             if (win.ShowDialog() == true)
             {
-                AddList(win._Item);
+                lsArray.Add(win._Item);
+                lvData.Items.Refresh();
             }
         }
 
@@ -82,16 +60,10 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.MAYIN)li.Tag;
-
                 UserControlLibrary.WindowThemMayIn win = new UserControlLibrary.WindowThemMayIn(mTransit);
-                win._Item = mItem;
+                win._Item = (Data.MAYIN)lvData.SelectedItems[0];
                 if (win.ShowDialog() == true)
                 {
-                    win._Item.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
                     lvData.Items.Refresh();
                 }
             }
@@ -101,35 +73,22 @@ namespace UserControlLibrary
         {
             if (lvData.SelectedItems.Count > 0)
             {
-                mItem = (Data.MAYIN)((ListViewItem)lvData.SelectedItems[0]).Tag;
-                if (lsArrayDeleted == null)
+                if (lvData.SelectedItems.Count > 0)
                 {
-                    lsArrayDeleted = new List<Data.MAYIN>();
-                }
-                if (mItem.MayInID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
+                    Data.MAYIN item = (Data.MAYIN)lvData.SelectedItems[0];
+                    if (item.MayInID > 0)
+                    {
+                        item.Deleted = true;
+                    }
+                    lsArray.Remove(item);
+                    lvData.Items.Refresh();
                 }
             }
         }
 
         private void Luu()
         {
-            List<Data.MAYIN> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.MAYIN)li.Tag;
-                if (mItem.MayInID == 0 || mItem.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.MAYIN>();
-                    lsArray.Add(mItem);
-                }
-            }
-            BOMayIn.Luu(lsArray, lsArrayDeleted, mTransit);
+            BOMayIn.Luu(lsArray);
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();
@@ -179,7 +138,7 @@ namespace UserControlLibrary
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
         {
-            mItem = null;            
+            BOMayIn.Refresh();
             LoadDanhSach();
         }
 
