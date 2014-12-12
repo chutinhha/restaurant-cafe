@@ -1,3 +1,0 @@
-KHU
-	del LoaiGiaID
-giao dien quan li khu bo loai gia

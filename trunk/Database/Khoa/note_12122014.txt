@@ -1,0 +1,5 @@
+add row
+	TRANGTHAI
+ 	id=8 name:Bàn dã h?y
+
+reload chucnang
