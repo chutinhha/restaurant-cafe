@@ -10,7 +10,7 @@ namespace Data
         public Data.MENUNHOM MenuNhom { get; set; }
         public Data.MENULOAINHOM MenuLoaiNhom { get; set; }
         FrameworkRepository<MENUNHOM> frmNhom = null;
-        FrameworkRepository<MENULOAINHOM> frmLoaiNhom = null;
+        FrameworkRepository<MENULOAINHOM> frmLoaiNhom = null;        
         public BOMenuNhom(Data.Transit transit)
         {
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
@@ -26,7 +26,7 @@ namespace Data
         {
             MenuNhom = menuNhom;
             MenuLoaiNhom = menuLoaiNhom;
-        }
+        }        
         public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
             return GetAll(LoaiNhomID, IsBanHang, IsSoLuongChoPhepTonKho, IsSoLuongKhongChoPhepTonKho, false, mTransit);

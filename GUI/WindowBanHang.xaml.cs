@@ -113,6 +113,9 @@ namespace GUI
                 case (int)Data.TypeChucNang.BanHang.GiamGiaMon:
                     GiamGiaMon();
                     break;
+                case (int)Data.TypeChucNang.BanHang.HuyBan:
+                    HuyBan();
+                    break;
                 default:
                     break;
             }
@@ -135,6 +138,11 @@ namespace GUI
                 return false;
             }
             return true;
+        }
+        private void HuyBan()
+        {
+            mProcessOrder.HuyBan();
+            mUCFloorPlan.LoadAlllStatus();
         }
         private void GiamGiaMon()
         {

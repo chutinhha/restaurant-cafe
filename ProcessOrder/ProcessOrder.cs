@@ -65,7 +65,7 @@ namespace ProcessOrder
             int banHangID = mBanHang.TamTinh();
             if (banHangID > 0)
             {
-                mProcessPrinter.InBill(true, banHangID);
+                mProcessPrinter.InBill(PrinterServer.PrinterBillOrder.PrinterBillOrderType.TamTinh, banHangID);
             }
             return banHangID;
         }
@@ -79,8 +79,12 @@ namespace ProcessOrder
             int banHangID = mBanHang.TinhTien();
             if (banHangID > 0)
             {
-                mProcessPrinter.InBill(false, banHangID);
+                mProcessPrinter.InBill(PrinterServer.PrinterBillOrder.PrinterBillOrderType.HoaDon, banHangID);
             }
+        }
+        public int HuyBan()
+        {
+            return mBanHang.HuyBan();
         }
         public bool KiemTraHoaDonDaHoanThanh()
         {

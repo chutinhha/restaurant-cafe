@@ -48,8 +48,7 @@ namespace GUI
         }
 
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
-        {
-            MessageBox.Show("OK1");
+        {            
             mTransit.Ban = tbl._Ban;
             WindowBanHang win = new WindowBanHang(mTransit, uCFloorPlan1);
             win.ShowDialog();

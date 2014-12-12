@@ -26,7 +26,7 @@ namespace Data
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
         }
-
+        
         public static IQueryable<MAYIN> GetAllNoTracking(Transit mTransit, bool IsMayInHoaDon)
         {
             return FrameworkRepository<MAYIN>.QueryNoTracking(mTransit.KaraokeEntities.MAYINs).Where(s => s.Deleted == false && s.MayInHoaDon == IsMayInHoaDon);

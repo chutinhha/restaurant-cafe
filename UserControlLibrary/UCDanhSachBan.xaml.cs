@@ -8,7 +8,7 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCDanhSachBan : UserControl
     {
-        private Data.MENUMON mMon = null;
+        //private Data.MENUMON mMon = null;
         private Data.Transit mTransit = null;
 
         public UCDanhSachBan(Data.Transit transit)

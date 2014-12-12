@@ -20,19 +20,19 @@ namespace PrinterServer
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InHoaDonThread(lichSuBanHang); }));
             thread.Start();
         }
-        public void InBill(bool tamtinh,int banHangID)
+        public void InBill(PrinterBillOrder.PrinterBillOrderType type, int banHangID)
         {
-            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InBillThread(tamtinh,banHangID); }));
+            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InBillThread(type,banHangID); }));
             thread.Start();
         }
-        private void InBillThread(bool tamtinh,int banHangID)
+        private void InBillThread(PrinterBillOrder.PrinterBillOrderType type,int banHangID)
         {
             lock (mXuliMayIn)
             {
                 var list = mXuliMayIn.AllPrintingBill().ToList();
                 foreach (var item in list)
                 {
-                    PrinterBillOrder mayInHoaDon = new PrinterBillOrder(tamtinh,banHangID, item, mXuliMayIn);
+                    PrinterBillOrder mayInHoaDon = new PrinterBillOrder(type,banHangID, item, mXuliMayIn);
                     mayInHoaDon.Print();
                 }
             }

@@ -7,14 +7,20 @@ namespace PrinterServer
 {
     public class PrinterBillOrder
     {
+        public enum PrinterBillOrderType
+        {
+            HoaDon=0,
+            TamTinh=1,
+            InLai=2
+        };
         private POSPrinter mPOSPrinter;
         private int mBanHangID;
-        private static string TAM_TINH="(TẠM TÍNH)";
+        private static string[] PRINT_BILL_TYPE = { "", "(TẠM TÍNH)" ,"(IN LẠI)"};
         private static string FONT_NAME = "Times New Roman";
         private static float WIDTH_SO_LUONG = 17;
         private static float WIDTH_THANH_TIEN = 73;
         private static float WIDTH_DON_GIA = 73;
-        private bool mTamTinh;
+        private PrinterBillOrderType mPrinterBillOrderType;
         private Data.BOMayIn mBOMayIn;
         private Data.BOXuliMayIn mBOXuliMayIn;
         private Data.BOPrintOrder mBOPrintOrder;
@@ -40,12 +46,12 @@ namespace PrinterServer
 
         private System.Drawing.Color mColorBlack;
 
-        public PrinterBillOrder(bool tamTinh,int banHangID, Data.BOMayIn mayin, Data.BOXuliMayIn xuli)
+        public PrinterBillOrder(PrinterBillOrderType type, int banHangID, Data.BOMayIn mayin, Data.BOXuliMayIn xuli)
         {
             mBOMayIn = mayin;
             mBOXuliMayIn = xuli;
             mBanHangID = banHangID;
-            mTamTinh = tamTinh;
+            mPrinterBillOrderType = type;
 
             mFontHeader1 = new System.Drawing.Font(FONT_NAME, (float)mBOXuliMayIn._CAIDATMAYINHOADON.HeaderTextFontSize1, (System.Drawing.FontStyle)mBOXuliMayIn._CAIDATMAYINHOADON.HeaderTextFontStyle1);
             mFontHeader2 = new System.Drawing.Font(FONT_NAME, (float)mBOXuliMayIn._CAIDATMAYINHOADON.HeaderTextFontSize2, (System.Drawing.FontStyle)mBOXuliMayIn._CAIDATMAYINHOADON.HeaderTextFontStyle2);
@@ -123,8 +129,9 @@ namespace PrinterServer
             y += mPOSPrinter.POSGetFloat(30);
 
             y = mPOSPrinter.POSDrawString(mBOMayIn.TieuDeIn, e, mFontTitle, mColorBlack, y, TextAlign.Center, 0);
-            if (mTamTinh)
-                y = mPOSPrinter.POSDrawString(TAM_TINH, e, mFontTitle, mColorBlack, y, TextAlign.Center, 0);    
+            string note=PRINT_BILL_TYPE[(int)mPrinterBillOrderType];
+            if (note.Length>0)
+                y = mPOSPrinter.POSDrawString(note, e, mFontTitle, mColorBlack, y, TextAlign.Center, 0);    
 
             y += mPOSPrinter.POSGetFloat(30);
 
@@ -191,7 +198,7 @@ namespace PrinterServer
                 double tienGiam=
                 mPOSPrinter.POSDrawString("GIẢM GIÁ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
                 y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-                if (mTamTinh)
+                if (mPrinterBillOrderType==PrinterBillOrderType.TamTinh)
                 {
                     mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
                     y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);

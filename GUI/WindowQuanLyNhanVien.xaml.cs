@@ -8,10 +8,10 @@ namespace GUI
     /// </summary>
     public partial class WindowQuanLyNhanVien : Window
     {
-        private Data.BONhanVien mItem = null;
+        //private Data.BONhanVien mItem = null;
         private Data.Transit mTransit = null;
         private Data.BONhanVien BONhanVien = null;
-        private List<Data.BONhanVien> lsArrayDeleted = null;
+        //private List<Data.BONhanVien> lsArrayDeleted = null;
 
         public WindowQuanLyNhanVien(Data.Transit transit)
         {
@@ -20,7 +20,7 @@ namespace GUI
             BONhanVien = new Data.BONhanVien(transit);
             uCTile.TenChucNang = "Quản lý nhân viên";
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
-            PhanQuyen();
+            PhanQuyen();            
         }
 
         private void PhanQuyen()

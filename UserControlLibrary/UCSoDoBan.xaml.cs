@@ -166,6 +166,10 @@ namespace UserControlLibrary
 
         private void sliderNgang_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (mIsLockText)
+            {
+                return;
+            }
             if (mTableButton != null)
             {
                 mTableButton._Ban.Width = (decimal)sliderNgang.Value * uCFloorPlan1._CAIDATBAN.TableWidth / 100;
@@ -175,6 +179,10 @@ namespace UserControlLibrary
 
         private void sliderCao_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (mIsLockText)
+            {
+                return;
+            }
             if (mTableButton != null)
             {
                 mTableButton._Ban.Height = (decimal)sliderCao.Value * uCFloorPlan1._CAIDATBAN.TableHeight / 100;

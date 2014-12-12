@@ -52,7 +52,7 @@ namespace WebServer
 
         public void Run()
         {
-            int count = 0;
+            //int count = 0;
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 Console.WriteLine("Webserver running...");
@@ -141,8 +141,7 @@ namespace WebServer
                     {
                         html.Append("<style type=\"text/css\">");
                         html.Append(System.IO.File.ReadAllText(jsFileName));
-                        html.Append("</style>");
-                        byte[] buff=null;                        
+                        html.Append("</style>");                                            
                     }
                 }
             }

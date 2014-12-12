@@ -23,7 +23,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="60"/>
@@ -35,14 +35,14 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
-        <my:POSButtonImageClick Grid.Column="1" Name="btnBack" Click="btnBack_Click" Image="/SystemImages;component/Images/Back.png" BorderThickness="0" />
         <Label Name="lbPage" Grid.Column="2" Content="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <my:POSButtonImageClick Grid.Column="1" Name="btnBack" Click="btnBack_Click" Image="/SystemImages;component/Images/Back.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="3" Name="btnForward" Click="btnForward_Click" Image="/SystemImages;component/Images/Forward.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="5" Name="btnPrint" Click="btnPrint_Click" Image="/SystemImages;component/Images/printer_green.png" BorderThickness="0" />
-        <my:POSButtonImageClick Grid.Column="6" Name="btnPDF" Click="btnPDF_Click" Image="/SystemImages;component/Images/PDF.png" BorderThickness="0" />
+        <my:POSButtonImageClick Grid.Column="6" Name="btnPDF" Click="btnPDF_Click" Image="/SystemImages;component/Images/printer_green.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="8" Name="btnDong" Click="btnDong_Click" Image="/SystemImages;component/Images/ExtrasShutdown.png" BorderThickness="0" />
-        <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpChonNgay">
-
+        <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpChonNgay">            
         </DatePicker>
+       
     </Grid>
 </UserControl>

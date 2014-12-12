@@ -14,12 +14,12 @@ namespace Data
         public MENUMON MenuMon { get; set; }
         public int SoLuongBanTam { get; set; }
         private Transit mTransit;
-        public static IQueryable<BOChiTietBanHang> Query(int banHangId, BOBanHang banhang)
+        public static IQueryable<BOChiTietBanHang> Query(int banHangId, KaraokeEntities kara)
         {
             var iQuery =
-                from chitiet in banhang.frChiTietBanHang.Query()
-                join kichthuoc in banhang.frMenuKichThuocMon.Query() on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
-                join menu in banhang.frMenuMon.Query() on kichthuoc.MonID equals menu.MonID
+                from chitiet in FrameworkRepository<CHITIETBANHANG>.QueryNoTracking(kara.CHITIETBANHANGs)
+                join kichthuoc in FrameworkRepository<MENUKICHTHUOCMON>.QueryNoTracking(kara.MENUKICHTHUOCMONs) on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
+                join menu in FrameworkRepository<MENUMON>.QueryNoTracking(kara.MENUMONs) on kichthuoc.MonID equals menu.MonID
                 where chitiet.BanHangID == banHangId
                 select new BOChiTietBanHang
                 {
@@ -103,8 +103,9 @@ namespace Data
         {
             get
             {
-                return this.MenuMon.TenDai + " (" + this.MenuKichThuocMon.TenLoaiBan + ")";
-                //return this.MENUMON==null?"Mon": this.MENUMON.TenDai + " (" + this.MENUKICHTHUOCMON.TenLoaiBan + ")";
+                return this.MenuKichThuocMon.TenLoaiBan == "" ?
+                    this.MenuMon.TenDai :
+                    String.Format("{0} ({1})", this.MenuMon.TenDai, this.MenuKichThuocMon.TenLoaiBan);                
             }
         }
         public string ThanhTien

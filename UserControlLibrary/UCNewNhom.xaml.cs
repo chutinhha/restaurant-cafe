@@ -107,7 +107,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiNhom()
         {
-            cbbLoaiNhom.ItemsSource = Data.BOLoaiNhom.GetAll(mTransit);
+            cbbLoaiNhom.ItemsSource = Data.BOMenuLoaiNhom.GetAll(mTransit);
         }
 
         private void cbbLoaiNhom_SelectionChanged(object sender, SelectionChangedEventArgs e)

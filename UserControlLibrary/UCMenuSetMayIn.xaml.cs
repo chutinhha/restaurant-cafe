@@ -60,7 +60,7 @@ namespace UserControlLibrary
             {
                 if (item.Values == true)
                 {
-                    if (item.MenuItemMayIn.MenuItemMayIn.MayInID == 0 || item.MenuItemMayIn.MenuItemMayIn.MayInID == null)
+                    if (item.MenuItemMayIn.MenuItemMayIn.MayInID == 0)
                     {
                         item.MenuItemMayIn.MenuItemMayIn.MayInID = item.MenuItemMayIn.MayIn.MayInID;
                         item.MenuItemMayIn.MenuItemMayIn.MonID = _Mon.MenuMon.MonID;
