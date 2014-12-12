@@ -11,40 +11,56 @@ namespace Report.BaoCaoNgay
     {
         private bool _isReportViewerLoaded;
         private Data.Transit mTransit = null;
+        private Data.BOBaoCaoNgay BOBaoCaoNgay = null;
 
         public WindowBaoCaoNgay(Data.Transit transit)
         {
-            try
-            {                
-                 InitializeComponent();                 
-                mTransit = transit;
-                uCTileReport.Landscape = true;                
-                uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true);                
-                uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);                
-                uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);                
-                _reportViewer.Load += ReportViewer_Load;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("WindowBaoCaoNgay::" + ex.Message);
-            }
+            InitializeComponent();
+            mTransit = transit;
+            BOBaoCaoNgay = new Data.BOBaoCaoNgay(mTransit);
+            uCTileReport.Landscape = false;
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true);
+            uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
+            uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
+            _reportViewer.Load += ReportViewer_Load;
         }
 
         private void Reload()
         {
-            try
-            {
-                Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                reportDataSource1.Name = "BAOCAOLICHSUBANHANG";
-                reportDataSource1.Value = Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit, uCTileReport.GetDate);
-                this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-                this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoNgay.Report.rdlc";
-                _reportViewer.RefreshReport();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Reload::"+ex.Message);
-            }
+            this._reportViewer.LocalReport.DataSources.Clear();
+            Microsoft.Reporting.WinForms.ReportDataSource rdsCaiDatThongTinCongTy = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsCaiDatThongTinCongTy.Name = "CAIDATTHONGTINCONGTY";
+            rdsCaiDatThongTinCongTy.Value = BOBaoCaoNgay.GetCaiDatThongTinCongTy();
+            this._reportViewer.LocalReport.DataSources.Add(rdsCaiDatThongTinCongTy);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayTong = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNgayTong.Name = "BAOCAONGAYTONG";
+            rdsBaoCaoNgayTong.Value = BOBaoCaoNgay.GetBaoCaoNgayTong(uCTileReport.GetDate);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayTong);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayNhom = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNgayNhom.Name = "BAOCAONGAYNHOM";
+            rdsBaoCaoNgayNhom.Value = BOBaoCaoNgay.GetBaoCaoNgayNhom(uCTileReport.GetDate);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayNhom);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayMon = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNgayMon.Name = "BAOCAONGAYMON";
+            rdsBaoCaoNgayMon.Value = BOBaoCaoNgay.GetBaoCaoNgayMon(uCTileReport.GetDate);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayMon);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayThe = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNgayThe.Name = "BAOCAONGAYTHE";
+            rdsBaoCaoNgayThe.Value = BOBaoCaoNgay.GetBaoCaoThe(uCTileReport.GetDate);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayThe);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayKhachHang = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNgayKhachHang.Name = "BAOCAONGAYKHACHHANG";
+            rdsBaoCaoNgayKhachHang.Value = BOBaoCaoNgay.GetBaoCaoNgayKhachHang(uCTileReport.GetDate);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayKhachHang);
+
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoNgay.Report.rdlc";
+
+            _reportViewer.RefreshReport();
         }
 
         private void ReportViewer_Load(object sender, EventArgs e)

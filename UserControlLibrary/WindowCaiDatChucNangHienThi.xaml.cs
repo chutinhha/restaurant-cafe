@@ -34,7 +34,7 @@ namespace UserControlLibrary
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            BOChucNang.LuuChucNangHienThi(lsArray);
+            BOChucNang.Luu(lsArray);
             DialogResult = true;
         }
 

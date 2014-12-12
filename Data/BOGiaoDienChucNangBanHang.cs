@@ -7,24 +7,21 @@ namespace Data
 {
     public class BOGiaoDienChucNangBanHang
     {
-        FrameworkRepository<GIAODIENCHUCNANGBANHANG> frmCaiDatGiaoDienBanHang = null;
+
+        KaraokeEntities mKaraokeEntities = null;
         public BOGiaoDienChucNangBanHang(Data.Transit transit)
         {
-            frmCaiDatGiaoDienBanHang = new FrameworkRepository<GIAODIENCHUCNANGBANHANG>(transit.KaraokeEntities, transit.KaraokeEntities.GIAODIENCHUCNANGBANHANGs);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
-        public IQueryable<GIAODIENCHUCNANGBANHANG> GetAll(Data.Transit transit)
+        public IQueryable<GIAODIENCHUCNANGBANHANG> GetAll()
         {
-            return frmCaiDatGiaoDienBanHang.Query();
+            return mKaraokeEntities.GIAODIENCHUCNANGBANHANGs;
         }
 
-        public void CapNhat(List<Data.GIAODIENCHUCNANGBANHANG> lsArray, Data.Transit transit)
+        public void Luu()
         {
-            foreach (var item in lsArray)
-            {
-                frmCaiDatGiaoDienBanHang.Update(item);
-            }
-            frmCaiDatGiaoDienBanHang.Commit();
+            mKaraokeEntities.SaveChanges();
         }
 
         public static IQueryable<GIAODIENCHUCNANGBANHANG> GetNoTracking(Transit transit)

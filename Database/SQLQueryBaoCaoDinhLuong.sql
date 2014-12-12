@@ -1,26 +1,31 @@
 ﻿DROP VIEW BAOCAODINHLUONG
 GO
 CREATE VIEW BAOCAODINHLUONG
-AS
-Select DL.ID As ID ,M.TenDai As TenMonChinh,
+AS	
+	SELECT  
+	CAST(NgayBan AS DATE) As NgayBan,
+	ISNULL(MAX(DL.MonID), 0) As ID,	
+	M.TenDai As TenMon,
 	CASE
-		WHEN M1.DonViID = 1 THEN ISNULL(DL.KichThuocBan * DL.SoLuong, 0)
-		WHEN M1.DonViID = 2 THEN CAST(ISNULL(DL.KichThuocBan * DL.SoLuong, 0) / 1000.000 AS DECIMAL(10,3)) 
-		WHEN M1.DonViID = 3 THEN CAST(ISNULL(DL.KichThuocBan * DL.SoLuong, 0) / 1000.000 AS DECIMAL(10,3)) 
-		WHEN M1.DonViID = 4 THEN CAST(ISNULL(DL.KichThuocBan * DL.SoLuong, 0) / 3600.000 AS DECIMAL(10,3)) 			
-		ELSE CAST(ISNULL(DL.KichThuocBan * DL.SoLuong, 0) AS DECIMAL(10,0)) 
-	END AS DinhLuong,
+		WHEN M.DonViID = 1 THEN  'Cái, Lon, ...'
+		WHEN M.DonViID = 2 THEN  'Kg' 
+		WHEN M.DonViID = 3 THEN  'Lít'
+		WHEN M.DonViID = 4 THEN  'Giờ'
+	END As DonViTinh,
 	CASE
-		WHEN M1.DonViID = 1 THEN  M1.TenDai + ' (Cái, Lon, ...)' 
-		WHEN M1.DonViID = 2 THEN  M1.TenDai + ' (Kg)' 
-		WHEN M1.DonViID = 3 THEN  M1.TenDai + ' (Lít)' 
-		WHEN M1.DonViID = 4 THEN  M1.TenDai + ' (giờ)'
-		ELSE M1.TenDai
-	END As TenMonPhu
-	from DINHLUONG DL
-	Inner join MENUKICHTHUOCMON KTM On DL.KichThuocMonChinhID = KTM.KichThuocMonID
-	Inner join MENUMON M ON M.MonID = KTM.MonID
-	Inner join MENUMON M1 ON DL.MonID = M1.MonID
+		WHEN M.DonViID = 1 THEN ISNULL(SUM(DL.SoLuong * DL.KichThuocBan), 0)
+		WHEN M.DonViID = 2 THEN CAST(ISNULL(SUM(DL.SoLuong * DL.KichThuocBan), 0) / 1000.000 AS DECIMAL(10,3)) 
+		WHEN M.DonViID = 3 THEN CAST(ISNULL(SUM(DL.SoLuong * DL.KichThuocBan), 0) / 1000.000 AS DECIMAL(10,3)) 
+		WHEN M.DonViID = 4 THEN CAST(ISNULL(SUM(DL.SoLuong * DL.KichThuocBan), 0) / 3600.000 AS DECIMAL(10,3)) 					
+		ELSE CAST(ISNULL(SUM(DL.SoLuong * DL.KichThuocBan), 0) AS DECIMAL(10,0)) 
+	END
+	AS SoLuong
+	FROM BANHANG BH Inner Join CHITIETBANHANG CTBH ON BH.BanHangID = CTBH.BanHangID
+	Inner Join MENUKICHTHUOCMON KTM ON CTBH.KichThuocMonID = KTM.KichThuocMonID	
+	Inner join DINHLUONG DL ON DL.KichThuocMonChinhID = CTBH.KichThuocMonID
+	Inner Join MENUMON M ON DL.MonID = M.MonID		
+	Where KTM.ChoPhepTonKho = 0
+	GROUP BY CAST(NgayBan AS DATE), DL.MonID, M.TenDai, M.DonViID
 
 
 	

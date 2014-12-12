@@ -5,13 +5,12 @@ AS
 SELECT  
 	
 	CASE
-		WHEN T.DonViID = 1 THEN  M.TenDai + ' (Cái, Lon, ...)' 
-		WHEN T.DonViID = 2 THEN  M.TenDai + ' (Kg)' 
-		WHEN T.DonViID = 3 THEN  M.TenDai + ' (Lít)' 
-		WHEN T.DonViID = 4 THEN  M.TenDai + ' (giờ)'
-		ELSE M.TenDai
-	END							
-	As TenBaoCao,       
+		WHEN M.DonViID = 1 THEN  'Cái, Lon, ...'
+		WHEN M.DonViID = 2 THEN  'Kg' 
+		WHEN M.DonViID = 3 THEN  'Lít'
+		WHEN M.DonViID = 4 THEN  'Giờ'
+	END As DonViTinh,					
+	M.TenDai As TenBaoCao,       
 	CASE
 		WHEN T.DonViID = 1 THEN ISNULL(T.SoLuongTon, 0)
 		WHEN T.DonViID = 2 THEN CAST(ISNULL(T.SoLuongTon, 0) / 1000.000 AS DECIMAL(10,3)) 

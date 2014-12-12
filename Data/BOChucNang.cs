@@ -8,24 +8,20 @@ namespace Data
     public class BOChucNang
     {
 
-        FrameworkRepository<CHUCNANG> frmChucNang = null;
+        KaraokeEntities mKaraokeEntities = null;
         public BOChucNang(Data.Transit transit)
         {
-            frmChucNang = new FrameworkRepository<CHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.CHUCNANGs);
+            mKaraokeEntities = new KaraokeEntities();
         }
 
         public IQueryable<CHUCNANG> GetAll(Transit transit)
         {
-            return frmChucNang.Query().Where(s => s.Deleted == false);
+            return mKaraokeEntities.CHUCNANGs.Where(s => s.Deleted == false);
         }
 
-        public void LuuChucNangHienThi(List<CHUCNANG> lsArray)
+        public void Luu(List<CHUCNANG> lsArray)
         {
-            foreach (var item in lsArray)
-            {
-                frmChucNang.Update(item);
-            }
-            frmChucNang.Commit();
+            mKaraokeEntities.SaveChanges();
         }
 
         public static IQueryable<CHUCNANG> GetAllNoTracking(Transit mTransit)
@@ -144,7 +140,8 @@ namespace Data
             None,
             BaoCaoNgay = 1201,
             BaoCaoTonKho = 1202,
-            BaoCaoDinhLuong = 1203
+            BaoCaoDinhLuong = 1203,
+            BaoCaoLichSuBanHang = 1204
         }
 
         public enum The
