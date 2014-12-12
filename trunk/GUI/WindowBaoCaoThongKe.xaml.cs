@@ -50,7 +50,7 @@ namespace GUI
 
         private void btnBaoCaoLichSuBanHang_Click(object sender, RoutedEventArgs e)
         {
-            Report.BaoCaoNgay.WindowBaoCaoNgay win = new Report.BaoCaoNgay.WindowBaoCaoNgay(mTransit);
+            Report.LichSuBanHang.WindowLichSuBanHang win = new Report.LichSuBanHang.WindowLichSuBanHang(mTransit);
             win.ShowDialog();
         }
 
@@ -70,7 +70,8 @@ namespace GUI
         {
             btnBaoCaoDinhLuong.Tag = Data.TypeChucNang.Baocao.BaoCaoDinhLuong;
             btnBaoCaoTonKho.Tag = Data.TypeChucNang.Baocao.BaoCaoTonKho;
-            btnBaoCaoLichSuBanHang.Tag = Data.TypeChucNang.Baocao.BaoCaoNgay;
+            btnBaoCaoLichSuBanHang.Tag = Data.TypeChucNang.Baocao.BaoCaoLichSuBanHang;
+            btnBaoCaoNgay.Tag = Data.TypeChucNang.Baocao.BaoCaoNgay;
         }
 
         private void PhanQuyen()
@@ -118,6 +119,12 @@ namespace GUI
             {
                 btn.Visibility = System.Windows.Visibility.Collapsed;
             }
+        }
+
+        private void btnBaoCaoNgay_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoNgay.WindowBaoCaoNgay win = new Report.BaoCaoNgay.WindowBaoCaoNgay(mTransit);
+            win.ShowDialog();
         }
     }
 }

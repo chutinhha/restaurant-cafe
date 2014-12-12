@@ -7,9 +7,24 @@ namespace Data
 {
     public class BOBaoCaoDinhLuong
     {
-        public static IQueryable<BAOCAODINHLUONG> GetQueryNoTracking(Transit mTransit)
+        KaraokeEntities mKaraokeEntities = null;
+        public BOBaoCaoDinhLuong()
         {
-            return FrameworkRepository<BAOCAODINHLUONG>.QueryNoTracking(mTransit.KaraokeEntities.BAOCAODINHLUONGs).OrderBy(s => s.TenMonChinh);
+            mKaraokeEntities = new KaraokeEntities();
+
         }
+
+        public IQueryable<CAIDATTHONGTINCONGTY> GetCaiDatThongTinCongTy()
+        {
+            return mKaraokeEntities.CAIDATTHONGTINCONGTies;
+        }
+
+        public IQueryable<BAOCAODINHLUONG> GetBaoCaoDinhLuong(DateTime dtFrom)
+        {
+            return from x in mKaraokeEntities.BAOCAODINHLUONGs
+                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   select x;
+        }
+        
     }
 }

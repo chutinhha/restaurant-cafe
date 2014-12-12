@@ -20,16 +20,17 @@ namespace UserControlLibrary
     {
         Data.Transit mTransit = null;
         Data.BOGiaoDienChucNangBanHang BOGiaoDienChucNangBanHang = null;
+        List<Data.GIAODIENCHUCNANGBANHANG> lsArray = null;
         public WindowCaiDatGiaoDienBanHang(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
             BOGiaoDienChucNangBanHang = new Data.BOGiaoDienChucNangBanHang(transit);
         }
-        List<Data.GIAODIENCHUCNANGBANHANG> lsArray = null;
+        
         public void LoadGiaoDienBanHang()
         {
-            lsArray = BOGiaoDienChucNangBanHang.GetAll(mTransit).ToList();
+            lsArray = BOGiaoDienChucNangBanHang.GetAll().ToList();
             foreach (var item in lsArray)
             {
                 var myComboBox = (ComboBox)this.FindName("cbbChucNang" + item.ID);
@@ -94,7 +95,7 @@ namespace UserControlLibrary
                         cn.Hinh = Utilities.ImageHandler.ImageToByte(image);
                     }
                 }
-                BOGiaoDienChucNangBanHang.CapNhat(lsArray, mTransit);
+                BOGiaoDienChucNangBanHang.Luu();
             }
 
             DialogResult = true;

@@ -7,9 +7,22 @@ namespace Data
 {
     public class BOBaoCaoTonKho
     {
-        public static IQueryable<BAOCAOTONKHO> GetQueryNoTracking(Transit mTransit)
+        KaraokeEntities mKaraokeEntities = null;
+        public BOBaoCaoTonKho()
         {
-            return FrameworkRepository<BAOCAOTONKHO>.QueryNoTracking(mTransit.KaraokeEntities.BAOCAOTONKHOes).OrderBy(s => s.SoluongTon);
+            mKaraokeEntities = new KaraokeEntities();
+
+        }
+
+        public IQueryable<CAIDATTHONGTINCONGTY> GetCaiDatThongTinCongTy()
+        {
+            return mKaraokeEntities.CAIDATTHONGTINCONGTies;
+        }
+
+        public IQueryable<BAOCAOTONKHO> GetBaoCaoTonKho()
+        {
+            return mKaraokeEntities.BAOCAOTONKHOes;
+                   
         }
     }
 }

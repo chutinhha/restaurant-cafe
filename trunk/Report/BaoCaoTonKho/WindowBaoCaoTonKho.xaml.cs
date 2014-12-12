@@ -20,12 +20,14 @@ namespace Report.BaoCaoTonKho
     {
         private bool _isReportViewerLoaded;
         private Data.Transit mTransit = null;
+        private Data.BOBaoCaoTonKho BOBaoCaoTonKho = null;
 
         public WindowBaoCaoTonKho(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            uCTileReport.Landscape = true;
+            BOBaoCaoTonKho = new Data.BOBaoCaoTonKho();
+            uCTileReport.Landscape = false;
             uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoTonKho", false);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
@@ -34,11 +36,20 @@ namespace Report.BaoCaoTonKho
 
         private void Reload()
         {
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            reportDataSource1.Name = "BAOCAOTONKHO";
-            reportDataSource1.Value = Data.BOBaoCaoTonKho.GetQueryNoTracking(mTransit);
-            this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            this._reportViewer.LocalReport.DataSources.Clear();
+            Microsoft.Reporting.WinForms.ReportDataSource rdsCaiDatThongTinCongTy = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsCaiDatThongTinCongTy.Name = "CAIDATTHONGTINCONGTY";
+            rdsCaiDatThongTinCongTy.Value = BOBaoCaoTonKho.GetCaiDatThongTinCongTy();
+            this._reportViewer.LocalReport.DataSources.Add(rdsCaiDatThongTinCongTy);
+
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoTonKho = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoTonKho.Name = "BAOCAOTONKHO";
+            rdsBaoCaoTonKho.Value = BOBaoCaoTonKho.GetBaoCaoTonKho();
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoTonKho);
+
+
             this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoTonKho.Report.rdlc";
+
             _reportViewer.RefreshReport();
         }
 
