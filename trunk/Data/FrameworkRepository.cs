@@ -118,7 +118,7 @@ namespace Data
             foreach (var item in mListEntityObject)
             {
                 this.Detach(item.EntityObject);
-            }
+            }            
             mListEntityObject.Clear();
         }
         public void Refresh()

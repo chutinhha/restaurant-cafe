@@ -7,13 +7,13 @@ namespace Data
 {
     public class BOBanHang
     {
-        private BAN mBan;
+        public BAN BAN { get; set; }
         public BANHANG BANHANG { get; set; }
         public KHACHHANG KHACHHANG { get; set; }
         private List<BOChiTietBanHang> mListChiTietBanHangDeleted;
         public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }        
         private Transit mTransit;
-
+        private KaraokeEntities mKaraokeEntities;
         public FrameworkRepository<BANHANG> frBanHang;
         public FrameworkRepository<CHITIETBANHANG> frChiTietBanHang;
         public FrameworkRepository<MENUKICHTHUOCMON> frMenuKichThuocMon;
@@ -24,25 +24,35 @@ namespace Data
 
         public string TenBan 
         {
-            get { return mBan.TenBan; }
+            get { return BAN.TenBan; }
         }
         public string MaHoaDon 
         {
             get { return BANHANG.MaHoaDon; }
         }
+        public string GioBan 
+        {
+            get { return Utilities.DateTimeConverter.ConvertTimeToString(BANHANG.NgayBan.Value); }
+        }
+        public string TongTienDaBan 
+        {
+            get { return Utilities.MoneyFormat.ConvertToString(BANHANG.TongTien); }
+        }
         public BOBanHang()
-        { }
+        {            
+            _ListChiTietBanHang = new List<BOChiTietBanHang>();
+        }
         public BOBanHang(Transit tran)
         {                        
             mTransit = tran;
-            
-            frBanHang = new FrameworkRepository<Data.BANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.BANHANGs);
-            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.CHITIETBANHANGs);
-            frMenuKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.MENUKICHTHUOCMONs);
-            frMenuMon = new FrameworkRepository<MENUMON>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.MENUMONs);
-            frLichSu = new FrameworkRepository<LICHSUBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.LICHSUBANHANGs);
-            frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mTransit.KaraokeEntities,mTransit.KaraokeEntities.CHITIETLICHSUBANHANGs);
-            frKhachHang = new FrameworkRepository<Data.KHACHHANG>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.KHACHHANGs);
+            mKaraokeEntities = new KaraokeEntities();
+            frBanHang = new FrameworkRepository<Data.BANHANG>(mKaraokeEntities,mKaraokeEntities.BANHANGs);
+            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETBANHANGs);
+            frMenuKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mKaraokeEntities,mKaraokeEntities.MENUKICHTHUOCMONs);
+            frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities,mKaraokeEntities.MENUMONs);
+            frLichSu = new FrameworkRepository<LICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.LICHSUBANHANGs);
+            frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETLICHSUBANHANGs);
+            frKhachHang = new FrameworkRepository<Data.KHACHHANG>(mKaraokeEntities, mKaraokeEntities.KHACHHANGs);
             _ListChiTietBanHang = new List<BOChiTietBanHang>();
             mListChiTietBanHangDeleted = new List<BOChiTietBanHang>();
             //LoadBanHang();
@@ -54,6 +64,22 @@ namespace Data
         public static IQueryable<BANHANG> GetAllNotCompleted(Transit transit)
         {
             return FrameworkRepository<BANHANG>.QueryNoTracking(transit.KaraokeEntities.BANHANGs).Where(b=>b.TrangThaiID<3);
+        }
+        public static IQueryable<BOBanHang> GetAllCompleted(KaraokeEntities kara,DateTime date)
+        {
+            return from a in FrameworkRepository<BANHANG>.QueryNoTracking(kara.BANHANGs).Where(
+                       b => 
+                           b.TrangThaiID == 4 &&
+                           b.NgayBan.Value.Day==date.Day &&
+                           b.NgayBan.Value.Month==date.Month&&
+                           b.NgayBan.Value.Year==date.Year
+                       )
+                   join b in FrameworkRepository<BAN>.QueryNoTracking(kara.BANs) on a.BanID equals b.BanID
+                   select new BOBanHang
+                   {
+                       BAN=b,
+                       BANHANG=a
+                   };
         }
         public IQueryable<BOBanHang> GetAllBanHang(BAN ban)
         {
@@ -67,9 +93,23 @@ namespace Data
                        KHACHHANG=c
                    };
         }
+        public void LoadChiTiet()
+        {
+            _ListChiTietBanHang.Clear();
+            if (mKaraokeEntities==null)
+            {
+                mKaraokeEntities = new KaraokeEntities();
+            }
+            var listItem = BOChiTietBanHang.Query(BANHANG.BanHangID, mKaraokeEntities);
+            foreach (BOChiTietBanHang item in listItem)
+            {
+                item.SoLuongBanTam = (int)item.ChiTietBanHang.SoLuongBan;
+                this.AddChiTietBanHang(item);
+            }
+        }
         public void LoadBanHang(BAN ban)
         {
-            mBan = ban;
+            BAN = ban;
             //var list = frBanHang.Query().Where(o => o.BanID == ban.BanID && o.TrangThaiID < 3).ToList();
             BOBanHang bh = GetAllBanHang(ban).FirstOrDefault();
             if (bh!=null)
@@ -77,12 +117,7 @@ namespace Data
                 //BANHANG = list.FirstOrDefault();
                 BANHANG = bh.BANHANG;
                 KHACHHANG = bh.KHACHHANG;
-                var listItem = BOChiTietBanHang.Query(BANHANG.BanHangID, this);
-                foreach (BOChiTietBanHang item in listItem)
-                {
-                    item.SoLuongBanTam = (int)item.ChiTietBanHang.SoLuongBan;
-                    this.AddChiTietBanHang(item);
-                }
+                LoadChiTiet();
             }
             else
             {
@@ -296,6 +331,17 @@ namespace Data
             if (this.BANHANG.TrangThaiID == 1 || this.BANHANG.TrangThaiID == 2)
             {
                 this.BANHANG.TrangThaiID = 2;
+                frBanHang.Update(this.BANHANG);
+                frBanHang.Commit();
+                return this.BANHANG.BanHangID;
+            }
+            return 0;
+        }
+        public int HuyBan()
+        {
+            if (this.BANHANG.TrangThaiID == 1 || this.BANHANG.TrangThaiID == 2)
+            {
+                this.BANHANG.TrangThaiID = 8;
                 frBanHang.Update(this.BANHANG);
                 frBanHang.Commit();
                 return this.BANHANG.BanHangID;

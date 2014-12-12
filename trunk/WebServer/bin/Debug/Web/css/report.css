@@ -1,0 +1,22 @@
+.report_table{
+    width: 100%;    
+}
+.rowheader{
+    background: mistyrose;
+}
+.row1{
+    background: azure;
+}
+.report_table_column1{
+    text-align: center;
+}
+.report_table_column2{
+    text-align: center;
+}
+.report_table_column3{
+    text-align: center;
+}
+.report_table_column4{
+    text-align: right;
+}
+

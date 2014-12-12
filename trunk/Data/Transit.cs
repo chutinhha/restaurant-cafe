@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Data;
 
 namespace Data
 {
@@ -47,25 +48,11 @@ namespace Data
 
             KaraokeEntities = new KaraokeEntities();
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
-            KhachHang = KaraokeEntities.KHACHHANGs.FirstOrDefault();
-            The = KaraokeEntities.THEs.FirstOrDefault();
+            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();                        
             ListDonVi = BODonVi.GetAll(this);
-            BOChiTietQuyen = new BOChiTietQuyen(this);           
-
-            
-            //var list = Data.BOLichBieuDinhKy.GetAllVisualRun(this);
-            //var aaa = list.ToList();
-            //var list1 = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(this);
-            //var bbb = list1.ToList();
-            //var list3 = (from a in list select a.MenuLoaiGia).Union(from b in list1 select b.MenuLoaiGia).Distinct();
-            //var list4 = BOMenuGia.GetAll(this);
-
-            //var list5 = (from a in list3
-            //            join b in list4 on a.LoaiGiaID equals b.LoaiGiaID
-            //             select b).ToList(); ;            
+            BOChiTietQuyen = new BOChiTietQuyen(this);               
         }
-
+        
         public void LayDanhSachQuyen()
         {
             if (NhanVien.NhanVienID != 0)

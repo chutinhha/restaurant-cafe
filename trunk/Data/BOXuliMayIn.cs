@@ -138,7 +138,7 @@ namespace Data
                         group x by new { x.KichThuoc,x.TenDai,x.TenLoaiBan,x.GiaBan,x.GiamGia } into y
                         select new BOPrintOrderItem
                         {
-                            TenMon = y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                            TenMon =y.Key.TenLoaiBan==""?y.Key.TenDai: y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
                             SoLuong = y.Sum(c => c.SoLuong),
                             GiaBan=y.Key.GiaBan,
                             GiamGia=y.Key.GiamGia,
@@ -189,7 +189,7 @@ namespace Data
                         group x by new { x.KichThuoc,x.TenDai,x.TenLoaiBan ,x.TrangThai } into y
                         select new BOPrintOrderItem
                         {
-                            TenMon = y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                            TenMon =y.Key.TenLoaiBan==""?y.Key.TenDai: y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
                             TrangThai = (int)y.Key.TrangThai,
                             SoLuong = y.Sum(c => c.SoLuong)
                         }

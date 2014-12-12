@@ -10,7 +10,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#FF56007C"                            
                             BorderThickness="1">
-                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
+                        <TextBox HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,UpdateSourceTrigger=PropertyChanged}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

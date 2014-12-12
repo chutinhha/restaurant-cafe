@@ -147,5 +147,11 @@ namespace GUI
             }
         }
 
+        private void btnXuatNhapDuLieu_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowMenuExport win = new UserControlLibrary.WindowMenuExport(mTransit);
+            win.ShowDialog();
+        }
+
     }
 }
