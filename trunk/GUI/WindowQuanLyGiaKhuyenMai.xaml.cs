@@ -140,6 +140,8 @@ namespace GUI
                 ucLoaiGia.Window_KeyDown(sender, e);
             if (spNoiDung.Children[0] is UserControlLibrary.UCDanhSachBan)
                 ucDanhSachBan.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCDanhSachKhuyenMai)
+                ucDanhSachKhuyenMai.Window_KeyDown(sender, e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

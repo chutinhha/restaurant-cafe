@@ -50,8 +50,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lvData.ItemsSource = lsArray = BOMenuKhuyenMai.GetDanhSachKichThuocMon();
-            LoadButton();
+            lvData.ItemsSource = lsArray = BOMenuKhuyenMai.GetDanhSachKichThuocMon();            
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -90,29 +89,16 @@ namespace UserControlLibrary
                             line.MenuKhuyenMai.Deleted = true;
                         }
                     }
+                    lsArray.Remove(item);
                     lvData.Items.Refresh();
                 }
             }
 
-        }
-
-        private void LoadButton()
-        {
-            //if (lsArrayDeleted.Count > 0)
-            //{
-            //    btnThem.Visibility = System.Windows.Visibility.Hidden;
-            //    btnSua.Visibility = System.Windows.Visibility.Hidden;
-            //}
-            //else
-            //{
-            //    btnThem.Visibility = System.Windows.Visibility.Visible;
-            //    btnSua.Visibility = System.Windows.Visibility.Visible;
-            //}
-        }
+        }        
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            BOMenuKhuyenMai.Luu(null);
+            BOMenuKhuyenMai.Luu(lsArray);
             UserControlLibrary.WindowMessageBox win = new WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             win.ShowDialog();
         }

@@ -80,10 +80,33 @@ namespace Data
                 {
                     mKaraokeEntities.MENUKHUYENMAIs.AddObject(item.MenuKhuyenMai);
                 }
-
+                else if (item.MenuKhuyenMai.Deleted == true)
+                {
+                    mKaraokeEntities.MENUKHUYENMAIs.DeleteObject(item.MenuKhuyenMai);
+                }
             }
             mKaraokeEntities.SaveChanges();
         }
+
+        public void Luu(List<BOMenuKichThuocMon> lsArray)
+        {
+            foreach (BOMenuKichThuocMon item in lsArray)
+            {
+                foreach (BOMenuKhuyenMai line in item.DanhSachKhuyenMai)
+                {
+                    if (line.MenuKhuyenMai.KhuyenMaiID == 0)
+                    {
+                        mKaraokeEntities.MENUKHUYENMAIs.AddObject(line.MenuKhuyenMai);
+                    }
+                    else if (line.MenuKhuyenMai.Deleted == true)
+                    {
+                        mKaraokeEntities.MENUKHUYENMAIs.DeleteObject(line.MenuKhuyenMai);
+                    }
+                }
+            }
+            mKaraokeEntities.SaveChanges();
+        }
+
 
         public void Refresh()
         {
