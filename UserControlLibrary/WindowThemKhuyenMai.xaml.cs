@@ -12,7 +12,6 @@ namespace UserControlLibrary
     {
         public Data.BOMenuKichThuocMon _Item = null;
         private Data.BOMenuKhuyenMai BOMenuKhuyenMai = null;
-        private List<Data.BOMenuKhuyenMai> lsArrayDeleted = null;
         Data.Transit mTransit = null;
         public WindowThemKhuyenMai(Data.BOMenuKichThuocMon item, Data.Transit transit, Data.BOMenuKhuyenMai bOMenuKhuyenMai)
         {
@@ -90,9 +89,7 @@ namespace UserControlLibrary
             Data.BOMenuKhuyenMai item = ((Button)sender).DataContext as Data.BOMenuKhuyenMai;
             if (item.MenuKhuyenMai.KhuyenMaiID > 0)
             {
-                if (lsArrayDeleted == null)
-                    lsArrayDeleted = new List<Data.BOMenuKhuyenMai>();
-                lsArrayDeleted.Add(item);
+                item.MenuKhuyenMai.Deleted = true;
             }
             _Item.DanhSachKhuyenMai.Remove(item);
             lvData.Items.Refresh();
