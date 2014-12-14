@@ -17,7 +17,8 @@ namespace Report
 
         public bool Landscape { get; set; }
 
-        public DateTime GetDate { get { return dtpChonNgay.SelectedDate != null ? (DateTime)dtpChonNgay.SelectedDate : DateTime.Now; } }
+        public DateTime GetDateFrom { get { return dtpDateFrom.SelectedDate != null ? (DateTime)dtpDateFrom.SelectedDate : DateTime.Now; } }
+        public DateTime GetDateTo { get { return dtpDateTo.SelectedDate != null ? (DateTime)dtpDateTo.SelectedDate : DateTime.Now; } }
 
         public UCTileReport()
         {
@@ -29,9 +30,13 @@ namespace Report
         public delegate void OnDong();
         public event OnDong _OnDong;
 
-        public void SetInit(Data.Transit transit, Microsoft.Reporting.WinForms.ReportViewer reportViewer, string title, bool IsShowDate)
+        public void SetInit(Data.Transit transit, Microsoft.Reporting.WinForms.ReportViewer reportViewer, string title, bool IsShowDateFrom, bool IsShowDateTo)
         {
-            dtpChonNgay.Visibility = IsShowDate ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            dtpDateFrom.Visibility = IsShowDateFrom ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            dtpDateTo.Visibility = IsShowDateTo ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            gridContent.ColumnDefinitions[0].Width = IsShowDateFrom ? gridContent.ColumnDefinitions[0].Width : new GridLength(0);
+            gridContent.ColumnDefinitions[1].Width = IsShowDateTo ? gridContent.ColumnDefinitions[0].Width : new GridLength(0);
+
             mReportViewer = reportViewer;
             Title = title;
             mTransit = transit;
@@ -64,9 +69,9 @@ namespace Report
 
         private void btnPDF_Click(object sender, RoutedEventArgs e)
         {
-            mReportViewer.LocalReport.DisplayName = Title + " " + DateTime.Now.ToString("yyyy-MM-dd HHmmss");                        
+            mReportViewer.LocalReport.DisplayName = Title + " " + DateTime.Now.ToString("yyyy-MM-dd HHmmss");
             //0: EXCEL, 1:IMAGE, 2:PDF, 3: WORD
-            
+
             mReportViewer.ExportDialog(mReportViewer.LocalReport.ListRenderingExtensions()[2]);
 
         }
@@ -79,9 +84,10 @@ namespace Report
             mReportViewer.PrinterSettings.DefaultPageSettings.Landscape = Landscape;
             mReportViewer.PrintDialog();
         }
+        private bool IsSelectedDateChanged = false;
         private void dtpChonNgay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_OnReload != null)
+            if (_OnReload != null && IsSelectedDateChanged)
             {
                 _OnReload();
             }
@@ -90,6 +96,13 @@ namespace Report
         public void ReloadPage()
         {
             lbPage.Content = mReportViewer.CurrentPage + "/" + mReportViewer.GetTotalPages();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            dtpDateFrom.SelectedDate = DateTime.Now;
+            dtpDateTo.SelectedDate = DateTime.Now;
+            IsSelectedDateChanged = true;
         }
     }
 }

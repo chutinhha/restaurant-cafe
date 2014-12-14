@@ -20,36 +20,40 @@ namespace Data
             return mKaraokeEntities.CAIDATTHONGTINCONGTies;
         }
 
-        public IQueryable<BAOCAONGAYTONG> GetBaoCaoNgayTong(DateTime dtFrom)
+        public IQueryable<BAOCAONGAYTONG> GetBaoCaoNgayTong(DateTime dtFrom, DateTime dtTo)
         {
             return from x in mKaraokeEntities.BAOCAONGAYTONGs
-                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
                    select x;
         }
 
-        public IQueryable<BAOCAONGAYNHOM> GetBaoCaoNgayNhom(DateTime dtFrom)
+        public IQueryable<BAOCAONGAYNHOM> GetBaoCaoNgayNhom(DateTime dtFrom, DateTime dtTo)
         {
             return from x in mKaraokeEntities.BAOCAONGAYNHOMs
-                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
+                   orderby x.TenDai
                    select x;
         }
 
-        public IQueryable<BAOCAONGAYMON> GetBaoCaoNgayMon(DateTime dtFrom)
+        public IQueryable<BAOCAONGAYMON> GetBaoCaoNgayMon(DateTime dtFrom, DateTime dtTo)
         {
             return from x in mKaraokeEntities.BAOCAONGAYMONs
-                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
+                   orderby x.Ten
                    select x;
         }
-        public IQueryable<BAOCAONGAYTHE> GetBaoCaoThe(DateTime dtFrom)
+        public IQueryable<BAOCAONGAYTHE> GetBaoCaoThe(DateTime dtFrom, DateTime dtTo)
         {
             return from x in mKaraokeEntities.BAOCAONGAYTHEs
-                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
+                   orderby x.TenThe
                    select x;
         }
-        public IQueryable<BAOCAONGAYKHACHHANG> GetBaoCaoNgayKhachHang(DateTime dtFrom)
+        public IQueryable<BAOCAONGAYKHACHHANG> GetBaoCaoNgayKhachHang(DateTime dtFrom, DateTime dtTo)
         {
             return from x in mKaraokeEntities.BAOCAONGAYKHACHHANGs
-                   where x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day
+                   where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
+                   orderby x.TenKhachHang
                    select x;
         }
     }

@@ -18,9 +18,10 @@
         </Grid.ColumnDefinitions>
         <my:UCTile Name="uCTile" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
         <my:POSButtonMain Name="btnBaoCaoNgay" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Calendar_selection_day.png" Margin="10" Click="btnBaoCaoNgay_Click" Background="#FF009F3B" TextNho="Bán hàng" TextTo="Báo cáo ngày"  />
-        <my:POSButtonMain Name="btnBaoCaoLichSuBanHang" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Calendar_selection_day.png" Margin="10" Click="btnBaoCaoLichSuBanHang_Click" Background="#FF009F3B" TextNho="Bán hàng" TextTo="Lịch sử bán hàng"  />
+        <my:POSButtonMain Name="btnBaoCaoLichSuBanHang" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Calendar_selection_day.png" Margin="10" Click="btnBaoCaoLichSuBanHang_Click" Background="#FF4EB89B" TextNho="Bán hàng" TextTo="Lịch sử bán hàng"  />
         <my:POSButtonMain Name="btnBaoCaoTonKho" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/uncompress.png" Margin="10" Click="btnBaoCaoTonKho_Click" Background="#FFEB6696" TextNho="Tồn kho" TextTo="Báo cáo tồn kho"  />
         <my:POSButtonMain Name="btnBaoCaoDinhLuong" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Sales_report.png" Margin="10" Click="btnBaoCaoDinhLuong_Click" Background="#FFFF3535" TextNho="Định lượng" TextTo="Báo cáo định lượng"  />
+        <my:POSButtonMain Name="btnBaoCaoNhanVien" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Sales_report.png" Margin="10" Click="btnBaoCaoNhanVien_Click" Background="#FFFF3535" TextNho="Nhân viên" TextTo="Báo cáo nhân viên"  />
         <!--<my:POSButtonMain Name="btnLichSuDangNhap" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnLichSuDangNhap_Click" Background="#FFFF3535" TextNho="Đăng nhập" TextTo="Lịch sử đăng nhập"  />-->
     </Grid>
 </Window>
