@@ -19,7 +19,7 @@ namespace Report.BaoCaoNgay
             mTransit = transit;
             BOBaoCaoNgay = new Data.BOBaoCaoNgay(mTransit);
             uCTileReport.Landscape = false;
-            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true);
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true, true);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
             _reportViewer.Load += ReportViewer_Load;
@@ -35,27 +35,27 @@ namespace Report.BaoCaoNgay
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayTong = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoNgayTong.Name = "BAOCAONGAYTONG";
-            rdsBaoCaoNgayTong.Value = BOBaoCaoNgay.GetBaoCaoNgayTong(uCTileReport.GetDate);
+            rdsBaoCaoNgayTong.Value = BOBaoCaoNgay.GetBaoCaoNgayTong(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayTong);
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayNhom = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoNgayNhom.Name = "BAOCAONGAYNHOM";
-            rdsBaoCaoNgayNhom.Value = BOBaoCaoNgay.GetBaoCaoNgayNhom(uCTileReport.GetDate);
+            rdsBaoCaoNgayNhom.Value = BOBaoCaoNgay.GetBaoCaoNgayNhom(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayNhom);
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayMon = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoNgayMon.Name = "BAOCAONGAYMON";
-            rdsBaoCaoNgayMon.Value = BOBaoCaoNgay.GetBaoCaoNgayMon(uCTileReport.GetDate);
+            rdsBaoCaoNgayMon.Value = BOBaoCaoNgay.GetBaoCaoNgayMon(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayMon);
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayThe = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoNgayThe.Name = "BAOCAONGAYTHE";
-            rdsBaoCaoNgayThe.Value = BOBaoCaoNgay.GetBaoCaoThe(uCTileReport.GetDate);
+            rdsBaoCaoNgayThe.Value = BOBaoCaoNgay.GetBaoCaoThe(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayThe);
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNgayKhachHang = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoNgayKhachHang.Name = "BAOCAONGAYKHACHHANG";
-            rdsBaoCaoNgayKhachHang.Value = BOBaoCaoNgay.GetBaoCaoNgayKhachHang(uCTileReport.GetDate);
+            rdsBaoCaoNgayKhachHang.Value = BOBaoCaoNgay.GetBaoCaoNgayKhachHang(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNgayKhachHang);
 
             this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoNgay.Report.rdlc";

@@ -72,6 +72,7 @@ namespace GUI
             btnBaoCaoTonKho.Tag = Data.TypeChucNang.Baocao.BaoCaoTonKho;
             btnBaoCaoLichSuBanHang.Tag = Data.TypeChucNang.Baocao.BaoCaoLichSuBanHang;
             btnBaoCaoNgay.Tag = Data.TypeChucNang.Baocao.BaoCaoNgay;
+            btnBaoCaoNhanVien.Tag = Data.TypeChucNang.Baocao.BaoCaoNhanVien;
         }
 
         private void PhanQuyen()
@@ -124,6 +125,12 @@ namespace GUI
         private void btnBaoCaoNgay_Click(object sender, RoutedEventArgs e)
         {
             Report.BaoCaoNgay.WindowBaoCaoNgay win = new Report.BaoCaoNgay.WindowBaoCaoNgay(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoNhanVien_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoNhanVien.WindowBaoCaoNhanVien win = new Report.BaoCaoNhanVien.WindowBaoCaoNhanVien(mTransit);
             win.ShowDialog();
         }
     }

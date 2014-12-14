@@ -448,7 +448,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Format(First(Fields!NgayBan.Value, "BAOCAONGAYTONG"),"dd/MM/yyyy")</Value>
+                <Value>=Format(Min(Fields!NgayBan.Value, "BAOCAONGAYTONG"),"dd/MM/yyyy")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Format(Max(Fields!NgayBan.Value, "BAOCAONGAYTONG"),"dd/MM/yyyy")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -482,7 +494,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TienMat.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienMat.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -585,7 +597,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TienThe.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienThe.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -655,7 +667,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TienKhacHang.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienKhacHang.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -725,7 +737,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!GiamGia.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!GiamGia.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -865,7 +877,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TienTraLai.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienTraLai.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -935,7 +947,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TienBo.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienBo.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1145,7 +1157,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!TongTien.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TongTien.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1300,7 +1312,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatNumber(Fields!ThanhTien.Value,0)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ThanhTien.Value),0)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1429,7 +1441,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=FormatNumber(Fields!SoLuongBan.Value,0)</Value>
+                                <Value>=FormatNumber(Sum(Fields!SoLuongBan.Value),0)</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -1594,7 +1606,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatNumber(Fields!ThanhTien.Value,0)</Value>
+                              <Value>=FormatNumber(Sum(Fields!ThanhTien.Value),0)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1723,7 +1735,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!SoLuongBan.Value</Value>
+                                <Value>=Sum(Fields!SoLuongBan.Value)</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -1821,7 +1833,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatNumber(Fields!TongTien.Value,0)</Value>
+                              <Value>=FormatNumber(Sum(Fields!TongTien.Value),0)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -2081,7 +2093,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatNumber(Fields!TongTien.Value,0)</Value>
+                              <Value>=FormatNumber(Sum(Fields!TongTien.Value),0)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>

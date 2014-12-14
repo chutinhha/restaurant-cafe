@@ -28,7 +28,7 @@ namespace Report.BaoCaoDinhLuong
             mTransit = transit;
             BOBaoCaoDinhLuong = new Data.BOBaoCaoDinhLuong();
             uCTileReport.Landscape = false;
-            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoDinhLuong", true);
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoDinhLuong", true, true);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
             _reportViewer.Load += ReportViewer_Load;
@@ -44,7 +44,7 @@ namespace Report.BaoCaoDinhLuong
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoDinhLuong = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoDinhLuong.Name = "BAOCAODINHLUONG";
-            rdsBaoCaoDinhLuong.Value = BOBaoCaoDinhLuong.GetBaoCaoDinhLuong(uCTileReport.GetDate);
+            rdsBaoCaoDinhLuong.Value = BOBaoCaoDinhLuong.GetBaoCaoDinhLuong(uCTileReport.GetDateFrom);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoDinhLuong);
 
 

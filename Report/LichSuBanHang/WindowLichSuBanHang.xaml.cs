@@ -28,7 +28,7 @@ namespace Report.LichSuBanHang
             mTransit = transit;
             BOBaoCaoLichSuBanHang = new Data.BOBaoCaoLichSuBanHang(mTransit);
             uCTileReport.Landscape = false;
-            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoLichSuBanHang", true);
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoLichSuBanHang", true, true);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
             _reportViewer.Load += ReportViewer_Load;
@@ -44,7 +44,7 @@ namespace Report.LichSuBanHang
 
             Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoLichSuBanHang = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsBaoCaoLichSuBanHang.Name = "BAOCAOLICHSUBANHANG";
-            rdsBaoCaoLichSuBanHang.Value = BOBaoCaoLichSuBanHang.GetBaoCaoLichSuBanHang(uCTileReport.GetDate);
+            rdsBaoCaoLichSuBanHang.Value = BOBaoCaoLichSuBanHang.GetBaoCaoLichSuBanHang(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoLichSuBanHang);
 
 

@@ -56,7 +56,7 @@ namespace UserControlLibrary
             if (!IsMon)
             {
                 _ItemKichThuocMon = ob;
-                txtTenLoaiBan.Text = _ItemKichThuocMon.TenMon;
+                DialogResult = true;
             }
         }
 
@@ -65,7 +65,7 @@ namespace UserControlLibrary
             if (IsMon)
             {
                 _ItemMon = ob;
-                txtTenLoaiBan.Text = _ItemMon.MenuMon.TenDai;
+                DialogResult = true;
             }
         }
 

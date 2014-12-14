@@ -11,24 +11,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Report.BaoCaoTonKho
+namespace Report.BaoCaoNhanVien
 {
     /// <summary>
-    /// Interaction logic for WindowBaoCaoTonKho.xaml
+    /// Interaction logic for WindowBaoCaoNhanVien.xaml
     /// </summary>
-    public partial class WindowBaoCaoTonKho : Window
+    public partial class WindowBaoCaoNhanVien : Window
     {
         private bool _isReportViewerLoaded;
         private Data.Transit mTransit = null;
-        private Data.BOBaoCaoTonKho BOBaoCaoTonKho = null;
+        private Data.BOBaoCaoNhanVien BOBaoCaoNhanVien = null;
 
-        public WindowBaoCaoTonKho(Data.Transit transit)
+        public WindowBaoCaoNhanVien(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            BOBaoCaoTonKho = new Data.BOBaoCaoTonKho();
+            BOBaoCaoNhanVien = new Data.BOBaoCaoNhanVien(mTransit);
             uCTileReport.Landscape = false;
-            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoTonKho", false, false);
+            uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNhanVien", true, true);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
             _reportViewer.Load += ReportViewer_Load;
@@ -39,16 +39,16 @@ namespace Report.BaoCaoTonKho
             this._reportViewer.LocalReport.DataSources.Clear();
             Microsoft.Reporting.WinForms.ReportDataSource rdsCaiDatThongTinCongTy = new Microsoft.Reporting.WinForms.ReportDataSource();
             rdsCaiDatThongTinCongTy.Name = "CAIDATTHONGTINCONGTY";
-            rdsCaiDatThongTinCongTy.Value = BOBaoCaoTonKho.GetCaiDatThongTinCongTy();
+            rdsCaiDatThongTinCongTy.Value = BOBaoCaoNhanVien.GetCaiDatThongTinCongTy();
             this._reportViewer.LocalReport.DataSources.Add(rdsCaiDatThongTinCongTy);
 
-            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoTonKho = new Microsoft.Reporting.WinForms.ReportDataSource();
-            rdsBaoCaoTonKho.Name = "BAOCAOTONKHO";
-            rdsBaoCaoTonKho.Value = BOBaoCaoTonKho.GetBaoCaoTonKho();
-            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoTonKho);
+            Microsoft.Reporting.WinForms.ReportDataSource rdsBaoCaoNhanVien = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsBaoCaoNhanVien.Name = "BAOCAONHANVIEN";
+            rdsBaoCaoNhanVien.Value = BOBaoCaoNhanVien.GetBaoCaoNhanVien(uCTileReport.GetDateFrom, uCTileReport.GetDateTo);
+            this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoNhanVien);
 
 
-            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoTonKho.Report.rdlc";
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoNhanVien.Report.rdlc";
 
             _reportViewer.RefreshReport();
         }

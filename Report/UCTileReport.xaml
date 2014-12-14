@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="1024">
+             d:DesignHeight="60" d:DesignWidth="1024" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style x:Key="styleCalendar" TargetType="{x:Type Calendar}">
             <Setter Property="Template">
@@ -23,9 +23,10 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid Name="gridContent">        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="60"/>
@@ -35,14 +36,13 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
-        <Label Name="lbPage" Grid.Column="2" Content="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-        <my:POSButtonImageClick Grid.Column="1" Name="btnBack" Click="btnBack_Click" Image="/SystemImages;component/Images/Back.png" BorderThickness="0" />
-        <my:POSButtonImageClick Grid.Column="3" Name="btnForward" Click="btnForward_Click" Image="/SystemImages;component/Images/Forward.png" BorderThickness="0" />
+        <my:POSButtonImageClick Grid.Column="2" Name="btnBack" Click="btnBack_Click" Image="/SystemImages;component/Images/Back.png" BorderThickness="0" />
+        <Label Name="lbPage" Grid.Column="3" Content="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />        
+        <my:POSButtonImageClick Grid.Column="4" Name="btnForward" Click="btnForward_Click" Image="/SystemImages;component/Images/Forward.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="5" Name="btnPrint" Click="btnPrint_Click" Image="/SystemImages;component/Images/printer_green.png" BorderThickness="0" />
-        <my:POSButtonImageClick Grid.Column="6" Name="btnPDF" Click="btnPDF_Click" Image="/SystemImages;component/Images/printer_green.png" BorderThickness="0" />
-        <my:POSButtonImageClick Grid.Column="8" Name="btnDong" Click="btnDong_Click" Image="/SystemImages;component/Images/ExtrasShutdown.png" BorderThickness="0" />
-        <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpChonNgay">            
-        </DatePicker>
-       
+        <my:POSButtonImageClick Grid.Column="6" Name="btnPDF" Click="btnPDF_Click" Image="/SystemImages;component/Images/PDF.png" BorderThickness="0" />
+        <my:POSButtonImageClick Grid.Column="9" Name="btnDong" Click="btnDong_Click" Image="/SystemImages;component/Images/ExtrasShutdown.png" BorderThickness="0" />
+        <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpDateFrom"/>
+        <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="1" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpDateTo"/>
     </Grid>
 </UserControl>

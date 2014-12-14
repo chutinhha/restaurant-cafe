@@ -5,12 +5,11 @@ using System.Text;
 
 namespace Data
 {
-    public class BOBaoCaoLichSuBanHang
+    public class BOBaoCaoNhanVien
     {
-
         KaraokeEntities mKaraokeEntities = null;
         Data.Transit mTransit = null;
-        public BOBaoCaoLichSuBanHang(Data.Transit transit)
+        public BOBaoCaoNhanVien(Data.Transit transit)
         {
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
@@ -21,13 +20,12 @@ namespace Data
             return mKaraokeEntities.CAIDATTHONGTINCONGTies;
         }
 
-        public IQueryable<BAOCAOLICHSUBANHANG> GetBaoCaoLichSuBanHang(DateTime dtFrom, DateTime dtTo)
+        public IQueryable<BAOCAONHANVIEN> GetBaoCaoNhanVien(DateTime dtFrom, DateTime dtTo)
         {
-            return from x in mKaraokeEntities.BAOCAOLICHSUBANHANGs
+            return from x in mKaraokeEntities.BAOCAONHANVIENs
                    where dtFrom.CompareTo(x.NgayBan.Value) <= 0 && dtTo.CompareTo(x.NgayBan.Value) >= 0
-                   orderby x.NgayBan
+                   orderby x.TenNhanVien
                    select x;
         }
-
     }
 }
