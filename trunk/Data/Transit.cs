@@ -50,7 +50,22 @@ namespace Data
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();                        
             ListDonVi = BODonVi.GetAll(this);
-            BOChiTietQuyen = new BOChiTietQuyen(this);               
+            BOChiTietQuyen = new BOChiTietQuyen(this);
+
+            //var nhom = KaraokeEntities.CHUCNANGs.ToList();
+            //foreach (var item in nhom)
+            //{
+            //    KaraokeEntities.Attach(item);
+            //    KaraokeEntities.DeleteObject(item);
+            //}
+            //var list = KaraokeEntities.NHOMCHUCNANGs.ToList();
+            //foreach (var item in list)
+            //{
+            //    KaraokeEntities.Attach(item);
+            //    KaraokeEntities.DeleteObject(item);
+            //}
+            //KaraokeEntities.SaveChanges();
+            //new BONhomChucNang(this);
         }
         
         public void LayDanhSachQuyen()

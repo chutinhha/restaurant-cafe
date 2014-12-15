@@ -48,7 +48,7 @@ namespace ProcessOrder
         public int SendOrder()
         {
             int lichSuBanHangId = mBanHang.GuiNhaBep();
-            mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);
+            //mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);
             if (lichSuBanHangId > 0)
             {
                 mProcessPrinter.InHoaDon(lichSuBanHangId);

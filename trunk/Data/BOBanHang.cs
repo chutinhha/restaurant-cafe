@@ -36,7 +36,7 @@ namespace Data
         }
         public string TongTienDaBan 
         {
-            get { return Utilities.MoneyFormat.ConvertToString(BANHANG.TongTien); }
+            get { return Utilities.MoneyFormat.ConvertToString(BANHANG.TongTien-BANHANG.GiamGia*BANHANG.TongTien/100); }
         }
         public BOBanHang()
         {            
@@ -149,7 +149,11 @@ namespace Data
             LoadBanHang(mTransit.Ban);
         }
         private bool KiemTraThayDoiLichSu()
-        {            
+        {
+            if (mListChiTietBanHangDeleted.Count>0)
+            {
+                return true;
+            }
             foreach (BOChiTietBanHang item in _ListChiTietBanHang)
             {
                 if (
@@ -320,6 +324,7 @@ namespace Data
             if (this.BANHANG.TrangThaiID==1 || this.BANHANG.TrangThaiID==2)
             {
                 this.BANHANG.TrangThaiID = 4;
+                this.BANHANG.NgayBan = DateTime.Now;
                 frBanHang.Update(this.BANHANG);
                 frBanHang.Commit();
                 return this.BANHANG.BanHangID;

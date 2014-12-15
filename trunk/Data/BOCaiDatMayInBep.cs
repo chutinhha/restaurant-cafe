@@ -13,9 +13,9 @@ namespace Data
             mKaraokeEntities = new KaraokeEntities();
         }
 
-        public static CAIDATMAYINBEP GetQueryNoTracking(Transit transit)
+        public static CAIDATMAYINBEP GetQueryNoTracking(KaraokeEntities kara)
         {
-            CAIDATMAYINBEP item = FrameworkRepository<CAIDATMAYINBEP>.QueryNoTracking(transit.KaraokeEntities.CAIDATMAYINBEPs).FirstOrDefault();
+            CAIDATMAYINBEP item = FrameworkRepository<CAIDATMAYINBEP>.QueryNoTracking(kara.CAIDATMAYINBEPs).FirstOrDefault();
             if (item == null)
             {
                 item = new CAIDATMAYINBEP();

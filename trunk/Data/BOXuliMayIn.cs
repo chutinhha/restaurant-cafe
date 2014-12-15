@@ -23,12 +23,13 @@ namespace Data
         public FrameworkRepository<CHITIETBANHANG> frChiTietBanHang;
         public FrameworkRepository<BAN> frBan;
         public FrameworkRepository<THE> frThe;
+        public FrameworkRepository<KHACHHANG> frKhachHang;
 
         public BOXuliMayIn(Transit transit)
         {
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
-            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            
+            //mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;            
             frMayIn = new FrameworkRepository<MAYIN>(mKaraokeEntities, mKaraokeEntities.MAYINs);
             frMenuMayIn = new FrameworkRepository<MENUITEMMAYIN>(mKaraokeEntities, mKaraokeEntities.MENUITEMMAYINs);
             frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities, mKaraokeEntities.MENUMONs);
@@ -40,9 +41,10 @@ namespace Data
             frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities, mKaraokeEntities.CHITIETBANHANGs);
             frBan = new FrameworkRepository<BAN>(mKaraokeEntities, mKaraokeEntities.BANs);
             frThe = new FrameworkRepository<THE>(mKaraokeEntities, mKaraokeEntities.THEs);
+            frKhachHang = new FrameworkRepository<KHACHHANG>(mKaraokeEntities,mKaraokeEntities.KHACHHANGs);
 
-            _CAIDATMAYINBEP = BOCaiDatMayInBep.GetQueryNoTracking(mTransit);            
-            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetQueryNoTracking(mTransit);
+            _CAIDATMAYINBEP = BOCaiDatMayInBep.GetQueryNoTracking(mKaraokeEntities);            
+            _CAIDATMAYINHOADON = BOCaiDatMayInHoaDon.GetQueryNoTracking(mKaraokeEntities);
             _ImageLogo = Utilities.ImageHandler.BitmapImage2Bitmap(this._CAIDATMAYINHOADON.Logo);
         }
         public IQueryable<BOMayIn> AllPrinting(int lichSuBanHang)
@@ -90,6 +92,8 @@ namespace Data
                         join c in frBan.Query() on a.BanID equals c.BanID
                         join d in frThe.Query() on a.TheID equals d.TheID into list
                         from e in list.DefaultIfEmpty()
+                        join f in frKhachHang.Query() on a.KhachHangID equals f.KhachHangID into listKh
+                        from g in listKh.DefaultIfEmpty()
                         where a.BanHangID == banHangID
                         select new BOPrintOrder
                         {
@@ -98,7 +102,8 @@ namespace Data
                             MaHoaDon = a.MaHoaDon,
                             TenBan = c.TenBan,
                             NgayBan = (DateTime)a.NgayBan,
-                            BanHang = a
+                            BanHang = a,
+                            KhachHang=g
                         };
             return query;
         }

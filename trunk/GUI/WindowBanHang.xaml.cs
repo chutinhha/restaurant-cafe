@@ -143,6 +143,7 @@ namespace GUI
         {
             mProcessOrder.HuyBan();
             mUCFloorPlan.LoadAlllStatus();
+            this.Close();
         }
         private void GiamGiaMon()
         {
@@ -321,11 +322,11 @@ namespace GUI
             //{
             //    lvData.Items.Refresh();
             //}
-            if (!mProcessOrder.KiemTraKho(item) && mTransit.ThamSo.BanHangKhongKho==false)
-            {
-                UserControlLibrary.WindowMessageBox.ShowDialog("Món không đủ trong kho");
-                return;
-            }
+            //if (!mProcessOrder.KiemTraKho(item) && mTransit.ThamSo.BanHangKhongKho==false)
+            //{
+            //    UserControlLibrary.WindowMessageBox.ShowDialog("Món không đủ trong kho");
+            //    return;
+            //}
             if (mProcessOrder.AddChiTietBanHang(item)==0)
             {
                 if (mProcessOrder.CheckMutiablePrice(item))

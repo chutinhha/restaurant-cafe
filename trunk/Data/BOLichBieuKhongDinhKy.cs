@@ -30,7 +30,8 @@ namespace Data
 
         public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(Transit transit)
         {
-            DateTime dt = DateTime.Now;
+            DateTime dtNow = DateTime.Now;
+            DateTime dt = new DateTime(dtNow.Year, dtNow.Month, dtNow.Day);
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
             var querya = BOMenuLoaiGia.GetAllVisual(transit);
             var queryb = from b in GetAllVisual(transit)

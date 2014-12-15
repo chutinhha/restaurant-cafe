@@ -27,7 +27,7 @@ namespace Data
         private void Init()
         {
             mListEntityObject = new List<MyEntityObject>();
-            mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
+            //mKaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
             mObjectSet.MergeOption = MergeOption.NoTracking;
         }
         public static IQueryable<TEntityObject> QueryAppendOnly(ObjectSet<TEntityObject> objectSet, MergeOption mergeOption)

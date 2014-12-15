@@ -13,9 +13,9 @@ namespace Data
             mKaraokeEntities = new KaraokeEntities();
         }
 
-        public static CAIDATMAYINHOADON GetQueryNoTracking(Transit transit)
+        public static CAIDATMAYINHOADON GetQueryNoTracking(KaraokeEntities kara)
         {
-            CAIDATMAYINHOADON item = FrameworkRepository<CAIDATMAYINHOADON>.QueryNoTracking(transit.KaraokeEntities.CAIDATMAYINHOADONs).FirstOrDefault();
+            CAIDATMAYINHOADON item = FrameworkRepository<CAIDATMAYINHOADON>.QueryNoTracking(kara.CAIDATMAYINHOADONs).FirstOrDefault();
             if (item == null)
             {
                 item = new CAIDATMAYINHOADON();

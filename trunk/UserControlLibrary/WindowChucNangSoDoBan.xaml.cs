@@ -60,5 +60,12 @@ namespace UserControlLibrary
                 win2.ShowDialog();
             }
         }
+
+        private void btnBanDaDong_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            UserControlLibrary.WindowBanHangLichSuBanHang win = new UserControlLibrary.WindowBanHangLichSuBanHang(mTransit);
+            win.ShowDialog();
+        }
     }
 }

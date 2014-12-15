@@ -8,9 +8,11 @@ namespace WebServer
     public class ProcessReport
     {
         private Data.Transit mTransit;
+        private Data.KaraokeEntities mKaraokeEntities;
         public ProcessReport()        
         {
             mTransit = new Data.Transit();
+            mKaraokeEntities = new Data.KaraokeEntities();
         }
         public string LoadInformation()
         {
@@ -20,7 +22,9 @@ namespace WebServer
         }
         public string LoadReportNow()
         {
-            List<Data.BAOCAOLICHSUBANHANG> baocao = Data.BOBaoCaoLichSuBanHang.GetNoTracking(mTransit, DateTime.Now).ToList();
+            Data.BOBaoCaoNgay bobaocao = new Data.BOBaoCaoNgay(mTransit);
+            //List<Data.BAOCAONGAYTONG> baocao = bobaocao.GetBaoCaoNgayTong(DateTime.Now).ToList();
+            List<Data.BAOCAONGAYTONG> baocao = new List<Data.BAOCAONGAYTONG>();
             string s = Newtonsoft.Json.JsonConvert.SerializeObject(baocao);
             return s;
         }
