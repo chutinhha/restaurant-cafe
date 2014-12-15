@@ -138,6 +138,12 @@ namespace PrinterServer
             y = mPOSPrinter.POSDrawString("Mã HĐ: " + mBOPrintOrder.MaHoaDon, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
             y = mPOSPrinter.POSDrawString("Bàn: " + mBOPrintOrder.TenBan, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
             y = mPOSPrinter.POSDrawString("Nhân Viên: " + mBOPrintOrder.TenNhanVien, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+            if (mBOPrintOrder.KhachHang!=null)
+            {
+                y = mPOSPrinter.POSDrawString("Khách Hàng: " + mBOPrintOrder.KhachHang.TenKhachHang, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+                if (mBOPrintOrder.KhachHang.Mobile.Length>0)
+                    y = mPOSPrinter.POSDrawString("Điện Thoại: " + mBOPrintOrder.KhachHang.Mobile, e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
+            }
             y = mPOSPrinter.POSDrawString("Ngày: " + Utilities.DateTimeConverter.ConvertDateTimeToStringDMYH(mBOPrintOrder.NgayBan), e, mFontInfo, mColorBlack, y, TextAlign.Left, 0);
             
 
@@ -191,19 +197,20 @@ namespace PrinterServer
 
 
             mPOSPrinter.POSDrawString("T.CỘNG: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-            y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.BanHang.TongTien), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-
+            y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.BanHang.TongTien), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);            
             if (mBOPrintOrder.TienGiam > 0)
-            {
-                double tienGiam=
+            {                
                 mPOSPrinter.POSDrawString("GIẢM GIÁ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
                 y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-                if (mPrinterBillOrderType==PrinterBillOrderType.TamTinh)
-                {
-                    mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                    y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-                }
+                //if (mPrinterBillOrderType==PrinterBillOrderType.TamTinh)
+                //{
+                //    mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
+                //    y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+                //}
+                mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
+                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
             }
+            y=mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ReadNumber((double)mBOPrintOrder.TienPhaiTra),e,mFontItemBodyNote,mColorBlack,y,TextAlign.Left,0);
             if (mBOPrintOrder.BanHang.TienThe > 0)
             {
                 mPOSPrinter.POSDrawString("THẺ: ", e, mFontBig, mColorBlack, y, TextAlign.Left, 0);

@@ -25,7 +25,11 @@ namespace GUI
             InitializeComponent();
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
-            ucTile.SetTransit(mTransit);           
+            ucTile.SetTransit(mTransit);
+            if (DateTime.Now.CompareTo(new DateTime(2014,12,31))>1)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)

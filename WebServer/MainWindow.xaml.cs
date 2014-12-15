@@ -20,14 +20,15 @@ namespace WebServer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private POSWebServer mWebServer;        
+        private POSWebServer mWebServer;
+        private System.Windows.Forms.NotifyIcon mNotifyIcon;
         public MainWindow()
         {            
             InitializeComponent();
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
-            ni.Icon = Utilities.ImageHandler.GetIcon(@"/SystemImages;component/Images/Server.ico");
-            ni.Visible = true;
-            ni.DoubleClick +=
+            mNotifyIcon = new System.Windows.Forms.NotifyIcon();
+            mNotifyIcon.Icon = Utilities.ImageHandler.GetIcon(@"/SystemImages;component/Images/Server.ico");
+            mNotifyIcon.Visible = true;
+            mNotifyIcon.DoubleClick +=
                 delegate(object sender, EventArgs args)
                 {
                     this.Show();
@@ -49,8 +50,7 @@ namespace WebServer
             try
             {
                 mWebServer = new POSWebServer(lblIp.Content.ToString(), Utilities.MoneyFormat.ConvertToInt(txtPort.Text));                        
-                mWebServer.Run();
-                this.Hide();
+                mWebServer.Run();                
             }
             catch (Exception ex)
             {                
@@ -62,5 +62,24 @@ namespace WebServer
         {
             mWebServer.Stop();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mNotifyIcon.Dispose();
+        }
+
+        private void btnThuNho_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            if (mWebServer!=null)
+            {
+                mWebServer.Stop();
+            }
+            this.Close();
+        }        
     }
 }

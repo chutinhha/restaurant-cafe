@@ -67,6 +67,11 @@ namespace UserControlLibrary
             {
                 Data.BOBanHang bh = (Data.BOBanHang)lvData1.SelectedItem;
                 mProcessPrinter.InBill(PrinterServer.PrinterBillOrder.PrinterBillOrderType.InLai, bh.BANHANG.BanHangID);
+                UserControlLibrary.WindowMessageBox.ShowDialog("Đã in thành công");
+            }
+            else
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Vui lòng chọn hóa đơn cần in lại");
             }
         }
     }

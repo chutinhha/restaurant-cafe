@@ -55,8 +55,8 @@
                         </LinearGradientBrush>
                     </Rectangle.Stroke>
                 </Rectangle>
-                <my:POSButtonIcon Content="In Lại" Grid.Row="2" Height="70" HorizontalAlignment="Left" Margin="212,0,0,0" Name="btnInLai" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/print_bill.png" Grid.Column="1" Click="btnInLai_Click" />
-                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Left" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="303,0,0,0" Name="btnDong" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="2" Click="btnDong_Click" />
+                <my:POSButtonIcon Content="In Lại" Grid.Row="2" Height="70" HorizontalAlignment="Right" Margin="0,0,87,0" Name="btnInLai" VerticalAlignment="Top" Width="75" Image="/SystemImages;component/Images/print_bill.png" Grid.Column="1" Click="btnInLai_Click" />
+                <my:POSButtonIcon Content="Đóng" Height="70" HorizontalAlignment="Right" Image="/SystemImages;component/Images/ExtrasShutdown.png" Margin="0,0,6,0" Name="btnDong" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="2" Click="btnDong_Click" />
                 <DatePicker Height="25" HorizontalAlignment="Left" Margin="153,16,0,0" Name="datePicker1" VerticalAlignment="Top" Width="168" FontSize="14" VerticalContentAlignment="Center" SelectedDateChanged="datePicker1_SelectedDateChanged" />
             </Grid>
         </Grid>
