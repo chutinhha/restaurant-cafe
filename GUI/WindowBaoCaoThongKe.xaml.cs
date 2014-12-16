@@ -44,8 +44,8 @@ namespace GUI
 
         private void btnLichSuDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            //BaoCao.LichSuDangNhap.WindowLichSuDangNhap win = new BaoCao.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
-            //win.ShowDialog();
+            Report.LichSuDangNhap.WindowLichSuDangNhap win = new Report.LichSuDangNhap.WindowLichSuDangNhap(mTransit);
+            win.ShowDialog();
         }
 
         private void btnBaoCaoLichSuBanHang_Click(object sender, RoutedEventArgs e)
@@ -131,6 +131,12 @@ namespace GUI
         private void btnBaoCaoNhanVien_Click(object sender, RoutedEventArgs e)
         {
             Report.BaoCaoNhanVien.WindowBaoCaoNhanVien win = new Report.BaoCaoNhanVien.WindowBaoCaoNhanVien(mTransit);
+            win.ShowDialog();
+        }        
+
+        private void btnLichSuInNhaBep_Click(object sender, RoutedEventArgs e)
+        {
+            Report.LichSuMayIn.WindowLichSuMayIn win = new Report.LichSuMayIn.WindowLichSuMayIn(mTransit);
             win.ShowDialog();
         }
     }

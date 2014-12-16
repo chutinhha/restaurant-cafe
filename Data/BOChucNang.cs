@@ -142,7 +142,9 @@ namespace Data
             BaoCaoTonKho = 1202,
             BaoCaoDinhLuong = 1203,
             BaoCaoLichSuBanHang = 1204,
-            BaoCaoNhanVien = 1205
+            BaoCaoNhanVien = 1205,
+            LichSuDangNhap = 1206,
+            LichSuInNhaBep = 1207
         }
 
         public enum The

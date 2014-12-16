@@ -1,0 +1,16 @@
+﻿<Window x:Class="Report.LichSuDangNhap.WindowLichSuDangNhap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        Title="WindowLichSuDangNhap" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" xmlns:my="clr-namespace:Report" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="40*" />
+        </Grid.RowDefinitions>
+        <WindowsFormsHost Grid.Row="1" Name="ReportData" DataContext="{Binding}">
+            <rv:ReportViewer x:Name="_reportViewer" ZoomMode="PageWidth" ShowContextMenu="False" ShowCredentialPrompts="False" ShowParameterPrompts="False" ShowProgress="False" ShowToolBar="False" ShowDocumentMapButton="False" ShowPromptAreaButton="False" />
+        </WindowsFormsHost>
+        <my:UCTileReport x:Name="uCTileReport"  />
+    </Grid>
+</Window>
