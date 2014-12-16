@@ -213,6 +213,17 @@ namespace Data
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        public void LuuTonKho(BOChiTietBanHang item)
+        {
+            List<BOChiTietBanHang> lsArray = new List<BOChiTietBanHang>();
+            lsArray.Add(item);
+            LuuTonKho(lsArray);
+        }
+
+        /// <summary>
         /// Lưu kho xuống
         /// </summary>
         /// <param name="lsArray">Truyền toàn bộ BOChiTietBanHang xuống</param>
@@ -240,7 +251,8 @@ namespace Data
                         if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                         {
                             XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                            ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
+                            if (item.ChiTietBanHang.SoLuongBan > 0)
+                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                         }
                     }
                 }
@@ -259,7 +271,8 @@ namespace Data
                             if (item.ChiTietBanHang.SoLuongBan != lsTonKhoChiTietBanHang.Sum(s => s.SoLuong))
                             {
                                 XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
-                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * line.DinhLuong.KichThuocBan * line.DinhLuong.SoLuong, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
+                                if (item.ChiTietBanHang.SoLuongBan > 0)
+                                    ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * line.DinhLuong.KichThuocBan * line.DinhLuong.SoLuong, mTransit.KhoID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, mTransit);
                             }
                         }
                     }

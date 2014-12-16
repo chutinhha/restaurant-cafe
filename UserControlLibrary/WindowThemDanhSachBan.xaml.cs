@@ -104,11 +104,11 @@ namespace UserControlLibrary
         private bool CheckValues()
         {
             lbStatus.Text = "";
-            if (txtTenLoaiBan.Text == "")
-            {
-                lbStatus.Text = "Tên đơn vị không được bỏ trống";
-                return false;
-            }
+            //if (txtTenLoaiBan.Text == "")
+            //{
+            //    lbStatus.Text = "Tên đơn vị không được bỏ trống";
+            //    return false;
+            //}
             return true;
         }
 
