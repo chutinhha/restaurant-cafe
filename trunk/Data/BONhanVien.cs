@@ -72,6 +72,7 @@ namespace Data
         public void ThemLichSuDangNhap(int NhanVienID)
         {
             mKaraokeEntities.LICHSUDANGNHAPs.AddObject(new LICHSUDANGNHAP() { NhanVienID = NhanVienID, ThoiGian = DateTime.Now, Deleted = false, Edit = false, Visual = true });
+            mKaraokeEntities.SaveChanges();
         }
 
         public IQueryable<LOAINHANVIEN> GetLoaiNhanVien(int CapDo)

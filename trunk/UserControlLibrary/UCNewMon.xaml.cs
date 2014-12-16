@@ -60,7 +60,9 @@ namespace UserControlLibrary
         {
             IQueryable<Data.MAYIN> lsMayIn = Data.BOMayIn.GetAllNoTracking(mTransit, false);
             if (lsMayIn.Count() > 0)
-                _Mon.MenuMon.MENUITEMMAYINs.Add(new Data.MENUITEMMAYIN() { MayInID = lsMayIn.FirstOrDefault().MayInID });
+            {
+                _Mon.MenuItemMayIn = new Data.MENUITEMMAYIN() { MayInID = lsMayIn.FirstOrDefault().MayInID };
+            }
         }
 
         private void ThemDanhSachBan()
@@ -71,8 +73,8 @@ namespace UserControlLibrary
                 _Mon.MenuMon.SapXepKichThuocMon = 2;
                 _Mon.MenuMon.SLMonChoPhepTonKho = 1;
                 _Mon.MenuMon.SLMonKhongChoPhepTonKho = 0;
-                Data.LOAIBAN item = lsLoaiBan.FirstOrDefault();
-                _Mon.MenuMon.MENUKICHTHUOCMONs.Add(new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = _Mon.MenuMon.Gia, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false });
+                Data.LOAIBAN item = lsLoaiBan.OrderByDescending(s => s.KichThuocBan).FirstOrDefault();
+                _Mon.MenuKichThuocMon = new Data.MENUKICHTHUOCMON() { TenLoaiBan = "", LoaiBanID = item.LoaiBanID, DonViID = item.DonViID, GiaBanMacDinh = _Mon.MenuMon.Gia, ChoPhepTonKho = true, ThoiGia = false, KichThuocLoaiBan = item.KichThuocBan, SoLuongBanBan = 1, SapXep = 1, Visual = true, Edit = false, Deleted = false };
             }
         }
 

@@ -9,9 +9,14 @@ namespace Data
     {
         public Data.MENUMON MenuMon { get; set; }
         public Data.MENUNHOM MenuNhom { get; set; }
+        public Data.MENUKICHTHUOCMON MenuKichThuocMon { get; set; }
+        public Data.MENUITEMMAYIN MenuItemMayIn { get; set; }
 
         FrameworkRepository<MENUMON> frmMon = null;
         FrameworkRepository<MENUNHOM> frmNhom = null;
+        FrameworkRepository<MENUKICHTHUOCMON> frmKichThuocMon = null;
+        FrameworkRepository<MENUITEMMAYIN> frmItemMayIn = null;
+
 
         public BOMenuMon()
         {
@@ -29,6 +34,8 @@ namespace Data
         {
             frmMon = new FrameworkRepository<MENUMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUMONs);
             frmNhom = new FrameworkRepository<MENUNHOM>(transit.KaraokeEntities, transit.KaraokeEntities.MENUNHOMs);
+            frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
+            frmItemMayIn = new FrameworkRepository<MENUITEMMAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MENUITEMMAYINs);
         }
         public static IQueryable<MENUMON> GetAll(Transit tran)
         {
@@ -72,10 +79,22 @@ namespace Data
         }
 
         public int Them(BOMenuMon item, Transit mTransit)
-        {            
+        {
             frmMon.AddObject(item.MenuMon);
             SapXep((int)item.MenuMon.NhomID, mTransit);
             frmMon.Commit();
+            if (item.MenuKichThuocMon != null)
+            {
+                item.MenuKichThuocMon.MonID = item.MenuMon.MonID;
+                frmKichThuocMon.AddObject(item.MenuKichThuocMon);
+                frmKichThuocMon.Commit();
+            }
+            if (item.MenuItemMayIn != null)
+            {
+                item.MenuItemMayIn.MonID = item.MenuMon.MonID;
+                frmItemMayIn.AddObject(item.MenuItemMayIn);
+                frmItemMayIn.Commit();
+            }
             UpdateSoLuongMon((int)item.MenuMon.NhomID, mTransit);
             return item.MenuMon.MonID;
         }
