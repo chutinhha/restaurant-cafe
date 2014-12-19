@@ -93,48 +93,117 @@ namespace Data
                 List<Data.TONKHO> lsTonKho = new List<TONKHO>();
                 foreach (BOXuLyKhoChiTiet line in lsArray)
                 {
+                    IQueryable<Data.TONKHO> lsArrayLine = null;
                     switch (item.XuLyKho.LoaiID)
                     {
                         case 1:
-                            break;
-                        case 2:
-                        case 3:
-                            IQueryable<Data.TONKHO> lsArrayLine = frmTonKho.Query().Where(s => s.DonViID == line.TonKho.DonViID && s.MonID == line.TonKho.MonID && s.KhoID == item.XuLyKho.KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
-                            if (lsArrayLine.Count() > 0 && line.TonKho.SoLuongNhap < lsArrayLine.Sum(s => s.SoLuongTon))
+                            lsArrayLine = frmTonKho.Query().Where(s => s.DonViID == line.TonKho.DonViID && s.MonID == line.TonKho.MonID && s.KhoID == item.XuLyKho.KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
+                            if (lsArrayLine.Count() > 0 && line.TonKho.SoLuongNhap < lsArrayLine.Sum(s => s.SoLuongTon) && line.TonKho.SoLuongNhap > 0)
                             {
                                 foreach (var l in lsArrayLine)
                                 {
-                                    Data.TONKHOTONG tonkhotong = null;
-                                    if (lsTonKhoTong.Exists(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID))
+                                    if (line.TonKho.SoLuongNhap > 0)
                                     {
-                                        tonkhotong = lsTonKhoTong.Find(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID);
-                                    }
-                                    else
-                                    {
-                                        tonkhotong = KiemTraTonKhoTong(frmTonKhoTong, (int)item.XuLyKho.KhoID, (int)line.TonKho.MonID, (int)line.TonKho.DonViID);
-                                        lsTonKhoTong.Add(tonkhotong);
-                                    }
-                                    tonkhotong.SoLuongTon -= line.TonKho.SoLuongNhap;
-                                    if (item.XuLyKho.LoaiID == 2)
-                                    {
-                                        tonkhotong.SoLuongMat += line.TonKho.SoLuongNhap;
-                                    }
-                                    if (item.XuLyKho.LoaiID == 3)
-                                    {
-                                        tonkhotong.SoLuongHu += line.TonKho.SoLuongNhap;
-                                    }
+                                        Data.TONKHOTONG tonkhotong = null;
+                                        if (lsTonKhoTong.Exists(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID))
+                                        {
+                                            tonkhotong = lsTonKhoTong.Find(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID);
+                                        }
+                                        else
+                                        {
+                                            tonkhotong = KiemTraTonKhoTong(frmTonKhoTong, (int)item.XuLyKho.KhoID, (int)line.TonKho.MonID, (int)line.TonKho.DonViID);
+                                            lsTonKhoTong.Add(tonkhotong);
+                                        }
+                                        tonkhotong.SoLuongTon += line.TonKho.SoLuongNhap;
+                                        tonkhotong.SoLuongDieuChinh += line.TonKho.SoLuongNhap;
+                                        Data.TONKHO tonkho = null;
+                                        if (lsTonKho.Exists(s => s.TonKhoID == l.TonKhoID))
+                                        {
+                                            tonkho = lsTonKho.Find(s => s.TonKhoID == l.TonKhoID);
+                                        }
+                                        else
+                                        {
+                                            tonkho = l;
+                                            lsTonKho.Add(tonkho);
+                                        }
+                                        line.XuLyKhoChiTiet.TONKHO = new TONKHO();
+                                        line.XuLyKhoChiTiet.TONKHO.PhatSinhTuTonKhoID = tonkho.TonKhoID;
+                                        line.XuLyKhoChiTiet.TONKHO.LoaiPhatSinhID = (int)item.XuLyKho.LoaiID;
+                                        CopyTonKho(line.XuLyKhoChiTiet.TONKHO, tonkho);
 
-                                    Data.TONKHO tonkho = null;
-                                    if (lsTonKho.Exists(s => s.TonKhoID == l.TonKhoID))
-                                    {
-                                        tonkho = lsTonKho.Find(s => s.TonKhoID == l.TonKhoID);
+                                        if (tonkho.SoLuongTon > line.TonKho.SoLuongNhap)
+                                        {
+                                            line.XuLyKhoChiTiet.TONKHO.SoLuongPhatSinh = tonkho.SoLuongTon - line.TonKho.SoLuongNhap;
+                                            tonkho.SoLuongTon += line.TonKho.SoLuongNhap;
+                                            line.TonKho.SoLuongNhap = 0;
+                                        }
+                                        else
+                                        {
+                                            line.XuLyKhoChiTiet.TONKHO.SoLuongPhatSinh = line.TonKho.SoLuongNhap - tonkho.SoLuongTon;
+                                            line.TonKho.SoLuongNhap += tonkho.SoLuongTon;
+                                            tonkho.SoLuongTon = 0;
+                                        }
                                     }
-                                    else
+                                }
+                            }
+                            break;
+                        case 2:
+                        case 3:
+                            lsArrayLine = frmTonKho.Query().Where(s => s.DonViID == line.TonKho.DonViID && s.MonID == line.TonKho.MonID && s.KhoID == item.XuLyKho.KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
+                            if (lsArrayLine.Count() > 0 && line.TonKho.SoLuongNhap < lsArrayLine.Sum(s => s.SoLuongTon) && line.TonKho.SoLuongNhap > 0)
+                            {
+                                foreach (var l in lsArrayLine)
+                                {
+                                    if (line.TonKho.SoLuongNhap > 0)
                                     {
-                                        tonkho = l;
-                                        lsTonKho.Add(tonkho);
-                                    }
+                                        Data.TONKHOTONG tonkhotong = null;
+                                        if (lsTonKhoTong.Exists(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID))
+                                        {
+                                            tonkhotong = lsTonKhoTong.Find(s => s.KhoID == item.XuLyKho.KhoID && s.MonID == line.TonKho.MonID && s.DonViID == line.TonKho.DonViID);
+                                        }
+                                        else
+                                        {
+                                            tonkhotong = KiemTraTonKhoTong(frmTonKhoTong, (int)item.XuLyKho.KhoID, (int)line.TonKho.MonID, (int)line.TonKho.DonViID);
+                                            lsTonKhoTong.Add(tonkhotong);
+                                        }
+                                        tonkhotong.SoLuongTon -= line.TonKho.SoLuongNhap;
+                                        if (item.XuLyKho.LoaiID == 2)
+                                        {
+                                            tonkhotong.SoLuongMat += line.TonKho.SoLuongNhap;
+                                        }
+                                        if (item.XuLyKho.LoaiID == 3)
+                                        {
+                                            tonkhotong.SoLuongHu += line.TonKho.SoLuongNhap;
+                                        }
 
+                                        Data.TONKHO tonkho = null;
+                                        if (lsTonKho.Exists(s => s.TonKhoID == l.TonKhoID))
+                                        {
+                                            tonkho = lsTonKho.Find(s => s.TonKhoID == l.TonKhoID);
+                                        }
+                                        else
+                                        {
+                                            tonkho = l;
+                                            lsTonKho.Add(tonkho);
+                                        }
+                                        line.XuLyKhoChiTiet.TONKHO = new TONKHO();
+                                        line.XuLyKhoChiTiet.TONKHO.PhatSinhTuTonKhoID = tonkho.TonKhoID;
+                                        line.XuLyKhoChiTiet.TONKHO.LoaiPhatSinhID = (int)item.XuLyKho.LoaiID;
+                                        CopyTonKho(line.XuLyKhoChiTiet.TONKHO, tonkho);
+
+                                        if (tonkho.SoLuongTon > line.TonKho.SoLuongNhap)
+                                        {
+                                            line.XuLyKhoChiTiet.TONKHO.SoLuongPhatSinh = tonkho.SoLuongTon - line.TonKho.SoLuongNhap;
+                                            tonkho.SoLuongTon -= line.TonKho.SoLuongNhap;
+                                            line.TonKho.SoLuongNhap = 0;
+                                        }
+                                        else
+                                        {
+                                            line.XuLyKhoChiTiet.TONKHO.SoLuongPhatSinh = line.TonKho.SoLuongNhap - tonkho.SoLuongTon;
+                                            line.TonKho.SoLuongNhap -= tonkho.SoLuongTon;
+                                            tonkho.SoLuongTon = 0;
+                                        }
+                                    }
                                 }
                             }
                             break;
@@ -155,8 +224,29 @@ namespace Data
                 {
                     frmTonKhoTong.Update(i);
                 }
+                frmTonKho.Commit();
+                frmTonKhoTong.Commit();
             }
             return item.XuLyKho.ChinhKhoID;
+        }
+
+        private void CopyTonKho(TONKHO a, TONKHO b)
+        {
+            a.MonID = b.MonID;
+            a.NgayHetHan = b.NgayHetHan;
+            a.NgaySanXuat = b.NgaySanXuat;
+            a.SoLuongNhap = 0;
+            a.SoLuongPhatSinh = 0;
+            a.SoLuongTon = 0;
+            a.DonViID = b.DonViID;
+            a.DonViTinh = b.DonViTinh;
+            a.KhoID = b.KhoID;
+            a.GiaBan = b.GiaBan;
+            a.GiaNhap = b.GiaNhap;
+            a.LoaiBanID = b.LoaiBanID;
+            a.Visual = true;
+            a.Deleted = false;
+            a.Edit = false;
         }
 
         private Data.TONKHOTONG KiemTraTonKhoTong(FrameworkRepository<TONKHOTONG> frm, int KhoID, int MonID, int DonViID)

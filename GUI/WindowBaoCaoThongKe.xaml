@@ -24,5 +24,6 @@
         <my:POSButtonMain Name="btnBaoCaoNhanVien" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/man.png" Margin="10" Click="btnBaoCaoNhanVien_Click" Background="#FF945054" TextNho="Nhân viên" TextTo="Báo cáo nhân viên"  />
         <my:POSButtonMain Name="btnLichSuDangNhap" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Login.png" Margin="10" Click="btnLichSuDangNhap_Click" Background="#FF57005C" TextNho="Đăng nhập" TextTo="Lịch sử đăng nhập"  />
         <my:POSButtonMain Name="btnLichSuInNhaBep" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/printer_orange.png" Margin="10" Click="btnLichSuInNhaBep_Click" Background="#FF808081" TextNho="Máy in" TextTo="Lịch sử in nhà bếp"  />
+        <my:POSButtonMain Name="btnBaoCaoThuChi" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/us_dollar.png" Margin="10" Click="btnBaoCaoThuChi_Click" Background="#FF7D3D65" TextNho="Thu chi" TextTo="Báo cáo thu chi"  />
     </Grid>
 </Window>

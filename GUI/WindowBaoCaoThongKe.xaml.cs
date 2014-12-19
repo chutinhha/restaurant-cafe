@@ -132,11 +132,17 @@ namespace GUI
         {
             Report.BaoCaoNhanVien.WindowBaoCaoNhanVien win = new Report.BaoCaoNhanVien.WindowBaoCaoNhanVien(mTransit);
             win.ShowDialog();
-        }        
+        }
 
         private void btnLichSuInNhaBep_Click(object sender, RoutedEventArgs e)
         {
             Report.LichSuMayIn.WindowLichSuMayIn win = new Report.LichSuMayIn.WindowLichSuMayIn(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoThuChi_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoThuChi.WindowBaoCaoThuChi win = new Report.BaoCaoThuChi.WindowBaoCaoThuChi(mTransit);
             win.ShowDialog();
         }
     }

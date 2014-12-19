@@ -94,7 +94,9 @@ namespace Data
 
         public enum ThuChi
         {
-            ThuChi = 601
+            ThuChi = 601,
+            PhieuThu = 602,
+            PhieuChi = 603
         }
 
         public enum Gia
@@ -144,7 +146,8 @@ namespace Data
             BaoCaoLichSuBanHang = 1204,
             BaoCaoNhanVien = 1205,
             LichSuDangNhap = 1206,
-            LichSuInNhaBep = 1207
+            LichSuInNhaBep = 1207,
+            BaoCaoThuChi = 1208
         }
 
         public enum The

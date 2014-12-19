@@ -85,7 +85,7 @@ namespace Data
                     mKaraokeEntities.KHACHHANGs.AddObject(item.KhachHang);
                 }
 
-            }
+            }            
             mKaraokeEntities.SaveChanges();
         }
 
