@@ -17,8 +17,8 @@ namespace Report
 
         public bool Landscape { get; set; }
 
-        public DateTime GetDateFrom { get { return dtpDateFrom.SelectedDate != null ? (DateTime)dtpDateFrom.SelectedDate : DateTime.Now; } }
-        public DateTime GetDateTo { get { return dtpDateTo.SelectedDate != null ? (DateTime)dtpDateTo.SelectedDate : DateTime.Now; } }
+        public DateTime GetDateFrom { get { return dtpDateFrom.SelectedDate != null ? (DateTime)dtpDateFrom.SelectedDate : DateTime.Now.Date; } }
+        public DateTime GetDateTo { get { return dtpDateTo.SelectedDate != null ? (DateTime)dtpDateTo.SelectedDate : DateTime.Now.Date.AddDays(1).AddSeconds(-1); } }
 
         public UCTileReport()
         {
@@ -100,8 +100,8 @@ namespace Report
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            dtpDateFrom.SelectedDate = DateTime.Now;
-            dtpDateTo.SelectedDate = DateTime.Now;
+            dtpDateFrom.SelectedDate = DateTime.Now.Date;
+            dtpDateTo.SelectedDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             IsSelectedDateChanged = true;
         }
     }

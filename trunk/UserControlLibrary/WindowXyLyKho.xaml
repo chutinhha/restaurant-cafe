@@ -15,7 +15,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Thêm nhập kho" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <TextBlock Name="lbTieuDe" Text="Xử lý kho" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="2" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
@@ -70,10 +70,10 @@
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Label  Grid.Column="0" Content="{Binding MenuMon.TenDai}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-                                <TextBox  Grid.Column="1" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding XuLyKhoChiTiet.TONKHO.SoLuongNhap}"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="txt_PreviewTextInput" />
-                                <ComboBox Grid.Column="2" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" ItemsSource="{Binding ListLoaiBan}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding XuLyKhoChiTiet.TONKHO.LoaiBanID}" IsEnabled="False"/>
-                                <TextBox Grid.Column="3" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding XuLyKhoChiTiet.TONKHO.DonViTinh}"  PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" />
-                                <TextBox Grid.Column="4" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding XuLyKhoChiTiet.TONKHO.GiaBan}"  PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                                <TextBox  Grid.Column="1" x:Name="txtSoLuong" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding TonKho.SoLuongNhap}"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="txt_PreviewTextInput" />
+                                <ComboBox Grid.Column="2" x:Name="cbbLoaiBan" DisplayMemberPath="TenLoaiBan" SelectedValuePath="LoaiBanID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" ItemsSource="{Binding ListLoaiBan}" SelectionChanged="cbbLoaiBan_SelectionChanged" SelectedValue="{Binding TonKho.LoaiBanID}" IsEnabled="False"/>
+                                <TextBox Grid.Column="3" x:Name="txtKichThuocLoaiBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding TonKho.DonViTinh}"  PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" />
+                                <TextBox Grid.Column="4" x:Name="txtGiaBan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" Text="{Binding TonKho.GiaBan}"  PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                                 <my:POSButtonFuntion Grid.Column="8" Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                             </Grid>
                         </DataTemplate>

@@ -16,6 +16,7 @@ namespace GUI
 
         private UserControlLibrary.UCNhapKho ucNhapKho = null;
         private UserControlLibrary.UCChuyenKho ucChuyenKho = null;
+        private UserControlLibrary.UCXuLyKho ucXuLyKho = null;
 
         public WindowQuanLyKhoHang(Data.Transit transit)
         {
@@ -72,6 +73,12 @@ namespace GUI
 
         private void btnXuLyKho_Click(object sender, RoutedEventArgs e)
         {
+            if (ucXuLyKho == null)
+            {
+                ucXuLyKho = new UserControlLibrary.UCXuLyKho(mTransit);
+            }
+            spNoiDung.Children.Clear();
+            spNoiDung.Children.Add(ucXuLyKho);
         }
 
         private void PhanQuyen()
@@ -131,6 +138,10 @@ namespace GUI
                 ucNhaCungCap.Window_KeyDown(sender, e);
             if (spNoiDung.Children[0] is UserControlLibrary.UCNhapKho)
                 ucNhapKho.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCXuLyKho)
+                ucXuLyKho.Window_KeyDown(sender, e);
+            if (spNoiDung.Children[0] is UserControlLibrary.UCChuyenKho)
+                ucChuyenKho.Window_KeyDown(sender, e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
