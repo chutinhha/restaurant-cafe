@@ -7,9 +7,10 @@ namespace Data
 {
     public class BOXuLyKhoLoai
     {
-        public IQueryable<XULYKHOLOAI> GetQueryNoTracking(Data.Transit mTransit)
+        public static IQueryable<XULYKHOLOAI> GetQueryNoTracking(Data.Transit mTransit)
         {
             return FrameworkRepository<XULYKHOLOAI>.QueryNoTracking(mTransit.KaraokeEntities.XULYKHOLOAIs);
+            
         }
     }
 }

@@ -88,8 +88,6 @@ namespace Data
             IQueryable<Data.TONKHO> lsArray = frmTK.Query().Where(s => s.DonViID == DonViID && s.MonID == MonID && s.KhoID == KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
             if (lsArray.Count() > 0 && SL < lsArray.Sum(s => s.SoLuongTon))
             {
-
-
                 foreach (var l in lsArray)
                 {
                     //-----------------------------------------------------------
