@@ -74,6 +74,13 @@ namespace ControlLibrary
             }
         }
 
+        public void RefreshImage()
+        {
+            var uriSource = new Uri(@"/SystemImages;component/Images/camera.png", UriKind.Relative);
+            this.Image = new BitmapImage(uriSource);
+        }
+
+
         public Data.Transit mTransit = null;
         public void SetTransit(Data.Transit transit)
         {

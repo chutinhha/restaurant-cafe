@@ -45,10 +45,11 @@
 
         <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
             <my:POSButtonImage Width="80" Height="80" Margin="10,10,10,10" x:Name="btnHinhAnh" _OnBitmapImageChanged="btnHinhAnh__OnBitmapImageChanged" />
+            <Button Style="{StaticResource POSMinhTien}" Width="80" Height="80" Content="Xóa ảnh" Foreground="White" FontSize="16" Name="btnXoaAnh" Click="btnXoaAnh_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal">
-            <my:POSButtonFuntion Name="btnCaiDatMayIn" Content="Cài đặt máy in" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/printer_green.png" Background="#FF97C023" Click="btnCaiDatMayIn_Click" />
-            <my:POSButtonFuntion Name="btnDanhSachBan" Content="Danh sách bán" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/option_item.png" Background="#FF97C023" Click="btnDanhSachBan_Click" />
+            <my:POSButtonFuntion Name="btnCaiDatMayIn" Content="Cài đặt máy in" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="180" Margin="5" FontSize="18" Image="/SystemImages;component/Images/printer_green.png" Background="#FF97C023" Click="btnCaiDatMayIn_Click" />
+            <my:POSButtonFuntion Name="btnDanhSachBan" Content="Danh sách bán" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="180" Margin="5" FontSize="18" Image="/SystemImages;component/Images/option_item.png" Background="#FF97C023" Click="btnDanhSachBan_Click" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -19,10 +19,12 @@ namespace Data
             return mKaraokeEntities.CAIDATTHONGTINCONGTies;
         }
 
-        public IQueryable<BAOCAOTONKHO> GetBaoCaoTonKho()
+        public IQueryable<BAOCAOTONKHO> GetBaoCaoTonKho(DateTime dtFrom)
         {
-            return mKaraokeEntities.BAOCAOTONKHOes;
-                   
+            return from x in mKaraokeEntities.BAOCAOTONKHOes
+                   where (x.NgayBan.Value.Year == dtFrom.Year && x.NgayBan.Value.Month == dtFrom.Month && x.NgayBan.Value.Day == dtFrom.Day) || x.NgayBan == null
+                   select x;
+
         }
     }
 }

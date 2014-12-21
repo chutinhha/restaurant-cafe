@@ -37,6 +37,7 @@
         <CheckBox Grid.Row="4" Grid.Column="1" x:Name="ckBan" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="18" />
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
             <my:POSButtonImage Width="80" Height="80" Margin="10,10,10,10" x:Name="btnHinhAnh" _OnBitmapImageChanged="btnHinhAnh__OnBitmapImageChanged" />
+            <Button Style="{StaticResource POSMinhTien}" Width="80" Height="80" Content="Xóa ảnh" Foreground="White" FontSize="16" Name="btnXoaAnh" Click="btnXoaAnh_Click"></Button>
         </StackPanel>
 
     </Grid>

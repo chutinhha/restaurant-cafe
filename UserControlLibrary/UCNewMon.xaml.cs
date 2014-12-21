@@ -199,5 +199,15 @@ namespace UserControlLibrary
             else
                 e.Handled = true;
         }
+
+        private void btnXoaAnh_Click(object sender, RoutedEventArgs e)
+        {
+            btnHinhAnh.ImageBitmap = null;
+            btnHinhAnh.RefreshImage();
+            if (_Mon != null)
+            {
+                _Mon.MenuMon.Hinh = null;
+            }
+        }
     }
 }
