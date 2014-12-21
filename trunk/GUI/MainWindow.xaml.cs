@@ -151,6 +151,7 @@ namespace GUI
         {
             WindowQuanLyKhoHang win = new WindowQuanLyKhoHang(mTransit);
             win.ShowDialog();
+            mTransit.KaraokeEntities = new Data.KaraokeEntities();
         }
 
         private void btnQuanLyDinhLuong_Click(object sender, RoutedEventArgs e)
