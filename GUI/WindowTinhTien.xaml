@@ -11,7 +11,7 @@
         <my:UCKeyPad HorizontalAlignment="Left" Margin="426,244,0,0" Name="uCKeyPad1" VerticalAlignment="Top" Height="265" Width="276" />
         <my:UCMoneyKeyPad HorizontalAlignment="Left" Margin="426,42,0,0" Name="uCMoneyKeyPad1" VerticalAlignment="Top" Height="190" Width="276" />
         <TextBlock FontSize="14" Height="23" HorizontalAlignment="Left" Margin="24,201,0,0" Name="textBlock4" Text="Giảm giá:" TextAlignment="Right" VerticalAlignment="Top" Width="70" />
-        <my:POSTextBox Height="39" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="115,193,0,0" Name="txtGiamGia" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="268" _TypeTextBox="Number" FontSize="20" TextChanged="txtGiamGia_TextChanged" />
+        <my:POSTextBox Height="39" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="115,193,0,0" Name="txtGiamGia" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="150" _TypeTextBox="Number" FontSize="20" TextChanged="txtGiamGia_TextChanged" />
         <TextBlock Background="{x:Null}" FontSize="40" FontStretch="Normal" FontWeight="Medium" Foreground="Red" Margin="31,70,0,0" Name="txtTongTienPhaiTra" Text="0 đ" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369" />
         <my:POSButtonIconHorizontal Background="#FFF5F2F2" Content="Chọn..." FontSize="18" Height="39" HorizontalAlignment="Left" Image="/SystemImages;component/Images/man.png" Margin="115,144,0,0" Name="btnChonKhachHang" VerticalAlignment="Top" Width="268" Click="btnChonKhachHang_Click" />
         <TextBlock FontSize="14" Height="23" HorizontalAlignment="Left" Margin="21,300,0,0" Name="textBlock6" Text="Thẻ:" TextAlignment="Right" VerticalAlignment="Top" Width="70" />
@@ -31,5 +31,6 @@
         </Rectangle>
         <ComboBox Height="39" HorizontalAlignment="Left" Margin="115,293,0,0" Name="cboThe" VerticalAlignment="Top" Width="268" DisplayMemberPath="TenThe" SelectedValuePath="TheID" FontSize="18" SelectionChanged="cboThe_SelectionChanged" />
         <my:POSTextBox FontSize="20" Height="39" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="115,343,0,0" Name="txtThe" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="268" _TypeTextBox="Decimal" IsEnabled="False" TextChanged="txtThe_TextChanged" />
+        <Label Content="%" Height="39" HorizontalAlignment="Left" Margin="271,193,0,0" Name="label1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="20" />
     </Grid>
 </Window>

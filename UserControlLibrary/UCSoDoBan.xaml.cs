@@ -97,8 +97,8 @@ namespace UserControlLibrary
                 ban.KhuID = (int)cboKhuVuc.SelectedValue;
                 ban.LocationX = 0;
                 ban.LocationY = 0;
-                ban.Width = mTransit.ThamSo.BanChieuNgang;
-                ban.Height = mTransit.ThamSo.BanChieuCao;
+                ban.Width = uCFloorPlan1._CAIDATBAN.TableWidth;
+                ban.Height = uCFloorPlan1._CAIDATBAN.TableHeight;
                 ban.Visual = true;
                 ban.Deleted = false;
                 ban.Hinh = null;

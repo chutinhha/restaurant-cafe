@@ -69,7 +69,7 @@ namespace UserControlLibrary
         {
             if (mKichThuocMon != null)
             {
-                IQueryable<Data.MENULOAIGIA> lsLoaiGia = Data.BOMenuLoaiGia.GetAllVisual(mTransit);
+                IQueryable<Data.MENULOAIGIA> lsLoaiGia = Data.BOMenuLoaiGia.GetAllVisual(mTransit.KaraokeEntities);
                 IQueryable<Data.BOMenuGia> lsGia = BOMenuGia.GetAllByKichThuocMon(mKichThuocMon.MenuKichThuocMon);
                 List<Data.BOMenuGia> lsArray = new List<Data.BOMenuGia>();
 

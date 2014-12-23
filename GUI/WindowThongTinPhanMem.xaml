@@ -43,7 +43,7 @@
                 <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
                 <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
 
-                <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Phần mềm tính tiền Karaoke"/>
+                <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Phần mềm tính tiền"/>
                 <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="© Copyright 2014"/>
                 <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
                 <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
@@ -53,6 +53,9 @@
                 <Label Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
                 <Label Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
                 <Label Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content=""/>
+                <Label Name="lblDay"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Width="426" />
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="16" Content="Ngày hết hạn: "/>
+                <Button Content="Bản quyền" Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" Margin="16,9,0,0" Name="btnBanQuyen" VerticalAlignment="Top" Width="283" Background="Red" Foreground="White" Click="btnBanQuyen_Click" />
             </Grid>
 
             <Button Grid.Row="1" Name="btnOK" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="10,5,10,25" Content="OK" Padding="40,0,40,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200"  FontSize="16" BorderThickness="1" Foreground="White" Click="btnOK_Click">

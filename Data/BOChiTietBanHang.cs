@@ -11,16 +11,32 @@ namespace Data
         public bool IsChanged { get; set; }
         public CHITIETBANHANG ChiTietBanHang { get; set; }
         public MENUKICHTHUOCMON MenuKichThuocMon { get; set; }
+        public List<BOChiTietBanHang> _ListKhuyenMai { get; set; }
         public MENUMON MenuMon { get; set; }
         public int SoLuongBanTam { get; set; }
         private Transit mTransit;
-        public static IQueryable<BOChiTietBanHang> Query(int banHangId, KaraokeEntities kara)
+        public static IQueryable<BOChiTietBanHang> Query(BANHANG banhang, KaraokeEntities kara)
         {
             var iQuery =
-                from chitiet in FrameworkRepository<CHITIETBANHANG>.QueryNoTracking(kara.CHITIETBANHANGs)
-                join kichthuoc in FrameworkRepository<MENUKICHTHUOCMON>.QueryNoTracking(kara.MENUKICHTHUOCMONs) on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
-                join menu in FrameworkRepository<MENUMON>.QueryNoTracking(kara.MENUMONs) on kichthuoc.MonID equals menu.MonID
-                where chitiet.BanHangID == banHangId
+                //from chitiet in banhang.CHITIETBANHANGs.Where(o=>o.ChiTietBanHangID_Ref==null)
+                from chitiet in kara.CHITIETBANHANGs.Where(o => o.ChiTietBanHangID_Ref == null&&o.BanHangID==banhang.BanHangID)
+                join kichthuoc in kara.MENUKICHTHUOCMONs on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
+                join menu in kara.MENUMONs on kichthuoc.MonID equals menu.MonID                
+                select new BOChiTietBanHang
+                {
+                    MenuKichThuocMon = kichthuoc,
+                    ChiTietBanHang = chitiet,
+                    MenuMon = menu
+                };
+            return iQuery;
+        }
+        public static IQueryable<BOChiTietBanHang> QueryKhuyenMai(CHITIETBANHANG chitietbh, KaraokeEntities kara)
+        {
+            var iQuery =
+                //from chitiet in banhang.CHITIETBANHANGs.Where(o=>o.ChiTietBanHangID_Ref==null)
+                from chitiet in kara.CHITIETBANHANGs.Where(o => o.ChiTietBanHangID_Ref==chitietbh.ChiTietBanHangID)
+                join kichthuoc in kara.MENUKICHTHUOCMONs on chitiet.KichThuocMonID equals kichthuoc.KichThuocMonID
+                join menu in kara.MENUMONs on kichthuoc.MonID equals menu.MonID
                 select new BOChiTietBanHang
                 {
                     MenuKichThuocMon = kichthuoc,
@@ -50,32 +66,47 @@ namespace Data
         }
         public BOChiTietBanHang()
         {
+            _ListKhuyenMai = new List<BOChiTietBanHang>();
         }
         public BOChiTietBanHang(CHITIETBANHANG chiTiet, Transit transit)
         {
+            _ListKhuyenMai = new List<BOChiTietBanHang>();
             ChiTietBanHang = chiTiet;
             MenuKichThuocMon = ChiTietBanHang.MENUKICHTHUOCMON;
             MenuMon = ChiTietBanHang.MENUKICHTHUOCMON.MENUMON;
             mTransit = transit;
-            SoLuongBanTam = (int)ChiTietBanHang.SoLuongBan;
+            SoLuongBanTam = (int)ChiTietBanHang.SoLuongBan;            
         }
         public BOChiTietBanHang(Data.BOMenuKichThuocMon ktm, Transit transit)
         {
             mTransit = transit;
-
             this.ChiTietBanHang = new CHITIETBANHANG();
+            _ListKhuyenMai = new List<BOChiTietBanHang>();
             this.ChiTietBanHang.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
             this.ChiTietBanHang.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
             this.ChiTietBanHang.ThanhTien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan;
             this.ChiTietBanHang.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;
             this.MenuKichThuocMon = ktm.MenuKichThuocMon;
             this.MenuMon = ktm.MenuMon;
-            SoLuongBanTam = (int)this.ChiTietBanHang.SoLuongBan;
+            SoLuongBanTam = (int)this.ChiTietBanHang.SoLuongBan;                    
+        }
+        public void LoadKhuyenMai(KaraokeEntities kara)
+        {
+            var queryKhuyenMai = Data.BOMenuKhuyenMai.GetAllByKichThuocMon(kara, MenuKichThuocMon);
+            foreach (var item in queryKhuyenMai)
+            {
+                BOChiTietBanHang ct = new BOChiTietBanHang(item.KichThuocMonTang, mTransit);
+                _ListKhuyenMai.Add(ct);
+            }
         }
         public void ChangeQtyChiTietBanHang(int qty)
         {
-            this.ChiTietBanHang.SoLuongBan = qty;
+            this.ChiTietBanHang.SoLuongBan = qty;            
             this.ChangeThanhTien();
+            foreach (var km in this._ListKhuyenMai)
+            {
+                km.ChangeQtyChiTietBanHang(qty);
+            }
         }
         public void ChangePriceChiTietBanHang(decimal gia)
         {
@@ -128,11 +159,20 @@ namespace Data
         {
             get
             {
+                string s = "";   
                 if (this.ChiTietBanHang.GiamGia>0)
                 {
-                    return String.Format("Giảm giá {0}%", this.ChiTietBanHang.GiamGia);
+                    s= String.Format("Giảm giá {0}%,", this.ChiTietBanHang.GiamGia);
                 }
-                return "";
+                foreach (var item in _ListKhuyenMai)
+                {
+                    s += String.Format("(+{0}){1},", item.ChiTietBanHang.SoLuongBan, item.TenMon);
+                }
+                if (s.Length>0)
+                {
+                    s = s.Substring(0, s.Length - 1);
+                }
+                return s;
                 //return "Giảm giá 5%, Tặng món A, khuyến mãi B, giá của khu A, phòng VIP";
             }
         }
@@ -148,7 +188,6 @@ namespace Data
 
             }
         }
-
-
+        
     }
 }

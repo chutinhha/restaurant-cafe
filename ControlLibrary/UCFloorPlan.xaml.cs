@@ -48,7 +48,7 @@ namespace ControlLibrary
         {
             if (!_IsEdit)
             {
-                var list = Data.BOTableStatus.GetAll(mTransit).ToList();
+                var list = Data.BOTableStatus.GetAll(mTransit.KaraokeEntities).ToList();
                 foreach (POSButtonTable item in gridFloorPlan.Children)
                 {
                     //if (list.Count==0)

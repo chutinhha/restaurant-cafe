@@ -20,7 +20,7 @@ namespace UserControlLibrary
     {
         private Data.Transit mTranSit;
         private Data.BOKhachHang mBOKhachHang;
-        public Data.KHACHHANG _KhachHang { get; set; }
+        public Data.BOKhachHang _KhachHang { get; set; }        
         public WindowTimKhachHang(Data.Transit transit)
         {
             mTranSit = transit;
@@ -61,7 +61,7 @@ namespace UserControlLibrary
                 //AddList(win._Item);
                 //mBOKhachHang.Them(win._Item);
                 mBOKhachHang.Commit();
-                _KhachHang = win._Item.KhachHang;
+                _KhachHang = win._Item;
                 this.DialogResult = true;
             }
         }
@@ -76,7 +76,7 @@ namespace UserControlLibrary
             {
                 ListViewItem lv = (ListViewItem)lvData.SelectedItem;
                 Data.BOKhachHang kh = (Data.BOKhachHang)lv.Tag;
-                _KhachHang = kh.KhachHang;
+                _KhachHang = kh;
                 this.DialogResult = true;
             }
         }

@@ -141,9 +141,12 @@ namespace GUI
         }
         private void HuyBan()
         {
-            mProcessOrder.HuyBan();
-            mUCFloorPlan.LoadAlllStatus();
+            if (mProcessOrder.BanHang.BanHangID>0)
+            {
+                mProcessOrder.HuyBan();
+                mUCFloorPlan.LoadAlllStatus();
             this.Close();
+            }            
         }
         private void GiamGiaMon()
         {
@@ -205,7 +208,7 @@ namespace GUI
                         this.Close();
 
                     }
-                }
+                }                
             }
         }
         private void GuiNhaBep()
@@ -230,7 +233,7 @@ namespace GUI
                     //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
                     mUCFloorPlan.LoadAlllStatus();
                     this.Close();
-                }
+                }                
             }
         }
         private void XoaMon()
@@ -423,7 +426,7 @@ namespace GUI
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
         {
-            Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);
+            Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);            
             AddChiTietBanHang(item);
         }
 

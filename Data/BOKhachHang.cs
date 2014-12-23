@@ -92,8 +92,7 @@ namespace Data
         public void Commit()
         {
             frmKhachHang.Commit();
-        }
-
+        }        
         public IQueryable<LOAIKHACHHANG> GetLoaiKhachHang()
         {
             return BOLoaiKhachHang.GetQueryNoTracking(mKaraokeEntities);

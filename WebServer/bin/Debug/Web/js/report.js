@@ -1,7 +1,29 @@
 function Report(){
+    var Object=this;
+    this.InitReport=function (){
+        $('#content').children().remove();
+        $('<input id="datetimepicker" type="text" >').appendTo($('#content'));        
+        $('#datetimepicker').datetimepicker({
+                lang:'vi',                
+                timepicker:false,
+                format:'d/m/Y',
+                closeOnDateSelect:true                
+           });
+         var btn= $('<button type="button" id="report_button_view">Xem Báo Cáo</Button>');
+         btn.appendTo($('#content'));     
+         
+         var btnBack= $('<button type="button" id="report_button_back">Quay lại</Button>');
+         btnBack.appendTo($('#content'));   
+         btnBack.click(function (){
+             main.AddFunction();
+         });
+         
+         var reportContent=$('<div class="reportcontent" id="reportContent"></div>');
+         reportContent.appendTo($('#content'));
+    };
     this.LoadReport=function (){
         $.ajax({
-            url: mainIPPort + '/readreport',
+            url: mainIPPort + '/readreport.php',
             type: 'POST',
             headers: { "cache-control": "no-cache" },
             cache: false,                

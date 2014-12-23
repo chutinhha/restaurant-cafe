@@ -10,9 +10,9 @@ namespace Data
         public int TableID { get; set; }
         public int Status { get; set; }
 
-        public static IQueryable<BOTableStatus> GetAll(Transit transit)
+        public static IQueryable<BOTableStatus> GetAll(KaraokeEntities kara)
         {
-            return from a in BOBanHang.GetAllNotCompleted(transit)
+            return from a in BOBanHang.GetAllNotCompleted(kara)
                    select new BOTableStatus
                    {
                        TableID=(int)a.BanID,

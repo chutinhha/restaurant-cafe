@@ -79,7 +79,11 @@ namespace PrinterServer
         private void LoadData()
         {            
             mBOPrintOrder = mBOXuliMayIn.GetOrderFromBanHangID(mBanHangID).FirstOrDefault();
-            mListPrintOrderItem = mBOXuliMayIn.GetPrintOrderItemFromBanHangID(mBanHangID, mBOMayIn.MayInID).ToList();
+            mListPrintOrderItem = mBOXuliMayIn.GetPrintOrderItemFromBanHangID(mBanHangID).ToList();
+            foreach (var item in mListPrintOrderItem)
+            {
+                item._ListKhuyenMai = mBOXuliMayIn.GetPrintOrderItemKM(item).ToList();
+            }
         }
         public void Print()
         {
@@ -177,10 +181,14 @@ namespace PrinterServer
                 }
                 yTmp = y;
                 x=0;
-                y=mPOSPrinter.POSDrawString(item.TenMon, e, mFontItemBody, mColorBlack, x, yTmp, widthItem, TextAlign.Left);
+                y=mPOSPrinter.POSDrawString(item.TenMon, e, mFontItemBody, mColorBlack, x, y, widthItem, TextAlign.Left);
                 if (item.GiamGia>0)
                 {
                     y=mPOSPrinter.POSDrawString(String.Format("Giảm giá: {0}%",item.GiamGia), e, mFontItemBodyNote, mColorBlack, x, y, widthItem, TextAlign.Left);
+                }
+                foreach (var km in item._ListKhuyenMai)
+                {
+                    y = mPOSPrinter.POSDrawString(String.Format("+{0}", km.TenMon), e, mFontItemBodyNote, mColorBlack, x + mPOSPrinter.POSGetFloat(10), y, widthItem, TextAlign.Left);
                 }
                 x += widthItem;
                 mPOSPrinter.POSDrawString(String.Format("{0}", item.SoLuong), e, mFontItemBody, mColorBlack, x, yTmp, WIDTH_SO_LUONG, TextAlign.Right);
@@ -201,16 +209,21 @@ namespace PrinterServer
             if (mBOPrintOrder.TienGiam > 0)
             {                
                 mPOSPrinter.POSDrawString("GIẢM GIÁ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-                //if (mPrinterBillOrderType==PrinterBillOrderType.TamTinh)
-                //{
-                //    mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                //    y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
-                //}
-                mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
-                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+                y = mPOSPrinter.POSDrawString("-"+Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienGiam), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);                                
             }
-            y=mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ReadNumber((double)mBOPrintOrder.TienPhaiTra),e,mFontItemBodyNote,mColorBlack,y,TextAlign.Left,0);
+            if (mBOPrintOrder.TienPhiDichVu > 0)
+            {
+                mPOSPrinter.POSDrawString("PHÍ DỊCH VỤ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
+                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienPhiDichVu), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+            }
+            if (mBOPrintOrder.TienThueVAT > 0)
+            {
+                mPOSPrinter.POSDrawString("VAT: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
+                y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TienThueVAT), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+            }
+            mPOSPrinter.POSDrawString("PHẢI TRẢ: ", e, mFontSum, mColorBlack, y, TextAlign.Left, 0);
+            y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ConvertToString(mBOPrintOrder.TongTienPhaiTra), e, mFontSum, mColorBlack, y, TextAlign.Right, 0);
+            y = mPOSPrinter.POSDrawString(Utilities.MoneyFormat.ReadNumber((double)mBOPrintOrder.TongTienPhaiTra), e, mFontItemBodyNote, mColorBlack, y, TextAlign.Left, 0);
             if (mBOPrintOrder.BanHang.TienThe > 0)
             {
                 mPOSPrinter.POSDrawString("THẺ: ", e, mFontBig, mColorBlack, y, TextAlign.Left, 0);

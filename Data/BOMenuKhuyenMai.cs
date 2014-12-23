@@ -9,7 +9,7 @@ namespace Data
     {
         public Data.MENUKHUYENMAI MenuKhuyenMai { get; set; }
         public Data.BOMenuKichThuocMon KichThuocMonChinh { get; set; }
-        public Data.BOMenuKichThuocMon KichThuocMonTang { get; set; }
+        public Data.BOMenuKichThuocMon KichThuocMonTang { get; set; }        
         KaraokeEntities mKaraokeEntities = null;
 
         public BOMenuKhuyenMai()
@@ -18,7 +18,22 @@ namespace Data
             KichThuocMonChinh = new BOMenuKichThuocMon();
             KichThuocMonTang = new BOMenuKichThuocMon();
         }
-
+        public static IQueryable<BOMenuKhuyenMai> GetAllByKichThuocMon(KaraokeEntities kara, MENUKICHTHUOCMON ktm)
+        {
+            var query = from a in kara.MENUKHUYENMAIs.Where(o => o.KichThuocMonID == ktm.KichThuocMonID&&o.Visual==true && o.Deleted==false)
+                        join b in kara.MENUKICHTHUOCMONs on a.KichThuocMonTang equals b.KichThuocMonID
+                        join c in kara.MENUMONs on b.MonID equals c.MonID
+                        select new BOMenuKhuyenMai
+                        {
+                            MenuKhuyenMai = a,
+                            KichThuocMonTang = new BOMenuKichThuocMon 
+                            {
+                                MenuKichThuocMon=b,
+                                MenuMon=c
+                            }
+                        };
+            return query;
+        }
         public BOMenuKhuyenMai(Data.Transit transit)
         {
             mKaraokeEntities = new KaraokeEntities();

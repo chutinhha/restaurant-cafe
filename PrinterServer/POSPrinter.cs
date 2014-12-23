@@ -10,7 +10,7 @@ namespace PrinterServer
     class POSPrinter:PrintDocument
     {        
         public object _Tag { get; set; }
-
+        private float mWidthPrinter=0;
         public POSPrinter()
         {
             this.PrintController = new StandardPrintController();                                                
@@ -147,8 +147,12 @@ namespace PrinterServer
             e.Graphics.DrawLine(pen, x, y, x + width, y);            
         }
         public float POSGetWidthPrinter(System.Drawing.Printing.PrintPageEventArgs e)
-        {            
-            return e.PageSettings.PrintableArea.Width;
+        {
+            if (mWidthPrinter==0)
+            {
+                mWidthPrinter=e.PageSettings.PrintableArea.Width;
+            }
+            return mWidthPrinter;
             //return e.PageSettings.PaperSize.Width - e.PageSettings.Margins.Left - e.PageSettings.Margins.Right;
         }
         private float POSGetXWithAlign(System.Drawing.Printing.PrintPageEventArgs e, TextAlign textAlign, float width,float margin)

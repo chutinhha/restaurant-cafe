@@ -24,14 +24,14 @@ namespace Data
             frmMenuGia = new FrameworkRepository<MENUGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENUGIAs);
             frmLoaiGia = new FrameworkRepository<MENULOAIGIA>(transit.KaraokeEntities, transit.KaraokeEntities.MENULOAIGIAs);
         }
-        public static IQueryable<MENUGIA> GetAll(Transit transit)
+        public static IQueryable<MENUGIA> GetAll(KaraokeEntities kara)
         {
-            return FrameworkRepository<MENUGIA>.QueryNoTracking(transit.KaraokeEntities.MENUGIAs);
+            return kara.MENUGIAs;
         }
-        public static IQueryable<BOMenuGia> GetAllByKichThuocMonVaLoaiGia(Transit transit,MENUKICHTHUOCMON ktm,IQueryable<MENULOAIGIA> loaiGia)
+        public static IQueryable<BOMenuGia> GetAllByKichThuocMonVaLoaiGia(KaraokeEntities kara,MENUKICHTHUOCMON ktm,IQueryable<MENULOAIGIA> loaiGia)
         {
             return from a in loaiGia
-                   join b in GetAll(transit) on a.LoaiGiaID equals b.LoaiGiaID
+                   join b in GetAll(kara) on a.LoaiGiaID equals b.LoaiGiaID
                    where b.KichThuocMonID==ktm.KichThuocMonID
                    select new BOMenuGia
                    {

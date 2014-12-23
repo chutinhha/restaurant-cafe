@@ -12,6 +12,7 @@ namespace ProcessOrder
         private Data.BOMenuGia mBOMenuGia;
         private Data.BOQuanLyKho mBOQuanLyKho;
         private Data.Transit mTransit;
+        private Data.KaraokeEntities mKaraokeEntities;
         private PrinterServer.ProcessPrinter mProcessPrinter;
         private PriceManager mPriceManager;
         public Data.BOChiTietBanHang CurrentChiTietBanHang { get; set; }
@@ -30,9 +31,10 @@ namespace ProcessOrder
         public ProcessOrder(Data.Transit transit)
         {
             mTransit = transit;
-            mPriceManager = new PriceManager(mTransit);
+            mKaraokeEntities = new Data.KaraokeEntities();
+            mPriceManager = new PriceManager(mTransit,mKaraokeEntities);
             mBOMenuGia = new Data.BOMenuGia(mTransit);
-            mBanHang = new Data.BOBanHang(mTransit);
+            mBanHang = new Data.BOBanHang(mTransit,mKaraokeEntities);
             mBOQuanLyKho = new Data.BOQuanLyKho(mTransit);
             mBanHang.LoadBanHang();
             mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
@@ -47,6 +49,11 @@ namespace ProcessOrder
         }
         public int SendOrder()
         {
+            if (mBanHang.BANHANG.BanHangID==0)
+            {
+                mTransit.ThamSo.ThuTuMaHoaDon++;
+                mTransit.KaraokeEntities.SaveChanges();
+            }
             int lichSuBanHangId = mBanHang.GuiNhaBep();
             //mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);
             if (lichSuBanHangId > 0)
@@ -113,7 +120,8 @@ namespace ProcessOrder
         }
         public int AddChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
-            //mPriceManager.LoadPrice(chitiet);
+            //mPriceManager.LoadPrice(chitiet);   
+            chitiet.LoadKhuyenMai(mKaraokeEntities);
             return mBanHang.AddChiTietBanHang(chitiet);
         }
         public bool KiemTraKho(Data.BOChiTietBanHang chitiet)
@@ -123,6 +131,6 @@ namespace ProcessOrder
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
         {
             return mPriceManager.CheckMutiablePrice(chitiet);
-        }
+        }       
     }
 }

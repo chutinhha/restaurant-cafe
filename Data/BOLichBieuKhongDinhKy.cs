@@ -23,24 +23,24 @@ namespace Data
             TenKhu = "";
         }
 
-        public static IQueryable<LICHBIEUKHONGDINHKY> GetAllVisual(Transit transit)
+        public static IQueryable<LICHBIEUKHONGDINHKY> GetAllVisual(KaraokeEntities kara)
         {
-            return FrameworkRepository<LICHBIEUKHONGDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUKHONGDINHKies).Where(o => o.Deleted == false && o.Visual == true);
+            return kara.LICHBIEUKHONGDINHKies.Where(o => o.Deleted == false && o.Visual == true);
         }
 
-        public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(Transit transit)
+        public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(KaraokeEntities kara,BAN ban)
         {
             DateTime dtNow = DateTime.Now;
             DateTime dt = new DateTime(dtNow.Year, dtNow.Month, dtNow.Day);
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            var querya = BOMenuLoaiGia.GetAllVisual(transit);
-            var queryb = from b in GetAllVisual(transit)
+            var querya = BOMenuLoaiGia.GetAllVisual(kara);
+            var queryb = from b in GetAllVisual(kara)
                          where
                              ts.CompareTo(b.GioBatDau.Value) >= 0 && ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
                              dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0 &&
                              (
                                 b.KhuID == null ||
-                                b.KhuID == transit.Ban.KhuID
+                                b.KhuID == ban.KhuID
                              )
                          select b;
             var query = from a in querya
@@ -81,18 +81,18 @@ namespace Data
 
         public IQueryable<BOLichBieuKhongDinhKy> GetAll()
         {
-            var res = (from lb in mKaraokeEntities.LICHBIEUKHONGDINHKies
+            var res = from lb in mKaraokeEntities.LICHBIEUKHONGDINHKies
                        join k in mKaraokeEntities.KHUs on lb.KhuID equals k.KhuID into k1
                        from khu in k1.DefaultIfEmpty()
                        join l in mKaraokeEntities.MENULOAIGIAs on lb.LoaiGiaID equals l.LoaiGiaID
-                       where lb.LoaiGiaID == l.LoaiGiaID
+                       where lb.LoaiGiaID == l.LoaiGiaID && lb.Deleted==false
                        orderby l.Ten ascending, lb.TenLichBieu ascending
                        select new BOLichBieuKhongDinhKy
                        {
                            LichBieuKhongDinhKy = lb,
                            MenuLoaiGia = l,
                            TenKhu = (khu.TenKhu == null ? "Tất cả khu" : khu.TenKhu)
-                       });
+                       };
             return res;
         }
         public void Luu(List<BOLichBieuKhongDinhKy> lsArray)

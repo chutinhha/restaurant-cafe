@@ -16,23 +16,25 @@ namespace Data
         public BOXuliTinhTien(Transit transit,BOBanHang banhang)
         {
             mTransit = transit;
-            mBanHang = CreateBHFromBH(banhang.BANHANG);
+            mBanHang = new BANHANG();            
+            Copy(banhang.BANHANG, mBanHang);
             mBanHang.TongTien = banhang.TongTien();
 
         }
-        private BANHANG CreateBHFromBH(BANHANG banhang)
-        {
-            BANHANG b = new BANHANG();
-            b.BanHangID = banhang.BanHangID;
-            b.NhanVienID = banhang.NhanVienID;
-            b.BanID = banhang.BanID;
-            b.TrangThaiID = banhang.TrangThaiID;
-            b.NgayBan = banhang.NgayBan;
-            b.MaHoaDon = banhang.MaHoaDon;            
-            b.TheID = banhang.TheID;
-            b.KhachHangID = banhang.KhachHangID;
-            b.GiamGia = banhang.GiamGia;            
-            return b;
+        public void Copy(BANHANG bhFrom,BANHANG bhTo)
+        {            
+            bhTo.BanHangID = bhFrom.BanHangID;
+            bhTo.NhanVienID = bhFrom.NhanVienID;
+            bhTo.BanID = bhFrom.BanID;
+            bhTo.TrangThaiID = bhFrom.TrangThaiID;
+            bhTo.NgayBan = bhFrom.NgayBan;
+            bhTo.MaHoaDon = bhFrom.MaHoaDon;
+            bhTo.TheID = bhFrom.TheID;
+            bhTo.KhachHangID = bhFrom.KhachHangID;
+            bhTo.GiamGia = bhFrom.GiamGia;
+            bhTo.ThueVAT = bhFrom.ThueVAT;
+            bhTo.PhiDichVu = bhFrom.PhiDichVu;
+            bhTo.TongTien = bhFrom.TongTien;
         }
         public int GiamGiaPhanTram 
         {
@@ -53,18 +55,39 @@ namespace Data
                 return (decimal)mBanHang.TongTien; 
             }
         }
+        public decimal TienPhiDichVu
+        {
+            get
+            {
+                return mBanHang.PhiDichVu * mBanHang.TongTien / 100;
+            }
+        }
         public decimal TienGiam 
         {
             get 
             {                
                 return mBanHang.GiamGia*mBanHang.TongTien/100; 
             }           
+        }        
+        public decimal TienThueVAT
+        {
+            get 
+            {
+                return  mBanHang.ThueVAT * (mBanHang.TongTien-TienGiam+TienPhiDichVu) / 100;
+            }
+        }
+        public decimal TongTienChuaGiamGia
+        {
+            get
+            {
+                return mBanHang.TongTien + TienPhiDichVu + TienThueVAT; 
+            }
         }
         public decimal TongTienPhaiTra 
         {
             get 
-            {                
-                return (decimal)(mBanHang.TongTien - TienGiam); 
+            {
+                return mBanHang.TongTien - TienGiam+TienPhiDichVu+TienThueVAT; 
             }
         }
         public decimal TienKhachDua 

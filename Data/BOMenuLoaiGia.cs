@@ -14,10 +14,10 @@ namespace Data
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
         }
-        public static IQueryable<MENULOAIGIA> GetAllLoaiGiaRun(Transit transit)
+        public static IQueryable<MENULOAIGIA> GetAllLoaiGiaRun(KaraokeEntities kara,BAN ban)
         {
-            var lichBieuDinhKy = Data.BOLichBieuDinhKy.GetAllVisualRun(transit);
-            var lichBieuKhongDinhKy = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(transit);
+            var lichBieuDinhKy = Data.BOLichBieuDinhKy.GetAllVisualRun(kara,ban);
+            var lichBieuKhongDinhKy = Data.BOLichBieuKhongDinhKy.GetAllVisualRun(kara,ban);
             return (from a in lichBieuDinhKy select a.MenuLoaiGia).Union(from b in lichBieuKhongDinhKy select b.MenuLoaiGia).Distinct();
         }
 
@@ -26,9 +26,9 @@ namespace Data
             return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(transit.KaraokeEntities.MENULOAIGIAs).Where(o => o.Deleted == false);
         }
 
-        public static IQueryable<MENULOAIGIA> GetAllVisual(Transit transit)
+        public static IQueryable<MENULOAIGIA> GetAllVisual(KaraokeEntities kara)
         {
-            return FrameworkRepository<MENULOAIGIA>.QueryNoTracking(transit.KaraokeEntities.MENULOAIGIAs).Where(o => o.Deleted == false && o.Visual == true);
+            return kara.MENULOAIGIAs.Where(o => o.Deleted == false && o.Visual == true);
         }
 
         public IQueryable<MENULOAIGIA> GetAll()

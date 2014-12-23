@@ -38,7 +38,7 @@ namespace GUI
         {
             if (txtTongTien != null)
             {
-                txtTongTien.Text = "Tổng Tiền: " + Utilities.MoneyFormat.ConvertToStringFull(mBOXuliTinhTien.TongTien);
+                txtTongTien.Text = "Tổng Tiền: " + Utilities.MoneyFormat.ConvertToStringFull(mBOXuliTinhTien.TongTienChuaGiamGia);
             }
             if (txtTongTienPhaiTra != null)
             {
@@ -51,6 +51,8 @@ namespace GUI
             txtGiamGia._MaxValue = 100;
             if (mBOXuliTinhTien.GiamGiaPhanTram>0)
                 txtGiamGia.Text = Utilities.NumberFormat.FormatToString(mBOXuliTinhTien.GiamGiaPhanTram);
+            if (mBOBanHang.BANHANG.KhachHangID!=null)
+                txtGiamGia.IsEnabled = false;
             ReLoadData();
             LoadKhachHang();
         }
@@ -61,7 +63,9 @@ namespace GUI
 
         private void btnDongY_Click(object sender, RoutedEventArgs e)
         {
-            mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
+            //mBOBanHang.BANHANG = mBOXuliTinhTien.BanHang;
+            mBOXuliTinhTien.Copy(mBOXuliTinhTien.BanHang, mBOBanHang.BANHANG);            
+
             this.DialogResult = true;
         }
         private void LoadKhachHang()
@@ -76,8 +80,13 @@ namespace GUI
             UserControlLibrary.WindowTimKhachHang win = new UserControlLibrary.WindowTimKhachHang(mTransit);
             if (win.ShowDialog() == true)
             {
-                mBOXuliTinhTien.BanHang.KhachHangID = win._KhachHang.KhachHangID;
-                mBOBanHang.KHACHHANG = win._KhachHang;
+                mBOXuliTinhTien.BanHang.KhachHangID = win._KhachHang.KhachHang.KhachHangID;
+                mBOBanHang.KHACHHANG = win._KhachHang.KhachHang;
+                
+                txtGiamGia.Text = Utilities.NumberFormat.FormatToString(win._KhachHang.LoaiKhachHang.PhanTramGiamGia);
+                txtGiamGia.IsEnabled = false;
+
+                ReLoadData();
                 LoadKhachHang();                
             }
         }

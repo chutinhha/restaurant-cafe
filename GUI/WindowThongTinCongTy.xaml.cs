@@ -153,5 +153,11 @@ namespace GUI
             win.ShowDialog();
         }
 
+        private void btnCaiDatBanHang_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatBanHang win = new UserControlLibrary.WindowCaiDatBanHang(mTransit);
+            win.ShowDialog();
+        }
+
     }
 }

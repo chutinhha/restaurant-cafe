@@ -78,7 +78,7 @@ namespace UserControlLibrary
                     Data.BOLichBieuDinhKy item = (Data.BOLichBieuDinhKy)lvData.SelectedItems[0];
                     if (item.LichBieuDinhKy.LichBieuDinhKyID > 0)
                     {
-                        item.LichBieuDinhKy.Deleted = true;
+                        item.LichBieuDinhKy.Deleted = true;                        
                     }
                     lsArray.Remove(item);
                     lvData.Items.Refresh();
