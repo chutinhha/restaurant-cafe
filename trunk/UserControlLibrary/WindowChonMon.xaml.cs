@@ -85,5 +85,14 @@ namespace UserControlLibrary
         {
             DialogResult = false;
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                DialogResult = false;
+                return;
+            }
+        }
     }
 }

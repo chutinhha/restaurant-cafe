@@ -29,7 +29,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên Quyền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTenQuyen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" IsReadOnly="True"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
 
-                <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+                <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" AlternationCount="2">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="30">

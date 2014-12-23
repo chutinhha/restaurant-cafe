@@ -25,7 +25,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Row="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="219,0,208,0" Width="330">
+                <ListView Grid.Row="1" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="219,0,208,0" Width="330" AlternationCount="2">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="230" Header="Tên món"/>

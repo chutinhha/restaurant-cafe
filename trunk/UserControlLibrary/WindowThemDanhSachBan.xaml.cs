@@ -63,7 +63,7 @@ namespace UserControlLibrary
                 ckChoPhepTonKho.IsChecked = (bool)_Item.MenuKichThuocMon.ChoPhepTonKho;
                 ckBan.IsChecked = _Item.MenuKichThuocMon.Visual;
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Thêm Danh Sách Bán";
+                lbTieuDe.Text = "Sửa đơn vị tính";
             }
             else
             {
@@ -75,7 +75,7 @@ namespace UserControlLibrary
                 ckBan.IsChecked = true;
                 ckChoPhepTonKho.IsChecked = true;
                 btnLuu.Content = mTransit.StringButton.Luu;
-                lbTieuDe.Text = "Sửa Danh Sách Bán";
+                lbTieuDe.Text = "Thêm đơn vị tính";
             }
         }
 

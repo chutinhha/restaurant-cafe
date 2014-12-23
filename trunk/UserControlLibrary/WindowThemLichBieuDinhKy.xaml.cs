@@ -67,9 +67,9 @@ namespace UserControlLibrary
                     cbbKhu.SelectedIndex = 0;
                 txtUuTien.Text = "1";
                 timeBatDau.TimeCurent = new TimeSpan(0, 0, 0);
-                timeKetThuc.TimeCurent = new TimeSpan(0, 0, 0);
+                timeKetThuc.TimeCurent = new TimeSpan(23, 59, 59);
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Sửa Lịch Biểu Định Kỳ";
+                lbTieuDe.Text = "Thêm Lịch Biểu Định Kỳ";
             }
             else
             {
@@ -87,7 +87,7 @@ namespace UserControlLibrary
                     cbbKhu.SelectedValue = 0;
                 else
                     cbbKhu.SelectedValue = _Item.LichBieuDinhKy.KhuID;
-                lbTieuDe.Text = "Thêm Lịch Biểu Định Kỳ";
+                lbTieuDe.Text = "Sửa Lịch Biểu Định Kỳ";
             }
         }
 

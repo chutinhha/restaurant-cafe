@@ -160,11 +160,12 @@ namespace Data
             None,
             CaiDatThongTinCongTy = 1401,
             CaiDatGiaoDienBanHang,
-            btnCaiDatChucNangHienThi,
+            CaiDatChucNangHienThi,
             CaiDatBan,
             CaiDatMayInNhaBep,
             CaiDatMayInHoaDon,
-            CaiDatThucDon
+            CaiDatThucDon, CaiDatBanHang,
+            XuatNhapDuLieu
         }
 
         public enum ThongTinPhanMem

@@ -11,7 +11,8 @@ namespace Data
         public CHITIETQUYEN ChiTietQuyen { get; set; }
         public QUYEN Quyen { get; set; }
         public CHUCNANG ChucNang { get; set; }
-        public QUYENNHANVIEN QuyenNhanVien { get; set; }        
+        public NHOMCHUCNANG NhomChucNang { get; set; }
+        public QUYENNHANVIEN QuyenNhanVien { get; set; }
         public Visibility IsChoPhep { get; set; }
         public Visibility IsDangNhap { get; set; }
         public Visibility IsThem { get; set; }
@@ -23,6 +24,7 @@ namespace Data
         FrameworkRepository<QUYEN> frmQuyen = null;
         FrameworkRepository<CHUCNANG> frmChucNang = null;
         FrameworkRepository<QUYENNHANVIEN> frmQuyenNhanVien = null;
+        FrameworkRepository<NHOMCHUCNANG> frmNhomChucNang = null;
         public BOChiTietQuyen(Transit transit)
         {
             mTransit = transit;
@@ -30,6 +32,7 @@ namespace Data
             frmQuyen = new FrameworkRepository<QUYEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENs);
             frmChucNang = new FrameworkRepository<CHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.CHUCNANGs);
             frmQuyenNhanVien = new FrameworkRepository<QUYENNHANVIEN>(transit.KaraokeEntities, transit.KaraokeEntities.QUYENNHANVIENs);
+            frmNhomChucNang = new FrameworkRepository<NHOMCHUCNANG>(transit.KaraokeEntities, transit.KaraokeEntities.NHOMCHUCNANGs);
         }
         public BOChiTietQuyen()
         {
@@ -37,6 +40,7 @@ namespace Data
             Quyen = new QUYEN();
             ChucNang = new CHUCNANG();
             QuyenNhanVien = new QUYENNHANVIEN();
+            NhomChucNang = new NHOMCHUCNANG();
         }
 
         public IQueryable<BOChiTietQuyen> GetAll(int MaQuyen, Transit mTransit)
@@ -44,12 +48,12 @@ namespace Data
             var res = (from ctq in frmChiTietQuyen.Query()
                        join q in frmQuyen.Query() on ctq.QuyenID equals q.MaQuyen
                        join cn in frmChucNang.Query() on ctq.ChucNangID equals cn.ChucNangID
-                       where ctq.Deleted == false && ctq.Deleted == false && ctq.QuyenID == MaQuyen
+                       where ctq.Deleted == false && ctq.QuyenID == MaQuyen
                        select new BOChiTietQuyen
                        {
                            ChiTietQuyen = ctq,
                            Quyen = q,
-                           ChucNang = cn
+                           ChucNang = cn                           
                        });
             return res;
         }

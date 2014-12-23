@@ -87,12 +87,14 @@ namespace GUI
             if (value == true)
             {
                 btn.IsEnabled = true;
-                btn.VisibilityMain = System.Windows.Visibility.Visible;
+                //btn.VisibilityMain = System.Windows.Visibility.Visible;
+                btn.Opacity = 1;
             }
             else
             {
                 btn.IsEnabled = false;
-                btn.VisibilityMain = System.Windows.Visibility.Hidden;
+                //btn.VisibilityMain = System.Windows.Visibility.Hidden;
+                btn.Opacity = 0.3;
             }
         }
 

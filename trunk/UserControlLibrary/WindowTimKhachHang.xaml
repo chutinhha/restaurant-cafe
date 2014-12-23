@@ -18,7 +18,7 @@
             <my:POSButtonFuntion Name="btnDong" Content="Đóng" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,146,111,0" FontSize="18" Image="/SystemImages;component/Images/ExtrasShutdown.png" Background="#FFDF0023" Width="118" Height="37" Click="btnDong_Click" />
             <my:POSButtonFuntion Name="btnTim" Content="Tìm" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,146,0,0" FontSize="18" Image="/SystemImages;component/Images/Data_Find.png" Background="#FF97C023" Width="118" Height="37" Click="btnTim_Click" />
         </Grid>
-        <ListView  Name="lvData" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0">
+        <ListView  Name="lvData" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" AlternationCount="2">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Danh sách khách hàng">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhachHang.TenKhachHang}" Width="200" Header="Tên khách hàng" />

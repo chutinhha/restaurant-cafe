@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF4EB89B" Click="btnDanhSach_Click" />
-            <my:POSButtonFuntion Name="btnThemMon" Content="Thêm món" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMon_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Hủy thay đổi" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF4EB89B" Click="btnDanhSach_Click" />
+            <my:POSButtonFuntion Name="btnThemMon" Content="Thêm nguyên liệu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemNguyenLieu_Click" />
         </StackPanel>
         <TextBlock Grid.Row="1" Text="Tên món" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="18" TextWrapping="Wrap" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="txtTenMon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />

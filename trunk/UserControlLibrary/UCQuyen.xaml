@@ -15,11 +15,11 @@
             <my:POSButtonFuntion Name="btnSua" Content="Sửa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Edit.png" Background="#FF009F3B" Click="btnSua_Click" />
             <my:POSButtonFuntion Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Delete.png" Background="#FFDF0023" Click="btnXoa_Click" />
             <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
-            <my:POSButtonFuntion Name="btnQuyenNhanVien" Content="Cài đặt nhân viên" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/man.png" Background="#FF4EB89B" Click="btnQuyenNhanVien_Click" />
-            <my:POSButtonFuntion Name="btnCaiDatChucNang" Content="Cài đặt chức năng" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/man.png" Background="#FF4EB89B" Click="btnCaiDatChucNang_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Hủy thay đổi" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
+            <my:POSButtonFuntion Name="btnQuyenNhanVien" Content="Cài đặt nhân viên" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" Image="/SystemImages;component/Images/man.png" Background="#FF4EB89B" Click="btnQuyenNhanVien_Click" />
+            <my:POSButtonFuntion Name="btnCaiDatChucNang" Content="Cài đặt chức năng" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="200" Margin="5" FontSize="18" Image="/SystemImages;component/Images/man.png" Background="#FF4EB89B" Click="btnCaiDatChucNang_Click" />
         </StackPanel>
-        <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged">
+        <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="lvData" SelectionChanged="lvData_SelectionChanged" AlternationCount="2">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenQuyen}" Width="400" Header="Tên quyền" />

@@ -21,6 +21,11 @@ namespace UserControlLibrary
         private void uCMenuSetMayIn_OnEventExit()
         {
             this.Close();
-        }        
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            uCMenuSetMayIn.Window_KeyDown(sender, e);
+        }
     }
 }

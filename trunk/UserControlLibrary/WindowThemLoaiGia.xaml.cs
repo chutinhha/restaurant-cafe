@@ -51,14 +51,14 @@ namespace UserControlLibrary
                 txtDienGiai.Text = _Item.DienGiai;
                 txtLoaiGia.Text = _Item.Ten;
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Thêm Loại Giá";
+                lbTieuDe.Text = "Sửa Loại Giá";
             }
             else
             {
                 txtDienGiai.Text = "";
                 txtLoaiGia.Text = "";
                 btnLuu.Content = mTransit.StringButton.Them;
-                lbTieuDe.Text = "Sửa Loại Giá";
+                lbTieuDe.Text = "Thêm Loại Giá";
             }
         }
 

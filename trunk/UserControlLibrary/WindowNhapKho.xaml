@@ -15,16 +15,20 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Thêm nhập kho" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <TextBlock Name="lbTieuDe" Text="Nhập Kho" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="2" Background="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="80" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="40*" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="200*" />
@@ -33,14 +37,20 @@
                         <ColumnDefinition Width="170" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Kho hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Nhà cung cấp" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Ngày nhập" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
-                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbbKhoHang" DisplayMemberPath="TenKho" SelectedValuePath="KhoID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                    <ComboBox Grid.Row="0" Grid.Column="3" x:Name="cbbNhaCungCap" DisplayMemberPath="TenNhaCungCap" SelectedValuePath="NhaCungCapID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
-                      
+                    <!--<ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbbKhoHang" DisplayMemberPath="TenKho" SelectedValuePath="KhoID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />-->
+                    <!--<ComboBox Grid.Row="0" Grid.Column="3" x:Name="cbbNhaCungCap" DisplayMemberPath="TenNhaCungCap" SelectedValuePath="NhaCungCapID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />-->
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Kho hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Nhà cung cấp" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+
+                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbKhoHang" DisplayMemberPath="TenKho" SelectedValuePath="KhoID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
+                    <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbbNhaCungCap" DisplayMemberPath="TenNhaCungCap" SelectedValuePath="NhaCungCapID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14" />
+
                     <my:POSButtonFuntion Content="Đóng" Grid.Column="5" HorizontalAlignment="Stretch" Name="btnHuy" VerticalAlignment="Stretch"  Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
-                    <my:POSButtonFuntion Content="Thêm" Grid.Column="4" HorizontalAlignment="Stretch" Name="btnLuu" VerticalAlignment="Stretch" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
+                    <my:POSButtonFuntion Content="Nhập kho" Grid.Column="4" HorizontalAlignment="Stretch" Name="btnLuu" VerticalAlignment="Stretch" Margin="7,5,7,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
                 </Grid>
                 <Grid Grid.Row="2" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>

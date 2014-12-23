@@ -64,7 +64,7 @@ namespace UserControlLibrary
                 dtpNgayBatDau.SelectedDate = DateTime.Now;
                 dtpNgayKetThuc.SelectedDate = DateTime.Now;
                 timeBatDau.TimeCurent = new TimeSpan(0, 0, 0);
-                timeKetThuc.TimeCurent = new TimeSpan(0, 0, 0);
+                timeKetThuc.TimeCurent = new TimeSpan(23, 59, 59);
 
                 btnLuu.Content = mTransit.StringButton.Them;
                 lbTieuDe.Text = "Thêm Lịch Biểu Không Định Kỳ";

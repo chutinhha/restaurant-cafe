@@ -19,19 +19,37 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnLuu" Content="Lưu" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Save.png" Background="#FF97C023" Click="btnLuu_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Danh sách bán" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
-            <my:POSButtonFuntion Name="btnDanhSachGia" Content="Danh sách giá" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF4EB89B" Click="btnDanhSachGia_Click" />
+            <my:POSButtonFuntion Name="btnDanhSach" Content="Hủy thay đổi" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
+            <my:POSButtonFuntion Name="btnDanhSachGia" Content="Danh sách giá" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="180" Margin="5" FontSize="18" Image="/SystemImages;component/Images/us_dollar.png" Background="#FF4EB89B" Click="btnDanhSachGia_Click" />
         </StackPanel>
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged">
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="lvData_SelectionChanged" AlternationCount="2">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.TenLoaiBan}" Width="200" Header="Tên đơn vị" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBan.TenLoaiBan}" Width="150" Header="Loại đơn vị tính" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=KichThuocLoaiBan}" Width="150" Header="Đơn vị tính" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.GiaBanMacDinh}" Width="150" Header="Giá mặc định" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.SoLuongBanBan}" Width="150" Header="Số lượng bán" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiBan.TenLoaiBan}" Width="120" Header="Loại đơn vị tính" />
+                    <GridViewColumn Width="Auto" Header="Số lượng">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MenuKichThuocMon.KichThuocLoaiBan, StringFormat='{}{0:#,#}'}" TextAlignment="Right" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" Header="Giá mặc định">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MenuKichThuocMon.GiaBanMacDinh, StringFormat='{}{0:#,#}'}" TextAlignment="Right" Width="120"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" Header="Số lượng bán mặc định">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MenuKichThuocMon.SoLuongBanBan, StringFormat='{}{0:#,#}'}" TextAlignment="Right" Width="150"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.ChoPhepTonKho}" Width="150" Header="Tồn kho tối đa" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.Visual}" Width="150" Header="Bán" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MenuKichThuocMon.Visual}" Width="150" Header="Cho phép bán" />
                 </GridView>
             </ListView.View>
         </ListView>

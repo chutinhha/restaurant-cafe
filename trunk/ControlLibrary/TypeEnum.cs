@@ -9,6 +9,7 @@ namespace ControlLibrary
     {
         None,
         Number,
+        Digit,
         Decimal,
         Text
     }

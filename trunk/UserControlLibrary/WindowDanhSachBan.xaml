@@ -14,7 +14,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="lbTieuDe" Text="Danh sách bán" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
+            <TextBlock Name="lbTieuDe" Text="Danh đơn vị tính" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="1" Background="White">                
                 <my:UCDanhSachBanList HorizontalAlignment="Stretch" x:Name="uCDanhSachBanList" VerticalAlignment="Stretch" />
             </Grid>
