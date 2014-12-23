@@ -7,13 +7,13 @@ namespace Data
 {
     public class BOChuyenBan
     {
-        public BOBanHang _BanHang{set;get;}
+        public BOBanHang _BanHang{set;get;}        
+        private KaraokeEntities mKaraokeEntities;
         private Transit mTransit;
-        private FrameworkRepository<CHUYENBAN> frChuyenBan;
-        public BOChuyenBan(Data.Transit tran)
+        public BOChuyenBan(Transit transit)
         {
-            mTransit = tran;
-            frChuyenBan = new FrameworkRepository<CHUYENBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.CHUYENBANs);
+            mKaraokeEntities = new KaraokeEntities();
+            mTransit = transit;            
         }
         public IQueryable<KHU> GetAllVisual()
         {
@@ -36,12 +36,12 @@ namespace Data
             chuyen.DenBanHangID = _BanHang.BANHANG.BanHangID;
             chuyen.NhanVienID = mTransit.NhanVien.NhanVienID;
             chuyen.ThoiGian = DateTime.Now;
-            frChuyenBan.AddObject(chuyen);
-            frChuyenBan.Commit();
+            mKaraokeEntities.CHUYENBANs.AddObject(chuyen);
+            mKaraokeEntities.SaveChanges();
         }
         public void LoadBanHang(BAN ban)
         {            
-            _BanHang = new Data.BOBanHang(mTransit);
+            _BanHang = new Data.BOBanHang(mTransit,mKaraokeEntities);
             _BanHang.LoadBanHang(ban);
         }
     }

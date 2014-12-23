@@ -21,6 +21,7 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
+                    <RowDefinition Height="19*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140" />
@@ -31,7 +32,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Phần trăm giảm" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtLoaiKhachHang" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPhanTramGiam" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <my:POSTextBox Grid.Row="1" Grid.Column="1" x:Name="txtPhanTramGiam" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" PreviewTextInput="txt_PreviewTextInput"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" _TypeTextBox="Number" _MaxValue="100" />
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
 

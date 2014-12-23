@@ -9,20 +9,22 @@ namespace ProcessOrder
     {
         private IQueryable<Data.MENULOAIGIA> mQueryMenuLoaiGia;
         private Data.Transit mTransit;
+        private Data.KaraokeEntities mKaraokeEntities;
         private List<Data.BOMenuGia> mListMenuGia;
         public List<Data.BOMenuGia> _ListMenuGia 
         {
             get { return mListMenuGia; }
         }
-        public PriceManager(Data.Transit transit)
+        public PriceManager(Data.Transit transit,Data.KaraokeEntities kara)
         {
-            mTransit = transit;
-            mQueryMenuLoaiGia = Data.BOMenuLoaiGia.GetAllLoaiGiaRun(mTransit);            
+            mTransit = transit;            
+            mKaraokeEntities=kara;
+            mQueryMenuLoaiGia = Data.BOMenuLoaiGia.GetAllLoaiGiaRun(mKaraokeEntities, mTransit.Ban);
             mListMenuGia = new List<Data.BOMenuGia>();
         }
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
         {
-            var list = Data.BOMenuGia.GetAllByKichThuocMonVaLoaiGia(mTransit, chitiet.MenuKichThuocMon, mQueryMenuLoaiGia);
+            var list = Data.BOMenuGia.GetAllByKichThuocMonVaLoaiGia(mKaraokeEntities, chitiet.MenuKichThuocMon, mQueryMenuLoaiGia);
             mListMenuGia.Clear();
             foreach (var item in list)
             {

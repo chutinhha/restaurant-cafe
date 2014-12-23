@@ -40,6 +40,10 @@ namespace PrinterServer
         {
             mBOPrintOrder = mXuLiMayIn.GetOrderFromLichSuBanHang(mLichSuBanHangID).FirstOrDefault();
             mListPrintOrderItem = mXuLiMayIn.GetPrintOrderItem(mLichSuBanHangID, mBOMayIn.MayInID).ToList();
+            foreach (var item in mListPrintOrderItem)
+            {
+                item._ListKhuyenMai = mXuLiMayIn.GetPrintOrderItemKM(item, mBOMayIn.MayInID).ToList();
+            }
         }
         public void Print()
         {
@@ -93,7 +97,11 @@ namespace PrinterServer
                 }
                 yTmp=y;
                 mPOSPrinter.POSDrawString(String.Format("{0}",item.SoLuong), e, mFontItem, mColorBlack, widthName, y, WIDTH_SO_LUONG, TextAlign.Right);
-                y=mPOSPrinter.POSDrawString(item.TenMon, e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Left);                
+                y=mPOSPrinter.POSDrawString(item.TenMon, e, mFontItem, mColorBlack, 0, y, widthName, TextAlign.Left);
+                foreach (var km in item._ListKhuyenMai)
+                {
+                    y = mPOSPrinter.POSDrawString(String.Format("+{0}", km.TenMon), e, mFontItem, mColorBlack,mPOSPrinter.POSGetFloat(10) , y, widthName, TextAlign.Left);
+                }
                 if (item.SoLuong<0)
                 {
                     mPOSPrinter.POSDrawCancelLine(e, yTmp, y,10);

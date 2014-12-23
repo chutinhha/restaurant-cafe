@@ -17,7 +17,10 @@ namespace Data
         {
             return mKaraokeEntities.LOAIKHACHHANGs.Where(s => s.Deleted == false);
         }
-
+        public static IQueryable<LOAIKHACHHANG> GetAllVisual(KaraokeEntities kara)
+        {
+            return kara.LOAIKHACHHANGs.Where(s => s.Deleted == false && s.Visual==true);
+        }
         public static IQueryable<LOAIKHACHHANG> GetQueryNoTracking(KaraokeEntities karaokeEntities)
         {
             return karaokeEntities.LOAIKHACHHANGs.Where(s => s.Deleted == false);

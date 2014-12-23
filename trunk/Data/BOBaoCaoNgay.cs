@@ -13,7 +13,7 @@ namespace Data
         {
             mTransit = transit;
             mKaraokeEntities = new KaraokeEntities();
-        }
+        }        
 
         public IQueryable<CAIDATTHONGTINCONGTY> GetCaiDatThongTinCongTy()
         {

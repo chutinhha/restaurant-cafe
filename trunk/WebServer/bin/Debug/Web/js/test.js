@@ -25,7 +25,7 @@ function Test(){
         btn.appendTo(obj);
         */
        $.ajax({
-                url: mainIPPort + '/readlogo',
+                url: mainIPPort + '/readlogo.php',
                 type: 'POST',
                 headers: { "cache-control": "no-cache" },
                 cache: false,                

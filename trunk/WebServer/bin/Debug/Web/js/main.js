@@ -21,13 +21,15 @@ function Main(){
         content.appendTo('body');
         botton.appendTo('body');
     };
-    this.AddFunction=function (content){              
+    this.AddFunction=function (){  
+        var content=$('#content');
+        content.children().remove();
        var function1=
             $('<div class="div_function">\n\
                 <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
                 <div>\n\
-                    <h2>Báo cáo bán hàng</h2>\n\
-                    <p>Doanh thu của tát cả các sản phẩm trong ngày</p>\n\
+                    <h2>Báo cáo doanh số</h2>\n\
+                    <p>Doanh số trong ngày</p>\n\
                 </div>\n\
              </div>');
         function1.appendTo(content);
@@ -38,8 +40,8 @@ function Main(){
         $('<div class="div_function">\n\
              <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
              <div>\n\
-                 <h2>Báo cáo tồn kho</h2>\n\
-                 <p>Kiểm tra kho hàng, mất kho,...</p>\n\
+                 <h2>Báo cáo Doanh Số Theo Nhóm</h2>\n\
+                 <p>Chi tiết về số lượng,tổng tiền từng nhóm,...</p>\n\
              </div>\n\
           </div>');        
         function2.appendTo(content);
@@ -50,19 +52,70 @@ function Main(){
         $('<div class="div_function">\n\
              <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
              <div>\n\
-                 <h2>Báo cáo định lượng</h2>\n\
-                 <p>Kiểm tra số lượng các nguyên liệu khi chế biến món ăn</p>\n\
+                 <h2>Báo cáo doanh số theo món</h2>\n\
+                 <p>Chi tiết tên món, số lượng, tổng tiền,...</p>\n\
              </div>\n\
           </div>');
         function3.appendTo(content); 
         function3.click(function (){      
             Object.FunctionClick(3);
         });
+        
+        var function4=       
+        $('<div class="div_function">\n\
+             <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
+             <div>\n\
+                 <h2>Báo cáo thanh toán thẻ</h2>\n\
+                 <p>Chi tiết tên thẻ,tổng tiền,...</p>\n\
+             </div>\n\
+          </div>');
+        function4.appendTo(content); 
+        function4.click(function (){      
+            Object.FunctionClick(4);
+        });
+        var function5=       
+        $('<div class="div_function">\n\
+             <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
+             <div>\n\
+                 <h2>Báo cáo khách hàng</h2>\n\
+                 <p>Chi tiết tên khách hàng,tổng tiền,...</p>\n\
+             </div>\n\
+          </div>');
+        function5.appendTo(content); 
+        function5.click(function (){      
+            Object.FunctionClick(5);
+        });
+        
+        var function6=       
+        $('<div class="div_function">\n\
+             <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
+             <div>\n\
+                 <h2>Lịch sử bán hàng</h2>\n\
+                 <p>Chi tiết từng hóa đơn,...</p>\n\
+             </div>\n\
+          </div>');
+        function6.appendTo(content); 
+        function6.click(function (){      
+            Object.FunctionClick(6);
+        });
+        
+        var function7=       
+        $('<div class="div_function">\n\
+             <img src="data:image/jpeg;base64,'+Object.ReportIcon+'"></img>\n\
+             <div>\n\
+                 <h2>Báo cáo kho hàng</h2>\n\
+                 <p>Chi tiết nhập,xuất,tồn kho từng món,...</p>\n\
+             </div>\n\
+          </div>');
+        function7.appendTo(content); 
+        function7.click(function (){      
+            Object.FunctionClick(7);
+        });
     };
     this.LoadTop=function (top){
         //readinfo
         $.ajax({
-            url: mainIPPort + '/readinfo',
+            url: mainIPPort + '/readinfo.php',
             type: 'POST',
             headers: { "cache-control": "no-cache" },
             cache: false,            
@@ -88,13 +141,13 @@ function Main(){
     };
     this.InitImage=function (){
         $.ajax({
-            url: mainIPPort + '/readreporticon',
+            url: mainIPPort + '/readreporticon.php',
             type: 'POST',
             headers: { "cache-control": "no-cache" },
             cache: false,                
             success: function (string) {
                 Object.ReportIcon=string;                
-                Object.AddFunction($('#content'));
+                Object.AddFunction();
             },
             error: function () {                
                 alert('Error');                
@@ -102,7 +155,38 @@ function Main(){
         });
     };
     this.FunctionClick=function (num){
-        report.LoadReport();
+        switch (num){
+            case 1:
+                var reportDaily=new ReportDaiLy();
+                reportDaily.InitReport();
+                break;
+            case 2:
+                var reportGroup=new ReportGroup();
+                reportGroup.InitReport();
+                break;
+            case 3:
+                var reportItem=new ReportItem();
+                reportItem.InitReport();
+                break; 
+            case 4:
+                var reportCard=new ReportCard();
+                reportCard.InitReport();
+                break; 
+            case 5:
+                var reportcustomer=new ReportCustomer();
+                reportcustomer.InitReport();
+                break; 
+            case 6:
+                var reportHistory=new ReportHistory();
+                reportHistory.InitReport();
+                break; 
+            case 7:
+                var reportStock=new ReportStock();
+                reportStock.InitReport();
+                break; 
+            default :
+                break;
+        }
     };
 }
 

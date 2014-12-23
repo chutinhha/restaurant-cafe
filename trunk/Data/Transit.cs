@@ -26,7 +26,7 @@ namespace Data
         //================Quyền=============
         public IQueryable<BOChiTietQuyen> DanhSachQuyen { get; set; }
         public IQueryable<CHUCNANG> DanhSachChucNang { get; set; }
-        public Data.BOChiTietQuyen BOChiTietQuyen = null;
+        public Data.BOChiTietQuyen BOChiTietQuyen = null;        
         public string DuongDanHinh { get; set; }
         public int KhoID { get; set; }
         public int MayID { get; set; }
@@ -52,20 +52,20 @@ namespace Data
             ListDonVi = BODonVi.GetAll(this);
             BOChiTietQuyen = new BOChiTietQuyen(this);
 
-            //var nhom = KaraokeEntities.CHUCNANGs.ToList();
-            //foreach (var item in nhom)
-            //{
-            //    KaraokeEntities.Attach(item);
-            //    KaraokeEntities.DeleteObject(item);
-            //}
-            //var list = KaraokeEntities.NHOMCHUCNANGs.ToList();
-            //foreach (var item in list)
-            //{
-            //    KaraokeEntities.Attach(item);
-            //    KaraokeEntities.DeleteObject(item);
-            //}
-            //KaraokeEntities.SaveChanges();
-            //new BONhomChucNang(this);
+            var nhom = KaraokeEntities.CHUCNANGs.ToList();
+            foreach (var item in nhom)
+            {
+                KaraokeEntities.Attach(item);
+                KaraokeEntities.DeleteObject(item);
+            }
+            var list = KaraokeEntities.NHOMCHUCNANGs.ToList();
+            foreach (var item in list)
+            {
+                KaraokeEntities.Attach(item);
+                KaraokeEntities.DeleteObject(item);
+            }
+            KaraokeEntities.SaveChanges();
+            new BONhomChucNang(this);            
         }
         
         public void LayDanhSachQuyen()
@@ -103,7 +103,26 @@ namespace Data
             }
             return true;
         }
-
+        public static void MakeLisence(int keyType, Data.Transit transit)
+        {
+            DateTime now = DateTime.Now;
+            now = new DateTime(now.Year, now.Month, now.Day);
+            if (keyType == 1)
+            {
+                transit.ThamSo.NgayBatDau = now;
+                transit.ThamSo.XacNhanNgayBatDau = Utilities.SecurityKaraoke.GetHashDay(transit.ThamSo.NgayBatDau.Value, transit.HashMD5);
+                transit.ThamSo.NgayKetThuc = transit.ThamSo.NgayBatDau.Value.AddDays(7);
+                transit.ThamSo.XacNhanNgayKetThuc = Utilities.SecurityKaraoke.GetHashDay(transit.ThamSo.NgayKetThuc.Value, transit.HashMD5);
+            }
+            else if (keyType == 2)
+            {
+                transit.ThamSo.NgayBatDau = now;
+                transit.ThamSo.XacNhanNgayBatDau = Utilities.SecurityKaraoke.GetHashDay(transit.ThamSo.NgayBatDau.Value, transit.HashMD5);
+                transit.ThamSo.NgayKetThuc = transit.ThamSo.NgayBatDau.Value.AddYears(1);
+                transit.ThamSo.XacNhanNgayKetThuc = Utilities.SecurityKaraoke.GetHashDay(transit.ThamSo.NgayKetThuc.Value, transit.HashMD5);
+            }
+            transit.KaraokeEntities.SaveChanges();
+        }
         public class ClassStringButton
         {
             public string ThemMoi = "Thêm mới";

@@ -4,23 +4,17 @@ using System.Linq;
 using System.Text;
 
 namespace Data
-{
+{        
     public class BOBanHang
     {
         public BAN BAN { get; set; }
         public BANHANG BANHANG { get; set; }
         public KHACHHANG KHACHHANG { get; set; }
         private List<BOChiTietBanHang> mListChiTietBanHangDeleted;
-        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }        
+        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }
+        private CAIDATBANHANG _CAIDATBANHANG;
         private Transit mTransit;
-        private KaraokeEntities mKaraokeEntities;
-        public FrameworkRepository<BANHANG> frBanHang;
-        public FrameworkRepository<CHITIETBANHANG> frChiTietBanHang;
-        public FrameworkRepository<MENUKICHTHUOCMON> frMenuKichThuocMon;
-        public FrameworkRepository<MENUMON> frMenuMon;
-        public FrameworkRepository<LICHSUBANHANG> frLichSu;
-        public FrameworkRepository<CHITIETLICHSUBANHANG> frChiTietLichSuBanHang;
-        public FrameworkRepository<KHACHHANG> frKhachHang;
+        private KaraokeEntities mKaraokeEntities;        
 
         public string TenBan 
         {
@@ -32,7 +26,7 @@ namespace Data
         }
         public string GioBan 
         {
-            get { return Utilities.DateTimeConverter.ConvertTimeToString(BANHANG.NgayBan.Value); }
+            get { return Utilities.DateTimeConverter.ConvertToTimeString(BANHANG.NgayBan.Value); }
         }
         public string TongTienDaBan 
         {
@@ -42,28 +36,26 @@ namespace Data
         {            
             _ListChiTietBanHang = new List<BOChiTietBanHang>();
         }
-        public BOBanHang(Transit tran)
+        public BOBanHang(Transit tran,KaraokeEntities kara)
         {                        
             mTransit = tran;
-            mKaraokeEntities = new KaraokeEntities();
-            frBanHang = new FrameworkRepository<Data.BANHANG>(mKaraokeEntities,mKaraokeEntities.BANHANGs);
-            frChiTietBanHang = new FrameworkRepository<CHITIETBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETBANHANGs);
-            frMenuKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(mKaraokeEntities,mKaraokeEntities.MENUKICHTHUOCMONs);
-            frMenuMon = new FrameworkRepository<MENUMON>(mKaraokeEntities,mKaraokeEntities.MENUMONs);
-            frLichSu = new FrameworkRepository<LICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.LICHSUBANHANGs);
-            frChiTietLichSuBanHang = new FrameworkRepository<CHITIETLICHSUBANHANG>(mKaraokeEntities,mKaraokeEntities.CHITIETLICHSUBANHANGs);
-            frKhachHang = new FrameworkRepository<Data.KHACHHANG>(mKaraokeEntities, mKaraokeEntities.KHACHHANGs);
+            mKaraokeEntities = kara;
+            _CAIDATBANHANG = mKaraokeEntities.CAIDATBANHANGs.FirstOrDefault();
+            if (_CAIDATBANHANG==null)
+            {
+                _CAIDATBANHANG = new CAIDATBANHANG();
+            }
             _ListChiTietBanHang = new List<BOChiTietBanHang>();
             mListChiTietBanHangDeleted = new List<BOChiTietBanHang>();
             //LoadBanHang();
         }
         public IQueryable<BANHANG> GetAllNotCompleted()
         {
-            return frBanHang.Query().Where(b => b.TrangThaiID < 3);
+            return mKaraokeEntities.BANHANGs.Where(b => b.TrangThaiID < 3);
         }
-        public static IQueryable<BANHANG> GetAllNotCompleted(Transit transit)
+        public static IQueryable<BANHANG> GetAllNotCompleted(KaraokeEntities kara)
         {
-            return FrameworkRepository<BANHANG>.QueryNoTracking(transit.KaraokeEntities.BANHANGs).Where(b=>b.TrangThaiID<3);
+            return kara.BANHANGs.Where(b=>b.TrangThaiID<3);
         }
         public static IQueryable<BOBanHang> GetAllCompleted(KaraokeEntities kara,DateTime date)
         {
@@ -74,7 +66,7 @@ namespace Data
                            b.NgayBan.Value.Month==date.Month&&
                            b.NgayBan.Value.Year==date.Year
                        )
-                   join b in FrameworkRepository<BAN>.QueryNoTracking(kara.BANs) on a.BanID equals b.BanID
+                   join b in kara.BANs on a.BanID equals b.BanID
                    select new BOBanHang
                    {
                        BAN=b,
@@ -84,7 +76,7 @@ namespace Data
         public IQueryable<BOBanHang> GetAllBanHang(BAN ban)
         {
             return from a in GetAllNotCompleted()
-                   join b in frKhachHang.Query() on a.KhachHangID equals b.KhachHangID into b1
+                   join b in mKaraokeEntities.KHACHHANGs on a.KhachHangID equals b.KhachHangID into b1
                    from c in b1.DefaultIfEmpty()
                    where a.BanID == ban.BanID
                    select new BOBanHang
@@ -100,21 +92,24 @@ namespace Data
             {
                 mKaraokeEntities = new KaraokeEntities();
             }
-            var listItem = BOChiTietBanHang.Query(BANHANG.BanHangID, mKaraokeEntities);
+            var listItem = BOChiTietBanHang.Query(BANHANG, mKaraokeEntities);
             foreach (BOChiTietBanHang item in listItem)
             {
-                item.SoLuongBanTam = (int)item.ChiTietBanHang.SoLuongBan;
+                item.SoLuongBanTam = item.ChiTietBanHang.SoLuongBan;
                 this.AddChiTietBanHang(item);
+                var listKM = BOChiTietBanHang.QueryKhuyenMai(item.ChiTietBanHang, mKaraokeEntities);
+                foreach (var km in listKM)
+                {
+                    item._ListKhuyenMai.Add(km);
+                }
             }
         }
         public void LoadBanHang(BAN ban)
         {
-            BAN = ban;
-            //var list = frBanHang.Query().Where(o => o.BanID == ban.BanID && o.TrangThaiID < 3).ToList();
+            BAN = ban;            
             BOBanHang bh = GetAllBanHang(ban).FirstOrDefault();
             if (bh!=null)
-            {
-                //BANHANG = list.FirstOrDefault();
+            {                
                 BANHANG = bh.BANHANG;
                 KHACHHANG = bh.KHACHHANG;
                 LoadChiTiet();
@@ -129,18 +124,16 @@ namespace Data
                 }
                 BANHANG.BanID = ban.BanID;
                 BANHANG.NgayBan = DateTime.Now;
-                BANHANG.MaHoaDon = String.Format("HD{0:000000}", 1);
-                BANHANG.TienMat = 0;
-                //BANHANG.TheID = mTransit.The.TheID;
-                BANHANG.TienThe = 0;
-                BANHANG.TienTraLai = 0;
-                BANHANG.GiamGia = 0;
-                BANHANG.ChietKhau = 0;
-                BANHANG.TienBo = 0;
-                BANHANG.PhiDichVu = 0;
-                BANHANG.TongTien = 0;
-                BANHANG.TrangThaiID = 1;                                
-                BANHANG.TienKhacHang = 0;
+                BANHANG.MaHoaDon = String.Format("HD-{0:00}-{1:000000}", mTransit.ThamSo.SoMay, mTransit.ThamSo.ThuTuMaHoaDon);                
+                BANHANG.TrangThaiID = 1;
+                if (_CAIDATBANHANG.ChoPhepPhiDichVu)
+                {
+                    BANHANG.PhiDichVu = _CAIDATBANHANG.PhiDichVu;
+                }
+                if (_CAIDATBANHANG.ChoPhepThueVAT)
+                {
+                    BANHANG.ThueVAT = _CAIDATBANHANG.ThueVAT;
+                }
             }
 
         }
@@ -192,6 +185,7 @@ namespace Data
         }
         public int AddChiTietBanHang(BOChiTietBanHang chiTiet)
         {
+            GetKhuyenMai(chiTiet);
             if (_ListChiTietBanHang.Count>0)
             {
                 BOChiTietBanHang chitietLast=_ListChiTietBanHang.Last();
@@ -235,62 +229,72 @@ namespace Data
             if (this.BANHANG.TrangThaiID==3)
             {
                 this.BANHANG.TrangThaiID = 4;
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+                mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
             return 0;
         }
         public int GuiNhaBep()
-        {
-            int lichSuBanHangId = 0;
+        {            
+            LICHSUBANHANG lichsu = GetLichSuBanHang();
             if (this.BANHANG.BanHangID == 0)
             {
-                frBanHang.AddObject(this.BANHANG);
-                frBanHang.Commit();
-                LICHSUBANHANG lichsu = GetLichSuBanHang();
-                frLichSu.AddObject(lichsu);
-                frLichSu.Commit();
-                lichSuBanHangId = lichsu.LichSuBanHangID;
-
+                mKaraokeEntities.BANHANGs.AddObject(this.BANHANG);                                                
+                this.BANHANG.LICHSUBANHANGs.Add(lichsu);                                
                 foreach (BOChiTietBanHang item in _ListChiTietBanHang)
-                {
-                    item.ChiTietBanHang.BanHangID = BANHANG.BanHangID;
+                {                    
                     CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
-                    frChiTietBanHang.AddObject(item.ChiTietBanHang);
-                    frChiTietLichSuBanHang.AddObject(chitiet);                                        
-                }
-                frChiTietBanHang.Commit();
-                frChiTietLichSuBanHang.Commit();                
+                    lichsu.CHITIETLICHSUBANHANGs.Add(chitiet);
+                    this.BANHANG.CHITIETBANHANGs.Add(item.ChiTietBanHang);                    
+                    foreach (var km in item._ListKhuyenMai)
+                    {
+                        CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km,lichsu);
+                        item.ChiTietBanHang.CHITIETBANHANG1.Add(km.ChiTietBanHang);
+                        chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
+                        //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                        km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);
+                        this.BANHANG.CHITIETBANHANGs.Add(km.ChiTietBanHang);
+                        lichsu.CHITIETLICHSUBANHANGs.Add(kmChiTiet);
+                    }
+                }                
             }
             else
-            {
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+            {                
                 if (KiemTraThayDoiLichSu())
-                {
-                    LICHSUBANHANG lichsu = GetLichSuBanHang();
-                    frLichSu.AddObject(lichsu);
-                    frLichSu.Commit();
-                    lichSuBanHangId = lichsu.LichSuBanHangID;
+                {                    
+                    this.BANHANG.LICHSUBANHANGs.Add(lichsu);                    
                     foreach (BOChiTietBanHang item in _ListChiTietBanHang)
                     {
+                        CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
                         if (item.ChiTietBanHang.ChiTietBanHangID == 0)
-                        {
-                            CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
+                        {                            
                             item.ChangeQtyChiTietLichSuBanHang(chitiet, (int)chitiet.SoLuong);
-                            item.ChiTietBanHang.BanHangID = this.BANHANG.BanHangID;
-                            frChiTietBanHang.AddObject(item.ChiTietBanHang);
-                            frChiTietLichSuBanHang.AddObject(chitiet);
+                            this.BANHANG.CHITIETBANHANGs.Add(item.ChiTietBanHang);
+                            lichsu.CHITIETLICHSUBANHANGs.Add(chitiet);
+                            foreach (var km in item._ListKhuyenMai)
+                            {
+                                CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km, lichsu);
+                                //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                                km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);
+                                item.ChiTietBanHang.CHITIETBANHANG1.Add(km.ChiTietBanHang);
+                                chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
+                                this.BANHANG.CHITIETBANHANGs.Add(km.ChiTietBanHang);
+                                lichsu.CHITIETLICHSUBANHANGs.Add(kmChiTiet);
+                            }
                         }
                         else if (item.SoLuongBanTam != item.ChiTietBanHang.SoLuongBan)
-                        {
-                            CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
-                            chitiet.SoLuong = item.ChiTietBanHang.SoLuongBan - item.SoLuongBanTam;
-                            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
-                            frChiTietLichSuBanHang.AddObject(chitiet);
-                            frChiTietBanHang.Update(item.ChiTietBanHang);
-                        }
+                        {                            
+                            item.ChangeQtyChiTietLichSuBanHang(chitiet,item.ChiTietBanHang.SoLuongBan - item.SoLuongBanTam);
+                            lichsu.CHITIETLICHSUBANHANGs.Add(chitiet);
+                            foreach (var km in item._ListKhuyenMai)
+                            {
+                                CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km, lichsu);
+                                //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                                km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);                                
+                                chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
+                                lichsu.CHITIETLICHSUBANHANGs.Add(kmChiTiet);
+                            }
+                        }                        
                     }
                     foreach (BOChiTietBanHang item in mListChiTietBanHangDeleted)
                     {
@@ -298,26 +302,24 @@ namespace Data
                         {
                             CHITIETLICHSUBANHANG chitiet = GetChiTietLichSuBanHang(item, lichsu);
                             item.ChangeQtyChiTietLichSuBanHang(chitiet, 0 - (int)chitiet.SoLuong);
-                            frChiTietLichSuBanHang.AddObject(chitiet);
-                            frChiTietBanHang.DeleteObject(item.ChiTietBanHang);
+                            lichsu.CHITIETLICHSUBANHANGs.Add(chitiet);
+                            foreach (var km in item._ListKhuyenMai)
+                            {
+                                CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km, lichsu);
+                                //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                                km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);
+                                chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
+                                lichsu.CHITIETLICHSUBANHANGs.Add(kmChiTiet);
+                                mKaraokeEntities.CHITIETBANHANGs.DeleteObject(km.ChiTietBanHang);
+                            }
+                            mKaraokeEntities.CHITIETBANHANGs.DeleteObject(item.ChiTietBanHang);
                         }
                     }
-                    mListChiTietBanHangDeleted.Clear();
-                    frChiTietBanHang.Commit();
-                    frChiTietLichSuBanHang.Commit();
-                }
-                //========================== 
-                //thay doi
-                foreach (BOChiTietBanHang item in _ListChiTietBanHang)
-                {
-                    if (item.IsChanged)
-                    {
-                        frChiTietBanHang.Update(item.ChiTietBanHang);
-                    }
-                }
-                frChiTietBanHang.Commit();                              
+                    mListChiTietBanHangDeleted.Clear();                                
+                }                                                 
             }
-            return lichSuBanHangId;
+            mKaraokeEntities.SaveChanges();
+            return lichsu.LichSuBanHangID;
         }        
         public int TinhTien()
         {
@@ -325,8 +327,7 @@ namespace Data
             {
                 this.BANHANG.TrangThaiID = 4;
                 this.BANHANG.NgayBan = DateTime.Now;
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+                mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
             return 0;
@@ -336,8 +337,7 @@ namespace Data
             if (this.BANHANG.TrangThaiID == 1 || this.BANHANG.TrangThaiID == 2)
             {
                 this.BANHANG.TrangThaiID = 2;
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+                mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
             return 0;
@@ -347,8 +347,9 @@ namespace Data
             if (this.BANHANG.TrangThaiID == 1 || this.BANHANG.TrangThaiID == 2)
             {
                 this.BANHANG.TrangThaiID = 8;
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+                this.BANHANG.NhanVienID = mTransit.NhanVien.NhanVienID;
+                this.BANHANG.NgayBan = DateTime.Now;
+                mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
             return 0;
@@ -358,15 +359,16 @@ namespace Data
             Nullable<int> trangThai = this.BANHANG.TrangThaiID;
             //chuyen ban
             this.BANHANG.TrangThaiID = 5;
-            frBanHang.Update(this.BANHANG);
-            frBanHang.Commit();
+            mKaraokeEntities.SaveChanges();
 
             //ban moi
+            mKaraokeEntities.BANHANGs.Detach(this.BANHANG);
             this.BANHANG.TrangThaiID = trangThai;
-            this.BANHANG.BanID = ban.BanID;
+            this.BANHANG.BanID = ban.BanID;            
             this.BANHANG.BanHangID = 0;            
             foreach (var item in _ListChiTietBanHang)
             {
+                mKaraokeEntities.CHITIETBANHANGs.Detach(item.ChiTietBanHang);
                 item.ChiTietBanHang.ChiTietBanHangID = 0;                
             }
             GuiNhaBep();
@@ -376,8 +378,8 @@ namespace Data
         {
             Nullable<int> trangThai = this.BANHANG.TrangThaiID;
             this.BANHANG.TrangThaiID = 7;
-            frBanHang.Update(this.BANHANG);
-            frBanHang.Commit();
+            mKaraokeEntities.SaveChanges();
+            mKaraokeEntities.BANHANGs.Detach(this.BANHANG);
             this.BANHANG.TrangThaiID = trangThai;
             this.BANHANG.BanHangID = 0;
             foreach (var bahang in tachban._ListBan)
@@ -385,6 +387,7 @@ namespace Data
                 bahang.BANHANG.BanHangID = 0;                
                 foreach (var item in bahang._ListChiTietBanHang)
                 {
+                    mKaraokeEntities.CHITIETBANHANGs.Detach(item.ChiTietBanHang);
                     item.ChiTietBanHang.ChiTietBanHangID = 0;                    
                 }
                 if (bahang._ListChiTietBanHang.Count>0)
@@ -403,18 +406,22 @@ namespace Data
             {
                 Nullable<int> trangthaiID=this.BANHANG.TrangThaiID;
                 this.BANHANG.TrangThaiID = 6;
-                frBanHang.Update(this.BANHANG);
-                frBanHang.Commit();
+                mKaraokeEntities.SaveChanges();
+                mKaraokeEntities.BANHANGs.Detach(this.BANHANG);
                 this.BANHANG.TrangThaiID = trangthaiID;
-            }
+            }            
             this.BANHANG.BanHangID = 0;            
             foreach (var banhang in gopban._ListBan)
             {
                 banhang.BANHANG.TrangThaiID = 6;
-                frBanHang.Update(banhang.BANHANG);
+                mKaraokeEntities.SaveChanges();
                 foreach (var item in banhang._ListChiTietBanHang)
                 {
-                    item.ChiTietBanHang.ChiTietBanHangID = 0;
+                    if (item.ChiTietBanHang.ChiTietBanHangID>0)
+                    {
+                        mKaraokeEntities.CHITIETBANHANGs.Detach(item.ChiTietBanHang);
+                        item.ChiTietBanHang.ChiTietBanHangID = 0;
+                    }
                     this.AddChiTietBanHang(item);
                 }
             }
@@ -459,7 +466,29 @@ namespace Data
             chitiet.GiamGia = item.ChiTietBanHang.GiamGia;
             chitiet.TrangThai = 0;
             return chitiet;
-        }        
-        
-    }
+        }
+        private List<BOChiTietBanHang> GetKhuyenMai(BOChiTietBanHang chititet)
+        {
+            var query = from a in mKaraokeEntities.MENUMONs
+                        join b in mKaraokeEntities.MENUKICHTHUOCMONs  on a.MonID equals b.MonID 
+                        join c in mKaraokeEntities.MENUKHUYENMAIs.Where(o=>o.Visual==true && o.Deleted==false) on b.KichThuocMonID equals c.KichThuocMonTang
+                        where c.KichThuocMonID == chititet.MenuKichThuocMon.KichThuocMonID
+                        select new BOMenuKichThuocMon
+                        {
+                            MenuKichThuocMon=b,
+                            MenuMon=a
+                        };
+            List<BOChiTietBanHang> list = new List<BOChiTietBanHang>();
+            foreach (var item in query)
+            {
+                BOChiTietBanHang ct = new BOChiTietBanHang(item, mTransit);
+                ct.SoLuongBanTam = chititet.SoLuongBanTam;
+                ct.ChiTietBanHang.SoLuongBan = chititet.ChiTietBanHang.SoLuongBan;
+                ct.ChiTietBanHang.GiaBan = 0;
+                ct.ChiTietBanHang.NhanVienID = chititet.ChiTietBanHang.NhanVienID;
+                list.Add(ct);
+            }
+            return list;
+        }
+    }          
 }

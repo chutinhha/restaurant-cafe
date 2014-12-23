@@ -16,13 +16,33 @@ namespace Data
         public BANHANG BanHang { get; set; }
         public BOPrintOrder()
         { }
-        public decimal TienGiam 
+        public decimal TienPhiDichVu
         {
-            get { return BanHang.GiamGia * BanHang.TongTien / 100; }
+            get
+            {
+                return BanHang.PhiDichVu * BanHang.TongTien / 100;
+            }
         }
-        public decimal TienPhaiTra 
+        public decimal TienGiam
         {
-            get { return BanHang.TongTien - TienGiam; }
+            get
+            {
+                return BanHang.GiamGia * BanHang.TongTien / 100;
+            }
+        }
+        public decimal TienThueVAT
+        {
+            get
+            {
+                return BanHang.ThueVAT * (BanHang.TongTien - TienGiam + TienPhiDichVu) / 100;
+            }
+        }
+        public decimal TongTienPhaiTra
+        {
+            get
+            {
+                return BanHang.TongTien - TienGiam + TienPhiDichVu + TienThueVAT;
+            }
         }
     }
 }

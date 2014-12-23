@@ -10,7 +10,13 @@ namespace Data
         public LICHBIEUDINHKY LichBieuDinhKy { get; set; }
         public MENULOAIGIA MenuLoaiGia { get; set; }
         public string TenKhu { get; set; }
-        KaraokeEntities mKaraokeEntities = null;
+        KaraokeEntities mKaraokeEntities = null;        
+        public BOLichBieuDinhKy()
+        {
+            LichBieuDinhKy = new LICHBIEUDINHKY();
+            MenuLoaiGia = new MENULOAIGIA();
+            TenKhu = "";
+        }
         public BOLichBieuDinhKy(Transit transit)
         {
             mKaraokeEntities = new KaraokeEntities();
@@ -19,30 +25,24 @@ namespace Data
         {
             return FrameworkRepository<LICHBIEUDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUDINHKies).Where(o => o.Deleted == false);
         }
-        public static IQueryable<LICHBIEUDINHKY> GetAllVisual(Transit transit)
+        public static IQueryable<LICHBIEUDINHKY> GetAllVisual(KaraokeEntities kara)
         {
-            return FrameworkRepository<LICHBIEUDINHKY>.QueryNoTracking(transit.KaraokeEntities.LICHBIEUDINHKies).Where(o => o.Deleted == false && o.Visual == true);
-        }
-        public BOLichBieuDinhKy()
-        {
-            LichBieuDinhKy = new LICHBIEUDINHKY();
-            MenuLoaiGia = new MENULOAIGIA();
-            TenKhu = "";
-        }
-        public static IQueryable<BOLichBieuDinhKy> GetAllVisualRun(Transit transit)
+            return kara.LICHBIEUDINHKies.Where(o => o.Deleted == false && o.Visual == true);
+        }        
+        public static IQueryable<BOLichBieuDinhKy> GetAllVisualRun(KaraokeEntities kara,BAN ban)
         {
 
             DateTime dt = DateTime.Now;
             int dayOfWeek = (int)dt.DayOfWeek;
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
-            var querya = BOMenuLoaiGia.GetAllVisual(transit);
-            var queryb = from b in GetAllVisual(transit)
+            var querya = BOMenuLoaiGia.GetAllVisual(kara);
+            var queryb = from b in GetAllVisual(kara)
                          where
                              ts.CompareTo(b.GioBatDau.Value) >= 0 &&
                              ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
                              (
                                 b.KhuID == null ||
-                                b.KhuID == transit.Ban.KhuID
+                                b.KhuID == ban.KhuID
                              )
                          select b;
 
@@ -93,18 +93,18 @@ namespace Data
 
         public IQueryable<BOLichBieuDinhKy> GetAll()
         {
-            var res = (from lb in mKaraokeEntities.LICHBIEUDINHKies
+            var res = from lb in mKaraokeEntities.LICHBIEUDINHKies
                        join k in mKaraokeEntities.KHUs on lb.KhuID equals k.KhuID into k1
                        from khu in k1.DefaultIfEmpty()
                        join l in mKaraokeEntities.MENULOAIGIAs on lb.LoaiGiaID equals l.LoaiGiaID
-                       where lb.LoaiGiaID == l.LoaiGiaID
+                       where lb.LoaiGiaID == l.LoaiGiaID && lb.Deleted==false
                        orderby lb.UuTien ascending, l.Ten ascending, lb.TenLichBieu ascending
                        select new BOLichBieuDinhKy
                        {
                            LichBieuDinhKy = lb,
                            MenuLoaiGia = l,
                            TenKhu = (khu.TenKhu == null ? "Tất cả khu" : khu.TenKhu)
-                       });
+                       };
             return res;
 
         }
@@ -116,8 +116,7 @@ namespace Data
                 if (item.LichBieuDinhKy.LichBieuDinhKyID == 0)
                 {
                     mKaraokeEntities.LICHBIEUDINHKies.AddObject(item.LichBieuDinhKy);
-                }
-
+                }           
             }
             mKaraokeEntities.SaveChanges();
         }

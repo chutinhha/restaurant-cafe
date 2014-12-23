@@ -40,7 +40,7 @@ namespace Data
         public static IQueryable<BAN> GetAllTableInOrderPerArea(KHU khu, Transit transit)
         {
             return from a in GetVisual(transit)
-                   join b in BOBanHang.GetAllNotCompleted(transit) on a.BanID equals b.BanID
+                   join b in BOBanHang.GetAllNotCompleted(transit.KaraokeEntities) on a.BanID equals b.BanID
                    where a.KhuID == khu.KhuID
                    select a;
         }

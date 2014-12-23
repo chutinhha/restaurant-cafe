@@ -9,12 +9,9 @@ namespace Data
     {
         private Transit mTransit;
         private List<Data.BOBanHang> mListBan;
-        public BOBanHang _CurrentBanHang{set;get;}
-        private FrameworkRepository<GOPBAN> frGopBan;
-        private FrameworkRepository<CHITIETGOPBAN> frChiTietGopBan;
-        private FrameworkRepository<TACHBAN> frTachBan;
-        private FrameworkRepository<CHITIETTACHBAN> frChiTietTachBan;
+        public BOBanHang _CurrentBanHang{set;get;}        
         public Data.BOBanHang BanHang { get; set; }
+        private KaraokeEntities mKaraokeEntities;
         public List<Data.BOBanHang> _ListBan 
         {
             get { return mListBan; }
@@ -22,11 +19,8 @@ namespace Data
         public BOTachGopBan(Transit transit)
         {
             mTransit = transit;
-            mListBan = new List<BOBanHang>();
-            frGopBan = new FrameworkRepository<GOPBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.GOPBANs);
-            frChiTietGopBan = new FrameworkRepository<CHITIETGOPBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.CHITIETGOPBANs);
-            frTachBan = new FrameworkRepository<TACHBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.TACHBANs);
-            frChiTietTachBan = new FrameworkRepository<CHITIETTACHBAN>(mTransit.KaraokeEntities, mTransit.KaraokeEntities.CHITIETTACHBANs);
+            mKaraokeEntities = new KaraokeEntities();
+            mListBan = new List<BOBanHang>();            
         }
 
         public IQueryable<KHU> GetAllKhuVisual()
@@ -66,9 +60,9 @@ namespace Data
                 CHITIETGOPBAN chitiet = new CHITIETGOPBAN();                
                 chitiet.BanHangID = banHang;                
                 gopban.CHITIETGOPBANs.Add(chitiet);                
-            }            
-            frGopBan.AddObject(gopban);
-            frGopBan.Commit();
+            }
+            mKaraokeEntities.GOPBANs.AddObject(gopban);
+            mKaraokeEntities.SaveChanges();
         }
         public void XuliTachBan()
         {
@@ -90,8 +84,8 @@ namespace Data
                 chitiet.BanHangID = this.BanHang.BANHANG.BanHangID;
                 tachBan.CHITIETTACHBANs.Add(chitiet);
             }
-            frTachBan.AddObject(tachBan);
-            frTachBan.Commit();
+            mKaraokeEntities.TACHBANs.AddObject(tachBan);
+            mKaraokeEntities.SaveChanges();
         }
         public bool KiemTra()
         {
@@ -116,7 +110,7 @@ namespace Data
         
         public Data.BOBanHang GetBanHang(BAN ban)
         {
-            Data.BOBanHang banhang = new Data.BOBanHang(mTransit);            
+            Data.BOBanHang banhang = new Data.BOBanHang(mTransit,mKaraokeEntities);            
             banhang.LoadBanHang(ban);
             return banhang;
         }

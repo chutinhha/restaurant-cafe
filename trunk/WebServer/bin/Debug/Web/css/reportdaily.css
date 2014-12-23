@@ -1,0 +1,10 @@
+.report_daily_column1{
+    text-align: right;
+}
+.report_daily_column2{
+    text-align: right;
+    width: 40%;
+}
+.report_daily_nodata{
+    text-align: center;
+}

@@ -26,7 +26,7 @@ namespace UserControlLibrary
 
         private void LoadLoaiKhachHang()
         {
-            cbbLoaiKhachHang.ItemsSource = BOKhachHang.GetLoaiKhachHang();
+            cbbLoaiKhachHang.ItemsSource = Data.BOLoaiKhachHang.GetAllVisual(mTransit.KaraokeEntities);
             if (cbbLoaiKhachHang.Items.Count > 0)
                 cbbLoaiKhachHang.SelectedIndex = 0;
         }
