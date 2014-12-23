@@ -32,11 +32,13 @@ namespace UserControlLibrary
             {
                 txtTenMonChinh.Text = _Item.TenMon;
                 btnLuu.Content = mTransit.StringButton.Luu;
+                lbTieuDe.Text = "Sửa khuyễn mãi";
                 LoadDanhSach();
             }
             else
             {
                 btnLuu.Content = mTransit.StringButton.Them;
+                lbTieuDe.Text = "Thêm khuyễn mãi";
                 btnChonMonChinh_Click(null, null);
             }
         }
@@ -114,6 +116,21 @@ namespace UserControlLibrary
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnLuu_Click(null, null);
+                return;
+            }
+
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
         }
     }
 }

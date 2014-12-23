@@ -21,7 +21,7 @@
                     <RowDefinition/>
                     <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>               
-                <ListView Grid.Row="1" Name="lvData1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="379">
+                <ListView Grid.Row="1" Name="lvData1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="379" AlternationCount="2">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="230" Header="Tên món"/>

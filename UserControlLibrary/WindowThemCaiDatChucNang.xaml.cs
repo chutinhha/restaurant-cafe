@@ -52,11 +52,12 @@ namespace UserControlLibrary
         private void LoadDanhSach()
         {
             IQueryable<Data.CHUCNANG> lsChucNang = Data.BOChucNang.GetAllNoTracking(mTransit);
+            IQueryable<Data.NHOMCHUCNANG> lsNhomChucNang = Data.BONhomChucNang.GetAllNoTracking(mTransit);
             IQueryable<Data.BOChiTietQuyen> lsChiTietQuyen = BOChiTietQuyen.GetAll(mQuyen.MaQuyen, mTransit);
             List<Data.BOChiTietQuyen> lsShowData = new List<Data.BOChiTietQuyen>();
             foreach (Data.CHUCNANG cn in lsChucNang)
             {
-                Data.BOChiTietQuyen item = null;
+                Data.BOChiTietQuyen item = null;                
                 if (lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == cn.ChucNangID).Count() > 0)
                 {
                     item = lsChiTietQuyen.Where(s => s.ChiTietQuyen.ChucNangID == cn.ChucNangID).FirstOrDefault();
@@ -70,7 +71,7 @@ namespace UserControlLibrary
                 {
                     item = new Data.BOChiTietQuyen();
                     item.ChiTietQuyen.NhomChucNangID = (int)cn.NhomChucNangID;
-                    item.ChucNang = cn;
+                    item.ChucNang = cn;                    
                     item.ChiTietQuyen.ChucNangID = cn.ChucNangID;
                     item.ChiTietQuyen.QuyenID = mQuyen.MaQuyen;
                     item.ChiTietQuyen.Deleted = false;
@@ -87,6 +88,7 @@ namespace UserControlLibrary
                     item.IsXoa = cn.Xoa ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
                     item.IsSua = cn.Sua ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
                 }
+                item.NhomChucNang = lsNhomChucNang.Where(s => s.NhomChucNangID == cn.NhomChucNangID).FirstOrDefault();
                 lsShowData.Add(item);
             }
             lvData.ItemsSource = lsShowData;

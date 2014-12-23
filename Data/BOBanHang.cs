@@ -11,7 +11,7 @@ namespace Data
         public BANHANG BANHANG { get; set; }
         public KHACHHANG KHACHHANG { get; set; }
         private List<BOChiTietBanHang> mListChiTietBanHangDeleted;
-        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }
+        public List<BOChiTietBanHang> _ListChiTietBanHang { get; set; }        
         private CAIDATBANHANG _CAIDATBANHANG;
         private Transit mTransit;
         private KaraokeEntities mKaraokeEntities;        

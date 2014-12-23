@@ -70,7 +70,8 @@ namespace Data
 
         public int Xoa(BOMenuNhom item, Transit mTransit)
         {
-            frmNhom.DeleteObject(item.MenuNhom);
+            item.MenuNhom.Deleted = true;
+            frmNhom.Update(item.MenuNhom);
             frmNhom.Commit();
             SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
             return item.MenuNhom.NhomID;

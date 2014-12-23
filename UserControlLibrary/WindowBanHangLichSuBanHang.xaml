@@ -25,7 +25,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Row="1" Name="lvData1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,378,0" FontSize="14" SelectionChanged="lvData1_SelectionChanged">
+                <ListView Grid.Row="1" Name="lvData1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,378,0" FontSize="14" SelectionChanged="lvData1_SelectionChanged" AlternationCount="2">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=MaHoaDon}" Width="120" Header="Mã Hóa Đơn"/>
@@ -35,7 +35,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView Grid.Row="1" Grid.Column="1" Name="lvData2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14">
+                <ListView Grid.Row="1" Grid.Column="1" Name="lvData2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" AlternationCount="2">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="230" Header="Tên Món"/>

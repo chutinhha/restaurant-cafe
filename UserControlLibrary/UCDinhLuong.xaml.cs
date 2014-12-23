@@ -31,12 +31,13 @@ namespace UserControlLibrary
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
             uCMenu._IsSoLuongChoPhepTonKho = false;
             uCMenu._IsSoLuongKhongChoPhepTonKho = true;
-            uCMenu.SetTransit(mTransit);            
+            uCMenu.SetTransit(mTransit);
+            uCDanhSachDinhLuong.SetTransit(mTransit); 
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
         {
-            uCDanhSachDinhLuong.Init(ob, mTransit);
+            uCDanhSachDinhLuong.Init(ob);
             uCDanhSachDinhLuong.LoadDanhSach();
         }
 

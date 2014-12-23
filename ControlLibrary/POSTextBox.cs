@@ -88,14 +88,14 @@ namespace ControlLibrary
         }
         protected override void OnPreviewMouseUp(System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.SelectAll();            
+            this.SelectAll();
             base.OnPreviewMouseUp(e);
         }
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
             if (!mIsLockText)
             {
-                if (typeTextBox==TypeKeyPad.Decimal)
+                if (typeTextBox == TypeKeyPad.Decimal)
                 {
                     mIsLockText = true;
                     this.Text = Utilities.MoneyFormat.ConvertToString(this.Text);
@@ -118,13 +118,19 @@ namespace ControlLibrary
             {
                 case TypeKeyPad.None:
                     break;
+                case TypeKeyPad.Digit:
+                    if (Char.IsNumber(e.Text, e.Text.Length - 1))
+                        e.Handled = false;
+                    else
+                        e.Handled = true;
+                    break;
                 case TypeKeyPad.Number:
                     if (Char.IsNumber(e.Text, e.Text.Length - 1))
                         e.Handled = false;
                     else
                         e.Handled = true;
                     int data = Utilities.MoneyFormat.ConvertToInt(this.Text + e.Text);
-                    if ((data < 0 || data > _MaxValue)&&_MaxValue>0)
+                    if ((data < 0 || data > _MaxValue) && _MaxValue > 0)
                     {
                         e.Handled = true;
                     }

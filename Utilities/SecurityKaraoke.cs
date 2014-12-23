@@ -11,18 +11,27 @@ namespace Utilities
         public static String getMotherDeviceID()
         {
             string cpuInfo = string.Empty;
-            ManagementClass mc = new ManagementClass("win32_processor");
-            ManagementObjectCollection moc = mc.GetInstances();
-
-            foreach (ManagementObject mo in moc)
+            try
             {
-                if (cpuInfo == "")
+                
+                ManagementClass mc = new ManagementClass("win32_processor");
+                ManagementObjectCollection moc = mc.GetInstances();
+
+                foreach (ManagementObject mo in moc)
                 {
-                    //Get only the first CPU's ID
-                    cpuInfo = mo.Properties["processorID"].Value.ToString();
-                    break;
+                    if (cpuInfo == "")
+                    {
+                        //Get only the first CPU's ID
+                        cpuInfo = mo.Properties["processorID"].Value.ToString();
+                        break;
+                    }
                 }
             }
+            catch (Exception)
+            {
+                cpuInfo = "TranMinhTien";
+            }
+            
             return cpuInfo;
         }
         public static bool CheckIsFirst(string key)

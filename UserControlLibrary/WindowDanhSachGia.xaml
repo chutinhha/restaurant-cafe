@@ -24,7 +24,7 @@
                     <ColumnDefinition Width="140" />
                     <ColumnDefinition Width="226*" />
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData">
+                <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" AlternationCount="2">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="40">

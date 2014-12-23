@@ -17,7 +17,7 @@
             </Grid.Background>
             <Menu Name="ucMenuMenu" HorizontalAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                 <MenuItem Header="Loại giá" Name="btnLoaiGia" Click="btnLoaiGia_Click"  />
-                <MenuItem Header="Danh sách bán"  Name="btnDanhSachBan" Click="btnDanhSachBan_Click"  />
+                <MenuItem Header="Đơn vị tính"  Name="btnDanhSachBan" Click="btnDanhSachBan_Click"  />
                 <MenuItem Header="Khuyễn mãi" Name="btnKhuyenMai" Click="btnKhuyenMai_Click"  />
                 <MenuItem Header="Lịch biểu định kỳ" Name="btnLichBieuDinhKy" Click="btnLichBieuDinhKy_Click"  />
                 <MenuItem Header="Lịch biểu không định kỳ" Name="btnLichBieuKhongDinhKy" Click="btnLichBieuKhongDinhKy_Click"  />

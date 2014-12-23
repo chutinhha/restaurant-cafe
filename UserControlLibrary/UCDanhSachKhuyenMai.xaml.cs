@@ -50,7 +50,7 @@ namespace UserControlLibrary
 
         private void LoadDanhSach()
         {
-            lvData.ItemsSource = lsArray = BOMenuKhuyenMai.GetDanhSachKichThuocMon();            
+            lvData.ItemsSource = lsArray = BOMenuKhuyenMai.GetDanhSachKichThuocMon();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -94,7 +94,7 @@ namespace UserControlLibrary
                 }
             }
 
-        }        
+        }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {

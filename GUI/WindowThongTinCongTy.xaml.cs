@@ -87,11 +87,13 @@ namespace GUI
         {
             btnCaiDatThongTinCongTy.Tag = Data.TypeChucNang.CaiDat.CaiDatThongTinCongTy;
             btnCaiDatGiaoDienBanHang.Tag = Data.TypeChucNang.CaiDat.CaiDatGiaoDienBanHang;
-            btnCaiDatChucNangHienThi.Tag = Data.TypeChucNang.CaiDat.btnCaiDatChucNangHienThi;
+            btnCaiDatChucNangHienThi.Tag = Data.TypeChucNang.CaiDat.CaiDatChucNangHienThi;
             btnCaiDatBan.Tag = Data.TypeChucNang.CaiDat.CaiDatBan;
             btnCaiDatMayInNhaBep.Tag = Data.TypeChucNang.CaiDat.CaiDatMayInNhaBep;
             btnCaiDatMayInHoaDon.Tag = Data.TypeChucNang.CaiDat.CaiDatMayInHoaDon;
             btnCaiDatThucDon.Tag = Data.TypeChucNang.CaiDat.CaiDatThucDon;
+            btnCaiDatBanHang.Tag = Data.TypeChucNang.CaiDat.CaiDatBanHang;
+            btnXuatNhapDuLieu.Tag = Data.TypeChucNang.CaiDat.XuatNhapDuLieu;
         }
 
         private void PhanQuyen()
@@ -116,7 +118,7 @@ namespace GUI
                                     i++;
                                     j = 0;
                                 }
-                                if (type != Data.TypeChucNang.CaiDat.btnCaiDatChucNangHienThi)
+                                if (type != Data.TypeChucNang.CaiDat.CaiDatChucNangHienThi)
                                     LookButton(btn, ctq.ChiTietQuyen.ChoPhep, i, j);
                                 else
                                 {

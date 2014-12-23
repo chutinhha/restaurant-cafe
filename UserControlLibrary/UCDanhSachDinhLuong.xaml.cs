@@ -24,10 +24,9 @@ namespace UserControlLibrary
             InitializeComponent();
         }
 
-        public void Init(Data.BOMenuKichThuocMon kichThuocMon, Data.Transit transit)
+        public void Init(Data.BOMenuKichThuocMon kichThuocMon)
         {
-            mTransit = transit;
-            BODinhLuong = new Data.BODinhLuong(transit);
+
             mKichThuocMon = kichThuocMon;
             lsLoaiBan = Data.BOLoaiBan.GetAllNoTracking(mTransit).ToList();
             if (mKichThuocMon != null)
@@ -37,6 +36,12 @@ namespace UserControlLibrary
                 btnDanhSach.Visibility = System.Windows.Visibility.Visible;
             }
             PhanQuyen();
+        }
+
+        public void SetTransit(Data.Transit transit)
+        {
+            mTransit = transit;
+            BODinhLuong = new Data.BODinhLuong(transit);
         }
 
         Data.BOChiTietQuyen mPhanQuyen = null;
@@ -93,26 +98,29 @@ namespace UserControlLibrary
             messageBox.ShowDialog();
         }
 
-        private void btnThemMon_Click(object sender, RoutedEventArgs e)
+        private void btnThemNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            WindowChonMon win = new WindowChonMon(mTransit, true, true, false, true);
-            if (win.ShowDialog() == true)
+            if (mKichThuocMon != null)
             {
-                Data.BODinhLuong item = new Data.BODinhLuong();
-                item.MenuMon = win._ItemMon.MenuMon;
-                item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemMon.MenuMon.DonViID).ToList();
-                item.DinhLuong.DonViID = win._ItemMon.MenuMon.DonViID;
-                item.DinhLuong.MonID = item.MenuMon.MonID;
-                item.DinhLuong.Visual = true;
-                item.DinhLuong.Deleted = false;
-                item.DinhLuong.SoLuong = 0;
-                item.IsSua = true;
-                item.IsXoa = System.Windows.Visibility.Visible;
-                item.DinhLuong.KichThuocMonChinhID = mKichThuocMon.MenuKichThuocMon.KichThuocMonID;
-                if (item.ListLoaiBan.Count > 0)
-                    item.DinhLuong.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;
-                lsArray.Add(item);
-                lvData.Items.Refresh();
+                WindowChonMon win = new WindowChonMon(mTransit, true, true, false, true);
+                if (win.ShowDialog() == true)
+                {
+                    Data.BODinhLuong item = new Data.BODinhLuong();
+                    item.MenuMon = win._ItemMon.MenuMon;
+                    item.ListLoaiBan = lsLoaiBan.Where(s => s.DonViID == win._ItemMon.MenuMon.DonViID).ToList();
+                    item.DinhLuong.DonViID = win._ItemMon.MenuMon.DonViID;
+                    item.DinhLuong.MonID = item.MenuMon.MonID;
+                    item.DinhLuong.Visual = true;
+                    item.DinhLuong.Deleted = false;
+                    item.DinhLuong.SoLuong = 0;
+                    item.IsSua = true;
+                    item.IsXoa = System.Windows.Visibility.Visible;
+                    item.DinhLuong.KichThuocMonChinhID = mKichThuocMon.MenuKichThuocMon.KichThuocMonID;
+                    if (item.ListLoaiBan.Count > 0)
+                        item.DinhLuong.LoaiBanID = item.ListLoaiBan[0].LoaiBanID;
+                    lsArray.Add(item);
+                    lvData.Items.Refresh();
+                }
             }
         }
 

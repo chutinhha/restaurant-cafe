@@ -39,8 +39,8 @@
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Loại giá" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Thể loại" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Ưu tiên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="5" Grid.Column="0" Text="Thứ bắt đầu" Name="lbGiaTriBatDau" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="6" Grid.Column="0" Text="Thứ kết thúc" Name="lbGiaTriKetThuc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Bắt đầu" Name="lbGiaTriBatDau" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Kết thúc" Name="lbGiaTriKetThuc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="7" Grid.Column="0" Text="Giờ bắt đầu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="8" Grid.Column="0" Text="Giờ kết thúc" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
