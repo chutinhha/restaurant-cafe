@@ -558,5 +558,87 @@ namespace Data
         {
 
         }
+
+        #region Bán hàng
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item">Data.BOChiTietBanHang</param>
+        /// <param name="transit">Dùng để biết trừ kho nào</param>
+        /// <param name="Kara">KaraokeEntities</param>
+        public void TonKho_Them(Data.BOChiTietBanHang item, Transit transit, KaraokeEntities Kara)
+        {
+            IQueryable<TONKHO> lsArray = Kara.TONKHOes.Where(s => s.MonID == item.MenuKichThuocMon.MonID && s.KhoID == transit.KhoID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan);
+            Data.TONKHOTONG tonkhotong = Kara.TONKHOTONGs.Where(s => s.MonID == item.MenuKichThuocMon.MonID && s.KhoID == transit.KhoID).FirstOrDefault();
+            tonkhotong.SoLuongBan += item.ChiTietBanHang.KichThuocLoaiBan;
+            tonkhotong.SoLuongTon -= item.ChiTietBanHang.KichThuocLoaiBan;
+            int SL = item.ChiTietBanHang.KichThuocLoaiBan;
+            foreach (var l in lsArray)
+            {
+                if (SL != 0)
+                {
+                    if (SL > l.SoLuongTon)
+                    {
+                        SL = SL - (int)l.SoLuongTon;
+                        item.ChiTietBanHang.TONKHOCHITIETBANHANGs.Add(
+                        new TONKHOCHITIETBANHANG()
+                            {
+                                KhoID = transit.KhoID,
+                                TonKhoID = l.TonKhoID,
+                                MonID = item.MenuKichThuocMon.MonID,
+                                DonViID = item.MenuKichThuocMon.DonViID,
+                                SoLuong = l.SoLuongTon
+                            });
+                        l.SoLuongTon = 0;
+                    }
+                    else
+                    {
+                        l.SoLuongTon = l.SoLuongTon - SL;
+                        item.ChiTietBanHang.TONKHOCHITIETBANHANGs.Add(new TONKHOCHITIETBANHANG()
+                        {
+                            KhoID = transit.KhoID,
+                            TonKhoID = l.TonKhoID,
+                            MonID = item.MenuKichThuocMon.MonID,
+                            DonViID = item.MenuKichThuocMon.DonViID,
+                            SoLuong = SL
+                        });
+                        SL = 0;
+                    }
+                }
+                else
+                    break;
+            }
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item">Data.BOChiTietBanHang - Truyền xuống item.ChiTietBanHang.KichThuocLoaiBan thực, Giả sử đang là 2 sửa thành 5 thì truyền xuống 5</param>
+        /// <param name="transit">Dùng để biết trừ kho nào</param>
+        /// <param name="Kara">KaraokeEntities</param>
+        public void TonKho_CapNhat(Data.BOChiTietBanHang item, Transit transit, KaraokeEntities Kara)
+        {
+            TonKho_Xoa(item, transit, Kara);
+            TonKho_Them(item, transit, Kara);
+        }
+
+        public void TonKho_Xoa(Data.BOChiTietBanHang item, Transit transit, KaraokeEntities Kara)
+        {
+            if (item.ChiTietBanHang.ChiTietBanHangID > 0)
+            {
+                IQueryable<TONKHOCHITIETBANHANG> lsArray = Kara.TONKHOCHITIETBANHANGs.Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID);
+                foreach (var line in lsArray)
+                {
+                    TONKHO tonKho = Kara.TONKHOes.Where(s => s.TonKhoID == line.TonKhoID).FirstOrDefault();
+                    tonKho.SoLuongTon += (int)line.SoLuong;
+                    Data.TONKHOTONG tonkhotong = Kara.TONKHOTONGs.Where(s => s.MonID == item.MenuKichThuocMon.MonID && s.KhoID == transit.KhoID).FirstOrDefault();
+                    tonkhotong.SoLuongBan += (int)line.SoLuong;
+                    tonkhotong.SoLuongTon -= (int)line.SoLuong;
+                    Kara.TONKHOCHITIETBANHANGs.DeleteObject(line);
+                }
+            }
+        }
+        #endregion
     }
 }

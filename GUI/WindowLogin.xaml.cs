@@ -25,11 +25,11 @@ namespace GUI
             InitializeComponent();
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
-            ucTile.SetTransit(mTransit);            
+            ucTile.SetTransit(mTransit);
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
-        {           
+        {
             mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {
@@ -78,7 +78,7 @@ namespace GUI
                 if (process.ProcessName == "GUI")
                     process.Kill();
             }
-        }       
+        }
         void timer_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -87,40 +87,40 @@ namespace GUI
             {
                 Application.Current.Shutdown();
             }
-            Console.WriteLine(aaa);            
+            Console.WriteLine(aaa);
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtUserID._UCKeyPad = uCKeyPad;
             txtPassword._UCKeyPad = uCKeyPad;
             DateTime dt = new DateTime(2015, 01, 20);
-            if (DateTime.Now.CompareTo(dt)>=0)
+            if (DateTime.Now.CompareTo(dt) >= 0)
             {
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                 timer.Interval = 10000;
                 timer.Tick += new EventHandler(timer_Tick);
                 timer.Start();
-            }            
+            }
 
             if (Utilities.SecurityKaraoke.CheckIsFirst(mTransit.ThamSo.BanQuyen))
             {
                 Data.Transit.MakeLisence(1, mTransit);
-                string product = Utilities.SecurityKaraoke.GetProductID(0, mTransit.HashMD5);                
+                string product = Utilities.SecurityKaraoke.GetProductID(0, mTransit.HashMD5);
                 mTransit.ThamSo.BanQuyen = Utilities.SecurityKaraoke.GetKey(1, product, mTransit.HashMD5);
-                mTransit.KaraokeEntities.SaveChanges();                
+                mTransit.KaraokeEntities.SaveChanges();
             }
             if (Utilities.SecurityKaraoke.CheckLisence(mTransit.ThamSo.BanQuyen, mTransit.HashMD5))
             {
                 string type = mTransit.ThamSo.BanQuyen.Substring(0, 1);
-                if (type!="3")
+                if (type != "3")
                 {
                     DateTime now = DateTime.Now;
                     now = new DateTime(now.Year, now.Month, now.Day);
                     if (
-                        !Utilities.SecurityKaraoke.CheckDate(mTransit.ThamSo.NgayBatDau.Value,mTransit.ThamSo.XacNhanNgayBatDau,mTransit.HashMD5) ||
-                        !Utilities.SecurityKaraoke.CheckDate(mTransit.ThamSo.NgayKetThuc.Value,mTransit.ThamSo.XacNhanNgayKetThuc,mTransit.HashMD5) ||
-                        now.CompareTo(mTransit.ThamSo.NgayBatDau.Value)<0 ||
-                        now.CompareTo(mTransit.ThamSo.NgayKetThuc.Value)>0
+                        !Utilities.SecurityKaraoke.CheckDate(mTransit.ThamSo.NgayBatDau.Value, mTransit.ThamSo.XacNhanNgayBatDau, mTransit.HashMD5) ||
+                        !Utilities.SecurityKaraoke.CheckDate(mTransit.ThamSo.NgayKetThuc.Value, mTransit.ThamSo.XacNhanNgayKetThuc, mTransit.HashMD5) ||
+                        now.CompareTo(mTransit.ThamSo.NgayBatDau.Value) < 0 ||
+                        now.CompareTo(mTransit.ThamSo.NgayKetThuc.Value) > 0
                         )
                     {
                         SecuriryLicense();
@@ -132,7 +132,7 @@ namespace GUI
                 SecuriryLicense();
             }
         }
-        
+
         private void SecuriryLicense()
         {
             UserControlLibrary.WindowBanQuyen win = new UserControlLibrary.WindowBanQuyen(mTransit);
