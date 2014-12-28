@@ -23,10 +23,17 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhanVien.TenNhanVien}" Width="200" Header="Tên nhân viên" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.ThoiGian}" Width="220" Header="Thời gian" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiThuChi.TenLoaiThuChi}" Width="150" Header="Loại" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.TongTien}" Width="150" Header="Tổng tiền" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.GhiChu}" Width="300" Header="Ghi chú" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.NgayGhiSo}" Width="180" Header="Ngày ghi sổ" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.NgayChungTu}" Width="180" Header="Ngày chứng từ" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiThuChi.TenLoaiThuChi}" Width="120" Header="Loại" />
+                    <GridViewColumn Width="Auto" Header="Tổng tiền">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ThuChi.TongTien, StringFormat='{}{0:#,#}'}" TextAlignment="Right" Width="150"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThuChi.LyDo}" Width="200" Header="Lý do" />
                 </GridView>
             </ListView.View>
         </ListView>

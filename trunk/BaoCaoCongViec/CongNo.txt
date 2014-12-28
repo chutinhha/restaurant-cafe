@@ -1,0 +1,13 @@
+﻿NhanVien
+Ngay
+NoiDung
+TongTien
+Loai(Thu or Chi)
+
+Report (chọn từ ngày đến ngày)
+Thu bán hàng
+
+SoDuDauKy
+SoDuCuoiKy
+
+Nhập phiếu chi và nhập phiếu thu
