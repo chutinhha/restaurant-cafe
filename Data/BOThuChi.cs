@@ -29,7 +29,7 @@ namespace Data
             return from t in mKaraokeEntities.THUCHIs
                    join l in mKaraokeEntities.LOAITHUCHIs on t.LoaiThuChiID equals l.LoaiThuChiID
                    join n in mKaraokeEntities.NHANVIENs on t.NhanVienID equals n.NhanVienID
-                   where t.ThoiGian.Value.Day == DateTime.Now.Day && t.ThoiGian.Value.Month == DateTime.Now.Month && t.ThoiGian.Value.Year == DateTime.Now.Year
+                   where t.NgayGhiSo.Value.Day == DateTime.Now.Day && t.NgayGhiSo.Value.Month == DateTime.Now.Month && t.NgayGhiSo.Value.Year == DateTime.Now.Year
                    select new BOThuChi
                    {
                        ThuChi = t,

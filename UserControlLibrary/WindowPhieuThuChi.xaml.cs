@@ -20,6 +20,8 @@ namespace UserControlLibrary
     {
         private Data.Transit mTransit;
 
+        private List<Data.CHITIETTHUCHI> lsArray = null;
+
         public Data.BOThuChi _Item { get; set; }
         private int LoaiThuChiID = 0;
         private Data.BOThuChi BOThuChi = null;
@@ -53,7 +55,8 @@ namespace UserControlLibrary
                     _Item.ThuChi.Deleted = false;
                     _Item.ThuChi.Edit = false;
                     _Item.ThuChi.NhanVienID = mTransit.NhanVien.NhanVienID;
-                    _Item.ThuChi.ThoiGian = DateTime.Now;
+                    _Item.ThuChi.NgayChungTu = dtpNgayChungTu.SelectedDate;
+                    _Item.ThuChi.NgayGhiSo = dtpNgayGhiSo.SelectedDate;
                     _Item.ThuChi.LoaiThuChiID = LoaiThuChiID;
                     _Item.NhanVien.TenNhanVien = mTransit.NhanVien.TenNhanVien;
                     _Item.LoaiThuChi.TenLoaiThuChi = BOThuChi.GetLoaiThuChi(LoaiThuChiID).TenLoaiThuChi;
@@ -70,10 +73,17 @@ namespace UserControlLibrary
                 txtGhiChu.Text = "";
                 txtTongTien.Text = "0";
                 btnLuu.Content = mTransit.StringButton.Them;
+                dtpNgayChungTu.SelectedDate = DateTime.Now;
+                dtpNgayGhiSo.SelectedDate = DateTime.Now;
+                txtNguoiThuNop.Text = "";
+                txtLyDo.Text = "";
                 if (LoaiThuChiID == 1)
+
                     lbTieuDe.Text = "Thêm phiếu thu";
+
                 else
                     lbTieuDe.Text = "Thêm phiếu chi";
+                lsArray = new List<Data.CHITIETTHUCHI>();
 
             }
             else
@@ -81,19 +91,47 @@ namespace UserControlLibrary
                 txtGhiChu.Text = _Item.ThuChi.GhiChu;
                 txtTongTien.Text = _Item.ThuChi.TongTien.ToString();
                 btnLuu.Content = mTransit.StringButton.Luu;
+                dtpNgayChungTu.SelectedDate = _Item.ThuChi.NgayChungTu;
+                dtpNgayChungTu.SelectedDate = _Item.ThuChi.NgayGhiSo;
+                txtNguoiThuNop.Text = _Item.ThuChi.NguoiThuNop;
+                txtLyDo.Text = _Item.ThuChi.LyDo;
                 if (LoaiThuChiID == 1)
                     lbTieuDe.Text = "Sửa phiếu thu";
                 else
                     lbTieuDe.Text = "Sửa phiếu chi";
+            }
+            SetLable();
+            txtNhanVien.Text = mTransit.NhanVien.TenNhanVien;
+
+            lvData.ItemsSource = lsArray;
+        }
+
+        private void SetLable()
+        {
+            if (LoaiThuChiID == 1)
+            {
+                lbTieuDe.Text = "Sửa phiếu thu";
+                lbNguoiThuNop.Text = "Người nộp tiền";
+            }
+            else
+            {
+                lbTieuDe.Text = "Sửa phiếu chi";
+                lbNguoiThuNop.Text = "Người chi tiền";
             }
         }
 
         private void GetValues()
         {
             _Item.ThuChi.GhiChu = txtGhiChu.Text;
+            _Item.ThuChi.LyDo = txtLyDo.Text;
+            _Item.ThuChi.NguoiThuNop = txtNguoiThuNop.Text;
             if (txtTongTien.Text == "")
                 txtTongTien.Text = "0";
             _Item.ThuChi.TongTien = Convert.ToDecimal(txtTongTien.Text);
+            foreach (var item in lsArray)
+            {
+                _Item.ThuChi.CHITIETTHUCHIs.Add(item);
+            }
         }
 
         private bool CheckValues()
@@ -128,6 +166,32 @@ namespace UserControlLibrary
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void btnThemChiTiet_Click(object sender, RoutedEventArgs e)
+        {
+            lsArray.Add(new Data.CHITIETTHUCHI());
+            lvData.Items.Refresh();
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            Data.CHITIETTHUCHI item = ((Button)sender).DataContext as Data.CHITIETTHUCHI;
+            lsArray.Remove(item);
+            lvData.Items.Refresh();
+        }
+
+        private void txtSoTien_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal tongTien = 0;
+            foreach (var item in lsArray)
+            {
+
+                tongTien += item.SoTien;
+
+            }
+            txtTongTien.Text = tongTien.ToString();
+            txtTongTien.UpdateLayout();
         }
     }
 }

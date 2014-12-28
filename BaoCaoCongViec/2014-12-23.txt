@@ -1,0 +1,13 @@
+Khuyễn mãi -> Thêm khuyễn mãi-> OK
+Định lượng -> Chưa có món chưa cho định lượng -> OK
+Report -> Không bị lỗi, cần phải cập nhật View, sửa lại giao diện định lượng rồi
+Đổi chữ danh sách thành hủy thay đổi -> OK
+Kiểm tra xóa nhóm->OK
+Phím tắt -> Bán hàng, cài đặt, Tính tiền, 
+Khu -> OK
+Hiện tại đăng chỉ cho đăng nhập bằng số! -> OK
+	
+Thu chi
+Chia nhóm phân quyền
+
+Thêm vào menu món có popup bán kí lên không
