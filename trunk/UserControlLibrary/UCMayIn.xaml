@@ -23,7 +23,13 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TieuDeIn}" Width="200" Header="Tiêu đề máy in" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenMayIn}" Width="300" Header="Tên máy in" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=HopDungTien}" Width="150" Header="Hộp đựng tiền" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoLanIn}" Width="100" Header="Số lần in" />
+                    <GridViewColumn Width="Auto" Header="Số lần in">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=SoLanIn, StringFormat='{}{0:#,#} lần'}" TextAlignment="Right" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MayInHoaDon}" Width="150" Header="Máy in hóa đơn" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Visual}" Width="150" Header="Cho phép in" />
                 </GridView>

@@ -304,6 +304,12 @@ namespace UserControlLibrary
                     uriSource = new Uri(@"/SystemImages;component/Images/Forward.png", UriKind.Relative);
                     btnItemNext.Background = System.Windows.Media.Brushes.White;
                     btnItemNext.Image = new BitmapImage(uriSource);
+                    btnItemBack.Visibility = System.Windows.Visibility.Visible;
+                    btnItemNext.Visibility = System.Windows.Visibility.Visible;
+                    btnItemBack.IsEnabled = true;
+                    btnItemNext.IsEnabled = true;
+                    btnItemNext.Click += new RoutedEventHandler(btnItemNext_Click);
+                    btnItemBack.Click += new RoutedEventHandler(btnItemBack_Click);
 
                     break;
 

@@ -138,7 +138,8 @@ namespace Data
 
         private int Xoa(BOMenuKichThuocMon item, Transit mTransit)
         {
-            frmKichThuocMon.DeleteObject(item.MenuKichThuocMon);
+            item.MenuKichThuocMon.Deleted = true;
+            frmKichThuocMon.Update(item.MenuKichThuocMon);
             return item.MenuKichThuocMon.KichThuocMonID;
         }
 

@@ -34,7 +34,7 @@
                     <my:POSButtonFuntion Name="btnChonMonChinh" Grid.Row="1" Grid.Column="1" Content="Chọn món" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnChonMonChinh_Click" />
                 </StackPanel>
                 <my:POSButtonFuntion Name="btnThemMonPhu" Grid.Row="1" Grid.Column="1" Content="Thêm món khuyễn mãi" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThemMonPhu_Click" />
-                <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" HorizontalContentAlignment="Stretch">
+                <ListBox Grid.Row="2" Grid.ColumnSpan="2" Name="lvData" HorizontalContentAlignment="Stretch" Margin="0,1,0,39" Grid.RowSpan="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="40">
