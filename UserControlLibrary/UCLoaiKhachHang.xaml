@@ -21,7 +21,13 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenLoaiKhachHang}" Width="200" Header="Loại khách hàng" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PhanTramGiamGia}" Width="500" Header="Phần trăm giảm" />
+                    <GridViewColumn Width="Auto" Header="Phần trăm giảm">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=PhanTramGiamGia, StringFormat='{}{0:#,#}%'}" TextAlignment="Right" Width="500"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

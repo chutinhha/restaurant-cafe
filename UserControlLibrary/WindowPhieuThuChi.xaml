@@ -50,7 +50,7 @@
                 <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtNguoiThuNop" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLyDo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtGhiChu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                <my:POSTextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtTongTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" _TypeTextBox="Decimal" />
+                <my:POSTextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtTongTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" _TypeTextBox="Decimal" IsReadOnly="True"/>
                 <my:POSButtonFuntion Content="Thêm chi tiết" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Right" Name="btnThemChiTiet" VerticalAlignment="Stretch" Width="150" Margin="7,5,7,5" Click="btnThemChiTiet_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />
 
                 <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Height="40">

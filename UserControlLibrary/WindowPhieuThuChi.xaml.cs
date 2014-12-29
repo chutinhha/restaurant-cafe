@@ -136,6 +136,7 @@ namespace UserControlLibrary
 
         private bool CheckValues()
         {
+            TinhTongTien();
             lbStatus.Text = "";
             if (txtTongTien.Text == "")
             {
@@ -170,8 +171,11 @@ namespace UserControlLibrary
 
         private void btnThemChiTiet_Click(object sender, RoutedEventArgs e)
         {
-            lsArray.Add(new Data.CHITIETTHUCHI());
-            lvData.Items.Refresh();
+            if (lsArray != null)
+            {
+                lsArray.Add(new Data.CHITIETTHUCHI());
+                lvData.Items.Refresh();
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
@@ -183,15 +187,24 @@ namespace UserControlLibrary
 
         private void txtSoTien_TextChanged(object sender, TextChangedEventArgs e)
         {
-            decimal tongTien = 0;
-            foreach (var item in lsArray)
-            {
-
-                tongTien += item.SoTien;
-
-            }
-            txtTongTien.Text = tongTien.ToString();
-            txtTongTien.UpdateLayout();
+            TinhTongTien();
         }
+
+        private void TinhTongTien()
+        {
+            if (lsArray != null)
+            {
+                decimal tongTien = 0;
+                foreach (var item in lsArray)
+                {
+
+                    tongTien += item.SoTien;
+
+                }
+                txtTongTien.Text = tongTien.ToString();
+                txtTongTien.UpdateLayout();
+            }
+        }
+
     }
 }

@@ -21,7 +21,13 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Danh sách khách hàng">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TenMon}" Width="300" Header="Món có khuyễn mãi" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SoLuongMonKhuyenMai}" Width="200" Header="Số lượng món khuyễn mãi" />
+                    <GridViewColumn Width="Auto" Header="Số lượng món khuyễn mãi">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=SoLuongMonKhuyenMai, StringFormat='{}{0:#,#}'}" TextAlignment="Right" Width="200"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=DanhSachTenMonKhuyenMai}" Width="500" Header="Danh sách món khuyễn mãi" />
                 </GridView>
             </ListView.View>

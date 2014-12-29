@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <my:POSTextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenNhanVien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" _TypeTextBox="Digit" />
+                <my:POSTextBox Grid.Row="0" Grid.Column="1"  x:Name="txtTenNhanVien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" _TypeTextBox="Text" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbbLoaiNhanVien" DisplayMemberPath="TenLoaiNhanVien" SelectedValuePath="LoaiNhanVienID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Tên đăng nhập" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
