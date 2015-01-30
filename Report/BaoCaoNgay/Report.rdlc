@@ -494,7 +494,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TienMat.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TongTien.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -517,7 +517,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -532,7 +531,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền mặt: </Value>
+                <Value>Tổng Tiền Hóa Đơn:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -566,7 +565,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền thẻ: </Value>
+                <Value>Tiền Giảm Giá:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -600,7 +599,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TienThe.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!GiamGia.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -623,7 +622,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -638,7 +636,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền khách hàng: </Value>
+                <Value>Phí Dịch Vụ:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -672,7 +670,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TienKhacHang.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!PhiDichVu.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -695,7 +693,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -710,7 +707,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền giảm giá: </Value>
+                <Value>Tiền Bo:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -744,7 +741,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!GiamGia.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienBo.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -767,7 +764,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -782,7 +778,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền chiết khấu: </Value>
+                <Value>Khách Đưa:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -816,7 +812,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!ChietKhau.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(First(Fields!TienKhacHang.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -839,7 +835,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -854,7 +849,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền trả lại: </Value>
+                <Value>Chiết Khấu:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -888,7 +883,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TienTraLai.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!ChietKhau.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -911,7 +906,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -926,7 +920,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tiền tiền bo: </Value>
+                <Value>Trả Lại:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -960,7 +954,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TienBo.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!TienTraLai.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -983,7 +977,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -998,7 +991,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Phí dịch vụ: </Value>
+                <Value>Tiền Mặt:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1032,7 +1025,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!PhiDichVu.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(First(Fields!TienMat.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1055,7 +1048,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -1070,7 +1062,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Số hóa đơn</Value>
+                <Value>Thẻ:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1104,7 +1096,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(First(Fields!SoHoaDon.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(First(Fields!TienThe.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1127,7 +1119,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
@@ -1142,7 +1133,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tổng tiền: </Value>
+                <Value>Số Hóa Đơn:</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1176,7 +1167,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=FormatNumber(Sum(Fields!TongTien.Value, "BAOCAONGAYTONG"),0)</Value>
+                <Value>=FormatNumber(Sum(Fields!SoHoaDon.Value, "BAOCAONGAYTONG"),0)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1199,7 +1190,6 @@
             <Width>0.5pt</Width>
           </Border>
           <BottomBorder>
-            <Color>Black</Color>
             <Style>Dotted</Style>
           </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
