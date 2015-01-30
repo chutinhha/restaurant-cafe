@@ -27,5 +27,6 @@
         <my:POSButtonMain Name="btnXuatNhapDuLieu" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/import_export.png" Margin="10" Background="#FFD86970" TextNho="Xuất/ Nhập" TextTo="Xuất, nhập dữ liệu từ excel" Click="btnXuatNhapDuLieu_Click" />
         <my:POSButtonMain Name="btnCaiDatBanHang" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Ordering.png" Margin="10" Background="#FFD8CDB1" TextNho="Cài đặt" TextTo="Cài đặt bán hàng" Click="btnCaiDatBanHang_Click" />
         <my:POSButtonMain Name="btnCaiDatGioKaraoke" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Ordering.png" Margin="10" Background="#FF8E69A8" TextNho="Cài đặt" TextTo="Cài đặt giờ Karaoke" Click="btnCaiDatGioKaraoke_Click" />
+        <my:POSButtonMain Name="btnCaiDatLoaiNhom" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Ordering.png" Margin="10" Background="#FF8E69A8" TextNho="Cài đặt" TextTo="Cài đặt loại nhóm" Click="btnCaiDatLoaiNhom_Click" />
     </Grid>
 </Window>
