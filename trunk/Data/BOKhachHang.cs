@@ -88,7 +88,10 @@ namespace Data
             }            
             mKaraokeEntities.SaveChanges();
         }
-
+        public void Them(BOKhachHang kh)
+        {
+            frmKhachHang.AddObject(kh.KhachHang);
+        }
         public void Commit()
         {
             frmKhachHang.Commit();

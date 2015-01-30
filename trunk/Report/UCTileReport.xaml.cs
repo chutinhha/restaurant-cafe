@@ -30,6 +30,9 @@ namespace Report
         public delegate void OnDong();
         public event OnDong _OnDong;
 
+        public delegate void OnPrint(DateTime dtFrom,DateTime dtTo);
+        public event OnPrint _OnPrint;
+
         public void SetInit(Data.Transit transit, Microsoft.Reporting.WinForms.ReportViewer reportViewer, string title, bool IsShowDateFrom, bool IsShowDateTo)
         {
             dtpDateFrom.Visibility = IsShowDateFrom ? Visibility.Visible : System.Windows.Visibility.Collapsed;
@@ -103,6 +106,16 @@ namespace Report
             dtpDateFrom.SelectedDate = DateTime.Now.Date;
             dtpDateTo.SelectedDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             IsSelectedDateChanged = true;
+        }
+
+        private void btnPrintTicket_Click(object sender, RoutedEventArgs e)
+        {
+            if (_OnPrint!=null)
+            {
+                DateTime dtFrom = new DateTime(dtpDateFrom.SelectedDate.Value.Year, dtpDateFrom.SelectedDate.Value.Month, dtpDateFrom.SelectedDate.Value.Day, 0, 0, 0);
+                DateTime dtTo = new DateTime(dtpDateTo.SelectedDate.Value.Year, dtpDateTo.SelectedDate.Value.Month, dtpDateTo.SelectedDate.Value.Day, 23, 59, 59);
+                _OnPrint(dtFrom,dtTo);
+            }
         }
     }
 }

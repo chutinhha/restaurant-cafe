@@ -40,6 +40,14 @@ namespace Utilities
             return Convert.ToDateTime(str);
             //return DateTime.ParseExact(str, "yyyy-MM-dd hh:MM:ss", System.Globalization.CultureInfo.InvariantCulture);
         }
+        public static string ConvertToDateStringYMD(DateTime dt)
+        {
+            if (dt == null)
+            {
+                return "";
+            }
+            return String.Format("{0:0000}-{1:00}-{2:00}", dt.Year, dt.Month, dt.Day);
+        }
         public static string ConvertToDateString(DateTime dt)
         {
             if (dt == null)
@@ -71,6 +79,26 @@ namespace Utilities
                 return new DateTime(dt.Year, dt.Month, dt.Day, time.Hours, time.Minutes, time.Seconds);
             }
             return dt;
+        }
+        public static int GetSecond(DateTime dt,int soPhutToiThieu)
+        {   
+            if (dt!=null)
+            {
+                TimeSpan ts = DateTime.Now - dt;
+                if (soPhutToiThieu == 0)
+                {
+                    soPhutToiThieu = 1;
+                }
+                int sogiay = soPhutToiThieu * 60;
+                int time = (int)ts.TotalSeconds / sogiay;
+                time = time * sogiay;
+                if (time < ts.TotalSeconds)
+                {
+                    time += sogiay;
+                }
+                return time;
+            }
+            return 0;
         }
     }
 }

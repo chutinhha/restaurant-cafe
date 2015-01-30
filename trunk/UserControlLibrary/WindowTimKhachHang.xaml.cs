@@ -59,7 +59,11 @@ namespace UserControlLibrary
             if (win.ShowDialog() == true)
             {
                 //AddList(win._Item);
-                //mBOKhachHang.Them(win._Item);
+                if (win._Item.KhachHang.KhachHangID==0)
+                {
+
+                    mBOKhachHang.Them(win._Item);
+                }
                 mBOKhachHang.Commit();
                 _KhachHang = win._Item;
                 this.DialogResult = true;

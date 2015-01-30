@@ -68,6 +68,7 @@ namespace Data
             GopBan = 112,
             GiamGiaMon = 113,
             HuyBan = 114,
+            TinhGioKaraoke = 115,
         }
 
         public enum NhanVien
@@ -164,8 +165,10 @@ namespace Data
             CaiDatBan,
             CaiDatMayInNhaBep,
             CaiDatMayInHoaDon,
-            CaiDatThucDon, CaiDatBanHang,
-            XuatNhapDuLieu
+            CaiDatThucDon,
+            CaiDatBanHang,
+            XuatNhapDuLieu,
+            CaiDatGioKaraoke
         }
 
         public enum ThongTinPhanMem

@@ -42,8 +42,8 @@ namespace PrinterServer
             mListPrintOrderItem = mXuLiMayIn.GetPrintOrderItem(mLichSuBanHangID, mBOMayIn.MayInID).ToList();
             foreach (var item in mListPrintOrderItem)
             {
-                item._ListKhuyenMai = mXuLiMayIn.GetPrintOrderItemKM(item, mBOMayIn.MayInID).ToList();
-            }
+                item._ListKhuyenMai = mXuLiMayIn.GetPrintOrderItemKM(mLichSuBanHangID,item, mBOMayIn.MayInID).ToList();
+            }                        
         }
         public void Print()
         {

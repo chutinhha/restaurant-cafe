@@ -16,16 +16,14 @@ namespace Data
         {
             get
             {
-                if (MenuKichThuocMon != null && LoaiBan != null)
-                    return (int)(MenuKichThuocMon.KichThuocLoaiBan / LoaiBan.KichThuocBan);
-                return 0;
+                return MenuKichThuocMon.KichThuocLoaiBan;
             }
-        }
-
+        }        
+        
         public string TenMon
         {
             get
-            {
+            {                
                 if (MenuMon != null && MenuKichThuocMon != null)
                     if (MenuKichThuocMon.TenLoaiBan != "")
                         return MenuMon.TenDai + " (" + MenuKichThuocMon.TenLoaiBan + ")";
@@ -123,7 +121,18 @@ namespace Data
                 res = res.Where(s => s.MenuKichThuocMon.ChoPhepTonKho == true);
             return res;
         }
-
+        public static BOMenuKichThuocMon GetKTMByBarcode(string barcode,KaraokeEntities kara)
+        {
+            var ktm = (from a in kara.MENUKICHTHUOCMONs
+                           join b in kara.MENUMONs on a.MonID equals b.MonID
+                           where b.MaVach == barcode
+                           select new BOMenuKichThuocMon
+                           {
+                               MenuKichThuocMon = a,
+                               MenuMon = b
+                           }).FirstOrDefault();
+            return ktm;
+        }
         private int Them(BOMenuKichThuocMon item, Transit mTransit)
         {
             frmKichThuocMon.AddObject(item.MenuKichThuocMon);

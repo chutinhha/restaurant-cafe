@@ -26,14 +26,23 @@ namespace Data
         {
             MenuNhom = menuNhom;
             MenuLoaiNhom = menuLoaiNhom;
-        }        
+        }
+        
+        public static IQueryable<MENUNHOM> GetAll(KaraokeEntities kara)
+        {
+            return kara.MENUNHOMs.Where(o =>o.Deleted == false);
+        }
+        public static IQueryable<MENUNHOM> GetAll(KaraokeEntities kara,MENULOAINHOM loaiNhom)
+        {
+            return kara.MENUNHOMs.Where(o=>o.Visual==true && o.Deleted==false&&o.LoaiNhomID==loaiNhom.LoaiNhomID);
+        }
         public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, Transit mTransit)
         {
             return GetAll(LoaiNhomID, IsBanHang, IsSoLuongChoPhepTonKho, IsSoLuongKhongChoPhepTonKho, false, mTransit);
         }
         public IQueryable<BOMenuNhom> GetAll(int LoaiNhomID, bool IsBanHang, bool IsSoLuongChoPhepTonKho, bool IsSoLuongKhongChoPhepTonKho, bool IsVisual, Transit mTransit)
         {
-            var lsArray = from n in frmNhom.Query() select new BOMenuNhom { MenuNhom = n };
+            var lsArray = from n in frmNhom.Query().Where(o=>o.Deleted==false) select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
                 lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false);
             if (IsBanHang)

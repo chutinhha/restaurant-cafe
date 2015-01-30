@@ -13,6 +13,7 @@ namespace Data
         public string TenThe { get; set; }
         public KHACHHANG KhachHang { get; set; }
         public DateTime NgayBan { get; set; }
+        public DateTime NgayKetThuc { get; set; }
         public BANHANG BanHang { get; set; }
         public BOPrintOrder()
         { }

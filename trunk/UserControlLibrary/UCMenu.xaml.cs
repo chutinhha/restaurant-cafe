@@ -390,7 +390,7 @@ namespace UserControlLibrary
         public void SetButtonNhom(POSButtonMenu btn, Data.BOMenuNhom item)
         {
             btn.Visibility = System.Windows.Visibility.Visible;
-            btn.Tag = item;
+            btn.Tag = item;            
             btn.IsEnabled = true;
             btn.Content = item.MenuNhom.TenNgan;
             if (item.MenuNhom.Hinh != null && item.MenuNhom.Hinh.Length > 0)

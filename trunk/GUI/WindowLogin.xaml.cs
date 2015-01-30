@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace GUI
 {
@@ -23,13 +24,18 @@ namespace GUI
         public WindowLogin()
         {
             InitializeComponent();
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["FirstTime"]))
+            {
+                ManagerDatabase.WindowMain win = new ManagerDatabase.WindowMain();
+                win.ShowDialog();
+            }
             mTransit = new Data.Transit();
             BONhanVien = new Data.BONhanVien(mTransit);
             ucTile.SetTransit(mTransit);
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             mTransit.NhanVien = Data.BONhanVien.Login(txtUserID.Text.Trim(), Utilities.SecurityKaraoke.GetMd5Hash(txtPassword.Text.Trim(), mTransit.HashMD5), mTransit);
             if (mTransit.NhanVien == null)
             {
@@ -82,8 +88,8 @@ namespace GUI
         void timer_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
-            int aaa = random.Next(100);
-            if (aaa % 5 == 0)
+            int aaa = random.Next(10);
+            if (aaa % 9 == 0)
             {
                 Application.Current.Shutdown();
             }
@@ -93,7 +99,7 @@ namespace GUI
         {
             txtUserID._UCKeyPad = uCKeyPad;
             txtPassword._UCKeyPad = uCKeyPad;
-            DateTime dt = new DateTime(2015, 01, 20);
+            DateTime dt = new DateTime(2016, 06, 20);
             if (DateTime.Now.CompareTo(dt) >= 0)
             {
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -153,5 +159,6 @@ namespace GUI
                 return;
             }
         }
+        
     }
 }

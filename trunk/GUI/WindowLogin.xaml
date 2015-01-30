@@ -24,7 +24,7 @@
             <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Tên đăng nhập:" FontSize="20" FontWeight="Bold" Foreground="White"/>
             <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Mật khẩu:" FontSize="20" FontWeight="Bold" Foreground="White"/>
 
-            <my:POSTextBox  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="txtUserID" VerticalAlignment="Center" FontSize="30" Height="40" _TypeTextBox="Number" HorizontalContentAlignment="Center"/>
+            <my:POSTextBox  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="txtUserID" VerticalAlignment="Center" FontSize="30" Height="40" _TypeTextBox="Number" HorizontalContentAlignment="Center" />
             <!--<my:UCPOSPassword Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="txtPassword" VerticalAlignment="Center" FontSize="30" Height="40" _TypeTextBox="Number" HorizontalContentAlignment="Center"/>-->
             <!--<my:UCPOSPassword Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="txtPassword" VerticalAlignment="Center" _Height="40" _TypeTextBox="Number" HorizontalContentAlignment="Center"/>-->
             <my:UCPOSPassword Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="txtPassword" VerticalAlignment="Center" BorderThickness="2" _Height="40" _TypeTextBox="Number" />

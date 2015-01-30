@@ -19,6 +19,7 @@ namespace GUI
 
         private UserControlLibrary.UCLoaiGia ucLoaiGia = null;
 
+        private UserControlLibrary.UCGiamGiaNhom ucGiamGiaNhom = null;
 
         public WindowQuanLyGiaKhuyenMai(Data.Transit transit)
         {
@@ -124,7 +125,17 @@ namespace GUI
             ucLoaiGia.Width = spNoiDung.ActualWidth;
             spNoiDung.Children.Add(ucLoaiGia);
         }
-
+        private void btnGiamGiaNhom_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucGiamGiaNhom==null)
+            {
+                ucGiamGiaNhom = new UserControlLibrary.UCGiamGiaNhom();
+            }
+            spNoiDung.Children.Clear();
+            ucGiamGiaNhom.Height = spNoiDung.ActualHeight;
+            ucGiamGiaNhom.Width = spNoiDung.ActualWidth;
+            spNoiDung.Children.Add(ucGiamGiaNhom);
+        }
         private void uCTile_OnEventExit()
         {
             this.Close();
@@ -161,5 +172,6 @@ namespace GUI
             else if (btnKhuyenMai.Visibility != System.Windows.Visibility.Collapsed)
                 btnKhuyenMai_Click(sender, e);
         }
+        
     }
 }

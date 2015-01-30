@@ -61,7 +61,10 @@ namespace UserControlLibrary
             _Nhom.MenuNhom.TenDai = txtTenDai.Text;
             _Nhom.MenuNhom.TenNgan = txtTenNgan.Text;
             _Nhom.MenuNhom.Visual = (bool)ckBan.IsChecked;
-            _Nhom.MenuNhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
+            if (cbbLoaiNhom.SelectedValue!=null)
+            {
+                _Nhom.MenuNhom.LoaiNhomID = (int)cbbLoaiNhom.SelectedValue;
+            }
             if (txtSapXep.Text == "")
                 _Nhom.MenuNhom.SapXep = 0;
             else

@@ -47,7 +47,8 @@ namespace UserControlLibrary
             if (dlg.ShowDialog()==System.Windows.Forms.DialogResult.OK)
             {
                 //ExportImport.ImportExportProcess.Export(dlg.FileName);
-                mImportExportProcess.Export(dlg.FileName);                
+                //mImportExportProcess.Export(dlg.FileName);                
+                mImportExportProcess.ExportItem(dlg.FileName);
             }
         }
 
@@ -63,7 +64,8 @@ namespace UserControlLibrary
             dlg.Filter = "Excel Files | *.xlsx";
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                mImportExportProcess.Import(dlg.FileName);                
+                //mImportExportProcess.Import(dlg.FileName);                
+                mImportExportProcess.ImportItem(dlg.FileName);                
             }
         }
     }

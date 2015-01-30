@@ -46,7 +46,7 @@ namespace Data
                 _CAIDATBANHANG = new CAIDATBANHANG();
             }
             _ListChiTietBanHang = new List<BOChiTietBanHang>();
-            mListChiTietBanHangDeleted = new List<BOChiTietBanHang>();
+            mListChiTietBanHangDeleted = new List<BOChiTietBanHang>();            
             //LoadBanHang();
         }
         public IQueryable<BANHANG> GetAllNotCompleted()
@@ -96,7 +96,7 @@ namespace Data
             foreach (BOChiTietBanHang item in listItem)
             {
                 item.SoLuongBanTam = item.ChiTietBanHang.SoLuongBan;
-                this.AddChiTietBanHang(item);
+                this.AddChiTietBanHangNoCheck(item);
                 var listKM = BOChiTietBanHang.QueryKhuyenMai(item.ChiTietBanHang, mKaraokeEntities);
                 foreach (var km in listKM)
                 {
@@ -106,13 +106,18 @@ namespace Data
         }
         public void LoadBanHang(BAN ban)
         {
-            BAN = ban;            
-            BOBanHang bh = GetAllBanHang(ban).FirstOrDefault();
+            BAN = ban;
+            BOBanHang bh=null;
+            if (ban!=null)
+            {
+                 bh= GetAllBanHang(ban).FirstOrDefault();
+            }
             if (bh!=null)
             {                
                 BANHANG = bh.BANHANG;
                 KHACHHANG = bh.KHACHHANG;
                 LoadChiTiet();
+                ReloadGioKaraoke();
             }
             else
             {
@@ -122,8 +127,11 @@ namespace Data
                 {
                     BANHANG.NhanVienID = null;
                 }
-                BANHANG.BanID = ban.BanID;
-                BANHANG.NgayBan = DateTime.Now;
+                if (ban!=null)
+                {
+                    BANHANG.BanID = ban.BanID;
+                }
+                BANHANG.NgayBan=BANHANG.NgayKetThuc = DateTime.Now;
                 BANHANG.MaHoaDon = String.Format("HD-{0:00}-{1:000000}", mTransit.ThamSo.SoMay, mTransit.ThamSo.ThuTuMaHoaDon);                
                 BANHANG.TrangThaiID = 1;
                 if (_CAIDATBANHANG.ChoPhepPhiDichVu)
@@ -140,6 +148,20 @@ namespace Data
         public void LoadBanHang()
         {
             LoadBanHang(mTransit.Ban);
+        }
+        private void ReloadGioKaraoke()
+        {
+            if (mTransit.CaiDatBanHang.MonTinhGio!=null)
+            {
+                BOChiTietBanHang chitiet = (from a in _ListChiTietBanHang
+                                        where a.MenuMon.MonID == mTransit.CaiDatBanHang.MonTinhGio
+                                        select a).FirstOrDefault();
+            if (chitiet!=null)
+            {
+                 chitiet.ChiTietBanHang.KichThuocLoaiBan= Utilities.DateTimeConverter.GetSecond(this.BANHANG.NgayBan.Value, mTransit.CaiDatBanHang.SoPhutToiThieu);
+                 chitiet.ChangeQtyChiTietBanHang(1);
+            }            
+            }
         }
         private bool KiemTraThayDoiLichSu()
         {
@@ -172,6 +194,28 @@ namespace Data
             }
             return false;
         }
+        public bool KiemTraGioKaraoke(int? monID)
+        {
+            BOChiTietBanHang chitiet = (from a in _ListChiTietBanHang
+                                        where a.MenuMon.MonID == mTransit.CaiDatBanHang.MonTinhGio
+                                        select a).FirstOrDefault();
+            if (chitiet!=null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public BOMenuKichThuocMon LayMonKaraoke(int? monID)
+        {
+            return (from a in mKaraokeEntities.MENUMONs
+                   join b in mKaraokeEntities.MENUKICHTHUOCMONs on a.MonID equals b.MonID
+                   where a.MonID == monID
+                   select new BOMenuKichThuocMon
+                   {
+                       MenuMon=a,
+                       MenuKichThuocMon=b
+                   }).FirstOrDefault();
+        }
         private BOChiTietBanHang KiemTraTonTai(BOChiTietBanHang chiTiet)
         {
             foreach (var item in _ListChiTietBanHang)
@@ -182,6 +226,11 @@ namespace Data
                 }
             }
             return null;
+        }
+        public void AddChiTietBanHangNoCheck(BOChiTietBanHang chiTiet)
+        {
+            chiTiet.ChiTietBanHang.NhanVienID = this.BANHANG.NhanVienID;
+            _ListChiTietBanHang.Add(chiTiet);
         }
         public int AddChiTietBanHang(BOChiTietBanHang chiTiet)
         {
@@ -239,6 +288,9 @@ namespace Data
             LICHSUBANHANG lichsu = GetLichSuBanHang();
             if (this.BANHANG.BanHangID == 0)
             {
+                mTransit.ThamSo.ThuTuMaHoaDon++;
+                mTransit.KaraokeEntities.SaveChanges();
+
                 mKaraokeEntities.BANHANGs.AddObject(this.BANHANG);                                                
                 this.BANHANG.LICHSUBANHANGs.Add(lichsu);                                
                 foreach (BOChiTietBanHang item in _ListChiTietBanHang)
@@ -249,6 +301,8 @@ namespace Data
                     foreach (var km in item._ListKhuyenMai)
                     {
                         CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km,lichsu);
+                        kmChiTiet.KichThuocMonID_Ref = chitiet.KichThuocMonID;
+                        km.ChiTietBanHang.KichThuocMonID_Ref = item.ChiTietBanHang.KichThuocMonID;
                         item.ChiTietBanHang.CHITIETBANHANG1.Add(km.ChiTietBanHang);
                         chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
                         //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
@@ -274,7 +328,8 @@ namespace Data
                             foreach (var km in item._ListKhuyenMai)
                             {
                                 CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km, lichsu);
-                                //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                                kmChiTiet.KichThuocMonID_Ref = chitiet.KichThuocMonID;
+                                km.ChiTietBanHang.KichThuocMonID_Ref = item.ChiTietBanHang.KichThuocMonID;
                                 km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);
                                 item.ChiTietBanHang.CHITIETBANHANG1.Add(km.ChiTietBanHang);
                                 chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
@@ -289,7 +344,9 @@ namespace Data
                             foreach (var km in item._ListKhuyenMai)
                             {
                                 CHITIETLICHSUBANHANG kmChiTiet = GetChiTietLichSuBanHang(km, lichsu);
-                                //km.ChangeQtyChiTietBanHang(item.ChiTietBanHang.SoLuongBan);
+                                kmChiTiet.KichThuocMonID_Ref = chitiet.KichThuocMonID;
+                                km.ChiTietBanHang.KichThuocMonID_Ref = item.ChiTietBanHang.KichThuocMonID;
+
                                 km.ChangeQtyChiTietLichSuBanHang(kmChiTiet, chitiet.SoLuong);                                
                                 chitiet.CHITIETLICHSUBANHANG1.Add(kmChiTiet);
                                 lichsu.CHITIETLICHSUBANHANGs.Add(kmChiTiet);
@@ -318,7 +375,7 @@ namespace Data
                     mListChiTietBanHangDeleted.Clear();                                
                 }                                                 
             }
-            mKaraokeEntities.SaveChanges();
+            mKaraokeEntities.SaveChanges();            
             return lichsu.LichSuBanHangID;
         }        
         public int TinhTien()
@@ -326,7 +383,8 @@ namespace Data
             if (this.BANHANG.TrangThaiID==1 || this.BANHANG.TrangThaiID==2)
             {
                 this.BANHANG.TrangThaiID = 4;
-                this.BANHANG.NgayBan = DateTime.Now;
+                //this.BANHANG.NgayBan = DateTime.Now;
+                this.BANHANG.NgayKetThuc = DateTime.Now;                                
                 mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
@@ -464,6 +522,7 @@ namespace Data
             chitiet.ThanhTien = item.ChiTietBanHang.ThanhTien;
             chitiet.GiaBan = item.ChiTietBanHang.GiaBan;
             chitiet.GiamGia = item.ChiTietBanHang.GiamGia;
+            chitiet.KichThuocLoaiBan = item.ChiTietBanHang.KichThuocLoaiBan;
             chitiet.TrangThai = 0;
             return chitiet;
         }

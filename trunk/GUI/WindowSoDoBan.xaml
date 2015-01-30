@@ -1,7 +1,7 @@
 ﻿<Window x:Class="GUI.WindowSoDoBan"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowFloorPlan" Height="768" Width="1024" Icon="/GUI;component/Micro.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary">    
+        Title="WindowFloorPlan" Height="768" Width="1024" Icon="/CNVRestaurant;component/restaurant256.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary">    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

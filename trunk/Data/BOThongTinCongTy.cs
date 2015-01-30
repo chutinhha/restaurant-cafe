@@ -28,9 +28,9 @@ namespace Data
             get { return mHinh64; }
         }
         public BOThongTinCongTy() { }
-        public static BOThongTinCongTy GetQueryNoTracking(Transit transit)
+        public static BOThongTinCongTy GetQueryNoTracking(KaraokeEntities kara)
         {
-            BOThongTinCongTy item = (from x in FrameworkRepository<CAIDATTHONGTINCONGTY>.QueryNoTracking(transit.KaraokeEntities.CAIDATTHONGTINCONGTies)
+            BOThongTinCongTy item = (from x in FrameworkRepository<CAIDATTHONGTINCONGTY>.QueryNoTracking(kara.CAIDATTHONGTINCONGTies)
                                     select new BOThongTinCongTy
                                     {
                                         TenCongTy=x.TenCongTy,

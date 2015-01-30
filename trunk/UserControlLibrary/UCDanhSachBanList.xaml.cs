@@ -131,6 +131,7 @@ namespace UserControlLibrary
                 {
                     lsArrayDeleted = new List<Data.BOMenuKichThuocMon>();
                 }
+                mItem.MenuKichThuocMon.Deleted = true;
                 if (mItem.MenuKichThuocMon.KichThuocMonID > 0)
                     lsArrayDeleted.Add(mItem);
                 lvData.Items.Remove(lvData.SelectedItems[0]);

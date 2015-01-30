@@ -7,7 +7,8 @@ using System.Collections.Generic;
 namespace Utilities
 {
     public class SecurityKaraoke
-    {        
+    {
+        public static string HashMD5 = "KTr";
         public static String getMotherDeviceID()
         {
             string cpuInfo = string.Empty;

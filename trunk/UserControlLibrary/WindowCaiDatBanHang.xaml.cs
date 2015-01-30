@@ -18,8 +18,7 @@ namespace UserControlLibrary
     /// </summary>
     public partial class WindowCaiDatBanHang : Window
     {
-        Data.Transit mTransit;
-        private Data.CAIDATBANHANG mCAIDATBANHANG;
+        Data.Transit mTransit;        
         public WindowCaiDatBanHang(Data.Transit transit)
         {
             mTransit = transit;
@@ -27,33 +26,28 @@ namespace UserControlLibrary
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            mCAIDATBANHANG = mTransit.KaraokeEntities.CAIDATBANHANGs.FirstOrDefault();
-            if (mCAIDATBANHANG==null)
-            {
-                mCAIDATBANHANG = new Data.CAIDATBANHANG();
-            }
-            txtPhiDichVu.Text = mCAIDATBANHANG.PhiDichVu + "";
-            txtThueVAT.Text = mCAIDATBANHANG.ThueVAT + "";
-            chkPhiDichVu.IsChecked = mCAIDATBANHANG.ChoPhepPhiDichVu;
-            chkThueVAT.IsChecked = mCAIDATBANHANG.ChoPhepThueVAT;
+        {                        
+            txtPhiDichVu.Text = mTransit.CaiDatBanHang.PhiDichVu + "";
+            txtThueVAT.Text = mTransit.CaiDatBanHang.ThueVAT + "";            
+            chkPhiDichVu.IsChecked = mTransit.CaiDatBanHang.ChoPhepPhiDichVu;
+            chkThueVAT.IsChecked = mTransit.CaiDatBanHang.ChoPhepThueVAT;                        
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
             if (txtPhiDichVu.Text!="")
             {
-                mCAIDATBANHANG.PhiDichVu = Utilities.MoneyFormat.ConvertToInt(txtPhiDichVu.Text);
+                mTransit.CaiDatBanHang.PhiDichVu = Utilities.MoneyFormat.ConvertToInt(txtPhiDichVu.Text);
             }
             if (txtThueVAT.Text!="")
             {
-                mCAIDATBANHANG.ThueVAT = Utilities.MoneyFormat.ConvertToInt(txtThueVAT.Text);
-            }
-            mCAIDATBANHANG.ChoPhepPhiDichVu = chkPhiDichVu.IsChecked.Value;
-            mCAIDATBANHANG.ChoPhepThueVAT = chkThueVAT.IsChecked.Value;
-            if (mCAIDATBANHANG.ID==0)
+                mTransit.CaiDatBanHang.ThueVAT = Utilities.MoneyFormat.ConvertToInt(txtThueVAT.Text);
+            }            
+            mTransit.CaiDatBanHang.ChoPhepPhiDichVu = chkPhiDichVu.IsChecked.Value;
+            mTransit.CaiDatBanHang.ChoPhepThueVAT = chkThueVAT.IsChecked.Value;
+            if (mTransit.CaiDatBanHang.ID==0)
             {
-                mTransit.KaraokeEntities.CAIDATBANHANGs.AddObject(mCAIDATBANHANG);
+                mTransit.KaraokeEntities.CAIDATBANHANGs.AddObject(mTransit.CaiDatBanHang);
             }
             mTransit.KaraokeEntities.SaveChanges();
             this.DialogResult = true;
@@ -68,5 +62,7 @@ namespace UserControlLibrary
         {
 
         }
+
+    
     }
 }

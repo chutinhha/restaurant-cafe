@@ -8,9 +8,9 @@ namespace ExportImport
     public class ObjectConvert<TEntity> where TEntity:System.Data.Objects.DataClasses.EntityObject
     //public class ObjectConvert<TEntity> where TEntity : new()
     {
-        public static System.Data.DataTable GetTableData(System.Data.Objects.ObjectSet<TEntity> obj, string tableName)
+        public static System.Data.DataTable GetTableData(List<TEntity> list, string tableName)
         {
-            var tbl = CreateExcelFile.ListToDataTable(obj.ToList());
+            var tbl = CreateExcelFile.ListToDataTable(list);
             tbl.TableName = tableName;
             return tbl;
         }
@@ -18,12 +18,12 @@ namespace ExportImport
         {
             foreach (var item in typeof(TEntity).GetProperties())
             {
-                if (CreateExcelFile.CheckType(item.PropertyType))
+                if (CreateExcelFile.CheckType(item.PropertyType) && item.CanWrite && item.CanRead)
                 {
                     item.SetValue(desc, item.GetValue(source, null), null);
                 }
             }  
-        }
+        }        
         public static void GetValue(TEntity data,IList<string> rowData, IList<string> columnNames)
         {
             foreach (var item in typeof(TEntity).GetProperties())
@@ -70,7 +70,7 @@ namespace ExportImport
                 return ExcelReader.ToDateTimeNullable(value);
             }            
             return value;
-        }
+        }        
         public static TEntity GetProductData(IList<string> rowData, IList<string> columnNames)
         {
             TEntity entity = (TEntity)Activator.CreateInstance(typeof(TEntity));

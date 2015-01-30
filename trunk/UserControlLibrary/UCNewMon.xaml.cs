@@ -116,7 +116,7 @@ namespace UserControlLibrary
             _Mon.MenuMon.TenDai = txtTenDai.Text;
             _Mon.MenuMon.TenNgan = txtTenNgan.Text;
             _Mon.MenuMon.DonViID = (int)cbbKieuBan.SelectedValue;
-
+            _Mon.MenuMon.MaVach = txtMaVach.Text;
             if (mBitmapImage != null)
             {
                 BitmapFrame img = Utilities.ImageHandler.CreateResizedImage(mBitmapImage, 120, 90, 0);
@@ -145,6 +145,7 @@ namespace UserControlLibrary
         {
             if (_Mon != null)
             {
+                txtMaVach.Text = _Mon.MenuMon.MaVach;
                 txtTenDai.Text = _Mon.MenuMon.TenDai;
                 txtTenNgan.Text = _Mon.MenuMon.TenNgan;
                 txtSapXep.Text = _Mon.MenuMon.SapXep.ToString();

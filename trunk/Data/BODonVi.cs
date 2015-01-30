@@ -7,9 +7,9 @@ namespace Data
 {
     public class BODonVi
     {
-        public static List<DONVI> GetAll(Transit mTransit)
+        public static IQueryable<DONVI> GetAll(Transit mTransit)
         {
-            return mTransit.KaraokeEntities.DONVIs.ToList();
+            return mTransit.KaraokeEntities.DONVIs.Where(o => o.Deleted == false);
         }
     }
 }

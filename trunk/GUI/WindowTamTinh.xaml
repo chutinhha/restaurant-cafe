@@ -1,7 +1,7 @@
 ﻿<Window x:Class="GUI.WindowTamTinh"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowTinhTien" Height="434" Width="736" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded">
+        Title="WindowTinhTien" Height="434" Width="736" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="612*" />

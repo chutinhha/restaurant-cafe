@@ -22,8 +22,21 @@ namespace Data
             ThuChi = new THUCHI();
             NhanVien = new NHANVIEN();
             LoaiThuChi = new LOAITHUCHI();
+        }        
+        public static BOThuChi GetThuChiByID(int thuchiID, KaraokeEntities kara)
+        {
+            return (from t in kara.THUCHIs
+                    join l in kara.LOAITHUCHIs on t.LoaiThuChiID equals l.LoaiThuChiID
+                    join n in kara.NHANVIENs on t.NhanVienID equals n.NhanVienID into listNV
+                    from a in listNV.DefaultIfEmpty()
+                    where t.ID == thuchiID
+                    select new BOThuChi
+                    {
+                        ThuChi = t,
+                        LoaiThuChi = l,
+                        NhanVien = a
+                    }).FirstOrDefault();
         }
-
         public IQueryable<BOThuChi> GetAll()
         {
             return from t in mKaraokeEntities.THUCHIs
@@ -58,7 +71,11 @@ namespace Data
         {
             mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.THUCHIs);
         }
-
+        public void Luu(BOThuChi thuchi)
+        {
+            mKaraokeEntities.THUCHIs.AddObject(thuchi.ThuChi);
+            mKaraokeEntities.SaveChanges();
+        }
         public IQueryable<LOAITHUCHI> GetLoaiThuChi()
         {
             return BOLoaiThuChi.GetAllNoTracking(mKaraokeEntities);

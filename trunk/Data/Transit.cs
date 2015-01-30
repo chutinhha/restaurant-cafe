@@ -11,6 +11,7 @@ namespace Data
         public Data.NHANVIEN NhanVien { get; set; }
         public Data.NHANVIEN Admin { get; set; }
         public Data.MenuGiaoDien MenuGiaoDien { get; set; }
+        public CAIDATBANHANG CaiDatBanHang { get; set; }
         public BAN Ban { get; set; }
         public KHU Khu { get; set; }
         public BOBanHang BanHang { get; set; }
@@ -26,7 +27,7 @@ namespace Data
         //================Quyền=============
         public IQueryable<BOChiTietQuyen> DanhSachQuyen { get; set; }
         public IQueryable<CHUCNANG> DanhSachChucNang { get; set; }
-        public Data.BOChiTietQuyen BOChiTietQuyen = null;        
+        public Data.BOChiTietQuyen BOChiTietQuyen = null;
         public string DuongDanHinh { get; set; }
         public int KhoID { get; set; }
         public int MayID { get; set; }
@@ -48,26 +49,30 @@ namespace Data
 
             KaraokeEntities = new KaraokeEntities();
             KaraokeEntities.ContextOptions.LazyLoadingEnabled = false;
-            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();                        
-            ListDonVi = BODonVi.GetAll(this);
+            ThamSo = KaraokeEntities.THAMSOes.Where(o => o.SoMay == 1).FirstOrDefault();
+            ListDonVi = BODonVi.GetAll(this).ToList();
             BOChiTietQuyen = new BOChiTietQuyen(this);
-
-            var nhom = KaraokeEntities.CHUCNANGs.ToList();
-            foreach (var item in nhom)
+            CaiDatBanHang = KaraokeEntities.CAIDATBANHANGs.FirstOrDefault();
+            if (CaiDatBanHang == null)
             {
-                KaraokeEntities.Attach(item);
-                KaraokeEntities.DeleteObject(item);
+                CaiDatBanHang = new CAIDATBANHANG();
             }
-            var list = KaraokeEntities.NHOMCHUCNANGs.ToList();
-            foreach (var item in list)
-            {
-                KaraokeEntities.Attach(item);
-                KaraokeEntities.DeleteObject(item);
-            }
-            KaraokeEntities.SaveChanges();
-            new BONhomChucNang(this);            
+            //var nhom = KaraokeEntities.CHUCNANGs.ToList();
+            //foreach (var item in nhom)
+            //{
+            //    KaraokeEntities.Attach(item);
+            //    KaraokeEntities.DeleteObject(item);
+            //}
+            //var list = KaraokeEntities.NHOMCHUCNANGs.ToList();
+            //foreach (var item in list)
+            //{
+            //    KaraokeEntities.Attach(item);
+            //    KaraokeEntities.DeleteObject(item);
+            //}
+            //KaraokeEntities.SaveChanges();
+            //new BONhomChucNang(this);            
         }
-        
+
         public void LayDanhSachQuyen()
         {
             if (NhanVien.NhanVienID != 0)
@@ -83,7 +88,9 @@ namespace Data
         {
             if (DanhSachChucNang != null)
             {
-                return DanhSachChucNang.Where(s => s.ChucNangID == ChucNangID).FirstOrDefault().Visual;
+                CHUCNANG item = DanhSachChucNang.Where(s => s.ChucNangID == ChucNangID).FirstOrDefault();
+                return item == null ? false : item.Visual;
+
             }
             return true;
         }

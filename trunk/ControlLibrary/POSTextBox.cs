@@ -37,14 +37,14 @@ namespace ControlLibrary
     {
         private bool mIsLockText;
         private TypeKeyPad typeTextBox = TypeKeyPad.None;
-        public int _MaxValue { get; set; }
+        public int _MaxValue { get; set; }        
         private WindowKeyPad _WindowKeyPad { get; set; }
-        private WindowKeyboard _WindowKeyboard { get; set; }
+        private WindowKeyboard _WindowKeyboard { get; set; }                
         static POSTextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(POSTextBox), new FrameworkPropertyMetadata(typeof(POSTextBox)));
         }
-
+        private bool mIsLockBarcode;
         public TypeKeyPad _TypeTextBox
         {
             get { return typeTextBox; }
@@ -146,6 +146,6 @@ namespace ControlLibrary
                 default:
                     break;
             }
-        }
+        }        
     }
 }

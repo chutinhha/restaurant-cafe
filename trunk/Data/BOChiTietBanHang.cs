@@ -15,6 +15,7 @@ namespace Data
         public MENUMON MenuMon { get; set; }
         public int SoLuongBanTam { get; set; }
         private Transit mTransit;
+        
         public static IQueryable<BOChiTietBanHang> Query(BANHANG banhang, KaraokeEntities kara)
         {
             var iQuery =
@@ -82,13 +83,15 @@ namespace Data
             mTransit = transit;
             this.ChiTietBanHang = new CHITIETBANHANG();
             _ListKhuyenMai = new List<BOChiTietBanHang>();
-            this.ChiTietBanHang.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
-            this.ChiTietBanHang.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;
-            this.ChiTietBanHang.ThanhTien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan;
-            this.ChiTietBanHang.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;
             this.MenuKichThuocMon = ktm.MenuKichThuocMon;
+            this.ChiTietBanHang.SoLuongBan = ktm.MenuKichThuocMon.SoLuongBanBan;
+            this.ChiTietBanHang.GiaBan = ktm.MenuKichThuocMon.GiaBanMacDinh;            
+            this.ChiTietBanHang.KichThuocLoaiBan = ktm.KichThuocLoaiBan;
+            this.ChiTietBanHang.GiamGia = ktm.MenuMon.GiamGia;
+            this.ChiTietBanHang.KichThuocMonID = ktm.MenuKichThuocMon.KichThuocMonID;            
             this.MenuMon = ktm.MenuMon;
-            SoLuongBanTam = (int)this.ChiTietBanHang.SoLuongBan;                    
+            SoLuongBanTam = (int)this.ChiTietBanHang.SoLuongBan;
+            ChangeThanhTien();
         }
         public void LoadKhuyenMai(KaraokeEntities kara)
         {
@@ -121,22 +124,38 @@ namespace Data
         }
         private void ChangeThanhTien()
         {
-            decimal thanhtien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan;
+            decimal thanhtien = this.ChiTietBanHang.SoLuongBan * this.ChiTietBanHang.GiaBan*this.ChiTietBanHang.KichThuocLoaiBan/this.MenuKichThuocMon.KichThuocLoaiBan;
             this.ChiTietBanHang.ThanhTien = thanhtien - thanhtien * this.ChiTietBanHang.GiamGia / 100;            
+            
         }
         public void ChangeQtyChiTietLichSuBanHang(CHITIETLICHSUBANHANG chitiet,int qty)
         {
             chitiet.SoLuong = qty;
-            chitiet.ThanhTien = chitiet.SoLuong * chitiet.GiaBan;
+            chitiet.ThanhTien = chitiet.SoLuong *chitiet.KichThuocLoaiBan* chitiet.GiaBan/this.MenuKichThuocMon.KichThuocLoaiBan;
         }
-        
+        public string MaVach 
+        {
+            get { return this.MenuMon.MaVach; }
+        }
         public string TenMon
         {
             get
             {
-                return this.MenuKichThuocMon.TenLoaiBan == "" ?
-                    this.MenuMon.TenDai :
-                    String.Format("{0} ({1})", this.MenuMon.TenDai, this.MenuKichThuocMon.TenLoaiBan);                
+                string tenLoaiBan = "";
+                if (MenuKichThuocMon.TenLoaiBan!="")
+                {
+                    tenLoaiBan = String.Format(" ({0})",MenuKichThuocMon.TenLoaiBan);
+                }
+                string khoiLuong = "";
+                if (MenuKichThuocMon.KichThuocLoaiBan>1)
+                {
+                    khoiLuong = GetDonVi(MenuKichThuocMon.DonViID.Value, ChiTietBanHang.KichThuocLoaiBan,MenuKichThuocMon.KichThuocLoaiBan);
+                }
+
+                //return this.MenuKichThuocMon.TenLoaiBan == "" ?
+                //    this.MenuMon.TenDai :
+                //    String.Format("{0} ({1})", this.MenuMon.TenDai, this.MenuKichThuocMon.TenLoaiBan);                
+                return String.Format("{0}{1}{2}",MenuMon.TenDai,tenLoaiBan,khoiLuong);
             }
         }
         public string ThanhTien
@@ -188,6 +207,20 @@ namespace Data
 
             }
         }
-        
+
+        private string GetDonVi(int donviID, int soluong, int kichThuocLoaiBan)
+        {
+            switch (donviID)
+            {
+                case 2:
+                    return String.Format(" #{0:0,000}Kg", (double)soluong / kichThuocLoaiBan);
+                case 3:
+                    return String.Format(" #{0:0,000}L", (double)soluong / kichThuocLoaiBan);
+                case 4:
+                    return String.Format(" #{0} giờ {1} phút", soluong / 3600, soluong / 60 % 60);
+                default:
+                    return "";
+            }
+        }
     }
 }

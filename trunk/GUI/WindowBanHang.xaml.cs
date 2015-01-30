@@ -12,6 +12,9 @@ namespace GUI
     /// </summary>
     public partial class WindowBanHang : Window
     {
+        private DateTime mLastKeystrokeTime;
+        private string mBarcode = "";
+        private bool mIsReadBarcode;
         private ControlLibrary.UCFloorPlan mUCFloorPlan;
         private bool IsThayDoiSoLuong = true;
         private Data.Transit mTransit = null;
@@ -22,8 +25,7 @@ namespace GUI
             mUCFloorPlan = sodoban;
             InitializeComponent();
             PhanQuyen();
-        }
-
+        }        
         private void PhanQuyen()
         {
             Data.BOChiTietQuyen quyenSoLuong = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.BanHang.ThayDoiSoLuong);
@@ -40,14 +42,17 @@ namespace GUI
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
             uCTile.TenChucNang = "Bán hàng";
             uCTile.SetTransit(mTransit);
-            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);
             GanChucNang();
-            LoadBanHang();
+            LoadDataOrder();
         }
-
+        private void LoadDataOrder()
+        {
+            mProcessOrder = new ProcessOrder.ProcessOrder(mTransit);            
+            LoadBanHang();            
+        }
         private void uCTile_OnEventExit()
         {
-            this.Close();
+            this.Close();            
         }
 
         private void btnChucNang_Click(object sender, RoutedEventArgs e)
@@ -116,6 +121,9 @@ namespace GUI
                 case (int)Data.TypeChucNang.BanHang.HuyBan:
                     HuyBan();
                     break;
+                case (int)Data.TypeChucNang.BanHang.TinhGioKaraoke:
+                    TinhGioKaraoke();
+                    break;
                 default:
                     break;
             }
@@ -139,14 +147,48 @@ namespace GUI
             }
             return true;
         }
+        private void TinhGioKaraoke()
+        {
+            if (mTransit.CaiDatBanHang.MonTinhGio!=null)
+            {
+                if (!mProcessOrder.KiemTraGioKaraoke(mTransit.CaiDatBanHang.MonTinhGio))
+                {
+                    Data.BOMenuKichThuocMon ktm = mProcessOrder.LayMonKaraoke(mTransit.CaiDatBanHang.MonTinhGio);
+                    if (ktm!=null)
+                    {
+                        Data.BOChiTietBanHang chitiet = new Data.BOChiTietBanHang(ktm, mTransit);
+                        mProcessOrder.TinhGioKaraoke(chitiet);
+                        AddChiTietBanHang(chitiet);
+                    }
+                }
+            }
+        }
         private void HuyBan()
         {
             if (mProcessOrder.BanHang.BanHangID>0)
             {
                 mProcessOrder.HuyBan();
-                mUCFloorPlan.LoadAlllStatus();
-            this.Close();
+                LoadAllStatus();
+                CloseFormBanHang();
             }            
+        }
+        private void CloseFormBanHang()
+        {
+            if (!mTransit.CaiDatBanHang.KhoaSoDoBan)
+            {
+                this.Close();
+            }
+            else
+            {
+                LoadDataOrder();
+            }
+        }
+        private void LoadAllStatus()
+        {
+            if (mUCFloorPlan!=null)
+            {
+                mUCFloorPlan.LoadAlllStatus();                
+            }
         }
         private void GiamGiaMon()
         {
@@ -190,7 +232,7 @@ namespace GUI
                 if (mProcessOrder.DongBan() > 0)
                 {
                     //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
-                    mUCFloorPlan.LoadAlllStatus();
+                    LoadAllStatus();
                 }
             }
             this.Close();
@@ -203,23 +245,23 @@ namespace GUI
                 if (win.ShowDialog() == true)
                 {
                     if (mProcessOrder.TamTinh() > 0)
-                    {                        
-                        mUCFloorPlan.LoadAlllStatus();
-                        this.Close();
+                    {
+                        LoadAllStatus();
+                        CloseFormBanHang();
 
                     }
                 }                
             }
         }
         private void GuiNhaBep()
-        {
+        {            
             if (KiemTra(false,true))
             {
                 if (mProcessOrder.SendOrder() > 0)
-                {                    
-                    mUCFloorPlan.LoadAlllStatus();
+                {
+                    LoadAllStatus();
                 }
-                this.Close();
+                CloseFormBanHang();
             }
         }
         private void TinhTien()
@@ -230,9 +272,9 @@ namespace GUI
                 if (win.ShowDialog() == true)
                 {
                     mProcessOrder.TinhTien();
-                    //mUCFloorPlan._ButtonTableStatusColor = (ControlLibrary.POSButtonTable.POSButtonTableStatusColor)mProcessOrder.BanHang.TrangThaiID;
-                    mUCFloorPlan.LoadAlllStatus();
-                    this.Close();
+
+                    LoadAllStatus();
+                    CloseFormBanHang();
                 }                
             }
         }
@@ -252,29 +294,38 @@ namespace GUI
         }
         private void TachBan()
         {
-            this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,true);
-            if (win1.ShowDialog() == true)
+            if (mUCFloorPlan!=null)
             {
-                UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mUCFloorPlan,mTransit, win1._TachGopBan);
-                win2.ShowDialog();
+                this.DialogResult = false;
+                UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,true);
+                if (win1.ShowDialog() == true)
+                {
+                    UserControlLibrary.WindowBanHangTachBan win2 = new UserControlLibrary.WindowBanHangTachBan(mUCFloorPlan,mTransit, win1._TachGopBan);
+                    win2.ShowDialog();
+                }
             }
         }
         private void GopBan()
         {
-            this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,false);
-            if (win1.ShowDialog() == true)
+            if (mUCFloorPlan!=null)
             {
-                UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mUCFloorPlan,mTransit, win1._TachGopBan);
-                win2.ShowDialog();
+                this.DialogResult = false;
+                UserControlLibrary.WindowBanHangChonBan win1 = new UserControlLibrary.WindowBanHangChonBan(mTransit,false);
+                if (win1.ShowDialog() == true)
+                {
+                    UserControlLibrary.WindowBanHangGopBan win2 = new UserControlLibrary.WindowBanHangGopBan(mUCFloorPlan,mTransit, win1._TachGopBan);
+                    win2.ShowDialog();
+                }
             }
         }
         private void ChuyenBan()
         {
-            this.DialogResult = false;
-            UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit,mUCFloorPlan);
-            win1.ShowDialog();
+            if (mUCFloorPlan!=null)
+            {
+                this.DialogResult = false;
+                UserControlLibrary.WindowBanHangChuyenBan win1 = new UserControlLibrary.WindowBanHangChuyenBan(mTransit,mUCFloorPlan);
+                win1.ShowDialog();
+            }
 
         }
         private void XoaToanBoMon()
@@ -298,7 +349,14 @@ namespace GUI
         {
             txtMaHoaDon.Text = "HĐ: " + mProcessOrder.BanHang.MaHoaDon.ToString();
             txtTenNhanVien.Text = "NV: " + mTransit.NhanVien.TenNhanVien;
-            txtTenBan.Text = mTransit.Ban.TenBan;
+            if (mTransit.Ban!=null)
+            {
+                txtTenBan.Text = mTransit.Ban.TenBan;
+            }
+            else
+            {
+                txtTenBan.Text = "";
+            }
             ReloadData();
             //lvData.Items.Clear();
             //foreach (var item in mProcessOrder.ListChiTietBanHang)
@@ -363,6 +421,7 @@ namespace GUI
             if (mProcessOrder.CurrentChiTietBanHang != null)
             {
                 IsThayDoiSoLuong = false;
+                txtMaVach.Text = mProcessOrder.CurrentChiTietBanHang.MaVach;
                 txtSoLuong.Text = mProcessOrder.CurrentChiTietBanHang.ChiTietBanHang.SoLuongBan.ToString();
                 txtTenMon.Text = mProcessOrder.CurrentChiTietBanHang.TenMon.ToString();
                 txtSoLuong.Focus();
@@ -404,7 +463,7 @@ namespace GUI
             foreach (var item in lsArray)
             {
                 Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraQuyen((int)item.ChucNangID);
-                var myButton = (POSButtonChucNang)this.FindName("btnChucNang_" + item.ID);
+                var myButton = (POSButtonChucNang)this.FindName("btnChucNang_" + item.ID);                
                 myButton.Tag = ctq;
                 myButton.CommandParameter = item.ChucNangID;
                 if (!ctq.ChiTietQuyen.ChoPhep || item.ChucNangID == 0 || !mTransit.KiemTraChucNang((int)item.ChucNangID))
@@ -437,5 +496,57 @@ namespace GUI
             else
                 e.Handled = true;
         }
+                
+        private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (mIsReadBarcode==false)
+            {
+                mIsReadBarcode = true;
+                mLastKeystrokeTime = DateTime.Now;
+            }
+            Console.WriteLine("{0}---{1}++++{2}", (char)e.Key, e.Key, e.Timestamp);
+            TimeSpan elapsed = (DateTime.Now - mLastKeystrokeTime);
+            Console.WriteLine("---{0}---", elapsed.TotalMilliseconds);
+            if (elapsed.TotalMilliseconds > 100)
+            {
+                mIsReadBarcode = false;
+                mBarcode = "";
+            }
+            else
+            {
+                int chr = Utilities.CharFormat.ConvertToBarcodeChar(e.Key);
+                if (chr>0)
+                {
+                    mBarcode += (char)chr;
+                }
+                mLastKeystrokeTime = DateTime.Now;                
+            }                        
+            if (e.Key == System.Windows.Input.Key.Return)
+            {
+                if (mIsReadBarcode)
+                {
+                    e.Handled = true;
+                }
+                mIsReadBarcode = false;
+                if (mBarcode!="")
+                {
+                    var ktm = mProcessOrder.LayChiTietTheoMaVach(mBarcode);
+                    if (ktm != null)
+                    {
+                        var chitiet = new Data.BOChiTietBanHang(ktm, mTransit);
+                        this.AddChiTietBanHang(chitiet);
+                    }
+                    mBarcode = "";
+                }    
+            }
+            Console.WriteLine("{0}",mBarcode);
+            if (e.Key==System.Windows.Input.Key.Space)
+            {
+                btnChucNang_Click(btnChucNang_1, null);
+            }
+            base.OnPreviewKeyDown(e);
+        }
+        
+        
     }
 }
