@@ -242,7 +242,7 @@ namespace Data
                     IQueryable<TONKHOCHITIETBANHANG> lsTonKhoChiTietBanHang = frmTonKhoChiTietBanHang.Query().Where(s => s.ChiTietBanHangID == item.ChiTietBanHang.ChiTietBanHangID);
                     if (lsTonKhoChiTietBanHang.Count() == 0)
                     {
-                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
+                        ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.ChiTietBanHang.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                     }
                     else
                     {
@@ -250,7 +250,7 @@ namespace Data
                         {
                             XoaTonKho(frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, lsTonKhoChiTietBanHang);
                             if (item.ChiTietBanHang.SoLuongBan > 0)
-                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.MenuKichThuocMon.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
+                                ThemTruTonKho(lsTonKho, lsTonKhoTong, frmTonKho, frmTonKhoChiTietBanHang, frmTonKhoTong, (int)item.ChiTietBanHang.BanHangID, item.ChiTietBanHang.ChiTietBanHangID, item.ChiTietBanHang.SoLuongBan * item.ChiTietBanHang.KichThuocLoaiBan, mTransit.KhoID, (int)item.MenuKichThuocMon.MonID, (int)item.MenuKichThuocMon.DonViID, mTransit);
                         }
                     }
                 }
