@@ -7,13 +7,13 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Karaoke")]
-[assembly: AssemblyDescription("Karaoke")]
-[assembly: AssemblyConfiguration("Tran Thu Khoa, Tran Minh Tien")]
-[assembly: AssemblyCompany("Tran Thu Khoa, Tran Minh Tien")]
-[assembly: AssemblyProduct("becasPOS")]
-[assembly: AssemblyCopyright("Copyright © 2014")]
-[assembly: AssemblyTrademark("Tran Thu Khoa, Tran Minh Tien")]
+[assembly: AssemblyTitle("CNV Restaurant")]
+[assembly: AssemblyDescription("Phần Mềm Quản Lý Nhà Hàng")]
+//[assembly: AssemblyConfiguration("Tran Thu Khoa, Tran Minh Tien")]
+//[assembly: AssemblyCompany("Tran Thu Khoa, Tran Minh Tien")]
+[assembly: AssemblyProduct("Phần Mềm Quản Lý Nhà Hàng")]
+[assembly: AssemblyCopyright("Copyright © congngheviet24h.com")]
+//[assembly: AssemblyTrademark("Tran Thu Khoa, Tran Minh Tien")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.14.11.17")]
 [assembly: AssemblyFileVersion("2.14.11.17")]
+[assembly: AssemblyCompanyAttribute("Công ty TNHH Công Nghệ Việt 24h")]

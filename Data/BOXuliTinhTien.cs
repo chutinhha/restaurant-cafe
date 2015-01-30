@@ -22,7 +22,7 @@ namespace Data
 
         }
         public void Copy(BANHANG bhFrom,BANHANG bhTo)
-        {            
+        {
             bhTo.BanHangID = bhFrom.BanHangID;
             bhTo.NhanVienID = bhFrom.NhanVienID;
             bhTo.BanID = bhFrom.BanID;
@@ -32,10 +32,16 @@ namespace Data
             bhTo.TheID = bhFrom.TheID;
             bhTo.KhachHangID = bhFrom.KhachHangID;
             bhTo.GiamGia = bhFrom.GiamGia;
-            bhTo.ThueVAT = bhFrom.ThueVAT;
             bhTo.PhiDichVu = bhFrom.PhiDichVu;
+            bhTo.ThueVAT = bhFrom.ThueVAT;
+            bhTo.TienMat = bhFrom.TienMat;
+            bhTo.TienThe = bhFrom.TienThe;
+            bhTo.TienTraLai = bhFrom.TienTraLai;
+            bhTo.ChietKhau = bhFrom.ChietKhau;
+            bhTo.TienBo = bhFrom.TienBo;
             bhTo.TongTien = bhFrom.TongTien;
-        }
+            bhTo.TienKhacHang = bhFrom.TienKhacHang;
+        }        
         public int GiamGiaPhanTram 
         {
             get 
@@ -87,7 +93,7 @@ namespace Data
         {
             get 
             {
-                return mBanHang.TongTien - TienGiam+TienPhiDichVu+TienThueVAT; 
+                return Utilities.MoneyFormat.Round(mBanHang.TongTien - TienGiam+TienPhiDichVu+TienThueVAT); 
             }
         }
         public decimal TienKhachDua 
@@ -122,6 +128,7 @@ namespace Data
             {
                 mBanHang.TienTraLai = 0;
             }
+            mBanHang.TienMat = mBanHang.TienKhacHang - mBanHang.TienTraLai;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ProcessOrder
     {
         private Data.BOBanHang mBanHang;
         private Data.BOMenuGia mBOMenuGia;
-        private Data.BOQuanLyKho mBOQuanLyKho;
+        //private Data.BOQuanLyKho mBOQuanLyKho;
         private Data.Transit mTransit;
         private Data.KaraokeEntities mKaraokeEntities;
         private PrinterServer.ProcessPrinter mProcessPrinter;
@@ -30,12 +30,12 @@ namespace ProcessOrder
         }
         public ProcessOrder(Data.Transit transit)
         {
-            mTransit = transit;
+            mTransit = transit;            
             mKaraokeEntities = new Data.KaraokeEntities();
             mPriceManager = new PriceManager(mTransit,mKaraokeEntities);
             mBOMenuGia = new Data.BOMenuGia(mTransit);
             mBanHang = new Data.BOBanHang(mTransit,mKaraokeEntities);
-            mBOQuanLyKho = new Data.BOQuanLyKho(mTransit);
+            //mBOQuanLyKho = new Data.BOQuanLyKho(mTransit);
             mBanHang.LoadBanHang();
             mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
         }
@@ -48,14 +48,10 @@ namespace ProcessOrder
             return mBanHang.DongBan();
         }
         public int SendOrder()
-        {
-            if (mBanHang.BANHANG.BanHangID==0)
-            {
-                mTransit.ThamSo.ThuTuMaHoaDon++;
-                mTransit.KaraokeEntities.SaveChanges();
-            }
+        {            
             int lichSuBanHangId = mBanHang.GuiNhaBep();
             //mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);
+            //mBOQuanLyKho.LuuTonKho(mBanHang._ListChiTietBanHang);            
             if (lichSuBanHangId > 0)
             {
                 mProcessPrinter.InHoaDon(lichSuBanHangId);
@@ -118,16 +114,45 @@ namespace ProcessOrder
         {
             mBanHang.XoaAllXoaChiTietBanHang();
         }
+        public bool KiemTraGioKaraoke(int? monID)
+        {
+            return mBanHang.KiemTraGioKaraoke(monID);
+        }
         public int AddChiTietBanHang(Data.BOChiTietBanHang chitiet)
         {
             //mPriceManager.LoadPrice(chitiet);   
             chitiet.LoadKhuyenMai(mKaraokeEntities);
             return mBanHang.AddChiTietBanHang(chitiet);
-        }
-        public bool KiemTraKho(Data.BOChiTietBanHang chitiet)
+        }                
+        public Data.BOMenuKichThuocMon LayMonKaraoke(int? monID)
         {
-            return mBOQuanLyKho.KiemTraTonKhoTong(mTransit, chitiet) >= chitiet.ChiTietBanHang.SoLuongBan ? true : false;
+            return mBanHang.LayMonKaraoke(monID);
         }
+        public Data.BOMenuKichThuocMon LayChiTietTheoMaVach(string mavach)
+        {
+            return Data.BOMenuKichThuocMon.GetKTMByBarcode(mavach,mKaraokeEntities); ;
+        }
+        public void TinhGioKaraoke(Data.BOChiTietBanHang chitiet)
+        {
+            //TimeSpan ts = DateTime.Now - mBanHang.BANHANG.NgayBan.Value;
+            //if (mTransit.CaiDatBanHang.SoPhutToiThieu==0)
+            //{
+            //    mTransit.CaiDatBanHang.SoPhutToiThieu = 1;
+            //}
+            //int sogiay = mTransit.CaiDatBanHang.SoPhutToiThieu * 60;
+            //int time = (int)ts.TotalSeconds/sogiay;
+            //time = time * sogiay;
+            //if (time<ts.TotalSeconds)
+            //{
+            //    time += sogiay;
+            //}
+            chitiet.ChiTietBanHang.KichThuocLoaiBan = Utilities.DateTimeConverter.GetSecond(mBanHang.BANHANG.NgayBan.Value,mTransit.CaiDatBanHang.SoPhutToiThieu);
+            chitiet.ChangeQtyChiTietBanHang(1);
+        }
+        //public bool KiemTraKho(Data.BOChiTietBanHang chitiet)
+        //{
+        //    return mBOQuanLyKho.KiemTraTonKhoTong(mTransit, chitiet) >= chitiet.ChiTietBanHang.SoLuongBan ? true : false;
+        //}
         public bool CheckMutiablePrice(Data.BOChiTietBanHang chitiet)
         {
             return mPriceManager.CheckMutiablePrice(chitiet);

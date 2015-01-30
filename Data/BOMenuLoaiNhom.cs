@@ -10,6 +10,10 @@ namespace Data
         public static List<MENULOAINHOM> GetAll(Transit mTransit)
         {
             return mTransit.KaraokeEntities.MENULOAINHOMs.ToList();
+        }
+        public static IQueryable<MENULOAINHOM> GetAll(KaraokeEntities kara)
+        {
+            return kara.MENULOAINHOMs;
         }        
     }
 }

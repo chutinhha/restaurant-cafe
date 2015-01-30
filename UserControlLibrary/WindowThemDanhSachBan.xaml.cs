@@ -147,10 +147,11 @@ namespace UserControlLibrary
                     case (int)Data.EnumLoaiBan.Giay:
                         if (_Item == null)
                             txtKichThuocLoaiBan.Text = "1";
-                        else if (_Item.MenuKichThuocMon.LoaiBanID == lb.LoaiBanID)
-                            txtKichThuocLoaiBan.Text = ((int)(_Item.MenuKichThuocMon.KichThuocLoaiBan / lb.KichThuocBan)).ToString();
+                        //else if (_Item.MenuKichThuocMon.LoaiBanID == lb.LoaiBanID)
+                        //    //txtKichThuocLoaiBan.Text = ((int)(_Item.MenuKichThuocMon.KichThuocLoaiBan / lb.KichThuocBan)).ToString();
+                        //    txtSoLuongBan.Text = txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
                         else
-                            txtKichThuocLoaiBan.Text = "1";
+                            txtKichThuocLoaiBan.Text = lb.KichThuocBan.ToString();
                         break;
                     default:
                         break;

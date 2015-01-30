@@ -41,6 +41,7 @@
         <my:POSButtonImageClick Grid.Column="4" Name="btnForward" Click="btnForward_Click" Image="/SystemImages;component/Images/Forward.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="5" Name="btnPrint" Click="btnPrint_Click" Image="/SystemImages;component/Images/printer_green.png" BorderThickness="0" />
         <my:POSButtonImageClick Grid.Column="6" Name="btnPDF" Click="btnPDF_Click" Image="/SystemImages;component/Images/PDF.png" BorderThickness="0" />
+        <my:POSButtonImageClick Grid.Column="7" Name="btnPrintTicket" Image="/SystemImages;component/Images/printer_orange.png" BorderThickness="0" Click="btnPrintTicket_Click" />
         <my:POSButtonImageClick Grid.Column="9" Name="btnDong" Click="btnDong_Click" Image="/SystemImages;component/Images/ExtrasShutdown.png" BorderThickness="0" />
         <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpDateFrom"/>
         <DatePicker CalendarStyle="{StaticResource styleCalendar}" Grid.Column="1" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" FontSize="30" SelectedDateChanged="dtpChonNgay_SelectedDateChanged" Name="dtpDateTo"/>

@@ -142,7 +142,7 @@ namespace PrinterServer
                 width = realWidth;
             }
             float x = POSGetXWithAlign(e, textAlign, width,margin);
-            System.Drawing.Pen pen = new System.Drawing.Pen(color);
+            System.Drawing.Pen pen = new System.Drawing.Pen(color);            
             pen.DashStyle = dashStyle;                     
             e.Graphics.DrawLine(pen, x, y, x + width, y);            
         }

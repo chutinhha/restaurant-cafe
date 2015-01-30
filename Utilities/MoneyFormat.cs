@@ -24,6 +24,7 @@ namespace Utilities
         }
         public static string ConvertToString(decimal data)
         {
+            //return data.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture);
             return String.Format("{0:0,0}", data);
         }
         public static int ConvertToInt(string data)
@@ -135,7 +136,10 @@ namespace Utilities
             }
             return chuoi;
         }
-
+        public static decimal Round(decimal data)
+        {
+            return Math.Round(data, 0);
+        }
         //Đọc số
         public static string ReadNumber(double so)
         {
@@ -160,7 +164,7 @@ namespace Utilities
                 if (chuoi.Trim().Substring(chuoi.Trim().Length - 1, 1) == ",")
                 { chuoi = chuoi.Trim().Substring(0, chuoi.Trim().Length - 1); }
             }
-            catch { }
+            catch { }            
             return chuoi.Trim() + " đồng";
         }
     }

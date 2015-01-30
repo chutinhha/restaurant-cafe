@@ -62,6 +62,7 @@ namespace UserControlLibrary
                     _Item.LoaiThuChi.TenLoaiThuChi = BOThuChi.GetLoaiThuChi(LoaiThuChiID).TenLoaiThuChi;
                 }
                 GetValues();
+                BOThuChi.Luu(_Item);
                 DialogResult = true;
             }
         }
@@ -78,11 +79,13 @@ namespace UserControlLibrary
                 txtNguoiThuNop.Text = "";
                 txtLyDo.Text = "";
                 if (LoaiThuChiID == 1)
-
-                    lbTieuDe.Text = "Thêm phiếu thu";
-
+                {
+                    lbTieuDe.Text = "Thêm phiếu thu";                    
+                }
                 else
+                {
                     lbTieuDe.Text = "Thêm phiếu chi";
+                }
                 lsArray = new List<Data.CHITIETTHUCHI>();
 
             }

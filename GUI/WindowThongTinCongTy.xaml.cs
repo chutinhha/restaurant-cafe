@@ -94,6 +94,7 @@ namespace GUI
             btnCaiDatThucDon.Tag = Data.TypeChucNang.CaiDat.CaiDatThucDon;
             btnCaiDatBanHang.Tag = Data.TypeChucNang.CaiDat.CaiDatBanHang;
             btnXuatNhapDuLieu.Tag = Data.TypeChucNang.CaiDat.XuatNhapDuLieu;
+            btnCaiDatGioKaraoke.Tag = Data.TypeChucNang.CaiDat.CaiDatGioKaraoke;
         }
 
         private void PhanQuyen()
@@ -109,9 +110,9 @@ namespace GUI
                         Data.TypeChucNang.CaiDat type = (Data.TypeChucNang.CaiDat)btn.Tag;
                         if (type != Data.TypeChucNang.CaiDat.None)
                         {
-                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraNhomChucNang((int)type);
+                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraQuyen((int)type);
                             btn.Tag = ctq;
-                            if (mTransit.KiemTraNhomChucNang((int)type) == true)
+                            if (mTransit.KiemTraChucNang((int)type) == true)
                             {
                                 if (j > gridButtonMain.ColumnDefinitions.Count - 1)
                                 {
@@ -119,16 +120,18 @@ namespace GUI
                                     j = 0;
                                 }
                                 if (type != Data.TypeChucNang.CaiDat.CaiDatChucNangHienThi)
+                                {                                    
                                     LookButton(btn, ctq.ChiTietQuyen.ChoPhep, i, j);
-                                else
-                                {
-                                    j--;
-                                    LookButton(btn, false, i, j);
+                                    if (ctq.ChiTietQuyen.ChoPhep)
+                                        j++;
                                 }
-                                j++;
+                                else
+                                    LookButton(btn, false, i, j);
+
                             }
                             else
                                 LookButton(btn, false, i, j);
+
                         }
                     }
                 }
@@ -158,6 +161,12 @@ namespace GUI
         private void btnCaiDatBanHang_Click(object sender, RoutedEventArgs e)
         {
             UserControlLibrary.WindowCaiDatBanHang win = new UserControlLibrary.WindowCaiDatBanHang(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnCaiDatGioKaraoke_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlLibrary.WindowCaiDatGioKaraoke win = new UserControlLibrary.WindowCaiDatGioKaraoke(mTransit);
             win.ShowDialog();
         }
 

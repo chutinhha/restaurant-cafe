@@ -31,7 +31,7 @@ namespace Data
         }        
         public static IQueryable<BOLichBieuDinhKy> GetAllVisualRun(KaraokeEntities kara,BAN ban)
         {
-
+            int? khuID = ban == null ? null : ban.KhuID;
             DateTime dt = DateTime.Now;
             int dayOfWeek = (int)dt.DayOfWeek;
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
@@ -42,7 +42,7 @@ namespace Data
                              ts.CompareTo(b.GioKetThuc.Value) <= 0 &&
                              (
                                 b.KhuID == null ||
-                                b.KhuID == ban.KhuID
+                                b.KhuID == khuID
                              )
                          select b;
 

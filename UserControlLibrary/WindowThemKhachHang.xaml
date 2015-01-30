@@ -37,7 +37,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khách hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Loại khách hàng" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Dư nợ" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Dư nợ tối thiểu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Dư nợ tối đa" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Điện thoại di động" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Điện thoại bàn" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Email" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />

@@ -12,18 +12,35 @@ namespace Report.BaoCaoNgay
         private bool _isReportViewerLoaded;
         private Data.Transit mTransit = null;
         private Data.BOBaoCaoNgay BOBaoCaoNgay = null;
-
+        private PrinterServer.ProcessPrinter mProcessPrinter;
         public WindowBaoCaoNgay(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
             BOBaoCaoNgay = new Data.BOBaoCaoNgay(mTransit);
+            mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
             uCTileReport.Landscape = false;
             uCTileReport.SetInit(mTransit, _reportViewer, "BaoCaoNgay", true, true);
             uCTileReport._OnDong += new UCTileReport.OnDong(uCTileReport__OnDong);
             uCTileReport._OnReload += new UCTileReport.OnReload(uCTileReport__OnReload);
+            uCTileReport._OnPrint += new UCTileReport.OnPrint(uCTileReport__OnPrint);
             _reportViewer.Load += ReportViewer_Load;
         }
+
+        void uCTileReport__OnPrint(DateTime dtFrom, DateTime dtTo)
+        {
+            //DateTime now = DateTime.Now;
+            //if (dtFrom==null)
+            //{
+            //    dtFrom = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
+            //}
+            //if (dtTo==null)
+            //{
+            //    dtTo = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59);
+            //}
+            mProcessPrinter.InReport(dtFrom, dtTo);
+        }
+       
 
         private void Reload()
         {

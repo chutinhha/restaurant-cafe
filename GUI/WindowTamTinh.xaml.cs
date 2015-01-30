@@ -90,6 +90,19 @@ namespace GUI
                 LoadKhachHang();                
             }
         }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter || e.Key==Key.Space)
+            {
+                btnDongY_Click(null, null);
+                return;
+            }
 
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                btnHuy_Click(null, null);
+                return;
+            }
+        } 
     }
 }

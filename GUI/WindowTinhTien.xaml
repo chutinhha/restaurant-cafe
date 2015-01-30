@@ -1,7 +1,7 @@
 ﻿<Window x:Class="GUI.WindowTinhTien"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowTinhTien" Height="575" Width="736" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary">
+        Title="WindowTinhTien" Height="575" Width="736" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded" xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary" KeyDown="Window_KeyDown">
     <Grid>
         <TextBlock Margin="21,34,0,0" Name="txtTongTien" Text="Tổng tiền: 0 đ" FontStretch="Normal" FontSize="24" FontWeight="Medium" TextAlignment="Center" Foreground="#FF009F3B" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="17,153,0,0" Name="textBlock1" Text="Khách Hàng:" VerticalAlignment="Top" Width="85" FontSize="14" />

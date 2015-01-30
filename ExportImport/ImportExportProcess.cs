@@ -25,45 +25,67 @@ namespace ExportImport
         {
             mKaraokeEntities = new Data.KaraokeEntities();
         }
-        
+        public void ExportItem(string url)
+        {
+            System.Data.DataSet ds = new System.Data.DataSet();
+            _OnImportExport(String.Format("Đọc dữ liệu..."), false);
+            var listItem = (from a in mKaraokeEntities.MENUNHOMs
+                           join b in mKaraokeEntities.MENUMONs on a.NhomID equals b.NhomID
+                           join c in mKaraokeEntities.MENUKICHTHUOCMONs on b.MonID equals c.MonID
+                           where a.Deleted == false && b.Deleted == false && c.Deleted == false
+                           select new ImportExportItem
+                           {
+                               TenNhom=a.TenNgan,
+                               TenMon=b.TenNgan,
+                               DonGia=c.GiaBanMacDinh,
+                               ChiTietMon=c.TenLoaiBan,
+                               SoLuongBanMacDinh=c.SoLuongBanBan
+                           }).ToList();
+            _OnImportExport(String.Format("Khởi tạo dữ liệu..."), false);
+            System.Data.DataTable tbl=CreateExcelFile.ListToDataTable(listItem);
+            tbl.TableName=MON;
+            ds.Tables.Add(tbl);
+            _OnImportExport("Lưu tập tin..." + url, false);
+            CreateExcelFile.CreateExcelDocument(ds, url);
+            _OnImportExport("Lưu tập tin thành công..." + url, false);
+        }
         public void Export(string url)
         {
             try
             {
                 System.Data.DataSet ds = new System.Data.DataSet();
-
                 _OnImportExport(String.Format("Đọc {0}...",LOAINHOM), false);
-                ds.Tables.Add(ObjectConvert<Data.MENULOAINHOM>.GetTableData(mKaraokeEntities.MENULOAINHOMs, LOAINHOM));
+                ds.Tables.Add(ObjectConvert<Data.MENULOAINHOM>.GetTableData(mKaraokeEntities.MENULOAINHOMs.ToList(), LOAINHOM));
 
-                _OnImportExport(String.Format("Đọc {0}...", MAYIN), false);                                
-                ds.Tables.Add(ObjectConvert<Data.MAYIN>.GetTableData(mKaraokeEntities.MAYINs, MAYIN));
+                _OnImportExport(String.Format("Đọc {0}...", MAYIN), false);
+                ds.Tables.Add(ObjectConvert<Data.MAYIN>.GetTableData(mKaraokeEntities.MAYINs.Where(o => o.Deleted == false).ToList(), MAYIN));
 
-                _OnImportExport(String.Format("Đọc {0}...", LOAIGIA), false);                
-                ds.Tables.Add(ObjectConvert<Data.MENULOAIGIA>.GetTableData(mKaraokeEntities.MENULOAIGIAs, LOAIGIA));
+                _OnImportExport(String.Format("Đọc {0}...", LOAIGIA), false);
+                ds.Tables.Add(ObjectConvert<Data.MENULOAIGIA>.GetTableData(mKaraokeEntities.MENULOAIGIAs.Where(o => o.Deleted == false).ToList(), LOAIGIA));
 
-                _OnImportExport(String.Format("Đọc {0}...", DONVI), false);                
-                ds.Tables.Add(ObjectConvert<Data.DONVI>.GetTableData(mKaraokeEntities.DONVIs, DONVI));
+                _OnImportExport(String.Format("Đọc {0}...", DONVI), false);
+                ds.Tables.Add(ObjectConvert<Data.DONVI>.GetTableData(mKaraokeEntities.DONVIs.Where(o => o.Deleted == false).ToList(), DONVI));
 
-                _OnImportExport(String.Format("Đọc {0}...", LOAIDONVIBAN), false);                
-                ds.Tables.Add(ObjectConvert<Data.LOAIBAN>.GetTableData(mKaraokeEntities.LOAIBANs, LOAIDONVIBAN));
+                _OnImportExport(String.Format("Đọc {0}...", LOAIDONVIBAN), false);
+                ds.Tables.Add(ObjectConvert<Data.LOAIBAN>.GetTableData(mKaraokeEntities.LOAIBANs.Where(o => o.Deleted == false).ToList(), LOAIDONVIBAN));
 
                 _OnImportExport(String.Format("Đọc {0}...", NHOM), false);                
-                ds.Tables.Add(ObjectConvert<Data.MENUNHOM>.GetTableData(mKaraokeEntities.MENUNHOMs, NHOM));
+                ds.Tables.Add(ObjectConvert<Data.MENUNHOM>.GetTableData(mKaraokeEntities.MENUNHOMs.Where(o=>o.Deleted==false).ToList(), NHOM));
 
                 _OnImportExport(String.Format("Đọc {0}...", MON), false);                
-                ds.Tables.Add(ObjectConvert<Data.MENUMON>.GetTableData(mKaraokeEntities.MENUMONs, MON));
+                ds.Tables.Add(ObjectConvert<Data.MENUMON>.GetTableData(mKaraokeEntities.MENUMONs.Where(o=>o.Deleted==false).ToList(), MON));
 
-                _OnImportExport(String.Format("Đọc {0}...",CHITIETMON), false);
-                ds.Tables.Add(ObjectConvert<Data.MENUKICHTHUOCMON>.GetTableData(mKaraokeEntities.MENUKICHTHUOCMONs, CHITIETMON));
+                _OnImportExport(String.Format("Đọc {0}...", CHITIETMON), false);
+                ds.Tables.Add(ObjectConvert<Data.MENUKICHTHUOCMON>.GetTableData(mKaraokeEntities.MENUKICHTHUOCMONs.Where(o => o.Deleted == false).ToList(), CHITIETMON));
 
                 _OnImportExport(String.Format("Đọc {0}...", CHITIETGIA), false);
-                ds.Tables.Add(ObjectConvert<Data.MENUGIA>.GetTableData(mKaraokeEntities.MENUGIAs, CHITIETGIA));
+                ds.Tables.Add(ObjectConvert<Data.MENUGIA>.GetTableData(mKaraokeEntities.MENUGIAs.ToList(), CHITIETGIA));
 
                 _OnImportExport(String.Format("Đọc {0}...", MONMAYIN), false);
-                ds.Tables.Add(ObjectConvert<Data.MENUITEMMAYIN>.GetTableData(mKaraokeEntities.MENUITEMMAYINs, MONMAYIN));
+                ds.Tables.Add(ObjectConvert<Data.MENUITEMMAYIN>.GetTableData(mKaraokeEntities.MENUITEMMAYINs.Where(o => o.Deleted == false).ToList(), MONMAYIN));
 
                 _OnImportExport("Lưu tập tin..." + url, false);
-                CreateExcelFile.CreateExcelDocument(ds, url);                                
+                CreateExcelFile.CreateExcelDocument(ds, url);
 
                 _OnImportExport("Xuất dữ liệu thành công...", false);
             }
@@ -72,7 +94,106 @@ namespace ExportImport
                 _OnImportExport("Lỗi..." + ex.Message, true);
             }
         }
-        
+        public void ImportItem(string url)
+        {
+            _OnImportExport("----------------------------", false);
+            _OnImportExport(String.Format("Đọc tập tin excel..."), false);
+            var listItem = ExcelReader.GetDataToList(url, MON, ImportExportItem.GetProductData);
+            List<Data.MENUNHOM> listNhom = new List<Data.MENUNHOM>();
+            //List<Data.MENUMON> listMon = new List<Data.MENUMON>();
+
+            _OnImportExport(String.Format("Xóa dữ liệu cũ..."), false);
+            mKaraokeEntities.ExecuteStoreCommand("SP_DELETE_ALL_MENU");
+
+            _OnImportExport(String.Format("Tạo {0}...", MAYIN), false);
+            Data.MAYIN mayin = new Data.MAYIN();
+            mayin.TenMayIn = "Test";
+            mayin.TieuDeIn = "BẾP";
+            mayin.SoLanIn = 1;
+            mayin.Visual = true;
+            mKaraokeEntities.MAYINs.AddObject(mayin);
+
+            _OnImportExport(String.Format("Tạo {0}...", MAYIN), false);
+            Data.MAYIN mayinBill = new Data.MAYIN();
+            mayinBill.TenMayIn = "Test";
+            mayinBill.TieuDeIn = "HÓA ĐƠN";
+            mayinBill.SoLanIn = 1;
+            mayinBill.MayInHoaDon = true;
+            mayinBill.Visual = true;
+            mKaraokeEntities.MAYINs.AddObject(mayinBill);
+
+            _OnImportExport(String.Format("Tạo {0}...", DONVI), false);
+            Data.DONVI donvi = mKaraokeEntities.DONVIs.Where(o => o.DonViID == 1).FirstOrDefault();
+            if (donvi==null)
+            {
+                donvi = new Data.DONVI();
+                donvi.TenDonVi = "Số lượng";
+                donvi.Visual = true;
+                mKaraokeEntities.DONVIs.AddObject(donvi);
+            }            
+
+            _OnImportExport(String.Format("Tạo {0}...", LOAIDONVIBAN), false);
+            Data.LOAIBAN loaiban = mKaraokeEntities.LOAIBANs.Where(o => o.LoaiBanID == 1).FirstOrDefault();
+            if (loaiban==null)
+            {
+                loaiban.TenLoaiBan = "Cái";
+                loaiban.KichThuocBan = 1;
+                loaiban.Visual = true;
+                mKaraokeEntities.LOAIBANs.AddObject(loaiban);
+                donvi.LOAIBANs.Add(loaiban);
+            }
+            
+            foreach (var item in listItem)
+            {                
+                var nhom = (from a in listNhom
+                           where a.TenNgan == item.TenNhom
+                           select a).FirstOrDefault();
+                if (nhom==null)
+                {
+                    _OnImportExport(String.Format("Tạo {0}---{1}", NHOM, item.TenNhom), false);
+                    nhom = new Data.MENUNHOM();
+                    nhom.TenDai = nhom.TenNgan = item.TenNhom;
+                    nhom.Visual = true;
+                    mKaraokeEntities.MENUNHOMs.AddObject(nhom);
+                    listNhom.Add(nhom);
+                }
+                var mon = (from a in nhom.MENUMONs
+                           where a.TenNgan == item.TenMon
+                           select a).FirstOrDefault();
+                if (mon==null)
+                {
+                    _OnImportExport(String.Format("Tạo {0}---{1}", MON, item.TenMon), false);
+                    mon = new Data.MENUMON();
+                    mon.TenNgan = mon.TenDai = item.TenMon;
+                    mon.Gia = item.DonGia;
+                    mon.Visual = true;                    
+                    nhom.MENUMONs.Add(mon);
+                    donvi.MENUMONs.Add(mon);
+                    nhom.SLMonChoPhepTonKho++;
+                    Data.MENUITEMMAYIN monmayin = new Data.MENUITEMMAYIN();
+                    mon.MENUITEMMAYINs.Add(monmayin);
+                    mayin.MENUITEMMAYINs.Add(monmayin);
+                    mKaraokeEntities.MENUMONs.AddObject(mon);
+                    //listMon.Add(mon);
+                }
+                _OnImportExport(String.Format("Tạo {0}---{1}", CHITIETMON, item.ChiTietMon), false);
+                Data.MENUKICHTHUOCMON ktm = new Data.MENUKICHTHUOCMON();
+                ktm.TenLoaiBan = item.ChiTietMon;
+                ktm.GiaBanMacDinh = item.DonGia;
+                ktm.SoLuongBanBan = item.SoLuongBanMacDinh;
+                ktm.KichThuocLoaiBan = 1;
+                ktm.Visual = true;
+                ktm.ChoPhepTonKho = true;
+                mon.SLMonChoPhepTonKho++;
+                mon.MENUKICHTHUOCMONs.Add(ktm);                
+                loaiban.MENUKICHTHUOCMONs.Add(ktm);
+                donvi.MENUKICHTHUOCMONs.Add(ktm);
+                mKaraokeEntities.MENUKICHTHUOCMONs.AddObject(ktm);
+            }
+            _OnImportExport(String.Format("Lưu dữ liệu..."), false);
+            mKaraokeEntities.SaveChanges();
+            _OnImportExport(String.Format("Lưu dữ liệu thành công ...{0}",url), false);
+        }
         public void Import(string url)
         {
             try
@@ -237,14 +358,14 @@ namespace ExportImport
                         _OnImportExport(resuilt, true);
                     }
                 }
-
+                mKaraokeEntities.ExecuteStoreCommand("SP_CREATEDEFAULT_KICHTHUOCMON");
                 _OnImportExport("Nhập dữ liệu thành công...", false);
                 //============================
                 
             }
             catch (Exception ex)
             {
-                _OnImportExport("Lỗi..."+ex.Message, false);
+                _OnImportExport("Lỗi..."+ex.Message, true);
             }            
 
         }

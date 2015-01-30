@@ -30,6 +30,7 @@ namespace Data
 
         public static IQueryable<BOLichBieuKhongDinhKy> GetAllVisualRun(KaraokeEntities kara,BAN ban)
         {
+            int? khuID = ban == null ? null : ban.KhuID;
             DateTime dtNow = DateTime.Now;
             DateTime dt = new DateTime(dtNow.Year, dtNow.Month, dtNow.Day);
             TimeSpan ts = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
@@ -40,7 +41,7 @@ namespace Data
                              dt.CompareTo(b.NgayBatDau.Value) >= 0 && dt.CompareTo(b.NgayKetThuc.Value) <= 0 &&
                              (
                                 b.KhuID == null ||
-                                b.KhuID == ban.KhuID
+                                b.KhuID == khuID
                              )
                          select b;
             var query = from a in querya

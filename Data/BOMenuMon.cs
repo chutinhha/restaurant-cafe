@@ -37,6 +37,12 @@ namespace Data
             frmKichThuocMon = new FrameworkRepository<MENUKICHTHUOCMON>(transit.KaraokeEntities, transit.KaraokeEntities.MENUKICHTHUOCMONs);
             frmItemMayIn = new FrameworkRepository<MENUITEMMAYIN>(transit.KaraokeEntities, transit.KaraokeEntities.MENUITEMMAYINs);
         }
+
+        public static IQueryable<MENUMON> GetAll(KaraokeEntities kara,MENUNHOM nhom)
+        {
+            return kara.MENUMONs.Where(o => o.NhomID == nhom.NhomID && o.Deleted==false);
+        }        
+
         public static IQueryable<MENUMON> GetAll(Transit tran)
         {
             return FrameworkRepository<MENUMON>.QueryNoTracking(tran.KaraokeEntities.MENUMONs);

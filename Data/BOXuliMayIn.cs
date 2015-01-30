@@ -10,7 +10,7 @@ namespace Data
         public CAIDATMAYINBEP _CAIDATMAYINBEP { get; set; }
         public CAIDATMAYINHOADON _CAIDATMAYINHOADON { get; set; }
         public System.Drawing.Image _ImageLogo { get; set; }
-        private KaraokeEntities mKaraokeEntities;
+        private KaraokeEntities mKaraokeEntities;        
         private Transit mTransit;        
 
         public BOXuliMayIn(Transit transit)
@@ -31,9 +31,9 @@ namespace Data
                                select x;
             var queryMenuMayIn = from x in queryMenuMon
                                  join y in mKaraokeEntities.MENUITEMMAYINs on x.MonID equals y.MonID
-                                 where y.Deleted==false && y.Visual==true
+                                 //where y.Deleted==false && y.Visual==true
                                  select y;
-            var resuilt = from x in mKaraokeEntities.MAYINs
+            var resuilt = from x in mKaraokeEntities.MAYINs.Where(o=>o.MayInHoaDon==false && o.Deleted==false)
                           join y in mKaraokeEntities.MENUITEMMAYINs on x.MayInID equals y.MayInID
                           where x.Visual == true && x.Deleted==false && queryMenuMayIn.Contains(y)
                           select new BOMayIn
@@ -49,7 +49,7 @@ namespace Data
         public IQueryable<BOMayIn> AllPrintingBill()
         {
             var resuilt = from a in mKaraokeEntities.MAYINs
-                         where a.MayInHoaDon==true
+                         where a.MayInHoaDon==true && a.Deleted==false
                          select new BOMayIn
                           {
                               MayInID = a.MayInID,
@@ -64,7 +64,8 @@ namespace Data
         {
             var query = from a in mKaraokeEntities.BANHANGs.Where(o => o.BanHangID == banHangID)
                         join b in mKaraokeEntities.NHANVIENs on a.NhanVienID equals b.NhanVienID
-                        join c in mKaraokeEntities.BANs on a.BanID equals c.BanID
+                        join c in mKaraokeEntities.BANs on a.BanID equals c.BanID into listBan
+                        from h in listBan.DefaultIfEmpty()
                         join d in mKaraokeEntities.THEs on a.TheID equals d.TheID into list
                         from e in list.DefaultIfEmpty()
                         join f in mKaraokeEntities.KHACHHANGs on a.KhachHangID equals f.KhachHangID into listKh
@@ -75,8 +76,9 @@ namespace Data
                             TenThe=e.TenThe,
                             TenNhanVien = b.TenNhanVien,
                             MaHoaDon = a.MaHoaDon,
-                            TenBan = c.TenBan,
-                            NgayBan = (DateTime)a.NgayBan,
+                            TenBan = h.TenBan,
+                            NgayBan = a.NgayBan.Value,
+                            NgayKetThuc=a.NgayKetThuc.Value,
                             BanHang = a,
                             KhachHang=g
                         };
@@ -98,15 +100,17 @@ namespace Data
                         };
             return query;
         }
-        public IQueryable<BOPrintOrderItem> GetPrintOrderItemKM(BOPrintOrderItem item)
+        public IQueryable<BOPrintOrderItem> GetPrintOrderItemKM(int banHangID,BOPrintOrderItem item)
         {
             var query =
-                        from a in mKaraokeEntities.CHITIETBANHANGs.Where(o => o.ChiTietBanHangID_Ref == item.ID)
+                        from a in mKaraokeEntities.CHITIETBANHANGs.Where(o => o.KichThuocMonID_Ref == item.MonID && o.BanHangID==banHangID)
                         join b in mKaraokeEntities.MENUKICHTHUOCMONs on a.KichThuocMonID equals b.KichThuocMonID
                         join c in mKaraokeEntities.MENUMONs on b.MonID equals c.MonID                        
                         select new
                         {
-                            ID = a.ChiTietBanHangID,
+                            DonViID = b.DonViID,
+                            KichThuocThuc = a.KichThuocLoaiBan,
+                            KichThuocBan = b.KichThuocLoaiBan,
                             MonID = b.KichThuocMonID,
                             TenDai = c.TenDai,
                             TenLoaiBan = b.TenLoaiBan,
@@ -115,12 +119,15 @@ namespace Data
                             SoLuong = (int)a.SoLuongBan,
                             ThanhTien = (decimal)a.ThanhTien
                         } into x
-                        group x by new { x.ID, x.MonID, x.TenDai, x.TenLoaiBan, x.GiaBan, x.GiamGia } into y
+                        group x by new {x.MonID, x.TenDai, x.TenLoaiBan, x.GiaBan, x.GiamGia,x.DonViID,x.KichThuocThuc,x.KichThuocBan } into y
                         select new BOPrintOrderItem
                         {
-                            ID = y.Key.ID,
-                            MonID = y.Key.MonID,
-                            TenMon = y.Key.TenLoaiBan == "" ? y.Key.TenDai : y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                            DonViID = y.Key.DonViID.Value,
+                            KichThuocThuc = y.Key.KichThuocThuc,
+                            KichThuocBan = y.Key.KichThuocBan,      
+                            MonID = y.Key.MonID,                            
+                            TenDai=y.Key.TenDai,
+                            TenLoaiBan=y.Key.TenLoaiBan,
                             SoLuong = y.Sum(c => c.SoLuong),
                             GiaBan = y.Key.GiaBan,
                             GiamGia = y.Key.GiamGia,
@@ -134,10 +141,12 @@ namespace Data
                         from a in mKaraokeEntities.CHITIETBANHANGs.Where(o => o.ChiTietBanHangID_Ref == null && o.BanHangID == banHangID)
                         join b in mKaraokeEntities.MENUKICHTHUOCMONs on a.KichThuocMonID equals b.KichThuocMonID
                         join c in mKaraokeEntities.MENUMONs on b.MonID equals c.MonID
-                        where a.BanHangID == banHangID
+                        where a.BanHangID == banHangID && c.MonID!=mTransit.CaiDatBanHang.MonTinhGio
                         select new
-                        {   
-                            ID=a.ChiTietBanHangID,
+                        {
+                            DonViID = b.DonViID,
+                            KichThuocThuc = a.KichThuocLoaiBan,
+                            KichThuocBan = b.KichThuocLoaiBan,
                             MonID=b.KichThuocMonID,
                             TenDai = c.TenDai,
                             TenLoaiBan=b.TenLoaiBan,
@@ -146,13 +155,16 @@ namespace Data
                             SoLuong = (int)a.SoLuongBan,
                             ThanhTien=(decimal)a.ThanhTien
                         } into x
-                        orderby x.ID descending
-                        group x by new { x.ID,x.MonID,x.TenDai,x.TenLoaiBan,x.GiaBan,x.GiamGia } into y
+                        //orderby x.ID descending
+                        group x by new { x.MonID,x.TenDai,x.TenLoaiBan,x.GiaBan,x.GiamGia,x.DonViID,x.KichThuocBan,x.KichThuocThuc } into y
                         select new BOPrintOrderItem
                         {
-                            ID=y.Key.ID,
-                            MonID=y.Key.MonID,
-                            TenMon =y.Key.TenLoaiBan==""?y.Key.TenDai: y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                            DonViID = y.Key.DonViID.Value,
+                            KichThuocThuc = y.Key.KichThuocThuc,
+                            KichThuocBan = y.Key.KichThuocBan,      
+                            TenDai=y.Key.TenDai,
+                            TenLoaiBan=y.Key.TenLoaiBan,
+                            MonID=y.Key.MonID,                            
                             SoLuong = y.Sum(c => c.SoLuong),
                             GiaBan=y.Key.GiaBan,
                             GiamGia=y.Key.GiamGia,
@@ -160,14 +172,51 @@ namespace Data
                         };
             return query;
         }
-        public IQueryable<BOPrintOrderItem> GetPrintOrderItemKM(BOPrintOrderItem item, int printID)
+        public IQueryable<BOPrintOrderItem> GetPrintOrderItemTimeFromBanHangID(int banHangID)
+        {
+            var query =
+                        from a in mKaraokeEntities.CHITIETBANHANGs.Where(o => o.ChiTietBanHangID_Ref == null && o.BanHangID == banHangID)
+                        join b in mKaraokeEntities.MENUKICHTHUOCMONs on a.KichThuocMonID equals b.KichThuocMonID
+                        join c in mKaraokeEntities.MENUMONs on b.MonID equals c.MonID
+                        where a.BanHangID == banHangID && c.MonID==mTransit.CaiDatBanHang.MonTinhGio
+                        select new
+                        {
+                            DonViID = b.DonViID,
+                            KichThuocThuc = a.KichThuocLoaiBan,
+                            KichThuocBan = b.KichThuocLoaiBan,
+                            MonID = b.KichThuocMonID,
+                            TenDai = c.TenDai,
+                            TenLoaiBan = b.TenLoaiBan,
+                            GiamGia = a.GiamGia,
+                            GiaBan = a.GiaBan,
+                            SoLuong = (int)a.SoLuongBan,
+                            ThanhTien = (decimal)a.ThanhTien
+                        } into x
+                        //orderby x.ID descending
+                        group x by new { x.MonID, x.TenDai, x.TenLoaiBan, x.GiaBan, x.GiamGia, x.DonViID, x.KichThuocBan, x.KichThuocThuc } into y
+                        select new BOPrintOrderItem
+                        {
+                            DonViID = y.Key.DonViID.Value,
+                            KichThuocThuc = y.Key.KichThuocThuc,
+                            KichThuocBan = y.Key.KichThuocBan,
+                            TenDai = y.Key.TenDai,
+                            TenLoaiBan = y.Key.TenLoaiBan,
+                            MonID = y.Key.MonID,
+                            SoLuong = y.Sum(c => c.SoLuong),
+                            GiaBan = y.Key.GiaBan,
+                            GiamGia = y.Key.GiamGia,
+                            ThanhTien = y.Sum(c => c.ThanhTien)
+                        };
+            return query;
+        }
+        public IQueryable<BOPrintOrderItem> GetPrintOrderItemKM(int lichsuBanHang,BOPrintOrderItem item, int printID)
         {
             var queryCheck = from a in mKaraokeEntities.MENUMONs
                              join b in mKaraokeEntities.MENUITEMMAYINs on a.MonID equals b.MonID
                              where b.MayInID == printID
                              select a;
             var queryChiTiet = from ct in mKaraokeEntities.CHITIETLICHSUBANHANGs
-                               where ct.ChiTietLichSuBanHangID_Ref == item.ID
+                               where ct.KichThuocMonID_Ref == item.MonID && ct.LichSuBanHangID==lichsuBanHang
                                select ct;
             var query =
                         from a in mKaraokeEntities.MENUMONs
@@ -176,19 +225,24 @@ namespace Data
                         where queryCheck.Contains(a)
                         select new
                         {
-                            ID = c.ChiTietLichSuBanHangID,
+                            DonViID = b.DonViID,
+                            KichThuocThuc = c.KichThuocLoaiBan,
+                            KichThuocBan = b.KichThuocLoaiBan,
                             MonID = b.KichThuocMonID,
                             TenDai = a.TenDai,
-                            TenLoaiBan = b.TenLoaiBan,
+                            TenLoaiBan = b.TenLoaiBan,                            
                             SoLuong = (int)c.SoLuong,
                             TrangThai = (int)c.TrangThai
                         } into x
-                        group x by new { x.ID, x.MonID, x.TenDai, x.TenLoaiBan, x.TrangThai } into y
+                        group x by new { x.MonID, x.TenDai, x.TenLoaiBan, x.TrangThai, x.DonViID, x.KichThuocThuc, x.KichThuocBan } into y
                         select new BOPrintOrderItem
-                        {
-                            ID = y.Key.ID,
-                            MonID = y.Key.MonID,
-                            TenMon = y.Key.TenLoaiBan == "" ? y.Key.TenDai : y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                        {                                                        
+                            DonViID = y.Key.DonViID.Value,
+                            KichThuocThuc = y.Key.KichThuocThuc,
+                            KichThuocBan = y.Key.KichThuocBan,      
+                            MonID=y.Key.MonID,
+                            TenDai=y.Key.TenDai,
+                            TenLoaiBan=y.Key.TenLoaiBan,                                                                                    
                             TrangThai = (int)y.Key.TrangThai,
                             SoLuong = y.Sum(c => c.SoLuong)
                         }
@@ -209,26 +263,48 @@ namespace Data
                         join c in queryChiTiet on b.KichThuocMonID equals c.KichThuocMonID
                         where queryCheck.Contains(a) && c.LichSuBanHangID == lichSuBanHangID
                         select new
-                        {                   
-                            ID=c.ChiTietLichSuBanHangID,
+                        {                                                 
+                            DonViID =b.DonViID,
+                            KichThuocThuc =c.KichThuocLoaiBan,
+                            KichThuocBan =b.KichThuocLoaiBan,
                             MonID = b.KichThuocMonID,
                             TenDai=a.TenDai,
-                            TenLoaiBan=b.TenLoaiBan,
+                            TenLoaiBan = b.TenLoaiBan,
                             SoLuong = (int)c.SoLuong,
                             TrangThai = (int)c.TrangThai
                         } into x
-                        orderby x.ID ascending
-                        group x by new {x.ID, x.MonID,x.TenDai,x.TenLoaiBan ,x.TrangThai } into y
+                        //orderby x.ID ascending
+                        group x by new {x.MonID,x.TenDai,x.TenLoaiBan ,x.TrangThai,x.DonViID,x.KichThuocThuc,x.KichThuocBan} into y
                         select new BOPrintOrderItem
                         {
-                            ID=y.Key.ID,             
+                            DonViID = y.Key.DonViID.Value,
+                            KichThuocThuc = y.Key.KichThuocThuc,
+                            KichThuocBan = y.Key.KichThuocBan,      
                             MonID=y.Key.MonID,
-                            TenMon =y.Key.TenLoaiBan==""?y.Key.TenDai: y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
+                            TenDai=y.Key.TenDai,
+                            TenLoaiBan=y.Key.TenLoaiBan,                                                        
+                            //TenMon =y.Key.TenLoaiBan==""?y.Key.TenDai: y.Key.TenDai + "(" + y.Key.TenLoaiBan + ")",
                             TrangThai = (int)y.Key.TrangThai,
                             SoLuong = y.Sum(c => c.SoLuong)
                         }
                    ;
             return query;
+        }
+        public BOPrinterReportDaily GetBaoCaoNgayTong(DateTime dtFrom, DateTime dtTo)
+        {
+            BOBaoCaoNgay baocao = new BOBaoCaoNgay(mTransit);
+            BOPrinterReportDaily print = new BOPrinterReportDaily();
+            print.BAOCAONGAYTONG = baocao.GetBaoCaoNgayTong(dtFrom, dtTo).FirstOrDefault();
+            print.CAIDATTHONGTINCONGTY = baocao.GetCaiDatThongTinCongTy().FirstOrDefault();
+            return print;
+        }
+        public BOThuChi GetThuChi(int thuchiID)
+        {
+            return BOThuChi.GetThuChiByID(thuchiID,mKaraokeEntities);
+        }
+        public IQueryable<BOChiTietThuChi> GetChiTietThuChi(int thuchiID)
+        {
+            return BOChiTietThuChi.GetAllByThuChiID(thuchiID, mKaraokeEntities);
         }
     }
 }

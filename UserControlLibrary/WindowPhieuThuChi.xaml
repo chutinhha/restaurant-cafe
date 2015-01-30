@@ -40,7 +40,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Ngày chứng từ" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Nhân viên" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Người nộp tiền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Name="lbNguoiThuNop" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lý do thu" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lý do" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Name="lblLyDo" />
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Ghi chú" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Tổng tiền" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
@@ -55,9 +55,9 @@
 
                 <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Height="40">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="45"/>
                     </Grid.ColumnDefinitions>
                     
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Ghi chú" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
@@ -69,12 +69,12 @@
                         <DataTemplate>
                             <Grid Height="40">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50*"/>
-                                    <ColumnDefinition Width="40*"/>
-                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="45"/>
                                 </Grid.ColumnDefinitions>
                                 <my:POSTextBox Text="{Binding GhiChu}" Grid.Column="0" x:Name="txtChiTietGhiChu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" />
-                                <my:POSTextBox Text="{Binding SoTien}"  Grid.Column="1" x:Name="txtSoTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" PreviewTextInput="txt_PreviewTextInput" TextChanged="txtSoTien_TextChanged" />
+                                <my:POSTextBox Text="{Binding SoTien}"  Grid.Column="1" x:Name="txtSoTien" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4" FontSize="16" PreviewTextInput="txt_PreviewTextInput" TextChanged="txtSoTien_TextChanged" _TypeTextBox="Decimal" />
                                 <my:POSButtonFuntion Grid.Column="2" Name="btnXoa" Content="Xóa" CommandParameter="{Binding}" Visibility="{Binding IsXoa}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Click="btnXoa_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                             </Grid>
                         </DataTemplate>

@@ -53,7 +53,34 @@ namespace Data
         {
             mKaraokeEntities.Refresh(System.Data.Objects.RefreshMode.StoreWins, mKaraokeEntities.NHANVIENs);
         }
+        public static NHANVIEN CheckLogin(KaraokeEntities kara,string user, string pass)
+        {
+            if (!String.IsNullOrEmpty(user) && !String.IsNullOrEmpty(pass))
+            {
+                var Parameter_TenDangNhap = new System.Data.SqlClient.SqlParameter("@TenDangNhap", System.Data.SqlDbType.VarChar, 50);
+                Parameter_TenDangNhap.Value = user;
+                var Parameter_MatKhau = new System.Data.SqlClient.SqlParameter("@MatKhau", System.Data.SqlDbType.VarChar, 255);
+                Parameter_MatKhau.Value = pass;
+                NHANVIEN nv = kara.ExecuteStoreQuery<NHANVIEN>("SP_Login_NhanVien @TenDangNhap, @MatKhau", Parameter_TenDangNhap, Parameter_MatKhau).FirstOrDefault();
+                return nv;
+            }
+            return null;
+        }
 
+        public static NHANVIEN CheckLogin(string user, string pass,Transit transit)
+        {
+            //if (!String.IsNullOrEmpty(user) && !String.IsNullOrEmpty(pass))
+            //{
+            //    var Parameter_TenDangNhap = new System.Data.SqlClient.SqlParameter("@TenDangNhap", System.Data.SqlDbType.VarChar, 50);
+            //    Parameter_TenDangNhap.Value = user;
+            //    var Parameter_MatKhau = new System.Data.SqlClient.SqlParameter("@MatKhau", System.Data.SqlDbType.VarChar, 255);
+            //    Parameter_MatKhau.Value = pass;
+            //    NHANVIEN nv = transit.KaraokeEntities.ExecuteStoreQuery<NHANVIEN>("SP_Login_NhanVien @TenDangNhap, @MatKhau", Parameter_TenDangNhap, Parameter_MatKhau).FirstOrDefault();
+            //    return nv;
+            //}
+            //return null;
+            return CheckLogin(transit.KaraokeEntities, user, pass);
+        }
         public static NHANVIEN Login(string TenDangNhap, string MatKhau, Data.Transit mTransit)
         {
             if (TenDangNhap != null && MatKhau != null)

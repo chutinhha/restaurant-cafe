@@ -17,9 +17,7 @@
             </Grid.RowDefinitions>
             <TextBlock Name="lbTieuDe" Text="Cài đặt bán hàng" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" FontWeight="Bold" />
             <Grid Grid.Row="1" Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                <Grid.RowDefinitions>                                        
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
@@ -34,10 +32,8 @@
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Phí dịch vụ" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Thuế VAT" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <!--<TextBox Grid.Row="1" Grid.Column="1" Name="txtPhiDichVu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" />-->
-                <!--<TextBox Grid.Row="2" Grid.Column="1" Name="txtThueVAT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" />-->
                 <my:POSTextBox Grid.Row="1" Grid.Column="1" x:Name="txtPhiDichVu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left"  _TypeTextBox="Number" _MaxValue="100" />                
-                <my:POSTextBox Grid.Row="2" Grid.Column="1" x:Name="txtThueVAT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left"  _TypeTextBox="Number" _MaxValue="100" />                
+                <my:POSTextBox Grid.Row="2" Grid.Column="1" x:Name="txtThueVAT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left"  _TypeTextBox="Number" _MaxValue="100" />
                 <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Text="" Name="lbStatus" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" Foreground="Red" />
                 <my:POSButtonFuntion Content="Đóng" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" Name="btnHuy" VerticalAlignment="Stretch" Width="100" Margin="7,5,7,5" Click="btnHuy_Click" Image="/SystemImages;component/Images/Cancel.png" Background="#FFDF0023" />
                 <my:POSButtonFuntion Content="Lưu" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Name="btnLuu" VerticalAlignment="Stretch" Width="150" Margin="0,5,20,5" Click="btnLuu_Click" Image="/SystemImages;component/Images/Save.png" Background="#FF009F3B" />

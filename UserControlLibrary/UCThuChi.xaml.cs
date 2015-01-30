@@ -22,11 +22,12 @@ namespace UserControlLibrary
         private Data.Transit mTransit = null;
         private List<Data.BOThuChi> lsArray = null;
         private Data.BOThuChi BOThuChi = null;
-
+        private PrinterServer.ProcessPrinter mProcessPrinter;
         public UCThuChi(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
+            mProcessPrinter = new PrinterServer.ProcessPrinter(mTransit);
             BOThuChi = new Data.BOThuChi(transit);
             PhanQuyen();
         }
@@ -35,8 +36,8 @@ namespace UserControlLibrary
         private void PhanQuyen()
         {
             mPhanQuyen = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.ThuChi.ThuChi);
-            if (!mPhanQuyen.ChiTietQuyen.ChoPhep)
-                btnDanhSach.Visibility = System.Windows.Visibility.Collapsed;
+            //if (!mPhanQuyen.ChiTietQuyen.ChoPhep)
+            //    btnDanhSach.Visibility = System.Windows.Visibility.Collapsed;
             if (!mPhanQuyen.ChiTietQuyen.Them)
             {
                 btnThemPhieuThu.Visibility = System.Windows.Visibility.Collapsed;
@@ -46,8 +47,8 @@ namespace UserControlLibrary
                 btnSua.Visibility = System.Windows.Visibility.Collapsed;
             if (!mPhanQuyen.ChiTietQuyen.Xoa)
                 btnXoa.Visibility = System.Windows.Visibility.Collapsed;
-            if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
-                btnLuu.Visibility = System.Windows.Visibility.Collapsed;
+            //if (!mPhanQuyen.ChiTietQuyen.Them && !mPhanQuyen.ChiTietQuyen.Xoa && !mPhanQuyen.ChiTietQuyen.Sua)
+            //    btnLuu.Visibility = System.Windows.Visibility.Collapsed;
 
         }
 
@@ -155,8 +156,9 @@ namespace UserControlLibrary
             UserControlLibrary.WindowPhieuThuChi win = new UserControlLibrary.WindowPhieuThuChi(mTransit, BOThuChi, 1);
             if (win.ShowDialog() == true)
             {
-                lsArray.Add(win._Item);
-                lvData.Items.Refresh();
+                //lsArray.Add(win._Item);
+                //lvData.Items.Refresh();
+                LoadDanhSach();
             }
         }
 
@@ -165,8 +167,18 @@ namespace UserControlLibrary
             UserControlLibrary.WindowPhieuThuChi win = new UserControlLibrary.WindowPhieuThuChi(mTransit, BOThuChi, 2);
             if (win.ShowDialog() == true)
             {
-                lsArray.Add(win._Item);
-                lvData.Items.Refresh();
+                //lsArray.Add(win._Item);
+                //lvData.Items.Refresh();
+                LoadDanhSach();
+            }
+        }
+
+        private void btnInPhieu_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvData.SelectedItem!=null)
+            {
+                var item = lvData.SelectedItem as Data.BOThuChi;
+                mProcessPrinter.InPhieuThuChi(item.ThuChi.ID);
             }
         }
     }

@@ -145,5 +145,17 @@ namespace GUI
             Report.BaoCaoThuChi.WindowBaoCaoThuChi win = new Report.BaoCaoThuChi.WindowBaoCaoThuChi(mTransit);
             win.ShowDialog();
         }
+
+        private void btnBaoCaoBan_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoBan.WindowBaoCaoBan win = new Report.BaoCaoBan.WindowBaoCaoBan(mTransit);
+            win.ShowDialog();
+        }
+
+        private void btnBaoCaoKhu_Click(object sender, RoutedEventArgs e)
+        {
+            Report.BaoCaoKhu.WindowBaoCaoKhu win = new Report.BaoCaoKhu.WindowBaoCaoKhu(mTransit);
+            win.ShowDialog();
+        }
     }
 }

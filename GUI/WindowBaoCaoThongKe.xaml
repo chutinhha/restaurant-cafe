@@ -1,7 +1,7 @@
 ﻿<Window xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"  x:Class="GUI.WindowBaoCaoThongKe"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WindowBaoCaoThongKe" Height="768" Width="1024" Icon="/GUI;component/Micro.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded" >
+        Title="WindowBaoCaoThongKe" Height="768" Width="1024" Icon="/CNVRestaurant;component/restaurant256.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded" >
     <Grid Name="gridButtonMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -25,5 +25,7 @@
         <my:POSButtonMain Name="btnLichSuDangNhap" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Login.png" Margin="10" Click="btnLichSuDangNhap_Click" Background="#FF57005C" TextNho="Đăng nhập" TextTo="Lịch sử đăng nhập"  />
         <my:POSButtonMain Name="btnLichSuInNhaBep" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/printer_orange.png" Margin="10" Click="btnLichSuInNhaBep_Click" Background="#FF808081" TextNho="Máy in" TextTo="Lịch sử in nhà bếp"  />
         <my:POSButtonMain Name="btnBaoCaoThuChi" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/us_dollar.png" Margin="10" Click="btnBaoCaoThuChi_Click" Background="#FF7D3D65" TextNho="Thu chi" TextTo="Báo cáo thu chi"  />
+        <my:POSButtonMain Name="btnBaoCaoBan" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnBaoCaoBan_Click" Background="#FFC13A00" TextNho="Sơ đồ bàn" TextTo="Báo cáo bàn"  />
+        <my:POSButtonMain Name="btnBaoCaoKhu" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Image="/SystemImages;component/Images/Report.png" Margin="10" Click="btnBaoCaoKhu_Click" Background="#FFE5AD04" TextNho="Sơ đồ bàn" TextTo="Báo cáo khu"  />
     </Grid>
 </Window>

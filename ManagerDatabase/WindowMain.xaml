@@ -1,0 +1,13 @@
+﻿<Window x:Class="ManagerDatabase.WindowMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cài Đặt" Height="245" Width="461" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Label Content="Máy chủ:" Height="28" HorizontalAlignment="Left" Margin="69,55,0,0" Name="label1" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="133,60,0,0" Name="cboMayChu" VerticalAlignment="Top" Width="191" GotFocus="cboMayChu_GotFocus" />        
+        <Button Content="Xóa Dữ Liệu" Height="36" HorizontalAlignment="Left" Margin="196,130,0,0" Name="btnHuy" VerticalAlignment="Top" Width="75" Click="btnHuy_Click" />
+        <Button Content="Xóa Dữ Liệu Bán Hàng" Height="36" HorizontalAlignment="Left" Margin="12,130,0,0" Name="btnXoaDuLieuBH" VerticalAlignment="Top" Width="132" Click="btnXoaDuLieuBH_Click" />
+        <Button Content="Khởi Tạo Dữ Liệu" Height="36" HorizontalAlignment="Left" Margin="330,130,0,0" Name="btnDongY" VerticalAlignment="Top" Width="97" Click="button2_Click" />
+        <ProgressBar Height="25" HorizontalAlignment="Stretch" Name="progressBar1" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>
