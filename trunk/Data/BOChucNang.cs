@@ -168,7 +168,8 @@ namespace Data
             CaiDatThucDon,
             CaiDatBanHang,
             XuatNhapDuLieu,
-            CaiDatGioKaraoke
+            CaiDatGioKaraoke,
+            LoaiNhom
         }
 
         public enum ThongTinPhanMem

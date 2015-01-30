@@ -32,7 +32,7 @@ namespace UserControlLibrary
             uCMenu._IsSoLuongChoPhepTonKho = false;
             uCMenu._IsSoLuongKhongChoPhepTonKho = true;
             uCMenu.SetTransit(mTransit);
-            uCDanhSachDinhLuong.SetTransit(mTransit); 
+            uCDanhSachDinhLuong.SetTransit(mTransit);
         }
 
         void uCMenu__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
