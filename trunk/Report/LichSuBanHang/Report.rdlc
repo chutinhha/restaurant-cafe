@@ -380,11 +380,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Thời gian: </Value>
+                              <Value>Ngày Giờ: </Value>
                               <Style />
                             </TextRun>
                             <TextRun>
-                              <Value>=Format(Fields!NgayBan.Value,"HH:mm:ss")</Value>
+                              <Value>=Format(Fields!NgayBan.Value,"dd/MM/yyyy HH:mm:ss")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -711,6 +711,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -732,6 +733,9 @@
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -922,7 +926,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Format(First(Fields!NgayBan.Value, "BAOCAOLICHSUBANHANG"),"dd/MM/yyyy")</Value>
+                <Value>=Format(Min(Fields!NgayBan.Value, "BAOCAOLICHSUBANHANG"),"dd/MM/yyyy")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>-</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Format(Max(Fields!NgayBan.Value, "BAOCAOLICHSUBANHANG"),"dd/MM/yyyy")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -949,8 +965,79 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="TongTien1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=FormatNumber(Sum(Fields!TongTien.Value, "BAOCAOLICHSUBANHANG"),0)</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>TongTien1</rd:DefaultName>
+        <Top>3.19459in</Top>
+        <Left>5.42693in</Left>
+        <Height>0.23958in</Height>
+        <Width>1.84307in</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="DiaChi1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tổng tiền</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>DiaChi1</rd:DefaultName>
+        <Top>3.19459in</Top>
+        <Height>0.23958in</Height>
+        <Width>5.42693in</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>3.26737in</Height>
+    <Height>3.50695in</Height>
     <Style />
   </Body>
   <Width>7.27in</Width>
