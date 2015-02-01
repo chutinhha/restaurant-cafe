@@ -144,6 +144,27 @@
         <rd:ObjectDataSourceType>Data.CAIDATTHONGTINCONGTY, Data, Version=2.14.11.17, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="DATETIMEREPORT">
+      <Fields>
+        <Field Name="DateFrom">
+          <DataField>DateFrom</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DateTo">
+          <DataField>DateTo</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>Data</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Data</rd:DataSetName>
+        <rd:TableName>DateTimeReport</rd:TableName>
+        <rd:ObjectDataSourceType>Data.DateTimeReport, Data, Version=2.14.11.17, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <Body>
     <ReportItems>
@@ -711,7 +732,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -892,7 +912,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox39</rd:DefaultName>
-        <Top>0.48084in</Top>
+        <Top>0.4532in</Top>
         <Left>0.75in</Left>
         <Height>0.25in</Height>
         <Width>5.77in</Width>
@@ -919,26 +939,26 @@
           </Border>
         </Style>
       </Line>
-      <Textbox Name="NgayBan">
+      <Textbox Name="DateTimeFromTo">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Format(Min(Fields!NgayBan.Value, "BAOCAOLICHSUBANHANG"),"dd/MM/yyyy")</Value>
+                <Value>=Format(First(Fields!DateFrom.Value, "DATETIMEREPORT"),"dd/MM/yyyy")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>-</Value>
+                <Value> - </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Format(Max(Fields!NgayBan.Value, "BAOCAOLICHSUBANHANG"),"dd/MM/yyyy")</Value>
+                <Value>=Format(First(Fields!DateTo.Value, "DATETIMEREPORT"),"dd/MM/yyyy")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -949,7 +969,6 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>NgayBan</rd:DefaultName>
         <Top>1.1407in</Top>
         <Left>1.80688in</Left>
         <Height>0.25in</Height>
