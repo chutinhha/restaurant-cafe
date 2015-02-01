@@ -47,6 +47,13 @@ namespace Report.BaoCaoDinhLuong
             rdsBaoCaoDinhLuong.Value = BOBaoCaoDinhLuong.GetBaoCaoDinhLuong(uCTileReport.GetDateFrom);
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoDinhLuong);
 
+            Microsoft.Reporting.WinForms.ReportDataSource rdsDateTimeReport = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsDateTimeReport.Name = "DATETIMEREPORT";
+            List<Data.DateTimeReport> lsDate = new List<Data.DateTimeReport>();
+            lsDate.Add(new Data.DateTimeReport() { DateFrom = uCTileReport.GetDateFrom, DateTo = uCTileReport.GetDateTo });
+            rdsDateTimeReport.Value = lsDate;
+            this._reportViewer.LocalReport.DataSources.Add(rdsDateTimeReport);
+
 
             this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.BaoCaoDinhLuong.Report.rdlc";
 

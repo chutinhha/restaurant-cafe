@@ -48,8 +48,14 @@ namespace Report.LichSuBanHang
             this._reportViewer.LocalReport.DataSources.Add(rdsBaoCaoLichSuBanHang);
 
 
-            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.LichSuBanHang.Report.rdlc";
+            Microsoft.Reporting.WinForms.ReportDataSource rdsDateTimeReport = new Microsoft.Reporting.WinForms.ReportDataSource();
+            rdsDateTimeReport.Name = "DATETIMEREPORT";
+            List<Data.DateTimeReport> lsDate = new List<Data.DateTimeReport>();
+            lsDate.Add(new Data.DateTimeReport() { DateFrom = uCTileReport.GetDateFrom, DateTo = uCTileReport.GetDateTo });
+            rdsDateTimeReport.Value = lsDate;
+            this._reportViewer.LocalReport.DataSources.Add(rdsDateTimeReport);
 
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "Report.LichSuBanHang.Report.rdlc";
             _reportViewer.RefreshReport();
         }
 
