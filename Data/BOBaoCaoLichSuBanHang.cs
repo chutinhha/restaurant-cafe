@@ -20,7 +20,7 @@ namespace Data
             mKaraokeEntities = new KaraokeEntities();
         }
 
-        public static IQueryable<BOBaoCaoLichSuBanHang> GetLichSuBanHang(KaraokeEntities kara,DateTime dtFrom, DateTime dtTo)
+        public static IQueryable<BOBaoCaoLichSuBanHang> GetLichSuBanHang(KaraokeEntities kara, DateTime dtFrom, DateTime dtTo)
         {
             return from a in kara.BANHANGs
                    //join b in mKaraokeEntities.BANs on a.BanID equals b.BanID
