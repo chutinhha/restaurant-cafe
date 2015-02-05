@@ -141,14 +141,14 @@ namespace Data
         public enum Baocao
         {
             None,
-            BaoCaoNgay = 1201,
-            BaoCaoTonKho = 1202,
+            BaoCaoNgay = 1201,            
             BaoCaoDinhLuong = 1203,
             BaoCaoLichSuBanHang = 1204,
             BaoCaoNhanVien = 1205,
             LichSuDangNhap = 1206,
             LichSuInNhaBep = 1207,
-            BaoCaoThuChi = 1208
+            BaoCaoThuChi = 1208,
+            LichSuTonKho
         }
 
         public enum The

@@ -11,6 +11,7 @@ namespace Data
         FrameworkRepository<TONKHO> frmTonKho = null;
         FrameworkRepository<TONKHOTONGLOG> frmTonKhoTongLog = null;
         FrameworkRepository<TONKHOCHITIETBANHANG> frmTonKhoChiTietBanHang = null;
+        FrameworkRepository<LICHSUTONKHO> frmLichSuTonKho = null;
         private Transit mTransit;
         BODinhLuong BODinhLuong = null;
 
@@ -21,6 +22,7 @@ namespace Data
             frmTonKho = new FrameworkRepository<TONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOes);
             frmTonKhoTongLog = new FrameworkRepository<TONKHOTONGLOG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOTONGLOGs);
             frmTonKhoChiTietBanHang = new FrameworkRepository<TONKHOCHITIETBANHANG>(transit.KaraokeEntities, transit.KaraokeEntities.TONKHOCHITIETBANHANGs);
+            frmLichSuTonKho = new FrameworkRepository<LICHSUTONKHO>(transit.KaraokeEntities, transit.KaraokeEntities.LICHSUTONKHOes);
             frmTonKhoTong.Refresh();
             frmTonKho.Refresh();
             frmTonKhoTongLog.Refresh();
@@ -318,12 +320,8 @@ namespace Data
 
         public int ChuyenKho(BOChuyenKho item, List<BOChiTietChuyenKho> lsArray, Transit mTransit)
         {
-
             if (lsArray != null)
             {
-                List<TONKHOTONG> lsTonKhoDi = new List<TONKHOTONG>();
-                List<TONKHOTONG> lsTonKhoDen = new List<TONKHOTONG>();
-                Data.TONKHOTONG tonKhoTong = null;
                 foreach (BOChiTietChuyenKho line in lsArray)
                 {
                     IQueryable<Data.TONKHO> lsTonKho = frmTonKho.Query().Where(s => s.DonViID == line.MenuMon.DonViID && s.MonID == line.MenuMon.MonID && s.KhoID == item.ChuyenKho.KhoDiID && s.SoLuongTon > 0).OrderBy(s => s.NgayHetHan).ThenBy(s => s.TonKhoID);
@@ -373,25 +371,8 @@ namespace Data
 
                                 frmTonKho.Update(l);
 
-                                if (lsTonKhoDi.Exists(s => s.KhoID == chck.ChuyenKho.KhoDiID && s.MonID == line.MenuMon.MonID && s.DonViID == line.MenuMon.DonViID))
-                                    tonKhoTong = lsTonKhoDi.Find(s => s.KhoID == chck.ChuyenKho.KhoDiID && s.MonID == line.MenuMon.MonID && s.DonViID == line.MenuMon.DonViID);
-                                else
-                                {
-                                    tonKhoTong = KiemTraTonKhoTong(frmTonKhoTong, (int)chck.ChuyenKho.KhoDiID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID);
-                                    lsTonKhoDi.Add(tonKhoTong);
-                                }
-                                tonKhoTong.SoLuongChuyen -= chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
-                                tonKhoTong.SoLuongTon -= chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
-
-                                if (lsTonKhoDen.Exists(s => s.KhoID == chck.ChuyenKho.KhoDenID && s.MonID == line.MenuMon.MonID && s.DonViID == line.MenuMon.DonViID))
-                                    tonKhoTong = lsTonKhoDen.Find(s => s.KhoID == chck.ChuyenKho.KhoDenID && s.MonID == line.MenuMon.MonID && s.DonViID == line.MenuMon.DonViID);
-                                else
-                                {
-                                    tonKhoTong = KiemTraTonKhoTong(frmTonKhoTong, (int)chck.ChuyenKho.KhoDenID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID);
-                                    lsTonKhoDen.Add(tonKhoTong);
-                                }
-                                tonKhoTong.SoLuongChuyen += chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
-                                tonKhoTong.SoLuongTon += chck.ChiTietChuyenKho.TONKHO.SoLuongNhap;
+                                ThemXuatKho((int)chck.ChuyenKho.KhoDiID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, chck.ChiTietChuyenKho.TONKHO.SoLuongNhap, 0);
+                                ThemNhapKho((int)chck.ChuyenKho.KhoDenID, (int)line.MenuMon.MonID, (int)line.MenuMon.DonViID, chck.ChiTietChuyenKho.TONKHO.SoLuongNhap, 0);
                             }
                             else
                                 break;
@@ -400,50 +381,46 @@ namespace Data
 
                     }
                 }
-                foreach (var tkt in lsTonKhoDen)
-                {
-                    if (tkt.ID == 0)
-                        frmTonKhoTong.AddObject(tkt);
-                    else
-                        frmTonKhoTong.Update(tkt);
-                }
-                foreach (var tkt in lsTonKhoDi)
-                {
-                    if (tkt.ID == 0)
-                        frmTonKhoTong.AddObject(tkt);
-                    else
-                        frmTonKhoTong.Update(tkt);
-                }
+
             }
             frmTonKho.Commit();
-            frmTonKhoTong.Commit();
+            frmLichSuTonKho.Commit();
             return item.ChuyenKho.ChuyenKhoID;
         }
 
         public void NhapKho(List<BOChiTietNhapKho> lsArray, Data.Transit transit)
         {
-            List<TONKHOTONG> lsTonKhoTong = new List<TONKHOTONG>();
             foreach (BOChiTietNhapKho item in lsArray)
             {
-                Data.TONKHOTONG tonKhoTong = null;
-                if (lsTonKhoTong.Exists(s => s.KhoID == item.NhapKho.KhoID && s.MonID == item.MenuMon.MonID && s.DonViID == item.LoaiBan.DonViID))
-                    tonKhoTong = lsTonKhoTong.Find(s => s.KhoID == item.NhapKho.KhoID && s.MonID == item.MenuMon.MonID && s.DonViID == item.LoaiBan.DonViID);
-                else
-                {
-                    tonKhoTong = KiemTraTonKhoTong((int)item.NhapKho.KhoID, (int)item.MenuMon.MonID, (int)item.LoaiBan.DonViID);
-                    lsTonKhoTong.Add(tonKhoTong);
-                }
-                tonKhoTong.SoLuongNhap += (item.ChiTietNhapKho.TONKHO.SoLuongNhap);
-                tonKhoTong.SoLuongTon += (item.ChiTietNhapKho.TONKHO.SoLuongNhap);
-
-
+                ThemNhapKho((int)item.NhapKho.KhoID, (int)item.MenuMon.MonID, (int)item.LoaiBan.DonViID, item.ChiTietNhapKho.TONKHO.SoLuongNhap, item.ChiTietNhapKho.TONKHO.GiaNhap * item.ChiTietNhapKho.TONKHO.SoLuongNhap);
             }
-            foreach (var item in lsTonKhoTong)
-            {
-                frmTonKhoTong.Update(item);
-            }
-            frmTonKhoTong.Commit();
+            frmLichSuTonKho.Commit();
         }
+
+        private void ThemNhapKho(int KhoID, int MonID, int DonViID, int SoLuong, decimal ThanhTien)
+        {
+            LICHSUTONKHO lichsu = new LICHSUTONKHO();
+            lichsu.KhoID = KhoID;
+            lichsu.MonID = MonID;
+            lichsu.DonViID = DonViID;
+            lichsu.NhapSoLuong = SoLuong;
+            lichsu.NhapThanhTien = ThanhTien;
+            lichsu.NgayGhiNhan = DateTime.Now;
+            frmLichSuTonKho.AddObject(lichsu);
+        }
+
+        private void ThemXuatKho(int KhoID, int MonID, int DonViID, int SoLuong, decimal ThanhTien)
+        {
+            LICHSUTONKHO lichsu = new LICHSUTONKHO();
+            lichsu.KhoID = KhoID;
+            lichsu.MonID = MonID;
+            lichsu.DonViID = DonViID;
+            lichsu.XuatSoLuong = SoLuong;
+            lichsu.XuatThanhTien = ThanhTien;
+            lichsu.NgayGhiNhan = DateTime.Now;
+            frmLichSuTonKho.AddObject(lichsu);
+        }
+
 
         private Data.TONKHOTONG KiemTraTonKhoTong(int KhoID, int MonID, int DonViID)
         {

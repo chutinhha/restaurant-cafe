@@ -5,11 +5,12 @@ using System.Text;
 
 namespace Data
 {
-    public class KaraokeEntities:KaraokeEntitiesBase
+    public class KaraokeEntities : KaraokeEntitiesBase
     {
-        public KaraokeEntities(): base()
-        {            
-            this.ContextOptions.LazyLoadingEnabled = false;            
-        }       
+        public KaraokeEntities()
+            : base()
+        {
+            this.ContextOptions.LazyLoadingEnabled = false;
+        }
     }
 }
