@@ -4,8 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:my="clr-namespace:ControlLibrary;assembly=ControlLibrary"
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90*" />
+            <ColumnDefinition Width="120" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" Grid.Column="0" x:Name="cbbKhu" DisplayMemberPath="TenKhu" SelectedValuePath="KhuID"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  />
+        <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtTenLichBieu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" FontSize="14"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <my:POSButtonFuntion Content="Tìm kiếm" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Name="btnLuu" VerticalAlignment="Stretch" Margin="5" Click="btnLuu_Click" Image="/SystemImages;component/Images/search.png" Background="#FF006CC3" />
+
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lvData" AlternationCount="2">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=NhanVien.TenNhanVien}" Width="180" Header="Nhóm"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoaiNhanVien.TenLoaiNhanVien}" Width="300" Header="Tên món"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>
