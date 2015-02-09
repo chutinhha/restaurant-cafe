@@ -148,7 +148,10 @@ namespace Data
             LichSuDangNhap = 1206,
             LichSuInNhaBep = 1207,
             BaoCaoThuChi = 1208,
-            LichSuTonKho
+            LichSuTonKho,
+            BaoCaoBan,
+            BaoCaoKhu
+
         }
 
         public enum The

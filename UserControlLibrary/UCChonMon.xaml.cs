@@ -23,5 +23,10 @@ namespace UserControlLibrary
         {
             InitializeComponent();
         }
+
+        private void btnLuu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

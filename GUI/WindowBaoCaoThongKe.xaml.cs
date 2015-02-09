@@ -68,11 +68,17 @@ namespace GUI
 
         private void SetTagButton()
         {
-            btnBaoCaoDinhLuong.Tag = Data.TypeChucNang.Baocao.BaoCaoDinhLuong;            
-            btnBaoCaoLichSuBanHang.Tag = Data.TypeChucNang.Baocao.BaoCaoLichSuBanHang;
             btnBaoCaoNgay.Tag = Data.TypeChucNang.Baocao.BaoCaoNgay;
-            btnBaoCaoNhanVien.Tag = Data.TypeChucNang.Baocao.BaoCaoNhanVien;
+            btnBaoCaoLichSuBanHang.Tag = Data.TypeChucNang.Baocao.BaoCaoLichSuBanHang;
+            btnBaoCaoDinhLuong.Tag = Data.TypeChucNang.Baocao.BaoCaoDinhLuong;
             btnLichSuTonKho.Tag = Data.TypeChucNang.Baocao.LichSuTonKho;
+            btnBaoCaoNhanVien.Tag = Data.TypeChucNang.Baocao.BaoCaoNhanVien;
+            btnLichSuDangNhap.Tag = Data.TypeChucNang.Baocao.LichSuDangNhap;
+            btnLichSuInNhaBep.Tag = Data.TypeChucNang.Baocao.LichSuInNhaBep;
+            btnBaoCaoThuChi.Tag = Data.TypeChucNang.Baocao.BaoCaoThuChi;
+            btnBaoCaoKhu.Tag = Data.TypeChucNang.Baocao.BaoCaoBan;
+            btnBaoCaoBan.Tag = Data.TypeChucNang.Baocao.BaoCaoKhu;
+
         }
 
         private void PhanQuyen()
@@ -88,17 +94,18 @@ namespace GUI
                         Data.TypeChucNang.Baocao type = (Data.TypeChucNang.Baocao)btn.Tag;
                         if (type != Data.TypeChucNang.Baocao.None)
                         {
-                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraNhomChucNang((int)type);
+                            Data.BOChiTietQuyen ctq = mTransit.BOChiTietQuyen.KiemTraQuyen((int)type);
                             btn.Tag = ctq;
-                            if (mTransit.KiemTraNhomChucNang((int)type) == true)
+                            if (mTransit.KiemTraChucNang((int)type) == true)
                             {
                                 if (j > gridButtonMain.ColumnDefinitions.Count - 1)
                                 {
                                     i++;
                                     j = 0;
                                 }
+
                                 LookButton(btn, ctq.ChiTietQuyen.ChoPhep, i, j);
-                                j++;
+                                j += ctq.ChiTietQuyen.ChoPhep ? 1 : 0;
                             }
                             else
                                 LookButton(btn, false, i, j);
