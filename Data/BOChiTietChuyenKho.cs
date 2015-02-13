@@ -40,19 +40,20 @@ namespace Data
 
         public IQueryable<BOChiTietChuyenKho> GetAll(int ChuyenKhoID, Transit mTransit)
         {
-            return from ctck in frmChiTietChuyenKho.Query()
-                   join tk in frmTonKho.Query() on ctck.TonKhoID equals tk.TonKhoID
-                   join lb in frmLoaiBan.Query() on tk.LoaiBanID equals lb.LoaiBanID
-                   join mm in frmMenuMon.Query() on tk.MonID equals mm.MonID
-                   join ck in frmChuyenKho.Query() on ctck.ChuyenKhoID equals ck.ChuyenKhoID
-                   select new BOChiTietChuyenKho
-                   {
-                       ChiTietChuyenKho = ctck,
-                       ChuyenKho = ck,
-                       LoaiBan = lb,
-                       TonKho = tk,
-                       MenuMon = mm
-                   };
+            //return from ctck in frmChiTietChuyenKho.Query()
+            //       join tk in frmTonKho.Query() on ctck.TonKhoID equals tk.TonKhoID
+            //       join lb in frmLoaiBan.Query() on tk.LoaiBanID equals lb.LoaiBanID
+            //       join mm in frmMenuMon.Query() on tk.MonID equals mm.MonID
+            //       join ck in frmChuyenKho.Query() on ctck.ChuyenKhoID equals ck.ChuyenKhoID
+            //       select new BOChiTietChuyenKho
+            //       {
+            //           ChiTietChuyenKho = ctck,
+            //           ChuyenKho = ck,
+            //           LoaiBan = lb,
+            //           TonKho = tk,
+            //           MenuMon = mm
+            //       };
+            return null;
         }
     }
 }

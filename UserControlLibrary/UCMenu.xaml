@@ -22,8 +22,8 @@
                 <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
-            <my:POSButtonMenu Grid.Row="0" Grid.Column="0" Content="NƯỚC" x:Name="btnNuoc" Click="btnNuoc_Click" Image="/SystemImages;component/Images/Drink.jpg" />
-            <my:POSButtonMenu Grid.Row="0" Grid.Column="1" Content="THỨC ĂN" x:Name="btnThucAn" Click="btnThucAn_Click" Image="/SystemImages;component/Images/Food.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="0" Content="NHÓM 1" x:Name="btnNuoc" Click="btnNuoc_Click" Image="/SystemImages;component/Images/Drink.jpg" />
+            <my:POSButtonMenu Grid.Row="0" Grid.Column="1" Content="NHÓM 2" x:Name="btnThucAn" Click="btnThucAn_Click" Image="/SystemImages;component/Images/Food.jpg" />
             <my:POSButtonMenu Grid.Row="0" Grid.Column="3" Content="TẤT CẢ" x:Name="btnTatCa" Click="btnTatCa_Click" Image="/SystemImages;component/Images/All.jpg" />
         </Grid>
         <Path Grid.Row="1" Stretch="Fill" Margin="0,0,0,0" VerticalAlignment="Center" Height="1" Data="M0,64 L608,64">

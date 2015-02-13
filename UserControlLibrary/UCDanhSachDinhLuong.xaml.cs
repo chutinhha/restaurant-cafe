@@ -66,7 +66,7 @@ namespace UserControlLibrary
         public void LoadDanhSach()
         {
             lsArrayDeleted = null;
-            txtTenMon.Text = mKichThuocMon.MenuMon.TenDai + " (" + mKichThuocMon.MenuKichThuocMon.TenLoaiBan + ")";
+            txtTenMon.Text = mKichThuocMon.TenMon;
             lsArray = BODinhLuong.GetAll((int)mKichThuocMon.MenuKichThuocMon.KichThuocMonID, mTransit).ToList();
             foreach (Data.BODinhLuong item in lsArray)
             {

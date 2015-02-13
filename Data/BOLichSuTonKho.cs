@@ -36,10 +36,36 @@ namespace Data
 
         public static void NhapKho(int SoLuong, decimal ThanhTien)
         {
-            Data.LICHSUTONKHO item = new LICHSUTONKHO();
-            item.NhapSoLuong = SoLuong;
-            item.NhapThanhTien = ThanhTien;
-
+            //Data.LICHSUTONKHO item = new LICHSUTONKHO();
+            //item.NhapSoLuong = SoLuong;
+            //item.NhapThanhTien = ThanhTien;
+        }
+        public static void NhapKho(KaraokeEntities kara, BOChiTietNhapKho chitiet,BONhapKho nhapKho)
+        {
+            LICHSUTONKHO lichSuDauKy = (from a in kara.LICHSUTONKHOes
+                                        where a.KichThuocMonID == chitiet.ChiTietNhapKho.KichThuocMonID
+                                        orderby a.ID descending
+                                        select a).FirstOrDefault();
+            LICHSUTONKHO lichSu = new LICHSUTONKHO();
+            if (lichSuDauKy == null)
+            {
+                lichSu.DauKySoLuong = 0;
+                lichSu.DauKyDonGia = 0;
+            }
+            else
+            {
+                lichSu.DauKySoLuong = lichSuDauKy.CuoiKySoLuong;
+                lichSu.DauKyDonGia = lichSuDauKy.CuoiKyDonGia;
+            }
+            lichSu.NhapSoLuong = chitiet.ChiTietNhapKho.SoLuongNhap;
+            lichSu.NhapDonGia = chitiet.ChiTietNhapKho.GiaNhap;
+            lichSu.CuoiKySoLuong = lichSu.DauKySoLuong + lichSu.NhapSoLuong;
+            lichSu.CuoiKyDonGia = lichSu.CuoiKyDonGia;
+            lichSu.NgayGhiNhan = DateTime.Now;
+            lichSu.KichThuocMonID = chitiet.ChiTietNhapKho.KichThuocMonID;
+            lichSu.KhoID = nhapKho.NhapKho.KhoID;
+            lichSu.LoaiPhatSinhID = 1;
+            kara.LICHSUTONKHOes.AddObject(lichSu);
         }
     }
 }

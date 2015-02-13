@@ -111,6 +111,7 @@ namespace UserControlLibrary
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
             uCFloorPlan1.SaveChange();
+            WindowMessageBox.ShowDialog("Lưu thành công!");
         }
 
         private void txtTenBan_TextChanged(object sender, TextChangedEventArgs e)

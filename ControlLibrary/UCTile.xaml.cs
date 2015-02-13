@@ -46,7 +46,7 @@ namespace ControlLibrary
                 }
             }
             lbPhienBan.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            lbTenNhaHang.Text = "Karaoke";
+            lbTenNhaHang.Text = "Phần mềm bán hàng";
         }
 
         private void newTimer_Tick(object sender, object e)

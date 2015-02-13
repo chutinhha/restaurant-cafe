@@ -99,7 +99,7 @@ namespace GUI
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            this.DialogResult = false;            
         }
 
         private void btnDongY_Click(object sender, RoutedEventArgs e)

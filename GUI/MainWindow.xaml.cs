@@ -16,7 +16,17 @@ namespace GUI
             mTransit = transit;
             uCTile.OnChangeLogin += new ControlLibrary.UCTile.ChangeLogin(uCTile_OnChangeLogin);
             uCTile.SetTransit(mTransit);
-            uCTile.TenChucNang = "Phần mềm quản lý Karaoke";
+            uCTile.TenChucNang = "Phần mềm tính tiền";
+            if (mTransit.CaiDatBanHang.KhoaSoDoBan)
+            {                                
+                btnQuanLyThucDon.TextNho = "Hàng hóa";
+                btnQuanLyThucDon.TextTo = "Quản lý hàng hóa";
+            }
+            else
+            {
+                btnQuanLyThucDon.TextNho = "Thực đơn";
+                btnQuanLyThucDon.TextTo = "Quản lý thực đơn";
+            }
             BONhanVien = new Data.BONhanVien(mTransit);
             if (mTransit.NhanVien.NhanVienID != 0)
             {
@@ -128,7 +138,7 @@ namespace GUI
                 WindowSoDoBan win = new WindowSoDoBan(mTransit);
                 if (win.ShowDialog() == true)
                 {
-                    this.Close();
+                    this.DialogResult = false;                    
                 }
             }            
             
@@ -197,7 +207,7 @@ namespace GUI
 
         private void btnThoatPhanMem_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
             Application.Current.Shutdown();
         }
 

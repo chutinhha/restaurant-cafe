@@ -50,6 +50,7 @@ namespace GUI
         private void uCFloorPlan1__OnEventFloorPlan(ControlLibrary.POSButtonTable tbl)
         {            
             mTransit.Ban = tbl._Ban;
+            btnForcus.Focus();
             WindowBanHang win = new WindowBanHang(mTransit, uCFloorPlan1);
             win.ShowDialog();
         }
@@ -62,6 +63,14 @@ namespace GUI
         {
             UserControlLibrary.WindowChucNangSoDoBan win = new UserControlLibrary.WindowChucNangSoDoBan(uCFloorPlan1, mTransit);
             win.ShowDialog();
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.Key==Key.Enter)
+            //{
+            //    e.Handled = true;
+            //}
         }
     }
 }

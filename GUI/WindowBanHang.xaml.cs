@@ -487,6 +487,7 @@ namespace GUI
         {
             Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);            
             AddChiTietBanHang(item);
+            lvData.Focus();
         }
 
         private void txt_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
@@ -499,14 +500,19 @@ namespace GUI
                 
         private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            //base.OnPreviewKeyDown(e);         
+            if (e.Key == System.Windows.Input.Key.Enter && mBarcode.Length == 0)
+            {
+                btnChucNang_Click(btnChucNang_1, null);
+            }
+            Console.WriteLine("{0}---{1}++++{2}----{3}----{4}", (char)e.Key, e.Key, e.Timestamp, mIsReadBarcode,mBarcode);
             if (mIsReadBarcode==false)
             {
                 mIsReadBarcode = true;
                 mLastKeystrokeTime = DateTime.Now;
-            }
-            Console.WriteLine("{0}---{1}++++{2}", (char)e.Key, e.Key, e.Timestamp);
+            }            
             TimeSpan elapsed = (DateTime.Now - mLastKeystrokeTime);
-            Console.WriteLine("---{0}---", elapsed.TotalMilliseconds);
+            //Console.WriteLine("---{0}---", elapsed.TotalMilliseconds);
             if (elapsed.TotalMilliseconds > 100)
             {
                 mIsReadBarcode = false;
@@ -521,7 +527,7 @@ namespace GUI
                 }
                 mLastKeystrokeTime = DateTime.Now;                
             }                        
-            if (e.Key == System.Windows.Input.Key.Return)
+            if (e.Key == System.Windows.Input.Key.Return && mIsReadBarcode)
             {
                 if (mIsReadBarcode)
                 {
@@ -539,12 +545,7 @@ namespace GUI
                     mBarcode = "";
                 }    
             }
-            Console.WriteLine("{0}",mBarcode);
-            if (e.Key==System.Windows.Input.Key.Space)
-            {
-                btnChucNang_Click(btnChucNang_1, null);
-            }
-            base.OnPreviewKeyDown(e);
+            //Console.WriteLine("{0}",mBarcode);            
         }
         
         

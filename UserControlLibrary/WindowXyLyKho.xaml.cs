@@ -30,7 +30,7 @@ namespace UserControlLibrary
         {
             InitializeComponent();
             mTransit = transit;
-            BOQuanLyKho = new Data.BOQuanLyKho(transit);
+            //BOQuanLyKho = new Data.BOQuanLyKho(transit);
             BOXuLyKhoChiTiet = new Data.BOXuLyKhoChiTiet(transit);
             lsLoaiBan = Data.BOLoaiBan.GetAllNoTracking(mTransit).ToList();
             BOXuLyKho = bOXuLyKho;
