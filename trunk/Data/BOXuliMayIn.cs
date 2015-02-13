@@ -33,7 +33,7 @@ namespace Data
                                  join y in mKaraokeEntities.MENUITEMMAYINs on x.MonID equals y.MonID
                                  //where y.Deleted==false && y.Visual==true
                                  select y;
-            var resuilt = from x in mKaraokeEntities.MAYINs.Where(o=>o.MayInHoaDon==false && o.Deleted==false)
+            var resuilt = from x in mKaraokeEntities.MAYINs.Where(o=>o.MayInHoaDon==false && o.Deleted==false && o.Visual==true)
                           join y in mKaraokeEntities.MENUITEMMAYINs on x.MayInID equals y.MayInID
                           where x.Visual == true && x.Deleted==false && queryMenuMayIn.Contains(y)
                           select new BOMayIn
@@ -49,7 +49,7 @@ namespace Data
         public IQueryable<BOMayIn> AllPrintingBill()
         {
             var resuilt = from a in mKaraokeEntities.MAYINs
-                         where a.MayInHoaDon==true && a.Deleted==false
+                         where a.MayInHoaDon==true && a.Deleted==false && a.Visual==true
                          select new BOMayIn
                           {
                               MayInID = a.MayInID,

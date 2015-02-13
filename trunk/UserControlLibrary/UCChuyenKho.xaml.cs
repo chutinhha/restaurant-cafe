@@ -29,13 +29,12 @@ namespace UserControlLibrary
             InitializeComponent();
             mTransit = transit;
             dtpThoiGian.SelectedDate = DateTime.Now;
-            BOChuyenKho = new Data.BOChuyenKho(transit);
+            BOChuyenKho = new Data.BOChuyenKho();
         }
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;
-            lvData.ItemsSource = BOChuyenKho.GetAll(mTransit, (DateTime)dtpThoiGian.SelectedDate);
+            lsArrayDeleted = null;            
         }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,7 +47,7 @@ namespace UserControlLibrary
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit, BOChuyenKho);
+            UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit);
             if (win.ShowDialog() == true)
             {
                 LoadDanhSach();
@@ -62,7 +61,7 @@ namespace UserControlLibrary
                 ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
                 mItem = (Data.BOChuyenKho)li.Tag;
 
-                UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit, BOChuyenKho);
+                UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit);
                 win._Item = mItem;
                 if (win.ShowDialog() == true)
                 {
@@ -107,8 +106,7 @@ namespace UserControlLibrary
 
                     lsArray.Add(mItem);
                 }
-            }
-            BOChuyenKho.Luu(lsArray, lsArrayDeleted, mTransit);
+            }            
             LoadDanhSach();
             UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
             messageBox.ShowDialog();

@@ -24,6 +24,7 @@ namespace ManagerDatabase
     /// </summary>
     public partial class WindowMain : Window
     {
+        private static string BACKUP_FOLDER = "CNV_BACKUP";
         private bool mIsFirst = true;
         private string mServerName;
         public WindowMain()
@@ -32,9 +33,24 @@ namespace ManagerDatabase
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            StartSqlBrower();            
         }
-
+        private void StartSqlBrower()
+        {
+            using (System.ServiceProcess.ServiceController sc = new System.ServiceProcess.ServiceController("SQLBrowser"))
+            {
+                if (sc.Status!=System.ServiceProcess.ServiceControllerStatus.Running)
+                {
+                    try
+                    {
+                        sc.Start();
+                    }
+                    catch (Exception)
+                    {                        
+                    }
+                }
+            }
+        }
         private void cboMayChu_GotFocus(object sender, RoutedEventArgs e)
         {
             if (mIsFirst)
@@ -59,18 +75,12 @@ namespace ManagerDatabase
             }
         }        
         private void button2_Click(object sender, RoutedEventArgs e)
-        {
-            //cboMayChu.IsEnabled = false;
-            //btnHuy.IsEnabled = false;
-            //btnHuy.IsEnabled = false;
-            //DispatcherTimer newTimer = new DispatcherTimer();
-            //newTimer.Interval = System.TimeSpan.FromMilliseconds(100);
-            //newTimer.Tick += new EventHandler(newTimer_Tick);
-            //newTimer.Start();
+        {            
             if (cboMayChu.SelectedIndex>=0)
             {
                 try
                 {
+                    System.IO.Directory.CreateDirectory(txtDuongDan.Text + BACKUP_FOLDER);
                     mServerName = cboMayChu.Text;
                     string connStr = String.Format("Data Source={0};Initial Catalog=master;Integrated Security=True", mServerName);
                     string sql = "";
@@ -83,9 +93,21 @@ namespace ManagerDatabase
                         try
                         {
                             conn.Open();
-
                             SqlCommand cmd = conn.CreateCommand();
-                            cmd.CommandText = "CREATE DATABASE Karaoke;";
+                            cmd.CommandText = "CREATE DATABASE Karaoke "+
+                                               "ON ("+
+                                                   "NAME = Karaoke,"+
+                                                   "FILENAME = '"+txtDuongDan.Text+BACKUP_FOLDER+"\\"+"Karaoke.mdf',"+
+                                                   "SIZE = 10,"+
+                                                   "MAXSIZE = 100,"+
+                                                   "FILEGROWTH = 5 "+
+                                                ") "+
+                                                "LOG ON ( "+
+                                                    "NAME = Sales_log,"+
+                                                    "FILENAME = '" + txtDuongDan.Text + BACKUP_FOLDER + "\\" + "Karaoke.ldf'," +
+                                                    "SIZE = 5MB,"+
+                                                    "MAXSIZE = 100MB,"+
+                                                    "FILEGROWTH = 5MB );";
                             cmd.CommandType = CommandType.Text;
                             cmd.ExecuteNonQuery();
                             string[] check = new string[] { "\nGO" };                            
@@ -96,20 +118,9 @@ namespace ManagerDatabase
                             {
                                 cmd.CommandText = item;
                                 cmd.ExecuteNonQuery();                            
-                            }
-                            //WebService.exe
-                            //try
-                            //{
-                            //    System.IO.File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "//database.sql");
-                            //}
-                            //catch (Exception ex)
-                            //{
-                            //    MessageBox.Show(ex.Message);
-                            //}
-                            UpdateConfig("CNVRestaurant.exe.config");
-                            UpdateConfig("WebService.exe.config");
-                            MessageBox.Show("Khởi tạo dữ liệu thành công!");
-                            Application.Current.Shutdown();
+                            }                            
+                            
+                            MessageBox.Show("Khởi tạo dữ liệu thành công!");                            
                         }
                         catch (Exception ex)
                         {
@@ -191,6 +202,43 @@ namespace ManagerDatabase
             }
         }
 
+        private void CopyAllFile()
+        {
+            var dir = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            var list = dir.GetFiles();
+            foreach (var item in list)
+            {
+                try
+                {                    
+                    System.IO.File.Copy(item.FullName,txtDuongDan.Text+BACKUP_FOLDER+"\\"+item.Name);
+                }
+                catch (Exception)
+                {                 
+                }
+            }
+        }
+        private void StartApp()
+        {
+            if (cboMayChu.SelectedIndex >= 0)
+            {
+                string connStr = String.Format("Data Source={0};Initial Catalog=master;Integrated Security=True", mServerName);
+                using (var con=new SqlConnection(connStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT count(*) FROM master.dbo.sysdatabases where name = 'Karaoke';";
+                    object obj = cmd.ExecuteScalar();
+                    if (Convert.ToInt32(obj)>0)
+                    {
+                        UpdateConfig("CNVRestaurant.exe.config");
+                        UpdateConfig("WebService.exe.config");
+                        CopyAllFile();
+                        Application.Current.Shutdown();
+                    }
+                }                
+            }
+            MessageBox.Show("Không tồn tại dữ liệu.");
+        }
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
@@ -233,6 +281,22 @@ namespace ManagerDatabase
                     this.Content = ex.Message;
                 }
             }
+        }
+
+        private void btnDuongDan_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new System.Windows.Forms.FolderBrowserDialog();
+            openFileDialog.SelectedPath = txtDuongDan.Text;            
+            if (openFileDialog.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+            {
+                txtDuongDan.Text = openFileDialog.SelectedPath;
+
+            }
+        }
+
+        private void btnBatDau_Click(object sender, RoutedEventArgs e)
+        {
+            StartApp();
         }
     }
 }

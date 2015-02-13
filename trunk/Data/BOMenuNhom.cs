@@ -44,7 +44,7 @@ namespace Data
         {
             var lsArray = from n in frmNhom.Query().Where(o=>o.Deleted==false) select new BOMenuNhom { MenuNhom = n };
             if (LoaiNhomID > 0)
-                lsArray = lsArray.Where(s => s.MenuNhom.LoaiNhomID == LoaiNhomID && s.MenuNhom.Deleted == false);
+                lsArray = lsArray.Where(s => (s.MenuNhom.LoaiNhomID == LoaiNhomID || LoaiNhomID==0) && s.MenuNhom.Deleted == false);
             if (IsBanHang)
             {
                 if (IsSoLuongChoPhepTonKho && IsSoLuongKhongChoPhepTonKho)
@@ -90,7 +90,10 @@ namespace Data
         {
             frmNhom.Update(item.MenuNhom);
             frmNhom.Commit();
-            SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
+            if (item.MenuNhom.LoaiNhomID!=null)
+            {
+                SapXep((int)item.MenuNhom.LoaiNhomID, mTransit);
+            }
             return item.MenuNhom.NhomID;
         }
 

@@ -57,6 +57,7 @@ namespace Data
             {
                 CaiDatBanHang = new CAIDATBANHANG();
             }
+            //==================
             //var nhom = KaraokeEntities.CHUCNANGs.ToList();
             //foreach (var item in nhom)
             //{

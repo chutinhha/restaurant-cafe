@@ -15,7 +15,16 @@ namespace GUI
             InitializeComponent();
             mTransit = transit;
             uCTile.OnEventExit += new ControlLibrary.UCTile.OnExit(uCTile_OnEventExit);
-            uCTile.TenChucNang = "Quản lý thực đơn";
+            if (mTransit.CaiDatBanHang.KhoaSoDoBan)
+            {
+                uCTile.TenChucNang = "Quản lý hàng hóa";
+                btnMonMoi.Content = "Hàng hóa mới";
+            }
+            else
+            {
+                uCTile.TenChucNang = "Quản lý thực đơn";
+                btnMonMoi.Content = "Món mới";                
+            }
             uCMenu._IsBanHang = false;
             PhanQuyen();
         }

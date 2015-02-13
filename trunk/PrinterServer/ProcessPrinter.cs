@@ -19,19 +19,7 @@ namespace PrinterServer
         {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InPhieuThuChiThread(thuchiID); }));
             thread.Start();
-        }
-        private void InPhieuThuChiThread(int thuchiID)
-        {
-            lock (mXuliMayIn)
-            {
-                var list = mXuliMayIn.AllPrintingBill().ToList();
-                foreach (var item in list)
-                {
-                    PrinterThuChi mayin = new PrinterThuChi(thuchiID, item, mXuliMayIn);
-                    mayin.Print();
-                }
-            }
-        }
+        }        
         public void InReport(DateTime dtFrom, DateTime dtTo)
         {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InReportThread(dtFrom,dtTo); }));
@@ -46,6 +34,18 @@ namespace PrinterServer
         {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate { InBillThread(type,banHangID); }));
             thread.Start();
+        }
+        private void InPhieuThuChiThread(int thuchiID)
+        {
+            lock (mXuliMayIn)
+            {
+                var list = mXuliMayIn.AllPrintingBill().ToList();
+                foreach (var item in list)
+                {
+                    PrinterThuChi mayin = new PrinterThuChi(thuchiID, item, mXuliMayIn);
+                    mayin.Print();
+                }
+            }
         }
         private void InReportThread(DateTime dtFrom, DateTime dtTo)
         {

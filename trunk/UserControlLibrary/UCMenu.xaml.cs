@@ -347,6 +347,7 @@ namespace UserControlLibrary
         }
         public void LoadGroup()
         {
+            bool isHasMon = false;
             lsMenuNhom = BOMenuNhom.GetAll(LoaiNhomID, _IsBanHang, _IsSoLuongChoPhepTonKho, _IsSoLuongKhongChoPhepTonKho, mTransit).ToList();
             if (lsMenuNhom.Count > gridGroup.Children.Count)
             {
@@ -360,6 +361,7 @@ namespace UserControlLibrary
                         PageItems = 1;
                         LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
                         OnEventMenuNhom(MenuNhomIndex);
+                        isHasMon = true;
                     }
                     SetButtonNhom((POSButtonMenu)gridGroup.Children[i + 1], lsGroupTem[i]);
                 }
@@ -379,12 +381,20 @@ namespace UserControlLibrary
                         PageItems = 1;
                         LoadMon(lsMenuNhom[i].MenuNhom.NhomID);
                         OnEventMenuNhom(MenuNhomIndex);
+                        isHasMon = true;
                     }
                     SetButtonNhom((POSButtonMenu)gridGroup.Children[i], lsMenuNhom[i]);
                 }
 
                 for (int i = lsMenuNhom.Count; i < gridGroup.Children.Count; i++)
                     SetButtonEmpty((POSButtonMenu)gridGroup.Children[i]);
+            }
+            if (isHasMon==false)
+            {
+                for (int i = 0; i < gridItems.Children.Count; i++)
+                {
+                    SetButtonEmpty((POSButtonMenu)gridItems.Children[i]);
+                }
             }
         }
         public void SetButtonNhom(POSButtonMenu btn, Data.BOMenuNhom item)
@@ -477,6 +487,21 @@ namespace UserControlLibrary
 
         private void SetButtonLoaiNhom()
         {
+            var listLoaiNhom = Data.BOLoaiNhom.GetAll(mTransit.KaraokeEntities, 2).ToList();
+            
+            
+            if (listLoaiNhom.Count>0)
+            {
+                var ln1 = listLoaiNhom[0];
+                btnNuoc.Content = ln1.TenLoaiNhom;
+                btnNuoc.Tag = ln1.LoaiNhomID;
+            }
+            if (listLoaiNhom.Count>1)
+            {
+                var ln2 = listLoaiNhom[1];
+                btnThucAn.Content = ln2.TenLoaiNhom;
+                btnThucAn.Tag = ln2.LoaiNhomID;
+            }
             if (mCaiDatThucDon.LoaiNhomThucTatCaImages != null && mCaiDatThucDon.LoaiNhomThucTatCaImages.Length > 0)
                 btnTatCa.Image = Utilities.ImageHandler.BitmapImageFromByteArray(mCaiDatThucDon.LoaiNhomThucTatCaImages);
             else
@@ -510,7 +535,15 @@ namespace UserControlLibrary
         }
         private void btnNuoc_Click(object sender, RoutedEventArgs e)
         {
-            LoaiNhomID = 1;
+            Button btn = sender as POSButtonMenu;
+            if (btn.Tag!=null)
+            {
+                LoaiNhomID = Convert.ToInt32(btn.Tag);
+            }
+            else
+            {
+                LoaiNhomID = 1;
+            }
             LoadGroup();
         }
 
@@ -522,7 +555,15 @@ namespace UserControlLibrary
 
         private void btnThucAn_Click(object sender, RoutedEventArgs e)
         {
-            LoaiNhomID = 2;
+            Button btn = sender as POSButtonMenu;
+            if (btn.Tag != null)
+            {
+                LoaiNhomID = Convert.ToInt32(btn.Tag);
+            }
+            else
+            {
+                LoaiNhomID = 2;
+            }
             LoadGroup();
         }
         #endregion Loại Nhóm

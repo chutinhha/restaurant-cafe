@@ -12,6 +12,7 @@ namespace Data
         {
             mKaraokeEntities = new KaraokeEntities();
         }
+        
 
         public IQueryable<KHO> GetAll()
         {

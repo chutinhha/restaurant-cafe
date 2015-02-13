@@ -49,8 +49,8 @@
                 <TextBlock Grid.Row="7" Grid.Column="0" Text="Hình loại nhóm" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
                 <TextBlock Grid.Row="6" Grid.Column="1" Text="Tất cả" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="6" Grid.Column="2" Text="Thức ăn" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
-                <TextBlock Grid.Row="6" Grid.Column="3" Text="Nước uống" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="6" Grid.Column="2" Text="Nhóm 1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="6" Grid.Column="3" Text="Nhóm 2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" TextWrapping="Wrap" />
 
 
                 <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtLoaiNhomTextFontSize" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7" FontSize="14"  HorizontalContentAlignment="Left" PreviewTextInput="txt_PreviewTextInput" />
