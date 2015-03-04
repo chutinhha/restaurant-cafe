@@ -106,8 +106,8 @@ namespace UserControlLibrary
                 _Item.KhachHang.LoaiKhachHangID = (int)cbbLoaiKhachHang.SelectedValue;
                 _Item.LoaiKhachHang = (Data.LOAIKHACHHANG)cbbLoaiKhachHang.SelectedItem;
             }
-            _Item.KhachHang.DuNo = System.Convert.ToDecimal(txtDuNo.Text);
-            _Item.KhachHang.DuNoToiThieu = System.Convert.ToDecimal(txtDuNoToiThieu.Text);
+            _Item.KhachHang.DuNo = Utilities.MoneyFormat.ConvertToDecimal(txtDuNo.Text);
+            _Item.KhachHang.DuNoToiThieu = Utilities.MoneyFormat.ConvertToDecimal(txtDuNoToiThieu.Text);
         }
 
         private bool CheckValues()

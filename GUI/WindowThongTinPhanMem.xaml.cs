@@ -63,7 +63,7 @@ namespace GUI
                 }
                 else
                 {
-                    lblDay.Content = Utilities.DateTimeConverter.ConvertToDateString(mTransit.ThamSo.NgayKetThuc.Value);
+                    lblDay.Content = Utilities.DateTimeConverter.ConvertToDateStringDMY(mTransit.ThamSo.NgayKetThuc.Value);
                 }
             }
         }

@@ -12,13 +12,12 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <my:POSButtonFuntion Name="btnThem" Content="Thêm" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Add.png" Background="#FF03AEDA" Click="btnThem_Click" />
-            <my:POSButtonFuntion Name="btnDanhSach" Content="Hủy thay đổi" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" Margin="5" FontSize="18" Image="/SystemImages;component/Images/Refresh.png" Background="#FF945054" Click="btnDanhSach_Click" />
             <DatePicker Name="dtpThoiGian" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5" HorizontalContentAlignment="Left" SelectedDateFormat="Short" Padding="20,0" FontSize="14" SelectedDateChanged="dtpThoiGian_SelectedDateChanged" />
         </StackPanel>
         <ListView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" Name="lvData" SelectionChanged="lvData_SelectionChanged" AlternationCount="2">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Chuyển kho">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ChuyenKho.ThoiGian}" Width="200" Header="Ngày chuyển" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ThoiGian}" Width="200" Header="Thời gian" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NhanVien.TenNhanVien}" Width="180" Header="Nhân viên" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhoDi.TenKho}" Width="150" Header="Kho đi" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=KhoDen.TenKho}" Width="150" Header="Kho đến" />

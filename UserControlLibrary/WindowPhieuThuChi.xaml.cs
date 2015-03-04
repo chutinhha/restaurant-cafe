@@ -130,7 +130,7 @@ namespace UserControlLibrary
             _Item.ThuChi.NguoiThuNop = txtNguoiThuNop.Text;
             if (txtTongTien.Text == "")
                 txtTongTien.Text = "0";
-            _Item.ThuChi.TongTien = Convert.ToDecimal(txtTongTien.Text);
+            _Item.ThuChi.TongTien = Utilities.MoneyFormat.ConvertToDecimal(txtTongTien.Text);
             foreach (var item in lsArray)
             {
                 _Item.ThuChi.CHITIETTHUCHIs.Add(item);

@@ -44,7 +44,7 @@ namespace PrinterServer
             y += mPOSPrinter.POSGetFloat(10);
 
             y = mPOSPrinter.POSDrawString("BÁO CÁO BÁN HÀNG", e, mPrinterFont.FontTitle, Color.Black, y, TextAlign.Center, 0);
-            y = mPOSPrinter.POSDrawString(String.Format("{0} - {1}", Utilities.DateTimeConverter.ConvertToDateString(mDateTimeFrom), Utilities.DateTimeConverter.ConvertToDateString(mDateTimeTo)), e, mPrinterFont.FontInfo, Color.Black, y, TextAlign.Center, 0);
+            y = mPOSPrinter.POSDrawString(String.Format("{0} - {1}", Utilities.DateTimeConverter.ConvertToDateStringDMY(mDateTimeFrom), Utilities.DateTimeConverter.ConvertToDateStringDMY(mDateTimeTo)), e, mPrinterFont.FontInfo, Color.Black, y, TextAlign.Center, 0);
                         
             y += mPOSPrinter.POSGetFloat(10);
 

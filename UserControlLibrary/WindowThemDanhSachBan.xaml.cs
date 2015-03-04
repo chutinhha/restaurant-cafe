@@ -93,7 +93,7 @@ namespace UserControlLibrary
             _Item.MenuKichThuocMon.TenLoaiBan = txtTenLoaiBan.Text;
             _Item.MenuKichThuocMon.KichThuocLoaiBan = System.Convert.ToInt32(txtKichThuocLoaiBan.Text);
             _Item.MenuKichThuocMon.KichThuocLoaiBan = (int)_Item.MenuKichThuocMon.KichThuocLoaiBan * (int)loaiBan.KichThuocBan;
-            _Item.MenuKichThuocMon.GiaBanMacDinh = System.Convert.ToDecimal(txtGiaMacDinh.Text);
+            _Item.MenuKichThuocMon.GiaBanMacDinh = Utilities.MoneyFormat.ConvertToDecimal(txtGiaMacDinh.Text); 
             _Item.MenuKichThuocMon.SoLuongBanBan = System.Convert.ToInt32(txtSoLuongBan.Text);
             _Item.MenuKichThuocMon.Visual = (bool)ckBan.IsChecked;
             _Item.MenuKichThuocMon.ChoPhepTonKho = (bool)ckChoPhepTonKho.IsChecked;
