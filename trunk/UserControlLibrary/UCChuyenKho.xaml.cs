@@ -19,97 +19,46 @@ namespace UserControlLibrary
     /// </summary>
     public partial class UCChuyenKho : UserControl
     {
-        private Data.Transit mTransit = null;
-        private Data.BOChuyenKho mItem = null;
-        private List<Data.BOChuyenKho> lsArrayDeleted = null;
-        private Data.BOChuyenKho BOChuyenKho = null;
-
+        private Data.Transit mTransit;
+        private Data.KaraokeEntities mKaraokeEntities;
+        private Data.BOChuyenKho mBOChuyenKho;
         public UCChuyenKho(Data.Transit transit)
         {
             InitializeComponent();
             mTransit = transit;
-            dtpThoiGian.SelectedDate = DateTime.Now;
-            BOChuyenKho = new Data.BOChuyenKho();
+            mKaraokeEntities = new Data.KaraokeEntities();
+            mBOChuyenKho = new Data.BOChuyenKho(mTransit,mKaraokeEntities);
+            mBOChuyenKho.NhanVienID = mTransit.NhanVien.NhanVienID;
+            dtpThoiGian.SelectedDate = DateTime.Now;            
         }
 
         private void LoadDanhSach()
         {
-            lsArrayDeleted = null;            
+            lvData.ItemsSource = mBOChuyenKho.GetAllByDate(dtpThoiGian.SelectedDate.Value);
         }
 
         private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                mItem = (Data.BOChuyenKho)lvData.SelectedItems[0];
-            }
+        {            
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit);
-            if (win.ShowDialog() == true)
-            {
-                LoadDanhSach();
-            }
+            UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit,mBOChuyenKho,mKaraokeEntities);
+            win.ShowDialog();
+            LoadDanhSach();
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                ListViewItem li = (ListViewItem)lvData.SelectedItems[0];
-                mItem = (Data.BOChuyenKho)li.Tag;
-
-                UserControlLibrary.WindowChuyenKho win = new UserControlLibrary.WindowChuyenKho(mTransit);
-                win._Item = mItem;
-                if (win.ShowDialog() == true)
-                {
-                    win._Item.ChuyenKho.Edit = true;
-                    li.Tag = win._Item;
-                    li.Content = win._Item;
-                    lvData.Items.Refresh();
-                }
-            }
+                   
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvData.SelectedItems.Count > 0)
-            {
-                mItem = (Data.BOChuyenKho)lvData.SelectedItems[0];
-                if (lsArrayDeleted == null)
-                {
-                    lsArrayDeleted = new List<Data.BOChuyenKho>();
-                }
-                if (mItem.ChuyenKho.ChuyenKhoID > 0)
-                    lsArrayDeleted.Add(mItem);
-                lvData.Items.Remove(lvData.SelectedItems[0]);
-                if (lvData.Items.Count > 0)
-                {
-                    lvData.SelectedIndex = 0;
-                }
-            }
+        {            
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
-        {
-            List<Data.BOChuyenKho> lsArray = null;
-            foreach (ListViewItem li in lvData.Items)
-            {
-                mItem = (Data.BOChuyenKho)li.Tag;
-                if (mItem.ChuyenKho.ChuyenKhoID == 0 || mItem.ChuyenKho.Edit == true)
-                {
-                    if (lsArray == null)
-                        lsArray = new List<Data.BOChuyenKho>();
-
-
-                    lsArray.Add(mItem);
-                }
-            }            
-            LoadDanhSach();
-            UserControlLibrary.WindowMessageBox messageBox = new UserControlLibrary.WindowMessageBox(mTransit.StringButton.LuuThanhCong);
-            messageBox.ShowDialog();
+        {         
         }
 
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -142,9 +91,7 @@ namespace UserControlLibrary
         }
 
         private void btnDanhSach_Click(object sender, RoutedEventArgs e)
-        {
-            mItem = null;            
-            LoadDanhSach();
+        {         
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -153,9 +100,8 @@ namespace UserControlLibrary
         }
 
         private void dtpThoiGian_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvData.ItemsSource != null)
-                LoadDanhSach();
+        {            
+               LoadDanhSach();
         }
     }
 }

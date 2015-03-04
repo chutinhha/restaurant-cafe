@@ -484,7 +484,7 @@ namespace GUI
         }
 
         private void uCMenuBanHang__OnEventMenuKichThuocMon(Data.BOMenuKichThuocMon ob)
-        {
+        {            
             Data.BOChiTietBanHang item = new Data.BOChiTietBanHang(ob, mTransit);            
             AddChiTietBanHang(item);
             lvData.Focus();

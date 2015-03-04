@@ -13,7 +13,7 @@ namespace Utilities
         //    return String.Format("{0:0,0} đ",data);
         //}
         public static string ConvertToStringFull(decimal data)
-        {
+        {                        
             return String.Format("{0:0,0} đ", data);
         }
         public static string ConvertToString(string data)
@@ -24,11 +24,12 @@ namespace Utilities
         }
         public static string ConvertToString(decimal data)
         {
-            //return data.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture);
-            return String.Format("{0:0,0}", data);
+            //return data.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture);            
+            //return String.Format("{0:0,0}", data);
+            return String.Format("{0}", data);
         }
         public static int ConvertToInt(string data)
-        {
+        {            
             if (CheckIsDigit(data))
             {
                 return Convert.ToInt32(data);

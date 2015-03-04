@@ -29,7 +29,7 @@ namespace UserControlLibrary
         {
             mTransit = transit;
             uCMenu._OnEventMenuKichThuocMon += new UCMenu.EventMenuKichThuocMon(uCMenu__OnEventMenuKichThuocMon);
-            uCMenu._IsSoLuongChoPhepTonKho = false;
+            uCMenu._IsSoLuongChoPhepTonKho = true;
             uCMenu._IsSoLuongKhongChoPhepTonKho = true;
             uCMenu.SetTransit(mTransit);
             uCDanhSachDinhLuong.SetTransit(mTransit);

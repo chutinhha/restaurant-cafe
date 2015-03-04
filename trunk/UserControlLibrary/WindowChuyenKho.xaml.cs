@@ -20,12 +20,13 @@ namespace UserControlLibrary
     {
         private Data.KaraokeEntities mKaraokeEntities;
         private Data.Transit mTransit = null;
-
-        public WindowChuyenKho(Data.Transit transit)
+        private Data.BOChuyenKho mBOChuyenKho;
+        public WindowChuyenKho(Data.Transit transit,Data.BOChuyenKho chuyenKho,Data.KaraokeEntities kara)
         {
             InitializeComponent();
             mTransit = transit;
-            mKaraokeEntities = new Data.KaraokeEntities();
+            mKaraokeEntities = kara;
+            mBOChuyenKho = chuyenKho;
         }
 
         public Data.BOChuyenKho _Item { get; set; }
@@ -100,17 +101,26 @@ namespace UserControlLibrary
             //}
         }
 
-        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        private void btnChuyenKho_Click(object sender, RoutedEventArgs e)
         {
-            var tonkho = ((Button)sender).DataContext as Data.BOTonKho;
-            //if (item.ChiTietChuyenKho.ChiTietChuyenKhoID > 0)
-            //{
-            //    if (lsArrayDeleted == null)
-            //        lsArrayDeleted = new List<Data.BOChiTietChuyenKho>();
-            //    lsArrayDeleted.Add(item);
-            //}
-            //lsArray.Remove(item);
-            //lvData.Items.Refresh();
+            if (cbbKhoDen.SelectedItem!=null)
+            {
+                var kho = cbbKhoDen.SelectedItem as Data.KHO;
+                var tonkho = ((Button)sender).DataContext as Data.BOTonKho;
+                if (tonkho!=null)
+                {
+                    mBOChuyenKho.KhoDenID = kho.KhoID;
+                    mBOChuyenKho.TonKho = tonkho.TonKho;
+                    mBOChuyenKho.SoLuong = 1;
+                    mBOChuyenKho.Chuyen();
+                    LoadTonKhoDen();
+                    UserControlLibrary.WindowMessageBox.ShowDialog("Chuyển kho thành công");
+                }
+            }
+            else
+            {
+                UserControlLibrary.WindowMessageBox.ShowDialog("Chọn kho cần chuyển");
+            }
         }
 
         private void cbbLoaiBan_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -142,15 +152,15 @@ namespace UserControlLibrary
 
         private void LoadKhoHang()
         {
-            cbbKhoDi.ItemsSource = Data.BOKho.GetAllNoTracking(mTransit);
-            if (cbbKhoDi.Items.Count > 0)
-                cbbKhoDi.SelectedIndex = 0;
+            cbbKhoDi.ItemsSource = Data.BOKho.GetAll(mKaraokeEntities);
+            lvData.ItemsSource = null;
+            //if (cbbKhoDi.Items.Count > 0)
+            //    cbbKhoDi.SelectedIndex = 0;
 
-            cbbKhoDen.ItemsSource = Data.BOKho.GetAllNoTracking(mTransit);
-            if (cbbKhoDen.Items.Count > 0)
-                cbbKhoDen.SelectedIndex = 0;
-        }
-
+            //cbbKhoDen.ItemsSource = Data.BOKho.GetAll(mKaraokeEntities);
+            //if (cbbKhoDen.Items.Count > 0)
+            //    cbbKhoDen.SelectedIndex = 0;
+        }        
         private void SetValues()
         {
             //if (_Item == null)
@@ -203,9 +213,24 @@ namespace UserControlLibrary
         private void cbbKhoDi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbKhoDi.SelectedItem!=null)
-            {
+            {                
                 var kho = cbbKhoDi.SelectedItem as Data.KHO;
+                cbbKhoDen.ItemsSource = Data.BOKho.GetAll(mKaraokeEntities, kho.KhoID);
+                lvData1.ItemsSource = null;
                 lvData.ItemsSource = Data.BOTonKho.GetTonKhoByKho(mKaraokeEntities, kho);
+            }
+        }
+
+        private void cbbKhoDen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadTonKhoDen();
+        }
+        private void LoadTonKhoDen()
+        {
+            if (cbbKhoDen.SelectedItem != null)
+            {
+                var kho = cbbKhoDen.SelectedItem as Data.KHO;
+                lvData1.ItemsSource = Data.BOTonKho.GetTonKhoByKho(mKaraokeEntities, kho);
             }
         }
     }

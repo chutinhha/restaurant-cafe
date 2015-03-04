@@ -112,10 +112,10 @@ namespace GUI
 
             Data.BOChiTietQuyen quyenXuLyKho = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.XuLyKho);
             btnTonKho.Tag = quyenXuLyKho;
-            if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.XuLyKho) || !quyenXuLyKho.ChiTietQuyen.ChoPhep)
-            {
-                btnXuLyKho.Visibility = System.Windows.Visibility.Collapsed;
-            }
+            //if (!mTransit.KiemTraChucNang((int)Data.TypeChucNang.Kho.XuLyKho) || !quyenXuLyKho.ChiTietQuyen.ChoPhep)
+            //{
+            //    btnXuLyKho.Visibility = System.Windows.Visibility.Collapsed;
+            //}
 
             Data.BOChiTietQuyen quyenNhaCungCap = mTransit.BOChiTietQuyen.KiemTraQuyen((int)Data.TypeChucNang.Kho.NhaCungCap);
             btnTonKho.Tag = quyenNhaCungCap;

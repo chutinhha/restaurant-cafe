@@ -125,7 +125,7 @@ namespace UserControlLibrary
             if (txtGiaMacDinh.Text == "")
                 _Mon.MenuMon.Gia = 0;
             else
-                _Mon.MenuMon.Gia = Convert.ToDecimal(txtGiaMacDinh.Text.Trim());
+                _Mon.MenuMon.Gia = Utilities.MoneyFormat.ConvertToDecimal(txtGiaMacDinh.Text);
             if (txtSapXep.Text == "")
                 _Mon.MenuMon.SapXep = 0;
             else

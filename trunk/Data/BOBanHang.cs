@@ -384,7 +384,9 @@ namespace Data
             {
                 this.BANHANG.TrangThaiID = 4;
                 //this.BANHANG.NgayBan = DateTime.Now;
-                this.BANHANG.NgayKetThuc = DateTime.Now;                                
+                this.BANHANG.NgayKetThuc = DateTime.Now;
+                BOTonKho.BanHang(mKaraokeEntities, this);
+                BOLichSuTonKho.BanHang(mKaraokeEntities, this);
                 mKaraokeEntities.SaveChanges();
                 return this.BANHANG.BanHangID;
             }
@@ -548,6 +550,17 @@ namespace Data
                 list.Add(ct);
             }
             return list;
+        }
+        public int? KhoID
+        {
+            get 
+            {
+                if (mTransit!=null)
+                {
+                    return mTransit.KhoID; 
+                }
+                return null;
+            }
         }
     }          
 }

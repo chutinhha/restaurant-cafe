@@ -544,12 +544,14 @@ namespace UserControlLibrary
             {
                 LoaiNhomID = 1;
             }
+            PageGroup = 1;
             LoadGroup();
         }
 
         private void btnTatCa_Click(object sender, RoutedEventArgs e)
         {
             LoaiNhomID = 0;
+            PageGroup = 1;
             LoadGroup();
         }
 
@@ -564,6 +566,7 @@ namespace UserControlLibrary
             {
                 LoaiNhomID = 2;
             }
+            PageGroup = 1;
             LoadGroup();
         }
         #endregion Loại Nhóm

@@ -48,7 +48,7 @@ namespace Utilities
             }
             return String.Format("{0:0000}-{1:00}-{2:00}", dt.Year, dt.Month, dt.Day);
         }
-        public static string ConvertToDateString(DateTime dt)
+        public static string ConvertToDateStringDMY(DateTime dt)
         {
             if (dt == null)
             {
